@@ -33,15 +33,27 @@ pub(super) struct Paginator {
     created: Instant,
 }
 
-/// `plist:<lista>:prev|next|jump`.
+/// `plist:<lista>:first|prev|counter|next|last|jump`.
 #[derive(Debug, Clone, Copy, PartialEq, Eq)]
 pub enum PageComponent {
+    First { nonce: u64 },
     Previous { nonce: u64 },
     Next { nonce: u64 },
+    Last { nonce: u64 },
     Jump { nonce: u64 },
 }
 
 impl PageComponent {
+    pub fn nonce(&self) -> u64 {
+        match *self {
+            Self::First { nonce }
+            | Self::Previous { nonce }
+            | Self::Next { nonce }
+            | Self::Last { nonce }
+            | Self::Jump { nonce } => nonce,
+        }
+    }
+
     pub fn parse(custom_id: &str) -> Option<Self> {
         let (nonce, action) = custom_id.strip_prefix("plist:")?.split_once(':')?;
         if nonce.is_empty() || !nonce.bytes().all(|b| b.is_ascii_digit()) {
@@ -49,8 +61,10 @@ impl PageComponent {
         }
         let nonce = nonce.parse().ok()?;
         match action {
+            "first" => Some(Self::First { nonce }),
             "prev" => Some(Self::Previous { nonce }),
             "next" => Some(Self::Next { nonce }),
+            "last" => Some(Self::Last { nonce }),
             "jump" => Some(Self::Jump { nonce }),
             _ => None,
         }
@@ -125,7 +139,7 @@ fn jump_options(total: usize, index: usize) -> Vec<CreateSelectMenuOption> {
         .collect()
 }
 
-/// I componenti sotto una pagina: il menu (solo con più pagine) e le frecce.
+/// I componenti sotto una pagina: il menu (solo con più pagine) e le frecce con indicatore.
 pub fn paginator_rows(nonce: u64, total: usize, index: usize) -> Vec<CreateActionRow> {
     let mut rows = Vec::new();
     if total > 1 {
@@ -136,9 +150,29 @@ pub fn paginator_rows(nonce: u64, total: usize, index: usize) -> Vec<CreateActio
                 .max_values(1),
         ));
     }
+    let is_first = index == 0;
+    let is_last = index + 1 >= total;
     rows.push(CreateActionRow::Buttons(vec![
-        CreateButton::new(PageComponent::id(nonce, "prev")).label("◀").style(ButtonStyle::Secondary),
-        CreateButton::new(PageComponent::id(nonce, "next")).label("▶").style(ButtonStyle::Secondary),
+        CreateButton::new(PageComponent::id(nonce, "first"))
+            .label("⏮")
+            .style(ButtonStyle::Secondary)
+            .disabled(is_first),
+        CreateButton::new(PageComponent::id(nonce, "prev"))
+            .label("◀ Indietro")
+            .style(ButtonStyle::Secondary)
+            .disabled(is_first),
+        CreateButton::new(PageComponent::id(nonce, "counter"))
+            .label(format!("{}/{}", index + 1, total.max(1)))
+            .style(ButtonStyle::Secondary)
+            .disabled(true),
+        CreateButton::new(PageComponent::id(nonce, "next"))
+            .label("Avanti ▶")
+            .style(ButtonStyle::Primary)
+            .disabled(is_last),
+        CreateButton::new(PageComponent::id(nonce, "last"))
+            .label("⏭")
+            .style(ButtonStyle::Secondary)
+            .disabled(is_last),
     ]));
     rows
 }
@@ -170,7 +204,7 @@ impl<S: DiscordSender, A: DiscordApi> Interactions<S, A> {
     }
 
     pub(super) async fn page_component<I: InteractionIo>(&self, io: &I, component: PageComponent) -> Io<()> {
-        let (PageComponent::Previous { nonce } | PageComponent::Next { nonce } | PageComponent::Jump { nonce }) = component;
+        let nonce = component.nonce();
         let shown = {
             let mut map = self.paginators.lock().unwrap_or_else(|poisoned| poisoned.into_inner());
             match map.get_mut(&nonce) {
@@ -183,8 +217,10 @@ impl<S: DiscordSender, A: DiscordApi> Interactions<S, A> {
                 Some(entry) => {
                     let total = entry.pages.len();
                     match component {
-                        PageComponent::Previous { .. } => entry.index = (entry.index + total - 1) % total,
-                        PageComponent::Next { .. } => entry.index = (entry.index + 1) % total,
+                        PageComponent::First { .. } => entry.index = 0,
+                        PageComponent::Last { .. } => entry.index = total.saturating_sub(1),
+                        PageComponent::Previous { .. } => entry.index = entry.index.saturating_sub(1),
+                        PageComponent::Next { .. } => entry.index = (entry.index + 1).min(total.saturating_sub(1)),
                         PageComponent::Jump { .. } => {
                             if let Some(page) = io.values().first().and_then(|value| value.parse::<usize>().ok()).filter(|page| *page < total) {
                                 entry.index = page;

@@ -3030,8 +3030,10 @@ mod tests {
     #[test]
     fn page_custom_ids_round_trip_and_reject_garbage() {
         use crate::interactions::proposals::PageComponent;
+        assert_eq!(PageComponent::parse(&PageComponent::id(5, "first")), Some(PageComponent::First { nonce: 5 }));
         assert_eq!(PageComponent::parse(&PageComponent::id(5, "prev")), Some(PageComponent::Previous { nonce: 5 }));
         assert_eq!(PageComponent::parse(&PageComponent::id(5, "next")), Some(PageComponent::Next { nonce: 5 }));
+        assert_eq!(PageComponent::parse(&PageComponent::id(5, "last")), Some(PageComponent::Last { nonce: 5 }));
         assert_eq!(PageComponent::parse(&PageComponent::id(5, "jump")), Some(PageComponent::Jump { nonce: 5 }));
         for garbage in ["plist:", "plist:5", "plist:x:next", "plist:5:other", "plist:-1:next", "vote:5"] {
             assert_eq!(PageComponent::parse(garbage), None, "{garbage}");
