@@ -1,0 +1,611 @@
+{
+ "all": {
+  "send": null,
+  "embed": {
+   "title": "📋 Proposte della settimana",
+   "description": "──────────\n`#20` 🎮 **Proposta numero 20**\n└ Gioco · `3 sostenitori` · `approved` · [link](https://example.com/xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx)\n\n`#23` ✨ **Proposta numero 23**\n└ Altro · `3 sostenitori` · `rejected`\n\n`#26` 🎤 **Proposta numero 26**\n└ Karaoke · `3 sostenitori` · `in_review`\n\n`#29` 🎬 **Proposta numero 29**\n└ Film · `3 sostenitori` · `pending`\n\n`#32` 🎮 **Proposta numero 32**\n└ Gioco · `3 sostenitori` · `approved`\n\n`#35` ✨ **Proposta numero 35**\n└ Altro · `3 sostenitori` · `rejected` ✅ · [link](https://example.com/xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx)\n\n`#38` 🎤 **Proposta numero 38**\n└ Karaoke · `3 sostenitori` · `in_review`\n\n`#41` 🎬 **Proposta numero 41**\n└ Film · `3 sostenitori` · `pending`\n\n`#44` 🎮 **Proposta numero 44**\n└ Gioco · `3 sostenitori` · `approved`\n\n`#47` ✨ **Proposta numero 47**\n└ Altro · `3 sostenitori` · `rejected`",
+   "color": 10181046,
+   "footer": "Pagina 1/4 · usa /scegli con l'ID"
+  },
+  "view": [
+   {
+    "button": "◀",
+    "style": 2,
+    "row": 1
+   },
+   {
+    "button": "▶",
+    "style": 2,
+    "row": 1
+   },
+   {
+    "select": [
+     [
+      "Pagina 1",
+      "0",
+      "Vai alla pagina 1 di 4",
+      true
+     ],
+     [
+      "Pagina 2",
+      "1",
+      "Vai alla pagina 2 di 4",
+      false
+     ],
+     [
+      "Pagina 3",
+      "2",
+      "Vai alla pagina 3 di 4",
+      false
+     ],
+     [
+      "Pagina 4",
+      "3",
+      "Vai alla pagina 4 di 4",
+      false
+     ]
+    ],
+    "placeholder": "Vai direttamente a una pagina",
+    "row": 0
+   }
+  ],
+  "ephemeral": true
+ },
+ "gioco": {
+  "send": null,
+  "embed": {
+   "title": "📋 Proposte della settimana",
+   "description": "──────────\n`#20` 🎮 **Proposta numero 20**\n└ Gioco · `3 sostenitori` · `approved` · [link](https://example.com/xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx)\n\n`#32` 🎮 **Proposta numero 32**\n└ Gioco · `3 sostenitori` · `approved`\n\n`#44` 🎮 **Proposta numero 44**\n└ Gioco · `3 sostenitori` · `approved`\n\n`#1` 🎮 **Among Us**\n└ Gioco · `2 sostenitori` · `approved` ✅ · [link](https://www.youtube.com/watch?v=dQw4w9WgXcQ)\n\n`#28` 🎮 **Proposta numero 28**\n└ Gioco · `2 sostenitori` · `approved` ✅\n\n`#40` 🎮 **Proposta numero 40**\n└ Gioco · `2 sostenitori` · `approved` · [link](https://example.com/xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx)\n\n`#2` 🎮 **Jackbox Party**\n└ Gioco · `1 sostenitori` · `approved` ✅ · [link](https://store.steampowered.com/app/945360/)\n\n`#6` 🎮 **Gartic Phone**\n└ Gioco · `1 sostenitori` · `approved` ✅ · [link](https://youtu.be/AAAAAAAAAAA)\n\n`#24` 🎮 **Proposta numero 24**\n└ Gioco · `1 sostenitori` · `approved`\n\n`#36` 🎮 **Proposta numero 36**\n└ Gioco · `1 sostenitori` · `approved`",
+   "color": 10181046,
+   "footer": "Pagina 1/2 · usa /scegli con l'ID"
+  },
+  "view": [
+   {
+    "button": "◀",
+    "style": 2,
+    "row": 1
+   },
+   {
+    "button": "▶",
+    "style": 2,
+    "row": 1
+   },
+   {
+    "select": [
+     [
+      "Pagina 1",
+      "0",
+      "Vai alla pagina 1 di 2",
+      true
+     ],
+     [
+      "Pagina 2",
+      "1",
+      "Vai alla pagina 2 di 2",
+      false
+     ]
+    ],
+    "placeholder": "Vai direttamente a una pagina",
+    "row": 0
+   }
+  ],
+  "ephemeral": true
+ },
+ "film_upper": {
+  "send": null,
+  "embed": {
+   "title": "📋 Proposte della settimana",
+   "description": "──────────\n`#29` 🎬 **Proposta numero 29**\n└ Film · `3 sostenitori` · `pending`\n\n`#41` 🎬 **Proposta numero 41**\n└ Film · `3 sostenitori` · `pending`\n\n`#25` 🎬 **Proposta numero 25**\n└ Film · `2 sostenitori` · `pending` · [link](https://example.com/xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx)\n\n`#37` 🎬 **Proposta numero 37**\n└ Film · `2 sostenitori` · `pending`\n\n`#49` 🎬 **Proposta numero 49**\n└ Film · `2 sostenitori` · `pending` ✅\n\n`#3` 🎬 **Il Gladiatore**\n└ Film · `1 sostenitori` · `approved` · [link](https://example.com/film)\n\n`#21` 🎬 **Proposta numero 21**\n└ Film · `1 sostenitori` · `pending` ✅\n\n`#33` 🎬 **Proposta numero 33**\n└ Film · `1 sostenitori` · `pending`\n\n`#45` 🎬 **Proposta numero 45**\n└ Film · `1 sostenitori` · `pending` · [link](https://example.com/xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx)",
+   "color": 10181046,
+   "footer": "Pagina 1/1 · usa /scegli con l'ID"
+  },
+  "view": null,
+  "ephemeral": true
+ },
+ "karaoke": {
+  "send": null,
+  "embed": {
+   "title": "📋 Proposte della settimana",
+   "description": "──────────\n`#26` 🎤 **Proposta numero 26**\n└ Karaoke · `3 sostenitori` · `in_review`\n\n`#38` 🎤 **Proposta numero 38**\n└ Karaoke · `3 sostenitori` · `in_review`\n\n`#50` 🎤 **Proposta numero 50**\n└ Karaoke · `3 sostenitori` · `in_review` · [link](https://example.com/xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx)\n\n`#22` 🎤 **Proposta numero 22**\n└ Karaoke · `2 sostenitori` · `in_review`\n\n`#34` 🎤 **Proposta numero 34**\n└ Karaoke · `2 sostenitori` · `in_review`\n\n`#46` 🎤 **Proposta numero 46**\n└ Karaoke · `2 sostenitori` · `in_review`\n\n`#4` 🎤 **Karaoke Night**\n└ Karaoke · `1 sostenitori` · `approved`\n\n`#30` 🎤 **Proposta numero 30**\n└ Karaoke · `1 sostenitori` · `in_review` · [link](https://example.com/xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx)\n\n`#42` 🎤 **Proposta numero 42**\n└ Karaoke · `1 sostenitori` · `in_review` ✅",
+   "color": 10181046,
+   "footer": "Pagina 1/1 · usa /scegli con l'ID"
+  },
+  "view": null,
+  "ephemeral": true
+ },
+ "none": {
+  "send": "⚠️ Nessuna proposta al momento.",
+  "embed": null,
+  "view": null,
+  "ephemeral": true
+ },
+ "not_staff": {
+  "send": "⚠️ Non hai i permessi per usare questo comando.",
+  "embed": null,
+  "view": null,
+  "ephemeral": true
+ },
+ "navigation": [
+  {
+   "label": "next",
+   "calls": [
+    {
+     "edit": true,
+     "embed": {
+      "title": "📋 Proposte della settimana",
+      "description": "──────────\n`#50` 🎤 **Proposta numero 50**\n└ Karaoke · `3 sostenitori` · `in_review` · [link](https://example.com/xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx)\n\n`#1` 🎮 **Among Us**\n└ Gioco · `2 sostenitori` · `approved` ✅ · [link](https://www.youtube.com/watch?v=dQw4w9WgXcQ)\n\n`#22` 🎤 **Proposta numero 22**\n└ Karaoke · `2 sostenitori` · `in_review`\n\n`#25` 🎬 **Proposta numero 25**\n└ Film · `2 sostenitori` · `pending` · [link](https://example.com/xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx)\n\n`#28` 🎮 **Proposta numero 28**\n└ Gioco · `2 sostenitori` · `approved` ✅\n\n`#31` ✨ **Proposta numero 31**\n└ Altro · `2 sostenitori` · `rejected`\n\n`#34` 🎤 **Proposta numero 34**\n└ Karaoke · `2 sostenitori` · `in_review`\n\n`#37` 🎬 **Proposta numero 37**\n└ Film · `2 sostenitori` · `pending`\n\n`#40` 🎮 **Proposta numero 40**\n└ Gioco · `2 sostenitori` · `approved` · [link](https://example.com/xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx)\n\n`#43` ✨ **Proposta numero 43**\n└ Altro · `2 sostenitori` · `rejected`",
+      "color": 10181046,
+      "footer": "Pagina 2/4 · usa /scegli con l'ID"
+     },
+     "view": [
+      {
+       "button": "◀",
+       "style": 2,
+       "row": 1
+      },
+      {
+       "button": "▶",
+       "style": 2,
+       "row": 1
+      },
+      {
+       "select": [
+        [
+         "Pagina 1",
+         "0",
+         "Vai alla pagina 1 di 4",
+         false
+        ],
+        [
+         "Pagina 2",
+         "1",
+         "Vai alla pagina 2 di 4",
+         true
+        ],
+        [
+         "Pagina 3",
+         "2",
+         "Vai alla pagina 3 di 4",
+         false
+        ],
+        [
+         "Pagina 4",
+         "3",
+         "Vai alla pagina 4 di 4",
+         false
+        ]
+       ],
+       "placeholder": "Vai direttamente a una pagina",
+       "row": 0
+      }
+     ]
+    }
+   ],
+   "index": 1
+  },
+  {
+   "label": "next2",
+   "calls": [
+    {
+     "edit": true,
+     "embed": {
+      "title": "📋 Proposte della settimana",
+      "description": "──────────\n`#46` 🎤 **Proposta numero 46**\n└ Karaoke · `2 sostenitori` · `in_review`\n\n`#49` 🎬 **Proposta numero 49**\n└ Film · `2 sostenitori` · `pending` ✅\n\n`#2` 🎮 **Jackbox Party**\n└ Gioco · `1 sostenitori` · `approved` ✅ · [link](https://store.steampowered.com/app/945360/)\n\n`#3` 🎬 **Il Gladiatore**\n└ Film · `1 sostenitori` · `approved` · [link](https://example.com/film)\n\n`#4` 🎤 **Karaoke Night**\n└ Karaoke · `1 sostenitori` · `approved`\n\n`#5` ✨ **Bozza**\n└ Altro · `1 sostenitori` · `pending`\n\n`#6` 🎮 **Gartic Phone**\n└ Gioco · `1 sostenitori` · `approved` ✅ · [link](https://youtu.be/AAAAAAAAAAA)\n\n`#21` 🎬 **Proposta numero 21**\n└ Film · `1 sostenitori` · `pending` ✅\n\n`#24` 🎮 **Proposta numero 24**\n└ Gioco · `1 sostenitori` · `approved`\n\n`#27` ✨ **Proposta numero 27**\n└ Altro · `1 sostenitori` · `rejected`",
+      "color": 10181046,
+      "footer": "Pagina 3/4 · usa /scegli con l'ID"
+     },
+     "view": [
+      {
+       "button": "◀",
+       "style": 2,
+       "row": 1
+      },
+      {
+       "button": "▶",
+       "style": 2,
+       "row": 1
+      },
+      {
+       "select": [
+        [
+         "Pagina 1",
+         "0",
+         "Vai alla pagina 1 di 4",
+         false
+        ],
+        [
+         "Pagina 2",
+         "1",
+         "Vai alla pagina 2 di 4",
+         false
+        ],
+        [
+         "Pagina 3",
+         "2",
+         "Vai alla pagina 3 di 4",
+         true
+        ],
+        [
+         "Pagina 4",
+         "3",
+         "Vai alla pagina 4 di 4",
+         false
+        ]
+       ],
+       "placeholder": "Vai direttamente a una pagina",
+       "row": 0
+      }
+     ]
+    }
+   ],
+   "index": 2
+  },
+  {
+   "label": "prev",
+   "calls": [
+    {
+     "edit": true,
+     "embed": {
+      "title": "📋 Proposte della settimana",
+      "description": "──────────\n`#50` 🎤 **Proposta numero 50**\n└ Karaoke · `3 sostenitori` · `in_review` · [link](https://example.com/xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx)\n\n`#1` 🎮 **Among Us**\n└ Gioco · `2 sostenitori` · `approved` ✅ · [link](https://www.youtube.com/watch?v=dQw4w9WgXcQ)\n\n`#22` 🎤 **Proposta numero 22**\n└ Karaoke · `2 sostenitori` · `in_review`\n\n`#25` 🎬 **Proposta numero 25**\n└ Film · `2 sostenitori` · `pending` · [link](https://example.com/xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx)\n\n`#28` 🎮 **Proposta numero 28**\n└ Gioco · `2 sostenitori` · `approved` ✅\n\n`#31` ✨ **Proposta numero 31**\n└ Altro · `2 sostenitori` · `rejected`\n\n`#34` 🎤 **Proposta numero 34**\n└ Karaoke · `2 sostenitori` · `in_review`\n\n`#37` 🎬 **Proposta numero 37**\n└ Film · `2 sostenitori` · `pending`\n\n`#40` 🎮 **Proposta numero 40**\n└ Gioco · `2 sostenitori` · `approved` · [link](https://example.com/xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx)\n\n`#43` ✨ **Proposta numero 43**\n└ Altro · `2 sostenitori` · `rejected`",
+      "color": 10181046,
+      "footer": "Pagina 2/4 · usa /scegli con l'ID"
+     },
+     "view": [
+      {
+       "button": "◀",
+       "style": 2,
+       "row": 1
+      },
+      {
+       "button": "▶",
+       "style": 2,
+       "row": 1
+      },
+      {
+       "select": [
+        [
+         "Pagina 1",
+         "0",
+         "Vai alla pagina 1 di 4",
+         false
+        ],
+        [
+         "Pagina 2",
+         "1",
+         "Vai alla pagina 2 di 4",
+         true
+        ],
+        [
+         "Pagina 3",
+         "2",
+         "Vai alla pagina 3 di 4",
+         false
+        ],
+        [
+         "Pagina 4",
+         "3",
+         "Vai alla pagina 4 di 4",
+         false
+        ]
+       ],
+       "placeholder": "Vai direttamente a una pagina",
+       "row": 0
+      }
+     ]
+    }
+   ],
+   "index": 1
+  },
+  {
+   "label": "prev_back",
+   "calls": [
+    {
+     "edit": true,
+     "embed": {
+      "title": "📋 Proposte della settimana",
+      "description": "──────────\n`#20` 🎮 **Proposta numero 20**\n└ Gioco · `3 sostenitori` · `approved` · [link](https://example.com/xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx)\n\n`#23` ✨ **Proposta numero 23**\n└ Altro · `3 sostenitori` · `rejected`\n\n`#26` 🎤 **Proposta numero 26**\n└ Karaoke · `3 sostenitori` · `in_review`\n\n`#29` 🎬 **Proposta numero 29**\n└ Film · `3 sostenitori` · `pending`\n\n`#32` 🎮 **Proposta numero 32**\n└ Gioco · `3 sostenitori` · `approved`\n\n`#35` ✨ **Proposta numero 35**\n└ Altro · `3 sostenitori` · `rejected` ✅ · [link](https://example.com/xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx)\n\n`#38` 🎤 **Proposta numero 38**\n└ Karaoke · `3 sostenitori` · `in_review`\n\n`#41` 🎬 **Proposta numero 41**\n└ Film · `3 sostenitori` · `pending`\n\n`#44` 🎮 **Proposta numero 44**\n└ Gioco · `3 sostenitori` · `approved`\n\n`#47` ✨ **Proposta numero 47**\n└ Altro · `3 sostenitori` · `rejected`",
+      "color": 10181046,
+      "footer": "Pagina 1/4 · usa /scegli con l'ID"
+     },
+     "view": [
+      {
+       "button": "◀",
+       "style": 2,
+       "row": 1
+      },
+      {
+       "button": "▶",
+       "style": 2,
+       "row": 1
+      },
+      {
+       "select": [
+        [
+         "Pagina 1",
+         "0",
+         "Vai alla pagina 1 di 4",
+         true
+        ],
+        [
+         "Pagina 2",
+         "1",
+         "Vai alla pagina 2 di 4",
+         false
+        ],
+        [
+         "Pagina 3",
+         "2",
+         "Vai alla pagina 3 di 4",
+         false
+        ],
+        [
+         "Pagina 4",
+         "3",
+         "Vai alla pagina 4 di 4",
+         false
+        ]
+       ],
+       "placeholder": "Vai direttamente a una pagina",
+       "row": 0
+      }
+     ]
+    }
+   ],
+   "index": 0
+  },
+  {
+   "label": "prev_wrap",
+   "calls": [
+    {
+     "edit": true,
+     "embed": {
+      "title": "📋 Proposte della settimana",
+      "description": "──────────\n`#30` 🎤 **Proposta numero 30**\n└ Karaoke · `1 sostenitori` · `in_review` · [link](https://example.com/xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx)\n\n`#33` 🎬 **Proposta numero 33**\n└ Film · `1 sostenitori` · `pending`\n\n`#36` 🎮 **Proposta numero 36**\n└ Gioco · `1 sostenitori` · `approved`\n\n`#39` ✨ **Proposta numero 39**\n└ Altro · `1 sostenitori` · `rejected`\n\n`#42` 🎤 **Proposta numero 42**\n└ Karaoke · `1 sostenitori` · `in_review` ✅\n\n`#45` 🎬 **Proposta numero 45**\n└ Film · `1 sostenitori` · `pending` · [link](https://example.com/xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx)\n\n`#48` 🎮 **Proposta numero 48**\n└ Gioco · `1 sostenitori` · `approved`\n\n`#51` ✨ **Proposta numero 51**\n└ Altro · `1 sostenitori` · `rejected`\n\n`#90` 🎮 **LLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLL**\n└ Gioco · `1 sostenitori` · `approved` · [link](https://example.com/yyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyy)",
+      "color": 10181046,
+      "footer": "Pagina 4/4 · usa /scegli con l'ID"
+     },
+     "view": [
+      {
+       "button": "◀",
+       "style": 2,
+       "row": 1
+      },
+      {
+       "button": "▶",
+       "style": 2,
+       "row": 1
+      },
+      {
+       "select": [
+        [
+         "Pagina 1",
+         "0",
+         "Vai alla pagina 1 di 4",
+         false
+        ],
+        [
+         "Pagina 2",
+         "1",
+         "Vai alla pagina 2 di 4",
+         false
+        ],
+        [
+         "Pagina 3",
+         "2",
+         "Vai alla pagina 3 di 4",
+         false
+        ],
+        [
+         "Pagina 4",
+         "3",
+         "Vai alla pagina 4 di 4",
+         true
+        ]
+       ],
+       "placeholder": "Vai direttamente a una pagina",
+       "row": 0
+      }
+     ]
+    }
+   ],
+   "index": 3
+  },
+  {
+   "label": "next_wrap",
+   "calls": [
+    {
+     "edit": true,
+     "embed": {
+      "title": "📋 Proposte della settimana",
+      "description": "──────────\n`#20` 🎮 **Proposta numero 20**\n└ Gioco · `3 sostenitori` · `approved` · [link](https://example.com/xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx)\n\n`#23` ✨ **Proposta numero 23**\n└ Altro · `3 sostenitori` · `rejected`\n\n`#26` 🎤 **Proposta numero 26**\n└ Karaoke · `3 sostenitori` · `in_review`\n\n`#29` 🎬 **Proposta numero 29**\n└ Film · `3 sostenitori` · `pending`\n\n`#32` 🎮 **Proposta numero 32**\n└ Gioco · `3 sostenitori` · `approved`\n\n`#35` ✨ **Proposta numero 35**\n└ Altro · `3 sostenitori` · `rejected` ✅ · [link](https://example.com/xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx)\n\n`#38` 🎤 **Proposta numero 38**\n└ Karaoke · `3 sostenitori` · `in_review`\n\n`#41` 🎬 **Proposta numero 41**\n└ Film · `3 sostenitori` · `pending`\n\n`#44` 🎮 **Proposta numero 44**\n└ Gioco · `3 sostenitori` · `approved`\n\n`#47` ✨ **Proposta numero 47**\n└ Altro · `3 sostenitori` · `rejected`",
+      "color": 10181046,
+      "footer": "Pagina 1/4 · usa /scegli con l'ID"
+     },
+     "view": [
+      {
+       "button": "◀",
+       "style": 2,
+       "row": 1
+      },
+      {
+       "button": "▶",
+       "style": 2,
+       "row": 1
+      },
+      {
+       "select": [
+        [
+         "Pagina 1",
+         "0",
+         "Vai alla pagina 1 di 4",
+         true
+        ],
+        [
+         "Pagina 2",
+         "1",
+         "Vai alla pagina 2 di 4",
+         false
+        ],
+        [
+         "Pagina 3",
+         "2",
+         "Vai alla pagina 3 di 4",
+         false
+        ],
+        [
+         "Pagina 4",
+         "3",
+         "Vai alla pagina 4 di 4",
+         false
+        ]
+       ],
+       "placeholder": "Vai direttamente a una pagina",
+       "row": 0
+      }
+     ]
+    }
+   ],
+   "index": 0
+  },
+  {
+   "label": "jump_last",
+   "calls": [
+    {
+     "edit": true,
+     "embed": {
+      "title": "📋 Proposte della settimana",
+      "description": "──────────\n`#30` 🎤 **Proposta numero 30**\n└ Karaoke · `1 sostenitori` · `in_review` · [link](https://example.com/xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx)\n\n`#33` 🎬 **Proposta numero 33**\n└ Film · `1 sostenitori` · `pending`\n\n`#36` 🎮 **Proposta numero 36**\n└ Gioco · `1 sostenitori` · `approved`\n\n`#39` ✨ **Proposta numero 39**\n└ Altro · `1 sostenitori` · `rejected`\n\n`#42` 🎤 **Proposta numero 42**\n└ Karaoke · `1 sostenitori` · `in_review` ✅\n\n`#45` 🎬 **Proposta numero 45**\n└ Film · `1 sostenitori` · `pending` · [link](https://example.com/xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx)\n\n`#48` 🎮 **Proposta numero 48**\n└ Gioco · `1 sostenitori` · `approved`\n\n`#51` ✨ **Proposta numero 51**\n└ Altro · `1 sostenitori` · `rejected`\n\n`#90` 🎮 **LLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLL**\n└ Gioco · `1 sostenitori` · `approved` · [link](https://example.com/yyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyy)",
+      "color": 10181046,
+      "footer": "Pagina 4/4 · usa /scegli con l'ID"
+     },
+     "view": [
+      {
+       "button": "◀",
+       "style": 2,
+       "row": 1
+      },
+      {
+       "button": "▶",
+       "style": 2,
+       "row": 1
+      },
+      {
+       "select": [
+        [
+         "Pagina 1",
+         "0",
+         "Vai alla pagina 1 di 4",
+         false
+        ],
+        [
+         "Pagina 2",
+         "1",
+         "Vai alla pagina 2 di 4",
+         false
+        ],
+        [
+         "Pagina 3",
+         "2",
+         "Vai alla pagina 3 di 4",
+         false
+        ],
+        [
+         "Pagina 4",
+         "3",
+         "Vai alla pagina 4 di 4",
+         true
+        ]
+       ],
+       "placeholder": "Vai direttamente a una pagina",
+       "row": 0
+      }
+     ]
+    }
+   ],
+   "index": 3
+  },
+  {
+   "label": "jump_middle",
+   "calls": [
+    {
+     "edit": true,
+     "embed": {
+      "title": "📋 Proposte della settimana",
+      "description": "──────────\n`#46` 🎤 **Proposta numero 46**\n└ Karaoke · `2 sostenitori` · `in_review`\n\n`#49` 🎬 **Proposta numero 49**\n└ Film · `2 sostenitori` · `pending` ✅\n\n`#2` 🎮 **Jackbox Party**\n└ Gioco · `1 sostenitori` · `approved` ✅ · [link](https://store.steampowered.com/app/945360/)\n\n`#3` 🎬 **Il Gladiatore**\n└ Film · `1 sostenitori` · `approved` · [link](https://example.com/film)\n\n`#4` 🎤 **Karaoke Night**\n└ Karaoke · `1 sostenitori` · `approved`\n\n`#5` ✨ **Bozza**\n└ Altro · `1 sostenitori` · `pending`\n\n`#6` 🎮 **Gartic Phone**\n└ Gioco · `1 sostenitori` · `approved` ✅ · [link](https://youtu.be/AAAAAAAAAAA)\n\n`#21` 🎬 **Proposta numero 21**\n└ Film · `1 sostenitori` · `pending` ✅\n\n`#24` 🎮 **Proposta numero 24**\n└ Gioco · `1 sostenitori` · `approved`\n\n`#27` ✨ **Proposta numero 27**\n└ Altro · `1 sostenitori` · `rejected`",
+      "color": 10181046,
+      "footer": "Pagina 3/4 · usa /scegli con l'ID"
+     },
+     "view": [
+      {
+       "button": "◀",
+       "style": 2,
+       "row": 1
+      },
+      {
+       "button": "▶",
+       "style": 2,
+       "row": 1
+      },
+      {
+       "select": [
+        [
+         "Pagina 1",
+         "0",
+         "Vai alla pagina 1 di 4",
+         false
+        ],
+        [
+         "Pagina 2",
+         "1",
+         "Vai alla pagina 2 di 4",
+         false
+        ],
+        [
+         "Pagina 3",
+         "2",
+         "Vai alla pagina 3 di 4",
+         true
+        ],
+        [
+         "Pagina 4",
+         "3",
+         "Vai alla pagina 4 di 4",
+         false
+        ]
+       ],
+       "placeholder": "Vai direttamente a una pagina",
+       "row": 0
+      }
+     ]
+    }
+   ],
+   "index": 2
+  },
+  {
+   "label": "stranger_next",
+   "calls": [
+    {
+     "send": "⚠️ Questa lista è riservata a chi l'ha aperta.",
+     "embed": null,
+     "view": null,
+     "ephemeral": true
+    }
+   ],
+   "index": 2
+  },
+  {
+   "label": "stranger_jump",
+   "calls": [
+    {
+     "send": "⚠️ Questa lista è riservata a chi l'ha aperta.",
+     "embed": null,
+     "view": null,
+     "ephemeral": true
+    }
+   ],
+   "index": 2
+  }
+ ],
+ "pages": 4
+}

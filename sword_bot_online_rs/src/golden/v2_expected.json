@@ -1,0 +1,579 @@
+{
+ "hub": [
+  {
+   "type": 17,
+   "accent_color": 5793266,
+   "spoiler": false,
+   "components": [
+    {
+     "type": 10,
+     "content": "## 🎮 Game Night Hub\nProponi un'attività, vota i sondaggi e sostieni le idee della community."
+    },
+    {
+     "type": 14,
+     "divider": true,
+     "spacing": 1
+    },
+    {
+     "type": 10,
+     "content": "**Settimana #7** · chiusura <t:1794826800:R>\n👥 `5` votanti · ✨ `5` proposte approvate · 🗳️ `13` sondaggi aperti"
+    },
+    {
+     "type": 10,
+     "content": "### ⭐ Proposta del momento\n🎤 **Karaoke Night** · `3 sostenitori`\nProposta da <@5>"
+    },
+    {
+     "type": 10,
+     "content": "### 🏆 Ballottaggio community\n🥇 **Among Us** · `3 voti`\n🥈 **Jackbox Party** · `2 voti`\n🥉 **Gartic Phone** · `1 voti`"
+    },
+    {
+     "type": 10,
+     "content": "### ✨ Proposte recenti\n🎮 **Gartic Phone** · `2 sostenitori`\n🎤 **Karaoke Night** · `3 sostenitori`\n🎬 **Il Gladiatore** · `2 sostenitori`"
+    }
+   ]
+  },
+  {
+   "type": 1,
+   "components": [
+    {
+     "type": 2,
+     "style": 1,
+     "disabled": false,
+     "label": "Vota",
+     "custom_id": "hub:vote",
+     "emoji": {
+      "id": null,
+      "name": "🗳️"
+     }
+    },
+    {
+     "type": 2,
+     "style": 3,
+     "disabled": false,
+     "label": "Proponi",
+     "custom_id": "hub:suggest",
+     "emoji": {
+      "id": null,
+      "name": "➕"
+     }
+    },
+    {
+     "type": 2,
+     "style": 3,
+     "disabled": false,
+     "label": "Supporta",
+     "custom_id": "hub:support",
+     "emoji": {
+      "id": null,
+      "name": "👍"
+     }
+    }
+   ]
+  },
+  {
+   "type": 1,
+   "components": [
+    {
+     "type": 3,
+     "custom_id": "hub:more",
+     "min_values": 1,
+     "max_values": 1,
+     "disabled": false,
+     "required": true,
+     "placeholder": "Altro… classifiche, storico, il tuo profilo",
+     "options": [
+      {
+       "label": "Classifica della settimana",
+       "value": "leaderboard",
+       "default": false,
+       "emoji": {
+        "id": null,
+        "name": "📊"
+       }
+      },
+      {
+       "label": "Classifica utenti",
+       "value": "contributors",
+       "default": false,
+       "emoji": {
+        "id": null,
+        "name": "🏆"
+       }
+      },
+      {
+       "label": "Storico e Hall of Fame",
+       "value": "history",
+       "default": false,
+       "emoji": {
+        "id": null,
+        "name": "📚"
+       }
+      },
+      {
+       "label": "Record della community",
+       "value": "records",
+       "default": false,
+       "emoji": {
+        "id": null,
+        "name": "🏅"
+       }
+      },
+      {
+       "label": "Il mio stato",
+       "value": "profile",
+       "default": false,
+       "emoji": {
+        "id": null,
+        "name": "👤"
+       }
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "hub_flags": null,
+ "support": {
+  "1": [
+   {
+    "type": 17,
+    "accent_color": 5793266,
+    "spoiler": false,
+    "components": [
+     {
+      "type": 10,
+      "content": "Puoi sostenere ogni proposta una volta. Il sostegno non consuma le tue proposte settimanali."
+     },
+     {
+      "type": 14,
+      "divider": true,
+      "spacing": 1
+     },
+     {
+      "type": 9,
+      "components": [
+       {
+        "type": 10,
+        "content": "## 🎮 Among Us\n**Gioco** · 🏆 Nel ballottaggio\n👥 Sostenitori: `4`\nProposta da <@1>\n[Apri link](https://www.youtube.com/watch?v=dQw4w9WgXcQ)"
+       }
+      ],
+      "accessory": {
+       "type": 11,
+       "spoiler": false,
+       "media": {
+        "url": "https://i.ytimg.com/vi/dQw4w9WgXcQ/hqdefault.jpg"
+       },
+       "description": null
+      }
+     }
+    ]
+   },
+   {
+    "type": 1,
+    "components": [
+     {
+      "type": 3,
+      "custom_id": "f7b504a6ce442db03532b7e4e0c325df",
+      "min_values": 1,
+      "max_values": 1,
+      "disabled": false,
+      "required": true,
+      "placeholder": "Scegli una proposta da supportare",
+      "options": [
+       {
+        "label": "Gartic Phone",
+        "value": "6",
+        "default": false,
+        "description": "Gioco · 2 sostenitori",
+        "emoji": {
+         "id": null,
+         "name": "🎮"
+        }
+       },
+       {
+        "label": "Karaoke Night",
+        "value": "4",
+        "default": false,
+        "description": "Karaoke · 3 sostenitori",
+        "emoji": {
+         "id": null,
+         "name": "🎤"
+        }
+       },
+       {
+        "label": "Il Gladiatore",
+        "value": "3",
+        "default": false,
+        "description": "Film · 2 sostenitori",
+        "emoji": {
+         "id": null,
+         "name": "🎬"
+        }
+       },
+       {
+        "label": "Jackbox Party",
+        "value": "2",
+        "default": false,
+        "description": "Gioco · 2 sostenitori",
+        "emoji": {
+         "id": null,
+         "name": "🎮"
+        }
+       },
+       {
+        "label": "Among Us",
+        "value": "1",
+        "default": true,
+        "description": "Gioco · 4 sostenitori",
+        "emoji": {
+         "id": null,
+         "name": "🎮"
+        }
+       }
+      ]
+     }
+    ]
+   },
+   {
+    "type": 1,
+    "components": [
+     {
+      "type": 2,
+      "style": 3,
+      "disabled": false,
+      "label": "Supporta questa proposta",
+      "custom_id": "28af399f6006c10a815d54e68c7809b7",
+      "emoji": {
+       "id": null,
+       "name": "👍"
+      }
+     }
+    ]
+   }
+  ],
+  "3": [
+   {
+    "type": 17,
+    "accent_color": 5793266,
+    "spoiler": false,
+    "components": [
+     {
+      "type": 10,
+      "content": "Puoi sostenere ogni proposta una volta. Il sostegno non consuma le tue proposte settimanali."
+     },
+     {
+      "type": 14,
+      "divider": true,
+      "spacing": 1
+     },
+     {
+      "type": 10,
+      "content": "## 🎬 Il Gladiatore\n**Film** · In valutazione\n👥 Sostenitori: `2`\nProposta da <@4>\n[Apri link](https://example.com/film)"
+     }
+    ]
+   },
+   {
+    "type": 1,
+    "components": [
+     {
+      "type": 3,
+      "custom_id": "dd2c29d31961c046d14ff4e6c8021eda",
+      "min_values": 1,
+      "max_values": 1,
+      "disabled": false,
+      "required": true,
+      "placeholder": "Scegli una proposta da supportare",
+      "options": [
+       {
+        "label": "Gartic Phone",
+        "value": "6",
+        "default": false,
+        "description": "Gioco · 2 sostenitori",
+        "emoji": {
+         "id": null,
+         "name": "🎮"
+        }
+       },
+       {
+        "label": "Karaoke Night",
+        "value": "4",
+        "default": false,
+        "description": "Karaoke · 3 sostenitori",
+        "emoji": {
+         "id": null,
+         "name": "🎤"
+        }
+       },
+       {
+        "label": "Il Gladiatore",
+        "value": "3",
+        "default": true,
+        "description": "Film · 2 sostenitori",
+        "emoji": {
+         "id": null,
+         "name": "🎬"
+        }
+       },
+       {
+        "label": "Jackbox Party",
+        "value": "2",
+        "default": false,
+        "description": "Gioco · 2 sostenitori",
+        "emoji": {
+         "id": null,
+         "name": "🎮"
+        }
+       },
+       {
+        "label": "Among Us",
+        "value": "1",
+        "default": false,
+        "description": "Gioco · 4 sostenitori",
+        "emoji": {
+         "id": null,
+         "name": "🎮"
+        }
+       }
+      ]
+     }
+    ]
+   },
+   {
+    "type": 1,
+    "components": [
+     {
+      "type": 2,
+      "style": 3,
+      "disabled": false,
+      "label": "Supporta questa proposta",
+      "custom_id": "cf322b0cd7e84647ee2e444551f4a334",
+      "emoji": {
+       "id": null,
+       "name": "👍"
+      }
+     }
+    ]
+   }
+  ],
+  "999": [
+   {
+    "type": 1,
+    "components": [
+     {
+      "type": 3,
+      "custom_id": "7c63ba929454460c0c02e0c61c73c524",
+      "min_values": 1,
+      "max_values": 1,
+      "disabled": false,
+      "required": true,
+      "placeholder": "Scegli una proposta da supportare",
+      "options": [
+       {
+        "label": "Gartic Phone",
+        "value": "6",
+        "default": false,
+        "description": "Gioco · 2 sostenitori",
+        "emoji": {
+         "id": null,
+         "name": "🎮"
+        }
+       },
+       {
+        "label": "Karaoke Night",
+        "value": "4",
+        "default": false,
+        "description": "Karaoke · 3 sostenitori",
+        "emoji": {
+         "id": null,
+         "name": "🎤"
+        }
+       },
+       {
+        "label": "Il Gladiatore",
+        "value": "3",
+        "default": false,
+        "description": "Film · 2 sostenitori",
+        "emoji": {
+         "id": null,
+         "name": "🎬"
+        }
+       },
+       {
+        "label": "Jackbox Party",
+        "value": "2",
+        "default": false,
+        "description": "Gioco · 2 sostenitori",
+        "emoji": {
+         "id": null,
+         "name": "🎮"
+        }
+       },
+       {
+        "label": "Among Us",
+        "value": "1",
+        "default": false,
+        "description": "Gioco · 4 sostenitori",
+        "emoji": {
+         "id": null,
+         "name": "🎮"
+        }
+       }
+      ]
+     }
+    ]
+   }
+  ]
+ },
+ "notice": [
+  {
+   "type": 10,
+   "content": "⚠️ Questa proposta non è più disponibile."
+  }
+ ],
+ "hub_image": [
+  {
+   "type": 17,
+   "accent_color": 5793266,
+   "spoiler": false,
+   "components": [
+    {
+     "type": 10,
+     "content": "## 🎮 Game Night Hub\nProponi un'attività, vota i sondaggi e sostieni le idee della community."
+    },
+    {
+     "type": 14,
+     "divider": true,
+     "spacing": 1
+    },
+    {
+     "type": 10,
+     "content": "**Settimana #7** · chiusura <t:1794826800:R>\n👥 `5` votanti · ✨ `5` proposte approvate · 🗳️ `13` sondaggi aperti"
+    },
+    {
+     "type": 9,
+     "components": [
+      {
+       "type": 10,
+       "content": "### ⭐ Proposta del momento\n🎤 **Karaoke Night** · `3 sostenitori`\nProposta da <@5>"
+      }
+     ],
+     "accessory": {
+      "type": 11,
+      "spoiler": false,
+      "media": {
+       "url": "https://cdn.akamai.steamstatic.com/steam/apps/570/header.jpg"
+      },
+      "description": null
+     }
+    },
+    {
+     "type": 10,
+     "content": "### 🏆 Ballottaggio community\n🥇 **Among Us** · `3 voti`\n🥈 **Jackbox Party** · `2 voti`\n🥉 **Gartic Phone** · `1 voti`"
+    },
+    {
+     "type": 10,
+     "content": "### ✨ Proposte recenti\n🎮 **Gartic Phone** · `2 sostenitori`\n🎤 **Karaoke Night** · `3 sostenitori`\n🎬 **Il Gladiatore** · `2 sostenitori`"
+    }
+   ]
+  },
+  {
+   "type": 1,
+   "components": [
+    {
+     "type": 2,
+     "style": 1,
+     "disabled": false,
+     "label": "Vota",
+     "custom_id": "hub:vote",
+     "emoji": {
+      "id": null,
+      "name": "🗳️"
+     }
+    },
+    {
+     "type": 2,
+     "style": 3,
+     "disabled": false,
+     "label": "Proponi",
+     "custom_id": "hub:suggest",
+     "emoji": {
+      "id": null,
+      "name": "➕"
+     }
+    },
+    {
+     "type": 2,
+     "style": 3,
+     "disabled": false,
+     "label": "Supporta",
+     "custom_id": "hub:support",
+     "emoji": {
+      "id": null,
+      "name": "👍"
+     }
+    }
+   ]
+  },
+  {
+   "type": 1,
+   "components": [
+    {
+     "type": 3,
+     "custom_id": "hub:more",
+     "min_values": 1,
+     "max_values": 1,
+     "disabled": false,
+     "required": true,
+     "placeholder": "Altro… classifiche, storico, il tuo profilo",
+     "options": [
+      {
+       "label": "Classifica della settimana",
+       "value": "leaderboard",
+       "default": false,
+       "emoji": {
+        "id": null,
+        "name": "📊"
+       }
+      },
+      {
+       "label": "Classifica utenti",
+       "value": "contributors",
+       "default": false,
+       "emoji": {
+        "id": null,
+        "name": "🏆"
+       }
+      },
+      {
+       "label": "Storico e Hall of Fame",
+       "value": "history",
+       "default": false,
+       "emoji": {
+        "id": null,
+        "name": "📚"
+       }
+      },
+      {
+       "label": "Record della community",
+       "value": "records",
+       "default": false,
+       "emoji": {
+        "id": null,
+        "name": "🏅"
+       }
+      },
+      {
+       "label": "Il mio stato",
+       "value": "profile",
+       "default": false,
+       "emoji": {
+        "id": null,
+        "name": "👤"
+       }
+      }
+     ]
+    }
+   ]
+  }
+ ]
+}

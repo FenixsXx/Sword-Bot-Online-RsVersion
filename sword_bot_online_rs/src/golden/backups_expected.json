@@ -1,0 +1,1036 @@
+{
+ "signatures": [
+  {
+   "endpoint": "https://acct.r2.cloudflarestorage.com",
+   "bucket": "mybucket",
+   "key": "sfo-backups/daily/daily-2027-03-01.db.enc",
+   "body_len": 1000,
+   "region": "auto",
+   "authorization": "AWS4-HMAC-SHA256 Credential=AKIDEXAMPLE/20270301/auto/s3/aws4_request, SignedHeaders=content-type;host;x-amz-content-sha256;x-amz-date;x-amz-meta-encryption, Signature=4c96d1622cd66ebb90ea195df200ad889dd9d35b46fc7ecc0f7c582a4ccd3847",
+   "date": "20270301T031500Z",
+   "content_sha256": "fc22630aa2347dc1c69971aee67475be83f51b4a87fabd7982f74e9e01be6dff",
+   "url": "https://acct.r2.cloudflarestorage.com/mybucket/sfo-backups/daily/daily-2027-03-01.db.enc"
+  },
+  {
+   "endpoint": "https://acct.r2.cloudflarestorage.com",
+   "bucket": "mybucket",
+   "key": "pre fix/with space/file+name=1.db.enc",
+   "body_len": 33,
+   "region": "auto",
+   "authorization": "AWS4-HMAC-SHA256 Credential=AKIDEXAMPLE/20270301/auto/s3/aws4_request, SignedHeaders=content-type;host;x-amz-content-sha256;x-amz-date;x-amz-meta-encryption, Signature=7de3e5c298c6db3c045e0b7ff53549332ed7f7c04f6b942b243b550d420735c3",
+   "date": "20270301T031500Z",
+   "content_sha256": "7f9c9e31ac8256ca2f258583df262dbc7d6f68f2a03043d5c99a4ae5a7396ce9",
+   "url": "https://acct.r2.cloudflarestorage.com/mybucket/pre%20fix/with%20space/file%2Bname%3D1.db.enc"
+  },
+  {
+   "endpoint": "http://127.0.0.1:9000",
+   "bucket": "b",
+   "key": "k.db.enc",
+   "body_len": 5,
+   "region": "us-east-1",
+   "authorization": "AWS4-HMAC-SHA256 Credential=AKIDEXAMPLE/20270301/us-east-1/s3/aws4_request, SignedHeaders=content-type;host;x-amz-content-sha256;x-amz-date;x-amz-meta-encryption, Signature=816eaedbde30d08c6ce089ac106fc2eae29c3fdcda2c2e0e2904e5c8b30d6981",
+   "date": "20270301T031500Z",
+   "content_sha256": "8855508aade16ec573d21e6a485dfd0a7624085c1a14b5ecdd6485de0c6839a4",
+   "url": "http://127.0.0.1:9000/b/k.db.enc"
+  },
+  {
+   "endpoint": "https://s3.example.com",
+   "bucket": "bucket-2",
+   "key": "a/b/c/weekly-2027-W09.db.enc",
+   "body_len": 4096,
+   "region": "eu-west-1",
+   "authorization": "AWS4-HMAC-SHA256 Credential=AKIDEXAMPLE/20270301/eu-west-1/s3/aws4_request, SignedHeaders=content-type;host;x-amz-content-sha256;x-amz-date;x-amz-meta-encryption, Signature=ac85a07cff893e30b7897ebe319e4754df32b3dac275d764ae319f741958c7d5",
+   "date": "20270301T031500Z",
+   "content_sha256": "c8f5d0341d54d951a71b136e6e2afcb14d11ed8489a7ae126a8fee0df6ecf193",
+   "url": "https://s3.example.com/bucket-2/a/b/c/weekly-2027-W09.db.enc"
+  }
+ ],
+ "fernet_key": "-lt3SRpWv-VnNNFCHW0SsmbwCZSe-fO0naPuI6Ua2ls=",
+ "status_empty": {
+  "root": "<ROOT>",
+  "daily_count": 0,
+  "latest_daily": null,
+  "weekly_count": 0,
+  "latest_weekly": null,
+  "cloud_upload_error": null
+ },
+ "runs": [
+  [
+   "2026-12-21",
+   [
+    "daily/daily-2026-12-21.db",
+    "weekly/weekly-2026-W52.db"
+   ]
+  ],
+  [
+   "2026-12-22",
+   [
+    "daily/daily-2026-12-22.db"
+   ]
+  ],
+  [
+   "2026-12-23",
+   [
+    "daily/daily-2026-12-23.db"
+   ]
+  ],
+  [
+   "2026-12-24",
+   [
+    "daily/daily-2026-12-24.db"
+   ]
+  ],
+  [
+   "2026-12-25",
+   [
+    "daily/daily-2026-12-25.db"
+   ]
+  ],
+  [
+   "2026-12-26",
+   [
+    "daily/daily-2026-12-26.db"
+   ]
+  ],
+  [
+   "2026-12-27",
+   [
+    "daily/daily-2026-12-27.db"
+   ]
+  ],
+  [
+   "2026-12-28",
+   [
+    "daily/daily-2026-12-28.db",
+    "weekly/weekly-2026-W53.db"
+   ]
+  ],
+  [
+   "2026-12-29",
+   [
+    "daily/daily-2026-12-29.db"
+   ]
+  ],
+  [
+   "2026-12-30",
+   [
+    "daily/daily-2026-12-30.db"
+   ]
+  ],
+  [
+   "2026-12-31",
+   [
+    "daily/daily-2026-12-31.db"
+   ]
+  ],
+  [
+   "2027-01-01",
+   [
+    "daily/daily-2027-01-01.db"
+   ]
+  ],
+  [
+   "2027-01-02",
+   [
+    "daily/daily-2027-01-02.db"
+   ]
+  ],
+  [
+   "2027-01-03",
+   [
+    "daily/daily-2027-01-03.db"
+   ]
+  ],
+  [
+   "2027-01-04",
+   [
+    "daily/daily-2027-01-04.db",
+    "weekly/weekly-2027-W01.db"
+   ]
+  ],
+  [
+   "2027-01-05",
+   [
+    "daily/daily-2027-01-05.db"
+   ]
+  ],
+  [
+   "2027-01-06",
+   [
+    "daily/daily-2027-01-06.db"
+   ]
+  ],
+  [
+   "2027-01-07",
+   [
+    "daily/daily-2027-01-07.db"
+   ]
+  ],
+  [
+   "2027-01-08",
+   [
+    "daily/daily-2027-01-08.db"
+   ]
+  ],
+  [
+   "2027-01-09",
+   [
+    "daily/daily-2027-01-09.db"
+   ]
+  ],
+  [
+   "2027-01-10",
+   [
+    "daily/daily-2027-01-10.db"
+   ]
+  ],
+  [
+   "2027-01-11",
+   [
+    "daily/daily-2027-01-11.db",
+    "weekly/weekly-2027-W02.db"
+   ]
+  ],
+  [
+   "2027-01-12",
+   [
+    "daily/daily-2027-01-12.db"
+   ]
+  ],
+  [
+   "2027-01-13",
+   [
+    "daily/daily-2027-01-13.db"
+   ]
+  ],
+  [
+   "2027-01-14",
+   [
+    "daily/daily-2027-01-14.db"
+   ]
+  ],
+  [
+   "2027-01-15",
+   [
+    "daily/daily-2027-01-15.db"
+   ]
+  ],
+  [
+   "2027-01-16",
+   [
+    "daily/daily-2027-01-16.db"
+   ]
+  ],
+  [
+   "2027-01-17",
+   [
+    "daily/daily-2027-01-17.db"
+   ]
+  ],
+  [
+   "2027-01-18",
+   [
+    "daily/daily-2027-01-18.db",
+    "weekly/weekly-2027-W03.db"
+   ]
+  ],
+  [
+   "2027-01-19",
+   [
+    "daily/daily-2027-01-19.db"
+   ]
+  ],
+  [
+   "2027-01-20",
+   [
+    "daily/daily-2027-01-20.db"
+   ]
+  ],
+  [
+   "2027-01-21",
+   [
+    "daily/daily-2027-01-21.db"
+   ]
+  ],
+  [
+   "2027-01-22",
+   [
+    "daily/daily-2027-01-22.db"
+   ]
+  ],
+  [
+   "2027-01-23",
+   [
+    "daily/daily-2027-01-23.db"
+   ]
+  ],
+  [
+   "2027-01-24",
+   [
+    "daily/daily-2027-01-24.db"
+   ]
+  ],
+  [
+   "2027-01-25",
+   [
+    "daily/daily-2027-01-25.db",
+    "weekly/weekly-2027-W04.db"
+   ]
+  ],
+  [
+   "2027-01-26",
+   [
+    "daily/daily-2027-01-26.db"
+   ]
+  ],
+  [
+   "2027-01-27",
+   [
+    "daily/daily-2027-01-27.db"
+   ]
+  ],
+  [
+   "2027-01-28",
+   [
+    "daily/daily-2027-01-28.db"
+   ]
+  ],
+  [
+   "2027-01-29",
+   [
+    "daily/daily-2027-01-29.db"
+   ]
+  ],
+  [
+   "2027-01-30",
+   [
+    "daily/daily-2027-01-30.db"
+   ]
+  ],
+  [
+   "2027-01-31",
+   [
+    "daily/daily-2027-01-31.db"
+   ]
+  ],
+  [
+   "2027-02-01",
+   [
+    "daily/daily-2027-02-01.db",
+    "weekly/weekly-2027-W05.db"
+   ]
+  ],
+  [
+   "2027-02-02",
+   [
+    "daily/daily-2027-02-02.db"
+   ]
+  ],
+  [
+   "2027-02-03",
+   [
+    "daily/daily-2027-02-03.db"
+   ]
+  ],
+  [
+   "2027-02-04",
+   [
+    "daily/daily-2027-02-04.db"
+   ]
+  ],
+  [
+   "2027-02-05",
+   [
+    "daily/daily-2027-02-05.db"
+   ]
+  ],
+  [
+   "2027-02-06",
+   [
+    "daily/daily-2027-02-06.db"
+   ]
+  ],
+  [
+   "2027-02-07",
+   [
+    "daily/daily-2027-02-07.db"
+   ]
+  ],
+  [
+   "2027-02-08",
+   [
+    "daily/daily-2027-02-08.db",
+    "weekly/weekly-2027-W06.db"
+   ]
+  ],
+  [
+   "2027-02-09",
+   [
+    "daily/daily-2027-02-09.db"
+   ]
+  ],
+  [
+   "2027-02-10",
+   [
+    "daily/daily-2027-02-10.db"
+   ]
+  ],
+  [
+   "2027-02-11",
+   [
+    "daily/daily-2027-02-11.db"
+   ]
+  ],
+  [
+   "2027-02-12",
+   [
+    "daily/daily-2027-02-12.db"
+   ]
+  ],
+  [
+   "2027-02-13",
+   [
+    "daily/daily-2027-02-13.db"
+   ]
+  ],
+  [
+   "2027-02-14",
+   [
+    "daily/daily-2027-02-14.db"
+   ]
+  ],
+  [
+   "2027-02-15",
+   [
+    "daily/daily-2027-02-15.db",
+    "weekly/weekly-2027-W07.db"
+   ]
+  ],
+  [
+   "2027-02-16",
+   [
+    "daily/daily-2027-02-16.db"
+   ]
+  ],
+  [
+   "2027-02-17",
+   [
+    "daily/daily-2027-02-17.db"
+   ]
+  ],
+  [
+   "2027-02-18",
+   [
+    "daily/daily-2027-02-18.db"
+   ]
+  ],
+  [
+   "2027-02-19",
+   [
+    "daily/daily-2027-02-19.db"
+   ]
+  ],
+  [
+   "2027-02-20",
+   [
+    "daily/daily-2027-02-20.db"
+   ]
+  ],
+  [
+   "2027-02-21",
+   [
+    "daily/daily-2027-02-21.db"
+   ]
+  ],
+  [
+   "2027-02-22",
+   [
+    "daily/daily-2027-02-22.db",
+    "weekly/weekly-2027-W08.db"
+   ]
+  ],
+  [
+   "2027-02-23",
+   [
+    "daily/daily-2027-02-23.db"
+   ]
+  ],
+  [
+   "2027-02-24",
+   [
+    "daily/daily-2027-02-24.db"
+   ]
+  ],
+  [
+   "2027-02-25",
+   [
+    "daily/daily-2027-02-25.db"
+   ]
+  ],
+  [
+   "2027-02-26",
+   [
+    "daily/daily-2027-02-26.db"
+   ]
+  ],
+  [
+   "2027-02-27",
+   [
+    "daily/daily-2027-02-27.db"
+   ]
+  ],
+  [
+   "2027-02-28",
+   [
+    "daily/daily-2027-02-28.db"
+   ]
+  ],
+  [
+   "2027-03-01",
+   [
+    "daily/daily-2027-03-01.db",
+    "weekly/weekly-2027-W09.db"
+   ]
+  ],
+  [
+   "2027-03-02",
+   [
+    "daily/daily-2027-03-02.db"
+   ]
+  ],
+  [
+   "2027-03-03",
+   [
+    "daily/daily-2027-03-03.db"
+   ]
+  ],
+  [
+   "2027-03-04",
+   [
+    "daily/daily-2027-03-04.db"
+   ]
+  ],
+  [
+   "2027-03-05",
+   [
+    "daily/daily-2027-03-05.db"
+   ]
+  ],
+  [
+   "2027-03-06",
+   [
+    "daily/daily-2027-03-06.db"
+   ]
+  ],
+  [
+   "2027-03-07",
+   [
+    "daily/daily-2027-03-07.db"
+   ]
+  ],
+  [
+   "2027-03-08",
+   [
+    "daily/daily-2027-03-08.db",
+    "weekly/weekly-2027-W10.db"
+   ]
+  ],
+  [
+   "2027-03-09",
+   [
+    "daily/daily-2027-03-09.db"
+   ]
+  ],
+  [
+   "2027-03-10",
+   [
+    "daily/daily-2027-03-10.db"
+   ]
+  ],
+  [
+   "2027-03-11",
+   [
+    "daily/daily-2027-03-11.db"
+   ]
+  ],
+  [
+   "2027-03-12",
+   [
+    "daily/daily-2027-03-12.db"
+   ]
+  ],
+  [
+   "2027-03-13",
+   [
+    "daily/daily-2027-03-13.db"
+   ]
+  ],
+  [
+   "2027-03-14",
+   [
+    "daily/daily-2027-03-14.db"
+   ]
+  ],
+  [
+   "2027-03-15",
+   [
+    "daily/daily-2027-03-15.db",
+    "weekly/weekly-2027-W11.db"
+   ]
+  ],
+  [
+   "2027-03-16",
+   [
+    "daily/daily-2027-03-16.db"
+   ]
+  ],
+  [
+   "2027-03-17",
+   [
+    "daily/daily-2027-03-17.db"
+   ]
+  ],
+  [
+   "2027-03-18",
+   [
+    "daily/daily-2027-03-18.db"
+   ]
+  ],
+  [
+   "2027-03-19",
+   [
+    "daily/daily-2027-03-19.db"
+   ]
+  ],
+  [
+   "2027-03-20",
+   [
+    "daily/daily-2027-03-20.db"
+   ]
+  ],
+  [
+   "2027-03-21",
+   [
+    "daily/daily-2027-03-21.db"
+   ]
+  ],
+  [
+   "2027-03-22",
+   [
+    "daily/daily-2027-03-22.db",
+    "weekly/weekly-2027-W12.db"
+   ]
+  ]
+ ],
+ "checkpoints": {
+  "2026-12-21": {
+   "daily": [
+    "daily-2026-12-21.db"
+   ],
+   "weekly": [
+    "weekly-2026-W52.db"
+   ],
+   "status": {
+    "root": "<ROOT>",
+    "daily_count": 1,
+    "latest_daily": "daily-2026-12-21.db",
+    "weekly_count": 1,
+    "latest_weekly": "weekly-2026-W52.db",
+    "cloud_upload_error": null
+   }
+  },
+  "2026-12-22": {
+   "daily": [
+    "daily-2026-12-21.db",
+    "daily-2026-12-22.db"
+   ],
+   "weekly": [
+    "weekly-2026-W52.db"
+   ],
+   "status": {
+    "root": "<ROOT>",
+    "daily_count": 2,
+    "latest_daily": "daily-2026-12-22.db",
+    "weekly_count": 1,
+    "latest_weekly": "weekly-2026-W52.db",
+    "cloud_upload_error": null
+   }
+  },
+  "2027-01-03": {
+   "daily": [
+    "daily-2026-12-21.db",
+    "daily-2026-12-22.db",
+    "daily-2026-12-23.db",
+    "daily-2026-12-24.db",
+    "daily-2026-12-25.db",
+    "daily-2026-12-26.db",
+    "daily-2026-12-27.db",
+    "daily-2026-12-28.db",
+    "daily-2026-12-29.db",
+    "daily-2026-12-30.db",
+    "daily-2026-12-31.db",
+    "daily-2027-01-01.db",
+    "daily-2027-01-02.db",
+    "daily-2027-01-03.db"
+   ],
+   "weekly": [
+    "weekly-2026-W52.db",
+    "weekly-2026-W53.db"
+   ],
+   "status": {
+    "root": "<ROOT>",
+    "daily_count": 14,
+    "latest_daily": "daily-2027-01-03.db",
+    "weekly_count": 2,
+    "latest_weekly": "weekly-2026-W53.db",
+    "cloud_upload_error": null
+   }
+  },
+  "2027-01-04": {
+   "daily": [
+    "daily-2026-12-22.db",
+    "daily-2026-12-23.db",
+    "daily-2026-12-24.db",
+    "daily-2026-12-25.db",
+    "daily-2026-12-26.db",
+    "daily-2026-12-27.db",
+    "daily-2026-12-28.db",
+    "daily-2026-12-29.db",
+    "daily-2026-12-30.db",
+    "daily-2026-12-31.db",
+    "daily-2027-01-01.db",
+    "daily-2027-01-02.db",
+    "daily-2027-01-03.db",
+    "daily-2027-01-04.db"
+   ],
+   "weekly": [
+    "weekly-2026-W52.db",
+    "weekly-2026-W53.db",
+    "weekly-2027-W01.db"
+   ],
+   "status": {
+    "root": "<ROOT>",
+    "daily_count": 14,
+    "latest_daily": "daily-2027-01-04.db",
+    "weekly_count": 3,
+    "latest_weekly": "weekly-2027-W01.db",
+    "cloud_upload_error": null
+   }
+  },
+  "2027-01-05": {
+   "daily": [
+    "daily-2026-12-23.db",
+    "daily-2026-12-24.db",
+    "daily-2026-12-25.db",
+    "daily-2026-12-26.db",
+    "daily-2026-12-27.db",
+    "daily-2026-12-28.db",
+    "daily-2026-12-29.db",
+    "daily-2026-12-30.db",
+    "daily-2026-12-31.db",
+    "daily-2027-01-01.db",
+    "daily-2027-01-02.db",
+    "daily-2027-01-03.db",
+    "daily-2027-01-04.db",
+    "daily-2027-01-05.db"
+   ],
+   "weekly": [
+    "weekly-2026-W52.db",
+    "weekly-2026-W53.db",
+    "weekly-2027-W01.db"
+   ],
+   "status": {
+    "root": "<ROOT>",
+    "daily_count": 14,
+    "latest_daily": "daily-2027-01-05.db",
+    "weekly_count": 3,
+    "latest_weekly": "weekly-2027-W01.db",
+    "cloud_upload_error": null
+   }
+  },
+  "2027-02-19": {
+   "daily": [
+    "daily-2027-02-06.db",
+    "daily-2027-02-07.db",
+    "daily-2027-02-08.db",
+    "daily-2027-02-09.db",
+    "daily-2027-02-10.db",
+    "daily-2027-02-11.db",
+    "daily-2027-02-12.db",
+    "daily-2027-02-13.db",
+    "daily-2027-02-14.db",
+    "daily-2027-02-15.db",
+    "daily-2027-02-16.db",
+    "daily-2027-02-17.db",
+    "daily-2027-02-18.db",
+    "daily-2027-02-19.db"
+   ],
+   "weekly": [
+    "weekly-2026-W53.db",
+    "weekly-2027-W01.db",
+    "weekly-2027-W02.db",
+    "weekly-2027-W03.db",
+    "weekly-2027-W04.db",
+    "weekly-2027-W05.db",
+    "weekly-2027-W06.db",
+    "weekly-2027-W07.db"
+   ],
+   "status": {
+    "root": "<ROOT>",
+    "daily_count": 14,
+    "latest_daily": "daily-2027-02-19.db",
+    "weekly_count": 8,
+    "latest_weekly": "weekly-2027-W07.db",
+    "cloud_upload_error": null
+   }
+  },
+  "2027-03-22": {
+   "daily": [
+    "daily-2027-03-09.db",
+    "daily-2027-03-10.db",
+    "daily-2027-03-11.db",
+    "daily-2027-03-12.db",
+    "daily-2027-03-13.db",
+    "daily-2027-03-14.db",
+    "daily-2027-03-15.db",
+    "daily-2027-03-16.db",
+    "daily-2027-03-17.db",
+    "daily-2027-03-18.db",
+    "daily-2027-03-19.db",
+    "daily-2027-03-20.db",
+    "daily-2027-03-21.db",
+    "daily-2027-03-22.db"
+   ],
+   "weekly": [
+    "weekly-2027-W05.db",
+    "weekly-2027-W06.db",
+    "weekly-2027-W07.db",
+    "weekly-2027-W08.db",
+    "weekly-2027-W09.db",
+    "weekly-2027-W10.db",
+    "weekly-2027-W11.db",
+    "weekly-2027-W12.db"
+   ],
+   "status": {
+    "root": "<ROOT>",
+    "daily_count": 14,
+    "latest_daily": "daily-2027-03-22.db",
+    "weekly_count": 8,
+    "latest_weekly": "weekly-2027-W12.db",
+    "cloud_upload_error": null
+   }
+  }
+ },
+ "snapshot": {
+  "integrity": "ok",
+  "tables": [
+   "community_activity",
+   "community_records",
+   "daily_vote_activity",
+   "history",
+   "live_event_participants",
+   "live_events",
+   "options",
+   "picked_suggestions",
+   "poll_message_claims",
+   "polls",
+   "proposals",
+   "season_activity",
+   "seasons",
+   "settings",
+   "site_report_notifications",
+   "staff_audit",
+   "suggestion_review_messages",
+   "suggestion_supports",
+   "suggestions",
+   "user_ballot_weeks",
+   "user_hidden_badges",
+   "user_notification_preferences",
+   "user_stats",
+   "user_streaks",
+   "user_winning_proposals",
+   "vote_change_counts",
+   "votes",
+   "web_sessions",
+   "weekly_activity",
+   "weekly_awards",
+   "weekly_streak_records"
+  ],
+  "suggestions": 7,
+  "settings": 3
+ },
+ "no_temp_files_left": [],
+ "cloud": [
+  {
+   "config": null,
+   "last_error": null,
+   "label": "nessuna"
+  },
+  {
+   "config": null,
+   "last_error": null,
+   "label": "solo_spazi"
+  },
+  {
+   "error": "Configurazione backup R2 incompleta: BACKUP_S3_ENDPOINT_URL, BACKUP_S3_SECRET_ACCESS_KEY, BACKUP_ENCRYPTION_KEY",
+   "last_error": "Configurazione backup R2 incompleta: BACKUP_S3_ENDPOINT_URL, BACKUP_S3_SECRET_ACCESS_KEY, BACKUP_ENCRYPTION_KEY",
+   "label": "parziale"
+  },
+  {
+   "error": "BACKUP_S3_ENDPOINT_URL deve iniziare con https://",
+   "last_error": "BACKUP_S3_ENDPOINT_URL deve iniziare con https://",
+   "label": "endpoint_http"
+  },
+  {
+   "config": {
+    "BACKUP_S3_BUCKET": "bk",
+    "BACKUP_S3_ENDPOINT_URL": "https://127.0.0.1:1",
+    "BACKUP_S3_ACCESS_KEY_ID": "AK",
+    "BACKUP_S3_SECRET_ACCESS_KEY": "SK",
+    "BACKUP_ENCRYPTION_KEY": "non-una-chiave"
+   },
+   "last_error": "SDK S3 mancante o BACKUP_ENCRYPTION_KEY non è una chiave Fernet valida",
+   "label": "chiave_non_valida"
+  },
+  {
+   "config": {
+    "BACKUP_S3_BUCKET": "bk",
+    "BACKUP_S3_ENDPOINT_URL": "https://127.0.0.1:1",
+    "BACKUP_S3_ACCESS_KEY_ID": "AK",
+    "BACKUP_S3_SECRET_ACCESS_KEY": "SK",
+    "BACKUP_ENCRYPTION_KEY": "chiavè"
+   },
+   "last_error": "SDK S3 mancante o BACKUP_ENCRYPTION_KEY non è una chiave Fernet valida",
+   "label": "chiave_non_ascii"
+  },
+  {
+   "config": {
+    "BACKUP_S3_BUCKET": "bk",
+    "BACKUP_S3_ENDPOINT_URL": "https://127.0.0.1:1",
+    "BACKUP_S3_ACCESS_KEY_ID": "AK",
+    "BACKUP_S3_SECRET_ACCESS_KEY": "SK",
+    "BACKUP_ENCRYPTION_KEY": "-lt3SRpWv-VnNNFCHW0SsmbwCZSe-fO0naPuI6Ua2ls="
+   },
+   "last_error": "Caricamento cifrato dei backup su R2 non riuscito",
+   "label": "irraggiungibile"
+  },
+  {
+   "config": {
+    "BACKUP_S3_BUCKET": "bk",
+    "BACKUP_S3_ENDPOINT_URL": "https://127.0.0.1:1",
+    "BACKUP_S3_ACCESS_KEY_ID": "AK",
+    "BACKUP_S3_SECRET_ACCESS_KEY": "SK",
+    "BACKUP_ENCRYPTION_KEY": "-lt3SRpWv-VnNNFCHW0SsmbwCZSe-fO0naPuI6Ua2ls="
+   },
+   "last_error": "Caricamento cifrato dei backup su R2 non riuscito",
+   "label": "valori_con_spazi"
+  }
+ ],
+ "commands": [
+  {
+   "label": "stato_non_admin",
+   "out": [
+    [
+     "send",
+     "⚠️ Solo un amministratore può consultare lo stato dei backup."
+    ]
+   ],
+   "error": null
+  },
+  {
+   "label": "stato_vuoto",
+   "out": [
+    [
+     "send",
+     "Backup giornalieri: `0/14` · ultimo `nessuno`\nBackup settimanali: `0/8` · ultimo `nessuno`\nDestinazione: `<ROOT>`"
+    ]
+   ],
+   "error": null
+  },
+  {
+   "label": "crea_non_admin",
+   "out": [
+    [
+     "send",
+     "⚠️ Solo un amministratore può creare un backup."
+    ]
+   ],
+   "error": null
+  },
+  {
+   "label": "crea_ok",
+   "out": [
+    [
+     "defer",
+     null
+    ],
+    [
+     "followup",
+     "✅ Backup creato e verificato:\n`<ROOT>/daily/daily-2027-03-08.db`\n`<ROOT>/weekly/weekly-2027-W10.db`"
+    ]
+   ],
+   "error": null
+  },
+  {
+   "label": "stato_dopo",
+   "out": [
+    [
+     "send",
+     "Backup giornalieri: `1/14` · ultimo `daily-2027-03-08.db`\nBackup settimanali: `1/8` · ultimo `weekly-2027-W10.db`\nDestinazione: `<ROOT>`"
+    ]
+   ],
+   "error": null
+  },
+  {
+   "label": "audit",
+   "rows": [
+    [
+     99,
+     "database_backup_created",
+     "database",
+     null,
+     null,
+     "{\"files\": [\"daily-2027-03-08.db\", \"weekly-2027-W10.db\"]}"
+    ]
+   ]
+  },
+  {
+   "label": "crea_con_errore_cloud",
+   "out": [
+    [
+     "defer",
+     null
+    ],
+    [
+     "followup",
+     "✅ Backup creato e verificato:\n`<ROOT>/daily/daily-2027-03-08.db`\n`<ROOT>/weekly/weekly-2027-W10.db`\n⚠️ Copia cloud R2 non riuscita: Caricamento cifrato dei backup su R2 non riuscito. I backup locali sono comunque validi."
+    ]
+   ],
+   "error": "Caricamento cifrato dei backup su R2 non riuscito"
+  },
+  {
+   "label": "stato_con_errore_cloud",
+   "out": [
+    [
+     "send",
+     "Backup giornalieri: `1/14` · ultimo `daily-2027-03-08.db`\nBackup settimanali: `1/8` · ultimo `weekly-2027-W10.db`\nDestinazione: `<ROOT>`\n⚠️ Ultimo caricamento R2 non riuscito: Caricamento cifrato dei backup su R2 non riuscito"
+    ]
+   ],
+   "error": "Caricamento cifrato dei backup su R2 non riuscito"
+  },
+  {
+   "label": "crea_fallito",
+   "out": [
+    [
+     "defer",
+     null
+    ],
+    [
+     "followup",
+     "❌ Backup non riuscito; controlla i log del bot."
+    ]
+   ],
+   "error": "Caricamento cifrato dei backup su R2 non riuscito"
+  }
+ ]
+}

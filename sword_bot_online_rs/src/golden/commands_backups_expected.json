@@ -1,0 +1,36 @@
+[
+ {
+  "name": "backup",
+  "description": "Backup del database",
+  "options": [
+   {
+    "name": "stato",
+    "description": "Mostra lo stato dei backup",
+    "type": 1,
+    "required": null,
+    "min_length": null,
+    "max_length": null,
+    "autocomplete": null,
+    "min_value": null,
+    "max_value": null,
+    "channel_types": null,
+    "choices": null
+   },
+   {
+    "name": "crea",
+    "description": "Crea subito un backup SQLite",
+    "type": 1,
+    "required": null,
+    "min_length": null,
+    "max_length": null,
+    "autocomplete": null,
+    "min_value": null,
+    "max_value": null,
+    "channel_types": null,
+    "choices": null
+   }
+  ],
+  "default_member_permissions": 8,
+  "guild_only": false
+ }
+]

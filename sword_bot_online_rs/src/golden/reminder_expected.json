@@ -1,0 +1,120 @@
+[
+ [
+  "troppo_presto",
+  false,
+  [],
+  null
+ ],
+ [
+  "disattivato",
+  false,
+  [],
+  null
+ ],
+ [
+  "senza_canale",
+  false,
+  [],
+  null
+ ],
+ [
+  "senza_dashboard",
+  true,
+  [
+   {
+    "channel": 500,
+    "embed": {
+     "title": "⏰ Ultime 24 ore per votare!",
+     "description": "La settimana si chiude <t:1803898800:R>. Finora hanno votato `6` persone: hai ancora voti da usare? Premi **🗳️ Vota** nella dashboard.\n\n**Classifica parziale**\n🥇 **Among Us** · `3 voti`\n🥈 **Jackbox Party** · `2 voti`\n🥉 **Gartic Phone** · `1 voti`",
+     "color": 5793266,
+     "fields": [],
+     "footer": null,
+     "has_timestamp": false
+    },
+    "buttons": []
+   }
+  ],
+  "2027-03-01T12:00:00+01:00"
+ ],
+ [
+  "con_dashboard",
+  true,
+  [
+   {
+    "channel": 500,
+    "embed": {
+     "title": "⏰ Ultime 24 ore per votare!",
+     "description": "La settimana si chiude <t:1803898800:R>. Finora hanno votato `6` persone: hai ancora voti da usare? Premi **🗳️ Vota** nella dashboard.\n\n**Classifica parziale**\n🥇 **Among Us** · `3 voti`\n🥈 **Jackbox Party** · `2 voti`\n🥉 **Gartic Phone** · `1 voti`",
+     "color": 5793266,
+     "fields": [],
+     "footer": null,
+     "has_timestamp": false
+    },
+    "buttons": [
+     [
+      "Vai alla dashboard",
+      "🎮",
+      "https://discord.com/channels/4242/500/900"
+     ]
+    ]
+   }
+  ],
+  "2027-03-01T12:00:00+01:00"
+ ],
+ [
+  "gia_inviato",
+  false,
+  [],
+  "2027-03-01T12:00:00+01:00"
+ ],
+ [
+  "dashboard_altro_canale",
+  true,
+  [
+   {
+    "channel": 500,
+    "embed": {
+     "title": "⏰ Ultime 24 ore per votare!",
+     "description": "La settimana si chiude <t:1803898800:R>. Finora hanno votato `6` persone: hai ancora voti da usare? Premi **🗳️ Vota** nella dashboard.\n\n**Classifica parziale**\n🥇 **Among Us** · `3 voti`\n🥈 **Jackbox Party** · `2 voti`\n🥉 **Gartic Phone** · `1 voti`",
+     "color": 5793266,
+     "fields": [],
+     "footer": null,
+     "has_timestamp": false
+    },
+    "buttons": []
+   }
+  ],
+  "2027-03-01T12:00:00+01:00"
+ ],
+ [
+  "canale_negato",
+  false,
+  [],
+  null
+ ],
+ [
+  "reset_in_attesa",
+  false,
+  [],
+  null
+ ],
+ [
+  "senza_classifica",
+  true,
+  [
+   {
+    "channel": 500,
+    "embed": {
+     "title": "⏰ Ultime 24 ore per votare!",
+     "description": "La settimana si chiude <t:1804503600:R>. Finora hanno votato `0` persone: hai ancora voti da usare? Premi **🗳️ Vota** nella dashboard.",
+     "color": 5793266,
+     "fields": [],
+     "footer": null,
+     "has_timestamp": false
+    },
+    "buttons": []
+   }
+  ],
+  "2027-03-08T12:00:00+01:00"
+ ]
+]

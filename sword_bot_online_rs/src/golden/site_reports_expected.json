@@ -1,0 +1,6995 @@
+{
+ "constants": {
+  "categories": [
+   "Anime",
+   "Disegno",
+   "Film",
+   "Minigiochi",
+   "Musica",
+   "Quiz"
+  ],
+  "durations": [
+   15,
+   30,
+   45,
+   60,
+   75,
+   90,
+   105,
+   120,
+   150,
+   180,
+   240
+  ],
+  "columns": "id,name,category,event_date,event_time,duration,attendees,new_members,new_member_names,responsible,notes,clip_recorded,clip_registrar,flop,created_at"
+ },
+ "validation": [
+  {
+   "label": "valido",
+   "payload": {
+    "name": "  Serata Quiz  ",
+    "category": "Quiz",
+    "event_date": "2027-03-05",
+    "event_time": "21:00",
+    "duration": 60,
+    "attendees": 10,
+    "new_members": 2,
+    "new_member_names": " Anna, Bruno ",
+    "responsible": " Carla ",
+    "notes": "Note\ncon accapo",
+    "clip_recorded": true,
+    "clip_registrar": " Dario ",
+    "flop": false
+   },
+   "values": {
+    "name": "Serata Quiz",
+    "new_member_names": "Anna, Bruno",
+    "responsible": "Carla",
+    "notes": "Note\ncon accapo",
+    "clip_registrar": "Dario",
+    "category": "Quiz",
+    "event_date": "2027-03-05",
+    "event_time": "21:00:00",
+    "duration": 60,
+    "attendees": 10,
+    "new_members": 2,
+    "clip_recorded": true,
+    "flop": false
+   },
+   "error": null
+  },
+  {
+   "label": "minimo",
+   "payload": {
+    "name": "x",
+    "responsible": "y",
+    "category": "Anime",
+    "event_date": "2027-01-01",
+    "event_time": "00:00",
+    "duration": 15,
+    "attendees": 0,
+    "new_members": 0,
+    "clip_recorded": false,
+    "flop": true
+   },
+   "values": {
+    "name": "x",
+    "new_member_names": "",
+    "responsible": "y",
+    "notes": "",
+    "clip_registrar": "",
+    "category": "Anime",
+    "event_date": "2027-01-01",
+    "event_time": "00:00:00",
+    "duration": 15,
+    "attendees": 0,
+    "new_members": 0,
+    "clip_recorded": false,
+    "flop": true
+   },
+   "error": null
+  },
+  {
+   "label": "non_oggetto_lista",
+   "payload": [
+    1
+   ],
+   "values": null,
+   "error": "Corpo JSON non valido"
+  },
+  {
+   "label": "non_oggetto_stringa",
+   "payload": "x",
+   "values": null,
+   "error": "Corpo JSON non valido"
+  },
+  {
+   "label": "non_oggetto_null",
+   "payload": null,
+   "values": null,
+   "error": "Corpo JSON non valido"
+  },
+  {
+   "label": "non_oggetto_numero",
+   "payload": 5,
+   "values": null,
+   "error": "Corpo JSON non valido"
+  },
+  {
+   "label": "name_al_limite",
+   "payload": {
+    "name": "éééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééé",
+    "category": "Quiz",
+    "event_date": "2027-03-05",
+    "event_time": "21:00",
+    "duration": 60,
+    "attendees": 10,
+    "new_members": 2,
+    "new_member_names": " Anna, Bruno ",
+    "responsible": " Carla ",
+    "notes": "Note\ncon accapo",
+    "clip_recorded": true,
+    "clip_registrar": " Dario ",
+    "flop": false
+   },
+   "values": {
+    "name": "éééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééé",
+    "new_member_names": "Anna, Bruno",
+    "responsible": "Carla",
+    "notes": "Note\ncon accapo",
+    "clip_registrar": "Dario",
+    "category": "Quiz",
+    "event_date": "2027-03-05",
+    "event_time": "21:00:00",
+    "duration": 60,
+    "attendees": 10,
+    "new_members": 2,
+    "clip_recorded": true,
+    "flop": false
+   },
+   "error": null
+  },
+  {
+   "label": "name_oltre_il_limite",
+   "payload": {
+    "name": "ééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééé",
+    "category": "Quiz",
+    "event_date": "2027-03-05",
+    "event_time": "21:00",
+    "duration": 60,
+    "attendees": 10,
+    "new_members": 2,
+    "new_member_names": " Anna, Bruno ",
+    "responsible": " Carla ",
+    "notes": "Note\ncon accapo",
+    "clip_recorded": true,
+    "clip_registrar": " Dario ",
+    "flop": false
+   },
+   "values": null,
+   "error": "Campo name non valido o troppo lungo"
+  },
+  {
+   "label": "name_spazi_oltre_il_limite_ma_corto",
+   "payload": {
+    "name": "     ab                                                                                                                             ",
+    "category": "Quiz",
+    "event_date": "2027-03-05",
+    "event_time": "21:00",
+    "duration": 60,
+    "attendees": 10,
+    "new_members": 2,
+    "new_member_names": " Anna, Bruno ",
+    "responsible": " Carla ",
+    "notes": "Note\ncon accapo",
+    "clip_recorded": true,
+    "clip_registrar": " Dario ",
+    "flop": false
+   },
+   "values": {
+    "name": "ab",
+    "new_member_names": "Anna, Bruno",
+    "responsible": "Carla",
+    "notes": "Note\ncon accapo",
+    "clip_registrar": "Dario",
+    "category": "Quiz",
+    "event_date": "2027-03-05",
+    "event_time": "21:00:00",
+    "duration": 60,
+    "attendees": 10,
+    "new_members": 2,
+    "clip_recorded": true,
+    "flop": false
+   },
+   "error": null
+  },
+  {
+   "label": "name_numero",
+   "payload": {
+    "name": 5,
+    "category": "Quiz",
+    "event_date": "2027-03-05",
+    "event_time": "21:00",
+    "duration": 60,
+    "attendees": 10,
+    "new_members": 2,
+    "new_member_names": " Anna, Bruno ",
+    "responsible": " Carla ",
+    "notes": "Note\ncon accapo",
+    "clip_recorded": true,
+    "clip_registrar": " Dario ",
+    "flop": false
+   },
+   "values": null,
+   "error": "Campo name non valido o troppo lungo"
+  },
+  {
+   "label": "name_null",
+   "payload": {
+    "name": null,
+    "category": "Quiz",
+    "event_date": "2027-03-05",
+    "event_time": "21:00",
+    "duration": 60,
+    "attendees": 10,
+    "new_members": 2,
+    "new_member_names": " Anna, Bruno ",
+    "responsible": " Carla ",
+    "notes": "Note\ncon accapo",
+    "clip_recorded": true,
+    "clip_registrar": " Dario ",
+    "flop": false
+   },
+   "values": null,
+   "error": "Campo name non valido o troppo lungo"
+  },
+  {
+   "label": "name_lista",
+   "payload": {
+    "name": [
+     "a"
+    ],
+    "category": "Quiz",
+    "event_date": "2027-03-05",
+    "event_time": "21:00",
+    "duration": 60,
+    "attendees": 10,
+    "new_members": 2,
+    "new_member_names": " Anna, Bruno ",
+    "responsible": " Carla ",
+    "notes": "Note\ncon accapo",
+    "clip_recorded": true,
+    "clip_registrar": " Dario ",
+    "flop": false
+   },
+   "values": null,
+   "error": "Campo name non valido o troppo lungo"
+  },
+  {
+   "label": "new_member_names_al_limite",
+   "payload": {
+    "name": "  Serata Quiz  ",
+    "category": "Quiz",
+    "event_date": "2027-03-05",
+    "event_time": "21:00",
+    "duration": 60,
+    "attendees": 10,
+    "new_members": 2,
+    "new_member_names": "éééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééé",
+    "responsible": " Carla ",
+    "notes": "Note\ncon accapo",
+    "clip_recorded": true,
+    "clip_registrar": " Dario ",
+    "flop": false
+   },
+   "values": {
+    "name": "Serata Quiz",
+    "new_member_names": "éééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééé",
+    "responsible": "Carla",
+    "notes": "Note\ncon accapo",
+    "clip_registrar": "Dario",
+    "category": "Quiz",
+    "event_date": "2027-03-05",
+    "event_time": "21:00:00",
+    "duration": 60,
+    "attendees": 10,
+    "new_members": 2,
+    "clip_recorded": true,
+    "flop": false
+   },
+   "error": null
+  },
+  {
+   "label": "new_member_names_oltre_il_limite",
+   "payload": {
+    "name": "  Serata Quiz  ",
+    "category": "Quiz",
+    "event_date": "2027-03-05",
+    "event_time": "21:00",
+    "duration": 60,
+    "attendees": 10,
+    "new_members": 2,
+    "new_member_names": "ééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééé",
+    "responsible": " Carla ",
+    "notes": "Note\ncon accapo",
+    "clip_recorded": true,
+    "clip_registrar": " Dario ",
+    "flop": false
+   },
+   "values": null,
+   "error": "Campo new_member_names non valido o troppo lungo"
+  },
+  {
+   "label": "new_member_names_spazi_oltre_il_limite_ma_corto",
+   "payload": {
+    "name": "  Serata Quiz  ",
+    "category": "Quiz",
+    "event_date": "2027-03-05",
+    "event_time": "21:00",
+    "duration": 60,
+    "attendees": 10,
+    "new_members": 2,
+    "new_member_names": "     ab                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             ",
+    "responsible": " Carla ",
+    "notes": "Note\ncon accapo",
+    "clip_recorded": true,
+    "clip_registrar": " Dario ",
+    "flop": false
+   },
+   "values": {
+    "name": "Serata Quiz",
+    "new_member_names": "ab",
+    "responsible": "Carla",
+    "notes": "Note\ncon accapo",
+    "clip_registrar": "Dario",
+    "category": "Quiz",
+    "event_date": "2027-03-05",
+    "event_time": "21:00:00",
+    "duration": 60,
+    "attendees": 10,
+    "new_members": 2,
+    "clip_recorded": true,
+    "flop": false
+   },
+   "error": null
+  },
+  {
+   "label": "new_member_names_numero",
+   "payload": {
+    "name": "  Serata Quiz  ",
+    "category": "Quiz",
+    "event_date": "2027-03-05",
+    "event_time": "21:00",
+    "duration": 60,
+    "attendees": 10,
+    "new_members": 2,
+    "new_member_names": 5,
+    "responsible": " Carla ",
+    "notes": "Note\ncon accapo",
+    "clip_recorded": true,
+    "clip_registrar": " Dario ",
+    "flop": false
+   },
+   "values": null,
+   "error": "Campo new_member_names non valido o troppo lungo"
+  },
+  {
+   "label": "new_member_names_null",
+   "payload": {
+    "name": "  Serata Quiz  ",
+    "category": "Quiz",
+    "event_date": "2027-03-05",
+    "event_time": "21:00",
+    "duration": 60,
+    "attendees": 10,
+    "new_members": 2,
+    "new_member_names": null,
+    "responsible": " Carla ",
+    "notes": "Note\ncon accapo",
+    "clip_recorded": true,
+    "clip_registrar": " Dario ",
+    "flop": false
+   },
+   "values": null,
+   "error": "Campo new_member_names non valido o troppo lungo"
+  },
+  {
+   "label": "new_member_names_lista",
+   "payload": {
+    "name": "  Serata Quiz  ",
+    "category": "Quiz",
+    "event_date": "2027-03-05",
+    "event_time": "21:00",
+    "duration": 60,
+    "attendees": 10,
+    "new_members": 2,
+    "new_member_names": [
+     "a"
+    ],
+    "responsible": " Carla ",
+    "notes": "Note\ncon accapo",
+    "clip_recorded": true,
+    "clip_registrar": " Dario ",
+    "flop": false
+   },
+   "values": null,
+   "error": "Campo new_member_names non valido o troppo lungo"
+  },
+  {
+   "label": "responsible_al_limite",
+   "payload": {
+    "name": "  Serata Quiz  ",
+    "category": "Quiz",
+    "event_date": "2027-03-05",
+    "event_time": "21:00",
+    "duration": 60,
+    "attendees": 10,
+    "new_members": 2,
+    "new_member_names": " Anna, Bruno ",
+    "responsible": "éééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééé",
+    "notes": "Note\ncon accapo",
+    "clip_recorded": true,
+    "clip_registrar": " Dario ",
+    "flop": false
+   },
+   "values": {
+    "name": "Serata Quiz",
+    "new_member_names": "Anna, Bruno",
+    "responsible": "éééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééé",
+    "notes": "Note\ncon accapo",
+    "clip_registrar": "Dario",
+    "category": "Quiz",
+    "event_date": "2027-03-05",
+    "event_time": "21:00:00",
+    "duration": 60,
+    "attendees": 10,
+    "new_members": 2,
+    "clip_recorded": true,
+    "flop": false
+   },
+   "error": null
+  },
+  {
+   "label": "responsible_oltre_il_limite",
+   "payload": {
+    "name": "  Serata Quiz  ",
+    "category": "Quiz",
+    "event_date": "2027-03-05",
+    "event_time": "21:00",
+    "duration": 60,
+    "attendees": 10,
+    "new_members": 2,
+    "new_member_names": " Anna, Bruno ",
+    "responsible": "ééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééé",
+    "notes": "Note\ncon accapo",
+    "clip_recorded": true,
+    "clip_registrar": " Dario ",
+    "flop": false
+   },
+   "values": null,
+   "error": "Campo responsible non valido o troppo lungo"
+  },
+  {
+   "label": "responsible_spazi_oltre_il_limite_ma_corto",
+   "payload": {
+    "name": "  Serata Quiz  ",
+    "category": "Quiz",
+    "event_date": "2027-03-05",
+    "event_time": "21:00",
+    "duration": 60,
+    "attendees": 10,
+    "new_members": 2,
+    "new_member_names": " Anna, Bruno ",
+    "responsible": "     ab                                                                                                                             ",
+    "notes": "Note\ncon accapo",
+    "clip_recorded": true,
+    "clip_registrar": " Dario ",
+    "flop": false
+   },
+   "values": {
+    "name": "Serata Quiz",
+    "new_member_names": "Anna, Bruno",
+    "responsible": "ab",
+    "notes": "Note\ncon accapo",
+    "clip_registrar": "Dario",
+    "category": "Quiz",
+    "event_date": "2027-03-05",
+    "event_time": "21:00:00",
+    "duration": 60,
+    "attendees": 10,
+    "new_members": 2,
+    "clip_recorded": true,
+    "flop": false
+   },
+   "error": null
+  },
+  {
+   "label": "responsible_numero",
+   "payload": {
+    "name": "  Serata Quiz  ",
+    "category": "Quiz",
+    "event_date": "2027-03-05",
+    "event_time": "21:00",
+    "duration": 60,
+    "attendees": 10,
+    "new_members": 2,
+    "new_member_names": " Anna, Bruno ",
+    "responsible": 5,
+    "notes": "Note\ncon accapo",
+    "clip_recorded": true,
+    "clip_registrar": " Dario ",
+    "flop": false
+   },
+   "values": null,
+   "error": "Campo responsible non valido o troppo lungo"
+  },
+  {
+   "label": "responsible_null",
+   "payload": {
+    "name": "  Serata Quiz  ",
+    "category": "Quiz",
+    "event_date": "2027-03-05",
+    "event_time": "21:00",
+    "duration": 60,
+    "attendees": 10,
+    "new_members": 2,
+    "new_member_names": " Anna, Bruno ",
+    "responsible": null,
+    "notes": "Note\ncon accapo",
+    "clip_recorded": true,
+    "clip_registrar": " Dario ",
+    "flop": false
+   },
+   "values": null,
+   "error": "Campo responsible non valido o troppo lungo"
+  },
+  {
+   "label": "responsible_lista",
+   "payload": {
+    "name": "  Serata Quiz  ",
+    "category": "Quiz",
+    "event_date": "2027-03-05",
+    "event_time": "21:00",
+    "duration": 60,
+    "attendees": 10,
+    "new_members": 2,
+    "new_member_names": " Anna, Bruno ",
+    "responsible": [
+     "a"
+    ],
+    "notes": "Note\ncon accapo",
+    "clip_recorded": true,
+    "clip_registrar": " Dario ",
+    "flop": false
+   },
+   "values": null,
+   "error": "Campo responsible non valido o troppo lungo"
+  },
+  {
+   "label": "notes_al_limite",
+   "payload": {
+    "name": "  Serata Quiz  ",
+    "category": "Quiz",
+    "event_date": "2027-03-05",
+    "event_time": "21:00",
+    "duration": 60,
+    "attendees": 10,
+    "new_members": 2,
+    "new_member_names": " Anna, Bruno ",
+    "responsible": " Carla ",
+    "notes": "éééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééé",
+    "clip_recorded": true,
+    "clip_registrar": " Dario ",
+    "flop": false
+   },
+   "values": {
+    "name": "Serata Quiz",
+    "new_member_names": "Anna, Bruno",
+    "responsible": "Carla",
+    "notes": "éééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééé",
+    "clip_registrar": "Dario",
+    "category": "Quiz",
+    "event_date": "2027-03-05",
+    "event_time": "21:00:00",
+    "duration": 60,
+    "attendees": 10,
+    "new_members": 2,
+    "clip_recorded": true,
+    "flop": false
+   },
+   "error": null
+  },
+  {
+   "label": "notes_oltre_il_limite",
+   "payload": {
+    "name": "  Serata Quiz  ",
+    "category": "Quiz",
+    "event_date": "2027-03-05",
+    "event_time": "21:00",
+    "duration": 60,
+    "attendees": 10,
+    "new_members": 2,
+    "new_member_names": " Anna, Bruno ",
+    "responsible": " Carla ",
+    "notes": "ééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééé",
+    "clip_recorded": true,
+    "clip_registrar": " Dario ",
+    "flop": false
+   },
+   "values": null,
+   "error": "Campo notes non valido o troppo lungo"
+  },
+  {
+   "label": "notes_spazi_oltre_il_limite_ma_corto",
+   "payload": {
+    "name": "  Serata Quiz  ",
+    "category": "Quiz",
+    "event_date": "2027-03-05",
+    "event_time": "21:00",
+    "duration": 60,
+    "attendees": 10,
+    "new_members": 2,
+    "new_member_names": " Anna, Bruno ",
+    "responsible": " Carla ",
+    "notes": "     ab                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             ",
+    "clip_recorded": true,
+    "clip_registrar": " Dario ",
+    "flop": false
+   },
+   "values": {
+    "name": "Serata Quiz",
+    "new_member_names": "Anna, Bruno",
+    "responsible": "Carla",
+    "notes": "ab",
+    "clip_registrar": "Dario",
+    "category": "Quiz",
+    "event_date": "2027-03-05",
+    "event_time": "21:00:00",
+    "duration": 60,
+    "attendees": 10,
+    "new_members": 2,
+    "clip_recorded": true,
+    "flop": false
+   },
+   "error": null
+  },
+  {
+   "label": "notes_numero",
+   "payload": {
+    "name": "  Serata Quiz  ",
+    "category": "Quiz",
+    "event_date": "2027-03-05",
+    "event_time": "21:00",
+    "duration": 60,
+    "attendees": 10,
+    "new_members": 2,
+    "new_member_names": " Anna, Bruno ",
+    "responsible": " Carla ",
+    "notes": 5,
+    "clip_recorded": true,
+    "clip_registrar": " Dario ",
+    "flop": false
+   },
+   "values": null,
+   "error": "Campo notes non valido o troppo lungo"
+  },
+  {
+   "label": "notes_null",
+   "payload": {
+    "name": "  Serata Quiz  ",
+    "category": "Quiz",
+    "event_date": "2027-03-05",
+    "event_time": "21:00",
+    "duration": 60,
+    "attendees": 10,
+    "new_members": 2,
+    "new_member_names": " Anna, Bruno ",
+    "responsible": " Carla ",
+    "notes": null,
+    "clip_recorded": true,
+    "clip_registrar": " Dario ",
+    "flop": false
+   },
+   "values": null,
+   "error": "Campo notes non valido o troppo lungo"
+  },
+  {
+   "label": "notes_lista",
+   "payload": {
+    "name": "  Serata Quiz  ",
+    "category": "Quiz",
+    "event_date": "2027-03-05",
+    "event_time": "21:00",
+    "duration": 60,
+    "attendees": 10,
+    "new_members": 2,
+    "new_member_names": " Anna, Bruno ",
+    "responsible": " Carla ",
+    "notes": [
+     "a"
+    ],
+    "clip_recorded": true,
+    "clip_registrar": " Dario ",
+    "flop": false
+   },
+   "values": null,
+   "error": "Campo notes non valido o troppo lungo"
+  },
+  {
+   "label": "clip_registrar_al_limite",
+   "payload": {
+    "name": "  Serata Quiz  ",
+    "category": "Quiz",
+    "event_date": "2027-03-05",
+    "event_time": "21:00",
+    "duration": 60,
+    "attendees": 10,
+    "new_members": 2,
+    "new_member_names": " Anna, Bruno ",
+    "responsible": " Carla ",
+    "notes": "Note\ncon accapo",
+    "clip_recorded": true,
+    "clip_registrar": "éééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééé",
+    "flop": false
+   },
+   "values": {
+    "name": "Serata Quiz",
+    "new_member_names": "Anna, Bruno",
+    "responsible": "Carla",
+    "notes": "Note\ncon accapo",
+    "clip_registrar": "éééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééé",
+    "category": "Quiz",
+    "event_date": "2027-03-05",
+    "event_time": "21:00:00",
+    "duration": 60,
+    "attendees": 10,
+    "new_members": 2,
+    "clip_recorded": true,
+    "flop": false
+   },
+   "error": null
+  },
+  {
+   "label": "clip_registrar_oltre_il_limite",
+   "payload": {
+    "name": "  Serata Quiz  ",
+    "category": "Quiz",
+    "event_date": "2027-03-05",
+    "event_time": "21:00",
+    "duration": 60,
+    "attendees": 10,
+    "new_members": 2,
+    "new_member_names": " Anna, Bruno ",
+    "responsible": " Carla ",
+    "notes": "Note\ncon accapo",
+    "clip_recorded": true,
+    "clip_registrar": "ééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééé",
+    "flop": false
+   },
+   "values": null,
+   "error": "Campo clip_registrar non valido o troppo lungo"
+  },
+  {
+   "label": "clip_registrar_spazi_oltre_il_limite_ma_corto",
+   "payload": {
+    "name": "  Serata Quiz  ",
+    "category": "Quiz",
+    "event_date": "2027-03-05",
+    "event_time": "21:00",
+    "duration": 60,
+    "attendees": 10,
+    "new_members": 2,
+    "new_member_names": " Anna, Bruno ",
+    "responsible": " Carla ",
+    "notes": "Note\ncon accapo",
+    "clip_recorded": true,
+    "clip_registrar": "     ab                                                                                                                             ",
+    "flop": false
+   },
+   "values": {
+    "name": "Serata Quiz",
+    "new_member_names": "Anna, Bruno",
+    "responsible": "Carla",
+    "notes": "Note\ncon accapo",
+    "clip_registrar": "ab",
+    "category": "Quiz",
+    "event_date": "2027-03-05",
+    "event_time": "21:00:00",
+    "duration": 60,
+    "attendees": 10,
+    "new_members": 2,
+    "clip_recorded": true,
+    "flop": false
+   },
+   "error": null
+  },
+  {
+   "label": "clip_registrar_numero",
+   "payload": {
+    "name": "  Serata Quiz  ",
+    "category": "Quiz",
+    "event_date": "2027-03-05",
+    "event_time": "21:00",
+    "duration": 60,
+    "attendees": 10,
+    "new_members": 2,
+    "new_member_names": " Anna, Bruno ",
+    "responsible": " Carla ",
+    "notes": "Note\ncon accapo",
+    "clip_recorded": true,
+    "clip_registrar": 5,
+    "flop": false
+   },
+   "values": null,
+   "error": "Campo clip_registrar non valido o troppo lungo"
+  },
+  {
+   "label": "clip_registrar_null",
+   "payload": {
+    "name": "  Serata Quiz  ",
+    "category": "Quiz",
+    "event_date": "2027-03-05",
+    "event_time": "21:00",
+    "duration": 60,
+    "attendees": 10,
+    "new_members": 2,
+    "new_member_names": " Anna, Bruno ",
+    "responsible": " Carla ",
+    "notes": "Note\ncon accapo",
+    "clip_recorded": true,
+    "clip_registrar": null,
+    "flop": false
+   },
+   "values": null,
+   "error": "Campo clip_registrar non valido o troppo lungo"
+  },
+  {
+   "label": "clip_registrar_lista",
+   "payload": {
+    "name": "  Serata Quiz  ",
+    "category": "Quiz",
+    "event_date": "2027-03-05",
+    "event_time": "21:00",
+    "duration": 60,
+    "attendees": 10,
+    "new_members": 2,
+    "new_member_names": " Anna, Bruno ",
+    "responsible": " Carla ",
+    "notes": "Note\ncon accapo",
+    "clip_recorded": true,
+    "clip_registrar": [
+     "a"
+    ],
+    "flop": false
+   },
+   "values": null,
+   "error": "Campo clip_registrar non valido o troppo lungo"
+  },
+  {
+   "label": "nome_vuoto",
+   "payload": {
+    "name": "   ",
+    "category": "Quiz",
+    "event_date": "2027-03-05",
+    "event_time": "21:00",
+    "duration": 60,
+    "attendees": 10,
+    "new_members": 2,
+    "new_member_names": " Anna, Bruno ",
+    "responsible": " Carla ",
+    "notes": "Note\ncon accapo",
+    "clip_recorded": true,
+    "clip_registrar": " Dario ",
+    "flop": false
+   },
+   "values": null,
+   "error": "Nome evento e responsabile sono obbligatori"
+  },
+  {
+   "label": "nome_assente",
+   "payload": {
+    "category": "Quiz",
+    "event_date": "2027-03-05",
+    "event_time": "21:00",
+    "duration": 60,
+    "attendees": 10,
+    "new_members": 2,
+    "new_member_names": " Anna, Bruno ",
+    "responsible": " Carla ",
+    "notes": "Note\ncon accapo",
+    "clip_recorded": true,
+    "clip_registrar": " Dario ",
+    "flop": false
+   },
+   "values": null,
+   "error": "Nome evento e responsabile sono obbligatori"
+  },
+  {
+   "label": "responsabile_vuoto",
+   "payload": {
+    "name": "  Serata Quiz  ",
+    "category": "Quiz",
+    "event_date": "2027-03-05",
+    "event_time": "21:00",
+    "duration": 60,
+    "attendees": 10,
+    "new_members": 2,
+    "new_member_names": " Anna, Bruno ",
+    "responsible": "",
+    "notes": "Note\ncon accapo",
+    "clip_recorded": true,
+    "clip_registrar": " Dario ",
+    "flop": false
+   },
+   "values": null,
+   "error": "Nome evento e responsabile sono obbligatori"
+  },
+  {
+   "label": "responsabile_assente",
+   "payload": {
+    "name": "  Serata Quiz  ",
+    "category": "Quiz",
+    "event_date": "2027-03-05",
+    "event_time": "21:00",
+    "duration": 60,
+    "attendees": 10,
+    "new_members": 2,
+    "new_member_names": " Anna, Bruno ",
+    "notes": "Note\ncon accapo",
+    "clip_recorded": true,
+    "clip_registrar": " Dario ",
+    "flop": false
+   },
+   "values": null,
+   "error": "Nome evento e responsabile sono obbligatori"
+  },
+  {
+   "label": "note_assenti",
+   "payload": {
+    "name": "  Serata Quiz  ",
+    "category": "Quiz",
+    "event_date": "2027-03-05",
+    "event_time": "21:00",
+    "duration": 60,
+    "attendees": 10,
+    "new_members": 2,
+    "new_member_names": " Anna, Bruno ",
+    "responsible": " Carla ",
+    "clip_recorded": true,
+    "clip_registrar": " Dario ",
+    "flop": false
+   },
+   "values": {
+    "name": "Serata Quiz",
+    "new_member_names": "Anna, Bruno",
+    "responsible": "Carla",
+    "notes": "",
+    "clip_registrar": "Dario",
+    "category": "Quiz",
+    "event_date": "2027-03-05",
+    "event_time": "21:00:00",
+    "duration": 60,
+    "attendees": 10,
+    "new_members": 2,
+    "clip_recorded": true,
+    "flop": false
+   },
+   "error": null
+  },
+  {
+   "label": "nomi_nuovi_assenti",
+   "payload": {
+    "name": "  Serata Quiz  ",
+    "category": "Quiz",
+    "event_date": "2027-03-05",
+    "event_time": "21:00",
+    "duration": 60,
+    "attendees": 10,
+    "new_members": 2,
+    "responsible": " Carla ",
+    "notes": "Note\ncon accapo",
+    "clip_recorded": true,
+    "clip_registrar": " Dario ",
+    "flop": false
+   },
+   "values": {
+    "name": "Serata Quiz",
+    "new_member_names": "",
+    "responsible": "Carla",
+    "notes": "Note\ncon accapo",
+    "clip_registrar": "Dario",
+    "category": "Quiz",
+    "event_date": "2027-03-05",
+    "event_time": "21:00:00",
+    "duration": 60,
+    "attendees": 10,
+    "new_members": 2,
+    "clip_recorded": true,
+    "flop": false
+   },
+   "error": null
+  },
+  {
+   "label": "registratore_assente_senza_clip",
+   "payload": {
+    "name": "  Serata Quiz  ",
+    "category": "Quiz",
+    "event_date": "2027-03-05",
+    "event_time": "21:00",
+    "duration": 60,
+    "attendees": 10,
+    "new_members": 2,
+    "new_member_names": " Anna, Bruno ",
+    "responsible": " Carla ",
+    "notes": "Note\ncon accapo",
+    "clip_recorded": false,
+    "flop": false
+   },
+   "values": {
+    "name": "Serata Quiz",
+    "new_member_names": "Anna, Bruno",
+    "responsible": "Carla",
+    "notes": "Note\ncon accapo",
+    "clip_registrar": "",
+    "category": "Quiz",
+    "event_date": "2027-03-05",
+    "event_time": "21:00:00",
+    "duration": 60,
+    "attendees": 10,
+    "new_members": 2,
+    "clip_recorded": false,
+    "flop": false
+   },
+   "error": null
+  },
+  {
+   "label": "categoria_'Minigiochi'",
+   "payload": {
+    "name": "  Serata Quiz  ",
+    "category": "Minigiochi",
+    "event_date": "2027-03-05",
+    "event_time": "21:00",
+    "duration": 60,
+    "attendees": 10,
+    "new_members": 2,
+    "new_member_names": " Anna, Bruno ",
+    "responsible": " Carla ",
+    "notes": "Note\ncon accapo",
+    "clip_recorded": true,
+    "clip_registrar": " Dario ",
+    "flop": false
+   },
+   "values": {
+    "name": "Serata Quiz",
+    "new_member_names": "Anna, Bruno",
+    "responsible": "Carla",
+    "notes": "Note\ncon accapo",
+    "clip_registrar": "Dario",
+    "category": "Minigiochi",
+    "event_date": "2027-03-05",
+    "event_time": "21:00:00",
+    "duration": 60,
+    "attendees": 10,
+    "new_members": 2,
+    "clip_recorded": true,
+    "flop": false
+   },
+   "error": null
+  },
+  {
+   "label": "categoria_'Anime'",
+   "payload": {
+    "name": "  Serata Quiz  ",
+    "category": "Anime",
+    "event_date": "2027-03-05",
+    "event_time": "21:00",
+    "duration": 60,
+    "attendees": 10,
+    "new_members": 2,
+    "new_member_names": " Anna, Bruno ",
+    "responsible": " Carla ",
+    "notes": "Note\ncon accapo",
+    "clip_recorded": true,
+    "clip_registrar": " Dario ",
+    "flop": false
+   },
+   "values": {
+    "name": "Serata Quiz",
+    "new_member_names": "Anna, Bruno",
+    "responsible": "Carla",
+    "notes": "Note\ncon accapo",
+    "clip_registrar": "Dario",
+    "category": "Anime",
+    "event_date": "2027-03-05",
+    "event_time": "21:00:00",
+    "duration": 60,
+    "attendees": 10,
+    "new_members": 2,
+    "clip_recorded": true,
+    "flop": false
+   },
+   "error": null
+  },
+  {
+   "label": "categoria_'Film'",
+   "payload": {
+    "name": "  Serata Quiz  ",
+    "category": "Film",
+    "event_date": "2027-03-05",
+    "event_time": "21:00",
+    "duration": 60,
+    "attendees": 10,
+    "new_members": 2,
+    "new_member_names": " Anna, Bruno ",
+    "responsible": " Carla ",
+    "notes": "Note\ncon accapo",
+    "clip_recorded": true,
+    "clip_registrar": " Dario ",
+    "flop": false
+   },
+   "values": {
+    "name": "Serata Quiz",
+    "new_member_names": "Anna, Bruno",
+    "responsible": "Carla",
+    "notes": "Note\ncon accapo",
+    "clip_registrar": "Dario",
+    "category": "Film",
+    "event_date": "2027-03-05",
+    "event_time": "21:00:00",
+    "duration": 60,
+    "attendees": 10,
+    "new_members": 2,
+    "clip_recorded": true,
+    "flop": false
+   },
+   "error": null
+  },
+  {
+   "label": "categoria_'Quiz'",
+   "payload": {
+    "name": "  Serata Quiz  ",
+    "category": "Quiz",
+    "event_date": "2027-03-05",
+    "event_time": "21:00",
+    "duration": 60,
+    "attendees": 10,
+    "new_members": 2,
+    "new_member_names": " Anna, Bruno ",
+    "responsible": " Carla ",
+    "notes": "Note\ncon accapo",
+    "clip_recorded": true,
+    "clip_registrar": " Dario ",
+    "flop": false
+   },
+   "values": {
+    "name": "Serata Quiz",
+    "new_member_names": "Anna, Bruno",
+    "responsible": "Carla",
+    "notes": "Note\ncon accapo",
+    "clip_registrar": "Dario",
+    "category": "Quiz",
+    "event_date": "2027-03-05",
+    "event_time": "21:00:00",
+    "duration": 60,
+    "attendees": 10,
+    "new_members": 2,
+    "clip_recorded": true,
+    "flop": false
+   },
+   "error": null
+  },
+  {
+   "label": "categoria_'Disegno'",
+   "payload": {
+    "name": "  Serata Quiz  ",
+    "category": "Disegno",
+    "event_date": "2027-03-05",
+    "event_time": "21:00",
+    "duration": 60,
+    "attendees": 10,
+    "new_members": 2,
+    "new_member_names": " Anna, Bruno ",
+    "responsible": " Carla ",
+    "notes": "Note\ncon accapo",
+    "clip_recorded": true,
+    "clip_registrar": " Dario ",
+    "flop": false
+   },
+   "values": {
+    "name": "Serata Quiz",
+    "new_member_names": "Anna, Bruno",
+    "responsible": "Carla",
+    "notes": "Note\ncon accapo",
+    "clip_registrar": "Dario",
+    "category": "Disegno",
+    "event_date": "2027-03-05",
+    "event_time": "21:00:00",
+    "duration": 60,
+    "attendees": 10,
+    "new_members": 2,
+    "clip_recorded": true,
+    "flop": false
+   },
+   "error": null
+  },
+  {
+   "label": "categoria_'Musica'",
+   "payload": {
+    "name": "  Serata Quiz  ",
+    "category": "Musica",
+    "event_date": "2027-03-05",
+    "event_time": "21:00",
+    "duration": 60,
+    "attendees": 10,
+    "new_members": 2,
+    "new_member_names": " Anna, Bruno ",
+    "responsible": " Carla ",
+    "notes": "Note\ncon accapo",
+    "clip_recorded": true,
+    "clip_registrar": " Dario ",
+    "flop": false
+   },
+   "values": {
+    "name": "Serata Quiz",
+    "new_member_names": "Anna, Bruno",
+    "responsible": "Carla",
+    "notes": "Note\ncon accapo",
+    "clip_registrar": "Dario",
+    "category": "Musica",
+    "event_date": "2027-03-05",
+    "event_time": "21:00:00",
+    "duration": 60,
+    "attendees": 10,
+    "new_members": 2,
+    "clip_recorded": true,
+    "flop": false
+   },
+   "error": null
+  },
+  {
+   "label": "categoria_'quiz'",
+   "payload": {
+    "name": "  Serata Quiz  ",
+    "category": "quiz",
+    "event_date": "2027-03-05",
+    "event_time": "21:00",
+    "duration": 60,
+    "attendees": 10,
+    "new_members": 2,
+    "new_member_names": " Anna, Bruno ",
+    "responsible": " Carla ",
+    "notes": "Note\ncon accapo",
+    "clip_recorded": true,
+    "clip_registrar": " Dario ",
+    "flop": false
+   },
+   "values": null,
+   "error": "Categoria non valida"
+  },
+  {
+   "label": "categoria_'Altro'",
+   "payload": {
+    "name": "  Serata Quiz  ",
+    "category": "Altro",
+    "event_date": "2027-03-05",
+    "event_time": "21:00",
+    "duration": 60,
+    "attendees": 10,
+    "new_members": 2,
+    "new_member_names": " Anna, Bruno ",
+    "responsible": " Carla ",
+    "notes": "Note\ncon accapo",
+    "clip_recorded": true,
+    "clip_registrar": " Dario ",
+    "flop": false
+   },
+   "values": null,
+   "error": "Categoria non valida"
+  },
+  {
+   "label": "categoria_''",
+   "payload": {
+    "name": "  Serata Quiz  ",
+    "category": "",
+    "event_date": "2027-03-05",
+    "event_time": "21:00",
+    "duration": 60,
+    "attendees": 10,
+    "new_members": 2,
+    "new_member_names": " Anna, Bruno ",
+    "responsible": " Carla ",
+    "notes": "Note\ncon accapo",
+    "clip_recorded": true,
+    "clip_registrar": " Dario ",
+    "flop": false
+   },
+   "values": null,
+   "error": "Categoria non valida"
+  },
+  {
+   "label": "categoria_None",
+   "payload": {
+    "name": "  Serata Quiz  ",
+    "category": null,
+    "event_date": "2027-03-05",
+    "event_time": "21:00",
+    "duration": 60,
+    "attendees": 10,
+    "new_members": 2,
+    "new_member_names": " Anna, Bruno ",
+    "responsible": " Carla ",
+    "notes": "Note\ncon accapo",
+    "clip_recorded": true,
+    "clip_registrar": " Dario ",
+    "flop": false
+   },
+   "values": null,
+   "error": "Categoria non valida"
+  },
+  {
+   "label": "categoria_5",
+   "payload": {
+    "name": "  Serata Quiz  ",
+    "category": 5,
+    "event_date": "2027-03-05",
+    "event_time": "21:00",
+    "duration": 60,
+    "attendees": 10,
+    "new_members": 2,
+    "new_member_names": " Anna, Bruno ",
+    "responsible": " Carla ",
+    "notes": "Note\ncon accapo",
+    "clip_recorded": true,
+    "clip_registrar": " Dario ",
+    "flop": false
+   },
+   "values": null,
+   "error": "Categoria non valida"
+  },
+  {
+   "label": "categoria_' Quiz'",
+   "payload": {
+    "name": "  Serata Quiz  ",
+    "category": " Quiz",
+    "event_date": "2027-03-05",
+    "event_time": "21:00",
+    "duration": 60,
+    "attendees": 10,
+    "new_members": 2,
+    "new_member_names": " Anna, Bruno ",
+    "responsible": " Carla ",
+    "notes": "Note\ncon accapo",
+    "clip_recorded": true,
+    "clip_registrar": " Dario ",
+    "flop": false
+   },
+   "values": null,
+   "error": "Categoria non valida"
+  },
+  {
+   "label": "categoria_assente",
+   "payload": {
+    "name": "  Serata Quiz  ",
+    "event_date": "2027-03-05",
+    "event_time": "21:00",
+    "duration": 60,
+    "attendees": 10,
+    "new_members": 2,
+    "new_member_names": " Anna, Bruno ",
+    "responsible": " Carla ",
+    "notes": "Note\ncon accapo",
+    "clip_recorded": true,
+    "clip_registrar": " Dario ",
+    "flop": false
+   },
+   "values": null,
+   "error": "Categoria non valida"
+  },
+  {
+   "label": "categoria_lista",
+   "payload": {
+    "name": "  Serata Quiz  ",
+    "category": [
+     "Quiz"
+    ],
+    "event_date": "2027-03-05",
+    "event_time": "21:00",
+    "duration": 60,
+    "attendees": 10,
+    "new_members": 2,
+    "new_member_names": " Anna, Bruno ",
+    "responsible": " Carla ",
+    "notes": "Note\ncon accapo",
+    "clip_recorded": true,
+    "clip_registrar": " Dario ",
+    "flop": false
+   },
+   "values": null,
+   "error": "ECCEZIONE TypeError"
+  },
+  {
+   "label": "data_'2027-03-05'",
+   "payload": {
+    "name": "  Serata Quiz  ",
+    "category": "Quiz",
+    "event_date": "2027-03-05",
+    "event_time": "21:00",
+    "duration": 60,
+    "attendees": 10,
+    "new_members": 2,
+    "new_member_names": " Anna, Bruno ",
+    "responsible": " Carla ",
+    "notes": "Note\ncon accapo",
+    "clip_recorded": true,
+    "clip_registrar": " Dario ",
+    "flop": false
+   },
+   "values": {
+    "name": "Serata Quiz",
+    "new_member_names": "Anna, Bruno",
+    "responsible": "Carla",
+    "notes": "Note\ncon accapo",
+    "clip_registrar": "Dario",
+    "category": "Quiz",
+    "event_date": "2027-03-05",
+    "event_time": "21:00:00",
+    "duration": 60,
+    "attendees": 10,
+    "new_members": 2,
+    "clip_recorded": true,
+    "flop": false
+   },
+   "error": null
+  },
+  {
+   "label": "data_'20270305'",
+   "payload": {
+    "name": "  Serata Quiz  ",
+    "category": "Quiz",
+    "event_date": "20270305",
+    "event_time": "21:00",
+    "duration": 60,
+    "attendees": 10,
+    "new_members": 2,
+    "new_member_names": " Anna, Bruno ",
+    "responsible": " Carla ",
+    "notes": "Note\ncon accapo",
+    "clip_recorded": true,
+    "clip_registrar": " Dario ",
+    "flop": false
+   },
+   "values": {
+    "name": "Serata Quiz",
+    "new_member_names": "Anna, Bruno",
+    "responsible": "Carla",
+    "notes": "Note\ncon accapo",
+    "clip_registrar": "Dario",
+    "category": "Quiz",
+    "event_date": "20270305",
+    "event_time": "21:00:00",
+    "duration": 60,
+    "attendees": 10,
+    "new_members": 2,
+    "clip_recorded": true,
+    "flop": false
+   },
+   "error": null
+  },
+  {
+   "label": "data_'2027-W09-5'",
+   "payload": {
+    "name": "  Serata Quiz  ",
+    "category": "Quiz",
+    "event_date": "2027-W09-5",
+    "event_time": "21:00",
+    "duration": 60,
+    "attendees": 10,
+    "new_members": 2,
+    "new_member_names": " Anna, Bruno ",
+    "responsible": " Carla ",
+    "notes": "Note\ncon accapo",
+    "clip_recorded": true,
+    "clip_registrar": " Dario ",
+    "flop": false
+   },
+   "values": {
+    "name": "Serata Quiz",
+    "new_member_names": "Anna, Bruno",
+    "responsible": "Carla",
+    "notes": "Note\ncon accapo",
+    "clip_registrar": "Dario",
+    "category": "Quiz",
+    "event_date": "2027-W09-5",
+    "event_time": "21:00:00",
+    "duration": 60,
+    "attendees": 10,
+    "new_members": 2,
+    "clip_recorded": true,
+    "flop": false
+   },
+   "error": null
+  },
+  {
+   "label": "data_'2027W095'",
+   "payload": {
+    "name": "  Serata Quiz  ",
+    "category": "Quiz",
+    "event_date": "2027W095",
+    "event_time": "21:00",
+    "duration": 60,
+    "attendees": 10,
+    "new_members": 2,
+    "new_member_names": " Anna, Bruno ",
+    "responsible": " Carla ",
+    "notes": "Note\ncon accapo",
+    "clip_recorded": true,
+    "clip_registrar": " Dario ",
+    "flop": false
+   },
+   "values": {
+    "name": "Serata Quiz",
+    "new_member_names": "Anna, Bruno",
+    "responsible": "Carla",
+    "notes": "Note\ncon accapo",
+    "clip_registrar": "Dario",
+    "category": "Quiz",
+    "event_date": "2027W095",
+    "event_time": "21:00:00",
+    "duration": 60,
+    "attendees": 10,
+    "new_members": 2,
+    "clip_recorded": true,
+    "flop": false
+   },
+   "error": null
+  },
+  {
+   "label": "data_'2027-W09'",
+   "payload": {
+    "name": "  Serata Quiz  ",
+    "category": "Quiz",
+    "event_date": "2027-W09",
+    "event_time": "21:00",
+    "duration": 60,
+    "attendees": 10,
+    "new_members": 2,
+    "new_member_names": " Anna, Bruno ",
+    "responsible": " Carla ",
+    "notes": "Note\ncon accapo",
+    "clip_recorded": true,
+    "clip_registrar": " Dario ",
+    "flop": false
+   },
+   "values": {
+    "name": "Serata Quiz",
+    "new_member_names": "Anna, Bruno",
+    "responsible": "Carla",
+    "notes": "Note\ncon accapo",
+    "clip_registrar": "Dario",
+    "category": "Quiz",
+    "event_date": "2027-W09",
+    "event_time": "21:00:00",
+    "duration": 60,
+    "attendees": 10,
+    "new_members": 2,
+    "clip_recorded": true,
+    "flop": false
+   },
+   "error": null
+  },
+  {
+   "label": "data_'2027-3-5'",
+   "payload": {
+    "name": "  Serata Quiz  ",
+    "category": "Quiz",
+    "event_date": "2027-3-5",
+    "event_time": "21:00",
+    "duration": 60,
+    "attendees": 10,
+    "new_members": 2,
+    "new_member_names": " Anna, Bruno ",
+    "responsible": " Carla ",
+    "notes": "Note\ncon accapo",
+    "clip_recorded": true,
+    "clip_registrar": " Dario ",
+    "flop": false
+   },
+   "values": null,
+   "error": "Data o ora non valida"
+  },
+  {
+   "label": "data_'2027-02-30'",
+   "payload": {
+    "name": "  Serata Quiz  ",
+    "category": "Quiz",
+    "event_date": "2027-02-30",
+    "event_time": "21:00",
+    "duration": 60,
+    "attendees": 10,
+    "new_members": 2,
+    "new_member_names": " Anna, Bruno ",
+    "responsible": " Carla ",
+    "notes": "Note\ncon accapo",
+    "clip_recorded": true,
+    "clip_registrar": " Dario ",
+    "flop": false
+   },
+   "values": null,
+   "error": "Data o ora non valida"
+  },
+  {
+   "label": "data_'2027-13-01'",
+   "payload": {
+    "name": "  Serata Quiz  ",
+    "category": "Quiz",
+    "event_date": "2027-13-01",
+    "event_time": "21:00",
+    "duration": 60,
+    "attendees": 10,
+    "new_members": 2,
+    "new_member_names": " Anna, Bruno ",
+    "responsible": " Carla ",
+    "notes": "Note\ncon accapo",
+    "clip_recorded": true,
+    "clip_registrar": " Dario ",
+    "flop": false
+   },
+   "values": null,
+   "error": "Data o ora non valida"
+  },
+  {
+   "label": "data_'27-03-05'",
+   "payload": {
+    "name": "  Serata Quiz  ",
+    "category": "Quiz",
+    "event_date": "27-03-05",
+    "event_time": "21:00",
+    "duration": 60,
+    "attendees": 10,
+    "new_members": 2,
+    "new_member_names": " Anna, Bruno ",
+    "responsible": " Carla ",
+    "notes": "Note\ncon accapo",
+    "clip_recorded": true,
+    "clip_registrar": " Dario ",
+    "flop": false
+   },
+   "values": null,
+   "error": "Data o ora non valida"
+  },
+  {
+   "label": "data_'2027/03/05'",
+   "payload": {
+    "name": "  Serata Quiz  ",
+    "category": "Quiz",
+    "event_date": "2027/03/05",
+    "event_time": "21:00",
+    "duration": 60,
+    "attendees": 10,
+    "new_members": 2,
+    "new_member_names": " Anna, Bruno ",
+    "responsible": " Carla ",
+    "notes": "Note\ncon accapo",
+    "clip_recorded": true,
+    "clip_registrar": " Dario ",
+    "flop": false
+   },
+   "values": null,
+   "error": "Data o ora non valida"
+  },
+  {
+   "label": "data_' 2027-03-05'",
+   "payload": {
+    "name": "  Serata Quiz  ",
+    "category": "Quiz",
+    "event_date": " 2027-03-05",
+    "event_time": "21:00",
+    "duration": 60,
+    "attendees": 10,
+    "new_members": 2,
+    "new_member_names": " Anna, Bruno ",
+    "responsible": " Carla ",
+    "notes": "Note\ncon accapo",
+    "clip_recorded": true,
+    "clip_registrar": " Dario ",
+    "flop": false
+   },
+   "values": null,
+   "error": "Data o ora non valida"
+  },
+  {
+   "label": "data_'2027-03-05 '",
+   "payload": {
+    "name": "  Serata Quiz  ",
+    "category": "Quiz",
+    "event_date": "2027-03-05 ",
+    "event_time": "21:00",
+    "duration": 60,
+    "attendees": 10,
+    "new_members": 2,
+    "new_member_names": " Anna, Bruno ",
+    "responsible": " Carla ",
+    "notes": "Note\ncon accapo",
+    "clip_recorded": true,
+    "clip_registrar": " Dario ",
+    "flop": false
+   },
+   "values": null,
+   "error": "Data o ora non valida"
+  },
+  {
+   "label": "data_'2027-03-05T10:00'",
+   "payload": {
+    "name": "  Serata Quiz  ",
+    "category": "Quiz",
+    "event_date": "2027-03-05T10:00",
+    "event_time": "21:00",
+    "duration": 60,
+    "attendees": 10,
+    "new_members": 2,
+    "new_member_names": " Anna, Bruno ",
+    "responsible": " Carla ",
+    "notes": "Note\ncon accapo",
+    "clip_recorded": true,
+    "clip_registrar": " Dario ",
+    "flop": false
+   },
+   "values": null,
+   "error": "Data o ora non valida"
+  },
+  {
+   "label": "data_''",
+   "payload": {
+    "name": "  Serata Quiz  ",
+    "category": "Quiz",
+    "event_date": "",
+    "event_time": "21:00",
+    "duration": 60,
+    "attendees": 10,
+    "new_members": 2,
+    "new_member_names": " Anna, Bruno ",
+    "responsible": " Carla ",
+    "notes": "Note\ncon accapo",
+    "clip_recorded": true,
+    "clip_registrar": " Dario ",
+    "flop": false
+   },
+   "values": null,
+   "error": "Data o ora non valida"
+  },
+  {
+   "label": "data_'domani'",
+   "payload": {
+    "name": "  Serata Quiz  ",
+    "category": "Quiz",
+    "event_date": "domani",
+    "event_time": "21:00",
+    "duration": 60,
+    "attendees": 10,
+    "new_members": 2,
+    "new_member_names": " Anna, Bruno ",
+    "responsible": " Carla ",
+    "notes": "Note\ncon accapo",
+    "clip_recorded": true,
+    "clip_registrar": " Dario ",
+    "flop": false
+   },
+   "values": null,
+   "error": "Data o ora non valida"
+  },
+  {
+   "label": "data_'0001-01-01'",
+   "payload": {
+    "name": "  Serata Quiz  ",
+    "category": "Quiz",
+    "event_date": "0001-01-01",
+    "event_time": "21:00",
+    "duration": 60,
+    "attendees": 10,
+    "new_members": 2,
+    "new_member_names": " Anna, Bruno ",
+    "responsible": " Carla ",
+    "notes": "Note\ncon accapo",
+    "clip_recorded": true,
+    "clip_registrar": " Dario ",
+    "flop": false
+   },
+   "values": {
+    "name": "Serata Quiz",
+    "new_member_names": "Anna, Bruno",
+    "responsible": "Carla",
+    "notes": "Note\ncon accapo",
+    "clip_registrar": "Dario",
+    "category": "Quiz",
+    "event_date": "0001-01-01",
+    "event_time": "21:00:00",
+    "duration": 60,
+    "attendees": 10,
+    "new_members": 2,
+    "clip_recorded": true,
+    "flop": false
+   },
+   "error": null
+  },
+  {
+   "label": "data_'9999-12-31'",
+   "payload": {
+    "name": "  Serata Quiz  ",
+    "category": "Quiz",
+    "event_date": "9999-12-31",
+    "event_time": "21:00",
+    "duration": 60,
+    "attendees": 10,
+    "new_members": 2,
+    "new_member_names": " Anna, Bruno ",
+    "responsible": " Carla ",
+    "notes": "Note\ncon accapo",
+    "clip_recorded": true,
+    "clip_registrar": " Dario ",
+    "flop": false
+   },
+   "values": {
+    "name": "Serata Quiz",
+    "new_member_names": "Anna, Bruno",
+    "responsible": "Carla",
+    "notes": "Note\ncon accapo",
+    "clip_registrar": "Dario",
+    "category": "Quiz",
+    "event_date": "9999-12-31",
+    "event_time": "21:00:00",
+    "duration": 60,
+    "attendees": 10,
+    "new_members": 2,
+    "clip_recorded": true,
+    "flop": false
+   },
+   "error": null
+  },
+  {
+   "label": "data_'0000-01-01'",
+   "payload": {
+    "name": "  Serata Quiz  ",
+    "category": "Quiz",
+    "event_date": "0000-01-01",
+    "event_time": "21:00",
+    "duration": 60,
+    "attendees": 10,
+    "new_members": 2,
+    "new_member_names": " Anna, Bruno ",
+    "responsible": " Carla ",
+    "notes": "Note\ncon accapo",
+    "clip_recorded": true,
+    "clip_registrar": " Dario ",
+    "flop": false
+   },
+   "values": null,
+   "error": "Data o ora non valida"
+  },
+  {
+   "label": "data_'2027-03-05\\n'",
+   "payload": {
+    "name": "  Serata Quiz  ",
+    "category": "Quiz",
+    "event_date": "2027-03-05\n",
+    "event_time": "21:00",
+    "duration": 60,
+    "attendees": 10,
+    "new_members": 2,
+    "new_member_names": " Anna, Bruno ",
+    "responsible": " Carla ",
+    "notes": "Note\ncon accapo",
+    "clip_recorded": true,
+    "clip_registrar": " Dario ",
+    "flop": false
+   },
+   "values": null,
+   "error": "Data o ora non valida"
+  },
+  {
+   "label": "data_'٢٠٢٧-٠٣-٠٥'",
+   "payload": {
+    "name": "  Serata Quiz  ",
+    "category": "Quiz",
+    "event_date": "٢٠٢٧-٠٣-٠٥",
+    "event_time": "21:00",
+    "duration": 60,
+    "attendees": 10,
+    "new_members": 2,
+    "new_member_names": " Anna, Bruno ",
+    "responsible": " Carla ",
+    "notes": "Note\ncon accapo",
+    "clip_recorded": true,
+    "clip_registrar": " Dario ",
+    "flop": false
+   },
+   "values": null,
+   "error": "Data o ora non valida"
+  },
+  {
+   "label": "data_'2028-02-29'",
+   "payload": {
+    "name": "  Serata Quiz  ",
+    "category": "Quiz",
+    "event_date": "2028-02-29",
+    "event_time": "21:00",
+    "duration": 60,
+    "attendees": 10,
+    "new_members": 2,
+    "new_member_names": " Anna, Bruno ",
+    "responsible": " Carla ",
+    "notes": "Note\ncon accapo",
+    "clip_recorded": true,
+    "clip_registrar": " Dario ",
+    "flop": false
+   },
+   "values": {
+    "name": "Serata Quiz",
+    "new_member_names": "Anna, Bruno",
+    "responsible": "Carla",
+    "notes": "Note\ncon accapo",
+    "clip_registrar": "Dario",
+    "category": "Quiz",
+    "event_date": "2028-02-29",
+    "event_time": "21:00:00",
+    "duration": 60,
+    "attendees": 10,
+    "new_members": 2,
+    "clip_recorded": true,
+    "flop": false
+   },
+   "error": null
+  },
+  {
+   "label": "data_'2027-02-29'",
+   "payload": {
+    "name": "  Serata Quiz  ",
+    "category": "Quiz",
+    "event_date": "2027-02-29",
+    "event_time": "21:00",
+    "duration": 60,
+    "attendees": 10,
+    "new_members": 2,
+    "new_member_names": " Anna, Bruno ",
+    "responsible": " Carla ",
+    "notes": "Note\ncon accapo",
+    "clip_recorded": true,
+    "clip_registrar": " Dario ",
+    "flop": false
+   },
+   "values": null,
+   "error": "Data o ora non valida"
+  },
+  {
+   "label": "data_assente",
+   "payload": {
+    "name": "  Serata Quiz  ",
+    "category": "Quiz",
+    "event_time": "21:00",
+    "duration": 60,
+    "attendees": 10,
+    "new_members": 2,
+    "new_member_names": " Anna, Bruno ",
+    "responsible": " Carla ",
+    "notes": "Note\ncon accapo",
+    "clip_recorded": true,
+    "clip_registrar": " Dario ",
+    "flop": false
+   },
+   "values": null,
+   "error": "Data o ora non valida"
+  },
+  {
+   "label": "data_numero",
+   "payload": {
+    "name": "  Serata Quiz  ",
+    "category": "Quiz",
+    "event_date": 20270305,
+    "event_time": "21:00",
+    "duration": 60,
+    "attendees": 10,
+    "new_members": 2,
+    "new_member_names": " Anna, Bruno ",
+    "responsible": " Carla ",
+    "notes": "Note\ncon accapo",
+    "clip_recorded": true,
+    "clip_registrar": " Dario ",
+    "flop": false
+   },
+   "values": null,
+   "error": "Data o ora non valida"
+  },
+  {
+   "label": "data_null",
+   "payload": {
+    "name": "  Serata Quiz  ",
+    "category": "Quiz",
+    "event_date": null,
+    "event_time": "21:00",
+    "duration": 60,
+    "attendees": 10,
+    "new_members": 2,
+    "new_member_names": " Anna, Bruno ",
+    "responsible": " Carla ",
+    "notes": "Note\ncon accapo",
+    "clip_recorded": true,
+    "clip_registrar": " Dario ",
+    "flop": false
+   },
+   "values": null,
+   "error": "Data o ora non valida"
+  },
+  {
+   "label": "ora_'21:00'",
+   "payload": {
+    "name": "  Serata Quiz  ",
+    "category": "Quiz",
+    "event_date": "2027-03-05",
+    "event_time": "21:00",
+    "duration": 60,
+    "attendees": 10,
+    "new_members": 2,
+    "new_member_names": " Anna, Bruno ",
+    "responsible": " Carla ",
+    "notes": "Note\ncon accapo",
+    "clip_recorded": true,
+    "clip_registrar": " Dario ",
+    "flop": false
+   },
+   "values": {
+    "name": "Serata Quiz",
+    "new_member_names": "Anna, Bruno",
+    "responsible": "Carla",
+    "notes": "Note\ncon accapo",
+    "clip_registrar": "Dario",
+    "category": "Quiz",
+    "event_date": "2027-03-05",
+    "event_time": "21:00:00",
+    "duration": 60,
+    "attendees": 10,
+    "new_members": 2,
+    "clip_recorded": true,
+    "flop": false
+   },
+   "error": null
+  },
+  {
+   "label": "ora_'21'",
+   "payload": {
+    "name": "  Serata Quiz  ",
+    "category": "Quiz",
+    "event_date": "2027-03-05",
+    "event_time": "21",
+    "duration": 60,
+    "attendees": 10,
+    "new_members": 2,
+    "new_member_names": " Anna, Bruno ",
+    "responsible": " Carla ",
+    "notes": "Note\ncon accapo",
+    "clip_recorded": true,
+    "clip_registrar": " Dario ",
+    "flop": false
+   },
+   "values": {
+    "name": "Serata Quiz",
+    "new_member_names": "Anna, Bruno",
+    "responsible": "Carla",
+    "notes": "Note\ncon accapo",
+    "clip_registrar": "Dario",
+    "category": "Quiz",
+    "event_date": "2027-03-05",
+    "event_time": "21:00:00",
+    "duration": 60,
+    "attendees": 10,
+    "new_members": 2,
+    "clip_recorded": true,
+    "flop": false
+   },
+   "error": null
+  },
+  {
+   "label": "ora_'2100'",
+   "payload": {
+    "name": "  Serata Quiz  ",
+    "category": "Quiz",
+    "event_date": "2027-03-05",
+    "event_time": "2100",
+    "duration": 60,
+    "attendees": 10,
+    "new_members": 2,
+    "new_member_names": " Anna, Bruno ",
+    "responsible": " Carla ",
+    "notes": "Note\ncon accapo",
+    "clip_recorded": true,
+    "clip_registrar": " Dario ",
+    "flop": false
+   },
+   "values": {
+    "name": "Serata Quiz",
+    "new_member_names": "Anna, Bruno",
+    "responsible": "Carla",
+    "notes": "Note\ncon accapo",
+    "clip_registrar": "Dario",
+    "category": "Quiz",
+    "event_date": "2027-03-05",
+    "event_time": "21:00:00",
+    "duration": 60,
+    "attendees": 10,
+    "new_members": 2,
+    "clip_recorded": true,
+    "flop": false
+   },
+   "error": null
+  },
+  {
+   "label": "ora_'21:00:00'",
+   "payload": {
+    "name": "  Serata Quiz  ",
+    "category": "Quiz",
+    "event_date": "2027-03-05",
+    "event_time": "21:00:00",
+    "duration": 60,
+    "attendees": 10,
+    "new_members": 2,
+    "new_member_names": " Anna, Bruno ",
+    "responsible": " Carla ",
+    "notes": "Note\ncon accapo",
+    "clip_recorded": true,
+    "clip_registrar": " Dario ",
+    "flop": false
+   },
+   "values": {
+    "name": "Serata Quiz",
+    "new_member_names": "Anna, Bruno",
+    "responsible": "Carla",
+    "notes": "Note\ncon accapo",
+    "clip_registrar": "Dario",
+    "category": "Quiz",
+    "event_date": "2027-03-05",
+    "event_time": "21:00:00",
+    "duration": 60,
+    "attendees": 10,
+    "new_members": 2,
+    "clip_recorded": true,
+    "flop": false
+   },
+   "error": null
+  },
+  {
+   "label": "ora_'21:00:01'",
+   "payload": {
+    "name": "  Serata Quiz  ",
+    "category": "Quiz",
+    "event_date": "2027-03-05",
+    "event_time": "21:00:01",
+    "duration": 60,
+    "attendees": 10,
+    "new_members": 2,
+    "new_member_names": " Anna, Bruno ",
+    "responsible": " Carla ",
+    "notes": "Note\ncon accapo",
+    "clip_recorded": true,
+    "clip_registrar": " Dario ",
+    "flop": false
+   },
+   "values": null,
+   "error": "L'ora deve essere nel formato HH:MM"
+  },
+  {
+   "label": "ora_'21:00:00.000000'",
+   "payload": {
+    "name": "  Serata Quiz  ",
+    "category": "Quiz",
+    "event_date": "2027-03-05",
+    "event_time": "21:00:00.000000",
+    "duration": 60,
+    "attendees": 10,
+    "new_members": 2,
+    "new_member_names": " Anna, Bruno ",
+    "responsible": " Carla ",
+    "notes": "Note\ncon accapo",
+    "clip_recorded": true,
+    "clip_registrar": " Dario ",
+    "flop": false
+   },
+   "values": {
+    "name": "Serata Quiz",
+    "new_member_names": "Anna, Bruno",
+    "responsible": "Carla",
+    "notes": "Note\ncon accapo",
+    "clip_registrar": "Dario",
+    "category": "Quiz",
+    "event_date": "2027-03-05",
+    "event_time": "21:00:00",
+    "duration": 60,
+    "attendees": 10,
+    "new_members": 2,
+    "clip_recorded": true,
+    "flop": false
+   },
+   "error": null
+  },
+  {
+   "label": "ora_'21:00:00.5'",
+   "payload": {
+    "name": "  Serata Quiz  ",
+    "category": "Quiz",
+    "event_date": "2027-03-05",
+    "event_time": "21:00:00.5",
+    "duration": 60,
+    "attendees": 10,
+    "new_members": 2,
+    "new_member_names": " Anna, Bruno ",
+    "responsible": " Carla ",
+    "notes": "Note\ncon accapo",
+    "clip_recorded": true,
+    "clip_registrar": " Dario ",
+    "flop": false
+   },
+   "values": null,
+   "error": "L'ora deve essere nel formato HH:MM"
+  },
+  {
+   "label": "ora_'21:00:00.000001'",
+   "payload": {
+    "name": "  Serata Quiz  ",
+    "category": "Quiz",
+    "event_date": "2027-03-05",
+    "event_time": "21:00:00.000001",
+    "duration": 60,
+    "attendees": 10,
+    "new_members": 2,
+    "new_member_names": " Anna, Bruno ",
+    "responsible": " Carla ",
+    "notes": "Note\ncon accapo",
+    "clip_recorded": true,
+    "clip_registrar": " Dario ",
+    "flop": false
+   },
+   "values": null,
+   "error": "L'ora deve essere nel formato HH:MM"
+  },
+  {
+   "label": "ora_'21:00Z'",
+   "payload": {
+    "name": "  Serata Quiz  ",
+    "category": "Quiz",
+    "event_date": "2027-03-05",
+    "event_time": "21:00Z",
+    "duration": 60,
+    "attendees": 10,
+    "new_members": 2,
+    "new_member_names": " Anna, Bruno ",
+    "responsible": " Carla ",
+    "notes": "Note\ncon accapo",
+    "clip_recorded": true,
+    "clip_registrar": " Dario ",
+    "flop": false
+   },
+   "values": null,
+   "error": "L'ora deve essere nel formato HH:MM"
+  },
+  {
+   "label": "ora_'21:00+01:00'",
+   "payload": {
+    "name": "  Serata Quiz  ",
+    "category": "Quiz",
+    "event_date": "2027-03-05",
+    "event_time": "21:00+01:00",
+    "duration": 60,
+    "attendees": 10,
+    "new_members": 2,
+    "new_member_names": " Anna, Bruno ",
+    "responsible": " Carla ",
+    "notes": "Note\ncon accapo",
+    "clip_recorded": true,
+    "clip_registrar": " Dario ",
+    "flop": false
+   },
+   "values": null,
+   "error": "L'ora deve essere nel formato HH:MM"
+  },
+  {
+   "label": "ora_'21:00:00+01:00'",
+   "payload": {
+    "name": "  Serata Quiz  ",
+    "category": "Quiz",
+    "event_date": "2027-03-05",
+    "event_time": "21:00:00+01:00",
+    "duration": 60,
+    "attendees": 10,
+    "new_members": 2,
+    "new_member_names": " Anna, Bruno ",
+    "responsible": " Carla ",
+    "notes": "Note\ncon accapo",
+    "clip_recorded": true,
+    "clip_registrar": " Dario ",
+    "flop": false
+   },
+   "values": null,
+   "error": "L'ora deve essere nel formato HH:MM"
+  },
+  {
+   "label": "ora_'T21:00'",
+   "payload": {
+    "name": "  Serata Quiz  ",
+    "category": "Quiz",
+    "event_date": "2027-03-05",
+    "event_time": "T21:00",
+    "duration": 60,
+    "attendees": 10,
+    "new_members": 2,
+    "new_member_names": " Anna, Bruno ",
+    "responsible": " Carla ",
+    "notes": "Note\ncon accapo",
+    "clip_recorded": true,
+    "clip_registrar": " Dario ",
+    "flop": false
+   },
+   "values": {
+    "name": "Serata Quiz",
+    "new_member_names": "Anna, Bruno",
+    "responsible": "Carla",
+    "notes": "Note\ncon accapo",
+    "clip_registrar": "Dario",
+    "category": "Quiz",
+    "event_date": "2027-03-05",
+    "event_time": "21:00:00",
+    "duration": 60,
+    "attendees": 10,
+    "new_members": 2,
+    "clip_recorded": true,
+    "flop": false
+   },
+   "error": null
+  },
+  {
+   "label": "ora_'t21:00'",
+   "payload": {
+    "name": "  Serata Quiz  ",
+    "category": "Quiz",
+    "event_date": "2027-03-05",
+    "event_time": "t21:00",
+    "duration": 60,
+    "attendees": 10,
+    "new_members": 2,
+    "new_member_names": " Anna, Bruno ",
+    "responsible": " Carla ",
+    "notes": "Note\ncon accapo",
+    "clip_recorded": true,
+    "clip_registrar": " Dario ",
+    "flop": false
+   },
+   "values": null,
+   "error": "Data o ora non valida"
+  },
+  {
+   "label": "ora_'24:00'",
+   "payload": {
+    "name": "  Serata Quiz  ",
+    "category": "Quiz",
+    "event_date": "2027-03-05",
+    "event_time": "24:00",
+    "duration": 60,
+    "attendees": 10,
+    "new_members": 2,
+    "new_member_names": " Anna, Bruno ",
+    "responsible": " Carla ",
+    "notes": "Note\ncon accapo",
+    "clip_recorded": true,
+    "clip_registrar": " Dario ",
+    "flop": false
+   },
+   "values": null,
+   "error": "Data o ora non valida"
+  },
+  {
+   "label": "ora_'23:59'",
+   "payload": {
+    "name": "  Serata Quiz  ",
+    "category": "Quiz",
+    "event_date": "2027-03-05",
+    "event_time": "23:59",
+    "duration": 60,
+    "attendees": 10,
+    "new_members": 2,
+    "new_member_names": " Anna, Bruno ",
+    "responsible": " Carla ",
+    "notes": "Note\ncon accapo",
+    "clip_recorded": true,
+    "clip_registrar": " Dario ",
+    "flop": false
+   },
+   "values": {
+    "name": "Serata Quiz",
+    "new_member_names": "Anna, Bruno",
+    "responsible": "Carla",
+    "notes": "Note\ncon accapo",
+    "clip_registrar": "Dario",
+    "category": "Quiz",
+    "event_date": "2027-03-05",
+    "event_time": "23:59:00",
+    "duration": 60,
+    "attendees": 10,
+    "new_members": 2,
+    "clip_recorded": true,
+    "flop": false
+   },
+   "error": null
+  },
+  {
+   "label": "ora_'00:00'",
+   "payload": {
+    "name": "  Serata Quiz  ",
+    "category": "Quiz",
+    "event_date": "2027-03-05",
+    "event_time": "00:00",
+    "duration": 60,
+    "attendees": 10,
+    "new_members": 2,
+    "new_member_names": " Anna, Bruno ",
+    "responsible": " Carla ",
+    "notes": "Note\ncon accapo",
+    "clip_recorded": true,
+    "clip_registrar": " Dario ",
+    "flop": false
+   },
+   "values": {
+    "name": "Serata Quiz",
+    "new_member_names": "Anna, Bruno",
+    "responsible": "Carla",
+    "notes": "Note\ncon accapo",
+    "clip_registrar": "Dario",
+    "category": "Quiz",
+    "event_date": "2027-03-05",
+    "event_time": "00:00:00",
+    "duration": 60,
+    "attendees": 10,
+    "new_members": 2,
+    "clip_recorded": true,
+    "flop": false
+   },
+   "error": null
+  },
+  {
+   "label": "ora_'9:00'",
+   "payload": {
+    "name": "  Serata Quiz  ",
+    "category": "Quiz",
+    "event_date": "2027-03-05",
+    "event_time": "9:00",
+    "duration": 60,
+    "attendees": 10,
+    "new_members": 2,
+    "new_member_names": " Anna, Bruno ",
+    "responsible": " Carla ",
+    "notes": "Note\ncon accapo",
+    "clip_recorded": true,
+    "clip_registrar": " Dario ",
+    "flop": false
+   },
+   "values": null,
+   "error": "Data o ora non valida"
+  },
+  {
+   "label": "ora_'09:00'",
+   "payload": {
+    "name": "  Serata Quiz  ",
+    "category": "Quiz",
+    "event_date": "2027-03-05",
+    "event_time": "09:00",
+    "duration": 60,
+    "attendees": 10,
+    "new_members": 2,
+    "new_member_names": " Anna, Bruno ",
+    "responsible": " Carla ",
+    "notes": "Note\ncon accapo",
+    "clip_recorded": true,
+    "clip_registrar": " Dario ",
+    "flop": false
+   },
+   "values": {
+    "name": "Serata Quiz",
+    "new_member_names": "Anna, Bruno",
+    "responsible": "Carla",
+    "notes": "Note\ncon accapo",
+    "clip_registrar": "Dario",
+    "category": "Quiz",
+    "event_date": "2027-03-05",
+    "event_time": "09:00:00",
+    "duration": 60,
+    "attendees": 10,
+    "new_members": 2,
+    "clip_recorded": true,
+    "flop": false
+   },
+   "error": null
+  },
+  {
+   "label": "ora_'21:60'",
+   "payload": {
+    "name": "  Serata Quiz  ",
+    "category": "Quiz",
+    "event_date": "2027-03-05",
+    "event_time": "21:60",
+    "duration": 60,
+    "attendees": 10,
+    "new_members": 2,
+    "new_member_names": " Anna, Bruno ",
+    "responsible": " Carla ",
+    "notes": "Note\ncon accapo",
+    "clip_recorded": true,
+    "clip_registrar": " Dario ",
+    "flop": false
+   },
+   "values": null,
+   "error": "Data o ora non valida"
+  },
+  {
+   "label": "ora_'21:00:60'",
+   "payload": {
+    "name": "  Serata Quiz  ",
+    "category": "Quiz",
+    "event_date": "2027-03-05",
+    "event_time": "21:00:60",
+    "duration": 60,
+    "attendees": 10,
+    "new_members": 2,
+    "new_member_names": " Anna, Bruno ",
+    "responsible": " Carla ",
+    "notes": "Note\ncon accapo",
+    "clip_recorded": true,
+    "clip_registrar": " Dario ",
+    "flop": false
+   },
+   "values": null,
+   "error": "Data o ora non valida"
+  },
+  {
+   "label": "ora_''",
+   "payload": {
+    "name": "  Serata Quiz  ",
+    "category": "Quiz",
+    "event_date": "2027-03-05",
+    "event_time": "",
+    "duration": 60,
+    "attendees": 10,
+    "new_members": 2,
+    "new_member_names": " Anna, Bruno ",
+    "responsible": " Carla ",
+    "notes": "Note\ncon accapo",
+    "clip_recorded": true,
+    "clip_registrar": " Dario ",
+    "flop": false
+   },
+   "values": null,
+   "error": "Data o ora non valida"
+  },
+  {
+   "label": "ora_'sera'",
+   "payload": {
+    "name": "  Serata Quiz  ",
+    "category": "Quiz",
+    "event_date": "2027-03-05",
+    "event_time": "sera",
+    "duration": 60,
+    "attendees": 10,
+    "new_members": 2,
+    "new_member_names": " Anna, Bruno ",
+    "responsible": " Carla ",
+    "notes": "Note\ncon accapo",
+    "clip_recorded": true,
+    "clip_registrar": " Dario ",
+    "flop": false
+   },
+   "values": null,
+   "error": "Data o ora non valida"
+  },
+  {
+   "label": "ora_' 21:00'",
+   "payload": {
+    "name": "  Serata Quiz  ",
+    "category": "Quiz",
+    "event_date": "2027-03-05",
+    "event_time": " 21:00",
+    "duration": 60,
+    "attendees": 10,
+    "new_members": 2,
+    "new_member_names": " Anna, Bruno ",
+    "responsible": " Carla ",
+    "notes": "Note\ncon accapo",
+    "clip_recorded": true,
+    "clip_registrar": " Dario ",
+    "flop": false
+   },
+   "values": null,
+   "error": "Data o ora non valida"
+  },
+  {
+   "label": "ora_'21:00 '",
+   "payload": {
+    "name": "  Serata Quiz  ",
+    "category": "Quiz",
+    "event_date": "2027-03-05",
+    "event_time": "21:00 ",
+    "duration": 60,
+    "attendees": 10,
+    "new_members": 2,
+    "new_member_names": " Anna, Bruno ",
+    "responsible": " Carla ",
+    "notes": "Note\ncon accapo",
+    "clip_recorded": true,
+    "clip_registrar": " Dario ",
+    "flop": false
+   },
+   "values": null,
+   "error": "Data o ora non valida"
+  },
+  {
+   "label": "ora_'21.00'",
+   "payload": {
+    "name": "  Serata Quiz  ",
+    "category": "Quiz",
+    "event_date": "2027-03-05",
+    "event_time": "21.00",
+    "duration": 60,
+    "attendees": 10,
+    "new_members": 2,
+    "new_member_names": " Anna, Bruno ",
+    "responsible": " Carla ",
+    "notes": "Note\ncon accapo",
+    "clip_recorded": true,
+    "clip_registrar": " Dario ",
+    "flop": false
+   },
+   "values": {
+    "name": "Serata Quiz",
+    "new_member_names": "Anna, Bruno",
+    "responsible": "Carla",
+    "notes": "Note\ncon accapo",
+    "clip_registrar": "Dario",
+    "category": "Quiz",
+    "event_date": "2027-03-05",
+    "event_time": "21:00:00",
+    "duration": 60,
+    "attendees": 10,
+    "new_members": 2,
+    "clip_recorded": true,
+    "flop": false
+   },
+   "error": null
+  },
+  {
+   "label": "ora_'210000'",
+   "payload": {
+    "name": "  Serata Quiz  ",
+    "category": "Quiz",
+    "event_date": "2027-03-05",
+    "event_time": "210000",
+    "duration": 60,
+    "attendees": 10,
+    "new_members": 2,
+    "new_member_names": " Anna, Bruno ",
+    "responsible": " Carla ",
+    "notes": "Note\ncon accapo",
+    "clip_recorded": true,
+    "clip_registrar": " Dario ",
+    "flop": false
+   },
+   "values": {
+    "name": "Serata Quiz",
+    "new_member_names": "Anna, Bruno",
+    "responsible": "Carla",
+    "notes": "Note\ncon accapo",
+    "clip_registrar": "Dario",
+    "category": "Quiz",
+    "event_date": "2027-03-05",
+    "event_time": "21:00:00",
+    "duration": 60,
+    "attendees": 10,
+    "new_members": 2,
+    "clip_recorded": true,
+    "flop": false
+   },
+   "error": null
+  },
+  {
+   "label": "ora_'21:0'",
+   "payload": {
+    "name": "  Serata Quiz  ",
+    "category": "Quiz",
+    "event_date": "2027-03-05",
+    "event_time": "21:0",
+    "duration": 60,
+    "attendees": 10,
+    "new_members": 2,
+    "new_member_names": " Anna, Bruno ",
+    "responsible": " Carla ",
+    "notes": "Note\ncon accapo",
+    "clip_recorded": true,
+    "clip_registrar": " Dario ",
+    "flop": false
+   },
+   "values": null,
+   "error": "Data o ora non valida"
+  },
+  {
+   "label": "ora_'2:00'",
+   "payload": {
+    "name": "  Serata Quiz  ",
+    "category": "Quiz",
+    "event_date": "2027-03-05",
+    "event_time": "2:00",
+    "duration": 60,
+    "attendees": 10,
+    "new_members": 2,
+    "new_member_names": " Anna, Bruno ",
+    "responsible": " Carla ",
+    "notes": "Note\ncon accapo",
+    "clip_recorded": true,
+    "clip_registrar": " Dario ",
+    "flop": false
+   },
+   "values": null,
+   "error": "Data o ora non valida"
+  },
+  {
+   "label": "ora_'21:00:00.123456789'",
+   "payload": {
+    "name": "  Serata Quiz  ",
+    "category": "Quiz",
+    "event_date": "2027-03-05",
+    "event_time": "21:00:00.123456789",
+    "duration": 60,
+    "attendees": 10,
+    "new_members": 2,
+    "new_member_names": " Anna, Bruno ",
+    "responsible": " Carla ",
+    "notes": "Note\ncon accapo",
+    "clip_recorded": true,
+    "clip_registrar": " Dario ",
+    "flop": false
+   },
+   "values": null,
+   "error": "L'ora deve essere nel formato HH:MM"
+  },
+  {
+   "label": "ora_'21:00:00,5'",
+   "payload": {
+    "name": "  Serata Quiz  ",
+    "category": "Quiz",
+    "event_date": "2027-03-05",
+    "event_time": "21:00:00,5",
+    "duration": 60,
+    "attendees": 10,
+    "new_members": 2,
+    "new_member_names": " Anna, Bruno ",
+    "responsible": " Carla ",
+    "notes": "Note\ncon accapo",
+    "clip_recorded": true,
+    "clip_registrar": " Dario ",
+    "flop": false
+   },
+   "values": null,
+   "error": "L'ora deve essere nel formato HH:MM"
+  },
+  {
+   "label": "ora_'21:00-05:00'",
+   "payload": {
+    "name": "  Serata Quiz  ",
+    "category": "Quiz",
+    "event_date": "2027-03-05",
+    "event_time": "21:00-05:00",
+    "duration": 60,
+    "attendees": 10,
+    "new_members": 2,
+    "new_member_names": " Anna, Bruno ",
+    "responsible": " Carla ",
+    "notes": "Note\ncon accapo",
+    "clip_recorded": true,
+    "clip_registrar": " Dario ",
+    "flop": false
+   },
+   "values": null,
+   "error": "L'ora deve essere nel formato HH:MM"
+  },
+  {
+   "label": "ora_'21:00:00z'",
+   "payload": {
+    "name": "  Serata Quiz  ",
+    "category": "Quiz",
+    "event_date": "2027-03-05",
+    "event_time": "21:00:00z",
+    "duration": 60,
+    "attendees": 10,
+    "new_members": 2,
+    "new_member_names": " Anna, Bruno ",
+    "responsible": " Carla ",
+    "notes": "Note\ncon accapo",
+    "clip_recorded": true,
+    "clip_registrar": " Dario ",
+    "flop": false
+   },
+   "values": null,
+   "error": "Data o ora non valida"
+  },
+  {
+   "label": "ora_'21:00 +01:00'",
+   "payload": {
+    "name": "  Serata Quiz  ",
+    "category": "Quiz",
+    "event_date": "2027-03-05",
+    "event_time": "21:00 +01:00",
+    "duration": 60,
+    "attendees": 10,
+    "new_members": 2,
+    "new_member_names": " Anna, Bruno ",
+    "responsible": " Carla ",
+    "notes": "Note\ncon accapo",
+    "clip_recorded": true,
+    "clip_registrar": " Dario ",
+    "flop": false
+   },
+   "values": null,
+   "error": "L'ora deve essere nel formato HH:MM"
+  },
+  {
+   "label": "ora_'٢١:٠٠'",
+   "payload": {
+    "name": "  Serata Quiz  ",
+    "category": "Quiz",
+    "event_date": "2027-03-05",
+    "event_time": "٢١:٠٠",
+    "duration": 60,
+    "attendees": 10,
+    "new_members": 2,
+    "new_member_names": " Anna, Bruno ",
+    "responsible": " Carla ",
+    "notes": "Note\ncon accapo",
+    "clip_recorded": true,
+    "clip_registrar": " Dario ",
+    "flop": false
+   },
+   "values": null,
+   "error": "Data o ora non valida"
+  },
+  {
+   "label": "ora_'21:00\\n'",
+   "payload": {
+    "name": "  Serata Quiz  ",
+    "category": "Quiz",
+    "event_date": "2027-03-05",
+    "event_time": "21:00\n",
+    "duration": 60,
+    "attendees": 10,
+    "new_members": 2,
+    "new_member_names": " Anna, Bruno ",
+    "responsible": " Carla ",
+    "notes": "Note\ncon accapo",
+    "clip_recorded": true,
+    "clip_registrar": " Dario ",
+    "flop": false
+   },
+   "values": null,
+   "error": "Data o ora non valida"
+  },
+  {
+   "label": "ora_assente",
+   "payload": {
+    "name": "  Serata Quiz  ",
+    "category": "Quiz",
+    "event_date": "2027-03-05",
+    "duration": 60,
+    "attendees": 10,
+    "new_members": 2,
+    "new_member_names": " Anna, Bruno ",
+    "responsible": " Carla ",
+    "notes": "Note\ncon accapo",
+    "clip_recorded": true,
+    "clip_registrar": " Dario ",
+    "flop": false
+   },
+   "values": null,
+   "error": "Data o ora non valida"
+  },
+  {
+   "label": "ora_numero",
+   "payload": {
+    "name": "  Serata Quiz  ",
+    "category": "Quiz",
+    "event_date": "2027-03-05",
+    "event_time": 2100,
+    "duration": 60,
+    "attendees": 10,
+    "new_members": 2,
+    "new_member_names": " Anna, Bruno ",
+    "responsible": " Carla ",
+    "notes": "Note\ncon accapo",
+    "clip_recorded": true,
+    "clip_registrar": " Dario ",
+    "flop": false
+   },
+   "values": null,
+   "error": "Data o ora non valida"
+  },
+  {
+   "label": "ora_null",
+   "payload": {
+    "name": "  Serata Quiz  ",
+    "category": "Quiz",
+    "event_date": "2027-03-05",
+    "event_time": null,
+    "duration": 60,
+    "attendees": 10,
+    "new_members": 2,
+    "new_member_names": " Anna, Bruno ",
+    "responsible": " Carla ",
+    "notes": "Note\ncon accapo",
+    "clip_recorded": true,
+    "clip_registrar": " Dario ",
+    "flop": false
+   },
+   "values": null,
+   "error": "Data o ora non valida"
+  },
+  {
+   "label": "durata_15",
+   "payload": {
+    "name": "  Serata Quiz  ",
+    "category": "Quiz",
+    "event_date": "2027-03-05",
+    "event_time": "21:00",
+    "duration": 15,
+    "attendees": 10,
+    "new_members": 2,
+    "new_member_names": " Anna, Bruno ",
+    "responsible": " Carla ",
+    "notes": "Note\ncon accapo",
+    "clip_recorded": true,
+    "clip_registrar": " Dario ",
+    "flop": false
+   },
+   "values": {
+    "name": "Serata Quiz",
+    "new_member_names": "Anna, Bruno",
+    "responsible": "Carla",
+    "notes": "Note\ncon accapo",
+    "clip_registrar": "Dario",
+    "category": "Quiz",
+    "event_date": "2027-03-05",
+    "event_time": "21:00:00",
+    "duration": 15,
+    "attendees": 10,
+    "new_members": 2,
+    "clip_recorded": true,
+    "flop": false
+   },
+   "error": null
+  },
+  {
+   "label": "durata_30",
+   "payload": {
+    "name": "  Serata Quiz  ",
+    "category": "Quiz",
+    "event_date": "2027-03-05",
+    "event_time": "21:00",
+    "duration": 30,
+    "attendees": 10,
+    "new_members": 2,
+    "new_member_names": " Anna, Bruno ",
+    "responsible": " Carla ",
+    "notes": "Note\ncon accapo",
+    "clip_recorded": true,
+    "clip_registrar": " Dario ",
+    "flop": false
+   },
+   "values": {
+    "name": "Serata Quiz",
+    "new_member_names": "Anna, Bruno",
+    "responsible": "Carla",
+    "notes": "Note\ncon accapo",
+    "clip_registrar": "Dario",
+    "category": "Quiz",
+    "event_date": "2027-03-05",
+    "event_time": "21:00:00",
+    "duration": 30,
+    "attendees": 10,
+    "new_members": 2,
+    "clip_recorded": true,
+    "flop": false
+   },
+   "error": null
+  },
+  {
+   "label": "durata_45",
+   "payload": {
+    "name": "  Serata Quiz  ",
+    "category": "Quiz",
+    "event_date": "2027-03-05",
+    "event_time": "21:00",
+    "duration": 45,
+    "attendees": 10,
+    "new_members": 2,
+    "new_member_names": " Anna, Bruno ",
+    "responsible": " Carla ",
+    "notes": "Note\ncon accapo",
+    "clip_recorded": true,
+    "clip_registrar": " Dario ",
+    "flop": false
+   },
+   "values": {
+    "name": "Serata Quiz",
+    "new_member_names": "Anna, Bruno",
+    "responsible": "Carla",
+    "notes": "Note\ncon accapo",
+    "clip_registrar": "Dario",
+    "category": "Quiz",
+    "event_date": "2027-03-05",
+    "event_time": "21:00:00",
+    "duration": 45,
+    "attendees": 10,
+    "new_members": 2,
+    "clip_recorded": true,
+    "flop": false
+   },
+   "error": null
+  },
+  {
+   "label": "durata_60",
+   "payload": {
+    "name": "  Serata Quiz  ",
+    "category": "Quiz",
+    "event_date": "2027-03-05",
+    "event_time": "21:00",
+    "duration": 60,
+    "attendees": 10,
+    "new_members": 2,
+    "new_member_names": " Anna, Bruno ",
+    "responsible": " Carla ",
+    "notes": "Note\ncon accapo",
+    "clip_recorded": true,
+    "clip_registrar": " Dario ",
+    "flop": false
+   },
+   "values": {
+    "name": "Serata Quiz",
+    "new_member_names": "Anna, Bruno",
+    "responsible": "Carla",
+    "notes": "Note\ncon accapo",
+    "clip_registrar": "Dario",
+    "category": "Quiz",
+    "event_date": "2027-03-05",
+    "event_time": "21:00:00",
+    "duration": 60,
+    "attendees": 10,
+    "new_members": 2,
+    "clip_recorded": true,
+    "flop": false
+   },
+   "error": null
+  },
+  {
+   "label": "durata_75",
+   "payload": {
+    "name": "  Serata Quiz  ",
+    "category": "Quiz",
+    "event_date": "2027-03-05",
+    "event_time": "21:00",
+    "duration": 75,
+    "attendees": 10,
+    "new_members": 2,
+    "new_member_names": " Anna, Bruno ",
+    "responsible": " Carla ",
+    "notes": "Note\ncon accapo",
+    "clip_recorded": true,
+    "clip_registrar": " Dario ",
+    "flop": false
+   },
+   "values": {
+    "name": "Serata Quiz",
+    "new_member_names": "Anna, Bruno",
+    "responsible": "Carla",
+    "notes": "Note\ncon accapo",
+    "clip_registrar": "Dario",
+    "category": "Quiz",
+    "event_date": "2027-03-05",
+    "event_time": "21:00:00",
+    "duration": 75,
+    "attendees": 10,
+    "new_members": 2,
+    "clip_recorded": true,
+    "flop": false
+   },
+   "error": null
+  },
+  {
+   "label": "durata_90",
+   "payload": {
+    "name": "  Serata Quiz  ",
+    "category": "Quiz",
+    "event_date": "2027-03-05",
+    "event_time": "21:00",
+    "duration": 90,
+    "attendees": 10,
+    "new_members": 2,
+    "new_member_names": " Anna, Bruno ",
+    "responsible": " Carla ",
+    "notes": "Note\ncon accapo",
+    "clip_recorded": true,
+    "clip_registrar": " Dario ",
+    "flop": false
+   },
+   "values": {
+    "name": "Serata Quiz",
+    "new_member_names": "Anna, Bruno",
+    "responsible": "Carla",
+    "notes": "Note\ncon accapo",
+    "clip_registrar": "Dario",
+    "category": "Quiz",
+    "event_date": "2027-03-05",
+    "event_time": "21:00:00",
+    "duration": 90,
+    "attendees": 10,
+    "new_members": 2,
+    "clip_recorded": true,
+    "flop": false
+   },
+   "error": null
+  },
+  {
+   "label": "durata_105",
+   "payload": {
+    "name": "  Serata Quiz  ",
+    "category": "Quiz",
+    "event_date": "2027-03-05",
+    "event_time": "21:00",
+    "duration": 105,
+    "attendees": 10,
+    "new_members": 2,
+    "new_member_names": " Anna, Bruno ",
+    "responsible": " Carla ",
+    "notes": "Note\ncon accapo",
+    "clip_recorded": true,
+    "clip_registrar": " Dario ",
+    "flop": false
+   },
+   "values": {
+    "name": "Serata Quiz",
+    "new_member_names": "Anna, Bruno",
+    "responsible": "Carla",
+    "notes": "Note\ncon accapo",
+    "clip_registrar": "Dario",
+    "category": "Quiz",
+    "event_date": "2027-03-05",
+    "event_time": "21:00:00",
+    "duration": 105,
+    "attendees": 10,
+    "new_members": 2,
+    "clip_recorded": true,
+    "flop": false
+   },
+   "error": null
+  },
+  {
+   "label": "durata_120",
+   "payload": {
+    "name": "  Serata Quiz  ",
+    "category": "Quiz",
+    "event_date": "2027-03-05",
+    "event_time": "21:00",
+    "duration": 120,
+    "attendees": 10,
+    "new_members": 2,
+    "new_member_names": " Anna, Bruno ",
+    "responsible": " Carla ",
+    "notes": "Note\ncon accapo",
+    "clip_recorded": true,
+    "clip_registrar": " Dario ",
+    "flop": false
+   },
+   "values": {
+    "name": "Serata Quiz",
+    "new_member_names": "Anna, Bruno",
+    "responsible": "Carla",
+    "notes": "Note\ncon accapo",
+    "clip_registrar": "Dario",
+    "category": "Quiz",
+    "event_date": "2027-03-05",
+    "event_time": "21:00:00",
+    "duration": 120,
+    "attendees": 10,
+    "new_members": 2,
+    "clip_recorded": true,
+    "flop": false
+   },
+   "error": null
+  },
+  {
+   "label": "durata_150",
+   "payload": {
+    "name": "  Serata Quiz  ",
+    "category": "Quiz",
+    "event_date": "2027-03-05",
+    "event_time": "21:00",
+    "duration": 150,
+    "attendees": 10,
+    "new_members": 2,
+    "new_member_names": " Anna, Bruno ",
+    "responsible": " Carla ",
+    "notes": "Note\ncon accapo",
+    "clip_recorded": true,
+    "clip_registrar": " Dario ",
+    "flop": false
+   },
+   "values": {
+    "name": "Serata Quiz",
+    "new_member_names": "Anna, Bruno",
+    "responsible": "Carla",
+    "notes": "Note\ncon accapo",
+    "clip_registrar": "Dario",
+    "category": "Quiz",
+    "event_date": "2027-03-05",
+    "event_time": "21:00:00",
+    "duration": 150,
+    "attendees": 10,
+    "new_members": 2,
+    "clip_recorded": true,
+    "flop": false
+   },
+   "error": null
+  },
+  {
+   "label": "durata_180",
+   "payload": {
+    "name": "  Serata Quiz  ",
+    "category": "Quiz",
+    "event_date": "2027-03-05",
+    "event_time": "21:00",
+    "duration": 180,
+    "attendees": 10,
+    "new_members": 2,
+    "new_member_names": " Anna, Bruno ",
+    "responsible": " Carla ",
+    "notes": "Note\ncon accapo",
+    "clip_recorded": true,
+    "clip_registrar": " Dario ",
+    "flop": false
+   },
+   "values": {
+    "name": "Serata Quiz",
+    "new_member_names": "Anna, Bruno",
+    "responsible": "Carla",
+    "notes": "Note\ncon accapo",
+    "clip_registrar": "Dario",
+    "category": "Quiz",
+    "event_date": "2027-03-05",
+    "event_time": "21:00:00",
+    "duration": 180,
+    "attendees": 10,
+    "new_members": 2,
+    "clip_recorded": true,
+    "flop": false
+   },
+   "error": null
+  },
+  {
+   "label": "durata_240",
+   "payload": {
+    "name": "  Serata Quiz  ",
+    "category": "Quiz",
+    "event_date": "2027-03-05",
+    "event_time": "21:00",
+    "duration": 240,
+    "attendees": 10,
+    "new_members": 2,
+    "new_member_names": " Anna, Bruno ",
+    "responsible": " Carla ",
+    "notes": "Note\ncon accapo",
+    "clip_recorded": true,
+    "clip_registrar": " Dario ",
+    "flop": false
+   },
+   "values": {
+    "name": "Serata Quiz",
+    "new_member_names": "Anna, Bruno",
+    "responsible": "Carla",
+    "notes": "Note\ncon accapo",
+    "clip_registrar": "Dario",
+    "category": "Quiz",
+    "event_date": "2027-03-05",
+    "event_time": "21:00:00",
+    "duration": 240,
+    "attendees": 10,
+    "new_members": 2,
+    "clip_recorded": true,
+    "flop": false
+   },
+   "error": null
+  },
+  {
+   "label": "durata_0",
+   "payload": {
+    "name": "  Serata Quiz  ",
+    "category": "Quiz",
+    "event_date": "2027-03-05",
+    "event_time": "21:00",
+    "duration": 0,
+    "attendees": 10,
+    "new_members": 2,
+    "new_member_names": " Anna, Bruno ",
+    "responsible": " Carla ",
+    "notes": "Note\ncon accapo",
+    "clip_recorded": true,
+    "clip_registrar": " Dario ",
+    "flop": false
+   },
+   "values": null,
+   "error": "Durata non valida"
+  },
+  {
+   "label": "durata_10",
+   "payload": {
+    "name": "  Serata Quiz  ",
+    "category": "Quiz",
+    "event_date": "2027-03-05",
+    "event_time": "21:00",
+    "duration": 10,
+    "attendees": 10,
+    "new_members": 2,
+    "new_member_names": " Anna, Bruno ",
+    "responsible": " Carla ",
+    "notes": "Note\ncon accapo",
+    "clip_recorded": true,
+    "clip_registrar": " Dario ",
+    "flop": false
+   },
+   "values": null,
+   "error": "Durata non valida"
+  },
+  {
+   "label": "durata_241",
+   "payload": {
+    "name": "  Serata Quiz  ",
+    "category": "Quiz",
+    "event_date": "2027-03-05",
+    "event_time": "21:00",
+    "duration": 241,
+    "attendees": 10,
+    "new_members": 2,
+    "new_member_names": " Anna, Bruno ",
+    "responsible": " Carla ",
+    "notes": "Note\ncon accapo",
+    "clip_recorded": true,
+    "clip_registrar": " Dario ",
+    "flop": false
+   },
+   "values": null,
+   "error": "Durata non valida"
+  },
+  {
+   "label": "durata_-60",
+   "payload": {
+    "name": "  Serata Quiz  ",
+    "category": "Quiz",
+    "event_date": "2027-03-05",
+    "event_time": "21:00",
+    "duration": -60,
+    "attendees": 10,
+    "new_members": 2,
+    "new_member_names": " Anna, Bruno ",
+    "responsible": " Carla ",
+    "notes": "Note\ncon accapo",
+    "clip_recorded": true,
+    "clip_registrar": " Dario ",
+    "flop": false
+   },
+   "values": null,
+   "error": "Durata non valida"
+  },
+  {
+   "label": "durata_60.0",
+   "payload": {
+    "name": "  Serata Quiz  ",
+    "category": "Quiz",
+    "event_date": "2027-03-05",
+    "event_time": "21:00",
+    "duration": 60.0,
+    "attendees": 10,
+    "new_members": 2,
+    "new_member_names": " Anna, Bruno ",
+    "responsible": " Carla ",
+    "notes": "Note\ncon accapo",
+    "clip_recorded": true,
+    "clip_registrar": " Dario ",
+    "flop": false
+   },
+   "values": null,
+   "error": "Campo duration non valido"
+  },
+  {
+   "label": "durata_'60'",
+   "payload": {
+    "name": "  Serata Quiz  ",
+    "category": "Quiz",
+    "event_date": "2027-03-05",
+    "event_time": "21:00",
+    "duration": "60",
+    "attendees": 10,
+    "new_members": 2,
+    "new_member_names": " Anna, Bruno ",
+    "responsible": " Carla ",
+    "notes": "Note\ncon accapo",
+    "clip_recorded": true,
+    "clip_registrar": " Dario ",
+    "flop": false
+   },
+   "values": null,
+   "error": "Campo duration non valido"
+  },
+  {
+   "label": "durata_True",
+   "payload": {
+    "name": "  Serata Quiz  ",
+    "category": "Quiz",
+    "event_date": "2027-03-05",
+    "event_time": "21:00",
+    "duration": true,
+    "attendees": 10,
+    "new_members": 2,
+    "new_member_names": " Anna, Bruno ",
+    "responsible": " Carla ",
+    "notes": "Note\ncon accapo",
+    "clip_recorded": true,
+    "clip_registrar": " Dario ",
+    "flop": false
+   },
+   "values": null,
+   "error": "Campo duration non valido"
+  },
+  {
+   "label": "durata_None",
+   "payload": {
+    "name": "  Serata Quiz  ",
+    "category": "Quiz",
+    "event_date": "2027-03-05",
+    "event_time": "21:00",
+    "duration": null,
+    "attendees": 10,
+    "new_members": 2,
+    "new_member_names": " Anna, Bruno ",
+    "responsible": " Carla ",
+    "notes": "Note\ncon accapo",
+    "clip_recorded": true,
+    "clip_registrar": " Dario ",
+    "flop": false
+   },
+   "values": null,
+   "error": "Campo duration non valido"
+  },
+  {
+   "label": "durata_[60]",
+   "payload": {
+    "name": "  Serata Quiz  ",
+    "category": "Quiz",
+    "event_date": "2027-03-05",
+    "event_time": "21:00",
+    "duration": [
+     60
+    ],
+    "attendees": 10,
+    "new_members": 2,
+    "new_member_names": " Anna, Bruno ",
+    "responsible": " Carla ",
+    "notes": "Note\ncon accapo",
+    "clip_recorded": true,
+    "clip_registrar": " Dario ",
+    "flop": false
+   },
+   "values": null,
+   "error": "Campo duration non valido"
+  },
+  {
+   "label": "durata_100.0",
+   "payload": {
+    "name": "  Serata Quiz  ",
+    "category": "Quiz",
+    "event_date": "2027-03-05",
+    "event_time": "21:00",
+    "duration": 100.0,
+    "attendees": 10,
+    "new_members": 2,
+    "new_member_names": " Anna, Bruno ",
+    "responsible": " Carla ",
+    "notes": "Note\ncon accapo",
+    "clip_recorded": true,
+    "clip_registrar": " Dario ",
+    "flop": false
+   },
+   "values": null,
+   "error": "Campo duration non valido"
+  },
+  {
+   "label": "durata_assente",
+   "payload": {
+    "name": "  Serata Quiz  ",
+    "category": "Quiz",
+    "event_date": "2027-03-05",
+    "event_time": "21:00",
+    "attendees": 10,
+    "new_members": 2,
+    "new_member_names": " Anna, Bruno ",
+    "responsible": " Carla ",
+    "notes": "Note\ncon accapo",
+    "clip_recorded": true,
+    "clip_registrar": " Dario ",
+    "flop": false
+   },
+   "values": null,
+   "error": "Campo duration non valido"
+  },
+  {
+   "label": "presenze_0_0",
+   "payload": {
+    "name": "  Serata Quiz  ",
+    "category": "Quiz",
+    "event_date": "2027-03-05",
+    "event_time": "21:00",
+    "duration": 60,
+    "attendees": 0,
+    "new_members": 0,
+    "new_member_names": " Anna, Bruno ",
+    "responsible": " Carla ",
+    "notes": "Note\ncon accapo",
+    "clip_recorded": true,
+    "clip_registrar": " Dario ",
+    "flop": false
+   },
+   "values": {
+    "name": "Serata Quiz",
+    "new_member_names": "Anna, Bruno",
+    "responsible": "Carla",
+    "notes": "Note\ncon accapo",
+    "clip_registrar": "Dario",
+    "category": "Quiz",
+    "event_date": "2027-03-05",
+    "event_time": "21:00:00",
+    "duration": 60,
+    "attendees": 0,
+    "new_members": 0,
+    "clip_recorded": true,
+    "flop": false
+   },
+   "error": null
+  },
+  {
+   "label": "presenze_5_5",
+   "payload": {
+    "name": "  Serata Quiz  ",
+    "category": "Quiz",
+    "event_date": "2027-03-05",
+    "event_time": "21:00",
+    "duration": 60,
+    "attendees": 5,
+    "new_members": 5,
+    "new_member_names": " Anna, Bruno ",
+    "responsible": " Carla ",
+    "notes": "Note\ncon accapo",
+    "clip_recorded": true,
+    "clip_registrar": " Dario ",
+    "flop": false
+   },
+   "values": {
+    "name": "Serata Quiz",
+    "new_member_names": "Anna, Bruno",
+    "responsible": "Carla",
+    "notes": "Note\ncon accapo",
+    "clip_registrar": "Dario",
+    "category": "Quiz",
+    "event_date": "2027-03-05",
+    "event_time": "21:00:00",
+    "duration": 60,
+    "attendees": 5,
+    "new_members": 5,
+    "clip_recorded": true,
+    "flop": false
+   },
+   "error": null
+  },
+  {
+   "label": "presenze_5_6",
+   "payload": {
+    "name": "  Serata Quiz  ",
+    "category": "Quiz",
+    "event_date": "2027-03-05",
+    "event_time": "21:00",
+    "duration": 60,
+    "attendees": 5,
+    "new_members": 6,
+    "new_member_names": " Anna, Bruno ",
+    "responsible": " Carla ",
+    "notes": "Note\ncon accapo",
+    "clip_recorded": true,
+    "clip_registrar": " Dario ",
+    "flop": false
+   },
+   "values": null,
+   "error": "Numero di presenze o nuovi membri non valido"
+  },
+  {
+   "label": "presenze_5_-1",
+   "payload": {
+    "name": "  Serata Quiz  ",
+    "category": "Quiz",
+    "event_date": "2027-03-05",
+    "event_time": "21:00",
+    "duration": 60,
+    "attendees": 5,
+    "new_members": -1,
+    "new_member_names": " Anna, Bruno ",
+    "responsible": " Carla ",
+    "notes": "Note\ncon accapo",
+    "clip_recorded": true,
+    "clip_registrar": " Dario ",
+    "flop": false
+   },
+   "values": null,
+   "error": "Numero di presenze o nuovi membri non valido"
+  },
+  {
+   "label": "presenze_-1_0",
+   "payload": {
+    "name": "  Serata Quiz  ",
+    "category": "Quiz",
+    "event_date": "2027-03-05",
+    "event_time": "21:00",
+    "duration": 60,
+    "attendees": -1,
+    "new_members": 0,
+    "new_member_names": " Anna, Bruno ",
+    "responsible": " Carla ",
+    "notes": "Note\ncon accapo",
+    "clip_recorded": true,
+    "clip_registrar": " Dario ",
+    "flop": false
+   },
+   "values": null,
+   "error": "Numero di presenze o nuovi membri non valido"
+  },
+  {
+   "label": "presenze_-1_-1",
+   "payload": {
+    "name": "  Serata Quiz  ",
+    "category": "Quiz",
+    "event_date": "2027-03-05",
+    "event_time": "21:00",
+    "duration": 60,
+    "attendees": -1,
+    "new_members": -1,
+    "new_member_names": " Anna, Bruno ",
+    "responsible": " Carla ",
+    "notes": "Note\ncon accapo",
+    "clip_recorded": true,
+    "clip_registrar": " Dario ",
+    "flop": false
+   },
+   "values": null,
+   "error": "Numero di presenze o nuovi membri non valido"
+  },
+  {
+   "label": "presenze_1000000000000_1000000000000",
+   "payload": {
+    "name": "  Serata Quiz  ",
+    "category": "Quiz",
+    "event_date": "2027-03-05",
+    "event_time": "21:00",
+    "duration": 60,
+    "attendees": 1000000000000,
+    "new_members": 1000000000000,
+    "new_member_names": " Anna, Bruno ",
+    "responsible": " Carla ",
+    "notes": "Note\ncon accapo",
+    "clip_recorded": true,
+    "clip_registrar": " Dario ",
+    "flop": false
+   },
+   "values": {
+    "name": "Serata Quiz",
+    "new_member_names": "Anna, Bruno",
+    "responsible": "Carla",
+    "notes": "Note\ncon accapo",
+    "clip_registrar": "Dario",
+    "category": "Quiz",
+    "event_date": "2027-03-05",
+    "event_time": "21:00:00",
+    "duration": 60,
+    "attendees": 1000000000000,
+    "new_members": 1000000000000,
+    "clip_recorded": true,
+    "flop": false
+   },
+   "error": null
+  },
+  {
+   "label": "presenze_5.0_0",
+   "payload": {
+    "name": "  Serata Quiz  ",
+    "category": "Quiz",
+    "event_date": "2027-03-05",
+    "event_time": "21:00",
+    "duration": 60,
+    "attendees": 5.0,
+    "new_members": 0,
+    "new_member_names": " Anna, Bruno ",
+    "responsible": " Carla ",
+    "notes": "Note\ncon accapo",
+    "clip_recorded": true,
+    "clip_registrar": " Dario ",
+    "flop": false
+   },
+   "values": null,
+   "error": "Campo attendees non valido"
+  },
+  {
+   "label": "presenze_5_2.0",
+   "payload": {
+    "name": "  Serata Quiz  ",
+    "category": "Quiz",
+    "event_date": "2027-03-05",
+    "event_time": "21:00",
+    "duration": 60,
+    "attendees": 5,
+    "new_members": 2.0,
+    "new_member_names": " Anna, Bruno ",
+    "responsible": " Carla ",
+    "notes": "Note\ncon accapo",
+    "clip_recorded": true,
+    "clip_registrar": " Dario ",
+    "flop": false
+   },
+   "values": null,
+   "error": "Campo new_members non valido"
+  },
+  {
+   "label": "presenze_True_0",
+   "payload": {
+    "name": "  Serata Quiz  ",
+    "category": "Quiz",
+    "event_date": "2027-03-05",
+    "event_time": "21:00",
+    "duration": 60,
+    "attendees": true,
+    "new_members": 0,
+    "new_member_names": " Anna, Bruno ",
+    "responsible": " Carla ",
+    "notes": "Note\ncon accapo",
+    "clip_recorded": true,
+    "clip_registrar": " Dario ",
+    "flop": false
+   },
+   "values": null,
+   "error": "Campo attendees non valido"
+  },
+  {
+   "label": "presenze_5_True",
+   "payload": {
+    "name": "  Serata Quiz  ",
+    "category": "Quiz",
+    "event_date": "2027-03-05",
+    "event_time": "21:00",
+    "duration": 60,
+    "attendees": 5,
+    "new_members": true,
+    "new_member_names": " Anna, Bruno ",
+    "responsible": " Carla ",
+    "notes": "Note\ncon accapo",
+    "clip_recorded": true,
+    "clip_registrar": " Dario ",
+    "flop": false
+   },
+   "values": null,
+   "error": "Campo new_members non valido"
+  },
+  {
+   "label": "presenze_'5'_0",
+   "payload": {
+    "name": "  Serata Quiz  ",
+    "category": "Quiz",
+    "event_date": "2027-03-05",
+    "event_time": "21:00",
+    "duration": 60,
+    "attendees": "5",
+    "new_members": 0,
+    "new_member_names": " Anna, Bruno ",
+    "responsible": " Carla ",
+    "notes": "Note\ncon accapo",
+    "clip_recorded": true,
+    "clip_registrar": " Dario ",
+    "flop": false
+   },
+   "values": null,
+   "error": "Campo attendees non valido"
+  },
+  {
+   "label": "presenze_None_0",
+   "payload": {
+    "name": "  Serata Quiz  ",
+    "category": "Quiz",
+    "event_date": "2027-03-05",
+    "event_time": "21:00",
+    "duration": 60,
+    "attendees": null,
+    "new_members": 0,
+    "new_member_names": " Anna, Bruno ",
+    "responsible": " Carla ",
+    "notes": "Note\ncon accapo",
+    "clip_recorded": true,
+    "clip_registrar": " Dario ",
+    "flop": false
+   },
+   "values": null,
+   "error": "Campo attendees non valido"
+  },
+  {
+   "label": "presenze_5_None",
+   "payload": {
+    "name": "  Serata Quiz  ",
+    "category": "Quiz",
+    "event_date": "2027-03-05",
+    "event_time": "21:00",
+    "duration": 60,
+    "attendees": 5,
+    "new_members": null,
+    "new_member_names": " Anna, Bruno ",
+    "responsible": " Carla ",
+    "notes": "Note\ncon accapo",
+    "clip_recorded": true,
+    "clip_registrar": " Dario ",
+    "flop": false
+   },
+   "values": null,
+   "error": "Campo new_members non valido"
+  },
+  {
+   "label": "presenze_assenti",
+   "payload": {
+    "name": "  Serata Quiz  ",
+    "category": "Quiz",
+    "event_date": "2027-03-05",
+    "event_time": "21:00",
+    "duration": 60,
+    "new_members": 2,
+    "new_member_names": " Anna, Bruno ",
+    "responsible": " Carla ",
+    "notes": "Note\ncon accapo",
+    "clip_recorded": true,
+    "clip_registrar": " Dario ",
+    "flop": false
+   },
+   "values": null,
+   "error": "Campo attendees non valido"
+  },
+  {
+   "label": "nuovi_assenti",
+   "payload": {
+    "name": "  Serata Quiz  ",
+    "category": "Quiz",
+    "event_date": "2027-03-05",
+    "event_time": "21:00",
+    "duration": 60,
+    "attendees": 10,
+    "new_member_names": " Anna, Bruno ",
+    "responsible": " Carla ",
+    "notes": "Note\ncon accapo",
+    "clip_recorded": true,
+    "clip_registrar": " Dario ",
+    "flop": false
+   },
+   "values": null,
+   "error": "Campo new_members non valido"
+  },
+  {
+   "label": "clip_recorded_True",
+   "payload": {
+    "name": "  Serata Quiz  ",
+    "category": "Quiz",
+    "event_date": "2027-03-05",
+    "event_time": "21:00",
+    "duration": 60,
+    "attendees": 10,
+    "new_members": 2,
+    "new_member_names": " Anna, Bruno ",
+    "responsible": " Carla ",
+    "notes": "Note\ncon accapo",
+    "clip_recorded": true,
+    "clip_registrar": " Dario ",
+    "flop": false
+   },
+   "values": {
+    "name": "Serata Quiz",
+    "new_member_names": "Anna, Bruno",
+    "responsible": "Carla",
+    "notes": "Note\ncon accapo",
+    "clip_registrar": "Dario",
+    "category": "Quiz",
+    "event_date": "2027-03-05",
+    "event_time": "21:00:00",
+    "duration": 60,
+    "attendees": 10,
+    "new_members": 2,
+    "clip_recorded": true,
+    "flop": false
+   },
+   "error": null
+  },
+  {
+   "label": "clip_recorded_False",
+   "payload": {
+    "name": "  Serata Quiz  ",
+    "category": "Quiz",
+    "event_date": "2027-03-05",
+    "event_time": "21:00",
+    "duration": 60,
+    "attendees": 10,
+    "new_members": 2,
+    "new_member_names": " Anna, Bruno ",
+    "responsible": " Carla ",
+    "notes": "Note\ncon accapo",
+    "clip_recorded": false,
+    "clip_registrar": " Dario ",
+    "flop": false
+   },
+   "values": {
+    "name": "Serata Quiz",
+    "new_member_names": "Anna, Bruno",
+    "responsible": "Carla",
+    "notes": "Note\ncon accapo",
+    "clip_registrar": "Dario",
+    "category": "Quiz",
+    "event_date": "2027-03-05",
+    "event_time": "21:00:00",
+    "duration": 60,
+    "attendees": 10,
+    "new_members": 2,
+    "clip_recorded": false,
+    "flop": false
+   },
+   "error": null
+  },
+  {
+   "label": "clip_recorded_1",
+   "payload": {
+    "name": "  Serata Quiz  ",
+    "category": "Quiz",
+    "event_date": "2027-03-05",
+    "event_time": "21:00",
+    "duration": 60,
+    "attendees": 10,
+    "new_members": 2,
+    "new_member_names": " Anna, Bruno ",
+    "responsible": " Carla ",
+    "notes": "Note\ncon accapo",
+    "clip_recorded": 1,
+    "clip_registrar": " Dario ",
+    "flop": false
+   },
+   "values": null,
+   "error": "Campo clip_recorded non valido"
+  },
+  {
+   "label": "clip_recorded_0",
+   "payload": {
+    "name": "  Serata Quiz  ",
+    "category": "Quiz",
+    "event_date": "2027-03-05",
+    "event_time": "21:00",
+    "duration": 60,
+    "attendees": 10,
+    "new_members": 2,
+    "new_member_names": " Anna, Bruno ",
+    "responsible": " Carla ",
+    "notes": "Note\ncon accapo",
+    "clip_recorded": 0,
+    "clip_registrar": " Dario ",
+    "flop": false
+   },
+   "values": null,
+   "error": "Campo clip_recorded non valido"
+  },
+  {
+   "label": "clip_recorded_'true'",
+   "payload": {
+    "name": "  Serata Quiz  ",
+    "category": "Quiz",
+    "event_date": "2027-03-05",
+    "event_time": "21:00",
+    "duration": 60,
+    "attendees": 10,
+    "new_members": 2,
+    "new_member_names": " Anna, Bruno ",
+    "responsible": " Carla ",
+    "notes": "Note\ncon accapo",
+    "clip_recorded": "true",
+    "clip_registrar": " Dario ",
+    "flop": false
+   },
+   "values": null,
+   "error": "Campo clip_recorded non valido"
+  },
+  {
+   "label": "clip_recorded_None",
+   "payload": {
+    "name": "  Serata Quiz  ",
+    "category": "Quiz",
+    "event_date": "2027-03-05",
+    "event_time": "21:00",
+    "duration": 60,
+    "attendees": 10,
+    "new_members": 2,
+    "new_member_names": " Anna, Bruno ",
+    "responsible": " Carla ",
+    "notes": "Note\ncon accapo",
+    "clip_recorded": null,
+    "clip_registrar": " Dario ",
+    "flop": false
+   },
+   "values": null,
+   "error": "Campo clip_recorded non valido"
+  },
+  {
+   "label": "clip_recorded_'si'",
+   "payload": {
+    "name": "  Serata Quiz  ",
+    "category": "Quiz",
+    "event_date": "2027-03-05",
+    "event_time": "21:00",
+    "duration": 60,
+    "attendees": 10,
+    "new_members": 2,
+    "new_member_names": " Anna, Bruno ",
+    "responsible": " Carla ",
+    "notes": "Note\ncon accapo",
+    "clip_recorded": "si",
+    "clip_registrar": " Dario ",
+    "flop": false
+   },
+   "values": null,
+   "error": "Campo clip_recorded non valido"
+  },
+  {
+   "label": "clip_recorded_assente",
+   "payload": {
+    "name": "  Serata Quiz  ",
+    "category": "Quiz",
+    "event_date": "2027-03-05",
+    "event_time": "21:00",
+    "duration": 60,
+    "attendees": 10,
+    "new_members": 2,
+    "new_member_names": " Anna, Bruno ",
+    "responsible": " Carla ",
+    "notes": "Note\ncon accapo",
+    "clip_registrar": " Dario ",
+    "flop": false
+   },
+   "values": null,
+   "error": "Campo clip_recorded non valido"
+  },
+  {
+   "label": "flop_True",
+   "payload": {
+    "name": "  Serata Quiz  ",
+    "category": "Quiz",
+    "event_date": "2027-03-05",
+    "event_time": "21:00",
+    "duration": 60,
+    "attendees": 10,
+    "new_members": 2,
+    "new_member_names": " Anna, Bruno ",
+    "responsible": " Carla ",
+    "notes": "Note\ncon accapo",
+    "clip_recorded": true,
+    "clip_registrar": " Dario ",
+    "flop": true
+   },
+   "values": {
+    "name": "Serata Quiz",
+    "new_member_names": "Anna, Bruno",
+    "responsible": "Carla",
+    "notes": "Note\ncon accapo",
+    "clip_registrar": "Dario",
+    "category": "Quiz",
+    "event_date": "2027-03-05",
+    "event_time": "21:00:00",
+    "duration": 60,
+    "attendees": 10,
+    "new_members": 2,
+    "clip_recorded": true,
+    "flop": true
+   },
+   "error": null
+  },
+  {
+   "label": "flop_False",
+   "payload": {
+    "name": "  Serata Quiz  ",
+    "category": "Quiz",
+    "event_date": "2027-03-05",
+    "event_time": "21:00",
+    "duration": 60,
+    "attendees": 10,
+    "new_members": 2,
+    "new_member_names": " Anna, Bruno ",
+    "responsible": " Carla ",
+    "notes": "Note\ncon accapo",
+    "clip_recorded": true,
+    "clip_registrar": " Dario ",
+    "flop": false
+   },
+   "values": {
+    "name": "Serata Quiz",
+    "new_member_names": "Anna, Bruno",
+    "responsible": "Carla",
+    "notes": "Note\ncon accapo",
+    "clip_registrar": "Dario",
+    "category": "Quiz",
+    "event_date": "2027-03-05",
+    "event_time": "21:00:00",
+    "duration": 60,
+    "attendees": 10,
+    "new_members": 2,
+    "clip_recorded": true,
+    "flop": false
+   },
+   "error": null
+  },
+  {
+   "label": "flop_1",
+   "payload": {
+    "name": "  Serata Quiz  ",
+    "category": "Quiz",
+    "event_date": "2027-03-05",
+    "event_time": "21:00",
+    "duration": 60,
+    "attendees": 10,
+    "new_members": 2,
+    "new_member_names": " Anna, Bruno ",
+    "responsible": " Carla ",
+    "notes": "Note\ncon accapo",
+    "clip_recorded": true,
+    "clip_registrar": " Dario ",
+    "flop": 1
+   },
+   "values": null,
+   "error": "Campo flop non valido"
+  },
+  {
+   "label": "flop_0",
+   "payload": {
+    "name": "  Serata Quiz  ",
+    "category": "Quiz",
+    "event_date": "2027-03-05",
+    "event_time": "21:00",
+    "duration": 60,
+    "attendees": 10,
+    "new_members": 2,
+    "new_member_names": " Anna, Bruno ",
+    "responsible": " Carla ",
+    "notes": "Note\ncon accapo",
+    "clip_recorded": true,
+    "clip_registrar": " Dario ",
+    "flop": 0
+   },
+   "values": null,
+   "error": "Campo flop non valido"
+  },
+  {
+   "label": "flop_'true'",
+   "payload": {
+    "name": "  Serata Quiz  ",
+    "category": "Quiz",
+    "event_date": "2027-03-05",
+    "event_time": "21:00",
+    "duration": 60,
+    "attendees": 10,
+    "new_members": 2,
+    "new_member_names": " Anna, Bruno ",
+    "responsible": " Carla ",
+    "notes": "Note\ncon accapo",
+    "clip_recorded": true,
+    "clip_registrar": " Dario ",
+    "flop": "true"
+   },
+   "values": null,
+   "error": "Campo flop non valido"
+  },
+  {
+   "label": "flop_None",
+   "payload": {
+    "name": "  Serata Quiz  ",
+    "category": "Quiz",
+    "event_date": "2027-03-05",
+    "event_time": "21:00",
+    "duration": 60,
+    "attendees": 10,
+    "new_members": 2,
+    "new_member_names": " Anna, Bruno ",
+    "responsible": " Carla ",
+    "notes": "Note\ncon accapo",
+    "clip_recorded": true,
+    "clip_registrar": " Dario ",
+    "flop": null
+   },
+   "values": null,
+   "error": "Campo flop non valido"
+  },
+  {
+   "label": "flop_'si'",
+   "payload": {
+    "name": "  Serata Quiz  ",
+    "category": "Quiz",
+    "event_date": "2027-03-05",
+    "event_time": "21:00",
+    "duration": 60,
+    "attendees": 10,
+    "new_members": 2,
+    "new_member_names": " Anna, Bruno ",
+    "responsible": " Carla ",
+    "notes": "Note\ncon accapo",
+    "clip_recorded": true,
+    "clip_registrar": " Dario ",
+    "flop": "si"
+   },
+   "values": null,
+   "error": "Campo flop non valido"
+  },
+  {
+   "label": "flop_assente",
+   "payload": {
+    "name": "  Serata Quiz  ",
+    "category": "Quiz",
+    "event_date": "2027-03-05",
+    "event_time": "21:00",
+    "duration": 60,
+    "attendees": 10,
+    "new_members": 2,
+    "new_member_names": " Anna, Bruno ",
+    "responsible": " Carla ",
+    "notes": "Note\ncon accapo",
+    "clip_recorded": true,
+    "clip_registrar": " Dario "
+   },
+   "values": null,
+   "error": "Campo flop non valido"
+  },
+  {
+   "label": "clip_senza_registratore",
+   "payload": {
+    "name": "  Serata Quiz  ",
+    "category": "Quiz",
+    "event_date": "2027-03-05",
+    "event_time": "21:00",
+    "duration": 60,
+    "attendees": 10,
+    "new_members": 2,
+    "new_member_names": " Anna, Bruno ",
+    "responsible": " Carla ",
+    "notes": "Note\ncon accapo",
+    "clip_recorded": true,
+    "clip_registrar": "  ",
+    "flop": false
+   },
+   "values": null,
+   "error": "Indica chi ha registrato la clip"
+  },
+  {
+   "label": "clip_con_registratore",
+   "payload": {
+    "name": "  Serata Quiz  ",
+    "category": "Quiz",
+    "event_date": "2027-03-05",
+    "event_time": "21:00",
+    "duration": 60,
+    "attendees": 10,
+    "new_members": 2,
+    "new_member_names": " Anna, Bruno ",
+    "responsible": " Carla ",
+    "notes": "Note\ncon accapo",
+    "clip_recorded": true,
+    "clip_registrar": "X",
+    "flop": false
+   },
+   "values": {
+    "name": "Serata Quiz",
+    "new_member_names": "Anna, Bruno",
+    "responsible": "Carla",
+    "notes": "Note\ncon accapo",
+    "clip_registrar": "X",
+    "category": "Quiz",
+    "event_date": "2027-03-05",
+    "event_time": "21:00:00",
+    "duration": 60,
+    "attendees": 10,
+    "new_members": 2,
+    "clip_recorded": true,
+    "flop": false
+   },
+   "error": null
+  },
+  {
+   "label": "clip_registratore_assente",
+   "payload": {
+    "name": "  Serata Quiz  ",
+    "category": "Quiz",
+    "event_date": "2027-03-05",
+    "event_time": "21:00",
+    "duration": 60,
+    "attendees": 10,
+    "new_members": 2,
+    "new_member_names": " Anna, Bruno ",
+    "responsible": " Carla ",
+    "notes": "Note\ncon accapo",
+    "clip_recorded": true,
+    "flop": false
+   },
+   "values": null,
+   "error": "Indica chi ha registrato la clip"
+  },
+  {
+   "label": "chiavi_extra_ignorate",
+   "payload": {
+    "name": "  Serata Quiz  ",
+    "category": "Quiz",
+    "event_date": "2027-03-05",
+    "event_time": "21:00",
+    "duration": 60,
+    "attendees": 10,
+    "new_members": 2,
+    "new_member_names": " Anna, Bruno ",
+    "responsible": " Carla ",
+    "notes": "Note\ncon accapo",
+    "clip_recorded": true,
+    "clip_registrar": " Dario ",
+    "flop": false,
+    "id": "x",
+    "created_at": "y",
+    "extra": 1
+   },
+   "values": {
+    "name": "Serata Quiz",
+    "new_member_names": "Anna, Bruno",
+    "responsible": "Carla",
+    "notes": "Note\ncon accapo",
+    "clip_registrar": "Dario",
+    "category": "Quiz",
+    "event_date": "2027-03-05",
+    "event_time": "21:00:00",
+    "duration": 60,
+    "attendees": 10,
+    "new_members": 2,
+    "clip_recorded": true,
+    "flop": false
+   },
+   "error": null
+  },
+  {
+   "label": "ordine_dei_campi",
+   "payload": {
+    "flop": false,
+    "clip_recorded": false,
+    "new_members": 0,
+    "attendees": 1,
+    "duration": 30,
+    "event_time": "10:00",
+    "event_date": "2027-01-02",
+    "category": "Film",
+    "responsible": "r",
+    "name": "n"
+   },
+   "values": {
+    "name": "n",
+    "new_member_names": "",
+    "responsible": "r",
+    "notes": "",
+    "clip_registrar": "",
+    "category": "Film",
+    "event_date": "2027-01-02",
+    "event_time": "10:00:00",
+    "duration": 30,
+    "attendees": 1,
+    "new_members": 0,
+    "clip_recorded": false,
+    "flop": false
+   },
+   "error": null
+  }
+ ],
+ "routes": [
+  {
+   "label": "elenco_non_autenticato",
+   "status": 401,
+   "headers": {
+    "Cache-Control": "no-store",
+    "Content-Type": "application/json; charset=utf-8"
+   },
+   "body": "{\"error\": \"Accesso Discord richiesto\"}",
+   "calls": [],
+   "audit": [],
+   "topics": [],
+   "notifications": [],
+   "sent": []
+  },
+  {
+   "label": "elenco",
+   "status": 200,
+   "headers": {
+    "Cache-Control": "no-store",
+    "Content-Type": "application/json; charset=utf-8"
+   },
+   "body": "[{\"id\": \"123e4567-e89b-12d3-a456-426614174000\", \"name\": \"Serata Quiz\", \"category\": \"Quiz\", \"event_date\": \"2027-03-05\", \"event_time\": \"21:00:00\", \"duration\": 60, \"attendees\": 10, \"new_members\": 2, \"new_member_names\": \"Anna, Bruno\", \"responsible\": \"Carla\", \"notes\": \"Una nota\", \"clip_recorded\": true, \"clip_registrar\": \"Dario\", \"flop\": false, \"created_at\": \"2027-03-05T20:00:00+00:00\"}]",
+   "calls": [
+    [
+     "request",
+     "GET",
+     "https://sb.example.co/rest/v1/reports",
+     {
+      "select": "id,name,category,event_date,event_time,duration,attendees,new_members,new_member_names,responsible,notes,clip_recorded,clip_registrar,flop,created_at",
+      "order": "event_date.desc,created_at.desc,id.desc",
+      "limit": "1000",
+      "offset": "0"
+     },
+     null,
+     {
+      "apikey": "chiave-segreta",
+      "Authorization": "Bearer chiave-segreta",
+      "Content-Type": "application/json"
+     }
+    ]
+   ],
+   "audit": [],
+   "topics": [],
+   "notifications": [],
+   "sent": []
+  },
+  {
+   "label": "elenco_paginato",
+   "status": 200,
+   "headers": {
+    "Cache-Control": "no-store",
+    "Content-Type": "application/json; charset=utf-8"
+   },
+   "body": "[{\"id\": \"123e4567-e89b-12d3-a456-426614174000\", \"name\": \"Serata Quiz\", \"category\": \"Quiz\", \"event_date\": \"2027-03-05\", \"event_time\": \"21:00:00\", \"duration\": 60, \"attendees\": 10, \"new_members\": 2, \"new_member_names\": \"Anna, Bruno\", \"responsible\": \"Carla\", \"notes\": \"Una nota\", \"clip_recorded\": true, \"clip_registrar\": \"Dario\", \"flop\": false, \"created_at\": \"2027-03-05T20:00:00+00:00\"}]",
+   "calls": [
+    [
+     "request",
+     "GET",
+     "https://sb.example.co/rest/v1/reports",
+     {
+      "select": "id,name,category,event_date,event_time,duration,attendees,new_members,new_member_names,responsible,notes,clip_recorded,clip_registrar,flop,created_at",
+      "order": "event_date.desc,created_at.desc,id.desc",
+      "limit": "5",
+      "offset": "20"
+     },
+     null,
+     {
+      "apikey": "chiave-segreta",
+      "Authorization": "Bearer chiave-segreta",
+      "Content-Type": "application/json"
+     }
+    ]
+   ],
+   "audit": [],
+   "topics": [],
+   "notifications": [],
+   "sent": []
+  },
+  {
+   "label": "elenco_limite_1000",
+   "status": 200,
+   "headers": {
+    "Cache-Control": "no-store",
+    "Content-Type": "application/json; charset=utf-8"
+   },
+   "body": "[{\"id\": \"123e4567-e89b-12d3-a456-426614174000\", \"name\": \"Serata Quiz\", \"category\": \"Quiz\", \"event_date\": \"2027-03-05\", \"event_time\": \"21:00:00\", \"duration\": 60, \"attendees\": 10, \"new_members\": 2, \"new_member_names\": \"Anna, Bruno\", \"responsible\": \"Carla\", \"notes\": \"Una nota\", \"clip_recorded\": true, \"clip_registrar\": \"Dario\", \"flop\": false, \"created_at\": \"2027-03-05T20:00:00+00:00\"}]",
+   "calls": [
+    [
+     "request",
+     "GET",
+     "https://sb.example.co/rest/v1/reports",
+     {
+      "select": "id,name,category,event_date,event_time,duration,attendees,new_members,new_member_names,responsible,notes,clip_recorded,clip_registrar,flop,created_at",
+      "order": "event_date.desc,created_at.desc,id.desc",
+      "limit": "1000",
+      "offset": "0"
+     },
+     null,
+     {
+      "apikey": "chiave-segreta",
+      "Authorization": "Bearer chiave-segreta",
+      "Content-Type": "application/json"
+     }
+    ]
+   ],
+   "audit": [],
+   "topics": [],
+   "notifications": [],
+   "sent": []
+  },
+  {
+   "label": "elenco_spazi",
+   "status": 200,
+   "headers": {
+    "Cache-Control": "no-store",
+    "Content-Type": "application/json; charset=utf-8"
+   },
+   "body": "[{\"id\": \"123e4567-e89b-12d3-a456-426614174000\", \"name\": \"Serata Quiz\", \"category\": \"Quiz\", \"event_date\": \"2027-03-05\", \"event_time\": \"21:00:00\", \"duration\": 60, \"attendees\": 10, \"new_members\": 2, \"new_member_names\": \"Anna, Bruno\", \"responsible\": \"Carla\", \"notes\": \"Una nota\", \"clip_recorded\": true, \"clip_registrar\": \"Dario\", \"flop\": false, \"created_at\": \"2027-03-05T20:00:00+00:00\"}]",
+   "calls": [
+    [
+     "request",
+     "GET",
+     "https://sb.example.co/rest/v1/reports",
+     {
+      "select": "id,name,category,event_date,event_time,duration,attendees,new_members,new_member_names,responsible,notes,clip_recorded,clip_registrar,flop,created_at",
+      "order": "event_date.desc,created_at.desc,id.desc",
+      "limit": "10",
+      "offset": "5"
+     },
+     null,
+     {
+      "apikey": "chiave-segreta",
+      "Authorization": "Bearer chiave-segreta",
+      "Content-Type": "application/json"
+     }
+    ]
+   ],
+   "audit": [],
+   "topics": [],
+   "notifications": [],
+   "sent": []
+  },
+  {
+   "label": "elenco_offset_negativo",
+   "status": 400,
+   "headers": {
+    "Cache-Control": "no-store",
+    "Content-Type": "application/json; charset=utf-8"
+   },
+   "body": "{\"error\": \"Paginazione non valida\"}",
+   "calls": [],
+   "audit": [],
+   "topics": [],
+   "notifications": [],
+   "sent": []
+  },
+  {
+   "label": "elenco_limite_zero",
+   "status": 400,
+   "headers": {
+    "Cache-Control": "no-store",
+    "Content-Type": "application/json; charset=utf-8"
+   },
+   "body": "{\"error\": \"Paginazione non valida\"}",
+   "calls": [],
+   "audit": [],
+   "topics": [],
+   "notifications": [],
+   "sent": []
+  },
+  {
+   "label": "elenco_limite_1001",
+   "status": 400,
+   "headers": {
+    "Cache-Control": "no-store",
+    "Content-Type": "application/json; charset=utf-8"
+   },
+   "body": "{\"error\": \"Paginazione non valida\"}",
+   "calls": [],
+   "audit": [],
+   "topics": [],
+   "notifications": [],
+   "sent": []
+  },
+  {
+   "label": "elenco_testo",
+   "status": 400,
+   "headers": {
+    "Cache-Control": "no-store",
+    "Content-Type": "application/json; charset=utf-8"
+   },
+   "body": "{\"error\": \"Paginazione non valida\"}",
+   "calls": [],
+   "audit": [],
+   "topics": [],
+   "notifications": [],
+   "sent": []
+  },
+  {
+   "label": "elenco_vuoto_offset",
+   "status": 400,
+   "headers": {
+    "Cache-Control": "no-store",
+    "Content-Type": "application/json; charset=utf-8"
+   },
+   "body": "{\"error\": \"Paginazione non valida\"}",
+   "calls": [],
+   "audit": [],
+   "topics": [],
+   "notifications": [],
+   "sent": []
+  },
+  {
+   "label": "elenco_supabase_http_errore",
+   "status": 502,
+   "headers": {
+    "Cache-Control": "no-store",
+    "Content-Type": "application/json; charset=utf-8"
+   },
+   "body": "{\"error\": \"Impossibile leggere i report\"}",
+   "calls": [
+    [
+     "request",
+     "GET",
+     "https://sb.example.co/rest/v1/reports",
+     {
+      "select": "id,name,category,event_date,event_time,duration,attendees,new_members,new_member_names,responsible,notes,clip_recorded,clip_registrar,flop,created_at",
+      "order": "event_date.desc,created_at.desc,id.desc",
+      "limit": "1000",
+      "offset": "0"
+     },
+     null,
+     {
+      "apikey": "chiave-segreta",
+      "Authorization": "Bearer chiave-segreta",
+      "Content-Type": "application/json"
+     }
+    ]
+   ],
+   "audit": [],
+   "topics": [],
+   "notifications": [],
+   "sent": []
+  },
+  {
+   "label": "elenco_supabase_corpo_vuoto",
+   "status": 200,
+   "headers": {
+    "Cache-Control": "no-store",
+    "Content-Type": "application/json; charset=utf-8"
+   },
+   "body": "[]",
+   "calls": [
+    [
+     "request",
+     "GET",
+     "https://sb.example.co/rest/v1/reports",
+     {
+      "select": "id,name,category,event_date,event_time,duration,attendees,new_members,new_member_names,responsible,notes,clip_recorded,clip_registrar,flop,created_at",
+      "order": "event_date.desc,created_at.desc,id.desc",
+      "limit": "1000",
+      "offset": "0"
+     },
+     null,
+     {
+      "apikey": "chiave-segreta",
+      "Authorization": "Bearer chiave-segreta",
+      "Content-Type": "application/json"
+     }
+    ]
+   ],
+   "audit": [],
+   "topics": [],
+   "notifications": [],
+   "sent": []
+  },
+  {
+   "label": "elenco_supabase_rete",
+   "status": 502,
+   "headers": {
+    "Cache-Control": "no-store",
+    "Content-Type": "application/json; charset=utf-8"
+   },
+   "body": "{\"error\": \"Supabase non raggiungibile\"}",
+   "calls": [
+    [
+     "request",
+     "GET",
+     "https://sb.example.co/rest/v1/reports",
+     {
+      "select": "id,name,category,event_date,event_time,duration,attendees,new_members,new_member_names,responsible,notes,clip_recorded,clip_registrar,flop,created_at",
+      "order": "event_date.desc,created_at.desc,id.desc",
+      "limit": "1000",
+      "offset": "0"
+     },
+     null,
+     {
+      "apikey": "chiave-segreta",
+      "Authorization": "Bearer chiave-segreta",
+      "Content-Type": "application/json"
+     }
+    ]
+   ],
+   "audit": [],
+   "topics": [],
+   "notifications": [],
+   "sent": []
+  },
+  {
+   "label": "elenco_supabase_timeout",
+   "status": 502,
+   "headers": {
+    "Cache-Control": "no-store",
+    "Content-Type": "application/json; charset=utf-8"
+   },
+   "body": "{\"error\": \"Supabase non raggiungibile\"}",
+   "calls": [
+    [
+     "request",
+     "GET",
+     "https://sb.example.co/rest/v1/reports",
+     {
+      "select": "id,name,category,event_date,event_time,duration,attendees,new_members,new_member_names,responsible,notes,clip_recorded,clip_registrar,flop,created_at",
+      "order": "event_date.desc,created_at.desc,id.desc",
+      "limit": "1000",
+      "offset": "0"
+     },
+     null,
+     {
+      "apikey": "chiave-segreta",
+      "Authorization": "Bearer chiave-segreta",
+      "Content-Type": "application/json"
+     }
+    ]
+   ],
+   "audit": [],
+   "topics": [],
+   "notifications": [],
+   "sent": []
+  },
+  {
+   "label": "elenco_supabase_json_non_valido",
+   "status": 502,
+   "headers": {
+    "Cache-Control": "no-store",
+    "Content-Type": "application/json; charset=utf-8"
+   },
+   "body": "{\"error\": \"Supabase non raggiungibile\"}",
+   "calls": [
+    [
+     "request",
+     "GET",
+     "https://sb.example.co/rest/v1/reports",
+     {
+      "select": "id,name,category,event_date,event_time,duration,attendees,new_members,new_member_names,responsible,notes,clip_recorded,clip_registrar,flop,created_at",
+      "order": "event_date.desc,created_at.desc,id.desc",
+      "limit": "1000",
+      "offset": "0"
+     },
+     null,
+     {
+      "apikey": "chiave-segreta",
+      "Authorization": "Bearer chiave-segreta",
+      "Content-Type": "application/json"
+     }
+    ]
+   ],
+   "audit": [],
+   "topics": [],
+   "notifications": [],
+   "sent": []
+  },
+  {
+   "label": "elenco_supabase_oggetto",
+   "status": 200,
+   "headers": {
+    "Cache-Control": "no-store",
+    "Content-Type": "application/json; charset=utf-8"
+   },
+   "body": "{\"a\": 1}",
+   "calls": [
+    [
+     "request",
+     "GET",
+     "https://sb.example.co/rest/v1/reports",
+     {
+      "select": "id,name,category,event_date,event_time,duration,attendees,new_members,new_member_names,responsible,notes,clip_recorded,clip_registrar,flop,created_at",
+      "order": "event_date.desc,created_at.desc,id.desc",
+      "limit": "1000",
+      "offset": "0"
+     },
+     null,
+     {
+      "apikey": "chiave-segreta",
+      "Authorization": "Bearer chiave-segreta",
+      "Content-Type": "application/json"
+     }
+    ]
+   ],
+   "audit": [],
+   "topics": [],
+   "notifications": [],
+   "sent": []
+  },
+  {
+   "label": "configurazione_senza_url",
+   "status": 503,
+   "body": "{\"error\": \"Report non configurati: imposta URL Supabase e chiave service role nell'hosting\"}",
+   "headers": {
+    "Cache-Control": "no-store"
+   }
+  },
+  {
+   "label": "configurazione_url_http",
+   "status": 503,
+   "body": "{\"error\": \"Report non configurati: imposta URL Supabase e chiave service role nell'hosting\"}",
+   "headers": {
+    "Cache-Control": "no-store"
+   }
+  },
+  {
+   "label": "configurazione_senza_chiave",
+   "status": 503,
+   "body": "{\"error\": \"Report non configurati: imposta URL Supabase e chiave service role nell'hosting\"}",
+   "headers": {
+    "Cache-Control": "no-store"
+   }
+  },
+  {
+   "label": "crea_non_autenticato",
+   "status": 401,
+   "headers": {
+    "Cache-Control": "no-store",
+    "Content-Type": "application/json; charset=utf-8"
+   },
+   "body": "{\"error\": \"Accesso Discord richiesto\"}",
+   "calls": [],
+   "audit": [],
+   "topics": [],
+   "notifications": [],
+   "sent": []
+  },
+  {
+   "label": "crea_ok",
+   "status": 201,
+   "headers": {
+    "Cache-Control": "no-store",
+    "Content-Type": "application/json; charset=utf-8"
+   },
+   "body": "{\"id\": \"123e4567-e89b-12d3-a456-426614174000\", \"name\": \"Serata Quiz\", \"category\": \"Quiz\", \"event_date\": \"2027-03-05\", \"event_time\": \"21:00:00\", \"duration\": 60, \"attendees\": 10, \"new_members\": 2, \"new_member_names\": \"Anna, Bruno\", \"responsible\": \"Carla\", \"notes\": \"Una nota\", \"clip_recorded\": true, \"clip_registrar\": \"Dario\", \"flop\": false, \"created_at\": \"2027-03-05T20:00:00+00:00\"}",
+   "calls": [
+    [
+     "request",
+     "POST",
+     "https://sb.example.co/rest/v1/reports",
+     {
+      "select": "id,name,category,event_date,event_time,duration,attendees,new_members,new_member_names,responsible,notes,clip_recorded,clip_registrar,flop,created_at"
+     },
+     {
+      "name": "Serata Quiz",
+      "new_member_names": "Anna, Bruno",
+      "responsible": "Carla",
+      "notes": "Note\ncon accapo",
+      "clip_registrar": "Dario",
+      "category": "Quiz",
+      "event_date": "2027-03-05",
+      "event_time": "21:00:00",
+      "duration": 60,
+      "attendees": 10,
+      "new_members": 2,
+      "clip_recorded": true,
+      "flop": false
+     },
+     {
+      "apikey": "chiave-segreta",
+      "Authorization": "Bearer chiave-segreta",
+      "Content-Type": "application/json",
+      "Prefer": "return=representation"
+     }
+    ]
+   ],
+   "audit": [
+    [
+     42,
+     "site_report_created",
+     "report",
+     "123e4567-e89b-12d3-a456-426614174000",
+     null,
+     "{}"
+    ]
+   ],
+   "topics": [
+    "reports"
+   ],
+   "notifications": [],
+   "sent": []
+  },
+  {
+   "label": "crea_json_non_valido",
+   "status": 400,
+   "headers": {
+    "Cache-Control": "no-store",
+    "Content-Type": "application/json; charset=utf-8"
+   },
+   "body": "{\"error\": \"Corpo JSON non valido\"}",
+   "calls": [],
+   "audit": [],
+   "topics": [],
+   "notifications": [],
+   "sent": []
+  },
+  {
+   "label": "crea_corpo_vuoto",
+   "status": 400,
+   "headers": {
+    "Cache-Control": "no-store",
+    "Content-Type": "application/json; charset=utf-8"
+   },
+   "body": "{\"error\": \"Corpo JSON non valido\"}",
+   "calls": [],
+   "audit": [],
+   "topics": [],
+   "notifications": [],
+   "sent": []
+  },
+  {
+   "label": "crea_non_oggetto",
+   "status": 400,
+   "headers": {
+    "Cache-Control": "no-store",
+    "Content-Type": "application/json; charset=utf-8"
+   },
+   "body": "{\"error\": \"Corpo JSON non valido\"}",
+   "calls": [],
+   "audit": [],
+   "topics": [],
+   "notifications": [],
+   "sent": []
+  },
+  {
+   "label": "crea_validazione",
+   "status": 400,
+   "headers": {
+    "Cache-Control": "no-store",
+    "Content-Type": "application/json; charset=utf-8"
+   },
+   "body": "{\"error\": \"Durata non valida\"}",
+   "calls": [],
+   "audit": [],
+   "topics": [],
+   "notifications": [],
+   "sent": []
+  },
+  {
+   "label": "crea_supabase_errore",
+   "status": 502,
+   "headers": {
+    "Cache-Control": "no-store",
+    "Content-Type": "application/json; charset=utf-8"
+   },
+   "body": "{\"error\": \"Supabase non ha confermato il report\"}",
+   "calls": [
+    [
+     "request",
+     "POST",
+     "https://sb.example.co/rest/v1/reports",
+     {
+      "select": "id,name,category,event_date,event_time,duration,attendees,new_members,new_member_names,responsible,notes,clip_recorded,clip_registrar,flop,created_at"
+     },
+     {
+      "name": "Serata Quiz",
+      "new_member_names": "Anna, Bruno",
+      "responsible": "Carla",
+      "notes": "Note\ncon accapo",
+      "clip_registrar": "Dario",
+      "category": "Quiz",
+      "event_date": "2027-03-05",
+      "event_time": "21:00:00",
+      "duration": 60,
+      "attendees": 10,
+      "new_members": 2,
+      "clip_recorded": true,
+      "flop": false
+     },
+     {
+      "apikey": "chiave-segreta",
+      "Authorization": "Bearer chiave-segreta",
+      "Content-Type": "application/json",
+      "Prefer": "return=representation"
+     }
+    ]
+   ],
+   "audit": [],
+   "topics": [],
+   "notifications": [],
+   "sent": []
+  },
+  {
+   "label": "crea_supabase_vuoto",
+   "status": 502,
+   "headers": {
+    "Cache-Control": "no-store",
+    "Content-Type": "application/json; charset=utf-8"
+   },
+   "body": "{\"error\": \"Supabase non ha confermato il report\"}",
+   "calls": [
+    [
+     "request",
+     "POST",
+     "https://sb.example.co/rest/v1/reports",
+     {
+      "select": "id,name,category,event_date,event_time,duration,attendees,new_members,new_member_names,responsible,notes,clip_recorded,clip_registrar,flop,created_at"
+     },
+     {
+      "name": "Serata Quiz",
+      "new_member_names": "Anna, Bruno",
+      "responsible": "Carla",
+      "notes": "Note\ncon accapo",
+      "clip_registrar": "Dario",
+      "category": "Quiz",
+      "event_date": "2027-03-05",
+      "event_time": "21:00:00",
+      "duration": 60,
+      "attendees": 10,
+      "new_members": 2,
+      "clip_recorded": true,
+      "flop": false
+     },
+     {
+      "apikey": "chiave-segreta",
+      "Authorization": "Bearer chiave-segreta",
+      "Content-Type": "application/json",
+      "Prefer": "return=representation"
+     }
+    ]
+   ],
+   "audit": [],
+   "topics": [],
+   "notifications": [],
+   "sent": []
+  },
+  {
+   "label": "crea_supabase_lista_vuota",
+   "status": 502,
+   "headers": {
+    "Cache-Control": "no-store",
+    "Content-Type": "application/json; charset=utf-8"
+   },
+   "body": "{\"error\": \"Supabase non ha confermato il report\"}",
+   "calls": [
+    [
+     "request",
+     "POST",
+     "https://sb.example.co/rest/v1/reports",
+     {
+      "select": "id,name,category,event_date,event_time,duration,attendees,new_members,new_member_names,responsible,notes,clip_recorded,clip_registrar,flop,created_at"
+     },
+     {
+      "name": "Serata Quiz",
+      "new_member_names": "Anna, Bruno",
+      "responsible": "Carla",
+      "notes": "Note\ncon accapo",
+      "clip_registrar": "Dario",
+      "category": "Quiz",
+      "event_date": "2027-03-05",
+      "event_time": "21:00:00",
+      "duration": 60,
+      "attendees": 10,
+      "new_members": 2,
+      "clip_recorded": true,
+      "flop": false
+     },
+     {
+      "apikey": "chiave-segreta",
+      "Authorization": "Bearer chiave-segreta",
+      "Content-Type": "application/json",
+      "Prefer": "return=representation"
+     }
+    ]
+   ],
+   "audit": [],
+   "topics": [],
+   "notifications": [],
+   "sent": []
+  },
+  {
+   "label": "crea_supabase_rete",
+   "status": 502,
+   "headers": {
+    "Cache-Control": "no-store",
+    "Content-Type": "application/json; charset=utf-8"
+   },
+   "body": "{\"error\": \"Supabase non raggiungibile\"}",
+   "calls": [
+    [
+     "request",
+     "POST",
+     "https://sb.example.co/rest/v1/reports",
+     {
+      "select": "id,name,category,event_date,event_time,duration,attendees,new_members,new_member_names,responsible,notes,clip_recorded,clip_registrar,flop,created_at"
+     },
+     {
+      "name": "Serata Quiz",
+      "new_member_names": "Anna, Bruno",
+      "responsible": "Carla",
+      "notes": "Note\ncon accapo",
+      "clip_registrar": "Dario",
+      "category": "Quiz",
+      "event_date": "2027-03-05",
+      "event_time": "21:00:00",
+      "duration": 60,
+      "attendees": 10,
+      "new_members": 2,
+      "clip_recorded": true,
+      "flop": false
+     },
+     {
+      "apikey": "chiave-segreta",
+      "Authorization": "Bearer chiave-segreta",
+      "Content-Type": "application/json",
+      "Prefer": "return=representation"
+     }
+    ]
+   ],
+   "audit": [],
+   "topics": [],
+   "notifications": [],
+   "sent": []
+  },
+  {
+   "label": "crea_corpo_troppo_grande",
+   "status": 413,
+   "headers": {
+    "Content-Type": "text/plain; charset=utf-8"
+   },
+   "body": "Maximum request body size 65536 exceeded, actual body size 70013",
+   "calls": [],
+   "audit": [],
+   "topics": [],
+   "notifications": [],
+   "sent": []
+  },
+  {
+   "label": "aggiorna_non_autenticato",
+   "status": 401,
+   "headers": {
+    "Cache-Control": "no-store",
+    "Content-Type": "application/json; charset=utf-8"
+   },
+   "body": "{\"error\": \"Accesso Discord richiesto\"}",
+   "calls": [],
+   "audit": [],
+   "topics": [],
+   "notifications": [],
+   "sent": []
+  },
+  {
+   "label": "aggiorna_ok",
+   "status": 200,
+   "headers": {
+    "Cache-Control": "no-store",
+    "Content-Type": "application/json; charset=utf-8"
+   },
+   "body": "{\"ok\": true}",
+   "calls": [
+    [
+     "request",
+     "PATCH",
+     "https://sb.example.co/rest/v1/reports",
+     {
+      "id": "eq.123e4567-e89b-12d3-a456-426614174000",
+      "select": "id"
+     },
+     {
+      "name": "Serata Quiz",
+      "new_member_names": "Anna, Bruno",
+      "responsible": "Carla",
+      "notes": "Note\ncon accapo",
+      "clip_registrar": "Dario",
+      "category": "Quiz",
+      "event_date": "2027-03-05",
+      "event_time": "21:00:00",
+      "duration": 60,
+      "attendees": 10,
+      "new_members": 2,
+      "clip_recorded": true,
+      "flop": false
+     },
+     {
+      "apikey": "chiave-segreta",
+      "Authorization": "Bearer chiave-segreta",
+      "Content-Type": "application/json",
+      "Prefer": "return=representation"
+     }
+    ]
+   ],
+   "audit": [
+    [
+     42,
+     "site_report_updated",
+     "report",
+     "123e4567-e89b-12d3-a456-426614174000",
+     null,
+     "{}"
+    ]
+   ],
+   "topics": [
+    "reports"
+   ],
+   "notifications": [],
+   "sent": []
+  },
+  {
+   "label": "aggiorna_id_maiuscolo",
+   "status": 200,
+   "headers": {
+    "Cache-Control": "no-store",
+    "Content-Type": "application/json; charset=utf-8"
+   },
+   "body": "{\"ok\": true}",
+   "calls": [
+    [
+     "request",
+     "PATCH",
+     "https://sb.example.co/rest/v1/reports",
+     {
+      "id": "eq.123e4567-e89b-12d3-a456-426614174000",
+      "select": "id"
+     },
+     {
+      "name": "Serata Quiz",
+      "new_member_names": "Anna, Bruno",
+      "responsible": "Carla",
+      "notes": "Note\ncon accapo",
+      "clip_registrar": "Dario",
+      "category": "Quiz",
+      "event_date": "2027-03-05",
+      "event_time": "21:00:00",
+      "duration": 60,
+      "attendees": 10,
+      "new_members": 2,
+      "clip_recorded": true,
+      "flop": false
+     },
+     {
+      "apikey": "chiave-segreta",
+      "Authorization": "Bearer chiave-segreta",
+      "Content-Type": "application/json",
+      "Prefer": "return=representation"
+     }
+    ]
+   ],
+   "audit": [
+    [
+     42,
+     "site_report_updated",
+     "report",
+     "123e4567-e89b-12d3-a456-426614174000",
+     null,
+     "{}"
+    ]
+   ],
+   "topics": [
+    "reports"
+   ],
+   "notifications": [],
+   "sent": []
+  },
+  {
+   "label": "aggiorna_id_senza_trattini",
+   "status": 200,
+   "headers": {
+    "Cache-Control": "no-store",
+    "Content-Type": "application/json; charset=utf-8"
+   },
+   "body": "{\"ok\": true}",
+   "calls": [
+    [
+     "request",
+     "PATCH",
+     "https://sb.example.co/rest/v1/reports",
+     {
+      "id": "eq.123e4567-e89b-12d3-a456-426614174000",
+      "select": "id"
+     },
+     {
+      "name": "Serata Quiz",
+      "new_member_names": "Anna, Bruno",
+      "responsible": "Carla",
+      "notes": "Note\ncon accapo",
+      "clip_registrar": "Dario",
+      "category": "Quiz",
+      "event_date": "2027-03-05",
+      "event_time": "21:00:00",
+      "duration": 60,
+      "attendees": 10,
+      "new_members": 2,
+      "clip_recorded": true,
+      "flop": false
+     },
+     {
+      "apikey": "chiave-segreta",
+      "Authorization": "Bearer chiave-segreta",
+      "Content-Type": "application/json",
+      "Prefer": "return=representation"
+     }
+    ]
+   ],
+   "audit": [
+    [
+     42,
+     "site_report_updated",
+     "report",
+     "123e4567-e89b-12d3-a456-426614174000",
+     null,
+     "{}"
+    ]
+   ],
+   "topics": [
+    "reports"
+   ],
+   "notifications": [],
+   "sent": []
+  },
+  {
+   "label": "aggiorna_id_con_graffe",
+   "status": 200,
+   "headers": {
+    "Cache-Control": "no-store",
+    "Content-Type": "application/json; charset=utf-8"
+   },
+   "body": "{\"ok\": true}",
+   "calls": [
+    [
+     "request",
+     "PATCH",
+     "https://sb.example.co/rest/v1/reports",
+     {
+      "id": "eq.123e4567-e89b-12d3-a456-426614174000",
+      "select": "id"
+     },
+     {
+      "name": "Serata Quiz",
+      "new_member_names": "Anna, Bruno",
+      "responsible": "Carla",
+      "notes": "Note\ncon accapo",
+      "clip_registrar": "Dario",
+      "category": "Quiz",
+      "event_date": "2027-03-05",
+      "event_time": "21:00:00",
+      "duration": 60,
+      "attendees": 10,
+      "new_members": 2,
+      "clip_recorded": true,
+      "flop": false
+     },
+     {
+      "apikey": "chiave-segreta",
+      "Authorization": "Bearer chiave-segreta",
+      "Content-Type": "application/json",
+      "Prefer": "return=representation"
+     }
+    ]
+   ],
+   "audit": [
+    [
+     42,
+     "site_report_updated",
+     "report",
+     "123e4567-e89b-12d3-a456-426614174000",
+     null,
+     "{}"
+    ]
+   ],
+   "topics": [
+    "reports"
+   ],
+   "notifications": [],
+   "sent": []
+  },
+  {
+   "label": "aggiorna_id_urn",
+   "status": 200,
+   "headers": {
+    "Cache-Control": "no-store",
+    "Content-Type": "application/json; charset=utf-8"
+   },
+   "body": "{\"ok\": true}",
+   "calls": [
+    [
+     "request",
+     "PATCH",
+     "https://sb.example.co/rest/v1/reports",
+     {
+      "id": "eq.123e4567-e89b-12d3-a456-426614174000",
+      "select": "id"
+     },
+     {
+      "name": "Serata Quiz",
+      "new_member_names": "Anna, Bruno",
+      "responsible": "Carla",
+      "notes": "Note\ncon accapo",
+      "clip_registrar": "Dario",
+      "category": "Quiz",
+      "event_date": "2027-03-05",
+      "event_time": "21:00:00",
+      "duration": 60,
+      "attendees": 10,
+      "new_members": 2,
+      "clip_recorded": true,
+      "flop": false
+     },
+     {
+      "apikey": "chiave-segreta",
+      "Authorization": "Bearer chiave-segreta",
+      "Content-Type": "application/json",
+      "Prefer": "return=representation"
+     }
+    ]
+   ],
+   "audit": [
+    [
+     42,
+     "site_report_updated",
+     "report",
+     "123e4567-e89b-12d3-a456-426614174000",
+     null,
+     "{}"
+    ]
+   ],
+   "topics": [
+    "reports"
+   ],
+   "notifications": [],
+   "sent": []
+  },
+  {
+   "label": "aggiorna_id_non_valido",
+   "status": 400,
+   "headers": {
+    "Cache-Control": "no-store",
+    "Content-Type": "application/json; charset=utf-8"
+   },
+   "body": "{\"error\": \"Richiesta non valida\"}",
+   "calls": [],
+   "audit": [],
+   "topics": [],
+   "notifications": [],
+   "sent": []
+  },
+  {
+   "label": "aggiorna_json_non_valido",
+   "status": 400,
+   "headers": {
+    "Cache-Control": "no-store",
+    "Content-Type": "application/json; charset=utf-8"
+   },
+   "body": "{\"error\": \"Richiesta non valida\"}",
+   "calls": [],
+   "audit": [],
+   "topics": [],
+   "notifications": [],
+   "sent": []
+  },
+  {
+   "label": "aggiorna_validazione",
+   "status": 400,
+   "headers": {
+    "Cache-Control": "no-store",
+    "Content-Type": "application/json; charset=utf-8"
+   },
+   "body": "{\"error\": \"Categoria non valida\"}",
+   "calls": [],
+   "audit": [],
+   "topics": [],
+   "notifications": [],
+   "sent": []
+  },
+  {
+   "label": "aggiorna_non_trovato",
+   "status": 404,
+   "headers": {
+    "Cache-Control": "no-store",
+    "Content-Type": "application/json; charset=utf-8"
+   },
+   "body": "{\"error\": \"Report non trovato\"}",
+   "calls": [
+    [
+     "request",
+     "PATCH",
+     "https://sb.example.co/rest/v1/reports",
+     {
+      "id": "eq.123e4567-e89b-12d3-a456-426614174000",
+      "select": "id"
+     },
+     {
+      "name": "Serata Quiz",
+      "new_member_names": "Anna, Bruno",
+      "responsible": "Carla",
+      "notes": "Note\ncon accapo",
+      "clip_registrar": "Dario",
+      "category": "Quiz",
+      "event_date": "2027-03-05",
+      "event_time": "21:00:00",
+      "duration": 60,
+      "attendees": 10,
+      "new_members": 2,
+      "clip_recorded": true,
+      "flop": false
+     },
+     {
+      "apikey": "chiave-segreta",
+      "Authorization": "Bearer chiave-segreta",
+      "Content-Type": "application/json",
+      "Prefer": "return=representation"
+     }
+    ]
+   ],
+   "audit": [],
+   "topics": [],
+   "notifications": [],
+   "sent": []
+  },
+  {
+   "label": "aggiorna_supabase_errore",
+   "status": 404,
+   "headers": {
+    "Cache-Control": "no-store",
+    "Content-Type": "application/json; charset=utf-8"
+   },
+   "body": "{\"error\": \"Report non trovato\"}",
+   "calls": [
+    [
+     "request",
+     "PATCH",
+     "https://sb.example.co/rest/v1/reports",
+     {
+      "id": "eq.123e4567-e89b-12d3-a456-426614174000",
+      "select": "id"
+     },
+     {
+      "name": "Serata Quiz",
+      "new_member_names": "Anna, Bruno",
+      "responsible": "Carla",
+      "notes": "Note\ncon accapo",
+      "clip_registrar": "Dario",
+      "category": "Quiz",
+      "event_date": "2027-03-05",
+      "event_time": "21:00:00",
+      "duration": 60,
+      "attendees": 10,
+      "new_members": 2,
+      "clip_recorded": true,
+      "flop": false
+     },
+     {
+      "apikey": "chiave-segreta",
+      "Authorization": "Bearer chiave-segreta",
+      "Content-Type": "application/json",
+      "Prefer": "return=representation"
+     }
+    ]
+   ],
+   "audit": [],
+   "topics": [],
+   "notifications": [],
+   "sent": []
+  },
+  {
+   "label": "aggiorna_supabase_rete",
+   "status": 502,
+   "headers": {
+    "Cache-Control": "no-store",
+    "Content-Type": "application/json; charset=utf-8"
+   },
+   "body": "{\"error\": \"Supabase non raggiungibile\"}",
+   "calls": [
+    [
+     "request",
+     "PATCH",
+     "https://sb.example.co/rest/v1/reports",
+     {
+      "id": "eq.123e4567-e89b-12d3-a456-426614174000",
+      "select": "id"
+     },
+     {
+      "name": "Serata Quiz",
+      "new_member_names": "Anna, Bruno",
+      "responsible": "Carla",
+      "notes": "Note\ncon accapo",
+      "clip_registrar": "Dario",
+      "category": "Quiz",
+      "event_date": "2027-03-05",
+      "event_time": "21:00:00",
+      "duration": 60,
+      "attendees": 10,
+      "new_members": 2,
+      "clip_recorded": true,
+      "flop": false
+     },
+     {
+      "apikey": "chiave-segreta",
+      "Authorization": "Bearer chiave-segreta",
+      "Content-Type": "application/json",
+      "Prefer": "return=representation"
+     }
+    ]
+   ],
+   "audit": [],
+   "topics": [],
+   "notifications": [],
+   "sent": []
+  },
+  {
+   "label": "elimina_non_autenticato",
+   "status": 401,
+   "headers": {
+    "Cache-Control": "no-store",
+    "Content-Type": "application/json; charset=utf-8"
+   },
+   "body": "{\"error\": \"Accesso Discord richiesto\"}",
+   "calls": [],
+   "audit": [],
+   "topics": [],
+   "notifications": [],
+   "sent": []
+  },
+  {
+   "label": "elimina_ok",
+   "status": 200,
+   "headers": {
+    "Cache-Control": "no-store",
+    "Content-Type": "application/json; charset=utf-8"
+   },
+   "body": "{\"ok\": true}",
+   "calls": [
+    [
+     "request",
+     "DELETE",
+     "https://sb.example.co/rest/v1/reports",
+     {
+      "id": "eq.123e4567-e89b-12d3-a456-426614174000",
+      "select": "id"
+     },
+     null,
+     {
+      "apikey": "chiave-segreta",
+      "Authorization": "Bearer chiave-segreta",
+      "Content-Type": "application/json",
+      "Prefer": "return=representation"
+     }
+    ]
+   ],
+   "audit": [
+    [
+     42,
+     "site_report_deleted",
+     "report",
+     "123e4567-e89b-12d3-a456-426614174000",
+     null,
+     "{}"
+    ]
+   ],
+   "topics": [
+    "reports"
+   ],
+   "notifications": [],
+   "sent": []
+  },
+  {
+   "label": "elimina_con_notifica_locale",
+   "status": 200,
+   "headers": {
+    "Cache-Control": "no-store",
+    "Content-Type": "application/json; charset=utf-8"
+   },
+   "body": "{\"ok\": true}",
+   "calls": [
+    [
+     "request",
+     "DELETE",
+     "https://sb.example.co/rest/v1/reports",
+     {
+      "id": "eq.123e4567-e89b-12d3-a456-426614174000",
+      "select": "id"
+     },
+     null,
+     {
+      "apikey": "chiave-segreta",
+      "Authorization": "Bearer chiave-segreta",
+      "Content-Type": "application/json",
+      "Prefer": "return=representation"
+     }
+    ]
+   ],
+   "audit": [
+    [
+     42,
+     "site_report_deleted",
+     "report",
+     "123e4567-e89b-12d3-a456-426614174000",
+     null,
+     "{}"
+    ]
+   ],
+   "topics": [
+    "reports"
+   ],
+   "notifications": [],
+   "sent": []
+  },
+  {
+   "label": "elimina_id_non_valido",
+   "status": 400,
+   "headers": {
+    "Cache-Control": "no-store",
+    "Content-Type": "application/json; charset=utf-8"
+   },
+   "body": "{\"error\": \"ID report non valido\"}",
+   "calls": [],
+   "audit": [],
+   "topics": [],
+   "notifications": [],
+   "sent": []
+  },
+  {
+   "label": "elimina_non_trovato",
+   "status": 404,
+   "headers": {
+    "Cache-Control": "no-store",
+    "Content-Type": "application/json; charset=utf-8"
+   },
+   "body": "{\"error\": \"Report non trovato\"}",
+   "calls": [
+    [
+     "request",
+     "DELETE",
+     "https://sb.example.co/rest/v1/reports",
+     {
+      "id": "eq.123e4567-e89b-12d3-a456-426614174000",
+      "select": "id"
+     },
+     null,
+     {
+      "apikey": "chiave-segreta",
+      "Authorization": "Bearer chiave-segreta",
+      "Content-Type": "application/json",
+      "Prefer": "return=representation"
+     }
+    ]
+   ],
+   "audit": [],
+   "topics": [],
+   "notifications": [],
+   "sent": []
+  },
+  {
+   "label": "elimina_supabase_errore",
+   "status": 404,
+   "headers": {
+    "Cache-Control": "no-store",
+    "Content-Type": "application/json; charset=utf-8"
+   },
+   "body": "{\"error\": \"Report non trovato\"}",
+   "calls": [
+    [
+     "request",
+     "DELETE",
+     "https://sb.example.co/rest/v1/reports",
+     {
+      "id": "eq.123e4567-e89b-12d3-a456-426614174000",
+      "select": "id"
+     },
+     null,
+     {
+      "apikey": "chiave-segreta",
+      "Authorization": "Bearer chiave-segreta",
+      "Content-Type": "application/json",
+      "Prefer": "return=representation"
+     }
+    ]
+   ],
+   "audit": [],
+   "topics": [],
+   "notifications": [],
+   "sent": []
+  },
+  {
+   "label": "elimina_supabase_rete",
+   "status": 502,
+   "headers": {
+    "Cache-Control": "no-store",
+    "Content-Type": "application/json; charset=utf-8"
+   },
+   "body": "{\"error\": \"Supabase non raggiungibile\"}",
+   "calls": [
+    [
+     "request",
+     "DELETE",
+     "https://sb.example.co/rest/v1/reports",
+     {
+      "id": "eq.123e4567-e89b-12d3-a456-426614174000",
+      "select": "id"
+     },
+     null,
+     {
+      "apikey": "chiave-segreta",
+      "Authorization": "Bearer chiave-segreta",
+      "Content-Type": "application/json",
+      "Prefer": "return=representation"
+     }
+    ]
+   ],
+   "audit": [],
+   "topics": [],
+   "notifications": [],
+   "sent": []
+  },
+  {
+   "label": "elimina_errore_database_locale",
+   "status": 200,
+   "headers": {
+    "Cache-Control": "no-store",
+    "Content-Type": "application/json; charset=utf-8"
+   },
+   "body": "{\"ok\": true}",
+   "calls": [
+    [
+     "request",
+     "DELETE",
+     "https://sb.example.co/rest/v1/reports",
+     {
+      "id": "eq.123e4567-e89b-12d3-a456-426614174000",
+      "select": "id"
+     },
+     null,
+     {
+      "apikey": "chiave-segreta",
+      "Authorization": "Bearer chiave-segreta",
+      "Content-Type": "application/json",
+      "Prefer": "return=representation"
+     }
+    ]
+   ],
+   "audit": [
+    [
+     42,
+     "site_report_deleted",
+     "report",
+     "123e4567-e89b-12d3-a456-426614174000",
+     null,
+     "{}"
+    ]
+   ],
+   "topics": [
+    "reports"
+   ],
+   "notifications": [
+    [
+     "123e4567-e89b-12d3-a456-426614174000",
+     "1",
+     "x"
+    ]
+   ],
+   "sent": []
+  },
+  {
+   "label": "pubblica_non_autenticato",
+   "status": 401,
+   "headers": {
+    "Cache-Control": "no-store",
+    "Content-Type": "application/json; charset=utf-8"
+   },
+   "body": "{\"error\": \"Accesso Discord richiesto\"}",
+   "calls": [],
+   "audit": [],
+   "topics": [],
+   "notifications": [],
+   "sent": []
+  },
+  {
+   "label": "pubblica_id_non_valido",
+   "status": 400,
+   "headers": {
+    "Cache-Control": "no-store",
+    "Content-Type": "application/json; charset=utf-8"
+   },
+   "body": "{\"error\": \"ID report non valido\"}",
+   "calls": [],
+   "audit": [],
+   "topics": [],
+   "notifications": [],
+   "sent": []
+  },
+  {
+   "label": "pubblica_senza_canale",
+   "status": 503,
+   "headers": {
+    "Cache-Control": "no-store",
+    "Content-Type": "application/json; charset=utf-8"
+   },
+   "body": "{\"error\": \"Canale report eventi non configurato\"}",
+   "calls": [],
+   "audit": [],
+   "topics": [],
+   "notifications": [],
+   "sent": []
+  },
+  {
+   "label": "pubblica_ok",
+   "status": 200,
+   "headers": {
+    "Cache-Control": "no-store",
+    "Content-Type": "application/json; charset=utf-8"
+   },
+   "body": "{\"ok\": true, \"already_sent\": false}",
+   "calls": [
+    [
+     "request",
+     "GET",
+     "https://sb.example.co/rest/v1/reports",
+     {
+      "id": "eq.123e4567-e89b-12d3-a456-426614174000",
+      "select": "id,name,category,event_date,event_time,duration,attendees,new_members,new_member_names,responsible,notes,clip_recorded,clip_registrar,flop,created_at",
+      "limit": "1"
+     },
+     null,
+     {
+      "apikey": "chiave-segreta",
+      "Authorization": "Bearer chiave-segreta",
+      "Content-Type": "application/json"
+     }
+    ]
+   ],
+   "audit": [
+    [
+     42,
+     "site_report_published",
+     "report",
+     "123e4567-e89b-12d3-a456-426614174000",
+     null,
+     "{}"
+    ]
+   ],
+   "topics": [
+    "reports"
+   ],
+   "notifications": [
+    [
+     "123e4567-e89b-12d3-a456-426614174000",
+     "9001",
+     "2027-03-05T21:00:00+01:00"
+    ]
+   ],
+   "sent": [
+    {
+     "channel": 700,
+     "embed": {
+      "footer": {
+       "text": "Registrato dal sito SFO"
+      },
+      "fields": [
+       {
+        "inline": true,
+        "name": "Categoria",
+        "value": "Quiz"
+       },
+       {
+        "inline": true,
+        "name": "Data e ora",
+        "value": "2027-03-05 · 21:00"
+       },
+       {
+        "inline": true,
+        "name": "Presenze",
+        "value": "10"
+       },
+       {
+        "inline": true,
+        "name": "Nuovi membri",
+        "value": "2"
+       },
+       {
+        "inline": true,
+        "name": "Durata",
+        "value": "60 minuti"
+       },
+       {
+        "inline": true,
+        "name": "Responsabile",
+        "value": "Carla"
+       },
+       {
+        "inline": true,
+        "name": "Nomi nuovi membri",
+        "value": "Anna, Bruno"
+       },
+       {
+        "inline": true,
+        "name": "Clip social",
+        "value": "Sì · Dario"
+       },
+       {
+        "inline": true,
+        "name": "Esito",
+        "value": "Regolare"
+       },
+       {
+        "inline": false,
+        "name": "Note",
+        "value": "Una nota"
+       }
+      ],
+      "color": 15105570,
+      "title": "📅 Nuovo evento · Serata Quiz"
+     },
+     "mentions_none": true
+    }
+   ]
+  },
+  {
+   "label": "pubblica_report_con_campi_vuoti",
+   "status": 200,
+   "headers": {
+    "Cache-Control": "no-store",
+    "Content-Type": "application/json; charset=utf-8"
+   },
+   "body": "{\"ok\": true, \"already_sent\": false}",
+   "calls": [
+    [
+     "request",
+     "GET",
+     "https://sb.example.co/rest/v1/reports",
+     {
+      "id": "eq.123e4567-e89b-12d3-a456-426614174000",
+      "select": "id,name,category,event_date,event_time,duration,attendees,new_members,new_member_names,responsible,notes,clip_recorded,clip_registrar,flop,created_at",
+      "limit": "1"
+     },
+     null,
+     {
+      "apikey": "chiave-segreta",
+      "Authorization": "Bearer chiave-segreta",
+      "Content-Type": "application/json"
+     }
+    ]
+   ],
+   "audit": [
+    [
+     42,
+     "site_report_published",
+     "report",
+     "123e4567-e89b-12d3-a456-426614174000",
+     null,
+     "{}"
+    ]
+   ],
+   "topics": [
+    "reports"
+   ],
+   "notifications": [
+    [
+     "123e4567-e89b-12d3-a456-426614174000",
+     "9001",
+     "2027-03-05T21:00:00+01:00"
+    ]
+   ],
+   "sent": [
+    {
+     "channel": 700,
+     "embed": {
+      "footer": {
+       "text": "Registrato dal sito SFO"
+      },
+      "fields": [
+       {
+        "inline": true,
+        "name": "Categoria",
+        "value": "None"
+       },
+       {
+        "inline": true,
+        "name": "Data e ora",
+        "value": "— · —"
+       },
+       {
+        "inline": true,
+        "name": "Presenze",
+        "value": "0"
+       },
+       {
+        "inline": true,
+        "name": "Nuovi membri",
+        "value": "0"
+       },
+       {
+        "inline": true,
+        "name": "Durata",
+        "value": "0 minuti"
+       },
+       {
+        "inline": true,
+        "name": "Responsabile",
+        "value": "None"
+       },
+       {
+        "inline": true,
+        "name": "Clip social",
+        "value": "No"
+       },
+       {
+        "inline": true,
+        "name": "Esito",
+        "value": "Flop"
+       }
+      ],
+      "color": 15105570,
+      "title": "📅 Nuovo evento · Senza titolo"
+     },
+     "mentions_none": true
+    }
+   ]
+  },
+  {
+   "label": "pubblica_report_minimo",
+   "status": 200,
+   "headers": {
+    "Cache-Control": "no-store",
+    "Content-Type": "application/json; charset=utf-8"
+   },
+   "body": "{\"ok\": true, \"already_sent\": false}",
+   "calls": [
+    [
+     "request",
+     "GET",
+     "https://sb.example.co/rest/v1/reports",
+     {
+      "id": "eq.123e4567-e89b-12d3-a456-426614174000",
+      "select": "id,name,category,event_date,event_time,duration,attendees,new_members,new_member_names,responsible,notes,clip_recorded,clip_registrar,flop,created_at",
+      "limit": "1"
+     },
+     null,
+     {
+      "apikey": "chiave-segreta",
+      "Authorization": "Bearer chiave-segreta",
+      "Content-Type": "application/json"
+     }
+    ]
+   ],
+   "audit": [
+    [
+     42,
+     "site_report_published",
+     "report",
+     "123e4567-e89b-12d3-a456-426614174000",
+     null,
+     "{}"
+    ]
+   ],
+   "topics": [
+    "reports"
+   ],
+   "notifications": [
+    [
+     "123e4567-e89b-12d3-a456-426614174000",
+     "9001",
+     "2027-03-05T21:00:00+01:00"
+    ]
+   ],
+   "sent": [
+    {
+     "channel": 700,
+     "embed": {
+      "footer": {
+       "text": "Registrato dal sito SFO"
+      },
+      "fields": [
+       {
+        "inline": true,
+        "name": "Categoria",
+        "value": "None"
+       },
+       {
+        "inline": true,
+        "name": "Data e ora",
+        "value": "— · —"
+       },
+       {
+        "inline": true,
+        "name": "Presenze",
+        "value": "0"
+       },
+       {
+        "inline": true,
+        "name": "Nuovi membri",
+        "value": "0"
+       },
+       {
+        "inline": true,
+        "name": "Durata",
+        "value": "0 minuti"
+       },
+       {
+        "inline": true,
+        "name": "Responsabile",
+        "value": "None"
+       },
+       {
+        "inline": true,
+        "name": "Clip social",
+        "value": "No"
+       },
+       {
+        "inline": true,
+        "name": "Esito",
+        "value": "Regolare"
+       }
+      ],
+      "color": 15105570,
+      "title": "📅 Nuovo evento · Senza titolo"
+     },
+     "mentions_none": true
+    }
+   ]
+  },
+  {
+   "label": "pubblica_report_lungo",
+   "status": 200,
+   "headers": {
+    "Cache-Control": "no-store",
+    "Content-Type": "application/json; charset=utf-8"
+   },
+   "body": "{\"ok\": true, \"already_sent\": false}",
+   "calls": [
+    [
+     "request",
+     "GET",
+     "https://sb.example.co/rest/v1/reports",
+     {
+      "id": "eq.123e4567-e89b-12d3-a456-426614174000",
+      "select": "id,name,category,event_date,event_time,duration,attendees,new_members,new_member_names,responsible,notes,clip_recorded,clip_registrar,flop,created_at",
+      "limit": "1"
+     },
+     null,
+     {
+      "apikey": "chiave-segreta",
+      "Authorization": "Bearer chiave-segreta",
+      "Content-Type": "application/json"
+     }
+    ]
+   ],
+   "audit": [
+    [
+     42,
+     "site_report_published",
+     "report",
+     "123e4567-e89b-12d3-a456-426614174000",
+     null,
+     "{}"
+    ]
+   ],
+   "topics": [
+    "reports"
+   ],
+   "notifications": [
+    [
+     "123e4567-e89b-12d3-a456-426614174000",
+     "9001",
+     "2027-03-05T21:00:00+01:00"
+    ]
+   ],
+   "sent": [
+    {
+     "channel": 700,
+     "embed": {
+      "footer": {
+       "text": "Registrato dal sito SFO"
+      },
+      "fields": [
+       {
+        "inline": true,
+        "name": "Categoria",
+        "value": "Quiz"
+       },
+       {
+        "inline": true,
+        "name": "Data e ora",
+        "value": "2027-03-05 · 21:00"
+       },
+       {
+        "inline": true,
+        "name": "Presenze",
+        "value": "10"
+       },
+       {
+        "inline": true,
+        "name": "Nuovi membri",
+        "value": "2"
+       },
+       {
+        "inline": true,
+        "name": "Durata",
+        "value": "60 minuti"
+       },
+       {
+        "inline": true,
+        "name": "Responsabile",
+        "value": "rrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr"
+       },
+       {
+        "inline": true,
+        "name": "Nomi nuovi membri",
+        "value": "mmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmm"
+       },
+       {
+        "inline": true,
+        "name": "Clip social",
+        "value": "Sì · registratore non indicato"
+       },
+       {
+        "inline": true,
+        "name": "Esito",
+        "value": "Regolare"
+       },
+       {
+        "inline": false,
+        "name": "Note",
+        "value": "nnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn"
+       }
+      ],
+      "color": 15105570,
+      "title": "📅 Nuovo evento · NNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNN"
+     },
+     "mentions_none": true
+    }
+   ]
+  },
+  {
+   "label": "pubblica_report_con_tipi_strani",
+   "status": 200,
+   "headers": {
+    "Cache-Control": "no-store",
+    "Content-Type": "application/json; charset=utf-8"
+   },
+   "body": "{\"ok\": true, \"already_sent\": false}",
+   "calls": [
+    [
+     "request",
+     "GET",
+     "https://sb.example.co/rest/v1/reports",
+     {
+      "id": "eq.123e4567-e89b-12d3-a456-426614174000",
+      "select": "id,name,category,event_date,event_time,duration,attendees,new_members,new_member_names,responsible,notes,clip_recorded,clip_registrar,flop,created_at",
+      "limit": "1"
+     },
+     null,
+     {
+      "apikey": "chiave-segreta",
+      "Authorization": "Bearer chiave-segreta",
+      "Content-Type": "application/json"
+     }
+    ]
+   ],
+   "audit": [
+    [
+     42,
+     "site_report_published",
+     "report",
+     "123e4567-e89b-12d3-a456-426614174000",
+     null,
+     "{}"
+    ]
+   ],
+   "topics": [
+    "reports"
+   ],
+   "notifications": [
+    [
+     "123e4567-e89b-12d3-a456-426614174000",
+     "9001",
+     "2027-03-05T21:00:00+01:00"
+    ]
+   ],
+   "sent": [
+    {
+     "channel": 700,
+     "embed": {
+      "footer": {
+       "text": "Registrato dal sito SFO"
+      },
+      "fields": [
+       {
+        "inline": true,
+        "name": "Categoria",
+        "value": "Quiz"
+       },
+       {
+        "inline": true,
+        "name": "Data e ora",
+        "value": "None · 21:00"
+       },
+       {
+        "inline": true,
+        "name": "Presenze",
+        "value": "3.5"
+       },
+       {
+        "inline": true,
+        "name": "Nuovi membri",
+        "value": "True"
+       },
+       {
+        "inline": true,
+        "name": "Durata",
+        "value": "None minuti"
+       },
+       {
+        "inline": true,
+        "name": "Responsabile",
+        "value": "7"
+       },
+       {
+        "inline": true,
+        "name": "Nomi nuovi membri",
+        "value": "Anna, Bruno"
+       },
+       {
+        "inline": true,
+        "name": "Clip social",
+        "value": "Sì · Dario"
+       },
+       {
+        "inline": true,
+        "name": "Esito",
+        "value": "Regolare"
+       },
+       {
+        "inline": false,
+        "name": "Note",
+        "value": "Una nota"
+       }
+      ],
+      "color": 15105570,
+      "title": "📅 Nuovo evento · Serata Quiz"
+     },
+     "mentions_none": true
+    }
+   ]
+  },
+  {
+   "label": "pubblica_report_non_trovato",
+   "status": 404,
+   "headers": {
+    "Cache-Control": "no-store",
+    "Content-Type": "application/json; charset=utf-8"
+   },
+   "body": "{\"error\": \"Report non trovato\"}",
+   "calls": [
+    [
+     "request",
+     "GET",
+     "https://sb.example.co/rest/v1/reports",
+     {
+      "id": "eq.123e4567-e89b-12d3-a456-426614174000",
+      "select": "id,name,category,event_date,event_time,duration,attendees,new_members,new_member_names,responsible,notes,clip_recorded,clip_registrar,flop,created_at",
+      "limit": "1"
+     },
+     null,
+     {
+      "apikey": "chiave-segreta",
+      "Authorization": "Bearer chiave-segreta",
+      "Content-Type": "application/json"
+     }
+    ]
+   ],
+   "audit": [],
+   "topics": [],
+   "notifications": [],
+   "sent": []
+  },
+  {
+   "label": "pubblica_supabase_errore",
+   "status": 404,
+   "headers": {
+    "Cache-Control": "no-store",
+    "Content-Type": "application/json; charset=utf-8"
+   },
+   "body": "{\"error\": \"Report non trovato\"}",
+   "calls": [
+    [
+     "request",
+     "GET",
+     "https://sb.example.co/rest/v1/reports",
+     {
+      "id": "eq.123e4567-e89b-12d3-a456-426614174000",
+      "select": "id,name,category,event_date,event_time,duration,attendees,new_members,new_member_names,responsible,notes,clip_recorded,clip_registrar,flop,created_at",
+      "limit": "1"
+     },
+     null,
+     {
+      "apikey": "chiave-segreta",
+      "Authorization": "Bearer chiave-segreta",
+      "Content-Type": "application/json"
+     }
+    ]
+   ],
+   "audit": [],
+   "topics": [],
+   "notifications": [],
+   "sent": []
+  },
+  {
+   "label": "pubblica_supabase_rete",
+   "status": 502,
+   "headers": {
+    "Cache-Control": "no-store",
+    "Content-Type": "application/json; charset=utf-8"
+   },
+   "body": "{\"error\": \"Supabase non raggiungibile\"}",
+   "calls": [
+    [
+     "request",
+     "GET",
+     "https://sb.example.co/rest/v1/reports",
+     {
+      "id": "eq.123e4567-e89b-12d3-a456-426614174000",
+      "select": "id,name,category,event_date,event_time,duration,attendees,new_members,new_member_names,responsible,notes,clip_recorded,clip_registrar,flop,created_at",
+      "limit": "1"
+     },
+     null,
+     {
+      "apikey": "chiave-segreta",
+      "Authorization": "Bearer chiave-segreta",
+      "Content-Type": "application/json"
+     }
+    ]
+   ],
+   "audit": [],
+   "topics": [],
+   "notifications": [],
+   "sent": []
+  },
+  {
+   "label": "pubblica_gia_inviato",
+   "status": 200,
+   "headers": {
+    "Cache-Control": "no-store",
+    "Content-Type": "application/json; charset=utf-8"
+   },
+   "body": "{\"ok\": true, \"already_sent\": true}",
+   "calls": [
+    [
+     "request",
+     "GET",
+     "https://sb.example.co/rest/v1/reports",
+     {
+      "id": "eq.123e4567-e89b-12d3-a456-426614174000",
+      "select": "id,name,category,event_date,event_time,duration,attendees,new_members,new_member_names,responsible,notes,clip_recorded,clip_registrar,flop,created_at",
+      "limit": "1"
+     },
+     null,
+     {
+      "apikey": "chiave-segreta",
+      "Authorization": "Bearer chiave-segreta",
+      "Content-Type": "application/json"
+     }
+    ]
+   ],
+   "audit": [],
+   "topics": [],
+   "notifications": [
+    [
+     "123e4567-e89b-12d3-a456-426614174000",
+     "5",
+     "x"
+    ]
+   ],
+   "sent": []
+  },
+  {
+   "label": "pubblica_canale_non_valido",
+   "status": 503,
+   "headers": {
+    "Cache-Control": "no-store",
+    "Content-Type": "application/json; charset=utf-8"
+   },
+   "body": "{\"error\": \"Canale report eventi non disponibile\"}",
+   "calls": [
+    [
+     "request",
+     "GET",
+     "https://sb.example.co/rest/v1/reports",
+     {
+      "id": "eq.123e4567-e89b-12d3-a456-426614174000",
+      "select": "id,name,category,event_date,event_time,duration,attendees,new_members,new_member_names,responsible,notes,clip_recorded,clip_registrar,flop,created_at",
+      "limit": "1"
+     },
+     null,
+     {
+      "apikey": "chiave-segreta",
+      "Authorization": "Bearer chiave-segreta",
+      "Content-Type": "application/json"
+     }
+    ]
+   ],
+   "audit": [],
+   "topics": [],
+   "notifications": [],
+   "sent": []
+  },
+  {
+   "label": "pubblica_canale_non_trovato",
+   "status": 503,
+   "headers": {
+    "Cache-Control": "no-store",
+    "Content-Type": "application/json; charset=utf-8"
+   },
+   "body": "{\"error\": \"Canale report eventi non disponibile\"}",
+   "calls": [
+    [
+     "request",
+     "GET",
+     "https://sb.example.co/rest/v1/reports",
+     {
+      "id": "eq.123e4567-e89b-12d3-a456-426614174000",
+      "select": "id,name,category,event_date,event_time,duration,attendees,new_members,new_member_names,responsible,notes,clip_recorded,clip_registrar,flop,created_at",
+      "limit": "1"
+     },
+     null,
+     {
+      "apikey": "chiave-segreta",
+      "Authorization": "Bearer chiave-segreta",
+      "Content-Type": "application/json"
+     }
+    ]
+   ],
+   "audit": [],
+   "topics": [],
+   "notifications": [],
+   "sent": []
+  },
+  {
+   "label": "pubblica_canale_vietato",
+   "status": 503,
+   "headers": {
+    "Cache-Control": "no-store",
+    "Content-Type": "application/json; charset=utf-8"
+   },
+   "body": "{\"error\": \"Canale report eventi non disponibile\"}",
+   "calls": [
+    [
+     "request",
+     "GET",
+     "https://sb.example.co/rest/v1/reports",
+     {
+      "id": "eq.123e4567-e89b-12d3-a456-426614174000",
+      "select": "id,name,category,event_date,event_time,duration,attendees,new_members,new_member_names,responsible,notes,clip_recorded,clip_registrar,flop,created_at",
+      "limit": "1"
+     },
+     null,
+     {
+      "apikey": "chiave-segreta",
+      "Authorization": "Bearer chiave-segreta",
+      "Content-Type": "application/json"
+     }
+    ]
+   ],
+   "audit": [],
+   "topics": [],
+   "notifications": [],
+   "sent": []
+  },
+  {
+   "label": "pubblica_canale_recuperato",
+   "status": 200,
+   "headers": {
+    "Cache-Control": "no-store",
+    "Content-Type": "application/json; charset=utf-8"
+   },
+   "body": "{\"ok\": true, \"already_sent\": false}",
+   "calls": [
+    [
+     "request",
+     "GET",
+     "https://sb.example.co/rest/v1/reports",
+     {
+      "id": "eq.123e4567-e89b-12d3-a456-426614174000",
+      "select": "id,name,category,event_date,event_time,duration,attendees,new_members,new_member_names,responsible,notes,clip_recorded,clip_registrar,flop,created_at",
+      "limit": "1"
+     },
+     null,
+     {
+      "apikey": "chiave-segreta",
+      "Authorization": "Bearer chiave-segreta",
+      "Content-Type": "application/json"
+     }
+    ]
+   ],
+   "audit": [
+    [
+     42,
+     "site_report_published",
+     "report",
+     "123e4567-e89b-12d3-a456-426614174000",
+     null,
+     "{}"
+    ]
+   ],
+   "topics": [
+    "reports"
+   ],
+   "notifications": [
+    [
+     "123e4567-e89b-12d3-a456-426614174000",
+     "9001",
+     "2027-03-05T21:00:00+01:00"
+    ]
+   ],
+   "sent": [
+    {
+     "channel": 700,
+     "embed": {
+      "footer": {
+       "text": "Registrato dal sito SFO"
+      },
+      "fields": [
+       {
+        "inline": true,
+        "name": "Categoria",
+        "value": "Quiz"
+       },
+       {
+        "inline": true,
+        "name": "Data e ora",
+        "value": "2027-03-05 · 21:00"
+       },
+       {
+        "inline": true,
+        "name": "Presenze",
+        "value": "10"
+       },
+       {
+        "inline": true,
+        "name": "Nuovi membri",
+        "value": "2"
+       },
+       {
+        "inline": true,
+        "name": "Durata",
+        "value": "60 minuti"
+       },
+       {
+        "inline": true,
+        "name": "Responsabile",
+        "value": "Carla"
+       },
+       {
+        "inline": true,
+        "name": "Nomi nuovi membri",
+        "value": "Anna, Bruno"
+       },
+       {
+        "inline": true,
+        "name": "Clip social",
+        "value": "Sì · Dario"
+       },
+       {
+        "inline": true,
+        "name": "Esito",
+        "value": "Regolare"
+       },
+       {
+        "inline": false,
+        "name": "Note",
+        "value": "Una nota"
+       }
+      ],
+      "color": 15105570,
+      "title": "📅 Nuovo evento · Serata Quiz"
+     },
+     "mentions_none": true
+    }
+   ]
+  },
+  {
+   "label": "pubblica_canale_vocale",
+   "status": 503,
+   "headers": {
+    "Cache-Control": "no-store",
+    "Content-Type": "application/json; charset=utf-8"
+   },
+   "body": "{\"error\": \"Il canale report deve essere testuale\"}",
+   "calls": [
+    [
+     "request",
+     "GET",
+     "https://sb.example.co/rest/v1/reports",
+     {
+      "id": "eq.123e4567-e89b-12d3-a456-426614174000",
+      "select": "id,name,category,event_date,event_time,duration,attendees,new_members,new_member_names,responsible,notes,clip_recorded,clip_registrar,flop,created_at",
+      "limit": "1"
+     },
+     null,
+     {
+      "apikey": "chiave-segreta",
+      "Authorization": "Bearer chiave-segreta",
+      "Content-Type": "application/json"
+     }
+    ]
+   ],
+   "audit": [],
+   "topics": [],
+   "notifications": [],
+   "sent": []
+  },
+  {
+   "label": "pubblica_invio_vietato",
+   "status": 502,
+   "headers": {
+    "Cache-Control": "no-store",
+    "Content-Type": "application/json; charset=utf-8"
+   },
+   "body": "{\"error\": \"Discord non ha accettato il report\"}",
+   "calls": [
+    [
+     "request",
+     "GET",
+     "https://sb.example.co/rest/v1/reports",
+     {
+      "id": "eq.123e4567-e89b-12d3-a456-426614174000",
+      "select": "id,name,category,event_date,event_time,duration,attendees,new_members,new_member_names,responsible,notes,clip_recorded,clip_registrar,flop,created_at",
+      "limit": "1"
+     },
+     null,
+     {
+      "apikey": "chiave-segreta",
+      "Authorization": "Bearer chiave-segreta",
+      "Content-Type": "application/json"
+     }
+    ]
+   ],
+   "audit": [],
+   "topics": [],
+   "notifications": [],
+   "sent": []
+  },
+  {
+   "label": "pubblica_invio_http",
+   "status": 502,
+   "headers": {
+    "Cache-Control": "no-store",
+    "Content-Type": "application/json; charset=utf-8"
+   },
+   "body": "{\"error\": \"Discord non ha accettato il report\"}",
+   "calls": [
+    [
+     "request",
+     "GET",
+     "https://sb.example.co/rest/v1/reports",
+     {
+      "id": "eq.123e4567-e89b-12d3-a456-426614174000",
+      "select": "id,name,category,event_date,event_time,duration,attendees,new_members,new_member_names,responsible,notes,clip_recorded,clip_registrar,flop,created_at",
+      "limit": "1"
+     },
+     null,
+     {
+      "apikey": "chiave-segreta",
+      "Authorization": "Bearer chiave-segreta",
+      "Content-Type": "application/json"
+     }
+    ]
+   ],
+   "audit": [],
+   "topics": [],
+   "notifications": [],
+   "sent": []
+  },
+  {
+   "label": "pubblica_registrazione_fallita",
+   "status": 500,
+   "headers": {
+    "Cache-Control": "no-store",
+    "Content-Type": "application/json; charset=utf-8"
+   },
+   "body": "{\"error\": \"Invio del report non confermato\"}",
+   "calls": [
+    [
+     "request",
+     "GET",
+     "https://sb.example.co/rest/v1/reports",
+     {
+      "id": "eq.123e4567-e89b-12d3-a456-426614174000",
+      "select": "id,name,category,event_date,event_time,duration,attendees,new_members,new_member_names,responsible,notes,clip_recorded,clip_registrar,flop,created_at",
+      "limit": "1"
+     },
+     null,
+     {
+      "apikey": "chiave-segreta",
+      "Authorization": "Bearer chiave-segreta",
+      "Content-Type": "application/json"
+     }
+    ]
+   ],
+   "audit": [],
+   "topics": [],
+   "notifications": [],
+   "sent": [
+    {
+     "channel": 700,
+     "embed": {
+      "footer": {
+       "text": "Registrato dal sito SFO"
+      },
+      "fields": [
+       {
+        "inline": true,
+        "name": "Categoria",
+        "value": "Quiz"
+       },
+       {
+        "inline": true,
+        "name": "Data e ora",
+        "value": "2027-03-05 · 21:00"
+       },
+       {
+        "inline": true,
+        "name": "Presenze",
+        "value": "10"
+       },
+       {
+        "inline": true,
+        "name": "Nuovi membri",
+        "value": "2"
+       },
+       {
+        "inline": true,
+        "name": "Durata",
+        "value": "60 minuti"
+       },
+       {
+        "inline": true,
+        "name": "Responsabile",
+        "value": "Carla"
+       },
+       {
+        "inline": true,
+        "name": "Nomi nuovi membri",
+        "value": "Anna, Bruno"
+       },
+       {
+        "inline": true,
+        "name": "Clip social",
+        "value": "Sì · Dario"
+       },
+       {
+        "inline": true,
+        "name": "Esito",
+        "value": "Regolare"
+       },
+       {
+        "inline": false,
+        "name": "Note",
+        "value": "Una nota"
+       }
+      ],
+      "color": 15105570,
+      "title": "📅 Nuovo evento · Serata Quiz"
+     },
+     "mentions_none": true
+    }
+   ]
+  }
+ ],
+ "row": {
+  "id": "123e4567-e89b-12d3-a456-426614174000",
+  "name": "Serata Quiz",
+  "category": "Quiz",
+  "event_date": "2027-03-05",
+  "event_time": "21:00:00",
+  "duration": 60,
+  "attendees": 10,
+  "new_members": 2,
+  "new_member_names": "Anna, Bruno",
+  "responsible": "Carla",
+  "notes": "Una nota",
+  "clip_recorded": true,
+  "clip_registrar": "Dario",
+  "flop": false,
+  "created_at": "2027-03-05T20:00:00+00:00"
+ }
+}

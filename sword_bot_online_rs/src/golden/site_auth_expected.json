@@ -1,0 +1,1854 @@
+{
+ "constants": {
+  "session_cookie": "sfo_site_session",
+  "state_cookie": "sfo_discord_oauth_state",
+  "session_hours": 12.0,
+  "state_ttl": 600
+ },
+ "config": {
+  "client_id": "client-1",
+  "client_secret": "segreto",
+  "public_url": "https://overlay.example.it",
+  "redirect_uri": "https://overlay.example.it/staff/auth/callback",
+  "secure_cookie": true,
+  "configured": true
+ },
+ "permissions": [
+  {
+   "label": "proprietario",
+   "principal": [
+    1,
+    "utente-1",
+    true,
+    true
+   ],
+   "error": null
+  },
+  {
+   "label": "amministratore",
+   "principal": [
+    2,
+    "utente-2",
+    true,
+    true
+   ],
+   "error": null
+  },
+  {
+   "label": "senza_ruoli",
+   "principal": null,
+   "error": {
+    "status": 403,
+    "body": {
+     "error": "Accesso riservato agli amministratori o allo staff"
+    }
+   }
+  },
+  {
+   "label": "ruolo_staff",
+   "principal": [
+    4,
+    "utente-4",
+    false,
+    true
+   ],
+   "error": null
+  },
+  {
+   "label": "ruolo_staff_con_spazi",
+   "principal": [
+    4,
+    "utente-4",
+    false,
+    true
+   ],
+   "error": null
+  },
+  {
+   "label": "ruolo_non_nell_elenco",
+   "principal": null,
+   "error": {
+    "status": 403,
+    "body": {
+     "error": "Accesso riservato agli amministratori o allo staff"
+    }
+   }
+  },
+  {
+   "label": "ruoli_corrotti",
+   "principal": null,
+   "error": {
+    "status": 503,
+    "body": {
+     "error": "Configurazione dei ruoli staff non valida"
+    }
+   }
+  },
+  {
+   "label": "ruoli_corrotti_ma_admin",
+   "principal": null,
+   "error": {
+    "status": 503,
+    "body": {
+     "error": "Configurazione dei ruoli staff non valida"
+    }
+   }
+  },
+  {
+   "label": "membro_non_in_cache_recuperato",
+   "principal": [
+    5,
+    "utente-5",
+    true,
+    true
+   ],
+   "error": null
+  },
+  {
+   "label": "membro_inesistente",
+   "principal": null,
+   "error": {
+    "status": 403,
+    "body": {
+     "error": "Devi appartenere al server Discord configurato"
+    }
+   }
+  },
+  {
+   "label": "recupero_vietato",
+   "principal": null,
+   "error": {
+    "status": 502,
+    "body": {
+     "error": "Impossibile verificare i permessi Discord"
+    }
+   }
+  },
+  {
+   "label": "recupero_http",
+   "principal": null,
+   "error": {
+    "status": 502,
+    "body": {
+     "error": "Impossibile verificare i permessi Discord"
+    }
+   }
+  },
+  {
+   "label": "server_non_configurato",
+   "principal": null,
+   "error": {
+    "status": 503,
+    "body": {
+     "error": "Server Discord non disponibile o non configurato"
+    }
+   }
+  },
+  {
+   "label": "server_non_valido",
+   "principal": null,
+   "error": {
+    "status": 503,
+    "body": {
+     "error": "Server Discord non disponibile o non configurato"
+    }
+   }
+  },
+  {
+   "label": "server_sconosciuto",
+   "principal": null,
+   "error": {
+    "status": 503,
+    "body": {
+     "error": "Server Discord non disponibile o non configurato"
+    }
+   }
+  }
+ ],
+ "sessions": [
+  {
+   "label": "senza_cookie",
+   "status": 401,
+   "headers": {
+    "Cache-Control": "no-store",
+    "Content-Type": "application/json; charset=utf-8"
+   },
+   "cookies": [],
+   "body": "{\"error\": \"Accesso Discord richiesto\"}",
+   "sessions_left": []
+  },
+  {
+   "label": "cookie_vuoto",
+   "status": 401,
+   "headers": {
+    "Cache-Control": "no-store",
+    "Content-Type": "application/json; charset=utf-8"
+   },
+   "cookies": [],
+   "body": "{\"error\": \"Accesso Discord richiesto\"}",
+   "sessions_left": []
+  },
+  {
+   "label": "sessione_sconosciuta",
+   "status": 401,
+   "headers": {
+    "Cache-Control": "no-store",
+    "Content-Type": "application/json; charset=utf-8"
+   },
+   "cookies": [],
+   "body": "{\"error\": \"Sessione scaduta, accedi di nuovo\"}",
+   "sessions_left": []
+  },
+  {
+   "label": "sessione_valida_proprietario",
+   "status": 200,
+   "headers": {
+    "Cache-Control": "no-store",
+    "Content-Type": "application/json; charset=utf-8"
+   },
+   "cookies": [],
+   "body": "{\"authenticated\": true, \"user_id\": \"1\", \"display_name\": \"utente-1\", \"is_admin\": true, \"is_staff\": true}",
+   "sessions_left": [
+    [
+     "s1"
+    ]
+   ]
+  },
+  {
+   "label": "sessione_che_scade_ora",
+   "status": 401,
+   "headers": {
+    "Cache-Control": "no-store",
+    "Content-Type": "application/json; charset=utf-8"
+   },
+   "cookies": [],
+   "body": "{\"error\": \"Sessione scaduta, accedi di nuovo\"}",
+   "sessions_left": []
+  },
+  {
+   "label": "sessione_scaduta",
+   "status": 401,
+   "headers": {
+    "Cache-Control": "no-store",
+    "Content-Type": "application/json; charset=utf-8"
+   },
+   "cookies": [],
+   "body": "{\"error\": \"Sessione scaduta, accedi di nuovo\"}",
+   "sessions_left": []
+  },
+  {
+   "label": "scadenza_non_valida",
+   "status": 401,
+   "headers": {
+    "Cache-Control": "no-store",
+    "Content-Type": "application/json; charset=utf-8"
+   },
+   "cookies": [],
+   "body": "{\"error\": \"Sessione non valida, accedi di nuovo\"}",
+   "sessions_left": []
+  },
+  {
+   "label": "scadenza_con_microsecondi",
+   "status": 200,
+   "headers": {
+    "Cache-Control": "no-store",
+    "Content-Type": "application/json; charset=utf-8"
+   },
+   "cookies": [],
+   "body": "{\"authenticated\": true, \"user_id\": \"1\", \"display_name\": \"utente-1\", \"is_admin\": true, \"is_staff\": true}",
+   "sessions_left": [
+    [
+     "s1"
+    ]
+   ]
+  },
+  {
+   "label": "scadenza_con_altro_fuso",
+   "status": 401,
+   "headers": {
+    "Cache-Control": "no-store",
+    "Content-Type": "application/json; charset=utf-8"
+   },
+   "cookies": [],
+   "body": "{\"error\": \"Sessione scaduta, accedi di nuovo\"}",
+   "sessions_left": []
+  },
+  {
+   "label": "scadenza_con_z",
+   "status": 200,
+   "headers": {
+    "Cache-Control": "no-store",
+    "Content-Type": "application/json; charset=utf-8"
+   },
+   "cookies": [],
+   "body": "{\"authenticated\": true, \"user_id\": \"1\", \"display_name\": \"utente-1\", \"is_admin\": true, \"is_staff\": true}",
+   "sessions_left": [
+    [
+     "s1"
+    ]
+   ]
+  },
+  {
+   "label": "utente_non_staff",
+   "status": 403,
+   "headers": {
+    "Cache-Control": "no-store",
+    "Content-Type": "application/json; charset=utf-8"
+   },
+   "cookies": [],
+   "body": "{\"error\": \"Accesso riservato agli amministratori o allo staff\"}",
+   "sessions_left": [
+    [
+     "s1"
+    ]
+   ]
+  },
+  {
+   "label": "utente_uscito_dal_server",
+   "status": 403,
+   "headers": {
+    "Cache-Control": "no-store",
+    "Content-Type": "application/json; charset=utf-8"
+   },
+   "cookies": [],
+   "body": "{\"error\": \"Devi appartenere al server Discord configurato\"}",
+   "sessions_left": [
+    [
+     "s1"
+    ]
+   ]
+  },
+  {
+   "label": "altre_sessioni_restano",
+   "status": 401,
+   "headers": {
+    "Cache-Control": "no-store",
+    "Content-Type": "application/json; charset=utf-8"
+   },
+   "cookies": [],
+   "body": "{\"error\": \"Sessione scaduta, accedi di nuovo\"}",
+   "sessions_left": [
+    [
+     "s2"
+    ]
+   ]
+  },
+  {
+   "label": "piu_cookie",
+   "status": 200,
+   "headers": {
+    "Cache-Control": "no-store",
+    "Content-Type": "application/json; charset=utf-8"
+   },
+   "cookies": [],
+   "body": "{\"authenticated\": true, \"user_id\": \"1\", \"display_name\": \"utente-1\", \"is_admin\": true, \"is_staff\": true}",
+   "sessions_left": [
+    [
+     "s1"
+    ]
+   ]
+  },
+  {
+   "label": "cookie_tra_virgolette",
+   "status": 200,
+   "headers": {
+    "Cache-Control": "no-store",
+    "Content-Type": "application/json; charset=utf-8"
+   },
+   "cookies": [],
+   "body": "{\"authenticated\": true, \"user_id\": \"1\", \"display_name\": \"utente-1\", \"is_admin\": true, \"is_staff\": true}",
+   "sessions_left": [
+    [
+     "s1"
+    ]
+   ]
+  },
+  {
+   "label": "logout_senza_cookie",
+   "status": 200,
+   "headers": {
+    "Cache-Control": "no-store",
+    "Content-Type": "application/json; charset=utf-8"
+   },
+   "cookies": [
+    "sfo_site_session=\"\"; expires=Thu, 01 Jan 1970 00:00:00 GMT; Max-Age=0; Path=/"
+   ],
+   "body": "{\"ok\": true}",
+   "sessions_left": []
+  },
+  {
+   "label": "logout_con_sessione",
+   "status": 200,
+   "headers": {
+    "Cache-Control": "no-store",
+    "Content-Type": "application/json; charset=utf-8"
+   },
+   "cookies": [
+    "sfo_site_session=\"\"; expires=Thu, 01 Jan 1970 00:00:00 GMT; Max-Age=0; Path=/"
+   ],
+   "body": "{\"ok\": true}",
+   "sessions_left": [
+    [
+     "s2"
+    ]
+   ]
+  },
+  {
+   "label": "logout_metodo_sbagliato",
+   "status": 405,
+   "headers": {
+    "Content-Type": "text/plain; charset=utf-8"
+   },
+   "cookies": [],
+   "body": "405: Method Not Allowed",
+   "sessions_left": []
+  }
+ ],
+ "admin_only": [
+  {
+   "label": "admin",
+   "principal": [
+    2,
+    true
+   ],
+   "error": null
+  },
+  {
+   "label": "solo_staff",
+   "principal": null,
+   "error": [
+    403,
+    {
+     "error": "Questa operazione è riservata agli amministratori Discord"
+    }
+   ]
+  },
+  {
+   "label": "sconosciuto",
+   "principal": null,
+   "error": [
+    403,
+    {
+     "error": "Devi appartenere al server Discord configurato"
+    }
+   ]
+  }
+ ],
+ "login": [
+  {
+   "label": "non_configurato",
+   "status": 503,
+   "headers": {
+    "Content-Type": "text/plain; charset=utf-8"
+   },
+   "cookies": [],
+   "body": "Configura DISCORD_OAUTH_CLIENT_ID e DISCORD_OAUTH_CLIENT_SECRET nell'hosting."
+  },
+  {
+   "label": "senza_segreto",
+   "status": 503,
+   "headers": {
+    "Content-Type": "text/plain; charset=utf-8"
+   },
+   "cookies": [],
+   "body": "Configura DISCORD_OAUTH_CLIENT_ID e DISCORD_OAUTH_CLIENT_SECRET nell'hosting."
+  },
+  {
+   "label": "redirect_http",
+   "status": 503,
+   "headers": {
+    "Content-Type": "text/plain; charset=utf-8"
+   },
+   "cookies": [],
+   "body": "Configura DISCORD_OAUTH_CLIENT_ID e DISCORD_OAUTH_CLIENT_SECRET nell'hosting."
+  },
+  {
+   "label": "senza_redirect",
+   "status": 503,
+   "headers": {
+    "Content-Type": "text/plain; charset=utf-8"
+   },
+   "cookies": [],
+   "body": "Configura DISCORD_OAUTH_CLIENT_ID e DISCORD_OAUTH_CLIENT_SECRET nell'hosting."
+  },
+  {
+   "label": "ok",
+   "status": 302,
+   "headers": {
+    "Content-Type": "text/plain; charset=utf-8",
+    "Location": "https://discord.com/oauth2/authorize?client_id=client-1&redirect_uri=https://overlay.example.it/staff/auth/callback&response_type=code&scope=identify&state=token-1"
+   },
+   "cookies": [
+    "sfo_discord_oauth_state=token-1; HttpOnly; Max-Age=600; Path=/staff/auth; SameSite=Lax; Secure"
+   ],
+   "body": "302: Found",
+   "states": [
+    [
+     "limite",
+     1804247400.0
+    ],
+    [
+     "recente",
+     1804247995.0
+    ],
+    [
+     "token-1",
+     1804248000.0
+    ]
+   ]
+  },
+  {
+   "label": "redirect_con_query",
+   "status": 302,
+   "headers": {
+    "Content-Type": "text/plain; charset=utf-8",
+    "Location": "https://discord.com/oauth2/authorize?client_id=c1&redirect_uri=https://x.it/cb?a%3Db%26c%3Dd+e%23f&response_type=code&scope=identify&state=token-2"
+   },
+   "cookies": [
+    "sfo_discord_oauth_state=token-2; HttpOnly; Max-Age=600; Path=/staff/auth; SameSite=Lax; Secure"
+   ],
+   "body": "302: Found"
+  },
+  {
+   "label": "caratteri_speciali",
+   "status": 302,
+   "headers": {
+    "Content-Type": "text/plain; charset=utf-8",
+    "Location": "https://discord.com/oauth2/authorize?client_id=id+con+spazio%26%3D/&redirect_uri=https://x.it/%C3%A8/%E2%98%83%2B%2541&response_type=code&scope=identify&state=token-3"
+   },
+   "cookies": [
+    "sfo_discord_oauth_state=token-3; HttpOnly; Max-Age=600; Path=/staff/auth; SameSite=Lax; Secure"
+   ],
+   "body": "302: Found"
+  },
+  {
+   "label": "riservati",
+   "status": 302,
+   "headers": {
+    "Content-Type": "text/plain; charset=utf-8",
+    "Location": "https://discord.com/oauth2/authorize?client_id=c1&redirect_uri=https://x.it/a%3Bb,c!d*e'f(g)h$i~j@k:l&response_type=code&scope=identify&state=token-4"
+   },
+   "cookies": [
+    "sfo_discord_oauth_state=token-4; HttpOnly; Max-Age=600; Path=/staff/auth; SameSite=Lax; Secure"
+   ],
+   "body": "302: Found"
+  },
+  {
+   "label": "ok_senza_secure",
+   "status": 302,
+   "headers": {
+    "Content-Type": "text/plain; charset=utf-8",
+    "Location": "https://discord.com/oauth2/authorize?client_id=client-1&redirect_uri=https://overlay.example.it/staff/auth/callback&response_type=code&scope=identify&state=token-5"
+   },
+   "cookies": [
+    "sfo_discord_oauth_state=token-5; HttpOnly; Max-Age=600; Path=/staff/auth; SameSite=Lax"
+   ],
+   "body": "302: Found"
+  },
+  {
+   "label": "database_in_errore",
+   "status": 500,
+   "headers": {
+    "Content-Type": "text/plain; charset=utf-8"
+   },
+   "cookies": [],
+   "body": "Login Discord non disponibile, riprova."
+  }
+ ],
+ "callback": [
+  {
+   "label": "non_configurato",
+   "status": 503,
+   "headers": {
+    "Content-Type": "text/plain; charset=utf-8"
+   },
+   "cookies": [],
+   "body": "Login Discord non configurato",
+   "calls": [],
+   "states": [
+    [
+     "S1"
+    ]
+   ],
+   "sessions": []
+  },
+  {
+   "label": "senza_stato",
+   "status": 400,
+   "headers": {
+    "Content-Type": "text/plain; charset=utf-8"
+   },
+   "cookies": [],
+   "body": "Richiesta OAuth non valida",
+   "calls": [],
+   "states": [
+    [
+     "S1"
+    ]
+   ],
+   "sessions": []
+  },
+  {
+   "label": "senza_cookie",
+   "status": 400,
+   "headers": {
+    "Content-Type": "text/plain; charset=utf-8"
+   },
+   "cookies": [],
+   "body": "Richiesta OAuth non valida",
+   "calls": [],
+   "states": [
+    [
+     "S1"
+    ]
+   ],
+   "sessions": []
+  },
+  {
+   "label": "cookie_vuoto",
+   "status": 400,
+   "headers": {
+    "Content-Type": "text/plain; charset=utf-8"
+   },
+   "cookies": [],
+   "body": "Richiesta OAuth non valida",
+   "calls": [],
+   "states": [
+    [
+     "S1"
+    ]
+   ],
+   "sessions": []
+  },
+  {
+   "label": "stato_diverso",
+   "status": 400,
+   "headers": {
+    "Content-Type": "text/plain; charset=utf-8"
+   },
+   "cookies": [],
+   "body": "Richiesta OAuth non valida",
+   "calls": [],
+   "states": [
+    [
+     "S1"
+    ]
+   ],
+   "sessions": []
+  },
+  {
+   "label": "stato_non_salvato",
+   "status": 400,
+   "headers": {
+    "Content-Type": "text/plain; charset=utf-8"
+   },
+   "cookies": [],
+   "body": "Login scaduto, riprova.",
+   "calls": [],
+   "states": [],
+   "sessions": []
+  },
+  {
+   "label": "stato_scaduto",
+   "status": 400,
+   "headers": {
+    "Content-Type": "text/plain; charset=utf-8"
+   },
+   "cookies": [],
+   "body": "Login scaduto, riprova.",
+   "calls": [],
+   "states": [],
+   "sessions": []
+  },
+  {
+   "label": "stato_al_limite",
+   "status": 302,
+   "headers": {
+    "Content-Type": "text/plain; charset=utf-8",
+    "Location": "/staff/"
+   },
+   "cookies": [
+    "sfo_site_session=token-1; HttpOnly; Max-Age=43200; Path=/; SameSite=Lax; Secure",
+    "sfo_discord_oauth_state=\"\"; expires=Thu, 01 Jan 1970 00:00:00 GMT; Max-Age=0; Path=/staff/auth"
+   ],
+   "body": "302: Found",
+   "calls": [
+    [
+     "session",
+     10
+    ],
+    [
+     "post",
+     "https://discord.com/api/oauth2/token",
+     {
+      "client_id": "client-1",
+      "client_secret": "segreto",
+      "grant_type": "authorization_code",
+      "code": "c",
+      "redirect_uri": "https://overlay.example.it/staff/auth/callback"
+     },
+     {
+      "Content-Type": "application/x-www-form-urlencoded"
+     }
+    ],
+    [
+     "get",
+     "https://discord.com/api/users/@me",
+     {
+      "Authorization": "Bearer at"
+     }
+    ]
+   ],
+   "states": [],
+   "sessions": [
+    [
+     "token-1",
+     5,
+     "utente-5",
+     "2027-03-05T12:00:00+00:00",
+     "2027-03-06T00:00:00+00:00"
+    ]
+   ]
+  },
+  {
+   "label": "errore_di_discord",
+   "status": 302,
+   "headers": {
+    "Content-Type": "text/plain; charset=utf-8",
+    "Location": "/staff/?login_error=discord"
+   },
+   "cookies": [],
+   "body": "302: Found",
+   "calls": [],
+   "states": [],
+   "sessions": []
+  },
+  {
+   "label": "senza_codice",
+   "status": 400,
+   "headers": {
+    "Content-Type": "text/plain; charset=utf-8"
+   },
+   "cookies": [],
+   "body": "Codice OAuth mancante",
+   "calls": [],
+   "states": [],
+   "sessions": []
+  },
+  {
+   "label": "codice_vuoto",
+   "status": 400,
+   "headers": {
+    "Content-Type": "text/plain; charset=utf-8"
+   },
+   "cookies": [],
+   "body": "Codice OAuth mancante",
+   "calls": [],
+   "states": [],
+   "sessions": []
+  },
+  {
+   "label": "scambio_http_errore",
+   "status": 302,
+   "headers": {
+    "Content-Type": "text/plain; charset=utf-8",
+    "Location": "/staff/?login_error=discord"
+   },
+   "cookies": [],
+   "body": "302: Found",
+   "calls": [
+    [
+     "session",
+     10
+    ],
+    [
+     "post",
+     "https://discord.com/api/oauth2/token",
+     {
+      "client_id": "client-1",
+      "client_secret": "segreto",
+      "grant_type": "authorization_code",
+      "code": "c",
+      "redirect_uri": "https://overlay.example.it/staff/auth/callback"
+     },
+     {
+      "Content-Type": "application/x-www-form-urlencoded"
+     }
+    ]
+   ],
+   "states": [],
+   "sessions": []
+  },
+  {
+   "label": "senza_access_token",
+   "status": 302,
+   "headers": {
+    "Content-Type": "text/plain; charset=utf-8",
+    "Location": "/staff/?login_error=discord"
+   },
+   "cookies": [],
+   "body": "302: Found",
+   "calls": [
+    [
+     "session",
+     10
+    ],
+    [
+     "post",
+     "https://discord.com/api/oauth2/token",
+     {
+      "client_id": "client-1",
+      "client_secret": "segreto",
+      "grant_type": "authorization_code",
+      "code": "c",
+      "redirect_uri": "https://overlay.example.it/staff/auth/callback"
+     },
+     {
+      "Content-Type": "application/x-www-form-urlencoded"
+     }
+    ]
+   ],
+   "states": [],
+   "sessions": []
+  },
+  {
+   "label": "access_token_vuoto",
+   "status": 302,
+   "headers": {
+    "Content-Type": "text/plain; charset=utf-8",
+    "Location": "/staff/?login_error=discord"
+   },
+   "cookies": [],
+   "body": "302: Found",
+   "calls": [
+    [
+     "session",
+     10
+    ],
+    [
+     "post",
+     "https://discord.com/api/oauth2/token",
+     {
+      "client_id": "client-1",
+      "client_secret": "segreto",
+      "grant_type": "authorization_code",
+      "code": "c",
+      "redirect_uri": "https://overlay.example.it/staff/auth/callback"
+     },
+     {
+      "Content-Type": "application/x-www-form-urlencoded"
+     }
+    ]
+   ],
+   "states": [],
+   "sessions": []
+  },
+  {
+   "label": "profilo_http_errore",
+   "status": 302,
+   "headers": {
+    "Content-Type": "text/plain; charset=utf-8",
+    "Location": "/staff/?login_error=discord"
+   },
+   "cookies": [],
+   "body": "302: Found",
+   "calls": [
+    [
+     "session",
+     10
+    ],
+    [
+     "post",
+     "https://discord.com/api/oauth2/token",
+     {
+      "client_id": "client-1",
+      "client_secret": "segreto",
+      "grant_type": "authorization_code",
+      "code": "c",
+      "redirect_uri": "https://overlay.example.it/staff/auth/callback"
+     },
+     {
+      "Content-Type": "application/x-www-form-urlencoded"
+     }
+    ],
+    [
+     "get",
+     "https://discord.com/api/users/@me",
+     {
+      "Authorization": "Bearer at"
+     }
+    ]
+   ],
+   "states": [],
+   "sessions": []
+  },
+  {
+   "label": "rete_scambio",
+   "status": 302,
+   "headers": {
+    "Content-Type": "text/plain; charset=utf-8",
+    "Location": "/staff/?login_error=unavailable"
+   },
+   "cookies": [],
+   "body": "302: Found",
+   "calls": [
+    [
+     "session",
+     10
+    ],
+    [
+     "post",
+     "https://discord.com/api/oauth2/token",
+     {
+      "client_id": "client-1",
+      "client_secret": "segreto",
+      "grant_type": "authorization_code",
+      "code": "c",
+      "redirect_uri": "https://overlay.example.it/staff/auth/callback"
+     },
+     {
+      "Content-Type": "application/x-www-form-urlencoded"
+     }
+    ]
+   ],
+   "states": [],
+   "sessions": []
+  },
+  {
+   "label": "rete_profilo",
+   "status": 302,
+   "headers": {
+    "Content-Type": "text/plain; charset=utf-8",
+    "Location": "/staff/?login_error=unavailable"
+   },
+   "cookies": [],
+   "body": "302: Found",
+   "calls": [
+    [
+     "session",
+     10
+    ],
+    [
+     "post",
+     "https://discord.com/api/oauth2/token",
+     {
+      "client_id": "client-1",
+      "client_secret": "segreto",
+      "grant_type": "authorization_code",
+      "code": "c",
+      "redirect_uri": "https://overlay.example.it/staff/auth/callback"
+     },
+     {
+      "Content-Type": "application/x-www-form-urlencoded"
+     }
+    ],
+    [
+     "get",
+     "https://discord.com/api/users/@me",
+     {
+      "Authorization": "Bearer at"
+     }
+    ]
+   ],
+   "states": [],
+   "sessions": []
+  },
+  {
+   "label": "timeout_profilo",
+   "status": 302,
+   "headers": {
+    "Content-Type": "text/plain; charset=utf-8",
+    "Location": "/staff/?login_error=unavailable"
+   },
+   "cookies": [],
+   "body": "302: Found",
+   "calls": [
+    [
+     "session",
+     10
+    ],
+    [
+     "post",
+     "https://discord.com/api/oauth2/token",
+     {
+      "client_id": "client-1",
+      "client_secret": "segreto",
+      "grant_type": "authorization_code",
+      "code": "c",
+      "redirect_uri": "https://overlay.example.it/staff/auth/callback"
+     },
+     {
+      "Content-Type": "application/x-www-form-urlencoded"
+     }
+    ],
+    [
+     "get",
+     "https://discord.com/api/users/@me",
+     {
+      "Authorization": "Bearer at"
+     }
+    ]
+   ],
+   "states": [],
+   "sessions": []
+  },
+  {
+   "label": "json_non_valido",
+   "status": 302,
+   "headers": {
+    "Content-Type": "text/plain; charset=utf-8",
+    "Location": "/staff/?login_error=unavailable"
+   },
+   "cookies": [],
+   "body": "302: Found",
+   "calls": [
+    [
+     "session",
+     10
+    ],
+    [
+     "post",
+     "https://discord.com/api/oauth2/token",
+     {
+      "client_id": "client-1",
+      "client_secret": "segreto",
+      "grant_type": "authorization_code",
+      "code": "c",
+      "redirect_uri": "https://overlay.example.it/staff/auth/callback"
+     },
+     {
+      "Content-Type": "application/x-www-form-urlencoded"
+     }
+    ]
+   ],
+   "states": [],
+   "sessions": []
+  },
+  {
+   "label": "profilo_senza_id",
+   "status": 302,
+   "headers": {
+    "Content-Type": "text/plain; charset=utf-8",
+    "Location": "/staff/?login_error=discord"
+   },
+   "cookies": [],
+   "body": "302: Found",
+   "calls": [
+    [
+     "session",
+     10
+    ],
+    [
+     "post",
+     "https://discord.com/api/oauth2/token",
+     {
+      "client_id": "client-1",
+      "client_secret": "segreto",
+      "grant_type": "authorization_code",
+      "code": "c",
+      "redirect_uri": "https://overlay.example.it/staff/auth/callback"
+     },
+     {
+      "Content-Type": "application/x-www-form-urlencoded"
+     }
+    ],
+    [
+     "get",
+     "https://discord.com/api/users/@me",
+     {
+      "Authorization": "Bearer at"
+     }
+    ]
+   ],
+   "states": [],
+   "sessions": []
+  },
+  {
+   "label": "profilo_id_non_numerico",
+   "status": 302,
+   "headers": {
+    "Content-Type": "text/plain; charset=utf-8",
+    "Location": "/staff/?login_error=discord"
+   },
+   "cookies": [],
+   "body": "302: Found",
+   "calls": [
+    [
+     "session",
+     10
+    ],
+    [
+     "post",
+     "https://discord.com/api/oauth2/token",
+     {
+      "client_id": "client-1",
+      "client_secret": "segreto",
+      "grant_type": "authorization_code",
+      "code": "c",
+      "redirect_uri": "https://overlay.example.it/staff/auth/callback"
+     },
+     {
+      "Content-Type": "application/x-www-form-urlencoded"
+     }
+    ],
+    [
+     "get",
+     "https://discord.com/api/users/@me",
+     {
+      "Authorization": "Bearer at"
+     }
+    ]
+   ],
+   "states": [],
+   "sessions": []
+  },
+  {
+   "label": "profilo_id_intero",
+   "status": 302,
+   "headers": {
+    "Content-Type": "text/plain; charset=utf-8",
+    "Location": "/staff/"
+   },
+   "cookies": [
+    "sfo_site_session=token-1; HttpOnly; Max-Age=43200; Path=/; SameSite=Lax; Secure",
+    "sfo_discord_oauth_state=\"\"; expires=Thu, 01 Jan 1970 00:00:00 GMT; Max-Age=0; Path=/staff/auth"
+   ],
+   "body": "302: Found",
+   "calls": [
+    [
+     "session",
+     10
+    ],
+    [
+     "post",
+     "https://discord.com/api/oauth2/token",
+     {
+      "client_id": "client-1",
+      "client_secret": "segreto",
+      "grant_type": "authorization_code",
+      "code": "c",
+      "redirect_uri": "https://overlay.example.it/staff/auth/callback"
+     },
+     {
+      "Content-Type": "application/x-www-form-urlencoded"
+     }
+    ],
+    [
+     "get",
+     "https://discord.com/api/users/@me",
+     {
+      "Authorization": "Bearer at"
+     }
+    ]
+   ],
+   "states": [],
+   "sessions": [
+    [
+     "token-1",
+     5,
+     "utente-5",
+     "2027-03-05T12:00:00+00:00",
+     "2027-03-06T00:00:00+00:00"
+    ]
+   ]
+  },
+  {
+   "label": "profilo_id_none",
+   "status": 302,
+   "headers": {
+    "Content-Type": "text/plain; charset=utf-8",
+    "Location": "/staff/?login_error=discord"
+   },
+   "cookies": [],
+   "body": "302: Found",
+   "calls": [
+    [
+     "session",
+     10
+    ],
+    [
+     "post",
+     "https://discord.com/api/oauth2/token",
+     {
+      "client_id": "client-1",
+      "client_secret": "segreto",
+      "grant_type": "authorization_code",
+      "code": "c",
+      "redirect_uri": "https://overlay.example.it/staff/auth/callback"
+     },
+     {
+      "Content-Type": "application/x-www-form-urlencoded"
+     }
+    ],
+    [
+     "get",
+     "https://discord.com/api/users/@me",
+     {
+      "Authorization": "Bearer at"
+     }
+    ]
+   ],
+   "states": [],
+   "sessions": []
+  },
+  {
+   "label": "utente_non_staff",
+   "status": 302,
+   "headers": {
+    "Content-Type": "text/plain; charset=utf-8",
+    "Location": "/staff/?login_error=forbidden"
+   },
+   "cookies": [],
+   "body": "302: Found",
+   "calls": [
+    [
+     "session",
+     10
+    ],
+    [
+     "post",
+     "https://discord.com/api/oauth2/token",
+     {
+      "client_id": "client-1",
+      "client_secret": "segreto",
+      "grant_type": "authorization_code",
+      "code": "c",
+      "redirect_uri": "https://overlay.example.it/staff/auth/callback"
+     },
+     {
+      "Content-Type": "application/x-www-form-urlencoded"
+     }
+    ],
+    [
+     "get",
+     "https://discord.com/api/users/@me",
+     {
+      "Authorization": "Bearer at"
+     }
+    ]
+   ],
+   "states": [],
+   "sessions": []
+  },
+  {
+   "label": "utente_fuori_dal_server",
+   "status": 302,
+   "headers": {
+    "Content-Type": "text/plain; charset=utf-8",
+    "Location": "/staff/?login_error=forbidden"
+   },
+   "cookies": [],
+   "body": "302: Found",
+   "calls": [
+    [
+     "session",
+     10
+    ],
+    [
+     "post",
+     "https://discord.com/api/oauth2/token",
+     {
+      "client_id": "client-1",
+      "client_secret": "segreto",
+      "grant_type": "authorization_code",
+      "code": "c",
+      "redirect_uri": "https://overlay.example.it/staff/auth/callback"
+     },
+     {
+      "Content-Type": "application/x-www-form-urlencoded"
+     }
+    ],
+    [
+     "get",
+     "https://discord.com/api/users/@me",
+     {
+      "Authorization": "Bearer at"
+     }
+    ]
+   ],
+   "states": [],
+   "sessions": []
+  },
+  {
+   "label": "ok",
+   "status": 302,
+   "headers": {
+    "Content-Type": "text/plain; charset=utf-8",
+    "Location": "/staff/"
+   },
+   "cookies": [
+    "sfo_site_session=token-1; HttpOnly; Max-Age=43200; Path=/; SameSite=Lax; Secure",
+    "sfo_discord_oauth_state=\"\"; expires=Thu, 01 Jan 1970 00:00:00 GMT; Max-Age=0; Path=/staff/auth"
+   ],
+   "body": "302: Found",
+   "calls": [
+    [
+     "session",
+     10
+    ],
+    [
+     "post",
+     "https://discord.com/api/oauth2/token",
+     {
+      "client_id": "client-1",
+      "client_secret": "segreto",
+      "grant_type": "authorization_code",
+      "code": "c d",
+      "redirect_uri": "https://overlay.example.it/staff/auth/callback"
+     },
+     {
+      "Content-Type": "application/x-www-form-urlencoded"
+     }
+    ],
+    [
+     "get",
+     "https://discord.com/api/users/@me",
+     {
+      "Authorization": "Bearer at"
+     }
+    ]
+   ],
+   "states": [],
+   "sessions": [
+    [
+     "token-1",
+     5,
+     "utente-5",
+     "2027-03-05T12:00:00+00:00",
+     "2027-03-06T00:00:00+00:00"
+    ]
+   ]
+  },
+  {
+   "label": "ok_con_sessioni_scadute",
+   "status": 302,
+   "headers": {
+    "Content-Type": "text/plain; charset=utf-8",
+    "Location": "/staff/"
+   },
+   "cookies": [
+    "sfo_site_session=token-1; HttpOnly; Max-Age=43200; Path=/; SameSite=Lax; Secure",
+    "sfo_discord_oauth_state=\"\"; expires=Thu, 01 Jan 1970 00:00:00 GMT; Max-Age=0; Path=/staff/auth"
+   ],
+   "body": "302: Found",
+   "calls": [
+    [
+     "session",
+     10
+    ],
+    [
+     "post",
+     "https://discord.com/api/oauth2/token",
+     {
+      "client_id": "client-1",
+      "client_secret": "segreto",
+      "grant_type": "authorization_code",
+      "code": "c",
+      "redirect_uri": "https://overlay.example.it/staff/auth/callback"
+     },
+     {
+      "Content-Type": "application/x-www-form-urlencoded"
+     }
+    ],
+    [
+     "get",
+     "https://discord.com/api/users/@me",
+     {
+      "Authorization": "Bearer at"
+     }
+    ]
+   ],
+   "states": [],
+   "sessions": [
+    [
+     "valida",
+     1,
+     "x",
+     "a",
+     "2027-03-05T12:00:01+00:00"
+    ],
+    [
+     "al_limite",
+     1,
+     "x",
+     "a",
+     "2027-03-05T12:00:00+00:00"
+    ],
+    [
+     "token-1",
+     5,
+     "utente-5",
+     "2027-03-05T12:00:00+00:00",
+     "2027-03-06T00:00:00+00:00"
+    ]
+   ]
+  },
+  {
+   "label": "sessione_non_creata",
+   "status": 302,
+   "headers": {
+    "Content-Type": "text/plain; charset=utf-8",
+    "Location": "/staff/?login_error=unavailable"
+   },
+   "cookies": [],
+   "body": "302: Found",
+   "calls": [
+    [
+     "session",
+     10
+    ],
+    [
+     "post",
+     "https://discord.com/api/oauth2/token",
+     {
+      "client_id": "client-1",
+      "client_secret": "segreto",
+      "grant_type": "authorization_code",
+      "code": "c",
+      "redirect_uri": "https://overlay.example.it/staff/auth/callback"
+     },
+     {
+      "Content-Type": "application/x-www-form-urlencoded"
+     }
+    ],
+    [
+     "get",
+     "https://discord.com/api/users/@me",
+     {
+      "Authorization": "Bearer at"
+     }
+    ]
+   ],
+   "states": [],
+   "sessions": []
+  }
+ ],
+ "state_reuse": [
+  302,
+  400,
+  "Login scaduto, riprova."
+ ],
+ "static": [
+  {
+   "label": "redirect",
+   "status": 308,
+   "headers": {
+    "Content-Type": "text/plain; charset=utf-8",
+    "Location": "/staff/"
+   },
+   "sha256": null,
+   "body": "308: Permanent Redirect",
+   "length": null
+  },
+  {
+   "label": "indice",
+   "status": 200,
+   "headers": {
+    "Cache-Control": "no-cache",
+    "X-Content-Type-Options": "nosniff",
+    "X-Frame-Options": "DENY",
+    "Referrer-Policy": "strict-origin-when-cross-origin",
+    "Permissions-Policy": "camera=(), microphone=(), geolocation=()",
+    "Content-Type": "text/html"
+   },
+   "sha256": "48b04c74007464a1b77593aaeea7b6b850eaae58e18e27a8441f68f20b87a214",
+   "body": null,
+   "length": 18
+  },
+  {
+   "label": "app_js",
+   "status": 200,
+   "headers": {
+    "Cache-Control": "no-cache",
+    "X-Content-Type-Options": "nosniff",
+    "X-Frame-Options": "DENY",
+    "Referrer-Policy": "strict-origin-when-cross-origin",
+    "Permissions-Policy": "camera=(), microphone=(), geolocation=()",
+    "Content-Type": "text/javascript"
+   },
+   "sha256": "0a286891c11c056e1ab5bfc25bf5d6b2f5b06d38eac10944f678fd8a2e70c393",
+   "body": null,
+   "length": 14
+  },
+  {
+   "label": "styles",
+   "status": 200,
+   "headers": {
+    "Cache-Control": "no-cache",
+    "X-Content-Type-Options": "nosniff",
+    "X-Frame-Options": "DENY",
+    "Referrer-Policy": "strict-origin-when-cross-origin",
+    "Permissions-Policy": "camera=(), microphone=(), geolocation=()",
+    "Content-Type": "text/css"
+   },
+   "sha256": "7c98040a541657584690ae2a1cc3b42a8b53b159cc60c5d3abbfecbaeac6c94a",
+   "body": null,
+   "length": 6
+  },
+  {
+   "label": "favicon",
+   "status": 200,
+   "headers": {
+    "Cache-Control": "no-cache",
+    "X-Content-Type-Options": "nosniff",
+    "X-Frame-Options": "DENY",
+    "Referrer-Policy": "strict-origin-when-cross-origin",
+    "Permissions-Policy": "camera=(), microphone=(), geolocation=()",
+    "Content-Type": "image/x-icon"
+   },
+   "sha256": "6b1e73a0094b7b812d3b9e22cffb4f8239319847522c4fa103753b6950020f93",
+   "body": null,
+   "length": 4
+  },
+  {
+   "label": "altro_file",
+   "status": 404,
+   "headers": {
+    "Content-Type": "text/plain; charset=utf-8"
+   },
+   "sha256": null,
+   "body": "404: Not Found",
+   "length": null
+  },
+  {
+   "label": "indice_come_asset",
+   "status": 404,
+   "headers": {
+    "Content-Type": "text/plain; charset=utf-8"
+   },
+   "sha256": null,
+   "body": "404: Not Found",
+   "length": null
+  },
+  {
+   "label": "asset_js",
+   "status": 200,
+   "headers": {
+    "Cache-Control": "no-cache",
+    "X-Content-Type-Options": "nosniff",
+    "X-Frame-Options": "DENY",
+    "Referrer-Policy": "strict-origin-when-cross-origin",
+    "Permissions-Policy": "camera=(), microphone=(), geolocation=()",
+    "Content-Type": "text/javascript"
+   },
+   "sha256": "7776e321976f2e306eaf074bc244953a71013c5165cbe4f5491f6bdd55470468",
+   "body": null,
+   "length": 8
+  },
+  {
+   "label": "asset_css",
+   "status": 200,
+   "headers": {
+    "Cache-Control": "no-cache",
+    "X-Content-Type-Options": "nosniff",
+    "X-Frame-Options": "DENY",
+    "Referrer-Policy": "strict-origin-when-cross-origin",
+    "Permissions-Policy": "camera=(), microphone=(), geolocation=()",
+    "Content-Type": "text/css"
+   },
+   "sha256": "5f546eb4606b5c2b7d2a449a5cc2bbb477ed5a246c7051ce871b12f2dbfc8419",
+   "body": null,
+   "length": 3
+  },
+  {
+   "label": "asset_svg",
+   "status": 200,
+   "headers": {
+    "Cache-Control": "no-cache",
+    "X-Content-Type-Options": "nosniff",
+    "X-Frame-Options": "DENY",
+    "Referrer-Policy": "strict-origin-when-cross-origin",
+    "Permissions-Policy": "camera=(), microphone=(), geolocation=()",
+    "Content-Type": "image/svg+xml"
+   },
+   "sha256": "d4dc56669143034f31aa309635d4113d9ad76a02b1739da22c965ed2049be9e6",
+   "body": null,
+   "length": 6
+  },
+  {
+   "label": "asset_png",
+   "status": 200,
+   "headers": {
+    "Cache-Control": "no-cache",
+    "X-Content-Type-Options": "nosniff",
+    "X-Frame-Options": "DENY",
+    "Referrer-Policy": "strict-origin-when-cross-origin",
+    "Permissions-Policy": "camera=(), microphone=(), geolocation=()",
+    "Content-Type": "image/png"
+   },
+   "sha256": "0f4636c78f65d3639ece5a064b5ae753e3408614a14fb18ab4d7540d2c248543",
+   "body": null,
+   "length": 4
+  },
+  {
+   "label": "asset_woff2",
+   "status": 200,
+   "headers": {
+    "Cache-Control": "no-cache",
+    "X-Content-Type-Options": "nosniff",
+    "X-Frame-Options": "DENY",
+    "Referrer-Policy": "strict-origin-when-cross-origin",
+    "Permissions-Policy": "camera=(), microphone=(), geolocation=()",
+    "Content-Type": "application/octet-stream"
+   },
+   "sha256": "78636849015e5d2ab5689e3f2aff050a589cbede7b789470076f450f03acb2bb",
+   "body": null,
+   "length": 4
+  },
+  {
+   "label": "asset_map",
+   "status": 200,
+   "headers": {
+    "Cache-Control": "no-cache",
+    "X-Content-Type-Options": "nosniff",
+    "X-Frame-Options": "DENY",
+    "Referrer-Policy": "strict-origin-when-cross-origin",
+    "Permissions-Policy": "camera=(), microphone=(), geolocation=()",
+    "Content-Type": "text/plain"
+   },
+   "sha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+   "body": null,
+   "length": 2
+  },
+  {
+   "label": "asset_json",
+   "status": 200,
+   "headers": {
+    "Cache-Control": "no-cache",
+    "X-Content-Type-Options": "nosniff",
+    "X-Frame-Options": "DENY",
+    "Referrer-Policy": "strict-origin-when-cross-origin",
+    "Permissions-Policy": "camera=(), microphone=(), geolocation=()",
+    "Content-Type": "application/json"
+   },
+   "sha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+   "body": null,
+   "length": 2
+  },
+  {
+   "label": "asset_ico",
+   "status": 200,
+   "headers": {
+    "Cache-Control": "no-cache",
+    "X-Content-Type-Options": "nosniff",
+    "X-Frame-Options": "DENY",
+    "Referrer-Policy": "strict-origin-when-cross-origin",
+    "Permissions-Policy": "camera=(), microphone=(), geolocation=()",
+    "Content-Type": "image/x-icon"
+   },
+   "sha256": "6b1e73a0094b7b812d3b9e22cffb4f8239319847522c4fa103753b6950020f93",
+   "body": null,
+   "length": 4
+  },
+  {
+   "label": "asset_html",
+   "status": 200,
+   "headers": {
+    "Cache-Control": "no-cache",
+    "X-Content-Type-Options": "nosniff",
+    "X-Frame-Options": "DENY",
+    "Referrer-Policy": "strict-origin-when-cross-origin",
+    "Permissions-Policy": "camera=(), microphone=(), geolocation=()",
+    "Content-Type": "text/html"
+   },
+   "sha256": "b0ce1a82db7de32dcb040d8b810b05752736534cac3341ce0ee526480b0ed5c3",
+   "body": null,
+   "length": 4
+  },
+  {
+   "label": "asset_senza_estensione",
+   "status": 200,
+   "headers": {
+    "Cache-Control": "no-cache",
+    "X-Content-Type-Options": "nosniff",
+    "X-Frame-Options": "DENY",
+    "Referrer-Policy": "strict-origin-when-cross-origin",
+    "Permissions-Policy": "camera=(), microphone=(), geolocation=()",
+    "Content-Type": "application/octet-stream"
+   },
+   "sha256": "2d711642b726b04401627ca9fbac32f5c8530fb1903cc4db02258717921a4881",
+   "body": null,
+   "length": 1
+  },
+  {
+   "label": "asset_mancante",
+   "status": 404,
+   "headers": {
+    "Content-Type": "text/plain; charset=utf-8"
+   },
+   "sha256": null,
+   "body": "404: Not Found",
+   "length": null
+  },
+  {
+   "label": "asset_percorso_relativo",
+   "status": 404,
+   "headers": {
+    "Content-Type": "text/plain; charset=utf-8"
+   },
+   "sha256": null,
+   "body": "404: Not Found",
+   "length": null
+  },
+  {
+   "label": "asset_punti",
+   "status": 200,
+   "headers": {
+    "Cache-Control": "no-cache",
+    "X-Content-Type-Options": "nosniff",
+    "X-Frame-Options": "DENY",
+    "Referrer-Policy": "strict-origin-when-cross-origin",
+    "Permissions-Policy": "camera=(), microphone=(), geolocation=()",
+    "Content-Type": "text/html"
+   },
+   "sha256": "48b04c74007464a1b77593aaeea7b6b850eaae58e18e27a8441f68f20b87a214",
+   "body": null,
+   "length": 18
+  },
+  {
+   "label": "asset_cartella",
+   "status": 404,
+   "headers": {
+    "Content-Type": "text/plain; charset=utf-8"
+   },
+   "sha256": null,
+   "body": "404: Not Found",
+   "length": null
+  },
+  {
+   "label": "asset_backslash",
+   "status": 404,
+   "headers": {
+    "Content-Type": "text/plain; charset=utf-8"
+   },
+   "sha256": null,
+   "body": "404: Not Found",
+   "length": null
+  },
+  {
+   "label": "asset_maiuscolo",
+   "status": 404,
+   "headers": {
+    "Content-Type": "text/plain; charset=utf-8"
+   },
+   "sha256": null,
+   "body": "404: Not Found",
+   "length": null
+  },
+  {
+   "label": "post_su_indice",
+   "status": 405,
+   "headers": {
+    "Content-Type": "text/plain; charset=utf-8"
+   },
+   "sha256": null,
+   "body": "405: Method Not Allowed",
+   "length": null
+  },
+  {
+   "label": "head_indice",
+   "status": 200,
+   "headers": {
+    "Cache-Control": "no-cache",
+    "X-Content-Type-Options": "nosniff",
+    "X-Frame-Options": "DENY",
+    "Referrer-Policy": "strict-origin-when-cross-origin",
+    "Permissions-Policy": "camera=(), microphone=(), geolocation=()",
+    "Content-Type": "text/html"
+   },
+   "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+   "body": null,
+   "length": 0
+  },
+  {
+   "label": "senza_sito_indice",
+   "status": 503,
+   "headers": {
+    "Content-Type": "text/plain; charset=utf-8"
+   },
+   "sha256": null,
+   "body": "Sito SFO non disponibile",
+   "length": null
+  },
+  {
+   "label": "senza_sito_app",
+   "status": 404,
+   "headers": {
+    "Content-Type": "text/plain; charset=utf-8"
+   },
+   "sha256": null,
+   "body": "404: Not Found",
+   "length": null
+  },
+  {
+   "label": "senza_sito_asset",
+   "status": 404,
+   "headers": {
+    "Content-Type": "text/plain; charset=utf-8"
+   },
+   "sha256": null,
+   "body": "404: Not Found",
+   "length": null
+  },
+  {
+   "label": "senza_sito_redirect",
+   "status": 308,
+   "headers": {
+    "Content-Type": "text/plain; charset=utf-8",
+    "Location": "/staff/"
+   },
+   "sha256": null,
+   "body": "308: Permanent Redirect",
+   "length": null
+  }
+ ],
+ "helpers": {
+  "equals": [
+   [
+    "abc",
+    "abc",
+    true
+   ],
+   [
+    "abc",
+    "abd",
+    false
+   ],
+   [
+    "abc",
+    "ab",
+    false
+   ],
+   [
+    "",
+    "",
+    true
+   ],
+   [
+    "é",
+    "é",
+    true
+   ],
+   [
+    "é",
+    "e",
+    false
+   ],
+   [
+    "tokén",
+    "tokén",
+    true
+   ]
+  ],
+  "json_error": [
+   [
+    404,
+    "{\"error\": \"Non \\u00e8 qui\"}",
+    {
+     "Cache-Control": "no-store",
+     "Content-Type": "application/json; charset=utf-8"
+    }
+   ]
+  ]
+ }
+}

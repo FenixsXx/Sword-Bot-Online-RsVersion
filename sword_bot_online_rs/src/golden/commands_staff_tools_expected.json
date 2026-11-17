@@ -1,0 +1,16 @@
+[
+ {
+  "name": "site",
+  "description": "Apri il sito SFO dello staff",
+  "options": [],
+  "default_member_permissions": null,
+  "guild_only": true
+ },
+ {
+  "name": "general",
+  "description": "Apri il pannello con i collegamenti utili per lo staff",
+  "options": [],
+  "default_member_permissions": null,
+  "guild_only": true
+ }
+]

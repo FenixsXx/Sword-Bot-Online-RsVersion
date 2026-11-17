@@ -1,0 +1,605 @@
+{
+ "home": {
+  "title": "🛠️ Centro controllo staff",
+  "description": "Seleziona una sezione dal menu. Le schermate sono visibili solo a te.\n\n📖 **Handbook** · punti, livelli e criteri\n📈 **Analytics** · andamento delle ultime settimane\n✨ **Proposte** · storico e risultati per nome\n👥 **Utenti** · profilo staff, contributor emergenti e inattivi\n⚙️ **Sistema** · configurazione, conteggi, verifiche ed export",
+  "color": 10181046,
+  "fields": [],
+  "thumbnail": null,
+  "footer": null
+ },
+ "handbook": {
+  "title": "📖 Handbook contributor",
+  "description": "I punti si accumulano nel profilo e determinano livello e classifica. I valori sono cumulativi: un'azione può assegnare punti a più autori.",
+  "color": 10181046,
+  "fields": [
+   [
+    "🏆 Punti",
+    "➕ Proposta inviata · `+1 punti`\n👍 Sostenitore ricevuto · `+2 punti`\n✅ Ingresso nel ballottaggio · `+5 punti`\n🥇 Vittoria finale · `+10 punti`",
+    false
+   ],
+   [
+    "🎖️ Livelli",
+    "🌱 Nuovo · `0 punti`\n🥉 Bronzo · `10 punti`\n🥈 Argento · `25 punti`\n🥇 Oro · `50 punti`\n💎 Platino · `100 punti`\n👑 Leggenda · `200 punti`",
+    false
+   ],
+   [
+    "🌟 Contributor della settimana",
+    "Al reset viene premiato chi ha ottenuto più punti nella settimana; in caso di parità il riconoscimento è condiviso.",
+    false
+   ],
+   [
+    "⭐ Raccomandazione staff",
+    "Ordina le proposte usando sostenitori e tempo di attesa, con una penalità per le vittorie recenti. È solo un suggerimento: la selezione resta una decisione dello staff.",
+    false
+   ]
+  ],
+  "thumbnail": null,
+  "footer": "Reset e archiviazione ogni lunedì alle 12:00 · Europe/Rome"
+ },
+ "analytics_a": {
+  "title": "📈 Community analytics",
+  "description": "Settimane archiviate `#-1`–`#6`.\n`#-1` · `2` contributor · `n/d` votanti · `n/d` voti · `n/d` sostenitori\n`#0` · `1` contributor · `n/d` votanti · `n/d` voti · `n/d` sostenitori\n`#1` · `5` contributor · `6` votanti · `8` voti · `6` sostenitori\n`#2` · `5` contributor · `8` votanti · `9` voti · `4` sostenitori\n`#3` · `6` contributor · `n/d` votanti · `1` voti · `2` sostenitori\n`#4` · `5` contributor · `12` votanti · `13` voti · `11` sostenitori\n`#5` · `5` contributor · `11` votanti · `16` voti · `11` sostenitori\n`#6` · `7` contributor · `15` votanti · `25` voti · `7` sostenitori",
+  "color": 10181046,
+  "fields": [
+   [
+    "👥 Votanti medi",
+    "`10.4` su 5 settimane archiviate",
+    true
+   ],
+   [
+    "👍 Sostenitori medi",
+    "`6.8` su 6 settimane archiviate",
+    true
+   ],
+   [
+    "📈 Crescita contributor",
+    "Dati insufficienti per confrontare due periodi completi.",
+    false
+   ],
+   [
+    "🍂 Classifica · Primavera 2027",
+    "`1`. <@1> · `11 punti`\n`2`. <@2> · `6 punti`\n`3`. <@3> · `6 punti`",
+    false
+   ]
+  ],
+  "thumbnail": null,
+  "footer": "I votanti storici sono disponibili solo dagli snapshot che includono il conteggio anonimo; n/d indica un dato non raccolto."
+ },
+ "users": {
+  "title": "👥 Analisi utenti",
+  "description": "Seleziona un membro dal menu per aprire il suo riepilogo staff. I segnali automatici sono indicatori, non valutazioni.",
+  "color": 10181046,
+  "fields": [
+   [
+    "🔥 Contributor emergenti · ultime 2 settimane",
+    "<@1> · `+8 punti`\n<@3> · `+4 punti`\n<@5> · `+3 punti`\n<@7> · `+3 punti`\n<@6> · `+2 punti`",
+    false
+   ],
+   [
+    "😴 Contributor inattivi · 8+ settimane",
+    "<@50> · ultima attività `#-1` (8 settimane fa)\n<@51> · ultima attività `#-1` (8 settimane fa)",
+    false
+   ]
+  ],
+  "thumbnail": null,
+  "footer": "La ricerca non mostra voti individuali."
+ },
+ "proposals": {
+  "among_us": {
+   "title": "✨ Analisi · Among Us",
+   "description": "Tipo: **Film, Gioco**",
+   "color": 10181046,
+   "fields": [
+    [
+     "👍 Sostenitori storici",
+     "`31`",
+     true
+    ],
+    [
+     "🏆 Settimane nel ballottaggio",
+     "`5`",
+     true
+    ],
+    [
+     "🥇 Vittorie",
+     "`2`",
+     true
+    ],
+    [
+     "📅 Ultima apparizione",
+     "Settimana `#7` · questa settimana",
+     false
+    ],
+    [
+     "📈 Trend sostenitori",
+     "`+0` questa settimana rispetto alla precedente",
+     false
+    ]
+   ],
+   "thumbnail": null,
+   "footer": "Conteggi aggregati; i voti individuali non sono consultabili."
+  },
+  "among_us_lower": {
+   "title": "✨ Analisi · among us!",
+   "description": "Tipo: **Film, Gioco**",
+   "color": 10181046,
+   "fields": [
+    [
+     "👍 Sostenitori storici",
+     "`31`",
+     true
+    ],
+    [
+     "🏆 Settimane nel ballottaggio",
+     "`5`",
+     true
+    ],
+    [
+     "🥇 Vittorie",
+     "`2`",
+     true
+    ],
+    [
+     "📅 Ultima apparizione",
+     "Settimana `#7` · questa settimana",
+     false
+    ],
+    [
+     "📈 Trend sostenitori",
+     "`+0` questa settimana rispetto alla precedente",
+     false
+    ]
+   ],
+   "thumbnail": null,
+   "footer": "Conteggi aggregati; i voti individuali non sono consultabili."
+  },
+  "among_us_gioco": {
+   "title": "✨ Analisi · Among Us",
+   "description": "Tipo: **Gioco**",
+   "color": 10181046,
+   "fields": [
+    [
+     "👍 Sostenitori storici",
+     "`22`",
+     true
+    ],
+    [
+     "🏆 Settimane nel ballottaggio",
+     "`4`",
+     true
+    ],
+    [
+     "🥇 Vittorie",
+     "`2`",
+     true
+    ],
+    [
+     "📅 Ultima apparizione",
+     "Settimana `#7` · questa settimana",
+     false
+    ],
+    [
+     "📈 Trend sostenitori",
+     "`+0` questa settimana rispetto alla precedente",
+     false
+    ]
+   ],
+   "thumbnail": null,
+   "footer": "Conteggi aggregati; i voti individuali non sono consultabili."
+  },
+  "among_us_film": {
+   "title": "✨ Analisi · Among Us",
+   "description": "Tipo: **Film**",
+   "color": 10181046,
+   "fields": [
+    [
+     "👍 Sostenitori storici",
+     "`9`",
+     true
+    ],
+    [
+     "🏆 Settimane nel ballottaggio",
+     "`1`",
+     true
+    ],
+    [
+     "🥇 Vittorie",
+     "`2`",
+     true
+    ],
+    [
+     "📅 Ultima apparizione",
+     "Settimana `#3` · 4 settimane fa",
+     false
+    ],
+    [
+     "📈 Trend sostenitori",
+     "`+0` questa settimana rispetto alla precedente",
+     false
+    ]
+   ],
+   "thumbnail": null,
+   "footer": "Conteggi aggregati; i voti individuali non sono consultabili."
+  },
+  "jackbox": {
+   "title": "✨ Analisi · Jackbox Party",
+   "description": "Tipo: **Gioco**",
+   "color": 10181046,
+   "fields": [
+    [
+     "👍 Sostenitori storici",
+     "`10`",
+     true
+    ],
+    [
+     "🏆 Settimane nel ballottaggio",
+     "`3`",
+     true
+    ],
+    [
+     "🥇 Vittorie",
+     "`1`",
+     true
+    ],
+    [
+     "📅 Ultima apparizione",
+     "Settimana `#7` · questa settimana",
+     false
+    ],
+    [
+     "📈 Trend sostenitori",
+     "`+2` questa settimana rispetto alla precedente",
+     false
+    ]
+   ],
+   "thumbnail": null,
+   "footer": "Conteggi aggregati; i voti individuali non sono consultabili."
+  },
+  "karaoke": {
+   "title": "✨ Analisi · Karaoke Night",
+   "description": "Tipo: **Karaoke**",
+   "color": 10181046,
+   "fields": [
+    [
+     "👍 Sostenitori storici",
+     "`5`",
+     true
+    ],
+    [
+     "🏆 Settimane nel ballottaggio",
+     "`1`",
+     true
+    ],
+    [
+     "🥇 Vittorie",
+     "`0`",
+     true
+    ],
+    [
+     "📅 Ultima apparizione",
+     "Settimana `#1` · 6 settimane fa",
+     false
+    ],
+    [
+     "📈 Trend sostenitori",
+     "`+3` questa settimana rispetto alla precedente",
+     false
+    ]
+   ],
+   "thumbnail": null,
+   "footer": "Conteggi aggregati; i voti individuali non sono consultabili."
+  },
+  "gartic": {
+   "title": "✨ Analisi · Gartic Phone",
+   "description": "Tipo: **Gioco**",
+   "color": 10181046,
+   "fields": [
+    [
+     "👍 Sostenitori storici",
+     "`5`",
+     true
+    ],
+    [
+     "🏆 Settimane nel ballottaggio",
+     "`2`",
+     true
+    ],
+    [
+     "🥇 Vittorie",
+     "`0`",
+     true
+    ],
+    [
+     "📅 Ultima apparizione",
+     "Settimana `#7` · questa settimana",
+     false
+    ],
+    [
+     "📈 Trend sostenitori",
+     "`-1` questa settimana rispetto alla precedente",
+     false
+    ]
+   ],
+   "thumbnail": null,
+   "footer": "Conteggi aggregati; i voti individuali non sono consultabili."
+  },
+  "missing": {
+   "title": "✨ Analisi proposta",
+   "description": "Non ho trovato **Minecraft** nello storico o tra le proposte attuali.",
+   "color": 10181046,
+   "fields": [],
+   "thumbnail": null,
+   "footer": null
+  },
+  "missing_type": {
+   "title": "✨ Analisi proposta",
+   "description": "Non ho trovato **Among Us** nello storico o tra le proposte attuali.",
+   "color": 10181046,
+   "fields": [],
+   "thumbnail": null,
+   "footer": null
+  },
+  "long_name": {
+   "title": "✨ Analisi proposta",
+   "description": "Non ho trovato **NNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNN** nello storico o tra le proposte attuali.",
+   "color": 10181046,
+   "fields": [],
+   "thumbnail": null,
+   "footer": null
+  }
+ },
+ "user": {
+  "rich": {
+   "title": "👤 Analisi utente · Ada",
+   "description": null,
+   "color": 10181046,
+   "fields": [
+    [
+     "🏆 Progressione",
+     "**🥇 Oro** · `57 punti`",
+     true
+    ],
+    [
+     "🔥 Streak",
+     "`4` attuale · `6` record",
+     true
+    ],
+    [
+     "✨ Contributi",
+     "Proposte `12` · Sostenitori ricevuti `10` · Ballottaggi `3` · Vittorie `1`",
+     false
+    ],
+    [
+     "📅 Ultima attività",
+     "Settimana `#7` · 0 settimane fa",
+     false
+    ]
+   ],
+   "thumbnail": "https://cdn.example/1.png",
+   "footer": "Nessun voto individuale viene mostrato o associato a questo profilo."
+  },
+  "poor": {
+   "title": "👤 Analisi utente · Bruno",
+   "description": null,
+   "color": 10181046,
+   "fields": [
+    [
+     "🏆 Progressione",
+     "**🌱 Nuovo** · `1 punti`",
+     true
+    ],
+    [
+     "🔥 Streak",
+     "`0` attuale · `2` record",
+     true
+    ],
+    [
+     "✨ Contributi",
+     "Proposte `1` · Sostenitori ricevuti `0` · Ballottaggi `0` · Vittorie `0`",
+     false
+    ],
+    [
+     "📅 Ultima attività",
+     "Settimana `#6` · 1 settimane fa",
+     false
+    ]
+   ],
+   "thumbnail": "https://cdn.example/2.png",
+   "footer": "Nessun voto individuale viene mostrato o associato a questo profilo."
+  },
+  "none": {
+   "title": "👤 Analisi utente · Nuovo",
+   "description": null,
+   "color": 10181046,
+   "fields": [
+    [
+     "🏆 Progressione",
+     "**🌱 Nuovo** · `0 punti`",
+     true
+    ],
+    [
+     "🔥 Streak",
+     "`0` settimane",
+     true
+    ],
+    [
+     "✨ Contributi",
+     "Proposte `0` · Sostenitori ricevuti `0` · Ballottaggi `0` · Vittorie `0`",
+     false
+    ],
+    [
+     "📅 Ultima attività",
+     "Nessuna attività registrata",
+     false
+    ]
+   ],
+   "thumbnail": "https://cdn.example/999.png",
+   "footer": "Nessun voto individuale viene mostrato o associato a questo profilo."
+  },
+  "not_member": {
+   "title": "👤 Analisi utente · solo_nome",
+   "description": null,
+   "color": 10181046,
+   "fields": [
+    [
+     "🏆 Progressione",
+     "**👑 Leggenda** · `280 punti`",
+     true
+    ],
+    [
+     "🔥 Streak",
+     "`8` attuale · `8` record",
+     true
+    ],
+    [
+     "✨ Contributi",
+     "Proposte `30` · Sostenitori ricevuti `50` · Ballottaggi `10` · Vittorie `10`",
+     false
+    ],
+    [
+     "📅 Ultima attività",
+     "Settimana `#6` · 1 settimane fa",
+     false
+    ]
+   ],
+   "thumbnail": "https://cdn.example/3.png",
+   "footer": "Nessun voto individuale viene mostrato o associato a questo profilo."
+  },
+  "long_name": {
+   "title": "👤 Analisi utente · DDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD",
+   "description": null,
+   "color": 10181046,
+   "fields": [
+    [
+     "🏆 Progressione",
+     "**🥇 Oro** · `57 punti`",
+     true
+    ],
+    [
+     "🔥 Streak",
+     "`4` attuale · `6` record",
+     true
+    ],
+    [
+     "✨ Contributi",
+     "Proposte `12` · Sostenitori ricevuti `10` · Ballottaggi `3` · Vittorie `1`",
+     false
+    ],
+    [
+     "📅 Ultima attività",
+     "Settimana `#7` · 0 settimane fa",
+     false
+    ]
+   ],
+   "thumbnail": "https://cdn.example/1.png",
+   "footer": "Nessun voto individuale viene mostrato o associato a questo profilo."
+  }
+ },
+ "system": {
+  "configured": {
+   "title": "⚙️ Stato del sistema",
+   "description": "Database: **OK** · connessione SQLite verificata\nDashboard: **Configurata · <#500> · messaggio `900`**\nFeed attività: **ATTIVO · <#700>**\nSito e overlay: **configurati**\nAPI protetta: **configurata**\nDimensione database: `1.50 MiB`",
+   "color": 10181046,
+   "fields": [
+    [
+     "📊 Conteggi",
+     "Proposte inviate `151` · supporti dati `14`\nVoti correnti `11` · voti archiviati `72`\nSettimane archiviate `7` · report eventi `2`",
+     false
+    ],
+    [
+     "♻️ Ricalcoli",
+     "Classifica e Hall of Fame sono lette direttamente dai dati, senza cache da ricostruire. L'aggiornamento dei record conserva i massimi storici e non riscrive le settimane archiviate.",
+     false
+    ]
+   ],
+   "thumbnail": null,
+   "footer": "L'export è disponibile solo agli amministratori ed è redatto."
+  },
+  "feed_off": {
+   "title": "⚙️ Stato del sistema",
+   "description": "Database: **OK** · connessione SQLite verificata\nDashboard: **Configurata · <#500> · messaggio `900`**\nFeed attività: **DISATTIVO · canale <#700>**\nSito e overlay: **configurati**\nAPI protetta: **non configurata**\nDimensione database: `1.50 MiB`",
+   "color": 10181046,
+   "fields": [
+    [
+     "📊 Conteggi",
+     "Proposte inviate `151` · supporti dati `14`\nVoti correnti `11` · voti archiviati `72`\nSettimane archiviate `7` · report eventi `2`",
+     false
+    ],
+    [
+     "♻️ Ricalcoli",
+     "Classifica e Hall of Fame sono lette direttamente dai dati, senza cache da ricostruire. L'aggiornamento dei record conserva i massimi storici e non riscrive le settimane archiviate.",
+     false
+    ]
+   ],
+   "thumbnail": null,
+   "footer": "L'export è disponibile solo agli amministratori ed è redatto."
+  },
+  "bare": {
+   "title": "⚙️ Stato del sistema",
+   "description": "Database: **OK** · connessione SQLite verificata\nDashboard: **Non configurata o non ancora pubblicata**\nFeed attività: **DISATTIVO · canale non configurato**\nSito e overlay: **non configurati**\nAPI protetta: **non configurata**\nDimensione database: non disponibile",
+   "color": 10181046,
+   "fields": [
+    [
+     "📊 Conteggi",
+     "Proposte inviate `151` · supporti dati `14`\nVoti correnti `11` · voti archiviati `72`\nSettimane archiviate `7` · report eventi `2`",
+     false
+    ],
+    [
+     "♻️ Ricalcoli",
+     "Classifica e Hall of Fame sono lette direttamente dai dati, senza cache da ricostruire. L'aggiornamento dei record conserva i massimi storici e non riscrive le settimane archiviate.",
+     false
+    ]
+   ],
+   "thumbnail": null,
+   "footer": "L'export è disponibile solo agli amministratori ed è redatto."
+  }
+ },
+ "analytics_b": {
+  "title": "📈 Community analytics",
+  "description": "Settimane archiviate `#-1`–`#6`.\n`#-1` · `3` contributor · `4` votanti · `3` voti · `2` sostenitori\n`#0` · `4` contributor · `5` votanti · `5` voti · `1` sostenitori\n`#1` · `5` contributor · `6` votanti · `8` voti · `6` sostenitori\n`#2` · `5` contributor · `8` votanti · `9` voti · `4` sostenitori\n`#3` · `6` contributor · `n/d` votanti · `1` voti · `2` sostenitori\n`#4` · `5` contributor · `12` votanti · `13` voti · `11` sostenitori\n`#5` · `5` contributor · `11` votanti · `16` voti · `11` sostenitori\n`#6` · `7` contributor · `15` votanti · `25` voti · `7` sostenitori",
+  "color": 10181046,
+  "fields": [
+   [
+    "👥 Votanti medi",
+    "`8.7` su 7 settimane archiviate",
+    true
+   ],
+   [
+    "👍 Sostenitori medi",
+    "`5.5` su 8 settimane archiviate",
+    true
+   ],
+   [
+    "📈 Crescita contributor",
+    "`-4` contributor unici (-33.3%) rispetto alle 4 settimane precedenti.",
+    false
+   ],
+   [
+    "🍂 Classifica · Primavera 2027",
+    "`1`. <@1> · `11 punti`\n`2`. <@2> · `6 punti`\n`3`. <@3> · `6 punti`",
+    false
+   ]
+  ],
+  "thumbnail": null,
+  "footer": "I votanti storici sono disponibili solo dagli snapshot che includono il conteggio anonimo; n/d indica un dato non raccolto."
+ },
+ "users_b": {
+  "title": "👥 Analisi utenti",
+  "description": "Seleziona un membro dal menu per aprire il suo riepilogo staff. I segnali automatici sono indicatori, non valutazioni.",
+  "color": 10181046,
+  "fields": [
+   [
+    "🔥 Contributor emergenti · ultime 2 settimane",
+    "<@1> · `+8 punti`\n<@3> · `+4 punti`\n<@5> · `+3 punti`\n<@7> · `+3 punti`\n<@6> · `+2 punti`",
+    false
+   ],
+   [
+    "😴 Contributor inattivi · 8+ settimane",
+    "<@50> · ultima attività `#-1` (8 settimane fa)\n<@51> · ultima attività `#-1` (8 settimane fa)",
+    false
+   ]
+  ],
+  "thumbnail": null,
+  "footer": "La ricerca non mostra voti individuali."
+ }
+}

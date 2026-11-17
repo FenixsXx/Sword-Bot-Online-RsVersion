@@ -1,0 +1,918 @@
+{
+ "log": {
+  "reg_among": [
+   "✅ Proposta registrata: **Among Us** (Gioco). Te ne restano `2` questa settimana.",
+   true,
+   1
+  ],
+  "reg_among_again": [
+   "✅ Proposta registrata: **among  us!** (Gioco). Te ne restano `2` questa settimana.",
+   true,
+   null
+  ],
+  "reg_jack": [
+   "✅ Proposta registrata: **Jackbox Party** (Gioco). Te ne restano `2` questa settimana.",
+   true,
+   2
+  ],
+  "reg_karaoke": [
+   "✅ Proposta registrata: **Karaoke Night** (Karaoke). Te ne restano `2` questa settimana.",
+   true,
+   3
+  ],
+  "reg_jpp": [
+   "✅ Proposta registrata: **Jackbox Party Pack** (Gioco). Te ne restano `2` questa settimana.",
+   true,
+   4
+  ],
+  "reg_vr": [
+   "✅ Proposta registrata: **Among Us VR** (Gioco). Te ne restano `2` questa settimana.",
+   true,
+   5
+  ],
+  "reg_bad_type": [
+   "❌ Tipo non valido. Scegli tra: Gioco, Film, Karaoke, Altro.",
+   false,
+   null
+  ],
+  "reg_bad_link": [
+   "❌ Il link non sembra valido (deve iniziare con http).",
+   false,
+   null
+  ],
+  "ids": [
+   1,
+   2,
+   3,
+   4,
+   5
+  ],
+  "sup_10_among": [
+   "✅ Hai supportato **Among Us**. Grazie!",
+   true,
+   null
+  ],
+  "sup_11_among": [
+   "✅ Hai supportato **Among Us**. Grazie!",
+   true,
+   null
+  ],
+  "sup_12_jack": [
+   "✅ Hai supportato **Jackbox Party**. Grazie!",
+   true,
+   null
+  ],
+  "sup_13_vr": [
+   "✅ Hai supportato **Among Us VR**. Grazie!",
+   true,
+   null
+  ],
+  "sup_10_among_dup": [
+   "⚠️ Hai già supportato questa proposta.",
+   false,
+   null
+  ],
+  "sup_1_own": [
+   "⚠️ Hai già proposto questa attività: il tuo sostegno è già conteggiato.",
+   false,
+   null
+  ],
+  "sup_missing": [
+   "❌ Questa proposta non è più disponibile.",
+   false,
+   null
+  ],
+  "pick_among": [
+   null,
+   5,
+   false
+  ],
+  "pick_jack": [
+   null,
+   5,
+   false
+  ],
+  "pick_among_again": [
+   "⚠️ Questa proposta è già nel ballottaggio.",
+   5,
+   false
+  ],
+  "merge_among_vr": [
+   true,
+   "✅ Unite: «Among Us VR» → «Among Us»."
+  ],
+  "merge_jack_jpp": [
+   true,
+   "✅ Unite: «Jackbox Party Pack» → «Jackbox Party»."
+  ],
+  "merge_same": [
+   false,
+   "❌ Scegli due proposte diverse di questa settimana."
+  ],
+  "winner": {
+   "suggestion_id": 1,
+   "name": "Among Us",
+   "votes": 3,
+   "supporters": 6,
+   "tie_break": "a parità di voti vince la proposta con più sostenitori"
+  },
+  "contributor": [
+   [
+    1,
+    2
+   ],
+   20
+  ],
+  "leaderboard": [
+   [
+    1,
+    20,
+    "🥉 Bronzo",
+    1,
+    2
+   ],
+   [
+    2,
+    20,
+    "🥉 Bronzo",
+    1,
+    2
+   ],
+   [
+    6,
+    13,
+    "🥉 Bronzo",
+    1,
+    1
+   ],
+   [
+    3,
+    8,
+    "🌱 Nuovo",
+    0,
+    1
+   ],
+   [
+    4,
+    1,
+    "🌱 Nuovo",
+    0,
+    0
+   ],
+   [
+    5,
+    1,
+    "🌱 Nuovo",
+    0,
+    0
+   ]
+  ],
+  "similar": [
+   [
+    1,
+    "Among Us",
+    0.875
+   ]
+  ],
+  "unpick_jack": [
+   2,
+   5
+  ],
+  "unpick_jack_again": null,
+  "reg_week2_user1": [
+   "✅ Proposta registrata: **Nuova settimana** (Altro). Te ne restano `2` questa settimana.",
+   true,
+   6
+  ],
+  "reg_week2_user8": [
+   "✅ Proposta registrata: **Altra idea** (Film). Te ne restano `2` questa settimana.",
+   true,
+   7
+  ]
+ },
+ "tables": {
+  "suggestions": [
+   [
+    1,
+    1,
+    "amongus",
+    "Among Us",
+    "Gioco",
+    "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
+    "picked",
+    "approved",
+    99
+   ],
+   [
+    2,
+    1,
+    "jackboxparty",
+    "Jackbox Party",
+    "Gioco",
+    "https://example.com/jpp",
+    "pending",
+    "approved",
+    null
+   ],
+   [
+    3,
+    1,
+    "karaokenight",
+    "Karaoke Night",
+    "Karaoke",
+    null,
+    "pending",
+    "approved",
+    null
+   ],
+   [
+    6,
+    2,
+    "nuovasettimana",
+    "Nuova settimana",
+    "Altro",
+    null,
+    "pending",
+    "pending",
+    null
+   ],
+   [
+    7,
+    2,
+    "altraidea",
+    "Altra idea",
+    "Film",
+    null,
+    "pending",
+    "pending",
+    null
+   ]
+  ],
+  "proposals": [
+   [
+    1,
+    1,
+    1,
+    1,
+    "Among Us",
+    "https://www.youtube.com/watch?v=dQw4w9WgXcQ"
+   ],
+   [
+    2,
+    1,
+    2,
+    1,
+    "among  us!",
+    null
+   ],
+   [
+    3,
+    2,
+    3,
+    1,
+    "Jackbox Party",
+    null
+   ],
+   [
+    4,
+    3,
+    4,
+    1,
+    "Karaoke Night",
+    null
+   ],
+   [
+    5,
+    2,
+    5,
+    1,
+    "Jackbox Party Pack",
+    "https://example.com/jpp"
+   ],
+   [
+    6,
+    1,
+    6,
+    1,
+    "Among Us VR",
+    null
+   ],
+   [
+    7,
+    6,
+    1,
+    2,
+    "Nuova settimana",
+    null
+   ],
+   [
+    8,
+    7,
+    8,
+    2,
+    "Altra idea",
+    null
+   ]
+  ],
+  "suggestion_supports": [
+   [
+    1,
+    10,
+    1
+   ],
+   [
+    1,
+    11,
+    1
+   ],
+   [
+    1,
+    13,
+    1
+   ],
+   [
+    2,
+    12,
+    1
+   ]
+  ],
+  "options": [
+   [
+    1,
+    1,
+    "Among Us",
+    null
+   ],
+   [
+    2,
+    1,
+    "Supermarket",
+    null
+   ],
+   [
+    3,
+    1,
+    "Fortnite",
+    null
+   ],
+   [
+    4,
+    2,
+    "Poker Night",
+    null
+   ],
+   [
+    5,
+    2,
+    "Chess",
+    null
+   ],
+   [
+    6,
+    2,
+    "Putt Party",
+    null
+   ],
+   [
+    7,
+    3,
+    "Skribbl.io",
+    null
+   ],
+   [
+    8,
+    3,
+    "Gartic Phone",
+    null
+   ],
+   [
+    9,
+    3,
+    "Codenames",
+    null
+   ],
+   [
+    10,
+    3,
+    "Make It Meme",
+    null
+   ],
+   [
+    11,
+    3,
+    "AMQ",
+    null
+   ],
+   [
+    12,
+    3,
+    "Bomb Party",
+    null
+   ],
+   [
+    13,
+    3,
+    "Jackbox",
+    null
+   ],
+   [
+    14,
+    3,
+    "Kahoot",
+    null
+   ],
+   [
+    15,
+    4,
+    "Hunger Games",
+    null
+   ],
+   [
+    16,
+    4,
+    "Jeopardy",
+    null
+   ],
+   [
+    17,
+    5,
+    "Among Us",
+    1
+   ]
+  ],
+  "votes": [
+   [
+    17,
+    100
+   ],
+   [
+    17,
+    101
+   ],
+   [
+    17,
+    102
+   ]
+  ],
+  "user_stats": [
+   [
+    1,
+    2,
+    0,
+    2,
+    1,
+    1
+   ],
+   [
+    2,
+    1,
+    0,
+    2,
+    1,
+    1
+   ],
+   [
+    3,
+    1,
+    0,
+    1,
+    0,
+    0
+   ],
+   [
+    4,
+    1,
+    0,
+    0,
+    0,
+    0
+   ],
+   [
+    5,
+    1,
+    0,
+    0,
+    0,
+    0
+   ],
+   [
+    6,
+    1,
+    0,
+    1,
+    0,
+    1
+   ],
+   [
+    8,
+    1,
+    0,
+    0,
+    0,
+    0
+   ],
+   [
+    10,
+    0,
+    1,
+    0,
+    0,
+    0
+   ],
+   [
+    11,
+    0,
+    1,
+    0,
+    0,
+    0
+   ],
+   [
+    12,
+    0,
+    1,
+    0,
+    0,
+    0
+   ],
+   [
+    13,
+    0,
+    1,
+    0,
+    0,
+    0
+   ]
+  ],
+  "weekly_activity": [
+   [
+    1,
+    1,
+    5,
+    20
+   ],
+   [
+    1,
+    2,
+    1,
+    1
+   ],
+   [
+    2,
+    1,
+    5,
+    20
+   ],
+   [
+    3,
+    1,
+    3,
+    3
+   ],
+   [
+    4,
+    1,
+    1,
+    1
+   ],
+   [
+    5,
+    1,
+    1,
+    0
+   ],
+   [
+    6,
+    1,
+    3,
+    13
+   ],
+   [
+    8,
+    2,
+    1,
+    1
+   ],
+   [
+    10,
+    1,
+    1,
+    0
+   ],
+   [
+    11,
+    1,
+    1,
+    0
+   ],
+   [
+    12,
+    1,
+    1,
+    0
+   ],
+   [
+    13,
+    1,
+    1,
+    0
+   ]
+  ],
+  "season_activity": [
+   [
+    "autunno-2026",
+    1,
+    1,
+    5,
+    20
+   ],
+   [
+    "autunno-2026",
+    1,
+    2,
+    1,
+    1
+   ],
+   [
+    "autunno-2026",
+    2,
+    1,
+    5,
+    20
+   ],
+   [
+    "autunno-2026",
+    3,
+    1,
+    3,
+    3
+   ],
+   [
+    "autunno-2026",
+    4,
+    1,
+    1,
+    1
+   ],
+   [
+    "autunno-2026",
+    5,
+    1,
+    1,
+    0
+   ],
+   [
+    "autunno-2026",
+    6,
+    1,
+    3,
+    13
+   ],
+   [
+    "autunno-2026",
+    8,
+    2,
+    1,
+    1
+   ],
+   [
+    "autunno-2026",
+    10,
+    1,
+    1,
+    0
+   ],
+   [
+    "autunno-2026",
+    11,
+    1,
+    1,
+    0
+   ],
+   [
+    "autunno-2026",
+    12,
+    1,
+    1,
+    0
+   ],
+   [
+    "autunno-2026",
+    13,
+    1,
+    1,
+    0
+   ]
+  ],
+  "user_streaks": [
+   [
+    1,
+    1,
+    1,
+    2
+   ],
+   [
+    2,
+    0,
+    1,
+    1
+   ],
+   [
+    3,
+    0,
+    1,
+    1
+   ],
+   [
+    4,
+    0,
+    1,
+    1
+   ],
+   [
+    5,
+    0,
+    1,
+    1
+   ],
+   [
+    6,
+    0,
+    1,
+    1
+   ],
+   [
+    8,
+    1,
+    1,
+    2
+   ],
+   [
+    10,
+    0,
+    1,
+    1
+   ],
+   [
+    11,
+    0,
+    1,
+    1
+   ],
+   [
+    12,
+    0,
+    1,
+    1
+   ],
+   [
+    13,
+    0,
+    1,
+    1
+   ]
+  ],
+  "weekly_streak_records": [
+   [
+    1,
+    1,
+    1
+   ],
+   [
+    2,
+    1,
+    1
+   ],
+   [
+    3,
+    1,
+    1
+   ],
+   [
+    4,
+    1,
+    1
+   ],
+   [
+    5,
+    1,
+    1
+   ],
+   [
+    6,
+    1,
+    1
+   ],
+   [
+    8,
+    2,
+    1
+   ],
+   [
+    10,
+    1,
+    1
+   ],
+   [
+    11,
+    1,
+    1
+   ],
+   [
+    12,
+    1,
+    1
+   ],
+   [
+    13,
+    1,
+    1
+   ]
+  ],
+  "community_records": [
+   [
+    "longest_streak",
+    1,
+    "<@1>",
+    1,
+    1
+   ],
+   [
+    "most_supported",
+    6,
+    "Among Us",
+    1,
+    null
+   ],
+   [
+    "most_voted",
+    3,
+    "Among Us",
+    1,
+    null
+   ],
+   [
+    "most_wins",
+    1,
+    "<@1>",
+    1,
+    1
+   ]
+  ],
+  "weekly_awards": [
+   [
+    1,
+    "[1, 2]",
+    20
+   ]
+  ],
+  "user_winning_proposals": [
+   [
+    1,
+    1,
+    1,
+    "Among Us",
+    3
+   ],
+   [
+    2,
+    1,
+    1,
+    "Among Us",
+    3
+   ],
+   [
+    6,
+    1,
+    1,
+    "Among Us",
+    3
+   ]
+  ],
+  "user_ballot_weeks": [
+   [
+    1,
+    1
+   ],
+   [
+    2,
+    1
+   ],
+   [
+    3,
+    1
+   ]
+  ],
+  "user_hidden_badges": [],
+  "community_activity": [
+   [
+    "proposal",
+    8
+   ],
+   [
+    "support",
+    4
+   ]
+  ]
+ }
+}

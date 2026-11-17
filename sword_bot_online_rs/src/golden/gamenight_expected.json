@@ -1,0 +1,685 @@
+{
+ "defaults": [
+  [
+   "2027-02-28T18:00:00+01:00",
+   "2027-03-05T21:00:00+01:00",
+   "05/03/2027 21:00"
+  ],
+  [
+   "2027-03-01T12:00:00+01:00",
+   "2027-03-05T21:00:00+01:00",
+   "05/03/2027 21:00"
+  ],
+  [
+   "2027-03-05T20:59:00+01:00",
+   "2027-03-05T21:00:00+01:00",
+   "05/03/2027 21:00"
+  ],
+  [
+   "2027-03-05T21:00:00+01:00",
+   "2027-03-12T21:00:00+01:00",
+   "12/03/2027 21:00"
+  ],
+  [
+   "2027-03-05T21:01:00+01:00",
+   "2027-03-12T21:00:00+01:00",
+   "12/03/2027 21:00"
+  ],
+  [
+   "2027-03-06T09:00:00+01:00",
+   "2027-03-12T21:00:00+01:00",
+   "12/03/2027 21:00"
+  ],
+  [
+   "2027-03-27T23:59:00+01:00",
+   "2027-04-02T21:00:00+02:00",
+   "02/04/2027 21:00"
+  ],
+  [
+   "2027-03-28T00:30:00+01:00",
+   "2027-04-02T21:00:00+02:00",
+   "02/04/2027 21:00"
+  ],
+  [
+   "2026-10-24T22:00:00+02:00",
+   "2026-10-30T21:00:00+01:00",
+   "30/10/2026 21:00"
+  ],
+  [
+   "2026-10-30T21:00:00+01:00",
+   "2026-11-06T21:00:00+01:00",
+   "06/11/2026 21:00"
+  ],
+  [
+   "2026-12-31T23:59:00+01:00",
+   "2027-01-01T21:00:00+01:00",
+   "01/01/2027 21:00"
+  ],
+  [
+   "2027-03-26T12:00:00+01:00",
+   "2027-03-26T21:00:00+01:00",
+   "26/03/2027 21:00"
+  ]
+ ],
+ "parsed": [
+  [
+   "05/03/2027 21:00",
+   "ok",
+   "2027-03-05T21:00:00+01:00"
+  ],
+  [
+   "5/3/2027 21:00",
+   "ok",
+   "2027-03-05T21:00:00+01:00"
+  ],
+  [
+   "  05/03/2027 21:00  ",
+   "ok",
+   "2027-03-05T21:00:00+01:00"
+  ],
+  [
+   "05/03/2027    21:00",
+   "ok",
+   "2027-03-05T21:00:00+01:00"
+  ],
+  [
+   "05/03/2027\t9:05",
+   "ok",
+   "2027-03-05T09:05:00+01:00"
+  ],
+  [
+   "05/03/2027 9:5",
+   "ok",
+   "2027-03-05T09:05:00+01:00"
+  ],
+  [
+   "05-03-2027 21:00",
+   "errore",
+   "Formato non valido: usa GG/MM/AAAA HH:MM, es. 21/11/2026 21:00."
+  ],
+  [
+   "2027/03/05 21:00",
+   "errore",
+   "Formato non valido: usa GG/MM/AAAA HH:MM, es. 21/11/2026 21:00."
+  ],
+  [
+   "05/03/27 21:00",
+   "errore",
+   "Formato non valido: usa GG/MM/AAAA HH:MM, es. 21/11/2026 21:00."
+  ],
+  [
+   "05/03/2027",
+   "errore",
+   "Formato non valido: usa GG/MM/AAAA HH:MM, es. 21/11/2026 21:00."
+  ],
+  [
+   "05/03/2027 21",
+   "errore",
+   "Formato non valido: usa GG/MM/AAAA HH:MM, es. 21/11/2026 21:00."
+  ],
+  [
+   "05/03/2027 21:00:00",
+   "errore",
+   "Formato non valido: usa GG/MM/AAAA HH:MM, es. 21/11/2026 21:00."
+  ],
+  [
+   "05/03/2027 24:00",
+   "errore",
+   "Formato non valido: usa GG/MM/AAAA HH:MM, es. 21/11/2026 21:00."
+  ],
+  [
+   "05/03/2027 23:60",
+   "errore",
+   "Formato non valido: usa GG/MM/AAAA HH:MM, es. 21/11/2026 21:00."
+  ],
+  [
+   "32/03/2027 21:00",
+   "errore",
+   "Formato non valido: usa GG/MM/AAAA HH:MM, es. 21/11/2026 21:00."
+  ],
+  [
+   "00/03/2027 21:00",
+   "errore",
+   "Formato non valido: usa GG/MM/AAAA HH:MM, es. 21/11/2026 21:00."
+  ],
+  [
+   "05/13/2027 21:00",
+   "errore",
+   "Formato non valido: usa GG/MM/AAAA HH:MM, es. 21/11/2026 21:00."
+  ],
+  [
+   "05/00/2027 21:00",
+   "errore",
+   "Formato non valido: usa GG/MM/AAAA HH:MM, es. 21/11/2026 21:00."
+  ],
+  [
+   "31/04/2027 21:00",
+   "errore",
+   "Formato non valido: usa GG/MM/AAAA HH:MM, es. 21/11/2026 21:00."
+  ],
+  [
+   "29/02/2027 21:00",
+   "errore",
+   "Formato non valido: usa GG/MM/AAAA HH:MM, es. 21/11/2026 21:00."
+  ],
+  [
+   "29/02/2028 21:00",
+   "errore",
+   "La data è troppo lontana: massimo 60 giorni."
+  ],
+  [
+   "01/03/2027 18:05",
+   "ok",
+   "2027-03-01T18:05:00+01:00"
+  ],
+  [
+   "01/03/2027 18:04",
+   "ok",
+   "2027-03-01T18:04:00+01:00"
+  ],
+  [
+   "28/02/2027 18:05",
+   "errore",
+   "La data deve essere nel futuro (almeno tra 5 minuti)."
+  ],
+  [
+   "28/02/2027 18:06",
+   "ok",
+   "2027-02-28T18:06:00+01:00"
+  ],
+  [
+   "28/02/2027 18:00",
+   "errore",
+   "La data deve essere nel futuro (almeno tra 5 minuti)."
+  ],
+  [
+   "29/04/2027 18:00",
+   "ok",
+   "2027-04-29T18:00:00+02:00"
+  ],
+  [
+   "30/04/2027 18:00",
+   "errore",
+   "La data è troppo lontana: massimo 60 giorni."
+  ],
+  [
+   "30/04/2027 18:01",
+   "errore",
+   "La data è troppo lontana: massimo 60 giorni."
+  ],
+  [
+   "01/05/2027 18:00",
+   "errore",
+   "La data è troppo lontana: massimo 60 giorni."
+  ],
+  [
+   "28/03/2027 02:30",
+   "ok",
+   "2027-03-28T02:30:00+01:00"
+  ],
+  [
+   "28/03/2027 03:00",
+   "ok",
+   "2027-03-28T03:00:00+02:00"
+  ],
+  [
+   "31/10/2027 02:30",
+   "errore",
+   "La data è troppo lontana: massimo 60 giorni."
+  ],
+  [
+   "",
+   "errore",
+   "Formato non valido: usa GG/MM/AAAA HH:MM, es. 21/11/2026 21:00."
+  ],
+  [
+   "ciao",
+   "errore",
+   "Formato non valido: usa GG/MM/AAAA HH:MM, es. 21/11/2026 21:00."
+  ],
+  [
+   "0001/01/01 10:00",
+   "errore",
+   "Formato non valido: usa GG/MM/AAAA HH:MM, es. 21/11/2026 21:00."
+  ],
+  [
+   "05/03/20277 21:00",
+   "errore",
+   "Formato non valido: usa GG/MM/AAAA HH:MM, es. 21/11/2026 21:00."
+  ],
+  [
+   "05/03/2027 021:00",
+   "errore",
+   "Formato non valido: usa GG/MM/AAAA HH:MM, es. 21/11/2026 21:00."
+  ],
+  [
+   "05/03/2027 21:000",
+   "errore",
+   "Formato non valido: usa GG/MM/AAAA HH:MM, es. 21/11/2026 21:00."
+  ],
+  [
+   "5 /3/2027 21:00",
+   "errore",
+   "Formato non valido: usa GG/MM/AAAA HH:MM, es. 21/11/2026 21:00."
+  ],
+  [
+   "٠٥/03/2027 21:00",
+   "errore",
+   "Formato non valido: usa GG/MM/AAAA HH:MM, es. 21/11/2026 21:00."
+  ]
+ ],
+ "dst_sunday_morning": [
+  "ok",
+  "2027-03-28T03:00:00+02:00"
+ ],
+ "dst_sunday_gap": [
+  "ok",
+  "2027-03-28T02:30:00+01:00"
+ ],
+ "dst_5_minutes": [
+  "ok",
+  "2027-03-28T03:00:00+02:00"
+ ],
+ "far_across_dst": [
+  "ok",
+  "2027-03-29T12:00:00+02:00"
+ ],
+ "far_across_dst_edge": [
+  "errore",
+  "La data è troppo lontana: massimo 60 giorni."
+ ],
+ "offers": [
+  [
+   "normale",
+   [
+    {
+     "channel": 600,
+     "title": "🏆 Vincitore della settimana #7: Among Us",
+     "description": "`3 voti`\n\nVuoi programmare la Game Night? Il bot creerà l'evento Discord e avvierà in automatico il tracciamento live.",
+     "color": 15105570,
+     "footer": null,
+     "has_timestamp": false,
+     "buttons": [
+      [
+       "gamenight:create:7",
+       "Crea evento",
+       "📅",
+       1
+      ]
+     ]
+    }
+   ],
+   "{\"suggestion_id\": 1, \"name\": \"Among Us\", \"votes\": 3, \"tie_break\": null}"
+  ],
+  [
+   "spareggio",
+   [
+    {
+     "channel": 600,
+     "title": "🏆 Vincitore della settimana #8: Jackbox Party",
+     "description": "`4 voti`\nSpareggio: più sostenitori.\n\nVuoi programmare la Game Night? Il bot creerà l'evento Discord e avvierà in automatico il tracciamento live.",
+     "color": 15105570,
+     "footer": null,
+     "has_timestamp": false,
+     "buttons": [
+      [
+       "gamenight:create:8",
+       "Crea evento",
+       "📅",
+       1
+      ]
+     ]
+    }
+   ],
+   "{\"suggestion_id\": 2, \"name\": \"Jackbox Party\", \"votes\": 4, \"tie_break\": \"più sostenitori\"}"
+  ],
+  [
+   "nome_lungo",
+   [
+    {
+     "channel": 600,
+     "title": "🏆 Vincitore della settimana #9: NNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNN",
+     "description": "`12 voti`\n\nVuoi programmare la Game Night? Il bot creerà l'evento Discord e avvierà in automatico il tracciamento live.",
+     "color": 15105570,
+     "footer": null,
+     "has_timestamp": false,
+     "buttons": [
+      [
+       "gamenight:create:9",
+       "Crea evento",
+       "📅",
+       1
+      ]
+     ]
+    }
+   ],
+   "{\"suggestion_id\": 3, \"name\": \"NNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNN\", \"votes\": 12, \"tie_break\": null}"
+  ],
+  [
+   "nessuno",
+   [],
+   null
+  ],
+  [
+   "senza_canale",
+   [],
+   "{\"suggestion_id\": 4, \"name\": \"Karaoke\", \"votes\": 2, \"tie_break\": null}"
+  ]
+ ],
+ "flows": {
+  "button_not_staff": [
+   [
+    "send_message",
+    "⚠️ Solo lo staff può creare l'evento.",
+    true
+   ]
+  ],
+  "button_no_winner": [
+   [
+    "send_message",
+    "❌ Vincitore non trovato per questa settimana.",
+    true
+   ]
+  ],
+  "button_ok": [
+   [
+    "send_modal",
+    "Crea l'evento della Game Night",
+    [
+     [
+      "Data e ora (GG/MM/AAAA HH:MM)",
+      "05/03/2027 21:00",
+      16,
+      16,
+      true,
+      1
+     ],
+     [
+      "Descrizione (facoltativa)",
+      null,
+      null,
+      500,
+      false,
+      2
+     ]
+    ]
+   ]
+  ],
+  "bad_format": {
+   "calls": [
+    [
+     "send_message",
+     "❌ Formato non valido: usa GG/MM/AAAA HH:MM, es. 21/11/2026 21:00.",
+     true
+    ]
+   ],
+   "events": [],
+   "staff_log": []
+  },
+  "past": {
+   "calls": [
+    [
+     "send_message",
+     "⚠️ Configura prima il canale vocale della Game Night con `/config canale_game_night`.",
+     true
+    ]
+   ],
+   "events": [],
+   "staff_log": []
+  },
+  "too_far": {
+   "calls": [
+    [
+     "send_message",
+     "❌ La data è troppo lontana: massimo 60 giorni.",
+     true
+    ]
+   ],
+   "events": [],
+   "staff_log": []
+  },
+  "no_guild": {
+   "calls": [
+    [
+     "send_message",
+     "❌ Usa questo bottone nel server.",
+     true
+    ]
+   ],
+   "events": [],
+   "staff_log": []
+  },
+  "no_channel": {
+   "calls": [
+    [
+     "send_message",
+     "⚠️ Configura prima il canale vocale della Game Night con `/config canale_game_night`.",
+     true
+    ]
+   ],
+   "events": [],
+   "staff_log": []
+  },
+  "text_channel": {
+   "calls": [
+    [
+     "send_message",
+     "⚠️ Configura prima il canale vocale della Game Night con `/config canale_game_night`.",
+     true
+    ]
+   ],
+   "events": [],
+   "staff_log": []
+  },
+  "missing_channel": {
+   "calls": [
+    [
+     "send_message",
+     "⚠️ Configura prima il canale vocale della Game Night con `/config canale_game_night`.",
+     true
+    ]
+   ],
+   "events": [],
+   "staff_log": []
+  },
+  "http_error": {
+   "calls": [
+    [
+     "defer",
+     true,
+     true
+    ],
+    [
+     "followup",
+     "❌ Discord non ha creato l'evento: controlla che il bot abbia il permesso «Gestisci eventi».",
+     true
+    ]
+   ],
+   "events": [],
+   "staff_log": []
+  },
+  "settings_after_error": [],
+  "voice_success": {
+   "calls": [
+    [
+     "defer",
+     true,
+     true
+    ],
+    [
+     "followup",
+     "✅ Evento creato: https://discord.com/events/1/{id0}\nIl tracciamento live partirà in automatico.",
+     true
+    ],
+    [
+     "message_edit",
+     "📅 Evento creato da <@99>: https://discord.com/events/1/{id0}",
+     null
+    ]
+   ],
+   "events": [
+    {
+     "name": "🎮 Among Us",
+     "start": "2027-03-05T21:00:00+01:00",
+     "end": "2027-03-05T23:00:00+01:00",
+     "channel": true,
+     "entity_type": "voice",
+     "privacy": "guild_only",
+     "description": "La community ha scelto **Among Us** con 3 voti nella settimana #7.",
+     "reason": "Game Night creata da utente99"
+    }
+   ],
+   "staff_log": [
+    "📅 <@99> ha creato l'evento «Among Us» per il 05/03/2027 21:00."
+   ]
+  },
+  "settings_after_voice": [
+   [
+    "scheduled_event_optins",
+    "[{id0}]"
+   ],
+   [
+    "scheduled_event_proposal:{id0}",
+    "Among Us"
+   ],
+   [
+    "week_event_created:7",
+    "{id0}"
+   ]
+  ],
+  "button_already": [
+   [
+    "send_message",
+    "ℹ️ L'evento per questo vincitore è già stato creato.",
+    true
+   ]
+  ],
+  "stage_success": {
+   "calls": [
+    [
+     "defer",
+     true,
+     true
+    ],
+    [
+     "followup",
+     "✅ Evento creato: https://discord.com/events/1/{id1}\nIl tracciamento live partirà in automatico.",
+     true
+    ],
+    [
+     "message_edit",
+     "📅 Evento creato da <@99>: https://discord.com/events/1/{id1}",
+     null
+    ]
+   ],
+   "events": [
+    {
+     "name": "🎮 Gartic Phone xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+     "start": "2027-03-28T03:00:00+02:00",
+     "end": "2027-03-28T05:00:00+02:00",
+     "channel": true,
+     "entity_type": "stage_instance",
+     "privacy": "guild_only",
+     "description": "Serata speciale!  \ndddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd",
+     "reason": "Game Night creata da utente99"
+    }
+   ],
+   "staff_log": [
+    "📅 <@99> ha creato l'evento «Gartic Phone xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx» per il 28/03/2027 03:00."
+   ]
+  },
+  "gap_success": {
+   "calls": [
+    [
+     "defer",
+     true,
+     true
+    ],
+    [
+     "followup",
+     "✅ Evento creato: https://discord.com/events/1/{id2}\nIl tracciamento live partirà in automatico.",
+     true
+    ],
+    [
+     "message_edit",
+     "📅 Evento creato da <@99>: https://discord.com/events/1/{id2}",
+     null
+    ]
+   ],
+   "events": [
+    {
+     "name": "🎮 Gartic Phone xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+     "start": "2027-03-28T02:30:00+01:00",
+     "end": "2027-03-28T04:30:00+02:00",
+     "channel": true,
+     "entity_type": "voice",
+     "privacy": "guild_only",
+     "description": "La community ha scelto **Gartic Phone xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx** con 9 voti nella settimana #12.",
+     "reason": "Game Night creata da utente99"
+    }
+   ],
+   "staff_log": [
+    "📅 <@99> ha creato l'evento «Gartic Phone xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx» per il 28/03/2027 02:30."
+   ]
+  },
+  "settings_after_stage": [
+   [
+    "scheduled_event_optins",
+    "[{id0}, {id1}, {id2}]"
+   ],
+   [
+    "scheduled_event_proposal:{id0}",
+    "Among Us"
+   ],
+   [
+    "scheduled_event_proposal:{id1}",
+    "Gartic Phone xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+   ],
+   [
+    "scheduled_event_proposal:{id2}",
+    "Gartic Phone xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+   ],
+   [
+    "week_event_created:12",
+    "{id2}"
+   ],
+   [
+    "week_event_created:7",
+    "{id0}"
+   ]
+  ],
+  "audit": [
+   [
+    99,
+    "game_night_event_created",
+    "scheduled_event",
+    "{id0}",
+    null,
+    "{\"proposal\": \"Among Us\", \"week\": 7, \"start\": \"2027-03-05T21:00:00+01:00\"}"
+   ],
+   [
+    99,
+    "game_night_event_created",
+    "scheduled_event",
+    "{id1}",
+    null,
+    "{\"proposal\": \"Gartic Phone xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\", \"week\": 12, \"start\": \"2027-03-28T03:00:00+02:00\"}"
+   ],
+   [
+    99,
+    "game_night_event_created",
+    "scheduled_event",
+    "{id2}",
+    null,
+    "{\"proposal\": \"Gartic Phone xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\", \"week\": 12, \"start\": \"2027-03-28T02:30:00+01:00\"}"
+   ]
+  ],
+  "proposal_names": [
+   "Among Us",
+   "Gartic Phone xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+   "Gartic Phone xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+  ],
+  "created_count": 3,
+  "no_message": null
+ }
+}

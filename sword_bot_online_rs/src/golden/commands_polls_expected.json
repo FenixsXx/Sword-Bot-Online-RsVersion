@@ -1,0 +1,144 @@
+[
+ {
+  "name": "sondaggio",
+  "description": "Gestione sondaggi",
+  "options": [
+   {
+    "name": "crea",
+    "description": "Crea un nuovo sondaggio/categoria",
+    "type": 1,
+    "required": null,
+    "min_length": null,
+    "max_length": null,
+    "autocomplete": null,
+    "min_value": null,
+    "max_value": null,
+    "channel_types": null,
+    "choices": null,
+    "options": [
+     {
+      "name": "nome",
+      "description": "Nome della categoria",
+      "type": 3,
+      "required": true,
+      "min_length": 1,
+      "max_length": 100,
+      "autocomplete": null,
+      "min_value": null,
+      "max_value": null,
+      "channel_types": null,
+      "choices": null
+     },
+     {
+      "name": "emoji",
+      "description": "Emoji del titolo",
+      "type": 3,
+      "required": false,
+      "min_length": null,
+      "max_length": null,
+      "autocomplete": null,
+      "min_value": null,
+      "max_value": null,
+      "channel_types": null,
+      "choices": null
+     },
+     {
+      "name": "colore",
+      "description": "Colore HEX, es. #5865F2",
+      "type": 3,
+      "required": false,
+      "min_length": null,
+      "max_length": null,
+      "autocomplete": null,
+      "min_value": null,
+      "max_value": null,
+      "channel_types": null,
+      "choices": null
+     },
+     {
+      "name": "community",
+      "description": "È il sondaggio delle proposte della community?",
+      "type": 5,
+      "required": false,
+      "min_length": null,
+      "max_length": null,
+      "autocomplete": null,
+      "min_value": null,
+      "max_value": null,
+      "channel_types": null,
+      "choices": null
+     },
+     {
+      "name": "motivazione",
+      "description": "Motivo della modifica (facoltativo)",
+      "type": 3,
+      "required": false,
+      "min_length": null,
+      "max_length": null,
+      "autocomplete": null,
+      "min_value": null,
+      "max_value": null,
+      "channel_types": null,
+      "choices": null
+     }
+    ]
+   },
+   {
+    "name": "rimuovi",
+    "description": "Elimina un sondaggio",
+    "type": 1,
+    "required": null,
+    "min_length": null,
+    "max_length": null,
+    "autocomplete": null,
+    "min_value": null,
+    "max_value": null,
+    "channel_types": null,
+    "choices": null,
+    "options": [
+     {
+      "name": "nome",
+      "description": "…",
+      "type": 3,
+      "required": true,
+      "min_length": null,
+      "max_length": null,
+      "autocomplete": true,
+      "min_value": null,
+      "max_value": null,
+      "channel_types": null,
+      "choices": null
+     },
+     {
+      "name": "motivazione",
+      "description": "Motivo della rimozione (facoltativo)",
+      "type": 3,
+      "required": false,
+      "min_length": null,
+      "max_length": null,
+      "autocomplete": null,
+      "min_value": null,
+      "max_value": null,
+      "channel_types": null,
+      "choices": null
+     }
+    ]
+   },
+   {
+    "name": "pubblica",
+    "description": "Pubblica o ricrea tutti i messaggi dei sondaggi",
+    "type": 1,
+    "required": null,
+    "min_length": null,
+    "max_length": null,
+    "autocomplete": null,
+    "min_value": null,
+    "max_value": null,
+    "channel_types": null,
+    "choices": null
+   }
+  ],
+  "default_member_permissions": 8,
+  "guild_only": false
+ }
+]

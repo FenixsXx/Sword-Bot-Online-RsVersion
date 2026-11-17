@@ -1,0 +1,118 @@
+[
+ {
+  "name": "opzione",
+  "description": "Gestione opzioni dei sondaggi",
+  "options": [
+   {
+    "name": "aggiungi",
+    "description": "Aggiunge un'opzione a un sondaggio",
+    "type": 1,
+    "required": null,
+    "min_length": null,
+    "max_length": null,
+    "autocomplete": null,
+    "min_value": null,
+    "max_value": null,
+    "channel_types": null,
+    "choices": null,
+    "options": [
+     {
+      "name": "sondaggio",
+      "description": "…",
+      "type": 3,
+      "required": true,
+      "min_length": null,
+      "max_length": null,
+      "autocomplete": true,
+      "min_value": null,
+      "max_value": null,
+      "channel_types": null,
+      "choices": null
+     },
+     {
+      "name": "nome",
+      "description": "…",
+      "type": 3,
+      "required": true,
+      "min_length": 1,
+      "max_length": 80,
+      "autocomplete": null,
+      "min_value": null,
+      "max_value": null,
+      "channel_types": null,
+      "choices": null
+     },
+     {
+      "name": "motivazione",
+      "description": "Motivo della modifica (facoltativo)",
+      "type": 3,
+      "required": false,
+      "min_length": null,
+      "max_length": null,
+      "autocomplete": null,
+      "min_value": null,
+      "max_value": null,
+      "channel_types": null,
+      "choices": null
+     }
+    ]
+   },
+   {
+    "name": "rimuovi",
+    "description": "Rimuove un'opzione da un sondaggio",
+    "type": 1,
+    "required": null,
+    "min_length": null,
+    "max_length": null,
+    "autocomplete": null,
+    "min_value": null,
+    "max_value": null,
+    "channel_types": null,
+    "choices": null,
+    "options": [
+     {
+      "name": "sondaggio",
+      "description": "…",
+      "type": 3,
+      "required": true,
+      "min_length": null,
+      "max_length": null,
+      "autocomplete": true,
+      "min_value": null,
+      "max_value": null,
+      "channel_types": null,
+      "choices": null
+     },
+     {
+      "name": "nome",
+      "description": "…",
+      "type": 3,
+      "required": true,
+      "min_length": null,
+      "max_length": null,
+      "autocomplete": true,
+      "min_value": null,
+      "max_value": null,
+      "channel_types": null,
+      "choices": null
+     },
+     {
+      "name": "motivazione",
+      "description": "Motivo della rimozione (facoltativo)",
+      "type": 3,
+      "required": false,
+      "min_length": null,
+      "max_length": null,
+      "autocomplete": null,
+      "min_value": null,
+      "max_value": null,
+      "channel_types": null,
+      "choices": null
+     }
+    ]
+   }
+  ],
+  "default_member_permissions": null,
+  "guild_only": false
+ }
+]

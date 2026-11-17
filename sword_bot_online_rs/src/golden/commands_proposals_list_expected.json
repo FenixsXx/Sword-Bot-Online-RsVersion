@@ -1,0 +1,23 @@
+[
+ {
+  "name": "proposte",
+  "description": "Elenco delle proposte della settimana",
+  "options": [
+   {
+    "name": "tipo",
+    "description": "Filtra per tipo (facoltativo)",
+    "type": 3,
+    "required": false,
+    "min_length": null,
+    "max_length": null,
+    "autocomplete": true,
+    "min_value": null,
+    "max_value": null,
+    "channel_types": null,
+    "choices": null
+   }
+  ],
+  "default_member_permissions": null,
+  "guild_only": true
+ }
+]

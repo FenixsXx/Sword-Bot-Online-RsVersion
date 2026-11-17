@@ -1,0 +1,266 @@
+[
+ {
+  "name": "evento",
+  "description": "Avvia e controlla la modalità evento live",
+  "options": [
+   {
+    "name": "rapporto",
+    "description": "Mostra i report evento recenti o il dettaglio di un report",
+    "type": 1,
+    "required": null,
+    "min_length": null,
+    "max_length": null,
+    "autocomplete": null,
+    "min_value": null,
+    "max_value": null,
+    "channel_types": null,
+    "choices": null,
+    "options": [
+     {
+      "name": "id_rapporto",
+      "description": "ID del report da consultare",
+      "type": 4,
+      "required": false,
+      "min_length": null,
+      "max_length": null,
+      "autocomplete": null,
+      "min_value": 1,
+      "max_value": 2147483647,
+      "channel_types": null,
+      "choices": null
+     }
+    ]
+   },
+   {
+    "name": "elimina-rapporto",
+    "description": "Elimina un report evento e i dati individuali associati",
+    "type": 1,
+    "required": null,
+    "min_length": null,
+    "max_length": null,
+    "autocomplete": null,
+    "min_value": null,
+    "max_value": null,
+    "channel_types": null,
+    "choices": null,
+    "options": [
+     {
+      "name": "id_rapporto",
+      "description": "ID del report da eliminare",
+      "type": 4,
+      "required": true,
+      "min_length": null,
+      "max_length": null,
+      "autocomplete": null,
+      "min_value": 1,
+      "max_value": 2147483647,
+      "channel_types": null,
+      "choices": null
+     },
+     {
+      "name": "motivazione",
+      "description": "Motivo dell'eliminazione (facoltativo)",
+      "type": 3,
+      "required": false,
+      "min_length": null,
+      "max_length": null,
+      "autocomplete": null,
+      "min_value": null,
+      "max_value": null,
+      "channel_types": null,
+      "choices": null
+     }
+    ]
+   },
+   {
+    "name": "avvia",
+    "description": "Avvia l'overlay collegandoti a un canale vocale",
+    "type": 1,
+    "required": null,
+    "min_length": null,
+    "max_length": null,
+    "autocomplete": null,
+    "min_value": null,
+    "max_value": null,
+    "channel_types": null,
+    "choices": null,
+    "options": [
+     {
+      "name": "canale",
+      "description": "Canale vocale della Game Night",
+      "type": 7,
+      "required": true,
+      "min_length": null,
+      "max_length": null,
+      "autocomplete": null,
+      "min_value": null,
+      "max_value": null,
+      "channel_types": [
+       2
+      ],
+      "choices": null
+     }
+    ]
+   },
+   {
+    "name": "collega",
+    "description": "Avvia l'overlay nel tuo canale vocale",
+    "type": 1,
+    "required": null,
+    "min_length": null,
+    "max_length": null,
+    "autocomplete": null,
+    "min_value": null,
+    "max_value": null,
+    "channel_types": null,
+    "choices": null
+   },
+   {
+    "name": "termina",
+    "description": "Termina l'evento e disconnette il bot",
+    "type": 1,
+    "required": null,
+    "min_length": null,
+    "max_length": null,
+    "autocomplete": null,
+    "min_value": null,
+    "max_value": null,
+    "channel_types": null,
+    "choices": null
+   },
+   {
+    "name": "stato",
+    "description": "Mostra lo stato dell'evento live",
+    "type": 1,
+    "required": null,
+    "min_length": null,
+    "max_length": null,
+    "autocomplete": null,
+    "min_value": null,
+    "max_value": null,
+    "channel_types": null,
+    "choices": null
+   },
+   {
+    "name": "rigenera-link",
+    "description": "Revoca il link overlay precedente e ne crea uno nuovo",
+    "type": 1,
+    "required": null,
+    "min_length": null,
+    "max_length": null,
+    "autocomplete": null,
+    "min_value": null,
+    "max_value": null,
+    "channel_types": null,
+    "choices": null
+   },
+   {
+    "name": "link",
+    "description": "Genera un link OBS con il layout grafico scelto",
+    "type": 1,
+    "required": null,
+    "min_length": null,
+    "max_length": null,
+    "autocomplete": null,
+    "min_value": null,
+    "max_value": null,
+    "channel_types": null,
+    "choices": null,
+    "options": [
+     {
+      "name": "tema",
+      "description": "…",
+      "type": 3,
+      "required": true,
+      "min_length": null,
+      "max_length": null,
+      "autocomplete": null,
+      "min_value": null,
+      "max_value": null,
+      "channel_types": null,
+      "choices": [
+       {
+        "name": "Classico",
+        "value": "classic"
+       },
+       {
+        "name": "Podcast",
+        "value": "podcast"
+       },
+       {
+        "name": "Esport",
+        "value": "esport"
+       },
+       {
+        "name": "Minimal",
+        "value": "minimal"
+       },
+       {
+        "name": "Stage",
+        "value": "stage"
+       }
+      ]
+     }
+    ]
+   },
+   {
+    "name": "programma",
+    "description": "Abilita l'avvio automatico per un evento Discord",
+    "type": 1,
+    "required": null,
+    "min_length": null,
+    "max_length": null,
+    "autocomplete": null,
+    "min_value": null,
+    "max_value": null,
+    "channel_types": null,
+    "choices": null,
+    "options": [
+     {
+      "name": "evento",
+      "description": "Evento programmato da abilitare",
+      "type": 3,
+      "required": true,
+      "min_length": null,
+      "max_length": null,
+      "autocomplete": true,
+      "min_value": null,
+      "max_value": null,
+      "channel_types": null,
+      "choices": null
+     }
+    ]
+   },
+   {
+    "name": "rimuovi-programma",
+    "description": "Disabilita l'avvio automatico per un evento Discord",
+    "type": 1,
+    "required": null,
+    "min_length": null,
+    "max_length": null,
+    "autocomplete": null,
+    "min_value": null,
+    "max_value": null,
+    "channel_types": null,
+    "choices": null,
+    "options": [
+     {
+      "name": "evento_id",
+      "description": "ID dell'evento da disabilitare",
+      "type": 3,
+      "required": true,
+      "min_length": null,
+      "max_length": null,
+      "autocomplete": true,
+      "min_value": null,
+      "max_value": null,
+      "channel_types": null,
+      "choices": null
+     }
+    ]
+   }
+  ],
+  "default_member_permissions": null,
+  "guild_only": false
+ }
+]

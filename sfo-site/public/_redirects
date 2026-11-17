@@ -1,0 +1,6 @@
+/data/* /index.html 404!
+/server.js /index.html 404!
+/.git/* /index.html 404!
+/README.md /index.html 404!
+/supabase-schema.sql /index.html 404!
+/netlify.toml /index.html 404!

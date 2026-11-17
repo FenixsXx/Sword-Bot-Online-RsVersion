@@ -1,0 +1,5714 @@
+{
+ "start": [
+  {
+   "label": "non_configurato_senza_dominio",
+   "result": false,
+   "out": [
+    [
+     "followup",
+     "❌ Overlay non configurato correttamente. Verifica `EVENT_OVERLAY_PUBLIC_URL`, `EVENT_OVERLAY_HOST` e `EVENT_OVERLAY_PORT`; serve un dominio HTTPS con reverse proxy.",
+     true,
+     false
+    ]
+   ],
+   "calls": [],
+   "session": null,
+   "db": {
+    "events": [],
+    "participants": [],
+    "activity": [],
+    "audit": [],
+    "guild_setting": []
+   },
+   "sends": [],
+   "extra": null
+  },
+  {
+   "label": "non_configurato_errore",
+   "result": false,
+   "out": [
+    [
+     "followup",
+     "❌ Overlay non configurato correttamente. Verifica `EVENT_OVERLAY_PUBLIC_URL`, `EVENT_OVERLAY_HOST` e `EVENT_OVERLAY_PORT`; serve un dominio HTTPS con reverse proxy.",
+     true,
+     false
+    ]
+   ],
+   "calls": [],
+   "session": null,
+   "db": {
+    "events": [],
+    "participants": [],
+    "activity": [],
+    "audit": [],
+    "guild_setting": []
+   },
+   "sends": [],
+   "extra": null
+  },
+  {
+   "label": "non_configurato_senza_server",
+   "result": false,
+   "out": [
+    [
+     "followup",
+     "❌ Overlay non configurato correttamente. Verifica `EVENT_OVERLAY_PUBLIC_URL`, `EVENT_OVERLAY_HOST` e `EVENT_OVERLAY_PORT`; serve un dominio HTTPS con reverse proxy.",
+     true,
+     false
+    ]
+   ],
+   "calls": [],
+   "session": null,
+   "db": {
+    "events": [],
+    "participants": [],
+    "activity": [],
+    "audit": [],
+    "guild_setting": []
+   },
+   "sends": [],
+   "extra": null
+  },
+  {
+   "label": "non_configurato_automatico",
+   "result": false,
+   "out": null,
+   "calls": [],
+   "session": null,
+   "db": {
+    "events": [],
+    "participants": [],
+    "activity": [],
+    "audit": [],
+    "guild_setting": []
+   },
+   "sends": [],
+   "extra": null
+  },
+  {
+   "label": "gia_attivo_manuale",
+   "result": false,
+   "out": [
+    [
+     "followup",
+     "⚠️ È già attivo un evento live. Usa `/evento termina` prima di avviarne un altro.",
+     true,
+     false
+    ]
+   ],
+   "calls": [],
+   "session": {
+    "fake": true,
+    "scheduled_event_id": 900
+   },
+   "db": {
+    "events": [],
+    "participants": [],
+    "activity": [],
+    "audit": [],
+    "guild_setting": []
+   },
+   "sends": [],
+   "extra": null
+  },
+  {
+   "label": "gia_attivo_automatico_stesso_evento",
+   "result": true,
+   "out": null,
+   "calls": [],
+   "session": {
+    "fake": true,
+    "scheduled_event_id": 900
+   },
+   "db": {
+    "events": [],
+    "participants": [],
+    "activity": [],
+    "audit": [],
+    "guild_setting": []
+   },
+   "sends": [],
+   "extra": null
+  },
+  {
+   "label": "gia_attivo_automatico_altro_evento",
+   "result": false,
+   "out": null,
+   "calls": [],
+   "session": {
+    "fake": true,
+    "scheduled_event_id": 900
+   },
+   "db": {
+    "events": [],
+    "participants": [],
+    "activity": [],
+    "audit": [],
+    "guild_setting": []
+   },
+   "sends": [],
+   "extra": null
+  },
+  {
+   "label": "gia_attivo_manuale_con_id_uguale",
+   "result": true,
+   "out": [],
+   "calls": [],
+   "session": {
+    "fake": true,
+    "scheduled_event_id": 900
+   },
+   "db": {
+    "events": [],
+    "participants": [],
+    "activity": [],
+    "audit": [],
+    "guild_setting": []
+   },
+   "sends": [],
+   "extra": null
+  },
+  {
+   "label": "senza_membro_bot",
+   "result": false,
+   "out": [
+    [
+     "followup",
+     "❌ Non riesco a recuperare il membro del bot in questo server.",
+     true,
+     false
+    ]
+   ],
+   "calls": [],
+   "session": null,
+   "db": {
+    "events": [],
+    "participants": [],
+    "activity": [],
+    "audit": [],
+    "guild_setting": []
+   },
+   "sends": [],
+   "extra": null
+  },
+  {
+   "label": "senza_membro_bot_automatico",
+   "result": false,
+   "out": null,
+   "calls": [],
+   "session": null,
+   "db": {
+    "events": [],
+    "participants": [],
+    "activity": [],
+    "audit": [],
+    "guild_setting": []
+   },
+   "sends": [],
+   "extra": null
+  },
+  {
+   "label": "senza_permesso_connect",
+   "result": false,
+   "out": [
+    [
+     "followup",
+     "❌ Il bot non ha il permesso di connettersi a quel canale vocale.",
+     true,
+     false
+    ]
+   ],
+   "calls": [],
+   "session": null,
+   "db": {
+    "events": [],
+    "participants": [],
+    "activity": [],
+    "audit": [],
+    "guild_setting": []
+   },
+   "sends": [],
+   "extra": null
+  },
+  {
+   "label": "senza_permesso_connect_automatico",
+   "result": false,
+   "out": null,
+   "calls": [],
+   "session": null,
+   "db": {
+    "events": [],
+    "participants": [],
+    "activity": [],
+    "audit": [],
+    "guild_setting": []
+   },
+   "sends": [],
+   "extra": null
+  },
+  {
+   "label": "connessione_fallita",
+   "result": false,
+   "out": [
+    [
+     "followup",
+     "❌ Non sono riuscito a collegarmi o avviare il rilevamento speaker. Controlla permessi, libreria voice-receive e log.",
+     true,
+     false
+    ]
+   ],
+   "calls": [
+    "connect"
+   ],
+   "session": null,
+   "db": {
+    "events": [],
+    "participants": [],
+    "activity": [],
+    "audit": [],
+    "guild_setting": []
+   },
+   "sends": [],
+   "extra": null
+  },
+  {
+   "label": "connessione_fallita_automatico",
+   "result": false,
+   "out": null,
+   "calls": [
+    "connect"
+   ],
+   "session": null,
+   "db": {
+    "events": [],
+    "participants": [],
+    "activity": [],
+    "audit": [],
+    "guild_setting": []
+   },
+   "sends": [],
+   "extra": null
+  },
+  {
+   "label": "ascolto_fallito",
+   "result": false,
+   "out": [
+    [
+     "followup",
+     "❌ Non sono riuscito a collegarmi o avviare il rilevamento speaker. Controlla permessi, libreria voice-receive e log.",
+     true,
+     false
+    ]
+   ],
+   "calls": [
+    "connect",
+    "listen",
+    "disconnect"
+   ],
+   "session": null,
+   "db": {
+    "events": [],
+    "participants": [],
+    "activity": [],
+    "audit": [],
+    "guild_setting": []
+   },
+   "sends": [],
+   "extra": null
+  },
+  {
+   "label": "report_non_creato",
+   "result": false,
+   "out": [
+    [
+     "followup",
+     "❌ Non sono riuscito a creare il report evento.",
+     true,
+     false
+    ]
+   ],
+   "calls": [
+    "connect",
+    "listen",
+    "stop_listening",
+    "disconnect"
+   ],
+   "session": null,
+   "db": {
+    "events": [],
+    "participants": [],
+    "activity": [],
+    "audit": [],
+    "guild_setting": []
+   },
+   "sends": [],
+   "extra": null
+  },
+  {
+   "label": "report_non_creato_automatico",
+   "result": false,
+   "out": null,
+   "calls": [
+    "connect",
+    "listen",
+    "stop_listening",
+    "disconnect"
+   ],
+   "session": null,
+   "db": {
+    "events": [],
+    "participants": [],
+    "activity": [],
+    "audit": [],
+    "guild_setting": []
+   },
+   "sends": [],
+   "extra": null
+  },
+  {
+   "label": "avvio_manuale",
+   "result": true,
+   "out": [
+    [
+     "followup",
+     "✅ Modalità evento live attiva in <#555>.\nOBS Browser Source: https://overlay.example.it/overlay/1?tema=classic#token-fisso\nIl link è una chiave di accesso: condividilo solo con chi deve vedere l'overlay. L'audio viene analizzato per stimare gli speaker, ma non viene salvato. Il report con presenza e parlato stimato è consultabile dallo staff ed eliminabile con `/evento elimina-rapporto`.",
+     true,
+     true
+    ]
+   ],
+   "calls": [
+    "connect",
+    "listen"
+   ],
+   "session": {
+    "event_id": 1,
+    "guild_id": 1,
+    "title": "🎮 Game Night",
+    "started_at": "2027-03-05T21:00:00+01:00",
+    "scheduled_event_id": null,
+    "speaking_seconds": {},
+    "peak_participants": 2,
+    "audio_recovery_attempts": 0,
+    "channel_id": 555
+   },
+   "db": {
+    "events": [
+     [
+      1,
+      1,
+      null,
+      "🎮 Game Night",
+      555,
+      "Sala Eventi",
+      "2027-03-05T21:00:00+01:00",
+      "2027-03-05T21:00:00+01:00",
+      null,
+      2,
+      0,
+      "manual"
+     ]
+    ],
+    "participants": [
+     [
+      1,
+      10,
+      "2027-03-05T21:00:00+01:00",
+      0,
+      0.0
+     ],
+     [
+      1,
+      11,
+      "2027-03-05T21:00:00+01:00",
+      0,
+      0.0
+     ]
+    ],
+    "activity": [
+     [
+      "event_join",
+      1804276800
+     ],
+     [
+      "event_join",
+      1804276800
+     ]
+    ],
+    "audit": [
+     [
+      42,
+      "live_event_started",
+      "live_event",
+      "1",
+      null,
+      "{\"title\": \"🎮 Game Night\", \"channel_id\": 555}"
+     ]
+    ],
+    "guild_setting": [
+     [
+      "1"
+     ]
+    ]
+   },
+   "sends": [],
+   "extra": null
+  },
+  {
+   "label": "avvio_manuale_titolo_lungo",
+   "result": true,
+   "out": [
+    [
+     "followup",
+     "✅ Modalità evento live attiva in <#555>.\nOBS Browser Source: https://overlay.example.it/overlay/1?tema=classic#token-fisso\nIl link è una chiave di accesso: condividilo solo con chi deve vedere l'overlay. L'audio viene analizzato per stimare gli speaker, ma non viene salvato. Il report con presenza e parlato stimato è consultabile dallo staff ed eliminabile con `/evento elimina-rapporto`.",
+     true,
+     true
+    ]
+   ],
+   "calls": [
+    "connect",
+    "listen"
+   ],
+   "session": {
+    "event_id": 1,
+    "guild_id": 1,
+    "title": "TTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT",
+    "started_at": "2027-03-05T21:00:00+01:00",
+    "scheduled_event_id": null,
+    "speaking_seconds": {},
+    "peak_participants": 2,
+    "audio_recovery_attempts": 0,
+    "channel_id": 555
+   },
+   "db": {
+    "events": [
+     [
+      1,
+      1,
+      null,
+      "TTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT",
+      555,
+      "Sala Eventi",
+      "2027-03-05T21:00:00+01:00",
+      "2027-03-05T21:00:00+01:00",
+      null,
+      2,
+      0,
+      "manual"
+     ]
+    ],
+    "participants": [
+     [
+      1,
+      10,
+      "2027-03-05T21:00:00+01:00",
+      0,
+      0.0
+     ],
+     [
+      1,
+      11,
+      "2027-03-05T21:00:00+01:00",
+      0,
+      0.0
+     ]
+    ],
+    "activity": [
+     [
+      "event_join",
+      1804276800
+     ],
+     [
+      "event_join",
+      1804276800
+     ]
+    ],
+    "audit": [
+     [
+      42,
+      "live_event_started",
+      "live_event",
+      "1",
+      null,
+      "{\"title\": \"TTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT\", \"channel_id\": 555}"
+     ]
+    ],
+    "guild_setting": [
+     [
+      "1"
+     ]
+    ]
+   },
+   "sends": [],
+   "extra": null
+  },
+  {
+   "label": "avvio_manuale_canale_vuoto",
+   "result": true,
+   "out": [
+    [
+     "followup",
+     "✅ Modalità evento live attiva in <#555>.\nOBS Browser Source: https://overlay.example.it/overlay/1?tema=classic#token-fisso\nIl link è una chiave di accesso: condividilo solo con chi deve vedere l'overlay. L'audio viene analizzato per stimare gli speaker, ma non viene salvato. Il report con presenza e parlato stimato è consultabile dallo staff ed eliminabile con `/evento elimina-rapporto`.",
+     true,
+     true
+    ]
+   ],
+   "calls": [
+    "connect",
+    "listen"
+   ],
+   "session": {
+    "event_id": 1,
+    "guild_id": 1,
+    "title": "🎮 Game Night",
+    "started_at": "2027-03-05T21:00:00+01:00",
+    "scheduled_event_id": null,
+    "speaking_seconds": {},
+    "peak_participants": 0,
+    "audio_recovery_attempts": 0,
+    "channel_id": 555
+   },
+   "db": {
+    "events": [
+     [
+      1,
+      1,
+      null,
+      "🎮 Game Night",
+      555,
+      "Sala Eventi",
+      "2027-03-05T21:00:00+01:00",
+      "2027-03-05T21:00:00+01:00",
+      null,
+      0,
+      0,
+      "manual"
+     ]
+    ],
+    "participants": [],
+    "activity": [],
+    "audit": [
+     [
+      42,
+      "live_event_started",
+      "live_event",
+      "1",
+      null,
+      "{\"title\": \"🎮 Game Night\", \"channel_id\": 555}"
+     ]
+    ],
+    "guild_setting": [
+     [
+      "1"
+     ]
+    ]
+   },
+   "sends": [],
+   "extra": null
+  },
+  {
+   "label": "avvio_automatico_staff_ok",
+   "result": true,
+   "out": null,
+   "calls": [
+    "connect",
+    "listen"
+   ],
+   "session": {
+    "event_id": 1,
+    "guild_id": 1,
+    "title": "Torneo Among Us",
+    "started_at": "2027-03-05T21:00:00+01:00",
+    "scheduled_event_id": 900,
+    "speaking_seconds": {},
+    "peak_participants": 2,
+    "audio_recovery_attempts": 0,
+    "channel_id": 555
+   },
+   "db": {
+    "events": [
+     [
+      1,
+      1,
+      900,
+      "Torneo Among Us",
+      555,
+      "Sala Eventi",
+      "2027-03-05T21:00:00+01:00",
+      "2027-03-05T21:00:00+01:00",
+      null,
+      2,
+      0,
+      "manual"
+     ]
+    ],
+    "participants": [
+     [
+      1,
+      10,
+      "2027-03-05T21:00:00+01:00",
+      0,
+      0.0
+     ],
+     [
+      1,
+      11,
+      "2027-03-05T21:00:00+01:00",
+      0,
+      0.0
+     ]
+    ],
+    "activity": [
+     [
+      "event_join",
+      1804276800
+     ],
+     [
+      "event_join",
+      1804276800
+     ]
+    ],
+    "audit": [
+     [
+      null,
+      "scheduled_live_event_started",
+      "scheduled_event",
+      "900",
+      null,
+      "{\"title\": \"Torneo Among Us\", \"channel_id\": 555}"
+     ]
+    ],
+    "guild_setting": [
+     [
+      "1"
+     ]
+    ]
+   },
+   "sends": [
+    {
+     "channel": 600,
+     "content": "🎮 Evento programmato **Torneo Among Us** avviato in <#555>.\nLink OBS: https://overlay.example.it/overlay/1?tema=classic#token-fisso",
+     "embed": null,
+     "mentions_none": true
+    }
+   ],
+   "extra": null
+  }
+ ],
+ "notify": [
+  {
+   "label": "nessun_canale_staff",
+   "result": true,
+   "sends": [],
+   "audit": [
+    [
+     null,
+     "scheduled_live_event_started",
+     "scheduled_event",
+     "900",
+     null,
+     "{\"title\": \"Serata *Giochi*\", \"channel_id\": 555}"
+    ]
+   ]
+  },
+  {
+   "label": "id_non_valido",
+   "result": true,
+   "sends": [],
+   "audit": [
+    [
+     null,
+     "scheduled_live_event_started",
+     "scheduled_event",
+     "900",
+     null,
+     "{\"title\": \"Serata *Giochi*\", \"channel_id\": 555}"
+    ]
+   ]
+  },
+  {
+   "label": "id_con_spazi",
+   "result": true,
+   "sends": [
+    {
+     "channel": 600,
+     "content": "🎮 Evento programmato **Serata *Giochi*** avviato in <#555>.\nLink OBS: https://overlay.example.it/overlay/1?tema=classic#token-fisso",
+     "embed": null,
+     "mentions_none": true
+    }
+   ],
+   "audit": [
+    [
+     null,
+     "scheduled_live_event_started",
+     "scheduled_event",
+     "900",
+     null,
+     "{\"title\": \"Serata *Giochi*\", \"channel_id\": 555}"
+    ]
+   ]
+  },
+  {
+   "label": "canale_non_trovato",
+   "result": true,
+   "sends": [],
+   "audit": [
+    [
+     null,
+     "scheduled_live_event_started",
+     "scheduled_event",
+     "900",
+     null,
+     "{\"title\": \"Serata *Giochi*\", \"channel_id\": 555}"
+    ]
+   ]
+  },
+  {
+   "label": "recupero_vietato",
+   "result": true,
+   "sends": [],
+   "audit": [
+    [
+     null,
+     "scheduled_live_event_started",
+     "scheduled_event",
+     "900",
+     null,
+     "{\"title\": \"Serata *Giochi*\", \"channel_id\": 555}"
+    ]
+   ]
+  },
+  {
+   "label": "recupero_http",
+   "result": true,
+   "sends": [],
+   "audit": [
+    [
+     null,
+     "scheduled_live_event_started",
+     "scheduled_event",
+     "900",
+     null,
+     "{\"title\": \"Serata *Giochi*\", \"channel_id\": 555}"
+    ]
+   ]
+  },
+  {
+   "label": "recuperato_ok",
+   "result": true,
+   "sends": [
+    {
+     "channel": 600,
+     "content": "🎮 Evento programmato **Serata *Giochi*** avviato in <#555>.\nLink OBS: https://overlay.example.it/overlay/1?tema=classic#token-fisso",
+     "embed": null,
+     "mentions_none": true
+    }
+   ],
+   "audit": [
+    [
+     null,
+     "scheduled_live_event_started",
+     "scheduled_event",
+     "900",
+     null,
+     "{\"title\": \"Serata *Giochi*\", \"channel_id\": 555}"
+    ]
+   ]
+  },
+  {
+   "label": "canale_vocale",
+   "result": true,
+   "sends": [],
+   "audit": [
+    [
+     null,
+     "scheduled_live_event_started",
+     "scheduled_event",
+     "900",
+     null,
+     "{\"title\": \"Serata *Giochi*\", \"channel_id\": 555}"
+    ]
+   ]
+  },
+  {
+   "label": "invio_vietato",
+   "result": true,
+   "sends": [],
+   "audit": [
+    [
+     null,
+     "scheduled_live_event_started",
+     "scheduled_event",
+     "900",
+     null,
+     "{\"title\": \"Serata *Giochi*\", \"channel_id\": 555}"
+    ]
+   ]
+  },
+  {
+   "label": "invio_ok",
+   "result": true,
+   "sends": [
+    {
+     "channel": 600,
+     "content": "🎮 Evento programmato **Serata *Giochi*** avviato in <#555>.\nLink OBS: https://overlay.example.it/overlay/1?tema=classic#token-fisso",
+     "embed": null,
+     "mentions_none": true
+    }
+   ],
+   "audit": [
+    [
+     null,
+     "scheduled_live_event_started",
+     "scheduled_event",
+     "900",
+     null,
+     "{\"title\": \"Serata *Giochi*\", \"channel_id\": 555}"
+    ]
+   ]
+  }
+ ],
+ "finish": [
+  {
+   "label": "fine_manuale",
+   "result": 1,
+   "calls": [
+    "stop_listening",
+    "disconnect"
+   ],
+   "session": null,
+   "db": {
+    "events": [
+     [
+      1,
+      1,
+      null,
+      "🎮 Game Night",
+      555,
+      "Sala Eventi",
+      "2027-03-05T21:00:00+01:00",
+      "2027-03-05T21:40:00+01:00",
+      "2027-03-05T21:40:00+01:00",
+      2,
+      2,
+      "manuale"
+     ]
+    ],
+    "participants": [
+     [
+      1,
+      10,
+      null,
+      2400,
+      0.0
+     ],
+     [
+      1,
+      11,
+      null,
+      2400,
+      0.0
+     ]
+    ],
+    "activity": [
+     [
+      "event_join",
+      1804276800
+     ],
+     [
+      "event_join",
+      1804276800
+     ]
+    ],
+    "audit": [
+     [
+      42,
+      "live_event_started",
+      "live_event",
+      "1",
+      null,
+      "{\"title\": \"🎮 Game Night\", \"channel_id\": 555}"
+     ],
+     [
+      null,
+      "live_event_finished",
+      "live_event",
+      "1",
+      null,
+      "{\"reason\": \"manuale\", \"title\": \"🎮 Game Night\"}"
+     ]
+    ],
+    "guild_setting": [
+     [
+      "1"
+     ]
+    ]
+   },
+   "sends": [],
+   "clients": [],
+   "clients_left": 0
+  },
+  {
+   "label": "fine_con_parlato",
+   "result": 1,
+   "calls": [
+    "stop_listening",
+    "disconnect"
+   ],
+   "session": null,
+   "db": {
+    "events": [
+     [
+      1,
+      1,
+      null,
+      "🎮 Game Night",
+      555,
+      "Sala Eventi",
+      "2027-03-05T21:00:00+01:00",
+      "2027-03-05T21:40:00+01:00",
+      "2027-03-05T21:40:00+01:00",
+      2,
+      3,
+      "manuale"
+     ]
+    ],
+    "participants": [
+     [
+      1,
+      10,
+      null,
+      2400,
+      125.5
+     ],
+     [
+      1,
+      11,
+      null,
+      2400,
+      0.0
+     ],
+     [
+      1,
+      12,
+      null,
+      0,
+      30.25
+     ]
+    ],
+    "activity": [
+     [
+      "event_join",
+      1804276800
+     ],
+     [
+      "event_join",
+      1804276800
+     ]
+    ],
+    "audit": [
+     [
+      42,
+      "live_event_started",
+      "live_event",
+      "1",
+      null,
+      "{\"title\": \"🎮 Game Night\", \"channel_id\": 555}"
+     ],
+     [
+      null,
+      "live_event_finished",
+      "live_event",
+      "1",
+      null,
+      "{\"reason\": \"manuale\", \"title\": \"🎮 Game Night\"}"
+     ]
+    ],
+    "guild_setting": [
+     [
+      "1"
+     ]
+    ]
+   },
+   "sends": [],
+   "clients": [],
+   "clients_left": 0
+  },
+  {
+   "label": "fine_con_picco_maggiore",
+   "result": 1,
+   "calls": [
+    "stop_listening",
+    "disconnect"
+   ],
+   "session": null,
+   "db": {
+    "events": [
+     [
+      1,
+      1,
+      null,
+      "🎮 Game Night",
+      555,
+      "Sala Eventi",
+      "2027-03-05T21:00:00+01:00",
+      "2027-03-05T21:40:00+01:00",
+      "2027-03-05T21:40:00+01:00",
+      5,
+      2,
+      "manuale"
+     ]
+    ],
+    "participants": [
+     [
+      1,
+      10,
+      null,
+      2400,
+      0.0
+     ],
+     [
+      1,
+      11,
+      null,
+      2400,
+      0.0
+     ]
+    ],
+    "activity": [
+     [
+      "event_join",
+      1804276800
+     ],
+     [
+      "event_join",
+      1804276800
+     ]
+    ],
+    "audit": [
+     [
+      42,
+      "live_event_started",
+      "live_event",
+      "1",
+      null,
+      "{\"title\": \"🎮 Game Night\", \"channel_id\": 555}"
+     ],
+     [
+      null,
+      "live_event_finished",
+      "live_event",
+      "1",
+      null,
+      "{\"reason\": \"manuale\", \"title\": \"🎮 Game Night\"}"
+     ]
+    ],
+    "guild_setting": [
+     [
+      "1"
+     ]
+    ]
+   },
+   "sends": [],
+   "clients": [],
+   "clients_left": 0
+  },
+  {
+   "label": "fine_con_overlay",
+   "result": 1,
+   "calls": [
+    "stop_listening",
+    "disconnect"
+   ],
+   "session": null,
+   "db": {
+    "events": [
+     [
+      1,
+      1,
+      null,
+      "🎮 Game Night",
+      555,
+      "Sala Eventi",
+      "2027-03-05T21:00:00+01:00",
+      "2027-03-05T21:40:00+01:00",
+      "2027-03-05T21:40:00+01:00",
+      2,
+      2,
+      "manuale"
+     ]
+    ],
+    "participants": [
+     [
+      1,
+      10,
+      null,
+      2400,
+      0.0
+     ],
+     [
+      1,
+      11,
+      null,
+      2400,
+      0.0
+     ]
+    ],
+    "activity": [
+     [
+      "event_join",
+      1804276800
+     ],
+     [
+      "event_join",
+      1804276800
+     ]
+    ],
+    "audit": [
+     [
+      42,
+      "live_event_started",
+      "live_event",
+      "1",
+      null,
+      "{\"title\": \"🎮 Game Night\", \"channel_id\": 555}"
+     ],
+     [
+      null,
+      "live_event_finished",
+      "live_event",
+      "1",
+      null,
+      "{\"reason\": \"manuale\", \"title\": \"🎮 Game Night\"}"
+     ]
+    ],
+    "guild_setting": [
+     [
+      "1"
+     ]
+    ]
+   },
+   "sends": [],
+   "clients": [
+    [
+     [
+      "json",
+      {
+       "type": "status",
+       "active": false
+      }
+     ],
+     [
+      "close",
+      1000,
+      "Evento terminato"
+     ]
+    ],
+    [
+     [
+      "json",
+      {
+       "type": "status",
+       "active": false
+      }
+     ],
+     [
+      "close",
+      1000,
+      "Evento terminato"
+     ]
+    ]
+   ],
+   "clients_left": 0
+  },
+  {
+   "label": "fine_disconnessione",
+   "result": 1,
+   "calls": [
+    "stop_listening",
+    "disconnect"
+   ],
+   "session": null,
+   "db": {
+    "events": [
+     [
+      1,
+      1,
+      null,
+      "🎮 Game Night",
+      555,
+      "Sala Eventi",
+      "2027-03-05T21:00:00+01:00",
+      "2027-03-05T21:40:00+01:00",
+      "2027-03-05T21:40:00+01:00",
+      2,
+      2,
+      "disconnessione"
+     ]
+    ],
+    "participants": [
+     [
+      1,
+      10,
+      null,
+      2400,
+      0.0
+     ],
+     [
+      1,
+      11,
+      null,
+      2400,
+      0.0
+     ]
+    ],
+    "activity": [
+     [
+      "event_join",
+      1804276800
+     ],
+     [
+      "event_join",
+      1804276800
+     ]
+    ],
+    "audit": [
+     [
+      42,
+      "live_event_started",
+      "live_event",
+      "1",
+      null,
+      "{\"title\": \"🎮 Game Night\", \"channel_id\": 555}"
+     ],
+     [
+      null,
+      "live_event_finished",
+      "live_event",
+      "1",
+      null,
+      "{\"reason\": \"disconnessione\", \"title\": \"🎮 Game Night\"}"
+     ]
+    ],
+    "guild_setting": [
+     [
+      "1"
+     ]
+    ]
+   },
+   "sends": [],
+   "clients": [],
+   "clients_left": 0
+  },
+  {
+   "label": "fine_errore_disconnessione",
+   "result": 1,
+   "calls": [
+    "stop_listening"
+   ],
+   "session": null,
+   "db": {
+    "events": [
+     [
+      1,
+      1,
+      null,
+      "🎮 Game Night",
+      555,
+      "Sala Eventi",
+      "2027-03-05T21:00:00+01:00",
+      "2027-03-05T21:40:00+01:00",
+      "2027-03-05T21:40:00+01:00",
+      2,
+      2,
+      "manuale"
+     ]
+    ],
+    "participants": [
+     [
+      1,
+      10,
+      null,
+      2400,
+      0.0
+     ],
+     [
+      1,
+      11,
+      null,
+      2400,
+      0.0
+     ]
+    ],
+    "activity": [
+     [
+      "event_join",
+      1804276800
+     ],
+     [
+      "event_join",
+      1804276800
+     ]
+    ],
+    "audit": [
+     [
+      42,
+      "live_event_started",
+      "live_event",
+      "1",
+      null,
+      "{\"title\": \"🎮 Game Night\", \"channel_id\": 555}"
+     ],
+     [
+      null,
+      "live_event_finished",
+      "live_event",
+      "1",
+      null,
+      "{\"reason\": \"manuale\", \"title\": \"🎮 Game Night\"}"
+     ]
+    ],
+    "guild_setting": [
+     [
+      "1"
+     ]
+    ]
+   },
+   "sends": [],
+   "clients": [],
+   "clients_left": 0
+  },
+  {
+   "label": "fine_arresto_bot",
+   "result": 1,
+   "calls": [
+    "stop_listening",
+    "disconnect"
+   ],
+   "session": null,
+   "db": {
+    "events": [
+     [
+      1,
+      1,
+      null,
+      "🎮 Game Night",
+      555,
+      "Sala Eventi",
+      "2027-03-05T21:00:00+01:00",
+      "2027-03-05T21:00:00+01:00",
+      "2027-03-05T21:00:00+01:00",
+      2,
+      2,
+      "arresto_bot"
+     ]
+    ],
+    "participants": [
+     [
+      1,
+      10,
+      null,
+      0,
+      0.0
+     ],
+     [
+      1,
+      11,
+      null,
+      0,
+      0.0
+     ]
+    ],
+    "activity": [
+     [
+      "event_join",
+      1804276800
+     ],
+     [
+      "event_join",
+      1804276800
+     ]
+    ],
+    "audit": [
+     [
+      42,
+      "live_event_started",
+      "live_event",
+      "1",
+      null,
+      "{\"title\": \"🎮 Game Night\", \"channel_id\": 555}"
+     ],
+     [
+      null,
+      "live_event_finished",
+      "live_event",
+      "1",
+      null,
+      "{\"reason\": \"arresto_bot\", \"title\": \"🎮 Game Night\"}"
+     ]
+    ],
+    "guild_setting": [
+     [
+      "1"
+     ]
+    ]
+   },
+   "sends": [],
+   "clients": [],
+   "clients_left": 0
+  },
+  {
+   "label": "fine_con_errore_database",
+   "result": 1,
+   "calls": [
+    "stop_listening",
+    "disconnect"
+   ],
+   "session": null,
+   "db": {
+    "events": [
+     [
+      1,
+      1,
+      null,
+      "🎮 Game Night",
+      555,
+      "Sala Eventi",
+      "2027-03-05T21:00:00+01:00",
+      "2027-03-05T21:00:00+01:00",
+      null,
+      2,
+      0,
+      "manual"
+     ]
+    ],
+    "participants": [
+     [
+      1,
+      10,
+      "2027-03-05T21:00:00+01:00",
+      0,
+      0.0
+     ],
+     [
+      1,
+      11,
+      "2027-03-05T21:00:00+01:00",
+      0,
+      0.0
+     ]
+    ],
+    "activity": [
+     [
+      "event_join",
+      1804276800
+     ],
+     [
+      "event_join",
+      1804276800
+     ]
+    ],
+    "audit": [
+     [
+      42,
+      "live_event_started",
+      "live_event",
+      "1",
+      null,
+      "{\"title\": \"🎮 Game Night\", \"channel_id\": 555}"
+     ],
+     [
+      null,
+      "live_event_finished",
+      "live_event",
+      "1",
+      null,
+      "{\"reason\": \"manuale\", \"title\": \"🎮 Game Night\"}"
+     ]
+    ],
+    "guild_setting": [
+     [
+      "1"
+     ]
+    ]
+   },
+   "sends": [],
+   "clients": [
+    [
+     [
+      "json",
+      {
+       "type": "status",
+       "active": false
+      }
+     ],
+     [
+      "close",
+      1000,
+      "Evento terminato"
+     ]
+    ]
+   ],
+   "clients_left": 0
+  },
+  {
+   "label": "fine_con_report_nel_canale_staff",
+   "result": 1,
+   "calls": [
+    "stop_listening",
+    "disconnect"
+   ],
+   "session": null,
+   "db": {
+    "events": [
+     [
+      1,
+      1,
+      null,
+      "🎮 Game Night",
+      555,
+      "Sala Eventi",
+      "2027-03-05T21:00:00+01:00",
+      "2027-03-05T21:40:00+01:00",
+      "2027-03-05T21:40:00+01:00",
+      2,
+      2,
+      "manuale"
+     ]
+    ],
+    "participants": [
+     [
+      1,
+      10,
+      null,
+      2400,
+      90.0
+     ],
+     [
+      1,
+      11,
+      null,
+      2400,
+      0.0
+     ]
+    ],
+    "activity": [
+     [
+      "event_join",
+      1804276800
+     ],
+     [
+      "event_join",
+      1804276800
+     ]
+    ],
+    "audit": [
+     [
+      42,
+      "live_event_started",
+      "live_event",
+      "1",
+      null,
+      "{\"title\": \"🎮 Game Night\", \"channel_id\": 555}"
+     ],
+     [
+      null,
+      "live_event_finished",
+      "live_event",
+      "1",
+      null,
+      "{\"reason\": \"manuale\", \"title\": \"🎮 Game Night\"}"
+     ]
+    ],
+    "guild_setting": [
+     [
+      "1"
+     ]
+    ]
+   },
+   "sends": [
+    {
+     "channel": 600,
+     "content": null,
+     "embed": {
+      "footer": {
+       "text": "Le durate del parlato sono stime dai pacchetti audio; nessun audio è conservato. Report individuali eliminabili dallo staff."
+      },
+      "fields": [
+       {
+        "inline": false,
+        "name": "👥 Partecipazione",
+        "value": "Partecipanti unici `2` · picco `2` · presenza media `40 min`"
+       },
+       {
+        "inline": true,
+        "name": "🌱 Nuovi partecipanti",
+        "value": "`2` alla loro prima Game Night"
+       },
+       {
+        "inline": false,
+        "name": "🎤 Speaker principali",
+        "value": "<@10> · `90s` · `100%`"
+       }
+      ],
+      "color": 15105570,
+      "description": "Canale: <#555>\nInizio: <t:1804276800:F>\nDurata: `0h 40m`\nFine: `manuale`",
+      "title": "📊 Report evento #1 · 🎮 Game Night"
+     },
+     "mentions_none": true
+    }
+   ],
+   "clients": [],
+   "clients_left": 0
+  },
+  {
+   "label": "fine_con_report_automatico",
+   "result": 1,
+   "calls": [
+    "stop_listening",
+    "disconnect"
+   ],
+   "session": null,
+   "db": {
+    "events": [
+     [
+      1,
+      1,
+      null,
+      "🎮 Game Night",
+      555,
+      "Sala Eventi",
+      "2027-03-05T21:00:00+01:00",
+      "2027-03-05T21:40:00+01:00",
+      "2027-03-05T21:40:00+01:00",
+      2,
+      2,
+      "completato"
+     ]
+    ],
+    "participants": [
+     [
+      1,
+      10,
+      null,
+      2400,
+      0.0
+     ],
+     [
+      1,
+      11,
+      null,
+      2400,
+      0.0
+     ]
+    ],
+    "activity": [
+     [
+      "event_join",
+      1804276800
+     ],
+     [
+      "event_join",
+      1804276800
+     ]
+    ],
+    "audit": [
+     [
+      42,
+      "live_event_started",
+      "live_event",
+      "1",
+      null,
+      "{\"title\": \"🎮 Game Night\", \"channel_id\": 555}"
+     ],
+     [
+      null,
+      "live_event_finished",
+      "live_event",
+      "1",
+      null,
+      "{\"reason\": \"completato\", \"title\": \"🎮 Game Night\"}"
+     ]
+    ],
+    "guild_setting": [
+     [
+      "1"
+     ]
+    ]
+   },
+   "sends": [
+    {
+     "channel": 600,
+     "content": null,
+     "embed": {
+      "footer": {
+       "text": "Le durate del parlato sono stime dai pacchetti audio; nessun audio è conservato. Report individuali eliminabili dallo staff."
+      },
+      "fields": [
+       {
+        "inline": false,
+        "name": "👥 Partecipazione",
+        "value": "Partecipanti unici `2` · picco `2` · presenza media `40 min`"
+       },
+       {
+        "inline": true,
+        "name": "🌱 Nuovi partecipanti",
+        "value": "`2` alla loro prima Game Night"
+       },
+       {
+        "inline": false,
+        "name": "🎤 Speaker principali",
+        "value": "Nessun parlato rilevato."
+       }
+      ],
+      "color": 15105570,
+      "description": "Canale: <#555>\nInizio: <t:1804276800:F>\nDurata: `0h 40m`\nFine: `completato`",
+      "title": "📊 Report evento #1 · 🎮 Game Night"
+     },
+     "mentions_none": true
+    }
+   ],
+   "clients": [],
+   "clients_left": 0
+  },
+  {
+   "label": "report_canale_mancante",
+   "result": 1,
+   "calls": [
+    "stop_listening",
+    "disconnect"
+   ],
+   "session": null,
+   "db": {
+    "events": [
+     [
+      1,
+      1,
+      null,
+      "🎮 Game Night",
+      555,
+      "Sala Eventi",
+      "2027-03-05T21:00:00+01:00",
+      "2027-03-05T21:40:00+01:00",
+      "2027-03-05T21:40:00+01:00",
+      2,
+      2,
+      "manuale"
+     ]
+    ],
+    "participants": [
+     [
+      1,
+      10,
+      null,
+      2400,
+      0.0
+     ],
+     [
+      1,
+      11,
+      null,
+      2400,
+      0.0
+     ]
+    ],
+    "activity": [
+     [
+      "event_join",
+      1804276800
+     ],
+     [
+      "event_join",
+      1804276800
+     ]
+    ],
+    "audit": [
+     [
+      42,
+      "live_event_started",
+      "live_event",
+      "1",
+      null,
+      "{\"title\": \"🎮 Game Night\", \"channel_id\": 555}"
+     ],
+     [
+      null,
+      "live_event_finished",
+      "live_event",
+      "1",
+      null,
+      "{\"reason\": \"manuale\", \"title\": \"🎮 Game Night\"}"
+     ]
+    ],
+    "guild_setting": [
+     [
+      "1"
+     ]
+    ]
+   },
+   "sends": [],
+   "clients": [],
+   "clients_left": 0
+  },
+  {
+   "label": "report_recupero_vietato",
+   "result": 1,
+   "calls": [
+    "stop_listening",
+    "disconnect"
+   ],
+   "session": null,
+   "db": {
+    "events": [
+     [
+      1,
+      1,
+      null,
+      "🎮 Game Night",
+      555,
+      "Sala Eventi",
+      "2027-03-05T21:00:00+01:00",
+      "2027-03-05T21:40:00+01:00",
+      "2027-03-05T21:40:00+01:00",
+      2,
+      2,
+      "manuale"
+     ]
+    ],
+    "participants": [
+     [
+      1,
+      10,
+      null,
+      2400,
+      0.0
+     ],
+     [
+      1,
+      11,
+      null,
+      2400,
+      0.0
+     ]
+    ],
+    "activity": [
+     [
+      "event_join",
+      1804276800
+     ],
+     [
+      "event_join",
+      1804276800
+     ]
+    ],
+    "audit": [
+     [
+      42,
+      "live_event_started",
+      "live_event",
+      "1",
+      null,
+      "{\"title\": \"🎮 Game Night\", \"channel_id\": 555}"
+     ],
+     [
+      null,
+      "live_event_finished",
+      "live_event",
+      "1",
+      null,
+      "{\"reason\": \"manuale\", \"title\": \"🎮 Game Night\"}"
+     ]
+    ],
+    "guild_setting": [
+     [
+      "1"
+     ]
+    ]
+   },
+   "sends": [],
+   "clients": [],
+   "clients_left": 0
+  },
+  {
+   "label": "report_id_non_valido",
+   "result": 1,
+   "calls": [
+    "stop_listening",
+    "disconnect"
+   ],
+   "session": null,
+   "db": {
+    "events": [
+     [
+      1,
+      1,
+      null,
+      "🎮 Game Night",
+      555,
+      "Sala Eventi",
+      "2027-03-05T21:00:00+01:00",
+      "2027-03-05T21:40:00+01:00",
+      "2027-03-05T21:40:00+01:00",
+      2,
+      2,
+      "manuale"
+     ]
+    ],
+    "participants": [
+     [
+      1,
+      10,
+      null,
+      2400,
+      0.0
+     ],
+     [
+      1,
+      11,
+      null,
+      2400,
+      0.0
+     ]
+    ],
+    "activity": [
+     [
+      "event_join",
+      1804276800
+     ],
+     [
+      "event_join",
+      1804276800
+     ]
+    ],
+    "audit": [
+     [
+      42,
+      "live_event_started",
+      "live_event",
+      "1",
+      null,
+      "{\"title\": \"🎮 Game Night\", \"channel_id\": 555}"
+     ],
+     [
+      null,
+      "live_event_finished",
+      "live_event",
+      "1",
+      null,
+      "{\"reason\": \"manuale\", \"title\": \"🎮 Game Night\"}"
+     ]
+    ],
+    "guild_setting": [
+     [
+      "1"
+     ]
+    ]
+   },
+   "sends": [],
+   "clients": [],
+   "clients_left": 0
+  },
+  {
+   "label": "report_canale_vocale",
+   "result": 1,
+   "calls": [
+    "stop_listening",
+    "disconnect"
+   ],
+   "session": null,
+   "db": {
+    "events": [
+     [
+      1,
+      1,
+      null,
+      "🎮 Game Night",
+      555,
+      "Sala Eventi",
+      "2027-03-05T21:00:00+01:00",
+      "2027-03-05T21:40:00+01:00",
+      "2027-03-05T21:40:00+01:00",
+      2,
+      2,
+      "manuale"
+     ]
+    ],
+    "participants": [
+     [
+      1,
+      10,
+      null,
+      2400,
+      0.0
+     ],
+     [
+      1,
+      11,
+      null,
+      2400,
+      0.0
+     ]
+    ],
+    "activity": [
+     [
+      "event_join",
+      1804276800
+     ],
+     [
+      "event_join",
+      1804276800
+     ]
+    ],
+    "audit": [
+     [
+      42,
+      "live_event_started",
+      "live_event",
+      "1",
+      null,
+      "{\"title\": \"🎮 Game Night\", \"channel_id\": 555}"
+     ],
+     [
+      null,
+      "live_event_finished",
+      "live_event",
+      "1",
+      null,
+      "{\"reason\": \"manuale\", \"title\": \"🎮 Game Night\"}"
+     ]
+    ],
+    "guild_setting": [
+     [
+      "1"
+     ]
+    ]
+   },
+   "sends": [],
+   "clients": [],
+   "clients_left": 0
+  },
+  {
+   "label": "report_invio_vietato",
+   "result": 1,
+   "calls": [
+    "stop_listening",
+    "disconnect"
+   ],
+   "session": null,
+   "db": {
+    "events": [
+     [
+      1,
+      1,
+      null,
+      "🎮 Game Night",
+      555,
+      "Sala Eventi",
+      "2027-03-05T21:00:00+01:00",
+      "2027-03-05T21:40:00+01:00",
+      "2027-03-05T21:40:00+01:00",
+      2,
+      2,
+      "manuale"
+     ]
+    ],
+    "participants": [
+     [
+      1,
+      10,
+      null,
+      2400,
+      0.0
+     ],
+     [
+      1,
+      11,
+      null,
+      2400,
+      0.0
+     ]
+    ],
+    "activity": [
+     [
+      "event_join",
+      1804276800
+     ],
+     [
+      "event_join",
+      1804276800
+     ]
+    ],
+    "audit": [
+     [
+      42,
+      "live_event_started",
+      "live_event",
+      "1",
+      null,
+      "{\"title\": \"🎮 Game Night\", \"channel_id\": 555}"
+     ],
+     [
+      null,
+      "live_event_finished",
+      "live_event",
+      "1",
+      null,
+      "{\"reason\": \"manuale\", \"title\": \"🎮 Game Night\"}"
+     ]
+    ],
+    "guild_setting": [
+     [
+      "1"
+     ]
+    ]
+   },
+   "sends": [],
+   "clients": [],
+   "clients_left": 0
+  },
+  {
+   "label": "report_senza_canale_staff",
+   "result": 1,
+   "calls": [
+    "stop_listening",
+    "disconnect"
+   ],
+   "session": null,
+   "db": {
+    "events": [
+     [
+      1,
+      1,
+      null,
+      "🎮 Game Night",
+      555,
+      "Sala Eventi",
+      "2027-03-05T21:00:00+01:00",
+      "2027-03-05T21:40:00+01:00",
+      "2027-03-05T21:40:00+01:00",
+      2,
+      2,
+      "manuale"
+     ]
+    ],
+    "participants": [
+     [
+      1,
+      10,
+      null,
+      2400,
+      0.0
+     ],
+     [
+      1,
+      11,
+      null,
+      2400,
+      0.0
+     ]
+    ],
+    "activity": [
+     [
+      "event_join",
+      1804276800
+     ],
+     [
+      "event_join",
+      1804276800
+     ]
+    ],
+    "audit": [
+     [
+      42,
+      "live_event_started",
+      "live_event",
+      "1",
+      null,
+      "{\"title\": \"🎮 Game Night\", \"channel_id\": 555}"
+     ],
+     [
+      null,
+      "live_event_finished",
+      "live_event",
+      "1",
+      null,
+      "{\"reason\": \"manuale\", \"title\": \"🎮 Game Night\"}"
+     ]
+    ],
+    "guild_setting": [
+     [
+      "1"
+     ]
+    ]
+   },
+   "sends": [],
+   "clients": [],
+   "clients_left": 0
+  },
+  {
+   "label": "fine_senza_sessione",
+   "result": null,
+   "db": {
+    "events": [],
+    "participants": [],
+    "activity": [],
+    "audit": [],
+    "guild_setting": []
+   }
+  }
+ ],
+ "commands": [
+  {
+   "label": "avvia_non_staff",
+   "out": [
+    [
+     "send",
+     "⚠️ Questo comando è riservato allo staff.",
+     true
+    ]
+   ],
+   "calls": [],
+   "session": null,
+   "audit": [],
+   "db": {
+    "events": [],
+    "participants": [],
+    "activity": [],
+    "audit": [],
+    "guild_setting": []
+   }
+  },
+  {
+   "label": "termina_non_staff",
+   "out": [
+    [
+     "send",
+     "⚠️ Questo comando è riservato allo staff.",
+     true
+    ]
+   ],
+   "calls": [],
+   "session": null,
+   "audit": [],
+   "db": {
+    "events": [],
+    "participants": [],
+    "activity": [],
+    "audit": [],
+    "guild_setting": []
+   }
+  },
+  {
+   "label": "collega_non_staff",
+   "out": [
+    [
+     "send",
+     "⚠️ Questo comando è riservato allo staff.",
+     true
+    ]
+   ],
+   "calls": [],
+   "session": null,
+   "audit": [],
+   "db": {
+    "events": [],
+    "participants": [],
+    "activity": [],
+    "audit": [],
+    "guild_setting": []
+   }
+  },
+  {
+   "label": "avvia_ok",
+   "out": [
+    [
+     "defer",
+     true,
+     true
+    ],
+    [
+     "followup",
+     "✅ Modalità evento live attiva in <#555>.\nOBS Browser Source: https://overlay.example.it/overlay/1?tema=classic#token-fisso\nIl link è una chiave di accesso: condividilo solo con chi deve vedere l'overlay. L'audio viene analizzato per stimare gli speaker, ma non viene salvato. Il report con presenza e parlato stimato è consultabile dallo staff ed eliminabile con `/evento elimina-rapporto`.",
+     true,
+     true
+    ]
+   ],
+   "calls": [
+    "connect",
+    "listen"
+   ],
+   "session": {
+    "event_id": 1,
+    "guild_id": 1,
+    "title": "🎮 Game Night",
+    "started_at": "2027-03-05T21:00:00+01:00",
+    "scheduled_event_id": null,
+    "speaking_seconds": {},
+    "peak_participants": 2,
+    "audio_recovery_attempts": 0,
+    "channel_id": 555
+   },
+   "db": {
+    "events": [
+     [
+      1,
+      1,
+      null,
+      "🎮 Game Night",
+      555,
+      "Sala Eventi",
+      "2027-03-05T21:00:00+01:00",
+      "2027-03-05T21:00:00+01:00",
+      null,
+      2,
+      0,
+      "manual"
+     ]
+    ],
+    "participants": [
+     [
+      1,
+      10,
+      "2027-03-05T21:00:00+01:00",
+      0,
+      0.0
+     ],
+     [
+      1,
+      11,
+      "2027-03-05T21:00:00+01:00",
+      0,
+      0.0
+     ]
+    ],
+    "activity": [
+     [
+      "event_join",
+      1804276800
+     ],
+     [
+      "event_join",
+      1804276800
+     ]
+    ],
+    "audit": [
+     [
+      42,
+      "live_event_started",
+      "live_event",
+      "1",
+      null,
+      "{\"title\": \"🎮 Game Night\", \"channel_id\": 555}"
+     ]
+    ],
+    "guild_setting": [
+     [
+      "1"
+     ]
+    ]
+   }
+  },
+  {
+   "label": "avvia_gia_attivo",
+   "out": [
+    [
+     "defer",
+     true,
+     true
+    ],
+    [
+     "followup",
+     "⚠️ È già attivo un evento live. Usa `/evento termina` prima di avviarne un altro.",
+     true,
+     false
+    ]
+   ],
+   "session": {
+    "event_id": 1,
+    "guild_id": 1,
+    "title": "🎮 Game Night",
+    "started_at": "2027-03-05T21:00:00+01:00",
+    "scheduled_event_id": null,
+    "speaking_seconds": {},
+    "peak_participants": 2,
+    "audio_recovery_attempts": 0,
+    "channel_id": 555
+   }
+  },
+  {
+   "label": "termina_ok",
+   "out": [
+    [
+     "defer",
+     true,
+     true
+    ],
+    [
+     "followup",
+     "✅ Evento live terminato; il bot ha lasciato il canale vocale. Report salvato come `#1`.",
+     true,
+     false
+    ]
+   ],
+   "db": {
+    "events": [
+     [
+      1,
+      1,
+      null,
+      "🎮 Game Night",
+      555,
+      "Sala Eventi",
+      "2027-03-05T21:00:00+01:00",
+      "2027-03-05T21:00:00+01:00",
+      "2027-03-05T21:00:00+01:00",
+      2,
+      2,
+      "manuale"
+     ]
+    ],
+    "participants": [
+     [
+      1,
+      10,
+      null,
+      0,
+      0.0
+     ],
+     [
+      1,
+      11,
+      null,
+      0,
+      0.0
+     ]
+    ],
+    "activity": [
+     [
+      "event_join",
+      1804276800
+     ],
+     [
+      "event_join",
+      1804276800
+     ]
+    ],
+    "audit": [
+     [
+      42,
+      "live_event_started",
+      "live_event",
+      "1",
+      null,
+      "{\"title\": \"🎮 Game Night\", \"channel_id\": 555}"
+     ],
+     [
+      null,
+      "live_event_finished",
+      "live_event",
+      "1",
+      null,
+      "{\"reason\": \"manuale\", \"title\": \"🎮 Game Night\"}"
+     ],
+     [
+      77,
+      "live_event_stopped",
+      "live_event",
+      "1",
+      null,
+      "{}"
+     ]
+    ],
+    "guild_setting": [
+     [
+      "1"
+     ]
+    ]
+   },
+   "session": null
+  },
+  {
+   "label": "termina_senza_evento",
+   "out": [
+    [
+     "defer",
+     true,
+     true
+    ],
+    [
+     "followup",
+     "ℹ️ Non c'è un evento live attivo.",
+     true,
+     false
+    ]
+   ],
+   "db": {
+    "events": [
+     [
+      1,
+      1,
+      null,
+      "🎮 Game Night",
+      555,
+      "Sala Eventi",
+      "2027-03-05T21:00:00+01:00",
+      "2027-03-05T21:00:00+01:00",
+      "2027-03-05T21:00:00+01:00",
+      2,
+      2,
+      "manuale"
+     ]
+    ],
+    "participants": [
+     [
+      1,
+      10,
+      null,
+      0,
+      0.0
+     ],
+     [
+      1,
+      11,
+      null,
+      0,
+      0.0
+     ]
+    ],
+    "activity": [
+     [
+      "event_join",
+      1804276800
+     ],
+     [
+      "event_join",
+      1804276800
+     ]
+    ],
+    "audit": [
+     [
+      42,
+      "live_event_started",
+      "live_event",
+      "1",
+      null,
+      "{\"title\": \"🎮 Game Night\", \"channel_id\": 555}"
+     ],
+     [
+      null,
+      "live_event_finished",
+      "live_event",
+      "1",
+      null,
+      "{\"reason\": \"manuale\", \"title\": \"🎮 Game Night\"}"
+     ],
+     [
+      77,
+      "live_event_stopped",
+      "live_event",
+      "1",
+      null,
+      "{}"
+     ]
+    ],
+    "guild_setting": [
+     [
+      "1"
+     ]
+    ]
+   }
+  },
+  {
+   "label": "collega_senza_voce",
+   "out": [
+    [
+     "send",
+     "⚠️ Entra prima in un canale vocale standard. I canali Stage non sono supportati da questa modalità.",
+     true
+    ]
+   ],
+   "session": null,
+   "db": {
+    "events": [],
+    "participants": [],
+    "activity": [],
+    "audit": [],
+    "guild_setting": []
+   }
+  },
+  {
+   "label": "collega_non_in_canale",
+   "out": [
+    [
+     "send",
+     "⚠️ Entra prima in un canale vocale standard. I canali Stage non sono supportati da questa modalità.",
+     true
+    ]
+   ],
+   "session": null,
+   "db": {
+    "events": [],
+    "participants": [],
+    "activity": [],
+    "audit": [],
+    "guild_setting": []
+   }
+  },
+  {
+   "label": "collega_in_stage",
+   "out": [
+    [
+     "send",
+     "⚠️ Entra prima in un canale vocale standard. I canali Stage non sono supportati da questa modalità.",
+     true
+    ]
+   ],
+   "session": null,
+   "db": {
+    "events": [],
+    "participants": [],
+    "activity": [],
+    "audit": [],
+    "guild_setting": []
+   }
+  },
+  {
+   "label": "collega_ok",
+   "out": [
+    [
+     "defer",
+     true,
+     true
+    ],
+    [
+     "followup",
+     "✅ Modalità evento live attiva in <#555>.\nOBS Browser Source: https://overlay.example.it/overlay/1?tema=classic#token-fisso\nIl link è una chiave di accesso: condividilo solo con chi deve vedere l'overlay. L'audio viene analizzato per stimare gli speaker, ma non viene salvato. Il report con presenza e parlato stimato è consultabile dallo staff ed eliminabile con `/evento elimina-rapporto`.",
+     true,
+     true
+    ]
+   ],
+   "calls": [
+    "connect",
+    "listen"
+   ],
+   "session": {
+    "event_id": 1,
+    "guild_id": 1,
+    "title": "🎮 Game Night",
+    "started_at": "2027-03-05T21:00:00+01:00",
+    "scheduled_event_id": null,
+    "speaking_seconds": {},
+    "peak_participants": 2,
+    "audio_recovery_attempts": 0,
+    "channel_id": 555
+   },
+   "db": {
+    "events": [
+     [
+      1,
+      1,
+      null,
+      "🎮 Game Night",
+      555,
+      "Sala Eventi",
+      "2027-03-05T21:00:00+01:00",
+      "2027-03-05T21:00:00+01:00",
+      null,
+      2,
+      0,
+      "manual"
+     ]
+    ],
+    "participants": [
+     [
+      1,
+      10,
+      "2027-03-05T21:00:00+01:00",
+      0,
+      0.0
+     ],
+     [
+      1,
+      11,
+      "2027-03-05T21:00:00+01:00",
+      0,
+      0.0
+     ]
+    ],
+    "activity": [
+     [
+      "event_join",
+      1804276800
+     ],
+     [
+      "event_join",
+      1804276800
+     ]
+    ],
+    "audit": [
+     [
+      42,
+      "live_event_started",
+      "live_event",
+      "1",
+      null,
+      "{\"title\": \"🎮 Game Night\", \"channel_id\": 555}"
+     ]
+    ],
+    "guild_setting": [
+     [
+      "1"
+     ]
+    ]
+   }
+  }
+ ],
+ "scheduled": [
+  {
+   "label": "avvio_programmato",
+   "calls": [
+    "connect",
+    "listen"
+   ],
+   "session": {
+    "event_id": 1,
+    "guild_id": 1,
+    "title": "Serata Among Us",
+    "started_at": "2027-03-05T21:00:00+01:00",
+    "scheduled_event_id": 900,
+    "speaking_seconds": {},
+    "peak_participants": 1,
+    "audio_recovery_attempts": 0,
+    "channel_id": 555
+   },
+   "sends": [
+    "🎮 Evento programmato **Serata Among Us** avviato in <#555>.\nLink OBS: https://overlay.example.it/overlay/1?tema=classic#token-fisso"
+   ],
+   "audit": [
+    [
+     null,
+     "scheduled_live_event_started",
+     "scheduled_event",
+     "900",
+     null,
+     "{\"title\": \"Serata Among Us\", \"channel_id\": 555}"
+    ]
+   ],
+   "events": [
+    [
+     1,
+     1,
+     900,
+     "Serata Among Us",
+     555,
+     "Sala Eventi",
+     "2027-03-05T21:00:00+01:00",
+     "2027-03-05T21:00:00+01:00",
+     null,
+     1,
+     0,
+     "manual"
+    ]
+   ],
+   "auto_starting": []
+  },
+  {
+   "label": "avvio_non_abilitato",
+   "calls": [],
+   "session": null,
+   "sends": [],
+   "audit": [],
+   "events": [],
+   "auto_starting": []
+  },
+  {
+   "label": "avvio_non_attivo",
+   "calls": [],
+   "session": null,
+   "sends": [],
+   "audit": [],
+   "events": [],
+   "auto_starting": []
+  },
+  {
+   "label": "avvio_in_stage",
+   "calls": [],
+   "session": null,
+   "sends": [],
+   "audit": [],
+   "events": [],
+   "auto_starting": []
+  },
+  {
+   "label": "avvio_senza_canale",
+   "calls": [],
+   "session": null,
+   "sends": [],
+   "audit": [],
+   "events": [],
+   "auto_starting": []
+  },
+  {
+   "label": "avvio_titolo_lungo",
+   "calls": [
+    "connect",
+    "listen"
+   ],
+   "session": {
+    "event_id": 1,
+    "guild_id": 1,
+    "title": "NNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNN",
+    "started_at": "2027-03-05T21:00:00+01:00",
+    "scheduled_event_id": 900,
+    "speaking_seconds": {},
+    "peak_participants": 1,
+    "audio_recovery_attempts": 0,
+    "channel_id": 555
+   },
+   "sends": [
+    "🎮 Evento programmato **NNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNN** avviato in <#555>.\nLink OBS: https://overlay.example.it/overlay/1?tema=classic#token-fisso"
+   ],
+   "audit": [
+    [
+     null,
+     "scheduled_live_event_started",
+     "scheduled_event",
+     "900",
+     null,
+     "{\"title\": \"NNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNN\", \"channel_id\": 555}"
+    ]
+   ],
+   "events": [
+    [
+     1,
+     1,
+     900,
+     "NNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNN",
+     555,
+     "Sala Eventi",
+     "2027-03-05T21:00:00+01:00",
+     "2027-03-05T21:00:00+01:00",
+     null,
+     1,
+     0,
+     "manual"
+    ]
+   ],
+   "auto_starting": []
+  },
+  {
+   "label": "avvio_gia_in_corso_stesso",
+   "calls": [],
+   "session": {
+    "event_id": 1,
+    "guild_id": 1,
+    "title": "in corso",
+    "started_at": "2027-03-05T21:00:00+01:00",
+    "scheduled_event_id": 900,
+    "speaking_seconds": {},
+    "peak_participants": 1,
+    "audio_recovery_attempts": 0,
+    "channel_id": 555
+   },
+   "sends": [],
+   "audit": [
+    [
+     null,
+     "scheduled_live_event_started",
+     "scheduled_event",
+     "900",
+     null,
+     "{\"title\": \"in corso\", \"channel_id\": 555}"
+    ]
+   ],
+   "events": [
+    [
+     1,
+     1,
+     900,
+     "in corso",
+     555,
+     "Sala Eventi",
+     "2027-03-05T21:00:00+01:00",
+     "2027-03-05T21:00:00+01:00",
+     null,
+     1,
+     0,
+     "manual"
+    ]
+   ],
+   "auto_starting": []
+  },
+  {
+   "label": "avvio_gia_in_corso_altro",
+   "calls": [],
+   "session": {
+    "event_id": 1,
+    "guild_id": 1,
+    "title": "in corso",
+    "started_at": "2027-03-05T21:00:00+01:00",
+    "scheduled_event_id": 555,
+    "speaking_seconds": {},
+    "peak_participants": 1,
+    "audio_recovery_attempts": 0,
+    "channel_id": 555
+   },
+   "sends": [],
+   "audit": [
+    [
+     null,
+     "scheduled_live_event_started",
+     "scheduled_event",
+     "555",
+     null,
+     "{\"title\": \"in corso\", \"channel_id\": 555}"
+    ]
+   ],
+   "events": [
+    [
+     1,
+     1,
+     555,
+     "in corso",
+     555,
+     "Sala Eventi",
+     "2027-03-05T21:00:00+01:00",
+     "2027-03-05T21:00:00+01:00",
+     null,
+     1,
+     0,
+     "manual"
+    ]
+   ],
+   "auto_starting": []
+  },
+  {
+   "label": "avvio_gia_in_partenza",
+   "calls": [],
+   "session": null,
+   "sends": [],
+   "audit": [],
+   "events": [],
+   "auto_starting": [
+    900
+   ]
+  },
+  {
+   "label": "aggiornamento_parte",
+   "calls": [
+    "connect",
+    "listen"
+   ],
+   "session": {
+    "event_id": 1,
+    "guild_id": 1,
+    "title": "Serata",
+    "started_at": "2027-03-05T21:00:00+01:00",
+    "scheduled_event_id": 900,
+    "speaking_seconds": {},
+    "peak_participants": 1,
+    "audio_recovery_attempts": 0,
+    "channel_id": 555
+   },
+   "sends": [
+    "🎮 Evento programmato **Serata** avviato in <#555>.\nLink OBS: https://overlay.example.it/overlay/1?tema=classic#token-fisso"
+   ],
+   "audit": [
+    [
+     null,
+     "scheduled_live_event_started",
+     "scheduled_event",
+     "900",
+     null,
+     "{\"title\": \"Serata\", \"channel_id\": 555}"
+    ]
+   ],
+   "events": [
+    [
+     1,
+     1,
+     900,
+     "Serata",
+     555,
+     "Sala Eventi",
+     "2027-03-05T21:00:00+01:00",
+     "2027-03-05T21:00:00+01:00",
+     null,
+     1,
+     0,
+     "manual"
+    ]
+   ],
+   "auto_starting": []
+  },
+  {
+   "label": "aggiornamento_resta_attivo",
+   "calls": [],
+   "session": null,
+   "sends": [],
+   "audit": [],
+   "events": [],
+   "auto_starting": []
+  },
+  {
+   "label": "aggiornamento_completato",
+   "calls": [
+    "stop_listening",
+    "disconnect"
+   ],
+   "session": null,
+   "sends": [],
+   "audit": [
+    [
+     null,
+     "scheduled_live_event_started",
+     "scheduled_event",
+     "900",
+     null,
+     "{\"title\": \"in corso\", \"channel_id\": 555}"
+    ],
+    [
+     null,
+     "live_event_finished",
+     "live_event",
+     "1",
+     null,
+     "{\"reason\": \"completato\", \"title\": \"in corso\"}"
+    ]
+   ],
+   "events": [
+    [
+     1,
+     1,
+     900,
+     "in corso",
+     555,
+     "Sala Eventi",
+     "2027-03-05T21:00:00+01:00",
+     "2027-03-05T21:00:00+01:00",
+     "2027-03-05T21:00:00+01:00",
+     1,
+     1,
+     "completato"
+    ]
+   ],
+   "auto_starting": []
+  },
+  {
+   "label": "aggiornamento_annullato",
+   "calls": [
+    "stop_listening",
+    "disconnect"
+   ],
+   "session": null,
+   "sends": [],
+   "audit": [
+    [
+     null,
+     "scheduled_live_event_started",
+     "scheduled_event",
+     "900",
+     null,
+     "{\"title\": \"in corso\", \"channel_id\": 555}"
+    ],
+    [
+     null,
+     "live_event_finished",
+     "live_event",
+     "1",
+     null,
+     "{\"reason\": \"annullato\", \"title\": \"in corso\"}"
+    ]
+   ],
+   "events": [
+    [
+     1,
+     1,
+     900,
+     "in corso",
+     555,
+     "Sala Eventi",
+     "2027-03-05T21:00:00+01:00",
+     "2027-03-05T21:00:00+01:00",
+     "2027-03-05T21:00:00+01:00",
+     1,
+     1,
+     "annullato"
+    ]
+   ],
+   "auto_starting": []
+  },
+  {
+   "label": "aggiornamento_completato_altro_id",
+   "calls": [],
+   "session": {
+    "event_id": 1,
+    "guild_id": 1,
+    "title": "in corso",
+    "started_at": "2027-03-05T21:00:00+01:00",
+    "scheduled_event_id": 555,
+    "speaking_seconds": {},
+    "peak_participants": 1,
+    "audio_recovery_attempts": 0,
+    "channel_id": 555
+   },
+   "sends": [],
+   "audit": [
+    [
+     null,
+     "scheduled_live_event_started",
+     "scheduled_event",
+     "555",
+     null,
+     "{\"title\": \"in corso\", \"channel_id\": 555}"
+    ]
+   ],
+   "events": [
+    [
+     1,
+     1,
+     555,
+     "in corso",
+     555,
+     "Sala Eventi",
+     "2027-03-05T21:00:00+01:00",
+     "2027-03-05T21:00:00+01:00",
+     null,
+     1,
+     0,
+     "manual"
+    ]
+   ],
+   "auto_starting": []
+  },
+  {
+   "label": "aggiornamento_completato_senza_sessione",
+   "calls": [],
+   "session": null,
+   "sends": [],
+   "audit": [],
+   "events": [],
+   "auto_starting": []
+  },
+  {
+   "label": "aggiornamento_programmato_annullato",
+   "calls": [],
+   "session": {
+    "event_id": 1,
+    "guild_id": 1,
+    "title": "in corso",
+    "started_at": "2027-03-05T21:00:00+01:00",
+    "scheduled_event_id": 900,
+    "speaking_seconds": {},
+    "peak_participants": 1,
+    "audio_recovery_attempts": 0,
+    "channel_id": 555
+   },
+   "sends": [],
+   "audit": [
+    [
+     null,
+     "scheduled_live_event_started",
+     "scheduled_event",
+     "900",
+     null,
+     "{\"title\": \"in corso\", \"channel_id\": 555}"
+    ]
+   ],
+   "events": [
+    [
+     1,
+     1,
+     900,
+     "in corso",
+     555,
+     "Sala Eventi",
+     "2027-03-05T21:00:00+01:00",
+     "2027-03-05T21:00:00+01:00",
+     null,
+     1,
+     0,
+     "manual"
+    ]
+   ],
+   "auto_starting": []
+  },
+  {
+   "label": "aggiornamento_completato_non_era_attivo",
+   "calls": [],
+   "session": {
+    "event_id": 1,
+    "guild_id": 1,
+    "title": "in corso",
+    "started_at": "2027-03-05T21:00:00+01:00",
+    "scheduled_event_id": 900,
+    "speaking_seconds": {},
+    "peak_participants": 1,
+    "audio_recovery_attempts": 0,
+    "channel_id": 555
+   },
+   "sends": [],
+   "audit": [
+    [
+     null,
+     "scheduled_live_event_started",
+     "scheduled_event",
+     "900",
+     null,
+     "{\"title\": \"in corso\", \"channel_id\": 555}"
+    ]
+   ],
+   "events": [
+    [
+     1,
+     1,
+     900,
+     "in corso",
+     555,
+     "Sala Eventi",
+     "2027-03-05T21:00:00+01:00",
+     "2027-03-05T21:00:00+01:00",
+     null,
+     1,
+     0,
+     "manual"
+    ]
+   ],
+   "auto_starting": []
+  },
+  {
+   "label": "eliminato",
+   "calls": [
+    "stop_listening",
+    "disconnect"
+   ],
+   "session": null,
+   "sends": [],
+   "audit": [
+    [
+     null,
+     "scheduled_live_event_started",
+     "scheduled_event",
+     "900",
+     null,
+     "{\"title\": \"in corso\", \"channel_id\": 555}"
+    ],
+    [
+     null,
+     "live_event_finished",
+     "live_event",
+     "1",
+     null,
+     "{\"reason\": \"eliminato\", \"title\": \"in corso\"}"
+    ]
+   ],
+   "events": [
+    [
+     1,
+     1,
+     900,
+     "in corso",
+     555,
+     "Sala Eventi",
+     "2027-03-05T21:00:00+01:00",
+     "2027-03-05T21:00:00+01:00",
+     "2027-03-05T21:00:00+01:00",
+     1,
+     1,
+     "eliminato"
+    ]
+   ],
+   "auto_starting": []
+  },
+  {
+   "label": "eliminato_altro_id",
+   "calls": [],
+   "session": {
+    "event_id": 1,
+    "guild_id": 1,
+    "title": "in corso",
+    "started_at": "2027-03-05T21:00:00+01:00",
+    "scheduled_event_id": 900,
+    "speaking_seconds": {},
+    "peak_participants": 1,
+    "audio_recovery_attempts": 0,
+    "channel_id": 555
+   },
+   "sends": [],
+   "audit": [
+    [
+     null,
+     "scheduled_live_event_started",
+     "scheduled_event",
+     "900",
+     null,
+     "{\"title\": \"in corso\", \"channel_id\": 555}"
+    ]
+   ],
+   "events": [
+    [
+     1,
+     1,
+     900,
+     "in corso",
+     555,
+     "Sala Eventi",
+     "2027-03-05T21:00:00+01:00",
+     "2027-03-05T21:00:00+01:00",
+     null,
+     1,
+     0,
+     "manual"
+    ]
+   ],
+   "auto_starting": []
+  },
+  {
+   "label": "eliminato_senza_sessione",
+   "calls": [],
+   "session": null,
+   "sends": [],
+   "audit": [],
+   "events": [],
+   "auto_starting": []
+  },
+  {
+   "label": "pronto",
+   "calls": [
+    "connect",
+    "listen"
+   ],
+   "session": {
+    "event_id": 1,
+    "guild_id": 1,
+    "title": "Serata",
+    "started_at": "2027-03-05T21:00:00+01:00",
+    "scheduled_event_id": 900,
+    "speaking_seconds": {},
+    "peak_participants": 1,
+    "audio_recovery_attempts": 0,
+    "channel_id": 555
+   },
+   "sends": [
+    "🎮 Evento programmato **Serata** avviato in <#555>.\nLink OBS: https://overlay.example.it/overlay/1?tema=classic#token-fisso"
+   ],
+   "audit": [
+    [
+     null,
+     "scheduled_live_event_started",
+     "scheduled_event",
+     "900",
+     null,
+     "{\"title\": \"Serata\", \"channel_id\": 555}"
+    ]
+   ],
+   "events": [
+    [
+     1,
+     1,
+     900,
+     "Serata",
+     555,
+     "Sala Eventi",
+     "2027-03-05T21:00:00+01:00",
+     "2027-03-05T21:00:00+01:00",
+     null,
+     1,
+     0,
+     "manual"
+    ]
+   ],
+   "auto_starting": []
+  }
+ ],
+ "loop": {
+  "steps": [
+   {
+    "after": "parla_10",
+    "session": {
+     "event_id": 1,
+     "guild_id": 1,
+     "title": "🎮 Game Night",
+     "started_at": "2027-03-05T21:00:00+01:00",
+     "scheduled_event_id": null,
+     "speaking_seconds": {
+      "10": 0.25
+     },
+     "peak_participants": 3,
+     "audio_recovery_attempts": 0,
+     "channel_id": 555
+    },
+    "payloads": [
+     1,
+     1
+    ],
+    "last_payload": {
+     "type": "event",
+     "active": true,
+     "title": "🎮 Game Night",
+     "channel": "Sala Eventi",
+     "started_at": "2027-03-05T21:00:00+01:00",
+     "participant_count": 3,
+     "participants": [
+      {
+       "id": 10,
+       "name": "utente10",
+       "avatar": "https://cdn/10.png",
+       "speaking": true,
+       "volume": 0.5,
+       "level": "🌱 Nuovo",
+       "streak": 0,
+       "wins": 0
+      },
+      {
+       "id": 11,
+       "name": "utente11",
+       "avatar": "https://cdn/11.png",
+       "speaking": false,
+       "volume": 0.0,
+       "level": "🌱 Nuovo",
+       "streak": 0,
+       "wins": 0
+      },
+      {
+       "id": 12,
+       "name": "utente12",
+       "avatar": "https://cdn/12.png",
+       "speaking": false,
+       "volume": 0.0,
+       "level": "🌱 Nuovo",
+       "streak": 0,
+       "wins": 0
+      }
+     ],
+     "main_speaker_id": 10
+    },
+    "persisted": {},
+    "disconnected": false,
+    "events": [
+     [
+      1,
+      "2027-03-05T21:00:00+01:00",
+      null,
+      "manual"
+     ]
+    ],
+    "participants": [
+     [
+      1,
+      10,
+      0.0
+     ],
+     [
+      1,
+      11,
+      0.0
+     ],
+     [
+      1,
+      12,
+      0.0
+     ]
+    ]
+   },
+   {
+    "after": "parlano_10_11",
+    "session": {
+     "event_id": 1,
+     "guild_id": 1,
+     "title": "🎮 Game Night",
+     "started_at": "2027-03-05T21:00:00+01:00",
+     "scheduled_event_id": null,
+     "speaking_seconds": {
+      "10": 0.5,
+      "11": 0.25
+     },
+     "peak_participants": 3,
+     "audio_recovery_attempts": 0,
+     "channel_id": 555
+    },
+    "payloads": [
+     2,
+     2
+    ],
+    "last_payload": {
+     "type": "event",
+     "active": true,
+     "title": "🎮 Game Night",
+     "channel": "Sala Eventi",
+     "started_at": "2027-03-05T21:00:00+01:00",
+     "participant_count": 3,
+     "participants": [
+      {
+       "id": 10,
+       "name": "utente10",
+       "avatar": "https://cdn/10.png",
+       "speaking": true,
+       "volume": 0.5,
+       "level": "🌱 Nuovo",
+       "streak": 0,
+       "wins": 0
+      },
+      {
+       "id": 11,
+       "name": "utente11",
+       "avatar": "https://cdn/11.png",
+       "speaking": true,
+       "volume": 0.2,
+       "level": "🌱 Nuovo",
+       "streak": 0,
+       "wins": 0
+      },
+      {
+       "id": 12,
+       "name": "utente12",
+       "avatar": "https://cdn/12.png",
+       "speaking": false,
+       "volume": 0.0,
+       "level": "🌱 Nuovo",
+       "streak": 0,
+       "wins": 0
+      }
+     ],
+     "main_speaker_id": 10
+    },
+    "persisted": {},
+    "disconnected": false,
+    "events": [
+     [
+      1,
+      "2027-03-05T21:00:00+01:00",
+      null,
+      "manual"
+     ]
+    ],
+    "participants": [
+     [
+      1,
+      10,
+      0.0
+     ],
+     [
+      1,
+      11,
+      0.0
+     ],
+     [
+      1,
+      12,
+      0.0
+     ]
+    ]
+   },
+   {
+    "after": "silenzio",
+    "session": {
+     "event_id": 1,
+     "guild_id": 1,
+     "title": "🎮 Game Night",
+     "started_at": "2027-03-05T21:00:00+01:00",
+     "scheduled_event_id": null,
+     "speaking_seconds": {
+      "10": 0.5,
+      "11": 0.25
+     },
+     "peak_participants": 3,
+     "audio_recovery_attempts": 0,
+     "channel_id": 555
+    },
+    "payloads": [
+     3,
+     3
+    ],
+    "last_payload": {
+     "type": "event",
+     "active": true,
+     "title": "🎮 Game Night",
+     "channel": "Sala Eventi",
+     "started_at": "2027-03-05T21:00:00+01:00",
+     "participant_count": 3,
+     "participants": [
+      {
+       "id": 10,
+       "name": "utente10",
+       "avatar": "https://cdn/10.png",
+       "speaking": false,
+       "volume": 0.0,
+       "level": "🌱 Nuovo",
+       "streak": 0,
+       "wins": 0
+      },
+      {
+       "id": 11,
+       "name": "utente11",
+       "avatar": "https://cdn/11.png",
+       "speaking": false,
+       "volume": 0.0,
+       "level": "🌱 Nuovo",
+       "streak": 0,
+       "wins": 0
+      },
+      {
+       "id": 12,
+       "name": "utente12",
+       "avatar": "https://cdn/12.png",
+       "speaking": false,
+       "volume": 0.0,
+       "level": "🌱 Nuovo",
+       "streak": 0,
+       "wins": 0
+      }
+     ],
+     "main_speaker_id": null
+    },
+    "persisted": {},
+    "disconnected": false,
+    "events": [
+     [
+      1,
+      "2027-03-05T21:00:00+01:00",
+      null,
+      "manual"
+     ]
+    ],
+    "participants": [
+     [
+      1,
+      10,
+      0.0
+     ],
+     [
+      1,
+      11,
+      0.0
+     ],
+     [
+      1,
+      12,
+      0.0
+     ]
+    ]
+   },
+   {
+    "after": "salto_lungo_limitato_a_un_secondo",
+    "session": {
+     "event_id": 1,
+     "guild_id": 1,
+     "title": "🎮 Game Night",
+     "started_at": "2027-03-05T21:00:00+01:00",
+     "scheduled_event_id": null,
+     "speaking_seconds": {
+      "10": 0.5,
+      "11": 0.25,
+      "12": 1.0
+     },
+     "peak_participants": 3,
+     "audio_recovery_attempts": 0,
+     "channel_id": 555
+    },
+    "payloads": [
+     4,
+     4
+    ],
+    "last_payload": {
+     "type": "event",
+     "active": true,
+     "title": "🎮 Game Night",
+     "channel": "Sala Eventi",
+     "started_at": "2027-03-05T21:00:00+01:00",
+     "participant_count": 3,
+     "participants": [
+      {
+       "id": 12,
+       "name": "utente12",
+       "avatar": "https://cdn/12.png",
+       "speaking": true,
+       "volume": 0.9,
+       "level": "🌱 Nuovo",
+       "streak": 0,
+       "wins": 0
+      },
+      {
+       "id": 10,
+       "name": "utente10",
+       "avatar": "https://cdn/10.png",
+       "speaking": false,
+       "volume": 0.0,
+       "level": "🌱 Nuovo",
+       "streak": 0,
+       "wins": 0
+      },
+      {
+       "id": 11,
+       "name": "utente11",
+       "avatar": "https://cdn/11.png",
+       "speaking": false,
+       "volume": 0.0,
+       "level": "🌱 Nuovo",
+       "streak": 0,
+       "wins": 0
+      }
+     ],
+     "main_speaker_id": 12
+    },
+    "persisted": {},
+    "disconnected": false,
+    "events": [
+     [
+      1,
+      "2027-03-05T21:00:00+01:00",
+      null,
+      "manual"
+     ]
+    ],
+    "participants": [
+     [
+      1,
+      10,
+      0.0
+     ],
+     [
+      1,
+      11,
+      0.0
+     ],
+     [
+      1,
+      12,
+      0.0
+     ]
+    ]
+   },
+   {
+    "after": "nessun_tempo_trascorso",
+    "session": {
+     "event_id": 1,
+     "guild_id": 1,
+     "title": "🎮 Game Night",
+     "started_at": "2027-03-05T21:00:00+01:00",
+     "scheduled_event_id": null,
+     "speaking_seconds": {
+      "10": 0.5,
+      "11": 0.25,
+      "12": 1.0
+     },
+     "peak_participants": 3,
+     "audio_recovery_attempts": 0,
+     "channel_id": 555
+    },
+    "payloads": [
+     5,
+     5
+    ],
+    "last_payload": {
+     "type": "event",
+     "active": true,
+     "title": "🎮 Game Night",
+     "channel": "Sala Eventi",
+     "started_at": "2027-03-05T21:00:00+01:00",
+     "participant_count": 3,
+     "participants": [
+      {
+       "id": 12,
+       "name": "utente12",
+       "avatar": "https://cdn/12.png",
+       "speaking": true,
+       "volume": 0.9,
+       "level": "🌱 Nuovo",
+       "streak": 0,
+       "wins": 0
+      },
+      {
+       "id": 10,
+       "name": "utente10",
+       "avatar": "https://cdn/10.png",
+       "speaking": false,
+       "volume": 0.0,
+       "level": "🌱 Nuovo",
+       "streak": 0,
+       "wins": 0
+      },
+      {
+       "id": 11,
+       "name": "utente11",
+       "avatar": "https://cdn/11.png",
+       "speaking": false,
+       "volume": 0.0,
+       "level": "🌱 Nuovo",
+       "streak": 0,
+       "wins": 0
+      }
+     ],
+     "main_speaker_id": 12
+    },
+    "persisted": {},
+    "disconnected": false,
+    "events": [
+     [
+      1,
+      "2027-03-05T21:00:00+01:00",
+      null,
+      "manual"
+     ]
+    ],
+    "participants": [
+     [
+      1,
+      10,
+      0.0
+     ],
+     [
+      1,
+      11,
+      0.0
+     ],
+     [
+      1,
+      12,
+      0.0
+     ]
+    ]
+   },
+   {
+    "after": "volume_oltre_uno",
+    "session": {
+     "event_id": 1,
+     "guild_id": 1,
+     "title": "🎮 Game Night",
+     "started_at": "2027-03-05T21:00:00+01:00",
+     "scheduled_event_id": null,
+     "speaking_seconds": {
+      "10": 0.75,
+      "11": 0.25,
+      "12": 1.0
+     },
+     "peak_participants": 3,
+     "audio_recovery_attempts": 0,
+     "channel_id": 555
+    },
+    "payloads": [
+     6,
+     6
+    ],
+    "last_payload": {
+     "type": "event",
+     "active": true,
+     "title": "🎮 Game Night",
+     "channel": "Sala Eventi",
+     "started_at": "2027-03-05T21:00:00+01:00",
+     "participant_count": 3,
+     "participants": [
+      {
+       "id": 10,
+       "name": "utente10",
+       "avatar": "https://cdn/10.png",
+       "speaking": true,
+       "volume": 1.0,
+       "level": "🌱 Nuovo",
+       "streak": 0,
+       "wins": 0
+      },
+      {
+       "id": 11,
+       "name": "utente11",
+       "avatar": "https://cdn/11.png",
+       "speaking": false,
+       "volume": 0.0,
+       "level": "🌱 Nuovo",
+       "streak": 0,
+       "wins": 0
+      },
+      {
+       "id": 12,
+       "name": "utente12",
+       "avatar": "https://cdn/12.png",
+       "speaking": false,
+       "volume": 0.0,
+       "level": "🌱 Nuovo",
+       "streak": 0,
+       "wins": 0
+      }
+     ],
+     "main_speaker_id": 10
+    },
+    "persisted": {},
+    "disconnected": false,
+    "events": [
+     [
+      1,
+      "2027-03-05T21:00:00+01:00",
+      null,
+      "manual"
+     ]
+    ],
+    "participants": [
+     [
+      1,
+      10,
+      0.0
+     ],
+     [
+      1,
+      11,
+      0.0
+     ],
+     [
+      1,
+      12,
+      0.0
+     ]
+    ]
+   },
+   {
+    "after": "salto_10s",
+    "session": {
+     "event_id": 1,
+     "guild_id": 1,
+     "title": "🎮 Game Night",
+     "started_at": "2027-03-05T21:00:00+01:00",
+     "scheduled_event_id": null,
+     "speaking_seconds": {
+      "10": 1.75,
+      "11": 0.25,
+      "12": 1.0
+     },
+     "peak_participants": 3,
+     "audio_recovery_attempts": 0,
+     "channel_id": 555
+    },
+    "payloads": [
+     7,
+     7
+    ],
+    "last_payload": {
+     "type": "event",
+     "active": true,
+     "title": "🎮 Game Night",
+     "channel": "Sala Eventi",
+     "started_at": "2027-03-05T21:00:00+01:00",
+     "participant_count": 3,
+     "participants": [
+      {
+       "id": 10,
+       "name": "utente10",
+       "avatar": "https://cdn/10.png",
+       "speaking": true,
+       "volume": 0.1,
+       "level": "🌱 Nuovo",
+       "streak": 0,
+       "wins": 0
+      },
+      {
+       "id": 11,
+       "name": "utente11",
+       "avatar": "https://cdn/11.png",
+       "speaking": false,
+       "volume": 0.0,
+       "level": "🌱 Nuovo",
+       "streak": 0,
+       "wins": 0
+      },
+      {
+       "id": 12,
+       "name": "utente12",
+       "avatar": "https://cdn/12.png",
+       "speaking": false,
+       "volume": 0.0,
+       "level": "🌱 Nuovo",
+       "streak": 0,
+       "wins": 0
+      }
+     ],
+     "main_speaker_id": 10
+    },
+    "persisted": {},
+    "disconnected": false,
+    "events": [
+     [
+      1,
+      "2027-03-05T21:00:00+01:00",
+      null,
+      "manual"
+     ]
+    ],
+    "participants": [
+     [
+      1,
+      10,
+      0.0
+     ],
+     [
+      1,
+      11,
+      0.0
+     ],
+     [
+      1,
+      12,
+      0.0
+     ]
+    ]
+   },
+   {
+    "after": "prima_del_salvataggio",
+    "session": {
+     "event_id": 1,
+     "guild_id": 1,
+     "title": "🎮 Game Night",
+     "started_at": "2027-03-05T21:00:00+01:00",
+     "scheduled_event_id": null,
+     "speaking_seconds": {
+      "10": 2.75,
+      "11": 0.25,
+      "12": 1.0
+     },
+     "peak_participants": 3,
+     "audio_recovery_attempts": 0,
+     "channel_id": 555
+    },
+    "payloads": [
+     8,
+     8
+    ],
+    "last_payload": {
+     "type": "event",
+     "active": true,
+     "title": "🎮 Game Night",
+     "channel": "Sala Eventi",
+     "started_at": "2027-03-05T21:00:00+01:00",
+     "participant_count": 3,
+     "participants": [
+      {
+       "id": 10,
+       "name": "utente10",
+       "avatar": "https://cdn/10.png",
+       "speaking": true,
+       "volume": 0.1,
+       "level": "🌱 Nuovo",
+       "streak": 0,
+       "wins": 0
+      },
+      {
+       "id": 11,
+       "name": "utente11",
+       "avatar": "https://cdn/11.png",
+       "speaking": false,
+       "volume": 0.0,
+       "level": "🌱 Nuovo",
+       "streak": 0,
+       "wins": 0
+      },
+      {
+       "id": 12,
+       "name": "utente12",
+       "avatar": "https://cdn/12.png",
+       "speaking": false,
+       "volume": 0.0,
+       "level": "🌱 Nuovo",
+       "streak": 0,
+       "wins": 0
+      }
+     ],
+     "main_speaker_id": 10
+    },
+    "persisted": {
+     "10": 2.75,
+     "11": 0.25,
+     "12": 1.0
+    },
+    "disconnected": false,
+    "events": [
+     [
+      1,
+      "2027-03-05T21:00:15+01:00",
+      null,
+      "manual"
+     ]
+    ],
+    "participants": [
+     [
+      1,
+      10,
+      2.75
+     ],
+     [
+      1,
+      11,
+      0.25
+     ],
+     [
+      1,
+      12,
+      1.0
+     ]
+    ]
+   },
+   {
+    "after": "salvataggio_a_15s",
+    "session": {
+     "event_id": 1,
+     "guild_id": 1,
+     "title": "🎮 Game Night",
+     "started_at": "2027-03-05T21:00:00+01:00",
+     "scheduled_event_id": null,
+     "speaking_seconds": {
+      "10": 2.75,
+      "11": 1.25,
+      "12": 1.0
+     },
+     "peak_participants": 3,
+     "audio_recovery_attempts": 0,
+     "channel_id": 555
+    },
+    "payloads": [
+     9,
+     9
+    ],
+    "last_payload": {
+     "type": "event",
+     "active": true,
+     "title": "🎮 Game Night",
+     "channel": "Sala Eventi",
+     "started_at": "2027-03-05T21:00:00+01:00",
+     "participant_count": 3,
+     "participants": [
+      {
+       "id": 11,
+       "name": "utente11",
+       "avatar": "https://cdn/11.png",
+       "speaking": true,
+       "volume": 0.3,
+       "level": "🌱 Nuovo",
+       "streak": 0,
+       "wins": 0
+      },
+      {
+       "id": 10,
+       "name": "utente10",
+       "avatar": "https://cdn/10.png",
+       "speaking": false,
+       "volume": 0.0,
+       "level": "🌱 Nuovo",
+       "streak": 0,
+       "wins": 0
+      },
+      {
+       "id": 12,
+       "name": "utente12",
+       "avatar": "https://cdn/12.png",
+       "speaking": false,
+       "volume": 0.0,
+       "level": "🌱 Nuovo",
+       "streak": 0,
+       "wins": 0
+      }
+     ],
+     "main_speaker_id": 11
+    },
+    "persisted": {
+     "10": 2.75,
+     "11": 0.25,
+     "12": 1.0
+    },
+    "disconnected": false,
+    "events": [
+     [
+      1,
+      "2027-03-05T21:00:15+01:00",
+      null,
+      "manual"
+     ]
+    ],
+    "participants": [
+     [
+      1,
+      10,
+      2.75
+     ],
+     [
+      1,
+      11,
+      0.25
+     ],
+     [
+      1,
+      12,
+      1.0
+     ]
+    ]
+   },
+   {
+    "after": "dopo_salvataggio",
+    "session": {
+     "event_id": 1,
+     "guild_id": 1,
+     "title": "🎮 Game Night",
+     "started_at": "2027-03-05T21:00:00+01:00",
+     "scheduled_event_id": null,
+     "speaking_seconds": {
+      "10": 2.75,
+      "11": 1.5,
+      "12": 1.0
+     },
+     "peak_participants": 3,
+     "audio_recovery_attempts": 0,
+     "channel_id": 555
+    },
+    "payloads": [
+     10,
+     10
+    ],
+    "last_payload": {
+     "type": "event",
+     "active": true,
+     "title": "🎮 Game Night",
+     "channel": "Sala Eventi",
+     "started_at": "2027-03-05T21:00:00+01:00",
+     "participant_count": 3,
+     "participants": [
+      {
+       "id": 11,
+       "name": "utente11",
+       "avatar": "https://cdn/11.png",
+       "speaking": true,
+       "volume": 0.3,
+       "level": "🌱 Nuovo",
+       "streak": 0,
+       "wins": 0
+      },
+      {
+       "id": 10,
+       "name": "utente10",
+       "avatar": "https://cdn/10.png",
+       "speaking": false,
+       "volume": 0.0,
+       "level": "🌱 Nuovo",
+       "streak": 0,
+       "wins": 0
+      },
+      {
+       "id": 12,
+       "name": "utente12",
+       "avatar": "https://cdn/12.png",
+       "speaking": false,
+       "volume": 0.0,
+       "level": "🌱 Nuovo",
+       "streak": 0,
+       "wins": 0
+      }
+     ],
+     "main_speaker_id": 11
+    },
+    "persisted": {
+     "10": 2.75,
+     "11": 0.25,
+     "12": 1.0
+    },
+    "disconnected": false,
+    "events": [
+     [
+      1,
+      "2027-03-05T21:00:15+01:00",
+      null,
+      "manual"
+     ]
+    ],
+    "participants": [
+     [
+      1,
+      10,
+      2.75
+     ],
+     [
+      1,
+      11,
+      0.25
+     ],
+     [
+      1,
+      12,
+      1.0
+     ]
+    ]
+   },
+   {
+    "after": "disconnesso",
+    "session": {
+     "event_id": 1,
+     "guild_id": 1,
+     "title": "🎮 Game Night",
+     "started_at": "2027-03-05T21:00:00+01:00",
+     "scheduled_event_id": null,
+     "speaking_seconds": {
+      "10": 2.75,
+      "11": 1.75,
+      "12": 1.0
+     },
+     "peak_participants": 3,
+     "audio_recovery_attempts": 0,
+     "channel_id": 555
+    },
+    "payloads": [
+     10,
+     10
+    ],
+    "last_payload": {
+     "type": "event",
+     "active": true,
+     "title": "🎮 Game Night",
+     "channel": "Sala Eventi",
+     "started_at": "2027-03-05T21:00:00+01:00",
+     "participant_count": 3,
+     "participants": [
+      {
+       "id": 11,
+       "name": "utente11",
+       "avatar": "https://cdn/11.png",
+       "speaking": true,
+       "volume": 0.3,
+       "level": "🌱 Nuovo",
+       "streak": 0,
+       "wins": 0
+      },
+      {
+       "id": 10,
+       "name": "utente10",
+       "avatar": "https://cdn/10.png",
+       "speaking": false,
+       "volume": 0.0,
+       "level": "🌱 Nuovo",
+       "streak": 0,
+       "wins": 0
+      },
+      {
+       "id": 12,
+       "name": "utente12",
+       "avatar": "https://cdn/12.png",
+       "speaking": false,
+       "volume": 0.0,
+       "level": "🌱 Nuovo",
+       "streak": 0,
+       "wins": 0
+      }
+     ],
+     "main_speaker_id": 11
+    },
+    "persisted": {
+     "10": 2.75,
+     "11": 0.25,
+     "12": 1.0
+    },
+    "disconnected": true,
+    "events": [
+     [
+      1,
+      "2027-03-05T21:00:15+01:00",
+      null,
+      "manual"
+     ]
+    ],
+    "participants": [
+     [
+      1,
+      10,
+      2.75
+     ],
+     [
+      1,
+      11,
+      0.25
+     ],
+     [
+      1,
+      12,
+      1.0
+     ]
+    ]
+   },
+   {
+    "after": "disconnesso_5s",
+    "session": {
+     "event_id": 1,
+     "guild_id": 1,
+     "title": "🎮 Game Night",
+     "started_at": "2027-03-05T21:00:00+01:00",
+     "scheduled_event_id": null,
+     "speaking_seconds": {
+      "10": 2.75,
+      "11": 2.75,
+      "12": 1.0
+     },
+     "peak_participants": 3,
+     "audio_recovery_attempts": 0,
+     "channel_id": 555
+    },
+    "payloads": [
+     10,
+     10
+    ],
+    "last_payload": {
+     "type": "event",
+     "active": true,
+     "title": "🎮 Game Night",
+     "channel": "Sala Eventi",
+     "started_at": "2027-03-05T21:00:00+01:00",
+     "participant_count": 3,
+     "participants": [
+      {
+       "id": 11,
+       "name": "utente11",
+       "avatar": "https://cdn/11.png",
+       "speaking": true,
+       "volume": 0.3,
+       "level": "🌱 Nuovo",
+       "streak": 0,
+       "wins": 0
+      },
+      {
+       "id": 10,
+       "name": "utente10",
+       "avatar": "https://cdn/10.png",
+       "speaking": false,
+       "volume": 0.0,
+       "level": "🌱 Nuovo",
+       "streak": 0,
+       "wins": 0
+      },
+      {
+       "id": 12,
+       "name": "utente12",
+       "avatar": "https://cdn/12.png",
+       "speaking": false,
+       "volume": 0.0,
+       "level": "🌱 Nuovo",
+       "streak": 0,
+       "wins": 0
+      }
+     ],
+     "main_speaker_id": 11
+    },
+    "persisted": {
+     "10": 2.75,
+     "11": 0.25,
+     "12": 1.0
+    },
+    "disconnected": true,
+    "events": [
+     [
+      1,
+      "2027-03-05T21:00:15+01:00",
+      null,
+      "manual"
+     ]
+    ],
+    "participants": [
+     [
+      1,
+      10,
+      2.75
+     ],
+     [
+      1,
+      11,
+      0.25
+     ],
+     [
+      1,
+      12,
+      1.0
+     ]
+    ]
+   },
+   {
+    "after": "riconnesso_prima_della_tolleranza",
+    "session": {
+     "event_id": 1,
+     "guild_id": 1,
+     "title": "🎮 Game Night",
+     "started_at": "2027-03-05T21:00:00+01:00",
+     "scheduled_event_id": null,
+     "speaking_seconds": {
+      "10": 2.75,
+      "11": 3.75,
+      "12": 1.0
+     },
+     "peak_participants": 3,
+     "audio_recovery_attempts": 0,
+     "channel_id": 555
+    },
+    "payloads": [
+     11,
+     11
+    ],
+    "last_payload": {
+     "type": "event",
+     "active": true,
+     "title": "🎮 Game Night",
+     "channel": "Sala Eventi",
+     "started_at": "2027-03-05T21:00:00+01:00",
+     "participant_count": 3,
+     "participants": [
+      {
+       "id": 11,
+       "name": "utente11",
+       "avatar": "https://cdn/11.png",
+       "speaking": true,
+       "volume": 0.3,
+       "level": "🌱 Nuovo",
+       "streak": 0,
+       "wins": 0
+      },
+      {
+       "id": 10,
+       "name": "utente10",
+       "avatar": "https://cdn/10.png",
+       "speaking": false,
+       "volume": 0.0,
+       "level": "🌱 Nuovo",
+       "streak": 0,
+       "wins": 0
+      },
+      {
+       "id": 12,
+       "name": "utente12",
+       "avatar": "https://cdn/12.png",
+       "speaking": false,
+       "volume": 0.0,
+       "level": "🌱 Nuovo",
+       "streak": 0,
+       "wins": 0
+      }
+     ],
+     "main_speaker_id": 11
+    },
+    "persisted": {
+     "10": 2.75,
+     "11": 0.25,
+     "12": 1.0
+    },
+    "disconnected": false,
+    "events": [
+     [
+      1,
+      "2027-03-05T21:00:15+01:00",
+      null,
+      "manual"
+     ]
+    ],
+    "participants": [
+     [
+      1,
+      10,
+      2.75
+     ],
+     [
+      1,
+      11,
+      0.25
+     ],
+     [
+      1,
+      12,
+      1.0
+     ]
+    ]
+   },
+   {
+    "after": "disconnesso_di_nuovo",
+    "session": {
+     "event_id": 1,
+     "guild_id": 1,
+     "title": "🎮 Game Night",
+     "started_at": "2027-03-05T21:00:00+01:00",
+     "scheduled_event_id": null,
+     "speaking_seconds": {
+      "10": 2.75,
+      "11": 4.0,
+      "12": 1.0
+     },
+     "peak_participants": 3,
+     "audio_recovery_attempts": 0,
+     "channel_id": 555
+    },
+    "payloads": [
+     11,
+     11
+    ],
+    "last_payload": {
+     "type": "event",
+     "active": true,
+     "title": "🎮 Game Night",
+     "channel": "Sala Eventi",
+     "started_at": "2027-03-05T21:00:00+01:00",
+     "participant_count": 3,
+     "participants": [
+      {
+       "id": 11,
+       "name": "utente11",
+       "avatar": "https://cdn/11.png",
+       "speaking": true,
+       "volume": 0.3,
+       "level": "🌱 Nuovo",
+       "streak": 0,
+       "wins": 0
+      },
+      {
+       "id": 10,
+       "name": "utente10",
+       "avatar": "https://cdn/10.png",
+       "speaking": false,
+       "volume": 0.0,
+       "level": "🌱 Nuovo",
+       "streak": 0,
+       "wins": 0
+      },
+      {
+       "id": 12,
+       "name": "utente12",
+       "avatar": "https://cdn/12.png",
+       "speaking": false,
+       "volume": 0.0,
+       "level": "🌱 Nuovo",
+       "streak": 0,
+       "wins": 0
+      }
+     ],
+     "main_speaker_id": 11
+    },
+    "persisted": {
+     "10": 2.75,
+     "11": 0.25,
+     "12": 1.0
+    },
+    "disconnected": true,
+    "events": [
+     [
+      1,
+      "2027-03-05T21:00:15+01:00",
+      null,
+      "manual"
+     ]
+    ],
+    "participants": [
+     [
+      1,
+      10,
+      2.75
+     ],
+     [
+      1,
+      11,
+      0.25
+     ],
+     [
+      1,
+      12,
+      1.0
+     ]
+    ]
+   },
+   {
+    "after": "disconnesso_9s",
+    "session": {
+     "event_id": 1,
+     "guild_id": 1,
+     "title": "🎮 Game Night",
+     "started_at": "2027-03-05T21:00:00+01:00",
+     "scheduled_event_id": null,
+     "speaking_seconds": {
+      "10": 2.75,
+      "11": 5.0,
+      "12": 1.0
+     },
+     "peak_participants": 3,
+     "audio_recovery_attempts": 0,
+     "channel_id": 555
+    },
+    "payloads": [
+     11,
+     11
+    ],
+    "last_payload": {
+     "type": "event",
+     "active": true,
+     "title": "🎮 Game Night",
+     "channel": "Sala Eventi",
+     "started_at": "2027-03-05T21:00:00+01:00",
+     "participant_count": 3,
+     "participants": [
+      {
+       "id": 11,
+       "name": "utente11",
+       "avatar": "https://cdn/11.png",
+       "speaking": true,
+       "volume": 0.3,
+       "level": "🌱 Nuovo",
+       "streak": 0,
+       "wins": 0
+      },
+      {
+       "id": 10,
+       "name": "utente10",
+       "avatar": "https://cdn/10.png",
+       "speaking": false,
+       "volume": 0.0,
+       "level": "🌱 Nuovo",
+       "streak": 0,
+       "wins": 0
+      },
+      {
+       "id": 12,
+       "name": "utente12",
+       "avatar": "https://cdn/12.png",
+       "speaking": false,
+       "volume": 0.0,
+       "level": "🌱 Nuovo",
+       "streak": 0,
+       "wins": 0
+      }
+     ],
+     "main_speaker_id": 11
+    },
+    "persisted": {
+     "10": 2.75,
+     "11": 5.0,
+     "12": 1.0
+    },
+    "disconnected": true,
+    "events": [
+     [
+      1,
+      "2027-03-05T21:00:38.650000+01:00",
+      null,
+      "manual"
+     ]
+    ],
+    "participants": [
+     [
+      1,
+      10,
+      2.75
+     ],
+     [
+      1,
+      11,
+      5.0
+     ],
+     [
+      1,
+      12,
+      1.0
+     ]
+    ]
+   },
+   {
+    "after": "ancora_in_tolleranza",
+    "session": {
+     "event_id": 1,
+     "guild_id": 1,
+     "title": "🎮 Game Night",
+     "started_at": "2027-03-05T21:00:00+01:00",
+     "scheduled_event_id": null,
+     "speaking_seconds": {
+      "10": 2.75,
+      "11": 5.900000000000091,
+      "12": 1.0
+     },
+     "peak_participants": 3,
+     "audio_recovery_attempts": 0,
+     "channel_id": 555
+    },
+    "payloads": [
+     11,
+     11
+    ],
+    "last_payload": {
+     "type": "event",
+     "active": true,
+     "title": "🎮 Game Night",
+     "channel": "Sala Eventi",
+     "started_at": "2027-03-05T21:00:00+01:00",
+     "participant_count": 3,
+     "participants": [
+      {
+       "id": 11,
+       "name": "utente11",
+       "avatar": "https://cdn/11.png",
+       "speaking": true,
+       "volume": 0.3,
+       "level": "🌱 Nuovo",
+       "streak": 0,
+       "wins": 0
+      },
+      {
+       "id": 10,
+       "name": "utente10",
+       "avatar": "https://cdn/10.png",
+       "speaking": false,
+       "volume": 0.0,
+       "level": "🌱 Nuovo",
+       "streak": 0,
+       "wins": 0
+      },
+      {
+       "id": 12,
+       "name": "utente12",
+       "avatar": "https://cdn/12.png",
+       "speaking": false,
+       "volume": 0.0,
+       "level": "🌱 Nuovo",
+       "streak": 0,
+       "wins": 0
+      }
+     ],
+     "main_speaker_id": 11
+    },
+    "persisted": {
+     "10": 2.75,
+     "11": 5.0,
+     "12": 1.0
+    },
+    "disconnected": true,
+    "events": [
+     [
+      1,
+      "2027-03-05T21:00:38.650000+01:00",
+      null,
+      "manual"
+     ]
+    ],
+    "participants": [
+     [
+      1,
+      10,
+      2.75
+     ],
+     [
+      1,
+      11,
+      5.0
+     ],
+     [
+      1,
+      12,
+      1.0
+     ]
+    ]
+   },
+   {
+    "after": "tolleranza_scaduta",
+    "session": null,
+    "payloads": [
+     13,
+     13
+    ],
+    "last_payload": 1000,
+    "persisted": {
+     "10": 2.75,
+     "11": 5.0,
+     "12": 1.0
+    },
+    "disconnected": true,
+    "events": [
+     [
+      1,
+      "2027-03-05T21:00:39.750000+01:00",
+      "2027-03-05T21:00:39.750000+01:00",
+      "disconnessione"
+     ]
+    ],
+    "participants": [
+     [
+      1,
+      10,
+      2.75
+     ],
+     [
+      1,
+      11,
+      6.100000000000136
+     ],
+     [
+      1,
+      12,
+      1.0
+     ]
+    ]
+   }
+  ],
+  "final": {
+   "session": null,
+   "db": {
+    "events": [
+     [
+      1,
+      1,
+      null,
+      "🎮 Game Night",
+      555,
+      "Sala Eventi",
+      "2027-03-05T21:00:00+01:00",
+      "2027-03-05T21:00:39.750000+01:00",
+      "2027-03-05T21:00:39.750000+01:00",
+      3,
+      3,
+      "disconnessione"
+     ]
+    ],
+    "participants": [
+     [
+      1,
+      10,
+      null,
+      39,
+      2.75
+     ],
+     [
+      1,
+      11,
+      null,
+      39,
+      6.100000000000136
+     ],
+     [
+      1,
+      12,
+      null,
+      39,
+      1.0
+     ]
+    ],
+    "activity": [
+     [
+      "event_join",
+      1804276800
+     ],
+     [
+      "event_join",
+      1804276800
+     ],
+     [
+      "event_join",
+      1804276800
+     ]
+    ],
+    "audit": [
+     [
+      42,
+      "live_event_started",
+      "live_event",
+      "1",
+      null,
+      "{\"title\": \"🎮 Game Night\", \"channel_id\": 555}"
+     ],
+     [
+      null,
+      "live_event_finished",
+      "live_event",
+      "1",
+      null,
+      "{\"reason\": \"disconnessione\", \"title\": \"🎮 Game Night\"}"
+     ]
+    ],
+    "guild_setting": [
+     [
+      "1"
+     ]
+    ]
+   },
+   "client_out": [
+    [
+     "json",
+     {
+      "type": "event",
+      "active": true,
+      "title": "🎮 Game Night",
+      "channel": "Sala Eventi",
+      "started_at": "2027-03-05T21:00:00+01:00",
+      "participant_count": 3,
+      "participants": [
+       {
+        "id": 11,
+        "name": "utente11",
+        "avatar": "https://cdn/11.png",
+        "speaking": true,
+        "volume": 0.3,
+        "level": "🌱 Nuovo",
+        "streak": 0,
+        "wins": 0
+       },
+       {
+        "id": 10,
+        "name": "utente10",
+        "avatar": "https://cdn/10.png",
+        "speaking": false,
+        "volume": 0.0,
+        "level": "🌱 Nuovo",
+        "streak": 0,
+        "wins": 0
+       },
+       {
+        "id": 12,
+        "name": "utente12",
+        "avatar": "https://cdn/12.png",
+        "speaking": false,
+        "volume": 0.0,
+        "level": "🌱 Nuovo",
+        "streak": 0,
+        "wins": 0
+       }
+      ],
+      "main_speaker_id": 11
+     }
+    ],
+    [
+     "json",
+     {
+      "type": "status",
+      "active": false
+     }
+    ],
+    [
+     "close",
+     1000,
+     "Evento terminato"
+    ]
+   ],
+   "calls": [
+    "connect",
+    "listen",
+    "stop_listening",
+    "disconnect"
+   ]
+  },
+  "errors": {
+   "steps": [
+    {
+     "after": 1,
+     "active": true,
+     "payloads": 0,
+     "events": [
+      [
+       "manual"
+      ]
+     ]
+    },
+    {
+     "after": 2,
+     "active": true,
+     "payloads": 0,
+     "events": [
+      [
+       "manual"
+      ]
+     ]
+    },
+    {
+     "after": 3,
+     "active": true,
+     "payloads": 0,
+     "events": [
+      [
+       "manual"
+      ]
+     ]
+    },
+    {
+     "after": 4,
+     "active": true,
+     "payloads": 0,
+     "events": [
+      [
+       "manual"
+      ]
+     ]
+    },
+    {
+     "after": 5,
+     "active": true,
+     "payloads": 0,
+     "events": [
+      [
+       "manual"
+      ]
+     ]
+    },
+    {
+     "after": 6,
+     "active": true,
+     "payloads": 0,
+     "events": [
+      [
+       "manual"
+      ]
+     ]
+    },
+    {
+     "after": 7,
+     "active": true,
+     "payloads": 0,
+     "events": [
+      [
+       "manual"
+      ]
+     ]
+    },
+    {
+     "after": 8,
+     "active": true,
+     "payloads": 0,
+     "events": [
+      [
+       "manual"
+      ]
+     ]
+    },
+    {
+     "after": 9,
+     "active": true,
+     "payloads": 0,
+     "events": [
+      [
+       "manual"
+      ]
+     ]
+    },
+    {
+     "after": 10,
+     "active": true,
+     "payloads": 0,
+     "events": [
+      [
+       "manual"
+      ]
+     ]
+    },
+    {
+     "after": 11,
+     "active": true,
+     "payloads": 0,
+     "events": [
+      [
+       "manual"
+      ]
+     ]
+    },
+    {
+     "after": 12,
+     "active": true,
+     "payloads": 0,
+     "events": [
+      [
+       "manual"
+      ]
+     ]
+    },
+    {
+     "after": 13,
+     "active": true,
+     "payloads": 0,
+     "events": [
+      [
+       "manual"
+      ]
+     ]
+    },
+    {
+     "after": 14,
+     "active": true,
+     "payloads": 0,
+     "events": [
+      [
+       "manual"
+      ]
+     ]
+    },
+    {
+     "after": 15,
+     "active": true,
+     "payloads": 0,
+     "events": [
+      [
+       "manual"
+      ]
+     ]
+    },
+    {
+     "after": 16,
+     "active": true,
+     "payloads": 0,
+     "events": [
+      [
+       "manual"
+      ]
+     ]
+    },
+    {
+     "after": 17,
+     "active": true,
+     "payloads": 0,
+     "events": [
+      [
+       "manual"
+      ]
+     ]
+    },
+    {
+     "after": 18,
+     "active": true,
+     "payloads": 0,
+     "events": [
+      [
+       "manual"
+      ]
+     ]
+    },
+    {
+     "after": 19,
+     "active": true,
+     "payloads": 0,
+     "events": [
+      [
+       "manual"
+      ]
+     ]
+    },
+    {
+     "after": 20,
+     "active": true,
+     "payloads": 0,
+     "events": [
+      [
+       "manual"
+      ]
+     ]
+    },
+    {
+     "after": 21,
+     "active": true,
+     "payloads": 0,
+     "events": [
+      [
+       "manual"
+      ]
+     ]
+    },
+    {
+     "after": 22,
+     "active": true,
+     "payloads": 0,
+     "events": [
+      [
+       "manual"
+      ]
+     ]
+    },
+    {
+     "after": 23,
+     "active": true,
+     "payloads": 0,
+     "events": [
+      [
+       "manual"
+      ]
+     ]
+    },
+    {
+     "after": 24,
+     "active": true,
+     "payloads": 0,
+     "events": [
+      [
+       "manual"
+      ]
+     ]
+    },
+    {
+     "after": 25,
+     "active": true,
+     "payloads": 0,
+     "events": [
+      [
+       "manual"
+      ]
+     ]
+    },
+    {
+     "after": 26,
+     "active": true,
+     "payloads": 0,
+     "events": [
+      [
+       "manual"
+      ]
+     ]
+    },
+    {
+     "after": 27,
+     "active": true,
+     "payloads": 0,
+     "events": [
+      [
+       "manual"
+      ]
+     ]
+    },
+    {
+     "after": 28,
+     "active": true,
+     "payloads": 0,
+     "events": [
+      [
+       "manual"
+      ]
+     ]
+    },
+    {
+     "after": 29,
+     "active": true,
+     "payloads": 0,
+     "events": [
+      [
+       "manual"
+      ]
+     ]
+    },
+    {
+     "after": 30,
+     "active": true,
+     "payloads": 0,
+     "events": [
+      [
+       "manual"
+      ]
+     ]
+    },
+    {
+     "after": 31,
+     "active": true,
+     "payloads": 0,
+     "events": [
+      [
+       "manual"
+      ]
+     ]
+    },
+    {
+     "after": 32,
+     "active": true,
+     "payloads": 0,
+     "events": [
+      [
+       "manual"
+      ]
+     ]
+    },
+    {
+     "after": 33,
+     "active": true,
+     "payloads": 0,
+     "events": [
+      [
+       "manual"
+      ]
+     ]
+    },
+    {
+     "after": 34,
+     "active": true,
+     "payloads": 0,
+     "events": [
+      [
+       "manual"
+      ]
+     ]
+    },
+    {
+     "after": 35,
+     "active": true,
+     "payloads": 0,
+     "events": [
+      [
+       "manual"
+      ]
+     ]
+    },
+    {
+     "after": 36,
+     "active": true,
+     "payloads": 0,
+     "events": [
+      [
+       "manual"
+      ]
+     ]
+    },
+    {
+     "after": 37,
+     "active": true,
+     "payloads": 0,
+     "events": [
+      [
+       "manual"
+      ]
+     ]
+    },
+    {
+     "after": 38,
+     "active": true,
+     "payloads": 0,
+     "events": [
+      [
+       "manual"
+      ]
+     ]
+    },
+    {
+     "after": 39,
+     "active": true,
+     "payloads": 0,
+     "events": [
+      [
+       "manual"
+      ]
+     ]
+    },
+    {
+     "after": 40,
+     "active": false,
+     "payloads": 2,
+     "events": [
+      [
+       "errore"
+      ]
+     ]
+    },
+    {
+     "after": 41,
+     "active": false,
+     "payloads": 2,
+     "events": [
+      [
+       "errore"
+      ]
+     ]
+    },
+    {
+     "after": 42,
+     "active": false,
+     "payloads": 2,
+     "events": [
+      [
+       "errore"
+      ]
+     ]
+    },
+    {
+     "after": 43,
+     "active": false,
+     "payloads": 2,
+     "events": [
+      [
+       "errore"
+      ]
+     ]
+    },
+    {
+     "after": 44,
+     "active": false,
+     "payloads": 2,
+     "events": [
+      [
+       "errore"
+      ]
+     ]
+    },
+    {
+     "after": 45,
+     "active": false,
+     "payloads": 2,
+     "events": [
+      [
+       "errore"
+      ]
+     ]
+    }
+   ],
+   "final": {
+    "session": null,
+    "db": {
+     "events": [
+      [
+       1,
+       1,
+       null,
+       "🎮 Game Night",
+       555,
+       "Sala Eventi",
+       "2027-03-05T21:00:00+01:00",
+       "2027-03-05T21:00:10+01:00",
+       "2027-03-05T21:00:10+01:00",
+       2,
+       2,
+       "errore"
+      ]
+     ],
+     "participants": [
+      [
+       1,
+       10,
+       null,
+       10,
+       0.0
+      ],
+      [
+       1,
+       11,
+       null,
+       10,
+       0.0
+      ]
+     ],
+     "activity": [
+      [
+       "event_join",
+       1804276800
+      ],
+      [
+       "event_join",
+       1804276800
+      ]
+     ],
+     "audit": [
+      [
+       42,
+       "live_event_started",
+       "live_event",
+       "1",
+       null,
+       "{\"title\": \"🎮 Game Night\", \"channel_id\": 555}"
+      ],
+      [
+       null,
+       "live_event_finished",
+       "live_event",
+       "1",
+       null,
+       "{\"reason\": \"errore\", \"title\": \"🎮 Game Night\"}"
+      ]
+     ],
+     "guild_setting": [
+      [
+       "1"
+      ]
+     ]
+    },
+    "client_out": [
+     [
+      "json",
+      {
+       "type": "status",
+       "active": false
+      }
+     ],
+     [
+      "close",
+      1000,
+      "Evento terminato"
+     ]
+    ]
+   }
+  }
+ },
+ "recovery": [
+  {
+   "label": "tentativo_0",
+   "sleep": 1,
+   "calls": [
+    "listen"
+   ],
+   "attempts": 1
+  },
+  {
+   "label": "tentativo_1",
+   "sleep": 2,
+   "calls": [
+    "listen"
+   ],
+   "attempts": 2
+  },
+  {
+   "label": "tentativo_2",
+   "sleep": 4,
+   "calls": [
+    "listen"
+   ],
+   "attempts": 3
+  },
+  {
+   "label": "tentativo_3",
+   "sleep": 8,
+   "calls": [
+    "listen"
+   ],
+   "attempts": 4
+  },
+  {
+   "label": "tentativo_4",
+   "sleep": 16,
+   "calls": [
+    "listen"
+   ],
+   "attempts": 5
+  },
+  {
+   "label": "tentativo_5",
+   "sleep": 30,
+   "calls": [
+    "listen"
+   ],
+   "attempts": 6
+  },
+  {
+   "label": "tentativo_6",
+   "sleep": 30,
+   "calls": [
+    "listen"
+   ],
+   "attempts": 7
+  },
+  {
+   "label": "tentativo_9",
+   "sleep": 30,
+   "calls": [
+    "listen"
+   ],
+   "attempts": 10
+  },
+  {
+   "label": "gia_in_ascolto",
+   "calls": [],
+   "attempts": 11
+  },
+  {
+   "label": "non_connesso",
+   "calls": [],
+   "attempts": 12
+  },
+  {
+   "label": "ascolto_fallito",
+   "calls": [
+    "listen"
+   ],
+   "attempts": 13
+  },
+  {
+   "label": "altro_client",
+   "calls": [],
+   "slept": 0
+  },
+  {
+   "label": "senza_sessione",
+   "slept": 0
+  }
+ ]
+}

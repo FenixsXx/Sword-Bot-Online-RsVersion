@@ -1,0 +1,488 @@
+{
+ "guida": {
+  "base": {
+   "content": null,
+   "embed": {
+    "title": "⚔️ Benvenuto nella Game Night!",
+    "description": "La community decide insieme cosa fare. Bastano tre semplici regole per partecipare.",
+    "color": 5793266,
+    "fields": [
+     [
+      "1 · Proponi e vota",
+      "Puoi inviare fino a **3 proposte ogni settimana** e hai **2 voti per sondaggio**. Dal pannello puoi anche sostenere le proposte della community.",
+      false
+     ],
+     [
+      "2 · Tieni d'occhio il reset",
+      "Ogni lunedì alle 12:00 si chiude la settimana: i risultati vengono salvati e si riparte. Il conto alla rovescia è visibile nella dashboard e nei sondaggi.",
+      false
+     ],
+     [
+      "3 · Costruisci il tuo profilo",
+      "Partecipare fa guadagnare punti, livelli e badge. Consulta la classifica o usa `/profilo` per vedere il tuo percorso. La classifica stagionale riparte a ogni stagione; i punti cumulativi restano intatti.",
+      false
+     ],
+     [
+      "🎤 Eventi live e privacy",
+      "Negli eventi live abilitati dallo staff vengono conservati partecipanti e durate stimate di presenza/parlato. Il bot non salva né trasmette audio; i report dettagliati restano visibili allo staff fino alla loro eliminazione.",
+      false
+     ]
+    ],
+    "thumbnail": null,
+    "image": null,
+    "footer": "Apri la dashboard nel canale sondaggi per iniziare."
+   },
+   "ephemeral": false
+  },
+  "con_sito": {
+   "content": null,
+   "embed": {
+    "title": "⚔️ Benvenuto nella Game Night!",
+    "description": "La community decide insieme cosa fare. Bastano tre semplici regole per partecipare.",
+    "color": 5793266,
+    "fields": [
+     [
+      "1 · Proponi e vota",
+      "Puoi inviare fino a **3 proposte ogni settimana** e hai **2 voti per sondaggio**. Dal pannello puoi anche sostenere le proposte della community.",
+      false
+     ],
+     [
+      "2 · Tieni d'occhio il reset",
+      "Ogni lunedì alle 12:00 si chiude la settimana: i risultati vengono salvati e si riparte. Il conto alla rovescia è visibile nella dashboard e nei sondaggi.",
+      false
+     ],
+     [
+      "3 · Costruisci il tuo profilo",
+      "Partecipare fa guadagnare punti, livelli e badge. Consulta la classifica o usa `/profilo` per vedere il tuo percorso. La classifica stagionale riparte a ogni stagione; i punti cumulativi restano intatti.",
+      false
+     ],
+     [
+      "🎤 Eventi live e privacy",
+      "Negli eventi live abilitati dallo staff vengono conservati partecipanti e durate stimate di presenza/parlato. Il bot non salva né trasmette audio; i report dettagliati restano visibili allo staff fino alla loro eliminazione.",
+      false
+     ],
+     [
+      "🌐 Community",
+      "[Apri il sito della community](https://overlay.example.com/community)",
+      false
+     ]
+    ],
+    "thumbnail": null,
+    "image": null,
+    "footer": "Apri la dashboard nel canale sondaggi per iniziare."
+   },
+   "ephemeral": false
+  },
+  "con_sito_slash": {
+   "content": null,
+   "embed": {
+    "title": "⚔️ Benvenuto nella Game Night!",
+    "description": "La community decide insieme cosa fare. Bastano tre semplici regole per partecipare.",
+    "color": 5793266,
+    "fields": [
+     [
+      "1 · Proponi e vota",
+      "Puoi inviare fino a **9 proposte ogni settimana** e hai **5 voti per sondaggio**. Dal pannello puoi anche sostenere le proposte della community.",
+      false
+     ],
+     [
+      "2 · Tieni d'occhio il reset",
+      "Ogni venerdì alle 18:00 si chiude la settimana: i risultati vengono salvati e si riparte. Il conto alla rovescia è visibile nella dashboard e nei sondaggi.",
+      false
+     ],
+     [
+      "3 · Costruisci il tuo profilo",
+      "Partecipare fa guadagnare punti, livelli e badge. Consulta la classifica o usa `/profilo` per vedere il tuo percorso. La classifica stagionale riparte a ogni stagione; i punti cumulativi restano intatti.",
+      false
+     ],
+     [
+      "🎤 Eventi live e privacy",
+      "Negli eventi live abilitati dallo staff vengono conservati partecipanti e durate stimate di presenza/parlato. Il bot non salva né trasmette audio; i report dettagliati restano visibili allo staff fino alla loro eliminazione.",
+      false
+     ],
+     [
+      "🌐 Community",
+      "[Apri il sito della community](https://overlay.example.com/community)",
+      false
+     ]
+    ],
+    "thumbnail": null,
+    "image": null,
+    "footer": "Apri la dashboard nel canale sondaggi per iniziare."
+   },
+   "ephemeral": false
+  }
+ },
+ "notifiche": [
+  {
+   "label": "stato_iniziale",
+   "out": {
+    "content": "Le notifiche private sono disattivate. Usa `/notifiche attive:true` per abilitarle.",
+    "embed": null,
+    "ephemeral": true
+   },
+   "rows": []
+  },
+  {
+   "label": "attiva",
+   "out": {
+    "content": "✅ Notifiche private attivate: riceverai DM quando una tua proposta entra nel ballottaggio o vince, quando raggiunge 25 sostenitori e se diventi contributor della settimana.",
+    "embed": null,
+    "ephemeral": true
+   },
+   "rows": [
+    [
+     700,
+     1
+    ]
+   ]
+  },
+  {
+   "label": "stato_attivo",
+   "out": {
+    "content": "Le notifiche private sono attive.",
+    "embed": null,
+    "ephemeral": true
+   },
+   "rows": [
+    [
+     700,
+     1
+    ]
+   ]
+  },
+  {
+   "label": "disattiva",
+   "out": {
+    "content": "✅ Notifiche private disattivate.",
+    "embed": null,
+    "ephemeral": true
+   },
+   "rows": [
+    [
+     700,
+     0
+    ]
+   ]
+  },
+  {
+   "label": "stato_disattivo",
+   "out": {
+    "content": "Le notifiche private sono disattivate. Usa `/notifiche attive:true` per abilitarle.",
+    "embed": null,
+    "ephemeral": true
+   },
+   "rows": [
+    [
+     700,
+     0
+    ]
+   ]
+  },
+  {
+   "label": "altro_utente_attiva",
+   "out": {
+    "content": "✅ Notifiche private attivate: riceverai DM quando una tua proposta entra nel ballottaggio o vince, quando raggiunge 25 sostenitori e se diventi contributor della settimana.",
+    "embed": null,
+    "ephemeral": true
+   },
+   "rows": [
+    [
+     700,
+     0
+    ],
+    [
+     701,
+     1
+    ]
+   ]
+  }
+ ],
+ "benvenuto": [
+  {
+   "label": "disattivato",
+   "sent": []
+  },
+  {
+   "label": "senza_canale",
+   "sent": []
+  },
+  {
+   "label": "canale_non_in_cache",
+   "sent": []
+  },
+  {
+   "label": "canale_vocale",
+   "sent": []
+  },
+  {
+   "label": "altro_server",
+   "sent": []
+  },
+  {
+   "label": "ok_predefinito",
+   "sent": [
+    {
+     "channel": 4000,
+     "content": "<@800>",
+     "embed": {
+      "title": "Benvenuto/a Nuova Persona, su Sword Bot Online.",
+      "description": "Tu sei il **1.234°** ad entrare nel nostro caloroso server! 🌸\n\n• Passa su canali e ruoli per personalizzare il tuo profilo e renderlo più tuo!\n• Consulta la sezione info per avere le idee chiare su chi siamo.\n• Dai un'occhiata al calendario e ai canali vocali per i prossimi eventi.\n• Presentati e apri un ticket se ti serve aiuto.\n• Usa `/guida` per scoprire proposte, voti e attività della community.",
+      "color": 3786683,
+      "fields": [],
+      "thumbnail": "https://cdn.example/800.png",
+      "image": null,
+      "footer": "Buona permanenza!"
+     },
+     "users": true,
+     "roles": false,
+     "everyone": false
+    }
+   ]
+  },
+  {
+   "label": "ok_personalizzato",
+   "sent": [
+    {
+     "channel": 4000,
+     "content": "<@800>",
+     "embed": {
+      "title": "Ciao Nuova Persona! (1234)",
+      "description": "Sei il 1.234° su Sword Bot Online.",
+      "color": 3786683,
+      "fields": [],
+      "thumbnail": "https://cdn.example/800.png",
+      "image": "https://gif.example/w.gif",
+      "footer": "Buona permanenza!"
+     },
+     "users": true,
+     "roles": false,
+     "everyone": false
+    }
+   ]
+  },
+  {
+   "label": "avatar_gif_non_https",
+   "sent": [
+    {
+     "channel": 4000,
+     "content": "<@800>",
+     "embed": {
+      "title": "Ciao Nuova Persona! (0)",
+      "description": "Sei il 0° su Sword Bot Online.",
+      "color": 3786683,
+      "fields": [],
+      "thumbnail": null,
+      "image": null,
+      "footer": "Buona permanenza!"
+     },
+     "users": true,
+     "roles": false,
+     "everyone": false
+    }
+   ]
+  },
+  {
+   "label": "canale_inesistente",
+   "sent": []
+  },
+  {
+   "label": "canale_non_numerico",
+   "sent": []
+  }
+ ],
+ "stagione": {
+  "primavera_senza_guild": {
+   "content": null,
+   "embed": {
+    "title": "🌸 Classifica · Primavera 2027",
+    "description": "La stagione termina <t:1811800800:R>.\n\n`1`. **<@1>** · `11 punti`\n`2`. **<@609>** · `10 punti`\n`3`. **<@608>** · `9 punti`\n`4`. **<@607>** · `8 punti`\n`5`. **<@606>** · `7 punti`\n`6`. **<@605>** · `6 punti`\n`7`. **<@2>** · `6 punti`\n`8`. **<@3>** · `6 punti`\n`9`. **<@604>** · `5 punti`\n`10`. **<@603>** · `4 punti`",
+    "color": 15105570,
+    "fields": [
+     [
+      "Come si accumulano i punti",
+      "Proposta `+1` · supporto ricevuto `+2` · ballottaggio `+5` · vittoria `+10`. I punti della stagione ripartono a ogni cambio stagione; il profilo e la classifica cumulativa non vengono azzerati.",
+      false
+     ],
+     [
+      "🏆 Campioni stagionali",
+      "🏅 **Autunno 2026** · <@1> · `12 punti`\n🏅 **Estate 2026** · <@3> · `7 punti`\n🏅 **Primavera 2026** · <@1>, <@2> · `30 punti`\n🏅 **Inverno 2025/26** · <@1> · `20 punti`",
+      false
+     ]
+    ],
+    "thumbnail": null,
+    "image": null,
+    "footer": "Le stagioni iniziano con l'attivazione della funzione; i punti storici non sono ricalcolati."
+   },
+   "ephemeral": false
+  },
+  "primavera_con_guild": {
+   "content": null,
+   "embed": {
+    "title": "🌸 Classifica · Primavera 2027",
+    "description": "La stagione termina <t:1811800800:R>.\n\n`1`. **Ada** · `11 punti`\n`2`. **<@609>** · `10 punti`\n`3`. **<@608>** · `9 punti`\n`4`. **<@607>** · `8 punti`\n`5`. **<@606>** · `7 punti`\n`6`. **<@605>** · `6 punti`\n`7`. **Bruno** · `6 punti`\n`8`. **<@3>** · `6 punti`\n`9`. **<@604>** · `5 punti`\n`10`. **Max** · `4 punti`",
+    "color": 15105570,
+    "fields": [
+     [
+      "Come si accumulano i punti",
+      "Proposta `+1` · supporto ricevuto `+2` · ballottaggio `+5` · vittoria `+10`. I punti della stagione ripartono a ogni cambio stagione; il profilo e la classifica cumulativa non vengono azzerati.",
+      false
+     ],
+     [
+      "🏆 Campioni stagionali",
+      "🏅 **Autunno 2026** · Ada · `12 punti`\n🏅 **Estate 2026** · <@3> · `7 punti`\n🏅 **Primavera 2026** · Ada, Bruno · `30 punti`\n🏅 **Inverno 2025/26** · Ada · `20 punti`",
+      false
+     ]
+    ],
+    "thumbnail": null,
+    "image": null,
+    "footer": "Le stagioni iniziano con l'attivazione della funzione; i punti storici non sono ricalcolati."
+   },
+   "ephemeral": false
+  },
+  "inverno": {
+   "content": null,
+   "embed": {
+    "title": "❄️ Classifica · Inverno 2026/27",
+    "description": "La stagione termina <t:1803855600:R>.\n\nLa classifica si popolerà con le prossime attività.",
+    "color": 15105570,
+    "fields": [
+     [
+      "Come si accumulano i punti",
+      "Proposta `+1` · supporto ricevuto `+2` · ballottaggio `+5` · vittoria `+10`. I punti della stagione ripartono a ogni cambio stagione; il profilo e la classifica cumulativa non vengono azzerati.",
+      false
+     ],
+     [
+      "🏆 Campioni stagionali",
+      "🏅 **Autunno 2026** · <@1> · `12 punti`\n🏅 **Estate 2026** · <@3> · `7 punti`\n🏅 **Primavera 2026** · <@1>, <@2> · `30 punti`\n🏅 **Inverno 2025/26** · <@1> · `20 punti`",
+      false
+     ]
+    ],
+    "thumbnail": null,
+    "image": null,
+    "footer": "Le stagioni iniziano con l'attivazione della funzione; i punti storici non sono ricalcolati."
+   },
+   "ephemeral": false
+  },
+  "estate": {
+   "content": null,
+   "embed": {
+    "title": "☀️ Classifica · Estate 2027",
+    "description": "La stagione termina <t:1819749600:R>.\n\nLa classifica si popolerà con le prossime attività.",
+    "color": 15105570,
+    "fields": [
+     [
+      "Come si accumulano i punti",
+      "Proposta `+1` · supporto ricevuto `+2` · ballottaggio `+5` · vittoria `+10`. I punti della stagione ripartono a ogni cambio stagione; il profilo e la classifica cumulativa non vengono azzerati.",
+      false
+     ],
+     [
+      "🏆 Campioni stagionali",
+      "🏅 **Primavera 2027** · Ada · `11 punti`\n🏅 **Autunno 2026** · Ada · `12 punti`\n🏅 **Estate 2026** · <@3> · `7 punti`\n🏅 **Primavera 2026** · Ada, Bruno · `30 punti`",
+      false
+     ]
+    ],
+    "thumbnail": null,
+    "image": null,
+    "footer": "Le stagioni iniziano con l'attivazione della funzione; i punti storici non sono ricalcolati."
+   },
+   "ephemeral": false
+  },
+  "autunno": {
+   "content": null,
+   "embed": {
+    "title": "🍂 Classifica · Autunno 2026",
+    "description": "La stagione termina <t:1796079600:R>.\n\n`1`. **<@1>** · `12 punti`\n`2`. **<@3>** · `4 punti`",
+    "color": 15105570,
+    "fields": [
+     [
+      "Come si accumulano i punti",
+      "Proposta `+1` · supporto ricevuto `+2` · ballottaggio `+5` · vittoria `+10`. I punti della stagione ripartono a ogni cambio stagione; il profilo e la classifica cumulativa non vengono azzerati.",
+      false
+     ],
+     [
+      "🏆 Campioni stagionali",
+      "🏅 **Estate 2026** · <@3> · `7 punti`\n🏅 **Primavera 2026** · <@1>, <@2> · `30 punti`\n🏅 **Inverno 2025/26** · <@1> · `20 punti`\n🏅 **Autunno 2025** · <@501>, <@502>, <@503> · `12 punti`",
+      false
+     ]
+    ],
+    "thumbnail": null,
+    "image": null,
+    "footer": "Le stagioni iniziano con l'attivazione della funzione; i punti storici non sono ricalcolati."
+   },
+   "ephemeral": false
+  },
+  "fine_stagione": {
+   "content": null,
+   "embed": {
+    "title": "🌸 Classifica · Primavera 2027",
+    "description": "La stagione termina <t:1811800800:R>.\n\n`1`. **<@1>** · `11 punti`\n`2`. **<@609>** · `10 punti`\n`3`. **<@608>** · `9 punti`\n`4`. **<@607>** · `8 punti`\n`5`. **<@606>** · `7 punti`\n`6`. **<@605>** · `6 punti`\n`7`. **<@2>** · `6 punti`\n`8`. **<@3>** · `6 punti`\n`9`. **<@604>** · `5 punti`\n`10`. **<@603>** · `4 punti`",
+    "color": 15105570,
+    "fields": [
+     [
+      "Come si accumulano i punti",
+      "Proposta `+1` · supporto ricevuto `+2` · ballottaggio `+5` · vittoria `+10`. I punti della stagione ripartono a ogni cambio stagione; il profilo e la classifica cumulativa non vengono azzerati.",
+      false
+     ],
+     [
+      "🏆 Campioni stagionali",
+      "🏅 **Autunno 2026** · <@1> · `12 punti`\n🏅 **Estate 2026** · <@3> · `7 punti`\n🏅 **Primavera 2026** · <@1>, <@2> · `30 punti`\n🏅 **Inverno 2025/26** · <@1> · `20 punti`",
+      false
+     ]
+    ],
+    "thumbnail": null,
+    "image": null,
+    "footer": "Le stagioni iniziano con l'attivazione della funzione; i punti storici non sono ricalcolati."
+   },
+   "ephemeral": false
+  },
+  "pareggio_ampio": {
+   "content": null,
+   "embed": {
+    "title": "🌸 Classifica · Primavera 2027",
+    "description": "La stagione termina <t:1811800800:R>.\n\n`1`. **Ada** · `11 punti`\n`2`. **<@609>** · `10 punti`\n`3`. **<@608>** · `9 punti`\n`4`. **<@607>** · `8 punti`\n`5`. **<@606>** · `7 punti`\n`6`. **<@605>** · `6 punti`\n`7`. **Bruno** · `6 punti`\n`8`. **<@3>** · `6 punti`\n`9`. **<@604>** · `5 punti`\n`10`. **Max** · `4 punti`",
+    "color": 15105570,
+    "fields": [
+     [
+      "Come si accumulano i punti",
+      "Proposta `+1` · supporto ricevuto `+2` · ballottaggio `+5` · vittoria `+10`. I punti della stagione ripartono a ogni cambio stagione; il profilo e la classifica cumulativa non vengono azzerati.",
+      false
+     ],
+     [
+      "🏆 Campioni stagionali",
+      "🏅 **Speciale 2027** · <@900>, <@901>, <@902>, <@903>, <@904> e altri 2 · `15 punti`",
+      false
+     ]
+    ],
+    "thumbnail": null,
+    "image": null,
+    "footer": "Le stagioni iniziano con l'attivazione della funzione; i punti storici non sono ricalcolati."
+   },
+   "ephemeral": false
+  },
+  "pareggio_ampio_senza_guild": {
+   "content": null,
+   "embed": {
+    "title": "🌸 Classifica · Primavera 2027",
+    "description": "La stagione termina <t:1811800800:R>.\n\n`1`. **<@1>** · `11 punti`\n`2`. **<@609>** · `10 punti`\n`3`. **<@608>** · `9 punti`\n`4`. **<@607>** · `8 punti`\n`5`. **<@606>** · `7 punti`\n`6`. **<@605>** · `6 punti`\n`7`. **<@2>** · `6 punti`\n`8`. **<@3>** · `6 punti`\n`9`. **<@604>** · `5 punti`\n`10`. **<@603>** · `4 punti`",
+    "color": 15105570,
+    "fields": [
+     [
+      "Come si accumulano i punti",
+      "Proposta `+1` · supporto ricevuto `+2` · ballottaggio `+5` · vittoria `+10`. I punti della stagione ripartono a ogni cambio stagione; il profilo e la classifica cumulativa non vengono azzerati.",
+      false
+     ],
+     [
+      "🏆 Campioni stagionali",
+      "🏅 **Speciale 2027** · <@900>, <@901>, <@902>, <@903>, <@904> e altri 2 · `15 punti`",
+      false
+     ]
+    ],
+    "thumbnail": null,
+    "image": null,
+    "footer": "Le stagioni iniziano con l'attivazione della funzione; i punti storici non sono ricalcolati."
+   },
+   "ephemeral": false
+  }
+ }
+}

@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="it">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="dark">
+  <title>Sword Bot Online · Community</title>
+  <style>
+    :root {
+      color-scheme: dark;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      color: #f7f7fb;
+      background: #171923;
+      font-synthesis: none;
+      text-rendering: optimizeLegibility;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      min-height: 100vh;
+      padding: 28px;
+      background: radial-gradient(ellipse at 10% 0%, rgb(88 101 242 / 24%), transparent 48%), #171923;
+    }
+    main { width: min(1120px, 100%); margin: 0 auto; }
+    header { margin: 12px 0 28px; }
+    h1 { margin: 0; font-size: clamp(2rem, 5vw, 3.4rem); }
+    header p { color: #b7bbca; }
+    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(290px, 1fr)); gap: 16px; }
+    section {
+      padding: 20px;
+      border: 1px solid rgb(255 255 255 / 10%);
+      border-radius: 18px;
+      background: rgb(31 34 48 / 88%);
+    }
+    h2 { margin: 0 0 14px; font-size: 1.15rem; }
+    ol, ul { margin: 0; padding-left: 1.5rem; }
+    li { margin: 9px 0; color: #e4e6f0; }
+    .muted, footer { color: #aeb3c3; }
+    .empty { color: #aeb3c3; }
+    footer { margin: 24px 0; font-size: .85rem; text-align: center; }
+    @media (max-width: 600px) { body { padding: 14px; } section { padding: 16px; } }
+  </style>
+</head>
+<body>
+  <main>
+    <header>
+      <h1>⚔️ Sword Bot Online</h1>
+      <p>La community decide insieme la prossima Game Night.</p>
+    </header>
+    <div class="grid">
+      <section>
+        <h2>🏆 Classifica cumulativa</h2>
+        <ol id="lifetime"></ol>
+      </section>
+      <section>
+        <h2 id="season-title">🍂 Classifica stagionale</h2>
+        <ol id="seasonal"></ol>
+      </section>
+      <section>
+        <h2>🏅 Campioni stagionali</h2>
+        <ul id="champions"></ul>
+      </section>
+      <section>
+        <h2>📚 Hall of Fame</h2>
+        <ul id="history"></ul>
+      </section>
+      <section>
+        <h2>🎤 Eventi live</h2>
+        <ul id="events"></ul>
+      </section>
+    </div>
+    <footer>
+      Classifiche e profili mostrano solo statistiche pubbliche. I report evento
+      individuali e i dati vocali non sono esposti su questa pagina.
+    </footer>
+  </main>
+  <script>
+    const data = __SWORD_PUBLIC_DATA__;
+    document.getElementById("season-title").textContent = `🍂 ${data.season}`;
+    function addRows(elementId, rows, render, emptyText) {
+      const list = document.getElementById(elementId);
+      if (!rows.length) {
+        const item = document.createElement("li");
+        item.className = "empty";
+        item.textContent = emptyText;
+        list.append(item);
+        return;
+      }
+      for (const row of rows) {
+        const item = document.createElement("li");
+        item.textContent = render(row);
+        list.append(item);
+      }
+    }
+    addRows("lifetime", data.lifetime, row =>
+      `${row.name} · ${row.points} punti · ${row.level}`, "La classifica è ancora vuota.");
+    addRows("seasonal", data.seasonal, row =>
+      `${row.name} · ${row.points} punti`, "Nessuna attività stagionale ancora registrata.");
+    addRows("champions", data.season_champions, row =>
+      `${row.label} · ${row.name} · ${row.points} punti`,
+      "I campioni appariranno alla fine della stagione.");
+    addRows("history", data.hall_of_fame, row =>
+      `Settimana #${row.week} · ${row.winners.length ? row.winners.join(", ") : "nessun vincitore"}`,
+      "Nessuna settimana archiviata.");
+    addRows("events", data.events, row =>
+      `${row.title} · ${row.participants} partecipanti · picco ${row.peak_participants}`,
+      "Nessun evento live archiviato.");
+  </script>
+</body>
+</html>

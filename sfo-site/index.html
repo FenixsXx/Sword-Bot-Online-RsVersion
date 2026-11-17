@@ -1,0 +1,223 @@
+<!doctype html>
+<html lang="it">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Sword Friends Online — dashboard privata per lo staff Discord." />
+    <title>Sword Friends Online · Staff Hub</title>
+    <script>
+      try {
+        const savedTheme = localStorage.getItem("sfo-theme");
+        const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+        document.documentElement.dataset.theme = savedTheme || (prefersDark ? "dark" : "light");
+      } catch (error) {
+        console.error("Impossibile leggere il tema salvato.", error);
+        document.documentElement.dataset.theme = "light";
+      }
+    </script>
+    <link rel="icon" href="favicon.ico" type="image/x-icon" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet" />
+  </head>
+  <body>
+    <div id="login-view" class="login-shell">
+      <div class="login-glow login-glow-left"></div>
+      <div class="login-glow login-glow-right"></div>
+      <button class="theme-toggle login-theme-toggle" type="button" data-theme-toggle aria-pressed="false">
+        <svg class="theme-icon theme-icon-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.2 15.3A8.5 8.5 0 0 1 8.7 3.8 8.5 8.5 0 1 0 20.2 15.3Z" /></svg>
+        <svg class="theme-icon theme-icon-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4" /><path d="M12 2v2m0 16v2M4.93 4.93l1.41 1.41m11.32 11.32 1.41 1.41M2 12h2m16 0h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41" /></svg>
+        <span data-theme-label>Tema scuro</span>
+      </button>
+      <main class="login-card">
+        <div class="brand brand-centered">
+          <div class="brand-mark">⚔</div>
+          <div>
+            <span class="eyebrow">STAFF HUB</span>
+            <h1>Sword Friends <em>Online</em></h1>
+          </div>
+        </div>
+        <div class="login-intro">
+          <span class="status-dot"><i></i> Area riservata</span>
+          <h2>Area riservata</h2>
+          <p>Accedi con Discord. Possono entrare il proprietario, gli amministratori e i ruoli staff configurati.</p>
+        </div>
+        <form id="login-form" class="login-form">
+          <div id="login-error" class="form-error" role="alert"></div>
+          <button class="button button-primary button-wide" type="submit">Continua con Discord <span>→</span></button>
+        </form>
+        <p class="demo-hint">L’accesso è verificato sul server Discord configurato.</p>
+        <div class="login-security"><span>⌁</span> Sessione privata dello staff</div>
+      </main>
+      <footer class="login-footer">SFO <span>•</span> Costruiamo momenti che restano.</footer>
+    </div>
+
+    <div id="app-view" class="app-shell hidden">
+      <aside class="sidebar">
+        <div class="brand">
+          <div class="brand-mark">⚔</div>
+          <div><span class="eyebrow">STAFF HUB</span><h1>Sword Friends <em>Online</em></h1></div>
+        </div>
+        <nav class="main-nav" aria-label="Navigazione principale">
+          <button type="button" class="nav-item active" data-view="overview" aria-current="page"><span>⌂</span> Panoramica</button>
+          <button type="button" class="nav-item" data-view="reports"><span>▤</span> Report eventi</button>
+          <button type="button" class="nav-item" data-view="manage"><span>⚙</span> Gestione</button>
+          <button type="button" class="nav-item" data-view="tools"><span>✦</span> Strumenti staff</button>
+          <button type="button" class="nav-item" data-view="analytics"><span>◒</span> Insights</button>
+          <button type="button" class="nav-item" data-view="stats"><span>▥</span> Statistiche</button>
+        </nav>
+        <div class="sidebar-bottom">
+          <div class="sidebar-note"><span class="note-icon">✦</span><p><strong>Piccoli gesti.</strong><br />Grandi community.</p></div>
+          <button id="logout-button" class="logout-button" type="button"><span>↪</span> Esci</button>
+        </div>
+      </aside>
+
+      <main class="content">
+        <header class="topbar">
+          <div class="mobile-brand"><div class="brand-mark">⚔</div><strong>SFO</strong></div>
+          <div class="topbar-actions"><span id="live-indicator" class="staff-status live-indicator hidden" data-state="connecting" role="status" title="Connessione agli aggiornamenti in tempo reale"><i aria-hidden="true"></i><span data-live-label>Connessione…</span></span><span id="staff-identity" class="staff-status"><i></i> Staff online</span><button class="theme-toggle" type="button" data-theme-toggle aria-pressed="false"><svg class="theme-icon theme-icon-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.2 15.3A8.5 8.5 0 0 1 8.7 3.8 8.5 8.5 0 1 0 20.2 15.3Z" /></svg><svg class="theme-icon theme-icon-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4" /><path d="M12 2v2m0 16v2M4.93 4.93l1.41 1.41m11.32 11.32 1.41 1.41M2 12h2m16 0h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41" /></svg><span data-theme-label>Tema scuro</span></button></div>
+        </header>
+        <nav class="mobile-nav" aria-label="Navigazione principale">
+          <button type="button" class="nav-item active" data-view="overview" aria-current="page"><span>⌂</span> Panoramica</button>
+          <button type="button" class="nav-item" data-view="reports"><span>▤</span> Report</button>
+          <button type="button" class="nav-item" data-view="manage"><span>⚙</span> Gestione</button>
+          <button type="button" class="nav-item" data-view="tools"><span>✦</span> Strumenti</button>
+          <button type="button" class="nav-item" data-view="analytics"><span>◒</span> Insights</button>
+          <button type="button" class="nav-item" data-view="stats"><span>▥</span> Dati</button>
+        </nav>
+
+        <section id="overview-view" class="page-view">
+          <div class="page-heading">
+            <div><p class="overline" id="week-label">SETTIMANA IN CORSO</p><h2>La community in movimento <span>✦</span></h2><p class="muted">Ecco cosa sta succedendo nel tuo server.</p></div>
+            <button type="button" class="button button-primary" data-open-report>＋ Evento</button>
+          </div>
+          <div class="stats-grid">
+            <article class="stat-card"><div class="stat-top"><span>Eventi questo mese</span><span class="stat-icon purple">✦</span></div><strong id="total-events">—</strong><div id="events-trend" class="trend neutral">— <b>—</b> <span>vs mese scorso</span></div></article>
+            <article class="stat-card"><div class="stat-top"><span>Nuovi membri questo mese</span><span class="stat-icon green">✧</span></div><strong id="total-new-members">—</strong><div id="members-trend" class="trend neutral">— <b>—</b> <span>vs mese scorso</span></div></article>
+            <article class="stat-card"><div class="stat-top"><span>Durata media questo mese</span><span class="stat-icon blue">◷</span></div><strong id="average-duration">—</strong><div id="duration-trend" class="trend neutral">— <b>—</b> <span>vs mese scorso</span></div></article>
+          </div>
+          <div class="dashboard-grid">
+            <article class="panel activity-panel"><div class="panel-heading"><div><h3>Presenze nella settimana</h3><p>Passa o tocca i punti per vedere i dati del giorno</p></div><div class="week-controls"><button type="button" class="week-button" data-week-prev aria-label="Settimana precedente">←</button><button type="button" class="week-button" data-week-next aria-label="Settimana successiva">→</button></div></div><div class="chart-wrap"><div class="y-labels" id="chart-y-labels"><span>40</span><span>30</span><span>20</span><span>10</span><span>0</span></div><div class="chart-area" id="chart-area"><div class="grid-lines"><i></i><i></i><i></i><i></i><i></i></div><svg viewBox="0 0 620 190" preserveAspectRatio="none" class="line-chart" aria-label="Grafico presenze settimanali"><defs><linearGradient id="chartFill" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stop-color="#a78bfa" stop-opacity=".27"/><stop offset="1" stop-color="#a78bfa" stop-opacity="0"/></linearGradient></defs><path id="chart-fill" class="chart-fill" /><path id="chart-line-new" class="chart-line-new" /><path id="chart-line" class="chart-line" /></svg><div id="chart-points" class="chart-points"></div><div id="chart-tooltip" class="chart-tooltip hidden" role="status" aria-live="polite"><strong id="chart-tooltip-day"></strong><span id="chart-tooltip-attendees"></span><span id="chart-tooltip-new-members"></span></div><div id="chart-x-labels" class="x-labels"></div></div></div><div class="chart-legend"><span><i class="legend-dot"></i> Presenze <b id="chart-attendees">0</b></span><span><i class="legend-dot light"></i> Nuovi membri <b id="chart-new-members">0</b></span></div></article>
+            <article class="panel types-panel"><div class="panel-heading"><div><h3>Presenze medie per categoria</h3><p>Media di presenze per evento, dalla più alta alla più bassa</p></div></div><div id="category-legend" class="legend-list category-legend"></div></article>
+          </div>
+          <section class="panel recent-panel"><div class="panel-heading"><div><h3>Ultimi report</h3><p>Le attività più recenti del server</p></div><button type="button" class="text-button" data-view-target="reports">Vedi tutti <span>→</span></button></div><div class="table-scroll"><table><thead><tr><th>EVENTO</th><th>DATA E ORA</th><th>PRESENZE</th><th>NUOVI</th><th>DURATA</th><th></th></tr></thead><tbody id="recent-reports"></tbody></table></div></section>
+        </section>
+
+        <section id="reports-view" class="page-view hidden"><div class="page-heading"><div><p class="overline">ARCHIVIO ATTIVITÀ</p><h2>Report eventi</h2><p class="muted">Tieni traccia di ogni momento condiviso.</p></div><button type="button" class="button button-primary" data-open-report>＋ Evento</button></div><div class="filter-row"><div class="search-box">⌕<input id="report-search" type="search" placeholder="Cerca un evento..." aria-label="Cerca un evento" /></div><select id="report-filter" aria-label="Filtra per categoria"><option value="all">Tutte le categorie</option><option>Minigiochi</option><option>Anime</option><option>Film</option><option>Quiz</option><option>Disegno</option><option>Musica</option></select></div><section class="panel report-list-panel"><div class="table-scroll"><table><thead><tr><th>EVENTO</th><th>CATEGORIA</th><th>DATA E ORA</th><th>PRESENZE</th><th>NUOVI MEMBRI</th><th>DURATA</th><th>RESPONSABILE</th><th>CLIP SOCIAL</th><th>FLOP</th><th>NOTE</th><th></th></tr></thead><tbody id="all-reports"></tbody></table></div></section></section>
+
+        <section id="manage-view" class="page-view hidden">
+          <div class="page-heading"><div><p class="overline">STRUMENTI STAFF</p><h2>Gestione</h2><p class="muted">Configura accoglienza e sondaggi Discord.</p></div></div>
+          <div class="admin-tabs" role="tablist" aria-label="Gestione server">
+            <button type="button" class="admin-tab active" id="admin-tab-welcome" role="tab" aria-selected="true" aria-controls="welcome-admin">Benvenuto</button>
+            <button type="button" class="admin-tab" id="admin-tab-polls" role="tab" aria-selected="false" aria-controls="polls-admin" tabindex="-1">Sondaggi</button>
+            <button type="button" class="admin-tab" id="admin-tab-server" role="tab" aria-selected="false" aria-controls="server-admin" tabindex="-1">Server</button>
+          </div>
+          <p id="admin-only-notice" class="empty-state hidden">La configurazione del server è riservata agli amministratori Discord.</p>
+          <section id="welcome-admin" class="admin-panel" role="tabpanel" aria-labelledby="admin-tab-welcome">
+            <div class="panel admin-panel-section">
+              <div class="panel-heading"><div><h3>Messaggio di benvenuto</h3><p>Personalizza il saluto e prova l’invio nel canale.</p></div></div>
+              <form id="welcome-config-form" class="admin-form">
+                <div class="field"><label for="welcome-channel">Canale</label><select id="welcome-channel"><option value="">Seleziona un canale</option></select></div>
+                <label class="checkbox-label"><input id="welcome-enabled" type="checkbox" /><span>Invio automatico all’ingresso</span></label>
+                <div class="field"><label for="welcome-title">Titolo <span>{user}, {server}, {ordinal}, {member_count}</span></label><input id="welcome-title" maxlength="256" required /></div>
+                <div class="field"><label for="welcome-body">Testo <span>Puoi includere menzioni canale come &lt;#123456789012345678&gt;</span></label><textarea id="welcome-body" rows="10" maxlength="4000" required></textarea></div>
+                <div class="field"><label for="welcome-gif">GIF fissa (URL HTTPS)</label><input id="welcome-gif" type="url" placeholder="https://…" /></div>
+                <div class="admin-actions"><button class="button button-primary" type="submit">Salva benvenuto</button><button class="button button-ghost" id="welcome-test" type="button">Invia prova</button></div>
+              </form>
+            </div>
+            <article class="panel admin-panel-section"><div class="panel-heading"><div><h3>Anteprima</h3><p>Avatar e numero membri si adattano al nuovo ingresso.</p></div></div><div id="welcome-preview" class="welcome-preview"></div></article>
+          </section>
+          <section id="polls-admin" class="admin-panel hidden" role="tabpanel" aria-labelledby="admin-tab-polls">
+            <div class="panel admin-panel-section">
+              <div class="panel-heading"><div><h3>Destinazione sondaggi</h3><p>Le configurazioni vengono salvate in SBO; la pubblicazione avviene nel canale selezionato.</p></div></div>
+              <form id="poll-settings-form" class="admin-form admin-form-inline">
+                <div class="field"><label for="poll-channel">Canale sondaggi</label><select id="poll-channel"><option value="">Seleziona un canale</option></select></div>
+                <div class="field"><label for="poll-slots">Slot community</label><select id="poll-slots"><option value="3">3</option><option value="4">4</option><option value="5">5</option></select></div>
+                <button class="button button-primary" type="submit">Salva destinazione</button>
+              </form>
+            </div>
+            <div class="panel admin-panel-section">
+              <div class="panel-heading"><div><h3>Crea sondaggio</h3><p>Aggiungi una categoria e le sue opzioni.</p></div></div>
+              <form id="poll-create-form" class="admin-form poll-create-form">
+                <div class="field"><label for="new-poll-name">Nome</label><input id="new-poll-name" maxlength="100" required /></div>
+                <div class="field"><label for="new-poll-emoji">Emoji</label><input id="new-poll-emoji" value="🎮" maxlength="32" required /></div>
+                <div class="field"><label for="new-poll-color">Colore</label><input id="new-poll-color" type="color" value="#5865f2" /></div>
+                <label class="checkbox-label"><input id="new-poll-community" type="checkbox" /><span>Sondaggio community</span></label>
+                <div class="field full"><label for="new-poll-options">Opzioni, una per riga (massimo 25)</label><textarea id="new-poll-options" rows="4"></textarea></div>
+                <button class="button button-primary" type="submit">Crea sondaggio</button>
+              </form>
+            </div>
+            <div class="panel admin-panel-section">
+              <div class="panel-heading"><div><h3>Sondaggi configurati</h3><p>Modifica impostazioni e opzioni, invia una prova o pubblica tutti i sondaggi attivi.</p></div><div class="admin-actions"><button class="button button-ghost" id="polls-test" type="button">Prova selezionato</button><button class="button button-primary" id="polls-publish" type="button">Pubblica sondaggi</button></div></div>
+              <div id="poll-list" class="poll-list"></div>
+            </div>
+          </section>
+          <section id="server-admin" class="admin-panel hidden" role="tabpanel" aria-labelledby="admin-tab-server">
+            <div class="panel admin-panel-section">
+              <div class="panel-heading"><div><h3>Canali e ruoli staff</h3><p>Proprietario e amministratori possono sempre accedere; i ruoli qui selezionati ottengono gli strumenti staff.</p></div></div>
+              <form id="server-config-form" class="admin-form">
+                <div class="field"><label for="staff-channel">Canale staff</label><select id="staff-channel"><option value="">Nessun canale</option></select></div>
+                <div class="field"><label for="event-report-channel">Canale report eventi</label><select id="event-report-channel"><option value="">Nessun canale</option></select></div>
+                <div class="field"><label for="activity-channel">Canale feed attività</label><select id="activity-channel"><option value="">Nessun canale</option></select></div>
+                <label class="checkbox-label"><input id="activity-feed-enabled" type="checkbox" /><span>Pubblica il feed attività</span></label>
+                <div class="field"><label for="staff-roles">Ruoli staff autorizzati</label><select id="staff-roles" multiple size="7"></select><small>Il primo accesso resta sempre disponibile al proprietario e agli amministratori.</small></div>
+                <div class="field"><label for="proposal-types">Tipi di proposta (separati da virgola)</label><input id="proposal-types" maxlength="500" required /></div>
+                <div class="admin-actions"><button class="button button-primary" type="submit">Salva configurazione server</button></div>
+              </form>
+            </div>
+          </section>
+        </section>
+
+        <section id="tools-view" class="page-view hidden">
+          <div class="page-heading"><div><p class="overline">OPERAZIONI STAFF</p><h2>Strumenti staff</h2><p class="muted">Proposte, eventi live, report e backup.</p></div><button id="tools-refresh" class="button button-ghost" type="button">Aggiorna</button></div>
+          <section class="panel admin-panel-section">
+            <div class="panel-heading"><div><h3>Proposte della settimana</h3><p>Revisiona, approva o rifiuta le proposte e gestisci il ballottaggio.</p></div></div>
+            <div id="proposal-tools" class="tool-list"><p class="empty-state">Caricamento…</p></div>
+          </section>
+          <section class="panel admin-panel-section">
+            <div class="panel-heading"><div><h3>Evento live</h3><p>Avvia o termina l’overlay collegato a un canale vocale.</p></div><span id="live-event-status" class="staff-status">Non attivo</span></div>
+            <form id="live-event-form" class="admin-form admin-form-inline">
+              <div class="field"><label for="live-event-title">Titolo</label><input id="live-event-title" maxlength="100" value="🎮 Game Night" required /></div>
+              <div class="field"><label for="live-event-channel">Canale vocale</label><select id="live-event-channel"><option value="">Seleziona un canale</option></select></div>
+              <button id="live-event-start" class="button button-primary" type="submit">Avvia evento</button>
+              <button id="live-event-stop" class="button button-ghost hidden" type="button">Termina evento</button>
+            </form>
+            <div id="event-report-tools" class="tool-list"></div>
+          </section>
+          <section id="backup-tools" class="panel admin-panel-section hidden">
+            <div class="panel-heading"><div><h3>Backup database</h3><p id="backup-status">Stato non disponibile.</p></div><button id="create-backup" class="button button-primary" type="button">Crea backup</button></div>
+          </section>
+        </section>
+
+        <section id="analytics-view" class="page-view hidden"><div class="page-heading"><div><p class="overline">DATI PER DECIDERE</p><h2>Insights della community</h2><p class="muted">Capisci quando e come la community partecipa di più.</p></div></div><div class="insight-cards"><article class="insight-card purple-card"><span>Il tuo momento migliore</span><strong id="best-moment">—</strong><p id="best-moment-detail">Inserisci più report per calcolare il momento con più presenze.</p><span class="insight-symbol">✦</span></article>        <article class="insight-card orange-card"><span>Leaderboard eventi</span><div id="top-events" class="leaderboard"></div><span class="insight-symbol">♟</span></article><article class="insight-card green-card"><span>Tempo medio</span><strong id="insight-average-duration">—</strong><p>La durata media degli eventi registrati.</p><span class="insight-symbol">◷</span></article></div><section class="panel best-days"><div class="panel-heading"><div><h3>Presenze medie per giorno</h3><p>Media delle presenze per giorno della settimana</p></div></div><div id="day-bars" class="day-bars"></div></section></section>
+        <section id="stats-view" class="page-view hidden">
+          <div class="page-heading"><div><p class="overline">ANDAMENTO DELLA COMMUNITY</p><h2>Statistiche</h2><p class="muted">Salute della community, attività ed eventi live in un colpo d’occhio.</p></div><button id="stats-refresh" class="button button-ghost" type="button">Aggiorna</button></div>
+          <div class="filter-row"><select id="stats-period" aria-label="Periodo delle statistiche"><option value="7">Ultimi 7 giorni</option><option value="30" selected>Ultimi 30 giorni</option><option value="90">Ultimi 90 giorni</option></select></div>
+          <div class="stats-grid">
+            <article class="stat-card"><div class="stat-top"><span>Salute della community</span><span class="stat-icon purple">✦</span></div><strong id="stats-score">—</strong><div id="stats-score-trend" class="trend neutral">— <b>—</b> <span>vs periodo precedente</span></div></article>
+            <article class="stat-card"><div class="stat-top"><span>Utenti attivi nel periodo</span><span class="stat-icon green">✧</span></div><strong id="stats-active-users">—</strong><div id="stats-active-detail" class="trend neutral">— <b>—</b> <span>giorni attivi</span></div></article>
+            <article class="stat-card"><div class="stat-top"><span id="stats-week-label">Ballottaggio della settimana</span><span class="stat-icon blue">◷</span></div><strong id="stats-selected">—</strong><div id="stats-week-detail" class="trend neutral">— <b>—</b> <span>proposte in attesa</span></div></article>
+          </div>
+          <div class="dashboard-grid">
+            <article class="panel"><div class="panel-heading"><div><h3>Attività per giorno e ora</h3><p id="stats-heatmap-summary">Proposte, sostegni, voti e ingressi agli eventi</p></div></div><div id="stats-heatmap" class="heatmap" role="img" aria-label="Attività per giorno e ora"></div><div id="stats-actions" class="chart-legend"></div><p id="stats-heatmap-note" class="stats-note"></p></article>
+            <article class="panel"><div class="panel-heading"><div><h3>Componenti del punteggio</h3><p>Quanto contribuisce ogni area al punteggio di salute</p></div></div><div id="stats-components" class="legend-list category-legend"></div><p id="stats-methodology" class="stats-note"></p></article>
+          </div>
+          <section class="panel stats-panel"><div class="panel-heading"><div><h3>Selezioni dello staff</h3><p id="stats-accuracy-note">Proposte scelte per il ballottaggio e risultati nei sondaggi community</p></div></div><div class="table-scroll stack-scroll"><table class="stack-table"><thead><tr><th>STAFF</th><th>SELEZIONATE</th><th>VINCITRICI</th><th>PRECISIONE</th></tr></thead><tbody id="stats-accuracy"></tbody></table></div></section>
+          <section class="panel stats-panel"><div class="panel-heading"><div><h3>Eventi live recenti</h3><p id="stats-events-note">Durata, partecipazione e interventi al microfono</p></div></div><div class="table-scroll stack-scroll"><table class="stack-table"><thead><tr><th>EVENTO</th><th>INIZIO</th><th>DURATA</th><th>PARTECIPANTI</th><th>PICCO</th><th>PRESENZA MEDIA</th><th>PIÙ ATTIVO AL MICROFONO</th></tr></thead><tbody id="stats-events"></tbody></table></div></section>
+          <section class="panel stats-panel">
+            <div class="panel-heading"><div><h3>Ricerca nello storico</h3><p>Scopri quando una proposta è apparsa, se è entrata nel ballottaggio e se ha vinto.</p></div></div>
+            <form id="stats-history-form" class="filter-row stats-search" role="search"><div class="search-box">⌕<input id="stats-history-query" type="search" minlength="2" maxlength="100" required placeholder="Cerca una proposta..." aria-label="Cerca una proposta nello storico" /></div><button class="button button-primary" type="submit">Cerca</button></form>
+            <p id="stats-history-summary" class="muted" role="status"></p>
+            <div id="stats-history-results" class="tool-list stats-results"></div>
+            <p id="stats-history-note" class="stats-note"></p>
+          </section>
+        </section>
+      </main>
+    </div>
+
+    <div id="report-modal" class="modal-backdrop hidden" role="dialog" aria-modal="true" aria-labelledby="modal-title"><div class="modal-card"><div class="modal-heading"><div><p class="overline" id="modal-overline">NUOVA ATTIVITÀ</p><h2 id="modal-title">Registra un evento</h2><p class="muted" id="modal-description">Aggiungi i dettagli dell'evento appena concluso.</p></div><button type="button" class="close-button" data-close-modal aria-label="Chiudi">×</button></div><form id="report-form"><div class="form-grid"><div class="field full"><label for="event-name">Nome evento</label><input id="event-name" list="event-name-options" required placeholder="Es. Serata Minecraft" /><datalist id="event-name-options"></datalist></div><div class="field"><label for="event-category">Categoria</label><select id="event-category"><option>Minigiochi</option><option>Anime</option><option>Film</option><option>Quiz</option><option>Disegno</option><option>Musica</option></select></div><div class="field"><label for="event-date">Data</label><input id="event-date" type="date" required /></div><div class="field"><label for="event-time">Ora di inizio</label><input id="event-time" type="time" required /></div><div class="field"><label for="event-duration">Durata</label><select id="event-duration" required><option value="">Seleziona durata</option><option value="15">15 minuti</option><option value="30">30 minuti</option><option value="45">45 minuti</option><option value="60">1 ora</option><option value="75">1h 15m</option><option value="90">1h 30m</option><option value="105">1h 45m</option><option value="120">2 ore</option><option value="150">2h 30m</option><option value="180">3 ore</option><option value="240">4 ore</option></select></div><div class="field"><label for="event-attendees">Persone presenti</label><input id="event-attendees" type="number" min="0" step="1" inputmode="numeric" placeholder="15" required /></div><div class="field"><label for="event-new">Nuove persone</label><input id="event-new" type="number" min="0" step="1" inputmode="numeric" placeholder="3" required /></div><div class="field"><label for="event-names">Nomi delle nuove persone <span>(facoltativo)</span></label><input id="event-names" placeholder="Es. Alex, Giulia, Sam" /></div><div class="field"><label for="event-responsible">Responsabile evento</label><input id="event-responsible" list="responsible-options" required placeholder="Nome staffer" /><datalist id="responsible-options"></datalist></div><div class="field full"><label for="event-notes">Note e segnalazioni <span>(facoltativo)</span></label><textarea id="event-notes" rows="3" placeholder="Segnalazioni o accaduti da ricordare..."></textarea></div><div class="field check-field"><label class="checkbox-label"><input id="event-clip" type="checkbox" /> Clip registrata per i social</label></div><div class="field check-field"><label class="checkbox-label"><input id="event-flop" type="checkbox" /> Evento flop</label></div><div class="field full hidden" id="registrar-field"><label for="event-registrar">Clip registrata da</label><input id="event-registrar" list="registrar-options" placeholder="Nome staffer" /><datalist id="registrar-options"></datalist></div></div><div class="modal-actions"><button type="button" class="button button-ghost" data-close-modal>Annulla</button><button type="submit" class="button button-primary"><span id="report-submit-label">Salva report</span> <span>→</span></button></div></form></div></div>
+    <div id="confirm-modal" class="modal-backdrop hidden" role="alertdialog" aria-modal="true" aria-labelledby="confirm-title" aria-describedby="confirm-message"><div class="modal-card confirm-card"><div class="modal-heading"><div><p class="overline" id="confirm-overline">CONFERMA</p><h2 id="confirm-title">Sei sicuro?</h2><p class="muted" id="confirm-message"></p></div><button type="button" class="close-button" data-confirm-cancel aria-label="Chiudi">×</button></div><div class="modal-actions"><button type="button" class="button button-ghost" id="confirm-cancel" data-confirm-cancel>Annulla</button><button type="button" class="button button-primary" id="confirm-accept">Conferma</button></div></div></div>
+    <div id="toast" class="toast" role="status"></div>
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>

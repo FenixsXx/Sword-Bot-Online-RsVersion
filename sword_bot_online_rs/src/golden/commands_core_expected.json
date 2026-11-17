@@ -1,0 +1,192 @@
+[
+ {
+  "name": "reset-manuale",
+  "description": "Forza il reset settimanale",
+  "options": [],
+  "default_member_permissions": 8,
+  "guild_only": true
+ },
+ {
+  "name": "sync",
+  "description": "Risincronizza i comandi slash con Discord",
+  "options": [],
+  "default_member_permissions": 8,
+  "guild_only": true
+ },
+ {
+  "name": "suggerisci",
+  "description": "Proponi un gioco o un evento",
+  "options": [
+   {
+    "name": "nome",
+    "description": "Nome del gioco o evento",
+    "type": 3,
+    "required": true,
+    "min_length": 2,
+    "max_length": 80,
+    "autocomplete": null,
+    "min_value": null,
+    "max_value": null,
+    "channel_types": null,
+    "choices": null
+   },
+   {
+    "name": "tipo",
+    "description": "Gioco, Film, Karaoke...",
+    "type": 3,
+    "required": true,
+    "min_length": null,
+    "max_length": null,
+    "autocomplete": true,
+    "min_value": null,
+    "max_value": null,
+    "channel_types": null,
+    "choices": null
+   },
+   {
+    "name": "link",
+    "description": "Link (facoltativo)",
+    "type": 3,
+    "required": false,
+    "min_length": null,
+    "max_length": null,
+    "autocomplete": null,
+    "min_value": null,
+    "max_value": null,
+    "channel_types": null,
+    "choices": null
+   }
+  ],
+  "default_member_permissions": null,
+  "guild_only": true
+ },
+ {
+  "name": "scegli",
+  "description": "Mette una proposta nel sondaggio finale",
+  "options": [
+   {
+    "name": "id",
+    "description": "Proposta approvata da inserire (scrivi parte del nome)",
+    "type": 4,
+    "required": true,
+    "min_length": null,
+    "max_length": null,
+    "autocomplete": true,
+    "min_value": null,
+    "max_value": null,
+    "channel_types": null,
+    "choices": null
+   },
+   {
+    "name": "motivazione",
+    "description": "Motivo della selezione (facoltativo)",
+    "type": 3,
+    "required": false,
+    "min_length": null,
+    "max_length": null,
+    "autocomplete": null,
+    "min_value": null,
+    "max_value": null,
+    "channel_types": null,
+    "choices": null
+   }
+  ],
+  "default_member_permissions": null,
+  "guild_only": true
+ },
+ {
+  "name": "rimuovi-scelta",
+  "description": "Toglie una proposta dal sondaggio finale",
+  "options": [
+   {
+    "name": "id",
+    "description": "Proposta da togliere (scrivi parte del nome)",
+    "type": 4,
+    "required": true,
+    "min_length": null,
+    "max_length": null,
+    "autocomplete": true,
+    "min_value": null,
+    "max_value": null,
+    "channel_types": null,
+    "choices": null
+   },
+   {
+    "name": "motivazione",
+    "description": "Motivo della rimozione (facoltativo)",
+    "type": 3,
+    "required": false,
+    "min_length": null,
+    "max_length": null,
+    "autocomplete": null,
+    "min_value": null,
+    "max_value": null,
+    "channel_types": null,
+    "choices": null
+   }
+  ],
+  "default_member_permissions": null,
+  "guild_only": true
+ },
+ {
+  "name": "unisci-proposte",
+  "description": "Unisce due proposte duplicate",
+  "options": [
+   {
+    "name": "principale",
+    "description": "Proposta da tenere",
+    "type": 4,
+    "required": true,
+    "min_length": null,
+    "max_length": null,
+    "autocomplete": true,
+    "min_value": null,
+    "max_value": null,
+    "channel_types": null,
+    "choices": null
+   },
+   {
+    "name": "duplicata",
+    "description": "Proposta da assorbire",
+    "type": 4,
+    "required": true,
+    "min_length": null,
+    "max_length": null,
+    "autocomplete": true,
+    "min_value": null,
+    "max_value": null,
+    "channel_types": null,
+    "choices": null
+   },
+   {
+    "name": "motivazione",
+    "description": "Motivo dell'unione (facoltativo)",
+    "type": 3,
+    "required": false,
+    "min_length": null,
+    "max_length": null,
+    "autocomplete": null,
+    "min_value": null,
+    "max_value": null,
+    "channel_types": null,
+    "choices": null
+   }
+  ],
+  "default_member_permissions": null,
+  "guild_only": true
+ },
+ {
+  "name": "staff",
+  "description": "Strumenti dello staff: selezione proposte e centro controllo",
+  "options": [],
+  "default_member_permissions": null,
+  "guild_only": true
+ },
+ {
+  "name": "storico",
+  "description": "Ultime settimane chiuse",
+  "options": [],
+  "default_member_permissions": null,
+  "guild_only": true
+ }
+]

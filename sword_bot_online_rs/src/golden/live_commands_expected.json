@@ -1,0 +1,982 @@
+{
+ "cases": [
+  {
+   "label": "rapporto_non_staff",
+   "out": [
+    {
+     "kind": "send",
+     "content": "⚠️ Questo comando è riservato allo staff.",
+     "embed": null,
+     "components": null,
+     "ephemeral": true
+    }
+   ]
+  },
+  {
+   "label": "rapporto_fuori_dal_server",
+   "out": [
+    {
+     "kind": "send",
+     "content": "⚠️ Questo comando è riservato allo staff.",
+     "embed": null,
+     "components": null,
+     "ephemeral": true
+    }
+   ]
+  },
+  {
+   "label": "rapporto_elenco",
+   "out": [
+    {
+     "kind": "send",
+     "content": null,
+     "embed": {
+      "footer": {
+       "text": "Usa /evento rapporto id_rapporto:<ID> per il dettaglio."
+      },
+      "flags": 0,
+      "color": 10181046,
+      "type": "rich",
+      "description": "`#2` **Game Night 2** · `1 partecipanti` · picco `9` · `2027-01-08`\n`#1` **Game Night 1** · `2 partecipanti` · picco `8` · `2027-01-01`",
+      "title": "📚 Report eventi recenti"
+     },
+     "components": null,
+     "ephemeral": true
+    }
+   ]
+  },
+  {
+   "label": "rapporto_dettaglio",
+   "out": [
+    {
+     "kind": "send",
+     "content": null,
+     "embed": {
+      "footer": {
+       "text": "Le durate del parlato sono stime dai pacchetti audio; nessun audio è conservato. Report individuali eliminabili dallo staff."
+      },
+      "fields": [
+       {
+        "inline": false,
+        "name": "👥 Partecipazione",
+        "value": "Partecipanti unici `2` · picco `8` · presenza media `90 min`"
+       },
+       {
+        "inline": true,
+        "name": "🌱 Nuovi partecipanti",
+        "value": "`2` alla loro prima Game Night"
+       },
+       {
+        "inline": false,
+        "name": "🎤 Speaker principali",
+        "value": "<@101> · `600s` · `67%`\n<@102> · `300s` · `33%`"
+       }
+      ],
+      "flags": 0,
+      "color": 15105570,
+      "type": "rich",
+      "description": "Canale: <#555>\nInizio: <t:1798833600:F>\nDurata: `2h 0m`\nFine: `manuale`",
+      "title": "📊 Report evento #1 · Game Night 1"
+     },
+     "components": null,
+     "ephemeral": true
+    }
+   ]
+  },
+  {
+   "label": "rapporto_attivo",
+   "out": [
+    {
+     "kind": "send",
+     "content": "⚠️ Report non trovato o evento ancora attivo.",
+     "embed": null,
+     "components": null,
+     "ephemeral": true
+    }
+   ]
+  },
+  {
+   "label": "rapporto_inesistente",
+   "out": [
+    {
+     "kind": "send",
+     "content": "⚠️ Report non trovato o evento ancora attivo.",
+     "embed": null,
+     "components": null,
+     "ephemeral": true
+    }
+   ]
+  },
+  {
+   "label": "rapporto_altro_server",
+   "out": [
+    {
+     "kind": "send",
+     "content": "⚠️ Questo comando è riservato allo staff.",
+     "embed": null,
+     "components": null,
+     "ephemeral": true
+    }
+   ]
+  },
+  {
+   "label": "rapporto_server_non_valido",
+   "out": [
+    {
+     "kind": "send",
+     "content": "⚠️ Questo comando è riservato allo staff.",
+     "embed": null,
+     "components": null,
+     "ephemeral": true
+    }
+   ]
+  },
+  {
+   "label": "rapporto_server_giusto",
+   "out": [
+    {
+     "kind": "send",
+     "content": null,
+     "embed": {
+      "footer": {
+       "text": "Le durate del parlato sono stime dai pacchetti audio; nessun audio è conservato. Report individuali eliminabili dallo staff."
+      },
+      "fields": [
+       {
+        "inline": false,
+        "name": "👥 Partecipazione",
+        "value": "Partecipanti unici `1` · picco `9` · presenza media `90 min`"
+       },
+       {
+        "inline": false,
+        "name": "📈 Rispetto agli eventi precedenti",
+        "value": "Partecipanti `1` vs media `2.0` 🔻 -50%\nPicco `9` vs media `8.0` 🔺 +12%\nDurata `90 min` vs media `120 min` 🔻 -25%\n*Media su 1 eventi precedenti.*"
+       },
+       {
+        "inline": true,
+        "name": "🌱 Nuovi partecipanti",
+        "value": "Nessun nuovo partecipante questa volta."
+       },
+       {
+        "inline": false,
+        "name": "🎤 Speaker principali",
+        "value": "<@101> · `100s` · `100%`"
+       }
+      ],
+      "flags": 0,
+      "color": 15105570,
+      "type": "rich",
+      "description": "Canale: <#555>\nInizio: <t:1799438400:F>\nDurata: `1h 30m`\nFine: `disconnessione`",
+      "title": "📊 Report evento #2 · Game Night 2"
+     },
+     "components": null,
+     "ephemeral": true
+    }
+   ]
+  },
+  {
+   "label": "elimina_non_admin",
+   "out": [
+    {
+     "kind": "send",
+     "content": "⚠️ Solo un amministratore può eliminare report evento.",
+     "embed": null,
+     "components": null,
+     "ephemeral": true
+    }
+   ]
+  },
+  {
+   "label": "elimina_fuori_dal_server",
+   "out": [
+    {
+     "kind": "send",
+     "content": "⚠️ Solo un amministratore può eliminare report evento.",
+     "embed": null,
+     "components": null,
+     "ephemeral": true
+    }
+   ]
+  },
+  {
+   "label": "elimina_inesistente",
+   "out": [
+    {
+     "kind": "send",
+     "content": "⚠️ Report non trovato o evento ancora attivo.",
+     "embed": null,
+     "components": null,
+     "ephemeral": true
+    }
+   ]
+  },
+  {
+   "label": "elimina_attivo",
+   "out": [
+    {
+     "kind": "send",
+     "content": "⚠️ Report non trovato o evento ancora attivo.",
+     "embed": null,
+     "components": null,
+     "ephemeral": true
+    }
+   ]
+  },
+  {
+   "label": "elimina_richiesta",
+   "out": [
+    {
+     "kind": "send",
+     "content": "Eliminare il report `#1` e i dati individuali di presenza e parlato? L'operazione non è reversibile.",
+     "embed": null,
+     "components": [
+      {
+       "type": 1,
+       "components": [
+        {
+         "type": 2,
+         "style": 4,
+         "disabled": false,
+         "label": "Elimina report",
+         "custom_id": "<id>",
+         "emoji": {
+          "id": null,
+          "name": "🗑️"
+         }
+        },
+        {
+         "type": 2,
+         "style": 2,
+         "disabled": false,
+         "label": "Annulla",
+         "custom_id": "<id>",
+         "emoji": {
+          "id": null,
+          "name": "✖️"
+         }
+        }
+       ]
+      }
+     ],
+     "ephemeral": true
+    }
+   ]
+  },
+  {
+   "label": "conferma_altro_utente",
+   "out": [
+    {
+     "kind": "send",
+     "content": "⚠️ Questa conferma è riservata a chi l'ha richiesta.",
+     "embed": null,
+     "components": null,
+     "ephemeral": true
+    }
+   ]
+  },
+  {
+   "label": "conferma_non_admin",
+   "out": [
+    {
+     "kind": "send",
+     "content": "⚠️ Solo un amministratore può eliminare report evento.",
+     "embed": null,
+     "components": null,
+     "ephemeral": true
+    }
+   ]
+  },
+  {
+   "label": "conferma_fuori_dal_server",
+   "out": [
+    {
+     "kind": "send",
+     "content": "⚠️ Solo un amministratore può eliminare report evento.",
+     "embed": null,
+     "components": null,
+     "ephemeral": true
+    }
+   ]
+  },
+  {
+   "label": "annulla_altro_utente",
+   "out": [
+    {
+     "kind": "send",
+     "content": "⚠️ Questa conferma è riservata a chi l'ha richiesta.",
+     "embed": null,
+     "components": null,
+     "ephemeral": true
+    }
+   ]
+  },
+  {
+   "label": "annulla",
+   "out": [
+    {
+     "kind": "edit",
+     "content": "Eliminazione annullata.",
+     "components": null
+    }
+   ]
+  },
+  {
+   "label": "conferma_ok",
+   "out": [
+    {
+     "kind": "edit",
+     "content": "✅ Report `#1` e dati individuali eliminati.",
+     "components": null
+    }
+   ]
+  },
+  {
+   "label": "conferma_gia_eliminato",
+   "out": [
+    {
+     "kind": "edit",
+     "content": "⚠️ Report non trovato o già eliminato.",
+     "components": null
+    }
+   ]
+  },
+  {
+   "label": "conferma_senza_motivo",
+   "out": [
+    {
+     "kind": "edit",
+     "content": "✅ Report `#2` e dati individuali eliminati.",
+     "components": null
+    }
+   ]
+  },
+  {
+   "label": "stato_non_staff",
+   "out": [
+    {
+     "kind": "send",
+     "content": "⚠️ Questo comando è riservato allo staff.",
+     "embed": null,
+     "components": null,
+     "ephemeral": true
+    }
+   ]
+  },
+  {
+   "label": "stato_senza_sessione",
+   "out": [
+    {
+     "kind": "send",
+     "content": "ℹ️ Non c'è un evento live attivo.",
+     "embed": null,
+     "components": null,
+     "ephemeral": true
+    }
+   ]
+  },
+  {
+   "label": "stato_attivo",
+   "out": [
+    {
+     "kind": "send",
+     "content": "🎮 Evento live attivo in <#555> · `3` partecipanti vocali.",
+     "embed": null,
+     "components": null,
+     "ephemeral": true
+    }
+   ]
+  },
+  {
+   "label": "rigenera_non_admin",
+   "out": [
+    {
+     "kind": "send",
+     "content": "⚠️ Solo un amministratore può revocare il link overlay.",
+     "embed": null,
+     "components": null,
+     "ephemeral": true
+    }
+   ]
+  },
+  {
+   "label": "rigenera_senza_sessione",
+   "out": [
+    {
+     "kind": "send",
+     "content": "ℹ️ Avvia prima un evento live.",
+     "embed": null,
+     "components": null,
+     "ephemeral": true
+    }
+   ]
+  },
+  {
+   "label": "rigenera_altro_server",
+   "out": [
+    {
+     "kind": "send",
+     "content": "ℹ️ Avvia prima un evento live.",
+     "embed": null,
+     "components": null,
+     "ephemeral": true
+    }
+   ]
+  },
+  {
+   "label": "rigenera_ok",
+   "out": [
+    {
+     "kind": "send",
+     "content": "✅ Link precedente revocato. Nuovo link OBS:\nhttps://overlay.example.it/overlay/1?tema=classic#nuovo-token",
+     "embed": null,
+     "components": null,
+     "ephemeral": true
+    }
+   ]
+  },
+  {
+   "label": "link_classic",
+   "out": [
+    {
+     "kind": "send",
+     "content": "✅ Link OBS · layout **Classico**:\nhttps://overlay.example.it/overlay/1?tema=classic#nuovo-token\nIl link contiene una chiave di accesso: condividilo solo con chi deve vedere l'overlay.",
+     "embed": null,
+     "components": null,
+     "ephemeral": true
+    }
+   ]
+  },
+  {
+   "label": "link_podcast",
+   "out": [
+    {
+     "kind": "send",
+     "content": "✅ Link OBS · layout **Podcast**:\nhttps://overlay.example.it/overlay/1?tema=podcast#nuovo-token\nIl link contiene una chiave di accesso: condividilo solo con chi deve vedere l'overlay.",
+     "embed": null,
+     "components": null,
+     "ephemeral": true
+    }
+   ]
+  },
+  {
+   "label": "link_esport",
+   "out": [
+    {
+     "kind": "send",
+     "content": "✅ Link OBS · layout **Esport**:\nhttps://overlay.example.it/overlay/1?tema=esport#nuovo-token\nIl link contiene una chiave di accesso: condividilo solo con chi deve vedere l'overlay.",
+     "embed": null,
+     "components": null,
+     "ephemeral": true
+    }
+   ]
+  },
+  {
+   "label": "link_minimal",
+   "out": [
+    {
+     "kind": "send",
+     "content": "✅ Link OBS · layout **Minimal**:\nhttps://overlay.example.it/overlay/1?tema=minimal#nuovo-token\nIl link contiene una chiave di accesso: condividilo solo con chi deve vedere l'overlay.",
+     "embed": null,
+     "components": null,
+     "ephemeral": true
+    }
+   ]
+  },
+  {
+   "label": "link_stage",
+   "out": [
+    {
+     "kind": "send",
+     "content": "✅ Link OBS · layout **Stage**:\nhttps://overlay.example.it/overlay/1?tema=stage#nuovo-token\nIl link contiene una chiave di accesso: condividilo solo con chi deve vedere l'overlay.",
+     "embed": null,
+     "components": null,
+     "ephemeral": true
+    }
+   ]
+  },
+  {
+   "label": "link_non_staff",
+   "out": [
+    {
+     "kind": "send",
+     "content": "⚠️ Questo comando è riservato allo staff.",
+     "embed": null,
+     "components": null,
+     "ephemeral": true
+    }
+   ]
+  },
+  {
+   "label": "link_senza_sessione",
+   "out": [
+    {
+     "kind": "send",
+     "content": "ℹ️ Avvia prima un evento live.",
+     "embed": null,
+     "components": null,
+     "ephemeral": true
+    }
+   ]
+  },
+  {
+   "label": "programma_non_admin",
+   "out": [
+    {
+     "kind": "send",
+     "content": "⚠️ Solo un amministratore può abilitare gli eventi automatici.",
+     "embed": null,
+     "components": null,
+     "ephemeral": true
+    }
+   ]
+  },
+  {
+   "label": "programma_non_numerico",
+   "out": [
+    {
+     "kind": "send",
+     "content": "⚠️ Seleziona un evento programmato valido dal menu.",
+     "embed": null,
+     "components": null,
+     "ephemeral": true
+    }
+   ]
+  },
+  {
+   "label": "programma_inesistente",
+   "out": [
+    {
+     "kind": "send",
+     "content": "⚠️ Evento programmato non trovato o già iniziato.",
+     "embed": null,
+     "components": null,
+     "ephemeral": true
+    }
+   ]
+  },
+  {
+   "label": "programma_gia_iniziato",
+   "out": [
+    {
+     "kind": "send",
+     "content": "⚠️ Evento programmato non trovato o già iniziato.",
+     "embed": null,
+     "components": null,
+     "ephemeral": true
+    }
+   ]
+  },
+  {
+   "label": "programma_stage",
+   "out": [
+    {
+     "kind": "send",
+     "content": "⚠️ L'avvio automatico richiede un evento collegato a un canale vocale standard; i canali Stage e gli eventi esterni non sono supportati.",
+     "embed": null,
+     "components": null,
+     "ephemeral": true
+    }
+   ]
+  },
+  {
+   "label": "programma_esterno",
+   "out": [
+    {
+     "kind": "send",
+     "content": "⚠️ L'avvio automatico richiede un evento collegato a un canale vocale standard; i canali Stage e gli eventi esterni non sono supportati.",
+     "embed": null,
+     "components": null,
+     "ephemeral": true
+    }
+   ]
+  },
+  {
+   "label": "programma_senza_canale_staff",
+   "out": [
+    {
+     "kind": "send",
+     "content": "⚠️ Configura prima il canale staff con `/config`: il link OBS automatico viene inviato solo lì.",
+     "embed": null,
+     "components": null,
+     "ephemeral": true
+    }
+   ]
+  },
+  {
+   "label": "programma_canale_staff_vocale",
+   "out": [
+    {
+     "kind": "send",
+     "content": "⚠️ Configura prima il canale staff con `/config`: il link OBS automatico viene inviato solo lì.",
+     "embed": null,
+     "components": null,
+     "ephemeral": true
+    }
+   ]
+  },
+  {
+   "label": "programma_canale_staff_non_valido",
+   "out": [
+    {
+     "kind": "send",
+     "content": "⚠️ Configura prima il canale staff con `/config`: il link OBS automatico viene inviato solo lì.",
+     "embed": null,
+     "components": null,
+     "ephemeral": true
+    }
+   ]
+  },
+  {
+   "label": "programma_ok",
+   "out": [
+    {
+     "kind": "send",
+     "content": "✅ **Serata Among Us** abilitato. All'avvio dell'evento Discord il bot si collegherà al canale vocale; alla sua conclusione salverà il report e si disconnetterà. Verifica che i partecipanti siano informati della raccolta di durate stimate; l'audio non viene salvato.",
+     "embed": null,
+     "components": null,
+     "ephemeral": true
+    }
+   ]
+  },
+  {
+   "label": "programma_ok_secondo",
+   "out": [
+    {
+     "kind": "send",
+     "content": "✅ **Altra serata** abilitato. All'avvio dell'evento Discord il bot si collegherà al canale vocale; alla sua conclusione salverà il report e si disconnetterà. Verifica che i partecipanti siano informati della raccolta di durate stimate; l'audio non viene salvato.",
+     "embed": null,
+     "components": null,
+     "ephemeral": true
+    }
+   ]
+  },
+  {
+   "label": "programma_ripetuto",
+   "out": [
+    {
+     "kind": "send",
+     "content": "✅ **Serata Among Us** abilitato. All'avvio dell'evento Discord il bot si collegherà al canale vocale; alla sua conclusione salverà il report e si disconnetterà. Verifica che i partecipanti siano informati della raccolta di durate stimate; l'audio non viene salvato.",
+     "embed": null,
+     "components": null,
+     "ephemeral": true
+    }
+   ]
+  },
+  {
+   "label": "rimuovi_non_admin",
+   "out": [
+    {
+     "kind": "send",
+     "content": "⚠️ Solo un amministratore può modificare gli eventi automatici.",
+     "embed": null,
+     "components": null,
+     "ephemeral": true
+    }
+   ]
+  },
+  {
+   "label": "rimuovi_non_numerico",
+   "out": [
+    {
+     "kind": "send",
+     "content": "❌ ID evento non valido: scegli un evento dall'elenco o incolla l'ID numerico.",
+     "embed": null,
+     "components": null,
+     "ephemeral": true
+    }
+   ]
+  },
+  {
+   "label": "rimuovi_vuoto",
+   "out": [
+    {
+     "kind": "send",
+     "content": "❌ ID evento non valido: scegli un evento dall'elenco o incolla l'ID numerico.",
+     "embed": null,
+     "components": null,
+     "ephemeral": true
+    }
+   ]
+  },
+  {
+   "label": "rimuovi_non_abilitato",
+   "out": [
+    {
+     "kind": "send",
+     "content": "ℹ️ Questo evento non era abilitato.",
+     "embed": null,
+     "components": null,
+     "ephemeral": true
+    }
+   ]
+  },
+  {
+   "label": "rimuovi_ok",
+   "out": [
+    {
+     "kind": "send",
+     "content": "✅ Avvio automatico disabilitato per l'evento `1006`. Un evento già attivo non viene terminato da questa modifica.",
+     "embed": null,
+     "components": null,
+     "ephemeral": true
+    }
+   ]
+  }
+ ],
+ "delete_state": {
+  "events": [
+   [
+    3
+   ]
+  ],
+  "participants": [
+   [
+    3,
+    103
+   ]
+  ],
+  "audit": [
+   [
+    99,
+    "live_event_report_deleted",
+    "live_event",
+    "1",
+    "doppione",
+    "{}"
+   ],
+   [
+    99,
+    "live_event_report_deleted",
+    "live_event",
+    "2",
+    null,
+    "{}"
+   ]
+  ]
+ },
+ "token_after_rotate": "nuovo-token",
+ "optins_after_opt_in": "[1001, 1006]",
+ "optins_after_opt_out": "[1001]",
+ "scheduled_audit": [
+  [
+   99,
+   "scheduled_event_opted_in",
+   "scheduled_event",
+   "1001",
+   null,
+   "{\"title\": \"Serata Among Us\"}"
+  ],
+  [
+   99,
+   "scheduled_event_opted_in",
+   "scheduled_event",
+   "1006",
+   null,
+   "{\"title\": \"Altra serata\"}"
+  ],
+  [
+   99,
+   "scheduled_event_opted_in",
+   "scheduled_event",
+   "1001",
+   null,
+   "{\"title\": \"Serata Among Us\"}"
+  ],
+  [
+   99,
+   "scheduled_event_opted_out",
+   "scheduled_event",
+   "1006",
+   null,
+   "{}"
+  ]
+ ],
+ "autocomplete": [
+  [
+   "programma",
+   "",
+   [
+    [
+     "Serata Among Us",
+     "1001"
+    ],
+    [
+     "Evento in stage",
+     "1003"
+    ],
+    [
+     "Evento esterno",
+     "1004"
+    ],
+    [
+     "Torneo xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+     "1005"
+    ],
+    [
+     "Altra serata",
+     "1006"
+    ]
+   ]
+  ],
+  [
+   "programma",
+   "serata",
+   [
+    [
+     "Serata Among Us",
+     "1001"
+    ],
+    [
+     "Altra serata",
+     "1006"
+    ]
+   ]
+  ],
+  [
+   "programma",
+   "SERATA",
+   [
+    [
+     "Serata Among Us",
+     "1001"
+    ],
+    [
+     "Altra serata",
+     "1006"
+    ]
+   ]
+  ],
+  [
+   "programma",
+   "among",
+   [
+    [
+     "Serata Among Us",
+     "1001"
+    ]
+   ]
+  ],
+  [
+   "programma",
+   "zzz",
+   []
+  ],
+  [
+   "programma",
+   "torneo",
+   [
+    [
+     "Torneo xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+     "1005"
+    ]
+   ]
+  ],
+  [
+   "programma",
+   "à",
+   []
+  ],
+  [
+   "programma_senza_server",
+   "",
+   []
+  ],
+  [
+   "rimuovi",
+   "",
+   [
+    [
+     "Evento 31",
+     "31"
+    ],
+    [
+     "Evento 777",
+     "777"
+    ],
+    [
+     "Serata Among Us · 1001",
+     "1001"
+    ],
+    [
+     "Torneo xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+     "1005"
+    ],
+    [
+     "Finita · 1007",
+     "1007"
+    ]
+   ]
+  ],
+  [
+   "rimuovi",
+   "serata",
+   [
+    [
+     "Serata Among Us · 1001",
+     "1001"
+    ]
+   ]
+  ],
+  [
+   "rimuovi",
+   "evento 7",
+   [
+    [
+     "Evento 777",
+     "777"
+    ]
+   ]
+  ],
+  [
+   "rimuovi",
+   "torneo",
+   [
+    [
+     "Torneo xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+     "1005"
+    ]
+   ]
+  ],
+  [
+   "rimuovi",
+   "1007",
+   [
+    [
+     "Finita · 1007",
+     "1007"
+    ]
+   ]
+  ],
+  [
+   "rimuovi",
+   "ZZZ",
+   []
+  ],
+  [
+   "rimuovi_senza_server",
+   "",
+   [
+    [
+     "Evento 31",
+     "31"
+    ],
+    [
+     "Evento 777",
+     "777"
+    ],
+    [
+     "Evento 1001",
+     "1001"
+    ],
+    [
+     "Evento 1005",
+     "1005"
+    ],
+    [
+     "Evento 1007",
+     "1007"
+    ]
+   ]
+  ]
+ ]
+}

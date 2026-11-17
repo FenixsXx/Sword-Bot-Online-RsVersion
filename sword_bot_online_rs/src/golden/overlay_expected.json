@@ -1,0 +1,1147 @@
+{
+ "snapshots": [
+  {
+   "label": "nessuna_sessione",
+   "members": [],
+   "levels": {},
+   "snapshot": {
+    "type": "status",
+    "active": false
+   }
+  },
+  {
+   "label": "canale_vuoto",
+   "members": [],
+   "levels": {},
+   "snapshot": {
+    "type": "event",
+    "active": true,
+    "title": "Serata *Giochi*",
+    "channel": "Sala Eventi",
+    "started_at": "2027-03-05T21:00:00+01:00",
+    "participant_count": 0,
+    "participants": [],
+    "main_speaker_id": null
+   }
+  },
+  {
+   "label": "nessuno_parla",
+   "members": [
+    [
+     1,
+     "Zeta",
+     false
+    ],
+    [
+     2,
+     "alpha",
+     false
+    ],
+    [
+     3,
+     "Beta",
+     false
+    ],
+    [
+     4,
+     "Bot",
+     true
+    ]
+   ],
+   "levels": {},
+   "snapshot": {
+    "type": "event",
+    "active": true,
+    "title": "Serata *Giochi*",
+    "channel": "Sala Eventi",
+    "started_at": "2027-03-05T21:00:00+01:00",
+    "participant_count": 3,
+    "participants": [
+     {
+      "id": 2,
+      "name": "alpha",
+      "avatar": "https://cdn.discordapp.com/avatars/2/a.png",
+      "speaking": false,
+      "volume": 0.0,
+      "level": "🌱 Nuovo",
+      "streak": 0,
+      "wins": 0
+     },
+     {
+      "id": 3,
+      "name": "Beta",
+      "avatar": "https://cdn.discordapp.com/avatars/3/a.png",
+      "speaking": false,
+      "volume": 0.0,
+      "level": "👑 Leggenda",
+      "streak": 9,
+      "wins": 12
+     },
+     {
+      "id": 1,
+      "name": "Zeta",
+      "avatar": "https://cdn.discordapp.com/avatars/1/a.png",
+      "speaking": false,
+      "volume": 0.0,
+      "level": "🥈 Argento",
+      "streak": 5,
+      "wins": 1
+     }
+    ],
+    "main_speaker_id": null
+   }
+  },
+  {
+   "label": "tanti_che_parlano",
+   "members": [
+    [
+     1,
+     "Zeta",
+     false
+    ],
+    [
+     2,
+     "alpha",
+     false
+    ],
+    [
+     3,
+     "Beta",
+     false
+    ],
+    [
+     4,
+     "Bot",
+     true
+    ],
+    [
+     5,
+     "Èlia",
+     false
+    ],
+    [
+     6,
+     "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+     false
+    ],
+    [
+     7,
+     "Straße",
+     false
+    ],
+    [
+     8,
+     "STRASSE",
+     false
+    ],
+    [
+     9,
+     "Äpfel",
+     false
+    ],
+    [
+     10,
+     "apfel",
+     false
+    ],
+    [
+     11,
+     "Ω",
+     false
+    ],
+    [
+     12,
+     "ω",
+     false
+    ]
+   ],
+   "levels": {
+    "1": 0.5,
+    "2": 0.5,
+    "5": 1.7,
+    "6": 0.00049,
+    "7": 0.0005,
+    "9": 0.12345,
+    "10": 0.0015,
+    "11": 0.9995,
+    "12": 0.0625,
+    "4": 0.9
+   },
+   "snapshot": {
+    "type": "event",
+    "active": true,
+    "title": "Serata *Giochi*",
+    "channel": "Sala Eventi",
+    "started_at": "2027-03-05T21:00:00+01:00",
+    "participant_count": 11,
+    "participants": [
+     {
+      "id": 5,
+      "name": "Èlia",
+      "avatar": "https://cdn.discordapp.com/avatars/5/a.png",
+      "speaking": true,
+      "volume": 1.0,
+      "level": "🌱 Nuovo",
+      "streak": 2,
+      "wins": 0
+     },
+     {
+      "id": 11,
+      "name": "Ω",
+      "avatar": "https://cdn.discordapp.com/avatars/11/a.png",
+      "speaking": true,
+      "volume": 1.0,
+      "level": "🌱 Nuovo",
+      "streak": 0,
+      "wins": 0
+     },
+     {
+      "id": 2,
+      "name": "alpha",
+      "avatar": "https://cdn.discordapp.com/avatars/2/a.png",
+      "speaking": true,
+      "volume": 0.5,
+      "level": "🌱 Nuovo",
+      "streak": 0,
+      "wins": 0
+     },
+     {
+      "id": 1,
+      "name": "Zeta",
+      "avatar": "https://cdn.discordapp.com/avatars/1/a.png",
+      "speaking": true,
+      "volume": 0.5,
+      "level": "🥈 Argento",
+      "streak": 5,
+      "wins": 1
+     },
+     {
+      "id": 9,
+      "name": "Äpfel",
+      "avatar": "https://cdn.discordapp.com/avatars/9/a.png",
+      "speaking": true,
+      "volume": 0.123,
+      "level": "🌱 Nuovo",
+      "streak": 0,
+      "wins": 0
+     },
+     {
+      "id": 12,
+      "name": "ω",
+      "avatar": "https://cdn.discordapp.com/avatars/12/a.png",
+      "speaking": true,
+      "volume": 0.062,
+      "level": "🌱 Nuovo",
+      "streak": 0,
+      "wins": 0
+     },
+     {
+      "id": 10,
+      "name": "apfel",
+      "avatar": "https://cdn.discordapp.com/avatars/10/a.png",
+      "speaking": true,
+      "volume": 0.002,
+      "level": "🌱 Nuovo",
+      "streak": 0,
+      "wins": 0
+     },
+     {
+      "id": 7,
+      "name": "Straße",
+      "avatar": "https://cdn.discordapp.com/avatars/7/a.png",
+      "speaking": true,
+      "volume": 0.001,
+      "level": "👑 Leggenda",
+      "streak": 11,
+      "wins": 40
+     },
+     {
+      "id": 6,
+      "name": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+      "avatar": "https://cdn.discordapp.com/avatars/6/a.png",
+      "speaking": true,
+      "volume": 0.0,
+      "level": "🌱 Nuovo",
+      "streak": 0,
+      "wins": 0
+     },
+     {
+      "id": 3,
+      "name": "Beta",
+      "avatar": "https://cdn.discordapp.com/avatars/3/a.png",
+      "speaking": false,
+      "volume": 0.0,
+      "level": "👑 Leggenda",
+      "streak": 9,
+      "wins": 12
+     },
+     {
+      "id": 8,
+      "name": "STRASSE",
+      "avatar": "https://cdn.discordapp.com/avatars/8/a.png",
+      "speaking": false,
+      "volume": 0.0,
+      "level": "🌱 Nuovo",
+      "streak": 0,
+      "wins": 0
+     }
+    ],
+    "main_speaker_id": 5
+   }
+  },
+  {
+   "label": "ordine_per_volume_poi_nome",
+   "members": [
+    [
+     1,
+     "Zeta",
+     false
+    ],
+    [
+     2,
+     "alpha",
+     false
+    ],
+    [
+     3,
+     "Beta",
+     false
+    ]
+   ],
+   "levels": {
+    "2": 0.25,
+    "3": 0.25,
+    "1": 0.2501
+   },
+   "snapshot": {
+    "type": "event",
+    "active": true,
+    "title": "Serata *Giochi*",
+    "channel": "Sala Eventi",
+    "started_at": "2027-03-05T21:00:00+01:00",
+    "participant_count": 3,
+    "participants": [
+     {
+      "id": 2,
+      "name": "alpha",
+      "avatar": "https://cdn.discordapp.com/avatars/2/a.png",
+      "speaking": true,
+      "volume": 0.25,
+      "level": "🌱 Nuovo",
+      "streak": 0,
+      "wins": 0
+     },
+     {
+      "id": 3,
+      "name": "Beta",
+      "avatar": "https://cdn.discordapp.com/avatars/3/a.png",
+      "speaking": true,
+      "volume": 0.25,
+      "level": "👑 Leggenda",
+      "streak": 9,
+      "wins": 12
+     },
+     {
+      "id": 1,
+      "name": "Zeta",
+      "avatar": "https://cdn.discordapp.com/avatars/1/a.png",
+      "speaking": true,
+      "volume": 0.25,
+      "level": "🥈 Argento",
+      "streak": 5,
+      "wins": 1
+     }
+    ],
+    "main_speaker_id": 2
+   }
+  },
+  {
+   "label": "livelli_espliciti",
+   "members": [
+    [
+     1,
+     "Zeta",
+     false
+    ],
+    [
+     2,
+     "alpha",
+     false
+    ]
+   ],
+   "levels": {
+    "2": 0.4
+   },
+   "snapshot": {
+    "type": "event",
+    "active": true,
+    "title": "Serata *Giochi*",
+    "channel": "Sala Eventi",
+    "started_at": "2027-03-05T21:00:00+01:00",
+    "participant_count": 2,
+    "participants": [
+     {
+      "id": 2,
+      "name": "alpha",
+      "avatar": "https://cdn.discordapp.com/avatars/2/a.png",
+      "speaking": true,
+      "volume": 0.4,
+      "level": "🌱 Nuovo",
+      "streak": 0,
+      "wins": 0
+     },
+     {
+      "id": 1,
+      "name": "Zeta",
+      "avatar": "https://cdn.discordapp.com/avatars/1/a.png",
+      "speaking": false,
+      "volume": 0.0,
+      "level": "🥈 Argento",
+      "streak": 5,
+      "wins": 1
+     }
+    ],
+    "main_speaker_id": 2
+   }
+  },
+  {
+   "label": "livelli_espliciti_vuoti",
+   "members": [
+    [
+     1,
+     "Zeta",
+     false
+    ],
+    [
+     2,
+     "alpha",
+     false
+    ]
+   ],
+   "levels": {},
+   "snapshot": {
+    "type": "event",
+    "active": true,
+    "title": "Serata *Giochi*",
+    "channel": "Sala Eventi",
+    "started_at": "2027-03-05T21:00:00+01:00",
+    "participant_count": 2,
+    "participants": [
+     {
+      "id": 2,
+      "name": "alpha",
+      "avatar": "https://cdn.discordapp.com/avatars/2/a.png",
+      "speaking": false,
+      "volume": 0.0,
+      "level": "🌱 Nuovo",
+      "streak": 0,
+      "wins": 0
+     },
+     {
+      "id": 1,
+      "name": "Zeta",
+      "avatar": "https://cdn.discordapp.com/avatars/1/a.png",
+      "speaking": false,
+      "volume": 0.0,
+      "level": "🥈 Argento",
+      "streak": 5,
+      "wins": 1
+     }
+    ],
+    "main_speaker_id": null
+   }
+  }
+ ],
+ "stats_seed": [
+  [
+   1,
+   3,
+   0,
+   4,
+   2,
+   1,
+   5
+  ],
+  [
+   2,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0
+  ],
+  [
+   3,
+   50,
+   9,
+   80,
+   30,
+   12,
+   9
+  ],
+  [
+   5,
+   1,
+   1,
+   1,
+   1,
+   0,
+   2
+  ],
+  [
+   7,
+   400,
+   50,
+   200,
+   100,
+   40,
+   11
+  ]
+ ],
+ "session_meta": {
+  "title": "Serata *Giochi*",
+  "channel": "Sala Eventi",
+  "started_at": "2027-03-05T21:00:00+01:00"
+ },
+ "rounding": [
+  [
+   0.0005,
+   0.001
+  ],
+  [
+   0.0015,
+   0.002
+  ],
+  [
+   0.0025,
+   0.003
+  ],
+  [
+   0.0035,
+   0.004
+  ],
+  [
+   0.0625,
+   0.062
+  ],
+  [
+   0.1235,
+   0.123
+  ],
+  [
+   0.4995,
+   0.499
+  ],
+  [
+   0.7745,
+   0.774
+  ],
+  [
+   0.9995,
+   1.0
+  ],
+  [
+   0.5,
+   0.5
+  ],
+  [
+   0.123456,
+   0.123
+  ],
+  [
+   1e-09,
+   0.0
+  ],
+  [
+   0.99949999,
+   0.999
+  ],
+  [
+   0.0,
+   0.0
+  ],
+  [
+   0.3333333333,
+   0.333
+  ]
+ ],
+ "pages": [
+  {
+   "label": "pagina",
+   "status": 200,
+   "headers": {
+    "Cache-Control": "no-store",
+    "Content-Security-Policy": "default-src 'self'; img-src 'self' https://cdn.discordapp.com https://media.discordapp.net; style-src 'self' 'unsafe-inline'; script-src 'self' 'unsafe-inline'; connect-src 'self' wss://overlay.example.it; base-uri 'none'; frame-ancestors *",
+    "Referrer-Policy": "no-referrer",
+    "X-Content-Type-Options": "nosniff",
+    "Content-Type": "text/html",
+    "Content-Length": "16033"
+   },
+   "sha256": "b02f267a9a367589bbcb8491a26c16a54d974932fb42fb5bd90e604e0f6ca1e1",
+   "body": null
+  },
+  {
+   "label": "pagina_con_tema",
+   "status": 200,
+   "headers": {
+    "Cache-Control": "no-store",
+    "Content-Security-Policy": "default-src 'self'; img-src 'self' https://cdn.discordapp.com https://media.discordapp.net; style-src 'self' 'unsafe-inline'; script-src 'self' 'unsafe-inline'; connect-src 'self' wss://overlay.example.it; base-uri 'none'; frame-ancestors *",
+    "Referrer-Policy": "no-referrer",
+    "X-Content-Type-Options": "nosniff",
+    "Content-Type": "text/html",
+    "Content-Length": "16033"
+   },
+   "sha256": "b02f267a9a367589bbcb8491a26c16a54d974932fb42fb5bd90e604e0f6ca1e1",
+   "body": null
+  },
+  {
+   "label": "pagina_guild_diverso",
+   "status": 404,
+   "headers": {
+    "Content-Type": "text/plain; charset=utf-8",
+    "Content-Length": "14"
+   },
+   "sha256": null,
+   "body": "404: Not Found"
+  },
+  {
+   "label": "pagina_guild_non_numerico",
+   "status": 404,
+   "headers": {
+    "Content-Type": "text/plain; charset=utf-8",
+    "Content-Length": "14"
+   },
+   "sha256": null,
+   "body": "404: Not Found"
+  },
+  {
+   "label": "pagina_con_spazi_e_segno",
+   "status": 200,
+   "headers": {
+    "Cache-Control": "no-store",
+    "Content-Security-Policy": "default-src 'self'; img-src 'self' https://cdn.discordapp.com https://media.discordapp.net; style-src 'self' 'unsafe-inline'; script-src 'self' 'unsafe-inline'; connect-src 'self' wss://overlay.example.it; base-uri 'none'; frame-ancestors *",
+    "Referrer-Policy": "no-referrer",
+    "X-Content-Type-Options": "nosniff",
+    "Content-Type": "text/html",
+    "Content-Length": "16033"
+   },
+   "sha256": "b02f267a9a367589bbcb8491a26c16a54d974932fb42fb5bd90e604e0f6ca1e1",
+   "body": null
+  },
+  {
+   "label": "pagina_cifre_unicode",
+   "status": 200,
+   "headers": {
+    "Cache-Control": "no-store",
+    "Content-Security-Policy": "default-src 'self'; img-src 'self' https://cdn.discordapp.com https://media.discordapp.net; style-src 'self' 'unsafe-inline'; script-src 'self' 'unsafe-inline'; connect-src 'self' wss://overlay.example.it; base-uri 'none'; frame-ancestors *",
+    "Referrer-Policy": "no-referrer",
+    "X-Content-Type-Options": "nosniff",
+    "Content-Type": "text/html",
+    "Content-Length": "16033"
+   },
+   "sha256": "b02f267a9a367589bbcb8491a26c16a54d974932fb42fb5bd90e604e0f6ca1e1",
+   "body": null
+  },
+  {
+   "label": "pagina_head",
+   "status": 200,
+   "headers": {
+    "Cache-Control": "no-store",
+    "Content-Security-Policy": "default-src 'self'; img-src 'self' https://cdn.discordapp.com https://media.discordapp.net; style-src 'self' 'unsafe-inline'; script-src 'self' 'unsafe-inline'; connect-src 'self' wss://overlay.example.it; base-uri 'none'; frame-ancestors *",
+    "Referrer-Policy": "no-referrer",
+    "X-Content-Type-Options": "nosniff",
+    "Content-Type": "text/html",
+    "Content-Length": "16033"
+   },
+   "sha256": null,
+   "body": null
+  },
+  {
+   "label": "pagina_post",
+   "status": 405,
+   "headers": {
+    "Content-Type": "text/plain; charset=utf-8",
+    "Content-Length": "23"
+   },
+   "sha256": null,
+   "body": "405: Method Not Allowed"
+  }
+ ],
+ "ws": [
+  {
+   "label": "nessuna_sessione",
+   "status": 404,
+   "http_body": "404: Not Found"
+  },
+  {
+   "label": "guild_diverso",
+   "status": 404,
+   "http_body": "404: Not Found"
+  },
+  {
+   "label": "guild_non_numerico",
+   "status": 404,
+   "http_body": "404: Not Found"
+  },
+  {
+   "label": "origine_mancante",
+   "status": 403,
+   "http_body": "Origine non autorizzata"
+  },
+  {
+   "label": "origine_sbagliata",
+   "status": 403,
+   "http_body": "Origine non autorizzata"
+  },
+  {
+   "label": "origine_http",
+   "status": 403,
+   "http_body": "Origine non autorizzata"
+  },
+  {
+   "label": "troppi_client",
+   "status": 503,
+   "http_body": "Troppi overlay collegati"
+  },
+  {
+   "label": "ultimo_posto_libero",
+   "status": 101,
+   "events": [
+    [
+     "text",
+     {
+      "type": "event",
+      "active": true,
+      "title": "Serata *Giochi*",
+      "channel": "Sala Eventi",
+      "started_at": "2027-03-05T21:00:00+01:00",
+      "participant_count": 2,
+      "participants": [
+       {
+        "id": 1,
+        "name": "Zeta",
+        "avatar": "https://cdn.discordapp.com/avatars/1/a.png",
+        "speaking": true,
+        "volume": 0.5,
+        "level": "🥈 Argento",
+        "streak": 5,
+        "wins": 1
+       },
+       {
+        "id": 2,
+        "name": "alpha",
+        "avatar": "https://cdn.discordapp.com/avatars/2/a.png",
+        "speaking": false,
+        "volume": 0.0,
+        "level": "🌱 Nuovo",
+        "streak": 0,
+        "wins": 0
+       }
+      ],
+      "main_speaker_id": 1
+     }
+    ]
+   ],
+   "clients_while_open": 1,
+   "clients_after": 0,
+   "open_connections_after": 24
+  },
+  {
+   "label": "token_valido",
+   "status": 101,
+   "events": [
+    [
+     "text",
+     {
+      "type": "event",
+      "active": true,
+      "title": "Serata *Giochi*",
+      "channel": "Sala Eventi",
+      "started_at": "2027-03-05T21:00:00+01:00",
+      "participant_count": 2,
+      "participants": [
+       {
+        "id": 1,
+        "name": "Zeta",
+        "avatar": "https://cdn.discordapp.com/avatars/1/a.png",
+        "speaking": true,
+        "volume": 0.5,
+        "level": "🥈 Argento",
+        "streak": 5,
+        "wins": 1
+       },
+       {
+        "id": 2,
+        "name": "alpha",
+        "avatar": "https://cdn.discordapp.com/avatars/2/a.png",
+        "speaking": false,
+        "volume": 0.0,
+        "level": "🌱 Nuovo",
+        "streak": 0,
+        "wins": 0
+       }
+      ],
+      "main_speaker_id": 1
+     }
+    ]
+   ],
+   "clients_while_open": 1,
+   "clients_after": 0,
+   "open_connections_after": 0
+  },
+  {
+   "label": "token_valido_guild_con_segno",
+   "status": 101,
+   "events": [
+    [
+     "text",
+     {
+      "type": "event",
+      "active": true,
+      "title": "Serata *Giochi*",
+      "channel": "Sala Eventi",
+      "started_at": "2027-03-05T21:00:00+01:00",
+      "participant_count": 2,
+      "participants": [
+       {
+        "id": 1,
+        "name": "Zeta",
+        "avatar": "https://cdn.discordapp.com/avatars/1/a.png",
+        "speaking": true,
+        "volume": 0.5,
+        "level": "🥈 Argento",
+        "streak": 5,
+        "wins": 1
+       },
+       {
+        "id": 2,
+        "name": "alpha",
+        "avatar": "https://cdn.discordapp.com/avatars/2/a.png",
+        "speaking": false,
+        "volume": 0.0,
+        "level": "🌱 Nuovo",
+        "streak": 0,
+        "wins": 0
+       }
+      ],
+      "main_speaker_id": 1
+     }
+    ]
+   ],
+   "clients_while_open": 1,
+   "clients_after": 0,
+   "open_connections_after": 0
+  },
+  {
+   "label": "token_sbagliato",
+   "status": 101,
+   "events": [
+    [
+     "close",
+     1008,
+     "Token non valido"
+    ]
+   ],
+   "clients_while_open": 0,
+   "clients_after": 0,
+   "open_connections_after": 0
+  },
+  {
+   "label": "token_vuoto",
+   "status": 101,
+   "events": [
+    [
+     "close",
+     1008,
+     "Token non valido"
+    ]
+   ],
+   "clients_while_open": 0,
+   "clients_after": 0,
+   "open_connections_after": 0
+  },
+  {
+   "label": "token_non_stringa",
+   "status": 101,
+   "events": [
+    [
+     "close",
+     1008,
+     "Token non valido"
+    ]
+   ],
+   "clients_while_open": 0,
+   "clients_after": 0,
+   "open_connections_after": 0
+  },
+  {
+   "label": "token_mancante",
+   "status": 101,
+   "events": [
+    [
+     "close",
+     1008,
+     "Token non valido"
+    ]
+   ],
+   "clients_while_open": 0,
+   "clients_after": 0,
+   "open_connections_after": 0
+  },
+  {
+   "label": "json_non_valido",
+   "status": 101,
+   "events": [
+    [
+     "close",
+     1008,
+     "Token non valido"
+    ]
+   ],
+   "clients_while_open": 0,
+   "clients_after": 0,
+   "open_connections_after": 0
+  },
+  {
+   "label": "json_lista",
+   "status": 101,
+   "events": [
+    [
+     "close",
+     1008,
+     "Token non valido"
+    ]
+   ],
+   "clients_while_open": 0,
+   "clients_after": 0,
+   "open_connections_after": 0
+  },
+  {
+   "label": "json_null",
+   "status": 101,
+   "events": [
+    [
+     "close",
+     1008,
+     "Token non valido"
+    ]
+   ],
+   "clients_while_open": 0,
+   "clients_after": 0,
+   "open_connections_after": 0
+  },
+  {
+   "label": "json_stringa",
+   "status": 101,
+   "events": [
+    [
+     "close",
+     1008,
+     "Token non valido"
+    ]
+   ],
+   "clients_while_open": 0,
+   "clients_after": 0,
+   "open_connections_after": 0
+  },
+  {
+   "label": "primo_messaggio_binario",
+   "status": 101,
+   "events": [
+    [
+     "close",
+     1008,
+     "Autenticazione richiesta"
+    ]
+   ],
+   "clients_while_open": 0,
+   "clients_after": 0,
+   "open_connections_after": 0
+  },
+  {
+   "label": "messaggio_troppo_grande",
+   "status": 101,
+   "events": [
+    [
+     "close",
+     1009,
+     ""
+    ]
+   ],
+   "clients_while_open": 0,
+   "clients_after": 0,
+   "open_connections_after": 0
+  },
+  {
+   "label": "token_con_caratteri_non_ascii",
+   "status": 101,
+   "events": [
+    [
+     "closed",
+     1006
+    ]
+   ],
+   "clients_while_open": 0,
+   "clients_after": 0,
+   "open_connections_after": 0
+  },
+  {
+   "label": "autenticazione_scaduta",
+   "status": 101,
+   "events": [
+    [
+     "closed",
+     1006
+    ]
+   ],
+   "clients_while_open": 0,
+   "clients_after": 0,
+   "open_connections_after": 0
+  }
+ ],
+ "two_clients": {
+  "registered": 2,
+  "open_connections": 2,
+  "first": {
+   "type": "event",
+   "active": true,
+   "title": "Serata *Giochi*",
+   "channel": "Sala Eventi",
+   "started_at": "2027-03-05T21:00:00+01:00",
+   "participant_count": 2,
+   "participants": [
+    {
+     "id": 1,
+     "name": "Zeta",
+     "avatar": "https://cdn.discordapp.com/avatars/1/a.png",
+     "speaking": true,
+     "volume": 0.5,
+     "level": "🥈 Argento",
+     "streak": 5,
+     "wins": 1
+    },
+    {
+     "id": 2,
+     "name": "alpha",
+     "avatar": "https://cdn.discordapp.com/avatars/2/a.png",
+     "speaking": false,
+     "volume": 0.0,
+     "level": "🌱 Nuovo",
+     "streak": 0,
+     "wins": 0
+    }
+   ],
+   "main_speaker_id": 1
+  }
+ },
+ "broadcast": [
+  {
+   "type": "event",
+   "active": true,
+   "title": "Serata *Giochi*",
+   "channel": "Sala Eventi",
+   "started_at": "2027-03-05T21:00:00+01:00",
+   "participant_count": 2,
+   "participants": [
+    {
+     "id": 1,
+     "name": "Zeta",
+     "avatar": "https://cdn.discordapp.com/avatars/1/a.png",
+     "speaking": true,
+     "volume": 0.5,
+     "level": "🥈 Argento",
+     "streak": 5,
+     "wins": 1
+    },
+    {
+     "id": 2,
+     "name": "alpha",
+     "avatar": "https://cdn.discordapp.com/avatars/2/a.png",
+     "speaking": false,
+     "volume": 0.0,
+     "level": "🌱 Nuovo",
+     "streak": 0,
+     "wins": 0
+    }
+   ],
+   "main_speaker_id": 1
+  },
+  {
+   "type": "event",
+   "active": true,
+   "title": "Serata *Giochi*",
+   "channel": "Sala Eventi",
+   "started_at": "2027-03-05T21:00:00+01:00",
+   "participant_count": 2,
+   "participants": [
+    {
+     "id": 1,
+     "name": "Zeta",
+     "avatar": "https://cdn.discordapp.com/avatars/1/a.png",
+     "speaking": true,
+     "volume": 0.5,
+     "level": "🥈 Argento",
+     "streak": 5,
+     "wins": 1
+    },
+    {
+     "id": 2,
+     "name": "alpha",
+     "avatar": "https://cdn.discordapp.com/avatars/2/a.png",
+     "speaking": false,
+     "volume": 0.0,
+     "level": "🌱 Nuovo",
+     "streak": 0,
+     "wins": 0
+    }
+   ],
+   "main_speaker_id": 1
+  }
+ ],
+ "rotated": [
+  [
+   "CLOSE",
+   1000,
+   ""
+  ],
+  [
+   "CLOSE",
+   1000,
+   ""
+  ]
+ ],
+ "after_rotate": {
+  "clients": 0,
+  "open_connections": 0
+ },
+ "finished": [
+  [
+   {
+    "type": "status",
+    "active": false
+   },
+   "CLOSE",
+   1000,
+   ""
+  ],
+  [
+   {
+    "type": "status",
+    "active": false
+   },
+   "CLOSE",
+   1000,
+   ""
+  ]
+ ],
+ "after_finish": {
+  "clients": 0,
+  "open_connections": 0
+ },
+ "constants": {
+  "max_clients": 25,
+  "websocket_origin": "wss://overlay.example.it",
+  "origin": "https://overlay.example.it"
+ }
+}

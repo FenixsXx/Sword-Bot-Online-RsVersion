@@ -1,0 +1,426 @@
+{
+ "constants": {
+  "topics": [
+   "events",
+   "polls",
+   "proposals",
+   "reports",
+   "settings"
+  ],
+  "expired_code": 4401
+ },
+ "handshake": [
+  {
+   "label": "senza_cookie",
+   "status": 401,
+   "headers": {
+    "Cache-Control": "no-store",
+    "Content-Type": "application/json; charset=utf-8"
+   },
+   "body": "{\"error\": \"Accesso Discord richiesto\"}"
+  },
+  {
+   "label": "sessione_sconosciuta",
+   "status": 401,
+   "headers": {
+    "Cache-Control": "no-store",
+    "Content-Type": "application/json; charset=utf-8"
+   },
+   "body": "{\"error\": \"Sessione scaduta, accedi di nuovo\"}"
+  },
+  {
+   "label": "origine_estranea",
+   "status": 403,
+   "headers": {
+    "Cache-Control": "no-store",
+    "Content-Type": "application/json; charset=utf-8"
+   },
+   "body": "{\"error\": \"Origine non autorizzata\"}"
+  },
+  {
+   "label": "origine_null",
+   "status": 403,
+   "headers": {
+    "Cache-Control": "no-store",
+    "Content-Type": "application/json; charset=utf-8"
+   },
+   "body": "{\"error\": \"Origine non autorizzata\"}"
+  }
+ ],
+ "origins": [
+  {
+   "label": "senza_origine",
+   "ok": true,
+   "events": [
+    [
+     "text",
+     "{\"type\": \"ready\"}",
+     0.0
+    ]
+   ]
+  },
+  {
+   "label": "origine_vuota",
+   "ok": true,
+   "events": [
+    [
+     "text",
+     "{\"type\": \"ready\"}",
+     0.0
+    ]
+   ]
+  },
+  {
+   "label": "stesso_host",
+   "ok": true,
+   "events": [
+    [
+     "text",
+     "{\"type\": \"ready\"}",
+     0.0
+    ]
+   ]
+  },
+  {
+   "label": "stesso_host_maiuscolo",
+   "ok": true,
+   "events": [
+    [
+     "text",
+     "{\"type\": \"ready\"}",
+     0.0
+    ]
+   ]
+  },
+  {
+   "label": "stesso_host_https",
+   "ok": true,
+   "events": [
+    [
+     "text",
+     "{\"type\": \"ready\"}",
+     0.0
+    ]
+   ]
+  },
+  {
+   "label": "host_inoltrato",
+   "ok": true,
+   "events": [
+    [
+     "text",
+     "{\"type\": \"ready\"}",
+     0.0
+    ]
+   ]
+  },
+  {
+   "label": "host_inoltrato_con_elenco",
+   "ok": true,
+   "events": [
+    [
+     "text",
+     "{\"type\": \"ready\"}",
+     0.0
+    ]
+   ]
+  },
+  {
+   "label": "host_inoltrato_secondo",
+   "ok": false,
+   "status": 403
+  },
+  {
+   "label": "origine_con_percorso",
+   "ok": true,
+   "events": [
+    [
+     "text",
+     "{\"type\": \"ready\"}",
+     0.0
+    ]
+   ]
+  },
+  {
+   "label": "origine_porta_diversa",
+   "ok": false,
+   "status": 403
+  }
+ ],
+ "count_after_origins": 0,
+ "capacity": {
+  "count": 2,
+  "third": {
+   "status": 503,
+   "headers": {
+    "Cache-Control": "no-store",
+    "Content-Type": "application/json; charset=utf-8"
+   },
+   "body": "{\"error\": \"Troppe connessioni live attive, riprova pi\\u00f9 tardi\"}"
+  },
+  "after_close": 1,
+  "fourth_ok": [
+   [
+    "text",
+    "{\"type\": \"ready\"}",
+    0.0
+   ]
+  ],
+  "count_again": 2,
+  "count_end": 0
+ },
+ "publish": {
+  "ready": [
+   [
+    [
+     "text",
+     "{\"type\": \"ready\"}",
+     0.0
+    ],
+    [
+     "text",
+     "{\"type\": \"change\", \"topic\": \"polls\"}",
+     0.11
+    ],
+    [
+     "text",
+     "{\"type\": \"change\", \"topic\": \"proposals\"}",
+     0.11
+    ],
+    [
+     "text",
+     "{\"type\": \"change\", \"topic\": \"polls\"}",
+     0.42
+    ],
+    [
+     "text",
+     "{\"type\": \"change\", \"topic\": \"events\"}",
+     1.08
+    ],
+    [
+     "text",
+     "{\"type\": \"change\", \"topic\": \"reports\"}",
+     1.08
+    ],
+    [
+     "text",
+     "{\"type\": \"change\", \"topic\": \"settings\"}",
+     1.08
+    ]
+   ],
+   [
+    [
+     "text",
+     "{\"type\": \"ready\"}",
+     0.0
+    ],
+    [
+     "text",
+     "{\"type\": \"change\", \"topic\": \"polls\"}",
+     0.11
+    ],
+    [
+     "text",
+     "{\"type\": \"change\", \"topic\": \"proposals\"}",
+     0.11
+    ],
+    [
+     "text",
+     "{\"type\": \"change\", \"topic\": \"polls\"}",
+     0.42
+    ],
+    [
+     "text",
+     "{\"type\": \"change\", \"topic\": \"events\"}",
+     1.08
+    ],
+    [
+     "text",
+     "{\"type\": \"change\", \"topic\": \"reports\"}",
+     1.08
+    ],
+    [
+     "text",
+     "{\"type\": \"change\", \"topic\": \"settings\"}",
+     1.08
+    ]
+   ]
+  ],
+  "burst": [
+   [
+    [
+     "text",
+     "{\"type\": \"change\", \"topic\": \"polls\"}"
+    ],
+    [
+     "text",
+     "{\"type\": \"change\", \"topic\": \"proposals\"}"
+    ]
+   ],
+   [
+    [
+     "text",
+     "{\"type\": \"change\", \"topic\": \"polls\"}"
+    ],
+    [
+     "text",
+     "{\"type\": \"change\", \"topic\": \"proposals\"}"
+    ]
+   ]
+  ],
+  "burst_times_ok": true,
+  "too_early": [
+   3,
+   3
+  ],
+  "late": [
+   [
+    [
+     "text",
+     "{\"type\": \"change\", \"topic\": \"polls\"}"
+    ],
+    [
+     "text",
+     "{\"type\": \"change\", \"topic\": \"proposals\"}"
+    ],
+    [
+     "text",
+     "{\"type\": \"change\", \"topic\": \"polls\"}"
+    ]
+   ],
+   [
+    [
+     "text",
+     "{\"type\": \"change\", \"topic\": \"polls\"}"
+    ],
+    [
+     "text",
+     "{\"type\": \"change\", \"topic\": \"proposals\"}"
+    ],
+    [
+     "text",
+     "{\"type\": \"change\", \"topic\": \"polls\"}"
+    ]
+   ]
+  ],
+  "delay_after_second_publish_ok": null,
+  "topics": [
+   [
+    "text",
+    "{\"type\": \"change\", \"topic\": \"events\"}"
+   ],
+   [
+    "text",
+    "{\"type\": \"change\", \"topic\": \"reports\"}"
+   ],
+   [
+    "text",
+    "{\"type\": \"change\", \"topic\": \"settings\"}"
+   ]
+  ],
+  "after_close_count": 0,
+  "scheduled_without_clients": [],
+  "no_backlog": [
+   [
+    "text",
+    "{\"type\": \"ready\"}"
+   ]
+  ],
+  "ignored_message": [
+   [
+    "text",
+    "{\"type\": \"ready\"}"
+   ],
+   1
+  ],
+  "too_big": [
+   [
+    "close",
+    1009,
+    ""
+   ]
+  ],
+  "count_after_too_big": 0
+ },
+ "revalidation": {
+  "ok": [
+   [
+    "text",
+    "{\"type\": \"ready\"}"
+   ]
+  ],
+  "deleted": [
+   [
+    "text",
+    "{\"type\": \"ready\"}",
+    0.0
+   ],
+   [
+    "close",
+    4401,
+    "Sessione scaduta"
+   ]
+  ],
+  "demoted": [
+   [
+    "text",
+    "{\"type\": \"ready\"}",
+    0.02
+   ],
+   [
+    "close",
+    4401,
+    "Sessione scaduta"
+   ]
+  ],
+  "error_keeps_connection": [
+   [
+    "text",
+    "{\"type\": \"ready\"}"
+   ]
+  ],
+  "expired": [
+   [
+    "text",
+    "{\"type\": \"ready\"}",
+    0.0
+   ],
+   [
+    "close",
+    4401,
+    "Sessione scaduta"
+   ]
+  ],
+  "count": 2
+ },
+ "shutdown": {
+  "events": [
+   [
+    [
+     "text",
+     "{\"type\": \"ready\"}",
+     0.0
+    ],
+    [
+     "close",
+     1000,
+     ""
+    ]
+   ],
+   [
+    [
+     "text",
+     "{\"type\": \"ready\"}",
+     0.0
+    ],
+    [
+     "close",
+     1000,
+     ""
+    ]
+   ]
+  ],
+  "scheduled": [],
+  "count": 0
+ }
+}

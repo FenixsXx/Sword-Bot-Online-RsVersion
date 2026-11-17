@@ -1,0 +1,11642 @@
+{
+ "seed": [
+  "INSERT INTO settings(key,value) VALUES('week','10'),('guild_id','100'),('poll_channel','1'),('staff_channel','2')",
+  "INSERT INTO polls(id,name,emoji,color,position,active,is_community) VALUES(1,'Community','🏆','#fff',0,1,1),(2,'Altro','x','#fff',1,1,0)",
+  "INSERT INTO suggestions(id,week,name,norm_name,tipo,link,status,review_status) VALUES(1,10,'Among Us','among us','Gioco','https://a.example','pending','approved'),(2,10,'Chess','chess','Gioco',NULL,'pending','pending'),(3,10,'Poker','poker','Gioco',NULL,'picked','approved'),(4,10,'Rifiutata','rifiutata','Film',NULL,'pending','rejected'),(5,9,'Vecchia','vecchia','Gioco',NULL,'pending','approved'),(6,10,'Quiz è','quiz è','Quiz',NULL,'pending','approved'),(7,10,'Senza autori','senza autori','Gioco',NULL,'pending','approved')",
+  "INSERT INTO proposals(suggestion_id,week,user_id,ts) VALUES(1,10,101,1),(1,10,102,2),(1,10,101,3),(2,10,103,4),(3,10,101,5),(4,10,104,6),(5,9,105,7),(6,10,106,8),(6,10,107,9)",
+  "INSERT INTO options(poll_id,label,suggestion_id) VALUES(1,'Poker',3)",
+  "INSERT INTO live_events(id,guild_id,title,channel_id,channel_name,started_at,last_seen_at,ended_at,peak_participants,participant_count,end_reason) VALUES(1,100,'Serata 1',5,'v','2027-03-01T21:00:00+01:00','x','2027-03-01T23:00:00+01:00',8,10,'manuale'),(2,100,'Serata 2',5,'v','2027-03-02T21:00:00+01:00','x','2027-03-02T22:00:00+01:00',3,4,'manuale'),(3,100,'In corso',5,'v','2027-03-03T21:00:00+01:00','x',NULL,1,1,'manual')",
+  "INSERT INTO live_event_participants(event_id,user_id,participation_seconds,speaking_seconds) VALUES(1,101,100,1.5)"
+ ],
+ "scenarios": [
+  {
+   "label": "stato_non_autenticato",
+   "status": 401,
+   "headers": {
+    "Cache-Control": "no-store",
+    "Content-Type": "application/json; charset=utf-8"
+   },
+   "body": "{\"error\": \"Accesso Discord richiesto\"}",
+   "calls": [],
+   "topics": [],
+   "db": {
+    "suggestions": [
+     [
+      1,
+      "pending",
+      null,
+      null,
+      "approved"
+     ],
+     [
+      2,
+      "pending",
+      null,
+      null,
+      "pending"
+     ],
+     [
+      3,
+      "picked",
+      null,
+      null,
+      "approved"
+     ],
+     [
+      4,
+      "pending",
+      null,
+      null,
+      "rejected"
+     ],
+     [
+      5,
+      "pending",
+      null,
+      null,
+      "approved"
+     ],
+     [
+      6,
+      "pending",
+      null,
+      null,
+      "approved"
+     ],
+     [
+      7,
+      "pending",
+      null,
+      null,
+      "approved"
+     ]
+    ],
+    "options": [
+     [
+      1,
+      "Poker",
+      3
+     ]
+    ],
+    "user_stats": [],
+    "weekly_activity": [],
+    "season_activity": [],
+    "ballot_weeks": [],
+    "badges": [],
+    "audit": [],
+    "events": [
+     [
+      1,
+      "Serata 1",
+      "2027-03-01T23:00:00+01:00"
+     ],
+     [
+      2,
+      "Serata 2",
+      "2027-03-02T22:00:00+01:00"
+     ],
+     [
+      3,
+      "In corso",
+      null
+     ]
+    ]
+   }
+  },
+  {
+   "label": "stato_admin",
+   "status": 200,
+   "headers": {
+    "Cache-Control": "no-store",
+    "Content-Type": "application/json; charset=utf-8"
+   },
+   "body": "{\"principal\": {\"user_id\": \"42\", \"display_name\": \"Staff\", \"is_admin\": true}, \"proposals\": [{\"id\": 1, \"name\": \"Among Us\", \"type\": \"Gioco\", \"link\": \"https://a.example\", \"status\": \"pending\", \"review_status\": \"approved\", \"supporters\": 2}, {\"id\": 6, \"name\": \"Quiz \\u00e8\", \"type\": \"Quiz\", \"link\": null, \"status\": \"pending\", \"review_status\": \"approved\", \"supporters\": 2}, {\"id\": 2, \"name\": \"Chess\", \"type\": \"Gioco\", \"link\": null, \"status\": \"pending\", \"review_status\": \"pending\", \"supporters\": 1}, {\"id\": 3, \"name\": \"Poker\", \"type\": \"Gioco\", \"link\": null, \"status\": \"picked\", \"review_status\": \"approved\", \"supporters\": 1}, {\"id\": 4, \"name\": \"Rifiutata\", \"type\": \"Film\", \"link\": null, \"status\": \"pending\", \"review_status\": \"rejected\", \"supporters\": 1}], \"events\": {\"active\": false, \"title\": \"\", \"channel_id\": \"\", \"channel_name\": \"\", \"reports\": [{\"id\": 2, \"title\": \"Serata 2\", \"started_at\": \"2027-03-02T21:00:00+01:00\", \"ended_at\": \"2027-03-02T22:00:00+01:00\", \"participant_count\": 4, \"peak_participants\": 3}, {\"id\": 1, \"title\": \"Serata 1\", \"started_at\": \"2027-03-01T21:00:00+01:00\", \"ended_at\": \"2027-03-01T23:00:00+01:00\", \"participant_count\": 10, \"peak_participants\": 8}]}, \"voice_channels\": [{\"id\": \"555\", \"name\": \"Sala Eventi\"}, {\"id\": \"556\", \"name\": \"Sala \\u00e9 Due\"}], \"backups\": {\"root\": \"/backup\", \"daily_count\": 2, \"latest_daily\": \"daily-2027-03-04.db\", \"weekly_count\": 1, \"latest_weekly\": \"weekly-2027-03-01.db\", \"cloud_upload_error\": null}}",
+   "calls": [],
+   "topics": [],
+   "db": {
+    "suggestions": [
+     [
+      1,
+      "pending",
+      null,
+      null,
+      "approved"
+     ],
+     [
+      2,
+      "pending",
+      null,
+      null,
+      "pending"
+     ],
+     [
+      3,
+      "picked",
+      null,
+      null,
+      "approved"
+     ],
+     [
+      4,
+      "pending",
+      null,
+      null,
+      "rejected"
+     ],
+     [
+      5,
+      "pending",
+      null,
+      null,
+      "approved"
+     ],
+     [
+      6,
+      "pending",
+      null,
+      null,
+      "approved"
+     ],
+     [
+      7,
+      "pending",
+      null,
+      null,
+      "approved"
+     ]
+    ],
+    "options": [
+     [
+      1,
+      "Poker",
+      3
+     ]
+    ],
+    "user_stats": [],
+    "weekly_activity": [],
+    "season_activity": [],
+    "ballot_weeks": [],
+    "badges": [],
+    "audit": [],
+    "events": [
+     [
+      1,
+      "Serata 1",
+      "2027-03-01T23:00:00+01:00"
+     ],
+     [
+      2,
+      "Serata 2",
+      "2027-03-02T22:00:00+01:00"
+     ],
+     [
+      3,
+      "In corso",
+      null
+     ]
+    ]
+   }
+  },
+  {
+   "label": "stato_staff",
+   "status": 200,
+   "headers": {
+    "Cache-Control": "no-store",
+    "Content-Type": "application/json; charset=utf-8"
+   },
+   "body": "{\"principal\": {\"user_id\": \"42\", \"display_name\": \"Staff\", \"is_admin\": false}, \"proposals\": [{\"id\": 1, \"name\": \"Among Us\", \"type\": \"Gioco\", \"link\": \"https://a.example\", \"status\": \"pending\", \"review_status\": \"approved\", \"supporters\": 2}, {\"id\": 6, \"name\": \"Quiz \\u00e8\", \"type\": \"Quiz\", \"link\": null, \"status\": \"pending\", \"review_status\": \"approved\", \"supporters\": 2}, {\"id\": 2, \"name\": \"Chess\", \"type\": \"Gioco\", \"link\": null, \"status\": \"pending\", \"review_status\": \"pending\", \"supporters\": 1}, {\"id\": 3, \"name\": \"Poker\", \"type\": \"Gioco\", \"link\": null, \"status\": \"picked\", \"review_status\": \"approved\", \"supporters\": 1}, {\"id\": 4, \"name\": \"Rifiutata\", \"type\": \"Film\", \"link\": null, \"status\": \"pending\", \"review_status\": \"rejected\", \"supporters\": 1}], \"events\": {\"active\": false, \"title\": \"\", \"channel_id\": \"\", \"channel_name\": \"\", \"reports\": [{\"id\": 2, \"title\": \"Serata 2\", \"started_at\": \"2027-03-02T21:00:00+01:00\", \"ended_at\": \"2027-03-02T22:00:00+01:00\", \"participant_count\": 4, \"peak_participants\": 3}, {\"id\": 1, \"title\": \"Serata 1\", \"started_at\": \"2027-03-01T21:00:00+01:00\", \"ended_at\": \"2027-03-01T23:00:00+01:00\", \"participant_count\": 10, \"peak_participants\": 8}]}, \"voice_channels\": [{\"id\": \"555\", \"name\": \"Sala Eventi\"}, {\"id\": \"556\", \"name\": \"Sala \\u00e9 Due\"}]}",
+   "calls": [],
+   "topics": [],
+   "db": {
+    "suggestions": [
+     [
+      1,
+      "pending",
+      null,
+      null,
+      "approved"
+     ],
+     [
+      2,
+      "pending",
+      null,
+      null,
+      "pending"
+     ],
+     [
+      3,
+      "picked",
+      null,
+      null,
+      "approved"
+     ],
+     [
+      4,
+      "pending",
+      null,
+      null,
+      "rejected"
+     ],
+     [
+      5,
+      "pending",
+      null,
+      null,
+      "approved"
+     ],
+     [
+      6,
+      "pending",
+      null,
+      null,
+      "approved"
+     ],
+     [
+      7,
+      "pending",
+      null,
+      null,
+      "approved"
+     ]
+    ],
+    "options": [
+     [
+      1,
+      "Poker",
+      3
+     ]
+    ],
+    "user_stats": [],
+    "weekly_activity": [],
+    "season_activity": [],
+    "ballot_weeks": [],
+    "badges": [],
+    "audit": [],
+    "events": [
+     [
+      1,
+      "Serata 1",
+      "2027-03-01T23:00:00+01:00"
+     ],
+     [
+      2,
+      "Serata 2",
+      "2027-03-02T22:00:00+01:00"
+     ],
+     [
+      3,
+      "In corso",
+      null
+     ]
+    ]
+   }
+  },
+  {
+   "label": "stato_evento_attivo",
+   "status": 200,
+   "headers": {
+    "Cache-Control": "no-store",
+    "Content-Type": "application/json; charset=utf-8"
+   },
+   "body": "{\"principal\": {\"user_id\": \"42\", \"display_name\": \"Staff\", \"is_admin\": true}, \"proposals\": [{\"id\": 1, \"name\": \"Among Us\", \"type\": \"Gioco\", \"link\": \"https://a.example\", \"status\": \"pending\", \"review_status\": \"approved\", \"supporters\": 2}, {\"id\": 6, \"name\": \"Quiz \\u00e8\", \"type\": \"Quiz\", \"link\": null, \"status\": \"pending\", \"review_status\": \"approved\", \"supporters\": 2}, {\"id\": 2, \"name\": \"Chess\", \"type\": \"Gioco\", \"link\": null, \"status\": \"pending\", \"review_status\": \"pending\", \"supporters\": 1}, {\"id\": 3, \"name\": \"Poker\", \"type\": \"Gioco\", \"link\": null, \"status\": \"picked\", \"review_status\": \"approved\", \"supporters\": 1}, {\"id\": 4, \"name\": \"Rifiutata\", \"type\": \"Film\", \"link\": null, \"status\": \"pending\", \"review_status\": \"rejected\", \"supporters\": 1}], \"events\": {\"active\": true, \"title\": \"Serata \\ud83c\\udfae\", \"channel_id\": \"555\", \"channel_name\": \"Sala Eventi\", \"reports\": [{\"id\": 2, \"title\": \"Serata 2\", \"started_at\": \"2027-03-02T21:00:00+01:00\", \"ended_at\": \"2027-03-02T22:00:00+01:00\", \"participant_count\": 4, \"peak_participants\": 3}, {\"id\": 1, \"title\": \"Serata 1\", \"started_at\": \"2027-03-01T21:00:00+01:00\", \"ended_at\": \"2027-03-01T23:00:00+01:00\", \"participant_count\": 10, \"peak_participants\": 8}]}, \"voice_channels\": [{\"id\": \"555\", \"name\": \"Sala Eventi\"}, {\"id\": \"556\", \"name\": \"Sala \\u00e9 Due\"}], \"backups\": {\"root\": \"/backup\", \"daily_count\": 2, \"latest_daily\": \"daily-2027-03-04.db\", \"weekly_count\": 1, \"latest_weekly\": \"weekly-2027-03-01.db\", \"cloud_upload_error\": null}}",
+   "calls": [],
+   "topics": [],
+   "db": {
+    "suggestions": [
+     [
+      1,
+      "pending",
+      null,
+      null,
+      "approved"
+     ],
+     [
+      2,
+      "pending",
+      null,
+      null,
+      "pending"
+     ],
+     [
+      3,
+      "picked",
+      null,
+      null,
+      "approved"
+     ],
+     [
+      4,
+      "pending",
+      null,
+      null,
+      "rejected"
+     ],
+     [
+      5,
+      "pending",
+      null,
+      null,
+      "approved"
+     ],
+     [
+      6,
+      "pending",
+      null,
+      null,
+      "approved"
+     ],
+     [
+      7,
+      "pending",
+      null,
+      null,
+      "approved"
+     ]
+    ],
+    "options": [
+     [
+      1,
+      "Poker",
+      3
+     ]
+    ],
+    "user_stats": [],
+    "weekly_activity": [],
+    "season_activity": [],
+    "ballot_weeks": [],
+    "badges": [],
+    "audit": [],
+    "events": [
+     [
+      1,
+      "Serata 1",
+      "2027-03-01T23:00:00+01:00"
+     ],
+     [
+      2,
+      "Serata 2",
+      "2027-03-02T22:00:00+01:00"
+     ],
+     [
+      3,
+      "In corso",
+      null
+     ]
+    ]
+   }
+  },
+  {
+   "label": "stato_senza_server",
+   "status": 200,
+   "headers": {
+    "Cache-Control": "no-store",
+    "Content-Type": "application/json; charset=utf-8"
+   },
+   "body": "{\"principal\": {\"user_id\": \"42\", \"display_name\": \"Staff\", \"is_admin\": true}, \"proposals\": [{\"id\": 1, \"name\": \"Among Us\", \"type\": \"Gioco\", \"link\": \"https://a.example\", \"status\": \"pending\", \"review_status\": \"approved\", \"supporters\": 2}, {\"id\": 6, \"name\": \"Quiz \\u00e8\", \"type\": \"Quiz\", \"link\": null, \"status\": \"pending\", \"review_status\": \"approved\", \"supporters\": 2}, {\"id\": 2, \"name\": \"Chess\", \"type\": \"Gioco\", \"link\": null, \"status\": \"pending\", \"review_status\": \"pending\", \"supporters\": 1}, {\"id\": 3, \"name\": \"Poker\", \"type\": \"Gioco\", \"link\": null, \"status\": \"picked\", \"review_status\": \"approved\", \"supporters\": 1}, {\"id\": 4, \"name\": \"Rifiutata\", \"type\": \"Film\", \"link\": null, \"status\": \"pending\", \"review_status\": \"rejected\", \"supporters\": 1}], \"events\": {\"active\": false, \"title\": \"\", \"channel_id\": \"\", \"channel_name\": \"\", \"reports\": [{\"id\": 2, \"title\": \"Serata 2\", \"started_at\": \"2027-03-02T21:00:00+01:00\", \"ended_at\": \"2027-03-02T22:00:00+01:00\", \"participant_count\": 4, \"peak_participants\": 3}, {\"id\": 1, \"title\": \"Serata 1\", \"started_at\": \"2027-03-01T21:00:00+01:00\", \"ended_at\": \"2027-03-01T23:00:00+01:00\", \"participant_count\": 10, \"peak_participants\": 8}]}, \"voice_channels\": [], \"backups\": {\"root\": \"/backup\", \"daily_count\": 2, \"latest_daily\": \"daily-2027-03-04.db\", \"weekly_count\": 1, \"latest_weekly\": \"weekly-2027-03-01.db\", \"cloud_upload_error\": null}}",
+   "calls": [],
+   "topics": [],
+   "db": {
+    "suggestions": [
+     [
+      1,
+      "pending",
+      null,
+      null,
+      "approved"
+     ],
+     [
+      2,
+      "pending",
+      null,
+      null,
+      "pending"
+     ],
+     [
+      3,
+      "picked",
+      null,
+      null,
+      "approved"
+     ],
+     [
+      4,
+      "pending",
+      null,
+      null,
+      "rejected"
+     ],
+     [
+      5,
+      "pending",
+      null,
+      null,
+      "approved"
+     ],
+     [
+      6,
+      "pending",
+      null,
+      null,
+      "approved"
+     ],
+     [
+      7,
+      "pending",
+      null,
+      null,
+      "approved"
+     ]
+    ],
+    "options": [
+     [
+      1,
+      "Poker",
+      3
+     ]
+    ],
+    "user_stats": [],
+    "weekly_activity": [],
+    "season_activity": [],
+    "ballot_weeks": [],
+    "badges": [],
+    "audit": [],
+    "events": [
+     [
+      1,
+      "Serata 1",
+      "2027-03-01T23:00:00+01:00"
+     ],
+     [
+      2,
+      "Serata 2",
+      "2027-03-02T22:00:00+01:00"
+     ],
+     [
+      3,
+      "In corso",
+      null
+     ]
+    ]
+   }
+  },
+  {
+   "label": "stato_senza_cog",
+   "status": 200,
+   "headers": {
+    "Cache-Control": "no-store",
+    "Content-Type": "application/json; charset=utf-8"
+   },
+   "body": "{\"principal\": {\"user_id\": \"42\", \"display_name\": \"Staff\", \"is_admin\": true}, \"proposals\": [{\"id\": 1, \"name\": \"Among Us\", \"type\": \"Gioco\", \"link\": \"https://a.example\", \"status\": \"pending\", \"review_status\": \"approved\", \"supporters\": 2}, {\"id\": 6, \"name\": \"Quiz \\u00e8\", \"type\": \"Quiz\", \"link\": null, \"status\": \"pending\", \"review_status\": \"approved\", \"supporters\": 2}, {\"id\": 2, \"name\": \"Chess\", \"type\": \"Gioco\", \"link\": null, \"status\": \"pending\", \"review_status\": \"pending\", \"supporters\": 1}, {\"id\": 3, \"name\": \"Poker\", \"type\": \"Gioco\", \"link\": null, \"status\": \"picked\", \"review_status\": \"approved\", \"supporters\": 1}, {\"id\": 4, \"name\": \"Rifiutata\", \"type\": \"Film\", \"link\": null, \"status\": \"pending\", \"review_status\": \"rejected\", \"supporters\": 1}], \"events\": {\"active\": false, \"title\": \"\", \"channel_id\": \"\", \"channel_name\": \"\", \"reports\": [{\"id\": 2, \"title\": \"Serata 2\", \"started_at\": \"2027-03-02T21:00:00+01:00\", \"ended_at\": \"2027-03-02T22:00:00+01:00\", \"participant_count\": 4, \"peak_participants\": 3}, {\"id\": 1, \"title\": \"Serata 1\", \"started_at\": \"2027-03-01T21:00:00+01:00\", \"ended_at\": \"2027-03-01T23:00:00+01:00\", \"participant_count\": 10, \"peak_participants\": 8}]}, \"voice_channels\": [{\"id\": \"555\", \"name\": \"Sala Eventi\"}, {\"id\": \"556\", \"name\": \"Sala \\u00e9 Due\"}], \"backups\": {\"root\": \"/backup\", \"daily_count\": 2, \"latest_daily\": \"daily-2027-03-04.db\", \"weekly_count\": 1, \"latest_weekly\": \"weekly-2027-03-01.db\", \"cloud_upload_error\": null}}",
+   "calls": [],
+   "topics": [],
+   "db": {
+    "suggestions": [
+     [
+      1,
+      "pending",
+      null,
+      null,
+      "approved"
+     ],
+     [
+      2,
+      "pending",
+      null,
+      null,
+      "pending"
+     ],
+     [
+      3,
+      "picked",
+      null,
+      null,
+      "approved"
+     ],
+     [
+      4,
+      "pending",
+      null,
+      null,
+      "rejected"
+     ],
+     [
+      5,
+      "pending",
+      null,
+      null,
+      "approved"
+     ],
+     [
+      6,
+      "pending",
+      null,
+      null,
+      "approved"
+     ],
+     [
+      7,
+      "pending",
+      null,
+      null,
+      "approved"
+     ]
+    ],
+    "options": [
+     [
+      1,
+      "Poker",
+      3
+     ]
+    ],
+    "user_stats": [],
+    "weekly_activity": [],
+    "season_activity": [],
+    "ballot_weeks": [],
+    "badges": [],
+    "audit": [],
+    "events": [
+     [
+      1,
+      "Serata 1",
+      "2027-03-01T23:00:00+01:00"
+     ],
+     [
+      2,
+      "Serata 2",
+      "2027-03-02T22:00:00+01:00"
+     ],
+     [
+      3,
+      "In corso",
+      null
+     ]
+    ]
+   }
+  },
+  {
+   "label": "stato_settimana_vuota",
+   "status": 200,
+   "headers": {
+    "Cache-Control": "no-store",
+    "Content-Type": "application/json; charset=utf-8"
+   },
+   "body": "{\"principal\": {\"user_id\": \"42\", \"display_name\": \"Staff\", \"is_admin\": true}, \"proposals\": [], \"events\": {\"active\": false, \"title\": \"\", \"channel_id\": \"\", \"channel_name\": \"\", \"reports\": [{\"id\": 2, \"title\": \"Serata 2\", \"started_at\": \"2027-03-02T21:00:00+01:00\", \"ended_at\": \"2027-03-02T22:00:00+01:00\", \"participant_count\": 4, \"peak_participants\": 3}, {\"id\": 1, \"title\": \"Serata 1\", \"started_at\": \"2027-03-01T21:00:00+01:00\", \"ended_at\": \"2027-03-01T23:00:00+01:00\", \"participant_count\": 10, \"peak_participants\": 8}]}, \"voice_channels\": [{\"id\": \"555\", \"name\": \"Sala Eventi\"}, {\"id\": \"556\", \"name\": \"Sala \\u00e9 Due\"}], \"backups\": {\"root\": \"/backup\", \"daily_count\": 2, \"latest_daily\": \"daily-2027-03-04.db\", \"weekly_count\": 1, \"latest_weekly\": \"weekly-2027-03-01.db\", \"cloud_upload_error\": null}}",
+   "calls": [],
+   "topics": [],
+   "db": {
+    "suggestions": [
+     [
+      1,
+      "pending",
+      null,
+      null,
+      "approved"
+     ],
+     [
+      2,
+      "pending",
+      null,
+      null,
+      "pending"
+     ],
+     [
+      3,
+      "picked",
+      null,
+      null,
+      "approved"
+     ],
+     [
+      4,
+      "pending",
+      null,
+      null,
+      "rejected"
+     ],
+     [
+      5,
+      "pending",
+      null,
+      null,
+      "approved"
+     ],
+     [
+      6,
+      "pending",
+      null,
+      null,
+      "approved"
+     ],
+     [
+      7,
+      "pending",
+      null,
+      null,
+      "approved"
+     ]
+    ],
+    "options": [
+     [
+      1,
+      "Poker",
+      3
+     ]
+    ],
+    "user_stats": [],
+    "weekly_activity": [],
+    "season_activity": [],
+    "ballot_weeks": [],
+    "badges": [],
+    "audit": [],
+    "events": [
+     [
+      1,
+      "Serata 1",
+      "2027-03-01T23:00:00+01:00"
+     ],
+     [
+      2,
+      "Serata 2",
+      "2027-03-02T22:00:00+01:00"
+     ],
+     [
+      3,
+      "In corso",
+      null
+     ]
+    ]
+   }
+  },
+  {
+   "label": "revisione_approva",
+   "status": 200,
+   "headers": {
+    "Cache-Control": "no-store",
+    "Content-Type": "application/json; charset=utf-8"
+   },
+   "body": "{\"ok\": true, \"review_status\": \"approved\"}",
+   "calls": [
+    [
+     "review_send_personal_notifications",
+     [
+      [
+       103
+      ],
+      "✅ La tua proposta **Chess** è stata approvata dallo staff e ora può ricevere sostegni."
+     ],
+     {}
+    ],
+    [
+     "review_schedule_dashboard",
+     [],
+     {}
+    ],
+    [
+     "review_announce_approved_proposal",
+     [
+      2
+     ],
+     {}
+    ],
+    [
+     "review_update_review_message",
+     [
+      2
+     ],
+     {}
+    ],
+    [
+     "review_staff_log",
+     [
+      "📋 <@42> ha aggiornato la proposta **Chess** a ✅ Approvata dal sito."
+     ],
+     {}
+    ]
+   ],
+   "topics": [
+    "proposals"
+   ],
+   "db": {
+    "suggestions": [
+     [
+      1,
+      "pending",
+      null,
+      null,
+      "approved"
+     ],
+     [
+      2,
+      "pending",
+      null,
+      null,
+      "approved"
+     ],
+     [
+      3,
+      "picked",
+      null,
+      null,
+      "approved"
+     ],
+     [
+      4,
+      "pending",
+      null,
+      null,
+      "rejected"
+     ],
+     [
+      5,
+      "pending",
+      null,
+      null,
+      "approved"
+     ],
+     [
+      6,
+      "pending",
+      null,
+      null,
+      "approved"
+     ],
+     [
+      7,
+      "pending",
+      null,
+      null,
+      "approved"
+     ]
+    ],
+    "options": [
+     [
+      1,
+      "Poker",
+      3
+     ]
+    ],
+    "user_stats": [],
+    "weekly_activity": [],
+    "season_activity": [],
+    "ballot_weeks": [],
+    "badges": [],
+    "audit": [
+     [
+      42,
+      "proposal_approved",
+      "suggestion",
+      "2",
+      null,
+      "{\"name\": \"Chess\", \"review_status\": \"approved\", \"source\": \"site\"}"
+     ]
+    ],
+    "events": [
+     [
+      1,
+      "Serata 1",
+      "2027-03-01T23:00:00+01:00"
+     ],
+     [
+      2,
+      "Serata 2",
+      "2027-03-02T22:00:00+01:00"
+     ],
+     [
+      3,
+      "In corso",
+      null
+     ]
+    ]
+   }
+  },
+  {
+   "label": "revisione_rifiuta_con_motivo",
+   "status": 200,
+   "headers": {
+    "Cache-Control": "no-store",
+    "Content-Type": "application/json; charset=utf-8"
+   },
+   "body": "{\"ok\": true, \"review_status\": \"rejected\"}",
+   "calls": [
+    [
+     "review_send_personal_notifications",
+     [
+      [
+       103
+      ],
+      "ℹ️ La tua proposta **Chess** è stata rifiutata. Motivo: troppo simile"
+     ],
+     {}
+    ],
+    [
+     "review_update_review_message",
+     [
+      2
+     ],
+     {}
+    ],
+    [
+     "review_staff_log",
+     [
+      "📋 <@42> ha aggiornato la proposta **Chess** a ❌ Rifiutata dal sito."
+     ],
+     {}
+    ]
+   ],
+   "topics": [
+    "proposals"
+   ],
+   "db": {
+    "suggestions": [
+     [
+      1,
+      "pending",
+      null,
+      null,
+      "approved"
+     ],
+     [
+      2,
+      "pending",
+      null,
+      null,
+      "rejected"
+     ],
+     [
+      3,
+      "picked",
+      null,
+      null,
+      "approved"
+     ],
+     [
+      4,
+      "pending",
+      null,
+      null,
+      "rejected"
+     ],
+     [
+      5,
+      "pending",
+      null,
+      null,
+      "approved"
+     ],
+     [
+      6,
+      "pending",
+      null,
+      null,
+      "approved"
+     ],
+     [
+      7,
+      "pending",
+      null,
+      null,
+      "approved"
+     ]
+    ],
+    "options": [
+     [
+      1,
+      "Poker",
+      3
+     ]
+    ],
+    "user_stats": [],
+    "weekly_activity": [],
+    "season_activity": [],
+    "ballot_weeks": [],
+    "badges": [],
+    "audit": [
+     [
+      42,
+      "proposal_rejected",
+      "suggestion",
+      "2",
+      "troppo simile",
+      "{\"name\": \"Chess\", \"review_status\": \"rejected\", \"source\": \"site\"}"
+     ]
+    ],
+    "events": [
+     [
+      1,
+      "Serata 1",
+      "2027-03-01T23:00:00+01:00"
+     ],
+     [
+      2,
+      "Serata 2",
+      "2027-03-02T22:00:00+01:00"
+     ],
+     [
+      3,
+      "In corso",
+      null
+     ]
+    ]
+   }
+  },
+  {
+   "label": "revisione_rifiuta_senza_motivo",
+   "status": 400,
+   "headers": {
+    "Cache-Control": "no-store",
+    "Content-Type": "application/json; charset=utf-8"
+   },
+   "body": "{\"error\": \"\\u274c Inserisci il motivo del rifiuto.\"}",
+   "calls": [],
+   "topics": [],
+   "db": {
+    "suggestions": [
+     [
+      1,
+      "pending",
+      null,
+      null,
+      "approved"
+     ],
+     [
+      2,
+      "pending",
+      null,
+      null,
+      "pending"
+     ],
+     [
+      3,
+      "picked",
+      null,
+      null,
+      "approved"
+     ],
+     [
+      4,
+      "pending",
+      null,
+      null,
+      "rejected"
+     ],
+     [
+      5,
+      "pending",
+      null,
+      null,
+      "approved"
+     ],
+     [
+      6,
+      "pending",
+      null,
+      null,
+      "approved"
+     ],
+     [
+      7,
+      "pending",
+      null,
+      null,
+      "approved"
+     ]
+    ],
+    "options": [
+     [
+      1,
+      "Poker",
+      3
+     ]
+    ],
+    "user_stats": [],
+    "weekly_activity": [],
+    "season_activity": [],
+    "ballot_weeks": [],
+    "badges": [],
+    "audit": [],
+    "events": [
+     [
+      1,
+      "Serata 1",
+      "2027-03-01T23:00:00+01:00"
+     ],
+     [
+      2,
+      "Serata 2",
+      "2027-03-02T22:00:00+01:00"
+     ],
+     [
+      3,
+      "In corso",
+      null
+     ]
+    ]
+   }
+  },
+  {
+   "label": "revisione_rifiuta_motivo_vuoto",
+   "status": 400,
+   "headers": {
+    "Cache-Control": "no-store",
+    "Content-Type": "application/json; charset=utf-8"
+   },
+   "body": "{\"error\": \"\\u274c Inserisci il motivo del rifiuto.\"}",
+   "calls": [],
+   "topics": [],
+   "db": {
+    "suggestions": [
+     [
+      1,
+      "pending",
+      null,
+      null,
+      "approved"
+     ],
+     [
+      2,
+      "pending",
+      null,
+      null,
+      "pending"
+     ],
+     [
+      3,
+      "picked",
+      null,
+      null,
+      "approved"
+     ],
+     [
+      4,
+      "pending",
+      null,
+      null,
+      "rejected"
+     ],
+     [
+      5,
+      "pending",
+      null,
+      null,
+      "approved"
+     ],
+     [
+      6,
+      "pending",
+      null,
+      null,
+      "approved"
+     ],
+     [
+      7,
+      "pending",
+      null,
+      null,
+      "approved"
+     ]
+    ],
+    "options": [
+     [
+      1,
+      "Poker",
+      3
+     ]
+    ],
+    "user_stats": [],
+    "weekly_activity": [],
+    "season_activity": [],
+    "ballot_weeks": [],
+    "badges": [],
+    "audit": [],
+    "events": [
+     [
+      1,
+      "Serata 1",
+      "2027-03-01T23:00:00+01:00"
+     ],
+     [
+      2,
+      "Serata 2",
+      "2027-03-02T22:00:00+01:00"
+     ],
+     [
+      3,
+      "In corso",
+      null
+     ]
+    ]
+   }
+  },
+  {
+   "label": "revisione_rimetti",
+   "status": 409,
+   "headers": {
+    "Cache-Control": "no-store",
+    "Content-Type": "application/json; charset=utf-8"
+   },
+   "body": "{\"error\": \"\\u26a0\\ufe0f Stato attuale: \\u2705 Approvata.\"}",
+   "calls": [],
+   "topics": [],
+   "db": {
+    "suggestions": [
+     [
+      1,
+      "pending",
+      null,
+      null,
+      "approved"
+     ],
+     [
+      2,
+      "pending",
+      null,
+      null,
+      "pending"
+     ],
+     [
+      3,
+      "picked",
+      null,
+      null,
+      "approved"
+     ],
+     [
+      4,
+      "pending",
+      null,
+      null,
+      "rejected"
+     ],
+     [
+      5,
+      "pending",
+      null,
+      null,
+      "approved"
+     ],
+     [
+      6,
+      "pending",
+      null,
+      null,
+      "approved"
+     ],
+     [
+      7,
+      "pending",
+      null,
+      null,
+      "approved"
+     ]
+    ],
+    "options": [
+     [
+      1,
+      "Poker",
+      3
+     ]
+    ],
+    "user_stats": [],
+    "weekly_activity": [],
+    "season_activity": [],
+    "ballot_weeks": [],
+    "badges": [],
+    "audit": [],
+    "events": [
+     [
+      1,
+      "Serata 1",
+      "2027-03-01T23:00:00+01:00"
+     ],
+     [
+      2,
+      "Serata 2",
+      "2027-03-02T22:00:00+01:00"
+     ],
+     [
+      3,
+      "In corso",
+      null
+     ]
+    ]
+   }
+  },
+  {
+   "label": "revisione_stato_sbagliato",
+   "status": 409,
+   "headers": {
+    "Cache-Control": "no-store",
+    "Content-Type": "application/json; charset=utf-8"
+   },
+   "body": "{\"error\": \"\\u26a0\\ufe0f Stato attuale: \\u2705 Approvata.\"}",
+   "calls": [],
+   "topics": [],
+   "db": {
+    "suggestions": [
+     [
+      1,
+      "pending",
+      null,
+      null,
+      "approved"
+     ],
+     [
+      2,
+      "pending",
+      null,
+      null,
+      "pending"
+     ],
+     [
+      3,
+      "picked",
+      null,
+      null,
+      "approved"
+     ],
+     [
+      4,
+      "pending",
+      null,
+      null,
+      "rejected"
+     ],
+     [
+      5,
+      "pending",
+      null,
+      null,
+      "approved"
+     ],
+     [
+      6,
+      "pending",
+      null,
+      null,
+      "approved"
+     ],
+     [
+      7,
+      "pending",
+      null,
+      null,
+      "approved"
+     ]
+    ],
+    "options": [
+     [
+      1,
+      "Poker",
+      3
+     ]
+    ],
+    "user_stats": [],
+    "weekly_activity": [],
+    "season_activity": [],
+    "ballot_weeks": [],
+    "badges": [],
+    "audit": [],
+    "events": [
+     [
+      1,
+      "Serata 1",
+      "2027-03-01T23:00:00+01:00"
+     ],
+     [
+      2,
+      "Serata 2",
+      "2027-03-02T22:00:00+01:00"
+     ],
+     [
+      3,
+      "In corso",
+      null
+     ]
+    ]
+   }
+  },
+  {
+   "label": "revisione_non_trovata",
+   "status": 404,
+   "headers": {
+    "Cache-Control": "no-store",
+    "Content-Type": "application/json; charset=utf-8"
+   },
+   "body": "{\"error\": \"\\u274c Proposta non trovata questa settimana.\"}",
+   "calls": [],
+   "topics": [],
+   "db": {
+    "suggestions": [
+     [
+      1,
+      "pending",
+      null,
+      null,
+      "approved"
+     ],
+     [
+      2,
+      "pending",
+      null,
+      null,
+      "pending"
+     ],
+     [
+      3,
+      "picked",
+      null,
+      null,
+      "approved"
+     ],
+     [
+      4,
+      "pending",
+      null,
+      null,
+      "rejected"
+     ],
+     [
+      5,
+      "pending",
+      null,
+      null,
+      "approved"
+     ],
+     [
+      6,
+      "pending",
+      null,
+      null,
+      "approved"
+     ],
+     [
+      7,
+      "pending",
+      null,
+      null,
+      "approved"
+     ]
+    ],
+    "options": [
+     [
+      1,
+      "Poker",
+      3
+     ]
+    ],
+    "user_stats": [],
+    "weekly_activity": [],
+    "season_activity": [],
+    "ballot_weeks": [],
+    "badges": [],
+    "audit": [],
+    "events": [
+     [
+      1,
+      "Serata 1",
+      "2027-03-01T23:00:00+01:00"
+     ],
+     [
+      2,
+      "Serata 2",
+      "2027-03-02T22:00:00+01:00"
+     ],
+     [
+      3,
+      "In corso",
+      null
+     ]
+    ]
+   }
+  },
+  {
+   "label": "revisione_vecchia_settimana",
+   "status": 404,
+   "headers": {
+    "Cache-Control": "no-store",
+    "Content-Type": "application/json; charset=utf-8"
+   },
+   "body": "{\"error\": \"\\u274c Proposta non trovata questa settimana.\"}",
+   "calls": [],
+   "topics": [],
+   "db": {
+    "suggestions": [
+     [
+      1,
+      "pending",
+      null,
+      null,
+      "approved"
+     ],
+     [
+      2,
+      "pending",
+      null,
+      null,
+      "pending"
+     ],
+     [
+      3,
+      "picked",
+      null,
+      null,
+      "approved"
+     ],
+     [
+      4,
+      "pending",
+      null,
+      null,
+      "rejected"
+     ],
+     [
+      5,
+      "pending",
+      null,
+      null,
+      "approved"
+     ],
+     [
+      6,
+      "pending",
+      null,
+      null,
+      "approved"
+     ],
+     [
+      7,
+      "pending",
+      null,
+      null,
+      "approved"
+     ]
+    ],
+    "options": [
+     [
+      1,
+      "Poker",
+      3
+     ]
+    ],
+    "user_stats": [],
+    "weekly_activity": [],
+    "season_activity": [],
+    "ballot_weeks": [],
+    "badges": [],
+    "audit": [],
+    "events": [
+     [
+      1,
+      "Serata 1",
+      "2027-03-01T23:00:00+01:00"
+     ],
+     [
+      2,
+      "Serata 2",
+      "2027-03-02T22:00:00+01:00"
+     ],
+     [
+      3,
+      "In corso",
+      null
+     ]
+    ]
+   }
+  },
+  {
+   "label": "revisione_azione_non_valida",
+   "status": 400,
+   "headers": {
+    "Cache-Control": "no-store",
+    "Content-Type": "application/json; charset=utf-8"
+   },
+   "body": "{\"error\": \"Azione di revisione non valida\"}",
+   "calls": [],
+   "topics": [],
+   "db": {
+    "suggestions": [
+     [
+      1,
+      "pending",
+      null,
+      null,
+      "approved"
+     ],
+     [
+      2,
+      "pending",
+      null,
+      null,
+      "pending"
+     ],
+     [
+      3,
+      "picked",
+      null,
+      null,
+      "approved"
+     ],
+     [
+      4,
+      "pending",
+      null,
+      null,
+      "rejected"
+     ],
+     [
+      5,
+      "pending",
+      null,
+      null,
+      "approved"
+     ],
+     [
+      6,
+      "pending",
+      null,
+      null,
+      "approved"
+     ],
+     [
+      7,
+      "pending",
+      null,
+      null,
+      "approved"
+     ]
+    ],
+    "options": [
+     [
+      1,
+      "Poker",
+      3
+     ]
+    ],
+    "user_stats": [],
+    "weekly_activity": [],
+    "season_activity": [],
+    "ballot_weeks": [],
+    "badges": [],
+    "audit": [],
+    "events": [
+     [
+      1,
+      "Serata 1",
+      "2027-03-01T23:00:00+01:00"
+     ],
+     [
+      2,
+      "Serata 2",
+      "2027-03-02T22:00:00+01:00"
+     ],
+     [
+      3,
+      "In corso",
+      null
+     ]
+    ]
+   }
+  },
+  {
+   "label": "revisione_azione_non_testo",
+   "status": 400,
+   "headers": {
+    "Cache-Control": "no-store",
+    "Content-Type": "application/json; charset=utf-8"
+   },
+   "body": "{\"error\": \"Azione di revisione non valida\"}",
+   "calls": [],
+   "topics": [],
+   "db": {
+    "suggestions": [
+     [
+      1,
+      "pending",
+      null,
+      null,
+      "approved"
+     ],
+     [
+      2,
+      "pending",
+      null,
+      null,
+      "pending"
+     ],
+     [
+      3,
+      "picked",
+      null,
+      null,
+      "approved"
+     ],
+     [
+      4,
+      "pending",
+      null,
+      null,
+      "rejected"
+     ],
+     [
+      5,
+      "pending",
+      null,
+      null,
+      "approved"
+     ],
+     [
+      6,
+      "pending",
+      null,
+      null,
+      "approved"
+     ],
+     [
+      7,
+      "pending",
+      null,
+      null,
+      "approved"
+     ]
+    ],
+    "options": [
+     [
+      1,
+      "Poker",
+      3
+     ]
+    ],
+    "user_stats": [],
+    "weekly_activity": [],
+    "season_activity": [],
+    "ballot_weeks": [],
+    "badges": [],
+    "audit": [],
+    "events": [
+     [
+      1,
+      "Serata 1",
+      "2027-03-01T23:00:00+01:00"
+     ],
+     [
+      2,
+      "Serata 2",
+      "2027-03-02T22:00:00+01:00"
+     ],
+     [
+      3,
+      "In corso",
+      null
+     ]
+    ]
+   }
+  },
+  {
+   "label": "revisione_azione_assente",
+   "status": 400,
+   "headers": {
+    "Cache-Control": "no-store",
+    "Content-Type": "application/json; charset=utf-8"
+   },
+   "body": "{\"error\": \"Azione di revisione non valida\"}",
+   "calls": [],
+   "topics": [],
+   "db": {
+    "suggestions": [
+     [
+      1,
+      "pending",
+      null,
+      null,
+      "approved"
+     ],
+     [
+      2,
+      "pending",
+      null,
+      null,
+      "pending"
+     ],
+     [
+      3,
+      "picked",
+      null,
+      null,
+      "approved"
+     ],
+     [
+      4,
+      "pending",
+      null,
+      null,
+      "rejected"
+     ],
+     [
+      5,
+      "pending",
+      null,
+      null,
+      "approved"
+     ],
+     [
+      6,
+      "pending",
+      null,
+      null,
+      "approved"
+     ],
+     [
+      7,
+      "pending",
+      null,
+      null,
+      "approved"
+     ]
+    ],
+    "options": [
+     [
+      1,
+      "Poker",
+      3
+     ]
+    ],
+    "user_stats": [],
+    "weekly_activity": [],
+    "season_activity": [],
+    "ballot_weeks": [],
+    "badges": [],
+    "audit": [],
+    "events": [
+     [
+      1,
+      "Serata 1",
+      "2027-03-01T23:00:00+01:00"
+     ],
+     [
+      2,
+      "Serata 2",
+      "2027-03-02T22:00:00+01:00"
+     ],
+     [
+      3,
+      "In corso",
+      null
+     ]
+    ]
+   }
+  },
+  {
+   "label": "revisione_motivo_non_testo",
+   "status": 400,
+   "headers": {
+    "Cache-Control": "no-store",
+    "Content-Type": "application/json; charset=utf-8"
+   },
+   "body": "{\"error\": \"Motivazione non valida\"}",
+   "calls": [],
+   "topics": [],
+   "db": {
+    "suggestions": [
+     [
+      1,
+      "pending",
+      null,
+      null,
+      "approved"
+     ],
+     [
+      2,
+      "pending",
+      null,
+      null,
+      "pending"
+     ],
+     [
+      3,
+      "picked",
+      null,
+      null,
+      "approved"
+     ],
+     [
+      4,
+      "pending",
+      null,
+      null,
+      "rejected"
+     ],
+     [
+      5,
+      "pending",
+      null,
+      null,
+      "approved"
+     ],
+     [
+      6,
+      "pending",
+      null,
+      null,
+      "approved"
+     ],
+     [
+      7,
+      "pending",
+      null,
+      null,
+      "approved"
+     ]
+    ],
+    "options": [
+     [
+      1,
+      "Poker",
+      3
+     ]
+    ],
+    "user_stats": [],
+    "weekly_activity": [],
+    "season_activity": [],
+    "ballot_weeks": [],
+    "badges": [],
+    "audit": [],
+    "events": [
+     [
+      1,
+      "Serata 1",
+      "2027-03-01T23:00:00+01:00"
+     ],
+     [
+      2,
+      "Serata 2",
+      "2027-03-02T22:00:00+01:00"
+     ],
+     [
+      3,
+      "In corso",
+      null
+     ]
+    ]
+   }
+  },
+  {
+   "label": "revisione_motivo_200",
+   "status": 200,
+   "headers": {
+    "Cache-Control": "no-store",
+    "Content-Type": "application/json; charset=utf-8"
+   },
+   "body": "{\"ok\": true, \"review_status\": \"rejected\"}",
+   "calls": [
+    [
+     "review_send_personal_notifications",
+     [
+      [
+       103
+      ],
+      "ℹ️ La tua proposta **Chess** è stata rifiutata. Motivo: xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+     ],
+     {}
+    ],
+    [
+     "review_update_review_message",
+     [
+      2
+     ],
+     {}
+    ],
+    [
+     "review_staff_log",
+     [
+      "📋 <@42> ha aggiornato la proposta **Chess** a ❌ Rifiutata dal sito."
+     ],
+     {}
+    ]
+   ],
+   "topics": [
+    "proposals"
+   ],
+   "db": {
+    "suggestions": [
+     [
+      1,
+      "pending",
+      null,
+      null,
+      "approved"
+     ],
+     [
+      2,
+      "pending",
+      null,
+      null,
+      "rejected"
+     ],
+     [
+      3,
+      "picked",
+      null,
+      null,
+      "approved"
+     ],
+     [
+      4,
+      "pending",
+      null,
+      null,
+      "rejected"
+     ],
+     [
+      5,
+      "pending",
+      null,
+      null,
+      "approved"
+     ],
+     [
+      6,
+      "pending",
+      null,
+      null,
+      "approved"
+     ],
+     [
+      7,
+      "pending",
+      null,
+      null,
+      "approved"
+     ]
+    ],
+    "options": [
+     [
+      1,
+      "Poker",
+      3
+     ]
+    ],
+    "user_stats": [],
+    "weekly_activity": [],
+    "season_activity": [],
+    "ballot_weeks": [],
+    "badges": [],
+    "audit": [
+     [
+      42,
+      "proposal_rejected",
+      "suggestion",
+      "2",
+      "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+      "{\"name\": \"Chess\", \"review_status\": \"rejected\", \"source\": \"site\"}"
+     ]
+    ],
+    "events": [
+     [
+      1,
+      "Serata 1",
+      "2027-03-01T23:00:00+01:00"
+     ],
+     [
+      2,
+      "Serata 2",
+      "2027-03-02T22:00:00+01:00"
+     ],
+     [
+      3,
+      "In corso",
+      null
+     ]
+    ]
+   }
+  },
+  {
+   "label": "revisione_motivo_201",
+   "status": 400,
+   "headers": {
+    "Cache-Control": "no-store",
+    "Content-Type": "application/json; charset=utf-8"
+   },
+   "body": "{\"error\": \"Motivazione non valida\"}",
+   "calls": [],
+   "topics": [],
+   "db": {
+    "suggestions": [
+     [
+      1,
+      "pending",
+      null,
+      null,
+      "approved"
+     ],
+     [
+      2,
+      "pending",
+      null,
+      null,
+      "pending"
+     ],
+     [
+      3,
+      "picked",
+      null,
+      null,
+      "approved"
+     ],
+     [
+      4,
+      "pending",
+      null,
+      null,
+      "rejected"
+     ],
+     [
+      5,
+      "pending",
+      null,
+      null,
+      "approved"
+     ],
+     [
+      6,
+      "pending",
+      null,
+      null,
+      "approved"
+     ],
+     [
+      7,
+      "pending",
+      null,
+      null,
+      "approved"
+     ]
+    ],
+    "options": [
+     [
+      1,
+      "Poker",
+      3
+     ]
+    ],
+    "user_stats": [],
+    "weekly_activity": [],
+    "season_activity": [],
+    "ballot_weeks": [],
+    "badges": [],
+    "audit": [],
+    "events": [
+     [
+      1,
+      "Serata 1",
+      "2027-03-01T23:00:00+01:00"
+     ],
+     [
+      2,
+      "Serata 2",
+      "2027-03-02T22:00:00+01:00"
+     ],
+     [
+      3,
+      "In corso",
+      null
+     ]
+    ]
+   }
+  },
+  {
+   "label": "revisione_non_oggetto",
+   "status": 400,
+   "headers": {
+    "Cache-Control": "no-store",
+    "Content-Type": "application/json; charset=utf-8"
+   },
+   "body": "{\"error\": \"Corpo JSON non valido\"}",
+   "calls": [],
+   "topics": [],
+   "db": {
+    "suggestions": [
+     [
+      1,
+      "pending",
+      null,
+      null,
+      "approved"
+     ],
+     [
+      2,
+      "pending",
+      null,
+      null,
+      "pending"
+     ],
+     [
+      3,
+      "picked",
+      null,
+      null,
+      "approved"
+     ],
+     [
+      4,
+      "pending",
+      null,
+      null,
+      "rejected"
+     ],
+     [
+      5,
+      "pending",
+      null,
+      null,
+      "approved"
+     ],
+     [
+      6,
+      "pending",
+      null,
+      null,
+      "approved"
+     ],
+     [
+      7,
+      "pending",
+      null,
+      null,
+      "approved"
+     ]
+    ],
+    "options": [
+     [
+      1,
+      "Poker",
+      3
+     ]
+    ],
+    "user_stats": [],
+    "weekly_activity": [],
+    "season_activity": [],
+    "ballot_weeks": [],
+    "badges": [],
+    "audit": [],
+    "events": [
+     [
+      1,
+      "Serata 1",
+      "2027-03-01T23:00:00+01:00"
+     ],
+     [
+      2,
+      "Serata 2",
+      "2027-03-02T22:00:00+01:00"
+     ],
+     [
+      3,
+      "In corso",
+      null
+     ]
+    ]
+   }
+  },
+  {
+   "label": "revisione_json_non_valido",
+   "status": 400,
+   "headers": {
+    "Cache-Control": "no-store",
+    "Content-Type": "application/json; charset=utf-8"
+   },
+   "body": "{\"error\": \"Richiesta non valida\"}",
+   "calls": [],
+   "topics": [],
+   "db": {
+    "suggestions": [
+     [
+      1,
+      "pending",
+      null,
+      null,
+      "approved"
+     ],
+     [
+      2,
+      "pending",
+      null,
+      null,
+      "pending"
+     ],
+     [
+      3,
+      "picked",
+      null,
+      null,
+      "approved"
+     ],
+     [
+      4,
+      "pending",
+      null,
+      null,
+      "rejected"
+     ],
+     [
+      5,
+      "pending",
+      null,
+      null,
+      "approved"
+     ],
+     [
+      6,
+      "pending",
+      null,
+      null,
+      "approved"
+     ],
+     [
+      7,
+      "pending",
+      null,
+      null,
+      "approved"
+     ]
+    ],
+    "options": [
+     [
+      1,
+      "Poker",
+      3
+     ]
+    ],
+    "user_stats": [],
+    "weekly_activity": [],
+    "season_activity": [],
+    "ballot_weeks": [],
+    "badges": [],
+    "audit": [],
+    "events": [
+     [
+      1,
+      "Serata 1",
+      "2027-03-01T23:00:00+01:00"
+     ],
+     [
+      2,
+      "Serata 2",
+      "2027-03-02T22:00:00+01:00"
+     ],
+     [
+      3,
+      "In corso",
+      null
+     ]
+    ]
+   }
+  },
+  {
+   "label": "revisione_corpo_vuoto",
+   "status": 400,
+   "headers": {
+    "Cache-Control": "no-store",
+    "Content-Type": "application/json; charset=utf-8"
+   },
+   "body": "{\"error\": \"Richiesta non valida\"}",
+   "calls": [],
+   "topics": [],
+   "db": {
+    "suggestions": [
+     [
+      1,
+      "pending",
+      null,
+      null,
+      "approved"
+     ],
+     [
+      2,
+      "pending",
+      null,
+      null,
+      "pending"
+     ],
+     [
+      3,
+      "picked",
+      null,
+      null,
+      "approved"
+     ],
+     [
+      4,
+      "pending",
+      null,
+      null,
+      "rejected"
+     ],
+     [
+      5,
+      "pending",
+      null,
+      null,
+      "approved"
+     ],
+     [
+      6,
+      "pending",
+      null,
+      null,
+      "approved"
+     ],
+     [
+      7,
+      "pending",
+      null,
+      null,
+      "approved"
+     ]
+    ],
+    "options": [
+     [
+      1,
+      "Poker",
+      3
+     ]
+    ],
+    "user_stats": [],
+    "weekly_activity": [],
+    "season_activity": [],
+    "ballot_weeks": [],
+    "badges": [],
+    "audit": [],
+    "events": [
+     [
+      1,
+      "Serata 1",
+      "2027-03-01T23:00:00+01:00"
+     ],
+     [
+      2,
+      "Serata 2",
+      "2027-03-02T22:00:00+01:00"
+     ],
+     [
+      3,
+      "In corso",
+      null
+     ]
+    ]
+   }
+  },
+  {
+   "label": "revisione_non_autenticata",
+   "status": 401,
+   "headers": {
+    "Cache-Control": "no-store",
+    "Content-Type": "application/json; charset=utf-8"
+   },
+   "body": "{\"error\": \"Accesso Discord richiesto\"}",
+   "calls": [],
+   "topics": [],
+   "db": {
+    "suggestions": [
+     [
+      1,
+      "pending",
+      null,
+      null,
+      "approved"
+     ],
+     [
+      2,
+      "pending",
+      null,
+      null,
+      "pending"
+     ],
+     [
+      3,
+      "picked",
+      null,
+      null,
+      "approved"
+     ],
+     [
+      4,
+      "pending",
+      null,
+      null,
+      "rejected"
+     ],
+     [
+      5,
+      "pending",
+      null,
+      null,
+      "approved"
+     ],
+     [
+      6,
+      "pending",
+      null,
+      null,
+      "approved"
+     ],
+     [
+      7,
+      "pending",
+      null,
+      null,
+      "approved"
+     ]
+    ],
+    "options": [
+     [
+      1,
+      "Poker",
+      3
+     ]
+    ],
+    "user_stats": [],
+    "weekly_activity": [],
+    "season_activity": [],
+    "ballot_weeks": [],
+    "badges": [],
+    "audit": [],
+    "events": [
+     [
+      1,
+      "Serata 1",
+      "2027-03-01T23:00:00+01:00"
+     ],
+     [
+      2,
+      "Serata 2",
+      "2027-03-02T22:00:00+01:00"
+     ],
+     [
+      3,
+      "In corso",
+      null
+     ]
+    ]
+   }
+  },
+  {
+   "label": "revisione_id_non_numerico",
+   "status": 404,
+   "headers": {
+    "Content-Type": "text/plain; charset=utf-8"
+   },
+   "body": "404: Not Found",
+   "calls": [],
+   "topics": [],
+   "db": {
+    "suggestions": [
+     [
+      1,
+      "pending",
+      null,
+      null,
+      "approved"
+     ],
+     [
+      2,
+      "pending",
+      null,
+      null,
+      "pending"
+     ],
+     [
+      3,
+      "picked",
+      null,
+      null,
+      "approved"
+     ],
+     [
+      4,
+      "pending",
+      null,
+      null,
+      "rejected"
+     ],
+     [
+      5,
+      "pending",
+      null,
+      null,
+      "approved"
+     ],
+     [
+      6,
+      "pending",
+      null,
+      null,
+      "approved"
+     ],
+     [
+      7,
+      "pending",
+      null,
+      null,
+      "approved"
+     ]
+    ],
+    "options": [
+     [
+      1,
+      "Poker",
+      3
+     ]
+    ],
+    "user_stats": [],
+    "weekly_activity": [],
+    "season_activity": [],
+    "ballot_weeks": [],
+    "badges": [],
+    "audit": [],
+    "events": [
+     [
+      1,
+      "Serata 1",
+      "2027-03-01T23:00:00+01:00"
+     ],
+     [
+      2,
+      "Serata 2",
+      "2027-03-02T22:00:00+01:00"
+     ],
+     [
+      3,
+      "In corso",
+      null
+     ]
+    ]
+   }
+  },
+  {
+   "label": "revisione_id_non_numerico_non_autenticata",
+   "status": 404,
+   "headers": {
+    "Content-Type": "text/plain; charset=utf-8"
+   },
+   "body": "404: Not Found",
+   "calls": [],
+   "topics": [],
+   "db": {
+    "suggestions": [
+     [
+      1,
+      "pending",
+      null,
+      null,
+      "approved"
+     ],
+     [
+      2,
+      "pending",
+      null,
+      null,
+      "pending"
+     ],
+     [
+      3,
+      "picked",
+      null,
+      null,
+      "approved"
+     ],
+     [
+      4,
+      "pending",
+      null,
+      null,
+      "rejected"
+     ],
+     [
+      5,
+      "pending",
+      null,
+      null,
+      "approved"
+     ],
+     [
+      6,
+      "pending",
+      null,
+      null,
+      "approved"
+     ],
+     [
+      7,
+      "pending",
+      null,
+      null,
+      "approved"
+     ]
+    ],
+    "options": [
+     [
+      1,
+      "Poker",
+      3
+     ]
+    ],
+    "user_stats": [],
+    "weekly_activity": [],
+    "season_activity": [],
+    "ballot_weeks": [],
+    "badges": [],
+    "audit": [],
+    "events": [
+     [
+      1,
+      "Serata 1",
+      "2027-03-01T23:00:00+01:00"
+     ],
+     [
+      2,
+      "Serata 2",
+      "2027-03-02T22:00:00+01:00"
+     ],
+     [
+      3,
+      "In corso",
+      null
+     ]
+    ]
+   }
+  },
+  {
+   "label": "scelta_id_non_numerico_non_autenticata",
+   "status": 404,
+   "headers": {
+    "Content-Type": "text/plain; charset=utf-8"
+   },
+   "body": "404: Not Found",
+   "calls": [],
+   "topics": [],
+   "db": {
+    "suggestions": [
+     [
+      1,
+      "pending",
+      null,
+      null,
+      "approved"
+     ],
+     [
+      2,
+      "pending",
+      null,
+      null,
+      "pending"
+     ],
+     [
+      3,
+      "picked",
+      null,
+      null,
+      "approved"
+     ],
+     [
+      4,
+      "pending",
+      null,
+      null,
+      "rejected"
+     ],
+     [
+      5,
+      "pending",
+      null,
+      null,
+      "approved"
+     ],
+     [
+      6,
+      "pending",
+      null,
+      null,
+      "approved"
+     ],
+     [
+      7,
+      "pending",
+      null,
+      null,
+      "approved"
+     ]
+    ],
+    "options": [
+     [
+      1,
+      "Poker",
+      3
+     ]
+    ],
+    "user_stats": [],
+    "weekly_activity": [],
+    "season_activity": [],
+    "ballot_weeks": [],
+    "badges": [],
+    "audit": [],
+    "events": [
+     [
+      1,
+      "Serata 1",
+      "2027-03-01T23:00:00+01:00"
+     ],
+     [
+      2,
+      "Serata 2",
+      "2027-03-02T22:00:00+01:00"
+     ],
+     [
+      3,
+      "In corso",
+      null
+     ]
+    ]
+   }
+  },
+  {
+   "label": "selezione_id_non_numerico_non_autenticata",
+   "status": 404,
+   "headers": {
+    "Content-Type": "text/plain; charset=utf-8"
+   },
+   "body": "404: Not Found",
+   "calls": [],
+   "topics": [],
+   "db": {
+    "suggestions": [
+     [
+      1,
+      "pending",
+      null,
+      null,
+      "approved"
+     ],
+     [
+      2,
+      "pending",
+      null,
+      null,
+      "pending"
+     ],
+     [
+      3,
+      "picked",
+      null,
+      null,
+      "approved"
+     ],
+     [
+      4,
+      "pending",
+      null,
+      null,
+      "rejected"
+     ],
+     [
+      5,
+      "pending",
+      null,
+      null,
+      "approved"
+     ],
+     [
+      6,
+      "pending",
+      null,
+      null,
+      "approved"
+     ],
+     [
+      7,
+      "pending",
+      null,
+      null,
+      "approved"
+     ]
+    ],
+    "options": [
+     [
+      1,
+      "Poker",
+      3
+     ]
+    ],
+    "user_stats": [],
+    "weekly_activity": [],
+    "season_activity": [],
+    "ballot_weeks": [],
+    "badges": [],
+    "audit": [],
+    "events": [
+     [
+      1,
+      "Serata 1",
+      "2027-03-01T23:00:00+01:00"
+     ],
+     [
+      2,
+      "Serata 2",
+      "2027-03-02T22:00:00+01:00"
+     ],
+     [
+      3,
+      "In corso",
+      null
+     ]
+    ]
+   }
+  },
+  {
+   "label": "selezione_id_non_numerico_solo_staff",
+   "status": 404,
+   "headers": {
+    "Content-Type": "text/plain; charset=utf-8"
+   },
+   "body": "404: Not Found",
+   "calls": [],
+   "topics": [],
+   "db": {
+    "suggestions": [
+     [
+      1,
+      "pending",
+      null,
+      null,
+      "approved"
+     ],
+     [
+      2,
+      "pending",
+      null,
+      null,
+      "pending"
+     ],
+     [
+      3,
+      "picked",
+      null,
+      null,
+      "approved"
+     ],
+     [
+      4,
+      "pending",
+      null,
+      null,
+      "rejected"
+     ],
+     [
+      5,
+      "pending",
+      null,
+      null,
+      "approved"
+     ],
+     [
+      6,
+      "pending",
+      null,
+      null,
+      "approved"
+     ],
+     [
+      7,
+      "pending",
+      null,
+      null,
+      "approved"
+     ]
+    ],
+    "options": [
+     [
+      1,
+      "Poker",
+      3
+     ]
+    ],
+    "user_stats": [],
+    "weekly_activity": [],
+    "season_activity": [],
+    "ballot_weeks": [],
+    "badges": [],
+    "audit": [],
+    "events": [
+     [
+      1,
+      "Serata 1",
+      "2027-03-01T23:00:00+01:00"
+     ],
+     [
+      2,
+      "Serata 2",
+      "2027-03-02T22:00:00+01:00"
+     ],
+     [
+      3,
+      "In corso",
+      null
+     ]
+    ]
+   }
+  },
+  {
+   "label": "revisione_id_negativo",
+   "status": 404,
+   "headers": {
+    "Content-Type": "text/plain; charset=utf-8"
+   },
+   "body": "404: Not Found",
+   "calls": [],
+   "topics": [],
+   "db": {
+    "suggestions": [
+     [
+      1,
+      "pending",
+      null,
+      null,
+      "approved"
+     ],
+     [
+      2,
+      "pending",
+      null,
+      null,
+      "pending"
+     ],
+     [
+      3,
+      "picked",
+      null,
+      null,
+      "approved"
+     ],
+     [
+      4,
+      "pending",
+      null,
+      null,
+      "rejected"
+     ],
+     [
+      5,
+      "pending",
+      null,
+      null,
+      "approved"
+     ],
+     [
+      6,
+      "pending",
+      null,
+      null,
+      "approved"
+     ],
+     [
+      7,
+      "pending",
+      null,
+      null,
+      "approved"
+     ]
+    ],
+    "options": [
+     [
+      1,
+      "Poker",
+      3
+     ]
+    ],
+    "user_stats": [],
+    "weekly_activity": [],
+    "season_activity": [],
+    "ballot_weeks": [],
+    "badges": [],
+    "audit": [],
+    "events": [
+     [
+      1,
+      "Serata 1",
+      "2027-03-01T23:00:00+01:00"
+     ],
+     [
+      2,
+      "Serata 2",
+      "2027-03-02T22:00:00+01:00"
+     ],
+     [
+      3,
+      "In corso",
+      null
+     ]
+    ]
+   }
+  },
+  {
+   "label": "revisione_id_enorme",
+   "status": 500,
+   "headers": {
+    "Content-Type": "text/plain; charset=utf-8"
+   },
+   "body": "500 Internal Server Error\n\nServer got itself in trouble",
+   "calls": [],
+   "topics": [],
+   "db": {
+    "suggestions": [
+     [
+      1,
+      "pending",
+      null,
+      null,
+      "approved"
+     ],
+     [
+      2,
+      "pending",
+      null,
+      null,
+      "pending"
+     ],
+     [
+      3,
+      "picked",
+      null,
+      null,
+      "approved"
+     ],
+     [
+      4,
+      "pending",
+      null,
+      null,
+      "rejected"
+     ],
+     [
+      5,
+      "pending",
+      null,
+      null,
+      "approved"
+     ],
+     [
+      6,
+      "pending",
+      null,
+      null,
+      "approved"
+     ],
+     [
+      7,
+      "pending",
+      null,
+      null,
+      "approved"
+     ]
+    ],
+    "options": [
+     [
+      1,
+      "Poker",
+      3
+     ]
+    ],
+    "user_stats": [],
+    "weekly_activity": [],
+    "season_activity": [],
+    "ballot_weeks": [],
+    "badges": [],
+    "audit": [],
+    "events": [
+     [
+      1,
+      "Serata 1",
+      "2027-03-01T23:00:00+01:00"
+     ],
+     [
+      2,
+      "Serata 2",
+      "2027-03-02T22:00:00+01:00"
+     ],
+     [
+      3,
+      "In corso",
+      null
+     ]
+    ]
+   }
+  },
+  {
+   "label": "scelta_non_autenticata",
+   "status": 401,
+   "headers": {
+    "Cache-Control": "no-store",
+    "Content-Type": "application/json; charset=utf-8"
+   },
+   "body": "{\"error\": \"Accesso Discord richiesto\"}",
+   "calls": [],
+   "topics": [],
+   "db": {
+    "suggestions": [
+     [
+      1,
+      "pending",
+      null,
+      null,
+      "approved"
+     ],
+     [
+      2,
+      "pending",
+      null,
+      null,
+      "pending"
+     ],
+     [
+      3,
+      "picked",
+      null,
+      null,
+      "approved"
+     ],
+     [
+      4,
+      "pending",
+      null,
+      null,
+      "rejected"
+     ],
+     [
+      5,
+      "pending",
+      null,
+      null,
+      "approved"
+     ],
+     [
+      6,
+      "pending",
+      null,
+      null,
+      "approved"
+     ],
+     [
+      7,
+      "pending",
+      null,
+      null,
+      "approved"
+     ]
+    ],
+    "options": [
+     [
+      1,
+      "Poker",
+      3
+     ]
+    ],
+    "user_stats": [],
+    "weekly_activity": [],
+    "season_activity": [],
+    "ballot_weeks": [],
+    "badges": [],
+    "audit": [],
+    "events": [
+     [
+      1,
+      "Serata 1",
+      "2027-03-01T23:00:00+01:00"
+     ],
+     [
+      2,
+      "Serata 2",
+      "2027-03-02T22:00:00+01:00"
+     ],
+     [
+      3,
+      "In corso",
+      null
+     ]
+    ]
+   }
+  },
+  {
+   "label": "scelta_senza_canale_sondaggi",
+   "status": 503,
+   "headers": {
+    "Cache-Control": "no-store",
+    "Content-Type": "application/json; charset=utf-8"
+   },
+   "body": "{\"error\": \"Configura prima i canali sondaggi e staff\"}",
+   "calls": [],
+   "topics": [],
+   "db": {
+    "suggestions": [
+     [
+      1,
+      "pending",
+      null,
+      null,
+      "approved"
+     ],
+     [
+      2,
+      "pending",
+      null,
+      null,
+      "pending"
+     ],
+     [
+      3,
+      "picked",
+      null,
+      null,
+      "approved"
+     ],
+     [
+      4,
+      "pending",
+      null,
+      null,
+      "rejected"
+     ],
+     [
+      5,
+      "pending",
+      null,
+      null,
+      "approved"
+     ],
+     [
+      6,
+      "pending",
+      null,
+      null,
+      "approved"
+     ],
+     [
+      7,
+      "pending",
+      null,
+      null,
+      "approved"
+     ]
+    ],
+    "options": [
+     [
+      1,
+      "Poker",
+      3
+     ]
+    ],
+    "user_stats": [],
+    "weekly_activity": [],
+    "season_activity": [],
+    "ballot_weeks": [],
+    "badges": [],
+    "audit": [],
+    "events": [
+     [
+      1,
+      "Serata 1",
+      "2027-03-01T23:00:00+01:00"
+     ],
+     [
+      2,
+      "Serata 2",
+      "2027-03-02T22:00:00+01:00"
+     ],
+     [
+      3,
+      "In corso",
+      null
+     ]
+    ]
+   }
+  },
+  {
+   "label": "scelta_senza_canale_staff",
+   "status": 503,
+   "headers": {
+    "Cache-Control": "no-store",
+    "Content-Type": "application/json; charset=utf-8"
+   },
+   "body": "{\"error\": \"Configura prima i canali sondaggi e staff\"}",
+   "calls": [],
+   "topics": [],
+   "db": {
+    "suggestions": [
+     [
+      1,
+      "pending",
+      null,
+      null,
+      "approved"
+     ],
+     [
+      2,
+      "pending",
+      null,
+      null,
+      "pending"
+     ],
+     [
+      3,
+      "picked",
+      null,
+      null,
+      "approved"
+     ],
+     [
+      4,
+      "pending",
+      null,
+      null,
+      "rejected"
+     ],
+     [
+      5,
+      "pending",
+      null,
+      null,
+      "approved"
+     ],
+     [
+      6,
+      "pending",
+      null,
+      null,
+      "approved"
+     ],
+     [
+      7,
+      "pending",
+      null,
+      null,
+      "approved"
+     ]
+    ],
+    "options": [
+     [
+      1,
+      "Poker",
+      3
+     ]
+    ],
+    "user_stats": [],
+    "weekly_activity": [],
+    "season_activity": [],
+    "ballot_weeks": [],
+    "badges": [],
+    "audit": [],
+    "events": [
+     [
+      1,
+      "Serata 1",
+      "2027-03-01T23:00:00+01:00"
+     ],
+     [
+      2,
+      "Serata 2",
+      "2027-03-02T22:00:00+01:00"
+     ],
+     [
+      3,
+      "In corso",
+      null
+     ]
+    ]
+   }
+  },
+  {
+   "label": "scelta_ok",
+   "status": 200,
+   "headers": {
+    "Cache-Control": "no-store",
+    "Content-Type": "application/json; charset=utf-8"
+   },
+   "body": "{\"ok\": true}",
+   "calls": [
+    [
+     "refresh_poll",
+     [
+      1
+     ],
+     {}
+    ],
+    [
+     "refresh_dashboard",
+     [],
+     {}
+    ],
+    [
+     "notify",
+     [
+      [
+       101,
+       102
+      ],
+      "🏆 La tua proposta **Among Us** è entrata nel ballottaggio."
+     ],
+     {}
+    ],
+    [
+     "activity",
+     [
+      "🏆 **Among Us** è entrata nel ballottaggio community!"
+     ],
+     {}
+    ],
+    [
+     "staff_log",
+     [
+      "✅ <@42> ha scelto «Among Us» (Gioco) dal sito."
+     ],
+     {}
+    ]
+   ],
+   "topics": [
+    "proposals",
+    "polls"
+   ],
+   "db": {
+    "suggestions": [
+     [
+      1,
+      "picked",
+      42,
+      "2027-03-05T21:00:00+01:00",
+      "approved"
+     ],
+     [
+      2,
+      "pending",
+      null,
+      null,
+      "pending"
+     ],
+     [
+      3,
+      "picked",
+      null,
+      null,
+      "approved"
+     ],
+     [
+      4,
+      "pending",
+      null,
+      null,
+      "rejected"
+     ],
+     [
+      5,
+      "pending",
+      null,
+      null,
+      "approved"
+     ],
+     [
+      6,
+      "pending",
+      null,
+      null,
+      "approved"
+     ],
+     [
+      7,
+      "pending",
+      null,
+      null,
+      "approved"
+     ]
+    ],
+    "options": [
+     [
+      1,
+      "Poker",
+      3
+     ],
+     [
+      1,
+      "Among Us",
+      1
+     ]
+    ],
+    "user_stats": [
+     [
+      101,
+      0,
+      0,
+      0,
+      1,
+      0
+     ],
+     [
+      102,
+      0,
+      0,
+      0,
+      1,
+      0
+     ]
+    ],
+    "weekly_activity": [
+     [
+      101,
+      10,
+      1,
+      5
+     ],
+     [
+      102,
+      10,
+      1,
+      5
+     ]
+    ],
+    "season_activity": [
+     [
+      "primavera-2027",
+      101,
+      10,
+      1,
+      5
+     ],
+     [
+      "primavera-2027",
+      102,
+      10,
+      1,
+      5
+     ]
+    ],
+    "ballot_weeks": [
+     [
+      101,
+      10
+     ],
+     [
+      102,
+      10
+     ]
+    ],
+    "badges": [],
+    "audit": [
+     [
+      42,
+      "proposal_selected",
+      "suggestion",
+      "1",
+      null,
+      "{\"name\": \"Among Us\", \"week\": 10, \"source\": \"site\"}"
+     ]
+    ],
+    "events": [
+     [
+      1,
+      "Serata 1",
+      "2027-03-01T23:00:00+01:00"
+     ],
+     [
+      2,
+      "Serata 2",
+      "2027-03-02T22:00:00+01:00"
+     ],
+     [
+      3,
+      "In corso",
+      null
+     ]
+    ]
+   }
+  },
+  {
+   "label": "scelta_ok_due_autori",
+   "status": 200,
+   "headers": {
+    "Cache-Control": "no-store",
+    "Content-Type": "application/json; charset=utf-8"
+   },
+   "body": "{\"ok\": true}",
+   "calls": [
+    [
+     "refresh_poll",
+     [
+      1
+     ],
+     {}
+    ],
+    [
+     "refresh_dashboard",
+     [],
+     {}
+    ],
+    [
+     "notify",
+     [
+      [
+       106,
+       107
+      ],
+      "🏆 La tua proposta **Quiz è** è entrata nel ballottaggio."
+     ],
+     {}
+    ],
+    [
+     "activity",
+     [
+      "🏆 **Quiz è** è entrata nel ballottaggio community!"
+     ],
+     {}
+    ],
+    [
+     "staff_log",
+     [
+      "✅ <@42> ha scelto «Quiz è» (Quiz) dal sito."
+     ],
+     {}
+    ]
+   ],
+   "topics": [
+    "proposals",
+    "polls"
+   ],
+   "db": {
+    "suggestions": [
+     [
+      1,
+      "pending",
+      null,
+      null,
+      "approved"
+     ],
+     [
+      2,
+      "pending",
+      null,
+      null,
+      "pending"
+     ],
+     [
+      3,
+      "picked",
+      null,
+      null,
+      "approved"
+     ],
+     [
+      4,
+      "pending",
+      null,
+      null,
+      "rejected"
+     ],
+     [
+      5,
+      "pending",
+      null,
+      null,
+      "approved"
+     ],
+     [
+      6,
+      "picked",
+      42,
+      "2027-03-05T21:00:00+01:00",
+      "approved"
+     ],
+     [
+      7,
+      "pending",
+      null,
+      null,
+      "approved"
+     ]
+    ],
+    "options": [
+     [
+      1,
+      "Poker",
+      3
+     ],
+     [
+      1,
+      "Quiz è",
+      6
+     ]
+    ],
+    "user_stats": [
+     [
+      106,
+      0,
+      0,
+      0,
+      1,
+      0
+     ],
+     [
+      107,
+      0,
+      0,
+      0,
+      1,
+      0
+     ]
+    ],
+    "weekly_activity": [
+     [
+      106,
+      10,
+      1,
+      5
+     ],
+     [
+      107,
+      10,
+      1,
+      5
+     ]
+    ],
+    "season_activity": [
+     [
+      "primavera-2027",
+      106,
+      10,
+      1,
+      5
+     ],
+     [
+      "primavera-2027",
+      107,
+      10,
+      1,
+      5
+     ]
+    ],
+    "ballot_weeks": [
+     [
+      106,
+      10
+     ],
+     [
+      107,
+      10
+     ]
+    ],
+    "badges": [],
+    "audit": [
+     [
+      42,
+      "proposal_selected",
+      "suggestion",
+      "6",
+      null,
+      "{\"name\": \"Quiz è\", \"week\": 10, \"source\": \"site\"}"
+     ]
+    ],
+    "events": [
+     [
+      1,
+      "Serata 1",
+      "2027-03-01T23:00:00+01:00"
+     ],
+     [
+      2,
+      "Serata 2",
+      "2027-03-02T22:00:00+01:00"
+     ],
+     [
+      3,
+      "In corso",
+      null
+     ]
+    ]
+   }
+  },
+  {
+   "label": "scelta_ok_senza_autori",
+   "status": 200,
+   "headers": {
+    "Cache-Control": "no-store",
+    "Content-Type": "application/json; charset=utf-8"
+   },
+   "body": "{\"ok\": true}",
+   "calls": [
+    [
+     "refresh_poll",
+     [
+      1
+     ],
+     {}
+    ],
+    [
+     "refresh_dashboard",
+     [],
+     {}
+    ],
+    [
+     "notify",
+     [
+      [],
+      "🏆 La tua proposta **Senza autori** è entrata nel ballottaggio."
+     ],
+     {}
+    ],
+    [
+     "activity",
+     [
+      "🏆 **Senza autori** è entrata nel ballottaggio community!"
+     ],
+     {}
+    ],
+    [
+     "staff_log",
+     [
+      "✅ <@42> ha scelto «Senza autori» (Gioco) dal sito."
+     ],
+     {}
+    ]
+   ],
+   "topics": [
+    "proposals",
+    "polls"
+   ],
+   "db": {
+    "suggestions": [
+     [
+      1,
+      "pending",
+      null,
+      null,
+      "approved"
+     ],
+     [
+      2,
+      "pending",
+      null,
+      null,
+      "pending"
+     ],
+     [
+      3,
+      "picked",
+      null,
+      null,
+      "approved"
+     ],
+     [
+      4,
+      "pending",
+      null,
+      null,
+      "rejected"
+     ],
+     [
+      5,
+      "pending",
+      null,
+      null,
+      "approved"
+     ],
+     [
+      6,
+      "pending",
+      null,
+      null,
+      "approved"
+     ],
+     [
+      7,
+      "picked",
+      42,
+      "2027-03-05T21:00:00+01:00",
+      "approved"
+     ]
+    ],
+    "options": [
+     [
+      1,
+      "Poker",
+      3
+     ],
+     [
+      1,
+      "Senza autori",
+      7
+     ]
+    ],
+    "user_stats": [],
+    "weekly_activity": [],
+    "season_activity": [],
+    "ballot_weeks": [],
+    "badges": [],
+    "audit": [
+     [
+      42,
+      "proposal_selected",
+      "suggestion",
+      "7",
+      null,
+      "{\"name\": \"Senza autori\", \"week\": 10, \"source\": \"site\"}"
+     ]
+    ],
+    "events": [
+     [
+      1,
+      "Serata 1",
+      "2027-03-01T23:00:00+01:00"
+     ],
+     [
+      2,
+      "Serata 2",
+      "2027-03-02T22:00:00+01:00"
+     ],
+     [
+      3,
+      "In corso",
+      null
+     ]
+    ]
+   }
+  },
+  {
+   "label": "scelta_non_approvata",
+   "status": 409,
+   "headers": {
+    "Cache-Control": "no-store",
+    "Content-Type": "application/json; charset=utf-8"
+   },
+   "body": "{\"error\": \"La proposta deve essere approvata prima del ballottaggio\"}",
+   "calls": [],
+   "topics": [],
+   "db": {
+    "suggestions": [
+     [
+      1,
+      "pending",
+      null,
+      null,
+      "approved"
+     ],
+     [
+      2,
+      "pending",
+      null,
+      null,
+      "pending"
+     ],
+     [
+      3,
+      "picked",
+      null,
+      null,
+      "approved"
+     ],
+     [
+      4,
+      "pending",
+      null,
+      null,
+      "rejected"
+     ],
+     [
+      5,
+      "pending",
+      null,
+      null,
+      "approved"
+     ],
+     [
+      6,
+      "pending",
+      null,
+      null,
+      "approved"
+     ],
+     [
+      7,
+      "pending",
+      null,
+      null,
+      "approved"
+     ]
+    ],
+    "options": [
+     [
+      1,
+      "Poker",
+      3
+     ]
+    ],
+    "user_stats": [],
+    "weekly_activity": [],
+    "season_activity": [],
+    "ballot_weeks": [],
+    "badges": [],
+    "audit": [],
+    "events": [
+     [
+      1,
+      "Serata 1",
+      "2027-03-01T23:00:00+01:00"
+     ],
+     [
+      2,
+      "Serata 2",
+      "2027-03-02T22:00:00+01:00"
+     ],
+     [
+      3,
+      "In corso",
+      null
+     ]
+    ]
+   }
+  },
+  {
+   "label": "scelta_rifiutata",
+   "status": 409,
+   "headers": {
+    "Cache-Control": "no-store",
+    "Content-Type": "application/json; charset=utf-8"
+   },
+   "body": "{\"error\": \"La proposta deve essere approvata prima del ballottaggio\"}",
+   "calls": [],
+   "topics": [],
+   "db": {
+    "suggestions": [
+     [
+      1,
+      "pending",
+      null,
+      null,
+      "approved"
+     ],
+     [
+      2,
+      "pending",
+      null,
+      null,
+      "pending"
+     ],
+     [
+      3,
+      "picked",
+      null,
+      null,
+      "approved"
+     ],
+     [
+      4,
+      "pending",
+      null,
+      null,
+      "rejected"
+     ],
+     [
+      5,
+      "pending",
+      null,
+      null,
+      "approved"
+     ],
+     [
+      6,
+      "pending",
+      null,
+      null,
+      "approved"
+     ],
+     [
+      7,
+      "pending",
+      null,
+      null,
+      "approved"
+     ]
+    ],
+    "options": [
+     [
+      1,
+      "Poker",
+      3
+     ]
+    ],
+    "user_stats": [],
+    "weekly_activity": [],
+    "season_activity": [],
+    "ballot_weeks": [],
+    "badges": [],
+    "audit": [],
+    "events": [
+     [
+      1,
+      "Serata 1",
+      "2027-03-01T23:00:00+01:00"
+     ],
+     [
+      2,
+      "Serata 2",
+      "2027-03-02T22:00:00+01:00"
+     ],
+     [
+      3,
+      "In corso",
+      null
+     ]
+    ]
+   }
+  },
+  {
+   "label": "scelta_gia_nel_ballottaggio",
+   "status": 409,
+   "headers": {
+    "Cache-Control": "no-store",
+    "Content-Type": "application/json; charset=utf-8"
+   },
+   "body": "{\"error\": \"La proposta \\u00e8 gi\\u00e0 nel ballottaggio\"}",
+   "calls": [],
+   "topics": [],
+   "db": {
+    "suggestions": [
+     [
+      1,
+      "pending",
+      null,
+      null,
+      "approved"
+     ],
+     [
+      2,
+      "pending",
+      null,
+      null,
+      "pending"
+     ],
+     [
+      3,
+      "picked",
+      null,
+      null,
+      "approved"
+     ],
+     [
+      4,
+      "pending",
+      null,
+      null,
+      "rejected"
+     ],
+     [
+      5,
+      "pending",
+      null,
+      null,
+      "approved"
+     ],
+     [
+      6,
+      "pending",
+      null,
+      null,
+      "approved"
+     ],
+     [
+      7,
+      "pending",
+      null,
+      null,
+      "approved"
+     ]
+    ],
+    "options": [
+     [
+      1,
+      "Poker",
+      3
+     ]
+    ],
+    "user_stats": [],
+    "weekly_activity": [],
+    "season_activity": [],
+    "ballot_weeks": [],
+    "badges": [],
+    "audit": [],
+    "events": [
+     [
+      1,
+      "Serata 1",
+      "2027-03-01T23:00:00+01:00"
+     ],
+     [
+      2,
+      "Serata 2",
+      "2027-03-02T22:00:00+01:00"
+     ],
+     [
+      3,
+      "In corso",
+      null
+     ]
+    ]
+   }
+  },
+  {
+   "label": "scelta_non_trovata",
+   "status": 404,
+   "headers": {
+    "Cache-Control": "no-store",
+    "Content-Type": "application/json; charset=utf-8"
+   },
+   "body": "{\"error\": \"Proposta o sondaggio community non disponibile\"}",
+   "calls": [],
+   "topics": [],
+   "db": {
+    "suggestions": [
+     [
+      1,
+      "pending",
+      null,
+      null,
+      "approved"
+     ],
+     [
+      2,
+      "pending",
+      null,
+      null,
+      "pending"
+     ],
+     [
+      3,
+      "picked",
+      null,
+      null,
+      "approved"
+     ],
+     [
+      4,
+      "pending",
+      null,
+      null,
+      "rejected"
+     ],
+     [
+      5,
+      "pending",
+      null,
+      null,
+      "approved"
+     ],
+     [
+      6,
+      "pending",
+      null,
+      null,
+      "approved"
+     ],
+     [
+      7,
+      "pending",
+      null,
+      null,
+      "approved"
+     ]
+    ],
+    "options": [
+     [
+      1,
+      "Poker",
+      3
+     ]
+    ],
+    "user_stats": [],
+    "weekly_activity": [],
+    "season_activity": [],
+    "ballot_weeks": [],
+    "badges": [],
+    "audit": [],
+    "events": [
+     [
+      1,
+      "Serata 1",
+      "2027-03-01T23:00:00+01:00"
+     ],
+     [
+      2,
+      "Serata 2",
+      "2027-03-02T22:00:00+01:00"
+     ],
+     [
+      3,
+      "In corso",
+      null
+     ]
+    ]
+   }
+  },
+  {
+   "label": "scelta_vecchia_settimana",
+   "status": 404,
+   "headers": {
+    "Cache-Control": "no-store",
+    "Content-Type": "application/json; charset=utf-8"
+   },
+   "body": "{\"error\": \"Proposta o sondaggio community non disponibile\"}",
+   "calls": [],
+   "topics": [],
+   "db": {
+    "suggestions": [
+     [
+      1,
+      "pending",
+      null,
+      null,
+      "approved"
+     ],
+     [
+      2,
+      "pending",
+      null,
+      null,
+      "pending"
+     ],
+     [
+      3,
+      "picked",
+      null,
+      null,
+      "approved"
+     ],
+     [
+      4,
+      "pending",
+      null,
+      null,
+      "rejected"
+     ],
+     [
+      5,
+      "pending",
+      null,
+      null,
+      "approved"
+     ],
+     [
+      6,
+      "pending",
+      null,
+      null,
+      "approved"
+     ],
+     [
+      7,
+      "pending",
+      null,
+      null,
+      "approved"
+     ]
+    ],
+    "options": [
+     [
+      1,
+      "Poker",
+      3
+     ]
+    ],
+    "user_stats": [],
+    "weekly_activity": [],
+    "season_activity": [],
+    "ballot_weeks": [],
+    "badges": [],
+    "audit": [],
+    "events": [
+     [
+      1,
+      "Serata 1",
+      "2027-03-01T23:00:00+01:00"
+     ],
+     [
+      2,
+      "Serata 2",
+      "2027-03-02T22:00:00+01:00"
+     ],
+     [
+      3,
+      "In corso",
+      null
+     ]
+    ]
+   }
+  },
+  {
+   "label": "scelta_senza_sondaggio_community",
+   "status": 404,
+   "headers": {
+    "Cache-Control": "no-store",
+    "Content-Type": "application/json; charset=utf-8"
+   },
+   "body": "{\"error\": \"Proposta o sondaggio community non disponibile\"}",
+   "calls": [],
+   "topics": [],
+   "db": {
+    "suggestions": [
+     [
+      1,
+      "pending",
+      null,
+      null,
+      "approved"
+     ],
+     [
+      2,
+      "pending",
+      null,
+      null,
+      "pending"
+     ],
+     [
+      3,
+      "picked",
+      null,
+      null,
+      "approved"
+     ],
+     [
+      4,
+      "pending",
+      null,
+      null,
+      "rejected"
+     ],
+     [
+      5,
+      "pending",
+      null,
+      null,
+      "approved"
+     ],
+     [
+      6,
+      "pending",
+      null,
+      null,
+      "approved"
+     ],
+     [
+      7,
+      "pending",
+      null,
+      null,
+      "approved"
+     ]
+    ],
+    "options": [
+     [
+      1,
+      "Poker",
+      3
+     ]
+    ],
+    "user_stats": [],
+    "weekly_activity": [],
+    "season_activity": [],
+    "ballot_weeks": [],
+    "badges": [],
+    "audit": [],
+    "events": [
+     [
+      1,
+      "Serata 1",
+      "2027-03-01T23:00:00+01:00"
+     ],
+     [
+      2,
+      "Serata 2",
+      "2027-03-02T22:00:00+01:00"
+     ],
+     [
+      3,
+      "In corso",
+      null
+     ]
+    ]
+   }
+  },
+  {
+   "label": "scelta_slot_pieni",
+   "status": 409,
+   "headers": {
+    "Cache-Control": "no-store",
+    "Content-Type": "application/json; charset=utf-8"
+   },
+   "body": "{\"error\": \"Gli slot del ballottaggio (1) sono pieni\"}",
+   "calls": [],
+   "topics": [],
+   "db": {
+    "suggestions": [
+     [
+      1,
+      "pending",
+      null,
+      null,
+      "approved"
+     ],
+     [
+      2,
+      "pending",
+      null,
+      null,
+      "pending"
+     ],
+     [
+      3,
+      "picked",
+      null,
+      null,
+      "approved"
+     ],
+     [
+      4,
+      "pending",
+      null,
+      null,
+      "rejected"
+     ],
+     [
+      5,
+      "pending",
+      null,
+      null,
+      "approved"
+     ],
+     [
+      6,
+      "pending",
+      null,
+      null,
+      "approved"
+     ],
+     [
+      7,
+      "pending",
+      null,
+      null,
+      "approved"
+     ]
+    ],
+    "options": [
+     [
+      1,
+      "Poker",
+      3
+     ]
+    ],
+    "user_stats": [],
+    "weekly_activity": [],
+    "season_activity": [],
+    "ballot_weeks": [],
+    "badges": [],
+    "audit": [],
+    "events": [
+     [
+      1,
+      "Serata 1",
+      "2027-03-01T23:00:00+01:00"
+     ],
+     [
+      2,
+      "Serata 2",
+      "2027-03-02T22:00:00+01:00"
+     ],
+     [
+      3,
+      "In corso",
+      null
+     ]
+    ]
+   }
+  },
+  {
+   "label": "scelta_slot_pieni_zero",
+   "status": 409,
+   "headers": {
+    "Cache-Control": "no-store",
+    "Content-Type": "application/json; charset=utf-8"
+   },
+   "body": "{\"error\": \"Gli slot del ballottaggio (0) sono pieni\"}",
+   "calls": [],
+   "topics": [],
+   "db": {
+    "suggestions": [
+     [
+      1,
+      "pending",
+      null,
+      null,
+      "approved"
+     ],
+     [
+      2,
+      "pending",
+      null,
+      null,
+      "pending"
+     ],
+     [
+      3,
+      "picked",
+      null,
+      null,
+      "approved"
+     ],
+     [
+      4,
+      "pending",
+      null,
+      null,
+      "rejected"
+     ],
+     [
+      5,
+      "pending",
+      null,
+      null,
+      "approved"
+     ],
+     [
+      6,
+      "pending",
+      null,
+      null,
+      "approved"
+     ],
+     [
+      7,
+      "pending",
+      null,
+      null,
+      "approved"
+     ]
+    ],
+    "options": [
+     [
+      1,
+      "Poker",
+      3
+     ]
+    ],
+    "user_stats": [],
+    "weekly_activity": [],
+    "season_activity": [],
+    "ballot_weeks": [],
+    "badges": [],
+    "audit": [],
+    "events": [
+     [
+      1,
+      "Serata 1",
+      "2027-03-01T23:00:00+01:00"
+     ],
+     [
+      2,
+      "Serata 2",
+      "2027-03-02T22:00:00+01:00"
+     ],
+     [
+      3,
+      "In corso",
+      null
+     ]
+    ]
+   }
+  },
+  {
+   "label": "scelta_slot_non_validi",
+   "status": 500,
+   "headers": {
+    "Cache-Control": "no-store",
+    "Content-Type": "application/json; charset=utf-8"
+   },
+   "body": "{\"error\": \"Impossibile aggiungere la proposta al ballottaggio\"}",
+   "calls": [],
+   "topics": [],
+   "db": {
+    "suggestions": [
+     [
+      1,
+      "pending",
+      null,
+      null,
+      "approved"
+     ],
+     [
+      2,
+      "pending",
+      null,
+      null,
+      "pending"
+     ],
+     [
+      3,
+      "picked",
+      null,
+      null,
+      "approved"
+     ],
+     [
+      4,
+      "pending",
+      null,
+      null,
+      "rejected"
+     ],
+     [
+      5,
+      "pending",
+      null,
+      null,
+      "approved"
+     ],
+     [
+      6,
+      "pending",
+      null,
+      null,
+      "approved"
+     ],
+     [
+      7,
+      "pending",
+      null,
+      null,
+      "approved"
+     ]
+    ],
+    "options": [
+     [
+      1,
+      "Poker",
+      3
+     ]
+    ],
+    "user_stats": [],
+    "weekly_activity": [],
+    "season_activity": [],
+    "ballot_weeks": [],
+    "badges": [],
+    "audit": [],
+    "events": [
+     [
+      1,
+      "Serata 1",
+      "2027-03-01T23:00:00+01:00"
+     ],
+     [
+      2,
+      "Serata 2",
+      "2027-03-02T22:00:00+01:00"
+     ],
+     [
+      3,
+      "In corso",
+      null
+     ]
+    ]
+   }
+  },
+  {
+   "label": "scelta_slot_con_spazi",
+   "status": 200,
+   "headers": {
+    "Cache-Control": "no-store",
+    "Content-Type": "application/json; charset=utf-8"
+   },
+   "body": "{\"ok\": true}",
+   "calls": [
+    [
+     "refresh_poll",
+     [
+      1
+     ],
+     {}
+    ],
+    [
+     "refresh_dashboard",
+     [],
+     {}
+    ],
+    [
+     "notify",
+     [
+      [
+       101,
+       102
+      ],
+      "🏆 La tua proposta **Among Us** è entrata nel ballottaggio."
+     ],
+     {}
+    ],
+    [
+     "activity",
+     [
+      "🏆 **Among Us** è entrata nel ballottaggio community!"
+     ],
+     {}
+    ],
+    [
+     "staff_log",
+     [
+      "✅ <@42> ha scelto «Among Us» (Gioco) dal sito."
+     ],
+     {}
+    ]
+   ],
+   "topics": [
+    "proposals",
+    "polls"
+   ],
+   "db": {
+    "suggestions": [
+     [
+      1,
+      "picked",
+      42,
+      "2027-03-05T21:00:00+01:00",
+      "approved"
+     ],
+     [
+      2,
+      "pending",
+      null,
+      null,
+      "pending"
+     ],
+     [
+      3,
+      "picked",
+      null,
+      null,
+      "approved"
+     ],
+     [
+      4,
+      "pending",
+      null,
+      null,
+      "rejected"
+     ],
+     [
+      5,
+      "pending",
+      null,
+      null,
+      "approved"
+     ],
+     [
+      6,
+      "pending",
+      null,
+      null,
+      "approved"
+     ],
+     [
+      7,
+      "pending",
+      null,
+      null,
+      "approved"
+     ]
+    ],
+    "options": [
+     [
+      1,
+      "Poker",
+      3
+     ],
+     [
+      1,
+      "Among Us",
+      1
+     ]
+    ],
+    "user_stats": [
+     [
+      101,
+      0,
+      0,
+      0,
+      1,
+      0
+     ],
+     [
+      102,
+      0,
+      0,
+      0,
+      1,
+      0
+     ]
+    ],
+    "weekly_activity": [
+     [
+      101,
+      10,
+      1,
+      5
+     ],
+     [
+      102,
+      10,
+      1,
+      5
+     ]
+    ],
+    "season_activity": [
+     [
+      "primavera-2027",
+      101,
+      10,
+      1,
+      5
+     ],
+     [
+      "primavera-2027",
+      102,
+      10,
+      1,
+      5
+     ]
+    ],
+    "ballot_weeks": [
+     [
+      101,
+      10
+     ],
+     [
+      102,
+      10
+     ]
+    ],
+    "badges": [],
+    "audit": [
+     [
+      42,
+      "proposal_selected",
+      "suggestion",
+      "1",
+      null,
+      "{\"name\": \"Among Us\", \"week\": 10, \"source\": \"site\"}"
+     ]
+    ],
+    "events": [
+     [
+      1,
+      "Serata 1",
+      "2027-03-01T23:00:00+01:00"
+     ],
+     [
+      2,
+      "Serata 2",
+      "2027-03-02T22:00:00+01:00"
+     ],
+     [
+      3,
+      "In corso",
+      null
+     ]
+    ]
+   }
+  },
+  {
+   "label": "scelta_slot_assenti",
+   "status": 200,
+   "headers": {
+    "Cache-Control": "no-store",
+    "Content-Type": "application/json; charset=utf-8"
+   },
+   "body": "{\"ok\": true}",
+   "calls": [
+    [
+     "refresh_poll",
+     [
+      1
+     ],
+     {}
+    ],
+    [
+     "refresh_dashboard",
+     [],
+     {}
+    ],
+    [
+     "notify",
+     [
+      [
+       101,
+       102
+      ],
+      "🏆 La tua proposta **Among Us** è entrata nel ballottaggio."
+     ],
+     {}
+    ],
+    [
+     "activity",
+     [
+      "🏆 **Among Us** è entrata nel ballottaggio community!"
+     ],
+     {}
+    ],
+    [
+     "staff_log",
+     [
+      "✅ <@42> ha scelto «Among Us» (Gioco) dal sito."
+     ],
+     {}
+    ]
+   ],
+   "topics": [
+    "proposals",
+    "polls"
+   ],
+   "db": {
+    "suggestions": [
+     [
+      1,
+      "picked",
+      42,
+      "2027-03-05T21:00:00+01:00",
+      "approved"
+     ],
+     [
+      2,
+      "pending",
+      null,
+      null,
+      "pending"
+     ],
+     [
+      3,
+      "picked",
+      null,
+      null,
+      "approved"
+     ],
+     [
+      4,
+      "pending",
+      null,
+      null,
+      "rejected"
+     ],
+     [
+      5,
+      "pending",
+      null,
+      null,
+      "approved"
+     ],
+     [
+      6,
+      "pending",
+      null,
+      null,
+      "approved"
+     ],
+     [
+      7,
+      "pending",
+      null,
+      null,
+      "approved"
+     ]
+    ],
+    "options": [
+     [
+      1,
+      "Poker",
+      3
+     ],
+     [
+      1,
+      "Among Us",
+      1
+     ]
+    ],
+    "user_stats": [
+     [
+      101,
+      0,
+      0,
+      0,
+      1,
+      0
+     ],
+     [
+      102,
+      0,
+      0,
+      0,
+      1,
+      0
+     ]
+    ],
+    "weekly_activity": [
+     [
+      101,
+      10,
+      1,
+      5
+     ],
+     [
+      102,
+      10,
+      1,
+      5
+     ]
+    ],
+    "season_activity": [
+     [
+      "primavera-2027",
+      101,
+      10,
+      1,
+      5
+     ],
+     [
+      "primavera-2027",
+      102,
+      10,
+      1,
+      5
+     ]
+    ],
+    "ballot_weeks": [
+     [
+      101,
+      10
+     ],
+     [
+      102,
+      10
+     ]
+    ],
+    "badges": [],
+    "audit": [
+     [
+      42,
+      "proposal_selected",
+      "suggestion",
+      "1",
+      null,
+      "{\"name\": \"Among Us\", \"week\": 10, \"source\": \"site\"}"
+     ]
+    ],
+    "events": [
+     [
+      1,
+      "Serata 1",
+      "2027-03-01T23:00:00+01:00"
+     ],
+     [
+      2,
+      "Serata 2",
+      "2027-03-02T22:00:00+01:00"
+     ],
+     [
+      3,
+      "In corso",
+      null
+     ]
+    ]
+   }
+  },
+  {
+   "label": "scelta_errore_database",
+   "status": 500,
+   "headers": {
+    "Cache-Control": "no-store",
+    "Content-Type": "application/json; charset=utf-8"
+   },
+   "body": "{\"error\": \"Impossibile aggiungere la proposta al ballottaggio\"}",
+   "calls": [],
+   "topics": [],
+   "db": {
+    "suggestions": [
+     [
+      1,
+      "pending",
+      null,
+      null,
+      "approved"
+     ],
+     [
+      2,
+      "pending",
+      null,
+      null,
+      "pending"
+     ],
+     [
+      3,
+      "picked",
+      null,
+      null,
+      "approved"
+     ],
+     [
+      4,
+      "pending",
+      null,
+      null,
+      "rejected"
+     ],
+     [
+      5,
+      "pending",
+      null,
+      null,
+      "approved"
+     ],
+     [
+      6,
+      "pending",
+      null,
+      null,
+      "approved"
+     ],
+     [
+      7,
+      "pending",
+      null,
+      null,
+      "approved"
+     ]
+    ],
+    "options": [
+     [
+      1,
+      "Poker",
+      3
+     ]
+    ],
+    "user_stats": [],
+    "weekly_activity": [],
+    "season_activity": [],
+    "ballot_weeks": [],
+    "badges": [],
+    "audit": [],
+    "events": [
+     [
+      1,
+      "Serata 1",
+      "2027-03-01T23:00:00+01:00"
+     ],
+     [
+      2,
+      "Serata 2",
+      "2027-03-02T22:00:00+01:00"
+     ],
+     [
+      3,
+      "In corso",
+      null
+     ]
+    ]
+   }
+  },
+  {
+   "label": "scelta_aggiornamento_sondaggio_fallito",
+   "status": 502,
+   "headers": {
+    "Cache-Control": "no-store",
+    "Content-Type": "application/json; charset=utf-8"
+   },
+   "body": "{\"error\": \"Proposta salvata ma sondaggio Discord non aggiornato\"}",
+   "calls": [
+    [
+     "refresh_poll",
+     [
+      1
+     ],
+     {}
+    ]
+   ],
+   "topics": [
+    "proposals",
+    "polls"
+   ],
+   "db": {
+    "suggestions": [
+     [
+      1,
+      "picked",
+      42,
+      "2027-03-05T21:00:00+01:00",
+      "approved"
+     ],
+     [
+      2,
+      "pending",
+      null,
+      null,
+      "pending"
+     ],
+     [
+      3,
+      "picked",
+      null,
+      null,
+      "approved"
+     ],
+     [
+      4,
+      "pending",
+      null,
+      null,
+      "rejected"
+     ],
+     [
+      5,
+      "pending",
+      null,
+      null,
+      "approved"
+     ],
+     [
+      6,
+      "pending",
+      null,
+      null,
+      "approved"
+     ],
+     [
+      7,
+      "pending",
+      null,
+      null,
+      "approved"
+     ]
+    ],
+    "options": [
+     [
+      1,
+      "Poker",
+      3
+     ],
+     [
+      1,
+      "Among Us",
+      1
+     ]
+    ],
+    "user_stats": [
+     [
+      101,
+      0,
+      0,
+      0,
+      1,
+      0
+     ],
+     [
+      102,
+      0,
+      0,
+      0,
+      1,
+      0
+     ]
+    ],
+    "weekly_activity": [
+     [
+      101,
+      10,
+      1,
+      5
+     ],
+     [
+      102,
+      10,
+      1,
+      5
+     ]
+    ],
+    "season_activity": [
+     [
+      "primavera-2027",
+      101,
+      10,
+      1,
+      5
+     ],
+     [
+      "primavera-2027",
+      102,
+      10,
+      1,
+      5
+     ]
+    ],
+    "ballot_weeks": [
+     [
+      101,
+      10
+     ],
+     [
+      102,
+      10
+     ]
+    ],
+    "badges": [],
+    "audit": [
+     [
+      42,
+      "proposal_selected",
+      "suggestion",
+      "1",
+      null,
+      "{\"name\": \"Among Us\", \"week\": 10, \"source\": \"site\"}"
+     ]
+    ],
+    "events": [
+     [
+      1,
+      "Serata 1",
+      "2027-03-01T23:00:00+01:00"
+     ],
+     [
+      2,
+      "Serata 2",
+      "2027-03-02T22:00:00+01:00"
+     ],
+     [
+      3,
+      "In corso",
+      null
+     ]
+    ]
+   }
+  },
+  {
+   "label": "scelta_aggiornamento_dashboard_negato",
+   "status": 502,
+   "headers": {
+    "Cache-Control": "no-store",
+    "Content-Type": "application/json; charset=utf-8"
+   },
+   "body": "{\"error\": \"Proposta salvata ma sondaggio Discord non aggiornato\"}",
+   "calls": [
+    [
+     "refresh_poll",
+     [
+      1
+     ],
+     {}
+    ],
+    [
+     "refresh_dashboard",
+     [],
+     {}
+    ]
+   ],
+   "topics": [
+    "proposals",
+    "polls"
+   ],
+   "db": {
+    "suggestions": [
+     [
+      1,
+      "picked",
+      42,
+      "2027-03-05T21:00:00+01:00",
+      "approved"
+     ],
+     [
+      2,
+      "pending",
+      null,
+      null,
+      "pending"
+     ],
+     [
+      3,
+      "picked",
+      null,
+      null,
+      "approved"
+     ],
+     [
+      4,
+      "pending",
+      null,
+      null,
+      "rejected"
+     ],
+     [
+      5,
+      "pending",
+      null,
+      null,
+      "approved"
+     ],
+     [
+      6,
+      "pending",
+      null,
+      null,
+      "approved"
+     ],
+     [
+      7,
+      "pending",
+      null,
+      null,
+      "approved"
+     ]
+    ],
+    "options": [
+     [
+      1,
+      "Poker",
+      3
+     ],
+     [
+      1,
+      "Among Us",
+      1
+     ]
+    ],
+    "user_stats": [
+     [
+      101,
+      0,
+      0,
+      0,
+      1,
+      0
+     ],
+     [
+      102,
+      0,
+      0,
+      0,
+      1,
+      0
+     ]
+    ],
+    "weekly_activity": [
+     [
+      101,
+      10,
+      1,
+      5
+     ],
+     [
+      102,
+      10,
+      1,
+      5
+     ]
+    ],
+    "season_activity": [
+     [
+      "primavera-2027",
+      101,
+      10,
+      1,
+      5
+     ],
+     [
+      "primavera-2027",
+      102,
+      10,
+      1,
+      5
+     ]
+    ],
+    "ballot_weeks": [
+     [
+      101,
+      10
+     ],
+     [
+      102,
+      10
+     ]
+    ],
+    "badges": [],
+    "audit": [
+     [
+      42,
+      "proposal_selected",
+      "suggestion",
+      "1",
+      null,
+      "{\"name\": \"Among Us\", \"week\": 10, \"source\": \"site\"}"
+     ]
+    ],
+    "events": [
+     [
+      1,
+      "Serata 1",
+      "2027-03-01T23:00:00+01:00"
+     ],
+     [
+      2,
+      "Serata 2",
+      "2027-03-02T22:00:00+01:00"
+     ],
+     [
+      3,
+      "In corso",
+      null
+     ]
+    ]
+   }
+  },
+  {
+   "label": "scelta_terza_candidata_con_tre_slot",
+   "status": 409,
+   "headers": {
+    "Cache-Control": "no-store",
+    "Content-Type": "application/json; charset=utf-8"
+   },
+   "body": "{\"error\": \"Gli slot del ballottaggio (2) sono pieni\"}",
+   "calls": [],
+   "topics": [],
+   "db": {
+    "suggestions": [
+     [
+      1,
+      "pending",
+      null,
+      null,
+      "approved"
+     ],
+     [
+      2,
+      "pending",
+      null,
+      null,
+      "pending"
+     ],
+     [
+      3,
+      "picked",
+      null,
+      null,
+      "approved"
+     ],
+     [
+      4,
+      "pending",
+      null,
+      null,
+      "rejected"
+     ],
+     [
+      5,
+      "pending",
+      null,
+      null,
+      "approved"
+     ],
+     [
+      6,
+      "pending",
+      null,
+      null,
+      "approved"
+     ],
+     [
+      7,
+      "pending",
+      null,
+      null,
+      "approved"
+     ]
+    ],
+    "options": [
+     [
+      1,
+      "Poker",
+      3
+     ],
+     [
+      1,
+      "Extra",
+      7
+     ]
+    ],
+    "user_stats": [],
+    "weekly_activity": [],
+    "season_activity": [],
+    "ballot_weeks": [],
+    "badges": [],
+    "audit": [],
+    "events": [
+     [
+      1,
+      "Serata 1",
+      "2027-03-01T23:00:00+01:00"
+     ],
+     [
+      2,
+      "Serata 2",
+      "2027-03-02T22:00:00+01:00"
+     ],
+     [
+      3,
+      "In corso",
+      null
+     ]
+    ]
+   }
+  },
+  {
+   "label": "scelta_seconda_scelta_stesso_autore",
+   "status": 200,
+   "headers": {
+    "Cache-Control": "no-store",
+    "Content-Type": "application/json; charset=utf-8"
+   },
+   "body": "{\"ok\": true}",
+   "calls": [
+    [
+     "refresh_poll",
+     [
+      1
+     ],
+     {}
+    ],
+    [
+     "refresh_dashboard",
+     [],
+     {}
+    ],
+    [
+     "notify",
+     [
+      [
+       101,
+       102
+      ],
+      "🏆 La tua proposta **Among Us** è entrata nel ballottaggio."
+     ],
+     {}
+    ],
+    [
+     "activity",
+     [
+      "🏆 **Among Us** è entrata nel ballottaggio community!"
+     ],
+     {}
+    ],
+    [
+     "staff_log",
+     [
+      "✅ <@42> ha scelto «Among Us» (Gioco) dal sito."
+     ],
+     {}
+    ]
+   ],
+   "topics": [
+    "proposals",
+    "polls"
+   ],
+   "db": {
+    "suggestions": [
+     [
+      1,
+      "picked",
+      42,
+      "2027-03-05T21:00:00+01:00",
+      "approved"
+     ],
+     [
+      2,
+      "pending",
+      null,
+      null,
+      "pending"
+     ],
+     [
+      3,
+      "picked",
+      null,
+      null,
+      "approved"
+     ],
+     [
+      4,
+      "pending",
+      null,
+      null,
+      "rejected"
+     ],
+     [
+      5,
+      "pending",
+      null,
+      null,
+      "approved"
+     ],
+     [
+      6,
+      "pending",
+      null,
+      null,
+      "approved"
+     ],
+     [
+      7,
+      "pending",
+      null,
+      null,
+      "approved"
+     ]
+    ],
+    "options": [
+     [
+      1,
+      "Poker",
+      3
+     ],
+     [
+      1,
+      "Among Us",
+      1
+     ]
+    ],
+    "user_stats": [
+     [
+      101,
+      0,
+      0,
+      0,
+      2,
+      0
+     ],
+     [
+      102,
+      0,
+      0,
+      0,
+      1,
+      0
+     ]
+    ],
+    "weekly_activity": [
+     [
+      101,
+      10,
+      1,
+      5
+     ],
+     [
+      102,
+      10,
+      1,
+      5
+     ]
+    ],
+    "season_activity": [
+     [
+      "primavera-2027",
+      101,
+      10,
+      1,
+      5
+     ],
+     [
+      "primavera-2027",
+      102,
+      10,
+      1,
+      5
+     ]
+    ],
+    "ballot_weeks": [
+     [
+      101,
+      10
+     ],
+     [
+      102,
+      10
+     ]
+    ],
+    "badges": [],
+    "audit": [
+     [
+      42,
+      "proposal_selected",
+      "suggestion",
+      "1",
+      null,
+      "{\"name\": \"Among Us\", \"week\": 10, \"source\": \"site\"}"
+     ]
+    ],
+    "events": [
+     [
+      1,
+      "Serata 1",
+      "2027-03-01T23:00:00+01:00"
+     ],
+     [
+      2,
+      "Serata 2",
+      "2027-03-02T22:00:00+01:00"
+     ],
+     [
+      3,
+      "In corso",
+      null
+     ]
+    ]
+   }
+  },
+  {
+   "label": "rimozione_non_autenticata",
+   "status": 401,
+   "headers": {
+    "Cache-Control": "no-store",
+    "Content-Type": "application/json; charset=utf-8"
+   },
+   "body": "{\"error\": \"Accesso Discord richiesto\"}",
+   "calls": [],
+   "topics": [],
+   "db": {
+    "suggestions": [
+     [
+      1,
+      "pending",
+      null,
+      null,
+      "approved"
+     ],
+     [
+      2,
+      "pending",
+      null,
+      null,
+      "pending"
+     ],
+     [
+      3,
+      "picked",
+      null,
+      null,
+      "approved"
+     ],
+     [
+      4,
+      "pending",
+      null,
+      null,
+      "rejected"
+     ],
+     [
+      5,
+      "pending",
+      null,
+      null,
+      "approved"
+     ],
+     [
+      6,
+      "pending",
+      null,
+      null,
+      "approved"
+     ],
+     [
+      7,
+      "pending",
+      null,
+      null,
+      "approved"
+     ]
+    ],
+    "options": [
+     [
+      1,
+      "Poker",
+      3
+     ]
+    ],
+    "user_stats": [],
+    "weekly_activity": [],
+    "season_activity": [],
+    "ballot_weeks": [],
+    "badges": [],
+    "audit": [],
+    "events": [
+     [
+      1,
+      "Serata 1",
+      "2027-03-01T23:00:00+01:00"
+     ],
+     [
+      2,
+      "Serata 2",
+      "2027-03-02T22:00:00+01:00"
+     ],
+     [
+      3,
+      "In corso",
+      null
+     ]
+    ]
+   }
+  },
+  {
+   "label": "rimozione_senza_canali",
+   "status": 503,
+   "headers": {
+    "Cache-Control": "no-store",
+    "Content-Type": "application/json; charset=utf-8"
+   },
+   "body": "{\"error\": \"Configura prima i canali sondaggi e staff\"}",
+   "calls": [],
+   "topics": [],
+   "db": {
+    "suggestions": [
+     [
+      1,
+      "pending",
+      null,
+      null,
+      "approved"
+     ],
+     [
+      2,
+      "pending",
+      null,
+      null,
+      "pending"
+     ],
+     [
+      3,
+      "picked",
+      null,
+      null,
+      "approved"
+     ],
+     [
+      4,
+      "pending",
+      null,
+      null,
+      "rejected"
+     ],
+     [
+      5,
+      "pending",
+      null,
+      null,
+      "approved"
+     ],
+     [
+      6,
+      "pending",
+      null,
+      null,
+      "approved"
+     ],
+     [
+      7,
+      "pending",
+      null,
+      null,
+      "approved"
+     ]
+    ],
+    "options": [
+     [
+      1,
+      "Poker",
+      3
+     ]
+    ],
+    "user_stats": [],
+    "weekly_activity": [],
+    "season_activity": [],
+    "ballot_weeks": [],
+    "badges": [],
+    "audit": [],
+    "events": [
+     [
+      1,
+      "Serata 1",
+      "2027-03-01T23:00:00+01:00"
+     ],
+     [
+      2,
+      "Serata 2",
+      "2027-03-02T22:00:00+01:00"
+     ],
+     [
+      3,
+      "In corso",
+      null
+     ]
+    ]
+   }
+  },
+  {
+   "label": "rimozione_ok",
+   "status": 200,
+   "headers": {
+    "Cache-Control": "no-store",
+    "Content-Type": "application/json; charset=utf-8"
+   },
+   "body": "{\"ok\": true}",
+   "calls": [
+    [
+     "refresh_poll",
+     [
+      1
+     ],
+     {}
+    ],
+    [
+     "refresh_dashboard",
+     [],
+     {}
+    ],
+    [
+     "staff_log",
+     [
+      "❌ <@42> ha tolto «Poker» dal sondaggio finale dal sito."
+     ],
+     {}
+    ]
+   ],
+   "topics": [
+    "proposals",
+    "polls"
+   ],
+   "db": {
+    "suggestions": [
+     [
+      1,
+      "pending",
+      null,
+      null,
+      "approved"
+     ],
+     [
+      2,
+      "pending",
+      null,
+      null,
+      "pending"
+     ],
+     [
+      3,
+      "pending",
+      null,
+      null,
+      "approved"
+     ],
+     [
+      4,
+      "pending",
+      null,
+      null,
+      "rejected"
+     ],
+     [
+      5,
+      "pending",
+      null,
+      null,
+      "approved"
+     ],
+     [
+      6,
+      "pending",
+      null,
+      null,
+      "approved"
+     ],
+     [
+      7,
+      "pending",
+      null,
+      null,
+      "approved"
+     ]
+    ],
+    "options": [],
+    "user_stats": [],
+    "weekly_activity": [],
+    "season_activity": [],
+    "ballot_weeks": [],
+    "badges": [],
+    "audit": [
+     [
+      42,
+      "proposal_unselected",
+      "suggestion",
+      "3",
+      null,
+      "{\"name\": \"Poker\", \"source\": \"site\"}"
+     ]
+    ],
+    "events": [
+     [
+      1,
+      "Serata 1",
+      "2027-03-01T23:00:00+01:00"
+     ],
+     [
+      2,
+      "Serata 2",
+      "2027-03-02T22:00:00+01:00"
+     ],
+     [
+      3,
+      "In corso",
+      null
+     ]
+    ]
+   }
+  },
+  {
+   "label": "rimozione_con_statistiche",
+   "status": 200,
+   "headers": {
+    "Cache-Control": "no-store",
+    "Content-Type": "application/json; charset=utf-8"
+   },
+   "body": "{\"ok\": true}",
+   "calls": [
+    [
+     "refresh_poll",
+     [
+      1
+     ],
+     {}
+    ],
+    [
+     "refresh_dashboard",
+     [],
+     {}
+    ],
+    [
+     "staff_log",
+     [
+      "❌ <@42> ha tolto «Poker» dal sondaggio finale dal sito."
+     ],
+     {}
+    ]
+   ],
+   "topics": [
+    "proposals",
+    "polls"
+   ],
+   "db": {
+    "suggestions": [
+     [
+      1,
+      "pending",
+      null,
+      null,
+      "approved"
+     ],
+     [
+      2,
+      "pending",
+      null,
+      null,
+      "pending"
+     ],
+     [
+      3,
+      "pending",
+      null,
+      null,
+      "approved"
+     ],
+     [
+      4,
+      "pending",
+      null,
+      null,
+      "rejected"
+     ],
+     [
+      5,
+      "pending",
+      null,
+      null,
+      "approved"
+     ],
+     [
+      6,
+      "pending",
+      null,
+      null,
+      "approved"
+     ],
+     [
+      7,
+      "pending",
+      null,
+      null,
+      "approved"
+     ]
+    ],
+    "options": [],
+    "user_stats": [
+     [
+      101,
+      0,
+      0,
+      0,
+      2,
+      0
+     ]
+    ],
+    "weekly_activity": [
+     [
+      101,
+      10,
+      2,
+      7
+     ]
+    ],
+    "season_activity": [],
+    "ballot_weeks": [],
+    "badges": [],
+    "audit": [
+     [
+      42,
+      "proposal_unselected",
+      "suggestion",
+      "3",
+      null,
+      "{\"name\": \"Poker\", \"source\": \"site\"}"
+     ]
+    ],
+    "events": [
+     [
+      1,
+      "Serata 1",
+      "2027-03-01T23:00:00+01:00"
+     ],
+     [
+      2,
+      "Serata 2",
+      "2027-03-02T22:00:00+01:00"
+     ],
+     [
+      3,
+      "In corso",
+      null
+     ]
+    ]
+   }
+  },
+  {
+   "label": "rimozione_non_nel_ballottaggio",
+   "status": 404,
+   "headers": {
+    "Cache-Control": "no-store",
+    "Content-Type": "application/json; charset=utf-8"
+   },
+   "body": "{\"error\": \"Proposta non trovata nel ballottaggio\"}",
+   "calls": [],
+   "topics": [],
+   "db": {
+    "suggestions": [
+     [
+      1,
+      "pending",
+      null,
+      null,
+      "approved"
+     ],
+     [
+      2,
+      "pending",
+      null,
+      null,
+      "pending"
+     ],
+     [
+      3,
+      "picked",
+      null,
+      null,
+      "approved"
+     ],
+     [
+      4,
+      "pending",
+      null,
+      null,
+      "rejected"
+     ],
+     [
+      5,
+      "pending",
+      null,
+      null,
+      "approved"
+     ],
+     [
+      6,
+      "pending",
+      null,
+      null,
+      "approved"
+     ],
+     [
+      7,
+      "pending",
+      null,
+      null,
+      "approved"
+     ]
+    ],
+    "options": [
+     [
+      1,
+      "Poker",
+      3
+     ]
+    ],
+    "user_stats": [],
+    "weekly_activity": [],
+    "season_activity": [],
+    "ballot_weeks": [],
+    "badges": [],
+    "audit": [],
+    "events": [
+     [
+      1,
+      "Serata 1",
+      "2027-03-01T23:00:00+01:00"
+     ],
+     [
+      2,
+      "Serata 2",
+      "2027-03-02T22:00:00+01:00"
+     ],
+     [
+      3,
+      "In corso",
+      null
+     ]
+    ]
+   }
+  },
+  {
+   "label": "rimozione_non_trovata",
+   "status": 404,
+   "headers": {
+    "Cache-Control": "no-store",
+    "Content-Type": "application/json; charset=utf-8"
+   },
+   "body": "{\"error\": \"Proposta non trovata nel ballottaggio\"}",
+   "calls": [],
+   "topics": [],
+   "db": {
+    "suggestions": [
+     [
+      1,
+      "pending",
+      null,
+      null,
+      "approved"
+     ],
+     [
+      2,
+      "pending",
+      null,
+      null,
+      "pending"
+     ],
+     [
+      3,
+      "picked",
+      null,
+      null,
+      "approved"
+     ],
+     [
+      4,
+      "pending",
+      null,
+      null,
+      "rejected"
+     ],
+     [
+      5,
+      "pending",
+      null,
+      null,
+      "approved"
+     ],
+     [
+      6,
+      "pending",
+      null,
+      null,
+      "approved"
+     ],
+     [
+      7,
+      "pending",
+      null,
+      null,
+      "approved"
+     ]
+    ],
+    "options": [
+     [
+      1,
+      "Poker",
+      3
+     ]
+    ],
+    "user_stats": [],
+    "weekly_activity": [],
+    "season_activity": [],
+    "ballot_weeks": [],
+    "badges": [],
+    "audit": [],
+    "events": [
+     [
+      1,
+      "Serata 1",
+      "2027-03-01T23:00:00+01:00"
+     ],
+     [
+      2,
+      "Serata 2",
+      "2027-03-02T22:00:00+01:00"
+     ],
+     [
+      3,
+      "In corso",
+      null
+     ]
+    ]
+   }
+  },
+  {
+   "label": "rimozione_senza_opzione",
+   "status": 200,
+   "headers": {
+    "Cache-Control": "no-store",
+    "Content-Type": "application/json; charset=utf-8"
+   },
+   "body": "{\"ok\": true}",
+   "calls": [
+    [
+     "refresh_dashboard",
+     [],
+     {}
+    ],
+    [
+     "staff_log",
+     [
+      "❌ <@42> ha tolto «Poker» dal sondaggio finale dal sito."
+     ],
+     {}
+    ]
+   ],
+   "topics": [
+    "proposals",
+    "polls"
+   ],
+   "db": {
+    "suggestions": [
+     [
+      1,
+      "pending",
+      null,
+      null,
+      "approved"
+     ],
+     [
+      2,
+      "pending",
+      null,
+      null,
+      "pending"
+     ],
+     [
+      3,
+      "pending",
+      null,
+      null,
+      "approved"
+     ],
+     [
+      4,
+      "pending",
+      null,
+      null,
+      "rejected"
+     ],
+     [
+      5,
+      "pending",
+      null,
+      null,
+      "approved"
+     ],
+     [
+      6,
+      "pending",
+      null,
+      null,
+      "approved"
+     ],
+     [
+      7,
+      "pending",
+      null,
+      null,
+      "approved"
+     ]
+    ],
+    "options": [],
+    "user_stats": [],
+    "weekly_activity": [],
+    "season_activity": [],
+    "ballot_weeks": [],
+    "badges": [],
+    "audit": [
+     [
+      42,
+      "proposal_unselected",
+      "suggestion",
+      "3",
+      null,
+      "{\"name\": \"Poker\", \"source\": \"site\"}"
+     ]
+    ],
+    "events": [
+     [
+      1,
+      "Serata 1",
+      "2027-03-01T23:00:00+01:00"
+     ],
+     [
+      2,
+      "Serata 2",
+      "2027-03-02T22:00:00+01:00"
+     ],
+     [
+      3,
+      "In corso",
+      null
+     ]
+    ]
+   }
+  },
+  {
+   "label": "rimozione_aggiornamento_fallito",
+   "status": 502,
+   "headers": {
+    "Cache-Control": "no-store",
+    "Content-Type": "application/json; charset=utf-8"
+   },
+   "body": "{\"error\": \"Proposta rimossa ma sondaggio Discord non aggiornato\"}",
+   "calls": [
+    [
+     "refresh_poll",
+     [
+      1
+     ],
+     {}
+    ]
+   ],
+   "topics": [
+    "proposals",
+    "polls"
+   ],
+   "db": {
+    "suggestions": [
+     [
+      1,
+      "pending",
+      null,
+      null,
+      "approved"
+     ],
+     [
+      2,
+      "pending",
+      null,
+      null,
+      "pending"
+     ],
+     [
+      3,
+      "pending",
+      null,
+      null,
+      "approved"
+     ],
+     [
+      4,
+      "pending",
+      null,
+      null,
+      "rejected"
+     ],
+     [
+      5,
+      "pending",
+      null,
+      null,
+      "approved"
+     ],
+     [
+      6,
+      "pending",
+      null,
+      null,
+      "approved"
+     ],
+     [
+      7,
+      "pending",
+      null,
+      null,
+      "approved"
+     ]
+    ],
+    "options": [],
+    "user_stats": [],
+    "weekly_activity": [],
+    "season_activity": [],
+    "ballot_weeks": [],
+    "badges": [],
+    "audit": [
+     [
+      42,
+      "proposal_unselected",
+      "suggestion",
+      "3",
+      null,
+      "{\"name\": \"Poker\", \"source\": \"site\"}"
+     ]
+    ],
+    "events": [
+     [
+      1,
+      "Serata 1",
+      "2027-03-01T23:00:00+01:00"
+     ],
+     [
+      2,
+      "Serata 2",
+      "2027-03-02T22:00:00+01:00"
+     ],
+     [
+      3,
+      "In corso",
+      null
+     ]
+    ]
+   }
+  },
+  {
+   "label": "rimozione_errore_database",
+   "status": 500,
+   "headers": {
+    "Cache-Control": "no-store",
+    "Content-Type": "application/json; charset=utf-8"
+   },
+   "body": "{\"error\": \"Impossibile rimuovere la proposta\"}",
+   "calls": [],
+   "topics": [],
+   "db": {
+    "suggestions": [
+     [
+      1,
+      "pending",
+      null,
+      null,
+      "approved"
+     ],
+     [
+      2,
+      "pending",
+      null,
+      null,
+      "pending"
+     ],
+     [
+      3,
+      "picked",
+      null,
+      null,
+      "approved"
+     ],
+     [
+      4,
+      "pending",
+      null,
+      null,
+      "rejected"
+     ],
+     [
+      5,
+      "pending",
+      null,
+      null,
+      "approved"
+     ],
+     [
+      6,
+      "pending",
+      null,
+      null,
+      "approved"
+     ],
+     [
+      7,
+      "pending",
+      null,
+      null,
+      "approved"
+     ]
+    ],
+    "options": [
+     [
+      1,
+      "Poker",
+      3
+     ]
+    ],
+    "user_stats": [],
+    "weekly_activity": [],
+    "season_activity": [],
+    "ballot_weeks": [],
+    "badges": [],
+    "audit": [],
+    "events": [
+     [
+      1,
+      "Serata 1",
+      "2027-03-01T23:00:00+01:00"
+     ],
+     [
+      2,
+      "Serata 2",
+      "2027-03-02T22:00:00+01:00"
+     ],
+     [
+      3,
+      "In corso",
+      null
+     ]
+    ]
+   }
+  },
+  {
+   "label": "backup_non_autenticato",
+   "status": 401,
+   "headers": {
+    "Cache-Control": "no-store",
+    "Content-Type": "application/json; charset=utf-8"
+   },
+   "body": "{\"error\": \"Accesso Discord richiesto\"}",
+   "calls": [],
+   "topics": [],
+   "db": {
+    "suggestions": [
+     [
+      1,
+      "pending",
+      null,
+      null,
+      "approved"
+     ],
+     [
+      2,
+      "pending",
+      null,
+      null,
+      "pending"
+     ],
+     [
+      3,
+      "picked",
+      null,
+      null,
+      "approved"
+     ],
+     [
+      4,
+      "pending",
+      null,
+      null,
+      "rejected"
+     ],
+     [
+      5,
+      "pending",
+      null,
+      null,
+      "approved"
+     ],
+     [
+      6,
+      "pending",
+      null,
+      null,
+      "approved"
+     ],
+     [
+      7,
+      "pending",
+      null,
+      null,
+      "approved"
+     ]
+    ],
+    "options": [
+     [
+      1,
+      "Poker",
+      3
+     ]
+    ],
+    "user_stats": [],
+    "weekly_activity": [],
+    "season_activity": [],
+    "ballot_weeks": [],
+    "badges": [],
+    "audit": [],
+    "events": [
+     [
+      1,
+      "Serata 1",
+      "2027-03-01T23:00:00+01:00"
+     ],
+     [
+      2,
+      "Serata 2",
+      "2027-03-02T22:00:00+01:00"
+     ],
+     [
+      3,
+      "In corso",
+      null
+     ]
+    ]
+   }
+  },
+  {
+   "label": "backup_solo_staff_lettura",
+   "status": 403,
+   "headers": {
+    "Cache-Control": "no-store",
+    "Content-Type": "application/json; charset=utf-8"
+   },
+   "body": "{\"error\": \"Questa operazione \\u00e8 riservata agli amministratori Discord\"}",
+   "calls": [],
+   "topics": [],
+   "db": {
+    "suggestions": [
+     [
+      1,
+      "pending",
+      null,
+      null,
+      "approved"
+     ],
+     [
+      2,
+      "pending",
+      null,
+      null,
+      "pending"
+     ],
+     [
+      3,
+      "picked",
+      null,
+      null,
+      "approved"
+     ],
+     [
+      4,
+      "pending",
+      null,
+      null,
+      "rejected"
+     ],
+     [
+      5,
+      "pending",
+      null,
+      null,
+      "approved"
+     ],
+     [
+      6,
+      "pending",
+      null,
+      null,
+      "approved"
+     ],
+     [
+      7,
+      "pending",
+      null,
+      null,
+      "approved"
+     ]
+    ],
+    "options": [
+     [
+      1,
+      "Poker",
+      3
+     ]
+    ],
+    "user_stats": [],
+    "weekly_activity": [],
+    "season_activity": [],
+    "ballot_weeks": [],
+    "badges": [],
+    "audit": [],
+    "events": [
+     [
+      1,
+      "Serata 1",
+      "2027-03-01T23:00:00+01:00"
+     ],
+     [
+      2,
+      "Serata 2",
+      "2027-03-02T22:00:00+01:00"
+     ],
+     [
+      3,
+      "In corso",
+      null
+     ]
+    ]
+   }
+  },
+  {
+   "label": "backup_solo_staff_creazione",
+   "status": 403,
+   "headers": {
+    "Cache-Control": "no-store",
+    "Content-Type": "application/json; charset=utf-8"
+   },
+   "body": "{\"error\": \"Questa operazione \\u00e8 riservata agli amministratori Discord\"}",
+   "calls": [],
+   "topics": [],
+   "db": {
+    "suggestions": [
+     [
+      1,
+      "pending",
+      null,
+      null,
+      "approved"
+     ],
+     [
+      2,
+      "pending",
+      null,
+      null,
+      "pending"
+     ],
+     [
+      3,
+      "picked",
+      null,
+      null,
+      "approved"
+     ],
+     [
+      4,
+      "pending",
+      null,
+      null,
+      "rejected"
+     ],
+     [
+      5,
+      "pending",
+      null,
+      null,
+      "approved"
+     ],
+     [
+      6,
+      "pending",
+      null,
+      null,
+      "approved"
+     ],
+     [
+      7,
+      "pending",
+      null,
+      null,
+      "approved"
+     ]
+    ],
+    "options": [
+     [
+      1,
+      "Poker",
+      3
+     ]
+    ],
+    "user_stats": [],
+    "weekly_activity": [],
+    "season_activity": [],
+    "ballot_weeks": [],
+    "badges": [],
+    "audit": [],
+    "events": [
+     [
+      1,
+      "Serata 1",
+      "2027-03-01T23:00:00+01:00"
+     ],
+     [
+      2,
+      "Serata 2",
+      "2027-03-02T22:00:00+01:00"
+     ],
+     [
+      3,
+      "In corso",
+      null
+     ]
+    ]
+   }
+  },
+  {
+   "label": "backup_stato",
+   "status": 200,
+   "headers": {
+    "Cache-Control": "no-store",
+    "Content-Type": "application/json; charset=utf-8"
+   },
+   "body": "{\"root\": \"/backup\", \"daily_count\": 2, \"latest_daily\": \"daily-2027-03-04.db\", \"weekly_count\": 1, \"latest_weekly\": \"weekly-2027-03-01.db\", \"cloud_upload_error\": null}",
+   "calls": [],
+   "topics": [],
+   "db": {
+    "suggestions": [
+     [
+      1,
+      "pending",
+      null,
+      null,
+      "approved"
+     ],
+     [
+      2,
+      "pending",
+      null,
+      null,
+      "pending"
+     ],
+     [
+      3,
+      "picked",
+      null,
+      null,
+      "approved"
+     ],
+     [
+      4,
+      "pending",
+      null,
+      null,
+      "rejected"
+     ],
+     [
+      5,
+      "pending",
+      null,
+      null,
+      "approved"
+     ],
+     [
+      6,
+      "pending",
+      null,
+      null,
+      "approved"
+     ],
+     [
+      7,
+      "pending",
+      null,
+      null,
+      "approved"
+     ]
+    ],
+    "options": [
+     [
+      1,
+      "Poker",
+      3
+     ]
+    ],
+    "user_stats": [],
+    "weekly_activity": [],
+    "season_activity": [],
+    "ballot_weeks": [],
+    "badges": [],
+    "audit": [],
+    "events": [
+     [
+      1,
+      "Serata 1",
+      "2027-03-01T23:00:00+01:00"
+     ],
+     [
+      2,
+      "Serata 2",
+      "2027-03-02T22:00:00+01:00"
+     ],
+     [
+      3,
+      "In corso",
+      null
+     ]
+    ]
+   }
+  },
+  {
+   "label": "backup_creazione",
+   "status": 200,
+   "headers": {
+    "Cache-Control": "no-store",
+    "Content-Type": "application/json; charset=utf-8"
+   },
+   "body": "{\"ok\": true, \"files\": [\"daily-2027-03-05.db\", \"weekly-2027-03-05.db\"], \"status\": {\"root\": \"/backup\", \"daily_count\": 2, \"latest_daily\": \"daily-2027-03-04.db\", \"weekly_count\": 1, \"latest_weekly\": \"weekly-2027-03-01.db\", \"cloud_upload_error\": null}}",
+   "calls": [
+    [
+     "create_backups",
+     [],
+     {}
+    ]
+   ],
+   "topics": [],
+   "db": {
+    "suggestions": [
+     [
+      1,
+      "pending",
+      null,
+      null,
+      "approved"
+     ],
+     [
+      2,
+      "pending",
+      null,
+      null,
+      "pending"
+     ],
+     [
+      3,
+      "picked",
+      null,
+      null,
+      "approved"
+     ],
+     [
+      4,
+      "pending",
+      null,
+      null,
+      "rejected"
+     ],
+     [
+      5,
+      "pending",
+      null,
+      null,
+      "approved"
+     ],
+     [
+      6,
+      "pending",
+      null,
+      null,
+      "approved"
+     ],
+     [
+      7,
+      "pending",
+      null,
+      null,
+      "approved"
+     ]
+    ],
+    "options": [
+     [
+      1,
+      "Poker",
+      3
+     ]
+    ],
+    "user_stats": [],
+    "weekly_activity": [],
+    "season_activity": [],
+    "ballot_weeks": [],
+    "badges": [],
+    "audit": [
+     [
+      42,
+      "database_backup_created",
+      "database",
+      null,
+      null,
+      "{\"files\": [\"daily-2027-03-05.db\", \"weekly-2027-03-05.db\"], \"source\": \"site\"}"
+     ]
+    ],
+    "events": [
+     [
+      1,
+      "Serata 1",
+      "2027-03-01T23:00:00+01:00"
+     ],
+     [
+      2,
+      "Serata 2",
+      "2027-03-02T22:00:00+01:00"
+     ],
+     [
+      3,
+      "In corso",
+      null
+     ]
+    ]
+   }
+  },
+  {
+   "label": "backup_errore_disco",
+   "status": 500,
+   "headers": {
+    "Cache-Control": "no-store",
+    "Content-Type": "application/json; charset=utf-8"
+   },
+   "body": "{\"error\": \"Backup non riuscito; controlla i log del bot\"}",
+   "calls": [
+    [
+     "create_backups",
+     [],
+     {}
+    ]
+   ],
+   "topics": [],
+   "db": {
+    "suggestions": [
+     [
+      1,
+      "pending",
+      null,
+      null,
+      "approved"
+     ],
+     [
+      2,
+      "pending",
+      null,
+      null,
+      "pending"
+     ],
+     [
+      3,
+      "picked",
+      null,
+      null,
+      "approved"
+     ],
+     [
+      4,
+      "pending",
+      null,
+      null,
+      "rejected"
+     ],
+     [
+      5,
+      "pending",
+      null,
+      null,
+      "approved"
+     ],
+     [
+      6,
+      "pending",
+      null,
+      null,
+      "approved"
+     ],
+     [
+      7,
+      "pending",
+      null,
+      null,
+      "approved"
+     ]
+    ],
+    "options": [
+     [
+      1,
+      "Poker",
+      3
+     ]
+    ],
+    "user_stats": [],
+    "weekly_activity": [],
+    "season_activity": [],
+    "ballot_weeks": [],
+    "badges": [],
+    "audit": [],
+    "events": [
+     [
+      1,
+      "Serata 1",
+      "2027-03-01T23:00:00+01:00"
+     ],
+     [
+      2,
+      "Serata 2",
+      "2027-03-02T22:00:00+01:00"
+     ],
+     [
+      3,
+      "In corso",
+      null
+     ]
+    ]
+   }
+  },
+  {
+   "label": "backup_errore_runtime",
+   "status": 500,
+   "headers": {
+    "Cache-Control": "no-store",
+    "Content-Type": "application/json; charset=utf-8"
+   },
+   "body": "{\"error\": \"Backup non riuscito; controlla i log del bot\"}",
+   "calls": [
+    [
+     "create_backups",
+     [],
+     {}
+    ]
+   ],
+   "topics": [],
+   "db": {
+    "suggestions": [
+     [
+      1,
+      "pending",
+      null,
+      null,
+      "approved"
+     ],
+     [
+      2,
+      "pending",
+      null,
+      null,
+      "pending"
+     ],
+     [
+      3,
+      "picked",
+      null,
+      null,
+      "approved"
+     ],
+     [
+      4,
+      "pending",
+      null,
+      null,
+      "rejected"
+     ],
+     [
+      5,
+      "pending",
+      null,
+      null,
+      "approved"
+     ],
+     [
+      6,
+      "pending",
+      null,
+      null,
+      "approved"
+     ],
+     [
+      7,
+      "pending",
+      null,
+      null,
+      "approved"
+     ]
+    ],
+    "options": [
+     [
+      1,
+      "Poker",
+      3
+     ]
+    ],
+    "user_stats": [],
+    "weekly_activity": [],
+    "season_activity": [],
+    "ballot_weeks": [],
+    "badges": [],
+    "audit": [],
+    "events": [
+     [
+      1,
+      "Serata 1",
+      "2027-03-01T23:00:00+01:00"
+     ],
+     [
+      2,
+      "Serata 2",
+      "2027-03-02T22:00:00+01:00"
+     ],
+     [
+      3,
+      "In corso",
+      null
+     ]
+    ]
+   }
+  },
+  {
+   "label": "backup_errore_database",
+   "status": 500,
+   "headers": {
+    "Cache-Control": "no-store",
+    "Content-Type": "application/json; charset=utf-8"
+   },
+   "body": "{\"error\": \"Backup non riuscito; controlla i log del bot\"}",
+   "calls": [
+    [
+     "create_backups",
+     [],
+     {}
+    ]
+   ],
+   "topics": [],
+   "db": {
+    "suggestions": [
+     [
+      1,
+      "pending",
+      null,
+      null,
+      "approved"
+     ],
+     [
+      2,
+      "pending",
+      null,
+      null,
+      "pending"
+     ],
+     [
+      3,
+      "picked",
+      null,
+      null,
+      "approved"
+     ],
+     [
+      4,
+      "pending",
+      null,
+      null,
+      "rejected"
+     ],
+     [
+      5,
+      "pending",
+      null,
+      null,
+      "approved"
+     ],
+     [
+      6,
+      "pending",
+      null,
+      null,
+      "approved"
+     ],
+     [
+      7,
+      "pending",
+      null,
+      null,
+      "approved"
+     ]
+    ],
+    "options": [
+     [
+      1,
+      "Poker",
+      3
+     ]
+    ],
+    "user_stats": [],
+    "weekly_activity": [],
+    "season_activity": [],
+    "ballot_weeks": [],
+    "badges": [],
+    "audit": [],
+    "events": [
+     [
+      1,
+      "Serata 1",
+      "2027-03-01T23:00:00+01:00"
+     ],
+     [
+      2,
+      "Serata 2",
+      "2027-03-02T22:00:00+01:00"
+     ],
+     [
+      3,
+      "In corso",
+      null
+     ]
+    ]
+   }
+  },
+  {
+   "label": "backup_metodo_non_ammesso",
+   "status": 405,
+   "headers": {
+    "Content-Type": "text/plain; charset=utf-8"
+   },
+   "body": "405: Method Not Allowed",
+   "calls": [],
+   "topics": [],
+   "db": {
+    "suggestions": [
+     [
+      1,
+      "pending",
+      null,
+      null,
+      "approved"
+     ],
+     [
+      2,
+      "pending",
+      null,
+      null,
+      "pending"
+     ],
+     [
+      3,
+      "picked",
+      null,
+      null,
+      "approved"
+     ],
+     [
+      4,
+      "pending",
+      null,
+      null,
+      "rejected"
+     ],
+     [
+      5,
+      "pending",
+      null,
+      null,
+      "approved"
+     ],
+     [
+      6,
+      "pending",
+      null,
+      null,
+      "approved"
+     ],
+     [
+      7,
+      "pending",
+      null,
+      null,
+      "approved"
+     ]
+    ],
+    "options": [
+     [
+      1,
+      "Poker",
+      3
+     ]
+    ],
+    "user_stats": [],
+    "weekly_activity": [],
+    "season_activity": [],
+    "ballot_weeks": [],
+    "badges": [],
+    "audit": [],
+    "events": [
+     [
+      1,
+      "Serata 1",
+      "2027-03-01T23:00:00+01:00"
+     ],
+     [
+      2,
+      "Serata 2",
+      "2027-03-02T22:00:00+01:00"
+     ],
+     [
+      3,
+      "In corso",
+      null
+     ]
+    ]
+   }
+  },
+  {
+   "label": "report_evento_non_autenticato",
+   "status": 401,
+   "headers": {
+    "Cache-Control": "no-store",
+    "Content-Type": "application/json; charset=utf-8"
+   },
+   "body": "{\"error\": \"Accesso Discord richiesto\"}",
+   "calls": [],
+   "topics": [],
+   "db": {
+    "suggestions": [
+     [
+      1,
+      "pending",
+      null,
+      null,
+      "approved"
+     ],
+     [
+      2,
+      "pending",
+      null,
+      null,
+      "pending"
+     ],
+     [
+      3,
+      "picked",
+      null,
+      null,
+      "approved"
+     ],
+     [
+      4,
+      "pending",
+      null,
+      null,
+      "rejected"
+     ],
+     [
+      5,
+      "pending",
+      null,
+      null,
+      "approved"
+     ],
+     [
+      6,
+      "pending",
+      null,
+      null,
+      "approved"
+     ],
+     [
+      7,
+      "pending",
+      null,
+      null,
+      "approved"
+     ]
+    ],
+    "options": [
+     [
+      1,
+      "Poker",
+      3
+     ]
+    ],
+    "user_stats": [],
+    "weekly_activity": [],
+    "season_activity": [],
+    "ballot_weeks": [],
+    "badges": [],
+    "audit": [],
+    "events": [
+     [
+      1,
+      "Serata 1",
+      "2027-03-01T23:00:00+01:00"
+     ],
+     [
+      2,
+      "Serata 2",
+      "2027-03-02T22:00:00+01:00"
+     ],
+     [
+      3,
+      "In corso",
+      null
+     ]
+    ]
+   }
+  },
+  {
+   "label": "report_evento_solo_staff",
+   "status": 403,
+   "headers": {
+    "Cache-Control": "no-store",
+    "Content-Type": "application/json; charset=utf-8"
+   },
+   "body": "{\"error\": \"Questa operazione \\u00e8 riservata agli amministratori Discord\"}",
+   "calls": [],
+   "topics": [],
+   "db": {
+    "suggestions": [
+     [
+      1,
+      "pending",
+      null,
+      null,
+      "approved"
+     ],
+     [
+      2,
+      "pending",
+      null,
+      null,
+      "pending"
+     ],
+     [
+      3,
+      "picked",
+      null,
+      null,
+      "approved"
+     ],
+     [
+      4,
+      "pending",
+      null,
+      null,
+      "rejected"
+     ],
+     [
+      5,
+      "pending",
+      null,
+      null,
+      "approved"
+     ],
+     [
+      6,
+      "pending",
+      null,
+      null,
+      "approved"
+     ],
+     [
+      7,
+      "pending",
+      null,
+      null,
+      "approved"
+     ]
+    ],
+    "options": [
+     [
+      1,
+      "Poker",
+      3
+     ]
+    ],
+    "user_stats": [],
+    "weekly_activity": [],
+    "season_activity": [],
+    "ballot_weeks": [],
+    "badges": [],
+    "audit": [],
+    "events": [
+     [
+      1,
+      "Serata 1",
+      "2027-03-01T23:00:00+01:00"
+     ],
+     [
+      2,
+      "Serata 2",
+      "2027-03-02T22:00:00+01:00"
+     ],
+     [
+      3,
+      "In corso",
+      null
+     ]
+    ]
+   }
+  },
+  {
+   "label": "report_evento_ok",
+   "status": 200,
+   "headers": {
+    "Cache-Control": "no-store",
+    "Content-Type": "application/json; charset=utf-8"
+   },
+   "body": "{\"ok\": true}",
+   "calls": [],
+   "topics": [
+    "events"
+   ],
+   "db": {
+    "suggestions": [
+     [
+      1,
+      "pending",
+      null,
+      null,
+      "approved"
+     ],
+     [
+      2,
+      "pending",
+      null,
+      null,
+      "pending"
+     ],
+     [
+      3,
+      "picked",
+      null,
+      null,
+      "approved"
+     ],
+     [
+      4,
+      "pending",
+      null,
+      null,
+      "rejected"
+     ],
+     [
+      5,
+      "pending",
+      null,
+      null,
+      "approved"
+     ],
+     [
+      6,
+      "pending",
+      null,
+      null,
+      "approved"
+     ],
+     [
+      7,
+      "pending",
+      null,
+      null,
+      "approved"
+     ]
+    ],
+    "options": [
+     [
+      1,
+      "Poker",
+      3
+     ]
+    ],
+    "user_stats": [],
+    "weekly_activity": [],
+    "season_activity": [],
+    "ballot_weeks": [],
+    "badges": [],
+    "audit": [
+     [
+      42,
+      "live_event_report_deleted",
+      "live_event",
+      "1",
+      null,
+      "{\"source\": \"site\"}"
+     ]
+    ],
+    "events": [
+     [
+      2,
+      "Serata 2",
+      "2027-03-02T22:00:00+01:00"
+     ],
+     [
+      3,
+      "In corso",
+      null
+     ]
+    ]
+   }
+  },
+  {
+   "label": "report_evento_attivo",
+   "status": 404,
+   "headers": {
+    "Cache-Control": "no-store",
+    "Content-Type": "application/json; charset=utf-8"
+   },
+   "body": "{\"error\": \"Report evento non trovato\"}",
+   "calls": [],
+   "topics": [],
+   "db": {
+    "suggestions": [
+     [
+      1,
+      "pending",
+      null,
+      null,
+      "approved"
+     ],
+     [
+      2,
+      "pending",
+      null,
+      null,
+      "pending"
+     ],
+     [
+      3,
+      "picked",
+      null,
+      null,
+      "approved"
+     ],
+     [
+      4,
+      "pending",
+      null,
+      null,
+      "rejected"
+     ],
+     [
+      5,
+      "pending",
+      null,
+      null,
+      "approved"
+     ],
+     [
+      6,
+      "pending",
+      null,
+      null,
+      "approved"
+     ],
+     [
+      7,
+      "pending",
+      null,
+      null,
+      "approved"
+     ]
+    ],
+    "options": [
+     [
+      1,
+      "Poker",
+      3
+     ]
+    ],
+    "user_stats": [],
+    "weekly_activity": [],
+    "season_activity": [],
+    "ballot_weeks": [],
+    "badges": [],
+    "audit": [],
+    "events": [
+     [
+      1,
+      "Serata 1",
+      "2027-03-01T23:00:00+01:00"
+     ],
+     [
+      2,
+      "Serata 2",
+      "2027-03-02T22:00:00+01:00"
+     ],
+     [
+      3,
+      "In corso",
+      null
+     ]
+    ]
+   }
+  },
+  {
+   "label": "report_evento_inesistente",
+   "status": 404,
+   "headers": {
+    "Cache-Control": "no-store",
+    "Content-Type": "application/json; charset=utf-8"
+   },
+   "body": "{\"error\": \"Report evento non trovato\"}",
+   "calls": [],
+   "topics": [],
+   "db": {
+    "suggestions": [
+     [
+      1,
+      "pending",
+      null,
+      null,
+      "approved"
+     ],
+     [
+      2,
+      "pending",
+      null,
+      null,
+      "pending"
+     ],
+     [
+      3,
+      "picked",
+      null,
+      null,
+      "approved"
+     ],
+     [
+      4,
+      "pending",
+      null,
+      null,
+      "rejected"
+     ],
+     [
+      5,
+      "pending",
+      null,
+      null,
+      "approved"
+     ],
+     [
+      6,
+      "pending",
+      null,
+      null,
+      "approved"
+     ],
+     [
+      7,
+      "pending",
+      null,
+      null,
+      "approved"
+     ]
+    ],
+    "options": [
+     [
+      1,
+      "Poker",
+      3
+     ]
+    ],
+    "user_stats": [],
+    "weekly_activity": [],
+    "season_activity": [],
+    "ballot_weeks": [],
+    "badges": [],
+    "audit": [],
+    "events": [
+     [
+      1,
+      "Serata 1",
+      "2027-03-01T23:00:00+01:00"
+     ],
+     [
+      2,
+      "Serata 2",
+      "2027-03-02T22:00:00+01:00"
+     ],
+     [
+      3,
+      "In corso",
+      null
+     ]
+    ]
+   }
+  },
+  {
+   "label": "report_evento_id_non_numerico",
+   "status": 404,
+   "headers": {
+    "Content-Type": "text/plain; charset=utf-8"
+   },
+   "body": "404: Not Found",
+   "calls": [],
+   "topics": [],
+   "db": {
+    "suggestions": [
+     [
+      1,
+      "pending",
+      null,
+      null,
+      "approved"
+     ],
+     [
+      2,
+      "pending",
+      null,
+      null,
+      "pending"
+     ],
+     [
+      3,
+      "picked",
+      null,
+      null,
+      "approved"
+     ],
+     [
+      4,
+      "pending",
+      null,
+      null,
+      "rejected"
+     ],
+     [
+      5,
+      "pending",
+      null,
+      null,
+      "approved"
+     ],
+     [
+      6,
+      "pending",
+      null,
+      null,
+      "approved"
+     ],
+     [
+      7,
+      "pending",
+      null,
+      null,
+      "approved"
+     ]
+    ],
+    "options": [
+     [
+      1,
+      "Poker",
+      3
+     ]
+    ],
+    "user_stats": [],
+    "weekly_activity": [],
+    "season_activity": [],
+    "ballot_weeks": [],
+    "badges": [],
+    "audit": [],
+    "events": [
+     [
+      1,
+      "Serata 1",
+      "2027-03-01T23:00:00+01:00"
+     ],
+     [
+      2,
+      "Serata 2",
+      "2027-03-02T22:00:00+01:00"
+     ],
+     [
+      3,
+      "In corso",
+      null
+     ]
+    ]
+   }
+  },
+  {
+   "label": "report_evento_id_non_numerico_non_autenticato",
+   "status": 404,
+   "headers": {
+    "Content-Type": "text/plain; charset=utf-8"
+   },
+   "body": "404: Not Found",
+   "calls": [],
+   "topics": [],
+   "db": {
+    "suggestions": [
+     [
+      1,
+      "pending",
+      null,
+      null,
+      "approved"
+     ],
+     [
+      2,
+      "pending",
+      null,
+      null,
+      "pending"
+     ],
+     [
+      3,
+      "picked",
+      null,
+      null,
+      "approved"
+     ],
+     [
+      4,
+      "pending",
+      null,
+      null,
+      "rejected"
+     ],
+     [
+      5,
+      "pending",
+      null,
+      null,
+      "approved"
+     ],
+     [
+      6,
+      "pending",
+      null,
+      null,
+      "approved"
+     ],
+     [
+      7,
+      "pending",
+      null,
+      null,
+      "approved"
+     ]
+    ],
+    "options": [
+     [
+      1,
+      "Poker",
+      3
+     ]
+    ],
+    "user_stats": [],
+    "weekly_activity": [],
+    "season_activity": [],
+    "ballot_weeks": [],
+    "badges": [],
+    "audit": [],
+    "events": [
+     [
+      1,
+      "Serata 1",
+      "2027-03-01T23:00:00+01:00"
+     ],
+     [
+      2,
+      "Serata 2",
+      "2027-03-02T22:00:00+01:00"
+     ],
+     [
+      3,
+      "In corso",
+      null
+     ]
+    ]
+   }
+  },
+  {
+   "label": "report_evento_id_non_numerico_solo_staff",
+   "status": 404,
+   "headers": {
+    "Content-Type": "text/plain; charset=utf-8"
+   },
+   "body": "404: Not Found",
+   "calls": [],
+   "topics": [],
+   "db": {
+    "suggestions": [
+     [
+      1,
+      "pending",
+      null,
+      null,
+      "approved"
+     ],
+     [
+      2,
+      "pending",
+      null,
+      null,
+      "pending"
+     ],
+     [
+      3,
+      "picked",
+      null,
+      null,
+      "approved"
+     ],
+     [
+      4,
+      "pending",
+      null,
+      null,
+      "rejected"
+     ],
+     [
+      5,
+      "pending",
+      null,
+      null,
+      "approved"
+     ],
+     [
+      6,
+      "pending",
+      null,
+      null,
+      "approved"
+     ],
+     [
+      7,
+      "pending",
+      null,
+      null,
+      "approved"
+     ]
+    ],
+    "options": [
+     [
+      1,
+      "Poker",
+      3
+     ]
+    ],
+    "user_stats": [],
+    "weekly_activity": [],
+    "season_activity": [],
+    "ballot_weeks": [],
+    "badges": [],
+    "audit": [],
+    "events": [
+     [
+      1,
+      "Serata 1",
+      "2027-03-01T23:00:00+01:00"
+     ],
+     [
+      2,
+      "Serata 2",
+      "2027-03-02T22:00:00+01:00"
+     ],
+     [
+      3,
+      "In corso",
+      null
+     ]
+    ]
+   }
+  },
+  {
+   "label": "report_evento_errore_database",
+   "status": 500,
+   "headers": {
+    "Cache-Control": "no-store",
+    "Content-Type": "application/json; charset=utf-8"
+   },
+   "body": "{\"error\": \"Impossibile eliminare il report\"}",
+   "calls": [],
+   "topics": [],
+   "db": {
+    "suggestions": [
+     [
+      1,
+      "pending",
+      null,
+      null,
+      "approved"
+     ],
+     [
+      2,
+      "pending",
+      null,
+      null,
+      "pending"
+     ],
+     [
+      3,
+      "picked",
+      null,
+      null,
+      "approved"
+     ],
+     [
+      4,
+      "pending",
+      null,
+      null,
+      "rejected"
+     ],
+     [
+      5,
+      "pending",
+      null,
+      null,
+      "approved"
+     ],
+     [
+      6,
+      "pending",
+      null,
+      null,
+      "approved"
+     ],
+     [
+      7,
+      "pending",
+      null,
+      null,
+      "approved"
+     ]
+    ],
+    "options": [
+     [
+      1,
+      "Poker",
+      3
+     ]
+    ],
+    "user_stats": [],
+    "weekly_activity": [],
+    "season_activity": [],
+    "ballot_weeks": [],
+    "badges": [],
+    "audit": [],
+    "events": [
+     [
+      1,
+      "Serata 1",
+      "2027-03-01T23:00:00+01:00"
+     ],
+     [
+      2,
+      "Serata 2",
+      "2027-03-02T22:00:00+01:00"
+     ],
+     [
+      3,
+      "In corso",
+      null
+     ]
+    ]
+   }
+  },
+  {
+   "label": "evento_non_autenticato",
+   "status": 401,
+   "headers": {
+    "Cache-Control": "no-store",
+    "Content-Type": "application/json; charset=utf-8"
+   },
+   "body": "{\"error\": \"Accesso Discord richiesto\"}",
+   "calls": [],
+   "topics": [],
+   "db": {
+    "suggestions": [
+     [
+      1,
+      "pending",
+      null,
+      null,
+      "approved"
+     ],
+     [
+      2,
+      "pending",
+      null,
+      null,
+      "pending"
+     ],
+     [
+      3,
+      "picked",
+      null,
+      null,
+      "approved"
+     ],
+     [
+      4,
+      "pending",
+      null,
+      null,
+      "rejected"
+     ],
+     [
+      5,
+      "pending",
+      null,
+      null,
+      "approved"
+     ],
+     [
+      6,
+      "pending",
+      null,
+      null,
+      "approved"
+     ],
+     [
+      7,
+      "pending",
+      null,
+      null,
+      "approved"
+     ]
+    ],
+    "options": [
+     [
+      1,
+      "Poker",
+      3
+     ]
+    ],
+    "user_stats": [],
+    "weekly_activity": [],
+    "season_activity": [],
+    "ballot_weeks": [],
+    "badges": [],
+    "audit": [],
+    "events": [
+     [
+      1,
+      "Serata 1",
+      "2027-03-01T23:00:00+01:00"
+     ],
+     [
+      2,
+      "Serata 2",
+      "2027-03-02T22:00:00+01:00"
+     ],
+     [
+      3,
+      "In corso",
+      null
+     ]
+    ]
+   }
+  },
+  {
+   "label": "evento_senza_cog",
+   "status": 503,
+   "headers": {
+    "Cache-Control": "no-store",
+    "Content-Type": "application/json; charset=utf-8"
+   },
+   "body": "{\"error\": \"Gestione eventi live non disponibile\"}",
+   "calls": [],
+   "topics": [],
+   "db": {
+    "suggestions": [
+     [
+      1,
+      "pending",
+      null,
+      null,
+      "approved"
+     ],
+     [
+      2,
+      "pending",
+      null,
+      null,
+      "pending"
+     ],
+     [
+      3,
+      "picked",
+      null,
+      null,
+      "approved"
+     ],
+     [
+      4,
+      "pending",
+      null,
+      null,
+      "rejected"
+     ],
+     [
+      5,
+      "pending",
+      null,
+      null,
+      "approved"
+     ],
+     [
+      6,
+      "pending",
+      null,
+      null,
+      "approved"
+     ],
+     [
+      7,
+      "pending",
+      null,
+      null,
+      "approved"
+     ]
+    ],
+    "options": [
+     [
+      1,
+      "Poker",
+      3
+     ]
+    ],
+    "user_stats": [],
+    "weekly_activity": [],
+    "season_activity": [],
+    "ballot_weeks": [],
+    "badges": [],
+    "audit": [],
+    "events": [
+     [
+      1,
+      "Serata 1",
+      "2027-03-01T23:00:00+01:00"
+     ],
+     [
+      2,
+      "Serata 2",
+      "2027-03-02T22:00:00+01:00"
+     ],
+     [
+      3,
+      "In corso",
+      null
+     ]
+    ]
+   }
+  },
+  {
+   "label": "evento_stop_senza_cog",
+   "status": 503,
+   "headers": {
+    "Cache-Control": "no-store",
+    "Content-Type": "application/json; charset=utf-8"
+   },
+   "body": "{\"error\": \"Gestione eventi live non disponibile\"}",
+   "calls": [],
+   "topics": [],
+   "db": {
+    "suggestions": [
+     [
+      1,
+      "pending",
+      null,
+      null,
+      "approved"
+     ],
+     [
+      2,
+      "pending",
+      null,
+      null,
+      "pending"
+     ],
+     [
+      3,
+      "picked",
+      null,
+      null,
+      "approved"
+     ],
+     [
+      4,
+      "pending",
+      null,
+      null,
+      "rejected"
+     ],
+     [
+      5,
+      "pending",
+      null,
+      null,
+      "approved"
+     ],
+     [
+      6,
+      "pending",
+      null,
+      null,
+      "approved"
+     ],
+     [
+      7,
+      "pending",
+      null,
+      null,
+      "approved"
+     ]
+    ],
+    "options": [
+     [
+      1,
+      "Poker",
+      3
+     ]
+    ],
+    "user_stats": [],
+    "weekly_activity": [],
+    "season_activity": [],
+    "ballot_weeks": [],
+    "badges": [],
+    "audit": [],
+    "events": [
+     [
+      1,
+      "Serata 1",
+      "2027-03-01T23:00:00+01:00"
+     ],
+     [
+      2,
+      "Serata 2",
+      "2027-03-02T22:00:00+01:00"
+     ],
+     [
+      3,
+      "In corso",
+      null
+     ]
+    ]
+   }
+  },
+  {
+   "label": "evento_stop_nessun_evento",
+   "status": 409,
+   "headers": {
+    "Cache-Control": "no-store",
+    "Content-Type": "application/json; charset=utf-8"
+   },
+   "body": "{\"error\": \"Non c'\\u00e8 un evento live attivo\"}",
+   "calls": [
+    [
+     "finish_event",
+     [
+      "manuale"
+     ],
+     {}
+    ]
+   ],
+   "topics": [],
+   "db": {
+    "suggestions": [
+     [
+      1,
+      "pending",
+      null,
+      null,
+      "approved"
+     ],
+     [
+      2,
+      "pending",
+      null,
+      null,
+      "pending"
+     ],
+     [
+      3,
+      "picked",
+      null,
+      null,
+      "approved"
+     ],
+     [
+      4,
+      "pending",
+      null,
+      null,
+      "rejected"
+     ],
+     [
+      5,
+      "pending",
+      null,
+      null,
+      "approved"
+     ],
+     [
+      6,
+      "pending",
+      null,
+      null,
+      "approved"
+     ],
+     [
+      7,
+      "pending",
+      null,
+      null,
+      "approved"
+     ]
+    ],
+    "options": [
+     [
+      1,
+      "Poker",
+      3
+     ]
+    ],
+    "user_stats": [],
+    "weekly_activity": [],
+    "season_activity": [],
+    "ballot_weeks": [],
+    "badges": [],
+    "audit": [],
+    "events": [
+     [
+      1,
+      "Serata 1",
+      "2027-03-01T23:00:00+01:00"
+     ],
+     [
+      2,
+      "Serata 2",
+      "2027-03-02T22:00:00+01:00"
+     ],
+     [
+      3,
+      "In corso",
+      null
+     ]
+    ]
+   }
+  },
+  {
+   "label": "evento_stop_ok",
+   "status": 200,
+   "headers": {
+    "Content-Type": "application/json; charset=utf-8"
+   },
+   "body": "{\"ok\": true, \"event_id\": 7}",
+   "calls": [
+    [
+     "finish_event",
+     [
+      "manuale"
+     ],
+     {}
+    ]
+   ],
+   "topics": [
+    "events"
+   ],
+   "db": {
+    "suggestions": [
+     [
+      1,
+      "pending",
+      null,
+      null,
+      "approved"
+     ],
+     [
+      2,
+      "pending",
+      null,
+      null,
+      "pending"
+     ],
+     [
+      3,
+      "picked",
+      null,
+      null,
+      "approved"
+     ],
+     [
+      4,
+      "pending",
+      null,
+      null,
+      "rejected"
+     ],
+     [
+      5,
+      "pending",
+      null,
+      null,
+      "approved"
+     ],
+     [
+      6,
+      "pending",
+      null,
+      null,
+      "approved"
+     ],
+     [
+      7,
+      "pending",
+      null,
+      null,
+      "approved"
+     ]
+    ],
+    "options": [
+     [
+      1,
+      "Poker",
+      3
+     ]
+    ],
+    "user_stats": [],
+    "weekly_activity": [],
+    "season_activity": [],
+    "ballot_weeks": [],
+    "badges": [],
+    "audit": [
+     [
+      42,
+      "live_event_stopped",
+      "live_event",
+      "7",
+      null,
+      "{\"source\": \"site\"}"
+     ]
+    ],
+    "events": [
+     [
+      1,
+      "Serata 1",
+      "2027-03-01T23:00:00+01:00"
+     ],
+     [
+      2,
+      "Serata 2",
+      "2027-03-02T22:00:00+01:00"
+     ],
+     [
+      3,
+      "In corso",
+      null
+     ]
+    ]
+   }
+  },
+  {
+   "label": "evento_azione_sconosciuta",
+   "status": 404,
+   "headers": {
+    "Content-Type": "text/plain; charset=utf-8"
+   },
+   "body": "404: Not Found",
+   "calls": [],
+   "topics": [],
+   "db": {
+    "suggestions": [
+     [
+      1,
+      "pending",
+      null,
+      null,
+      "approved"
+     ],
+     [
+      2,
+      "pending",
+      null,
+      null,
+      "pending"
+     ],
+     [
+      3,
+      "picked",
+      null,
+      null,
+      "approved"
+     ],
+     [
+      4,
+      "pending",
+      null,
+      null,
+      "rejected"
+     ],
+     [
+      5,
+      "pending",
+      null,
+      null,
+      "approved"
+     ],
+     [
+      6,
+      "pending",
+      null,
+      null,
+      "approved"
+     ],
+     [
+      7,
+      "pending",
+      null,
+      null,
+      "approved"
+     ]
+    ],
+    "options": [
+     [
+      1,
+      "Poker",
+      3
+     ]
+    ],
+    "user_stats": [],
+    "weekly_activity": [],
+    "season_activity": [],
+    "ballot_weeks": [],
+    "badges": [],
+    "audit": [],
+    "events": [
+     [
+      1,
+      "Serata 1",
+      "2027-03-01T23:00:00+01:00"
+     ],
+     [
+      2,
+      "Serata 2",
+      "2027-03-02T22:00:00+01:00"
+     ],
+     [
+      3,
+      "In corso",
+      null
+     ]
+    ]
+   }
+  },
+  {
+   "label": "evento_azione_sconosciuta_non_autenticata",
+   "status": 404,
+   "headers": {
+    "Content-Type": "text/plain; charset=utf-8"
+   },
+   "body": "404: Not Found",
+   "calls": [],
+   "topics": [],
+   "db": {
+    "suggestions": [
+     [
+      1,
+      "pending",
+      null,
+      null,
+      "approved"
+     ],
+     [
+      2,
+      "pending",
+      null,
+      null,
+      "pending"
+     ],
+     [
+      3,
+      "picked",
+      null,
+      null,
+      "approved"
+     ],
+     [
+      4,
+      "pending",
+      null,
+      null,
+      "rejected"
+     ],
+     [
+      5,
+      "pending",
+      null,
+      null,
+      "approved"
+     ],
+     [
+      6,
+      "pending",
+      null,
+      null,
+      "approved"
+     ],
+     [
+      7,
+      "pending",
+      null,
+      null,
+      "approved"
+     ]
+    ],
+    "options": [
+     [
+      1,
+      "Poker",
+      3
+     ]
+    ],
+    "user_stats": [],
+    "weekly_activity": [],
+    "season_activity": [],
+    "ballot_weeks": [],
+    "badges": [],
+    "audit": [],
+    "events": [
+     [
+      1,
+      "Serata 1",
+      "2027-03-01T23:00:00+01:00"
+     ],
+     [
+      2,
+      "Serata 2",
+      "2027-03-02T22:00:00+01:00"
+     ],
+     [
+      3,
+      "In corso",
+      null
+     ]
+    ]
+   }
+  },
+  {
+   "label": "evento_start_ok",
+   "status": 200,
+   "headers": {
+    "Cache-Control": "no-store",
+    "Content-Type": "application/json; charset=utf-8"
+   },
+   "body": "{\"ok\": true}",
+   "calls": [
+    [
+     "start_event",
+     [
+      null,
+      555,
+      "🎮 Game Night"
+     ],
+     {}
+    ]
+   ],
+   "topics": [
+    "events"
+   ],
+   "db": {
+    "suggestions": [
+     [
+      1,
+      "pending",
+      null,
+      null,
+      "approved"
+     ],
+     [
+      2,
+      "pending",
+      null,
+      null,
+      "pending"
+     ],
+     [
+      3,
+      "picked",
+      null,
+      null,
+      "approved"
+     ],
+     [
+      4,
+      "pending",
+      null,
+      null,
+      "rejected"
+     ],
+     [
+      5,
+      "pending",
+      null,
+      null,
+      "approved"
+     ],
+     [
+      6,
+      "pending",
+      null,
+      null,
+      "approved"
+     ],
+     [
+      7,
+      "pending",
+      null,
+      null,
+      "approved"
+     ]
+    ],
+    "options": [
+     [
+      1,
+      "Poker",
+      3
+     ]
+    ],
+    "user_stats": [],
+    "weekly_activity": [],
+    "season_activity": [],
+    "ballot_weeks": [],
+    "badges": [],
+    "audit": [
+     [
+      42,
+      "live_event_started_from_site",
+      "live_event",
+      null,
+      null,
+      "{\"channel_id\": 555, \"title\": \"🎮 Game Night\"}"
+     ]
+    ],
+    "events": [
+     [
+      1,
+      "Serata 1",
+      "2027-03-01T23:00:00+01:00"
+     ],
+     [
+      2,
+      "Serata 2",
+      "2027-03-02T22:00:00+01:00"
+     ],
+     [
+      3,
+      "In corso",
+      null
+     ]
+    ]
+   }
+  },
+  {
+   "label": "evento_start_canale_testo",
+   "status": 400,
+   "headers": {
+    "Cache-Control": "no-store",
+    "Content-Type": "application/json; charset=utf-8"
+   },
+   "body": "{\"error\": \"Seleziona un canale vocale del server\"}",
+   "calls": [],
+   "topics": [],
+   "db": {
+    "suggestions": [
+     [
+      1,
+      "pending",
+      null,
+      null,
+      "approved"
+     ],
+     [
+      2,
+      "pending",
+      null,
+      null,
+      "pending"
+     ],
+     [
+      3,
+      "picked",
+      null,
+      null,
+      "approved"
+     ],
+     [
+      4,
+      "pending",
+      null,
+      null,
+      "rejected"
+     ],
+     [
+      5,
+      "pending",
+      null,
+      null,
+      "approved"
+     ],
+     [
+      6,
+      "pending",
+      null,
+      null,
+      "approved"
+     ],
+     [
+      7,
+      "pending",
+      null,
+      null,
+      "approved"
+     ]
+    ],
+    "options": [
+     [
+      1,
+      "Poker",
+      3
+     ]
+    ],
+    "user_stats": [],
+    "weekly_activity": [],
+    "season_activity": [],
+    "ballot_weeks": [],
+    "badges": [],
+    "audit": [],
+    "events": [
+     [
+      1,
+      "Serata 1",
+      "2027-03-01T23:00:00+01:00"
+     ],
+     [
+      2,
+      "Serata 2",
+      "2027-03-02T22:00:00+01:00"
+     ],
+     [
+      3,
+      "In corso",
+      null
+     ]
+    ]
+   }
+  },
+  {
+   "label": "evento_start_canale_stringa",
+   "status": 200,
+   "headers": {
+    "Cache-Control": "no-store",
+    "Content-Type": "application/json; charset=utf-8"
+   },
+   "body": "{\"ok\": true}",
+   "calls": [
+    [
+     "start_event",
+     [
+      null,
+      556,
+      "🎮 Game Night"
+     ],
+     {}
+    ]
+   ],
+   "topics": [
+    "events"
+   ],
+   "db": {
+    "suggestions": [
+     [
+      1,
+      "pending",
+      null,
+      null,
+      "approved"
+     ],
+     [
+      2,
+      "pending",
+      null,
+      null,
+      "pending"
+     ],
+     [
+      3,
+      "picked",
+      null,
+      null,
+      "approved"
+     ],
+     [
+      4,
+      "pending",
+      null,
+      null,
+      "rejected"
+     ],
+     [
+      5,
+      "pending",
+      null,
+      null,
+      "approved"
+     ],
+     [
+      6,
+      "pending",
+      null,
+      null,
+      "approved"
+     ],
+     [
+      7,
+      "pending",
+      null,
+      null,
+      "approved"
+     ]
+    ],
+    "options": [
+     [
+      1,
+      "Poker",
+      3
+     ]
+    ],
+    "user_stats": [],
+    "weekly_activity": [],
+    "season_activity": [],
+    "ballot_weeks": [],
+    "badges": [],
+    "audit": [
+     [
+      42,
+      "live_event_started_from_site",
+      "live_event",
+      null,
+      null,
+      "{\"channel_id\": 556, \"title\": \"🎮 Game Night\"}"
+     ]
+    ],
+    "events": [
+     [
+      1,
+      "Serata 1",
+      "2027-03-01T23:00:00+01:00"
+     ],
+     [
+      2,
+      "Serata 2",
+      "2027-03-02T22:00:00+01:00"
+     ],
+     [
+      3,
+      "In corso",
+      null
+     ]
+    ]
+   }
+  },
+  {
+   "label": "evento_start_canale_decimale",
+   "status": 200,
+   "headers": {
+    "Cache-Control": "no-store",
+    "Content-Type": "application/json; charset=utf-8"
+   },
+   "body": "{\"ok\": true}",
+   "calls": [
+    [
+     "start_event",
+     [
+      null,
+      555,
+      "🎮 Game Night"
+     ],
+     {}
+    ]
+   ],
+   "topics": [
+    "events"
+   ],
+   "db": {
+    "suggestions": [
+     [
+      1,
+      "pending",
+      null,
+      null,
+      "approved"
+     ],
+     [
+      2,
+      "pending",
+      null,
+      null,
+      "pending"
+     ],
+     [
+      3,
+      "picked",
+      null,
+      null,
+      "approved"
+     ],
+     [
+      4,
+      "pending",
+      null,
+      null,
+      "rejected"
+     ],
+     [
+      5,
+      "pending",
+      null,
+      null,
+      "approved"
+     ],
+     [
+      6,
+      "pending",
+      null,
+      null,
+      "approved"
+     ],
+     [
+      7,
+      "pending",
+      null,
+      null,
+      "approved"
+     ]
+    ],
+    "options": [
+     [
+      1,
+      "Poker",
+      3
+     ]
+    ],
+    "user_stats": [],
+    "weekly_activity": [],
+    "season_activity": [],
+    "ballot_weeks": [],
+    "badges": [],
+    "audit": [
+     [
+      42,
+      "live_event_started_from_site",
+      "live_event",
+      null,
+      null,
+      "{\"channel_id\": 555, \"title\": \"🎮 Game Night\"}"
+     ]
+    ],
+    "events": [
+     [
+      1,
+      "Serata 1",
+      "2027-03-01T23:00:00+01:00"
+     ],
+     [
+      2,
+      "Serata 2",
+      "2027-03-02T22:00:00+01:00"
+     ],
+     [
+      3,
+      "In corso",
+      null
+     ]
+    ]
+   }
+  },
+  {
+   "label": "evento_start_canale_spazi",
+   "status": 200,
+   "headers": {
+    "Cache-Control": "no-store",
+    "Content-Type": "application/json; charset=utf-8"
+   },
+   "body": "{\"ok\": true}",
+   "calls": [
+    [
+     "start_event",
+     [
+      null,
+      555,
+      "🎮 Game Night"
+     ],
+     {}
+    ]
+   ],
+   "topics": [
+    "events"
+   ],
+   "db": {
+    "suggestions": [
+     [
+      1,
+      "pending",
+      null,
+      null,
+      "approved"
+     ],
+     [
+      2,
+      "pending",
+      null,
+      null,
+      "pending"
+     ],
+     [
+      3,
+      "picked",
+      null,
+      null,
+      "approved"
+     ],
+     [
+      4,
+      "pending",
+      null,
+      null,
+      "rejected"
+     ],
+     [
+      5,
+      "pending",
+      null,
+      null,
+      "approved"
+     ],
+     [
+      6,
+      "pending",
+      null,
+      null,
+      "approved"
+     ],
+     [
+      7,
+      "pending",
+      null,
+      null,
+      "approved"
+     ]
+    ],
+    "options": [
+     [
+      1,
+      "Poker",
+      3
+     ]
+    ],
+    "user_stats": [],
+    "weekly_activity": [],
+    "season_activity": [],
+    "ballot_weeks": [],
+    "badges": [],
+    "audit": [
+     [
+      42,
+      "live_event_started_from_site",
+      "live_event",
+      null,
+      null,
+      "{\"channel_id\": 555, \"title\": \"🎮 Game Night\"}"
+     ]
+    ],
+    "events": [
+     [
+      1,
+      "Serata 1",
+      "2027-03-01T23:00:00+01:00"
+     ],
+     [
+      2,
+      "Serata 2",
+      "2027-03-02T22:00:00+01:00"
+     ],
+     [
+      3,
+      "In corso",
+      null
+     ]
+    ]
+   }
+  },
+  {
+   "label": "evento_start_canale_vero",
+   "status": 400,
+   "headers": {
+    "Cache-Control": "no-store",
+    "Content-Type": "application/json; charset=utf-8"
+   },
+   "body": "{\"error\": \"Seleziona un canale vocale del server\"}",
+   "calls": [],
+   "topics": [],
+   "db": {
+    "suggestions": [
+     [
+      1,
+      "pending",
+      null,
+      null,
+      "approved"
+     ],
+     [
+      2,
+      "pending",
+      null,
+      null,
+      "pending"
+     ],
+     [
+      3,
+      "picked",
+      null,
+      null,
+      "approved"
+     ],
+     [
+      4,
+      "pending",
+      null,
+      null,
+      "rejected"
+     ],
+     [
+      5,
+      "pending",
+      null,
+      null,
+      "approved"
+     ],
+     [
+      6,
+      "pending",
+      null,
+      null,
+      "approved"
+     ],
+     [
+      7,
+      "pending",
+      null,
+      null,
+      "approved"
+     ]
+    ],
+    "options": [
+     [
+      1,
+      "Poker",
+      3
+     ]
+    ],
+    "user_stats": [],
+    "weekly_activity": [],
+    "season_activity": [],
+    "ballot_weeks": [],
+    "badges": [],
+    "audit": [],
+    "events": [
+     [
+      1,
+      "Serata 1",
+      "2027-03-01T23:00:00+01:00"
+     ],
+     [
+      2,
+      "Serata 2",
+      "2027-03-02T22:00:00+01:00"
+     ],
+     [
+      3,
+      "In corso",
+      null
+     ]
+    ]
+   }
+  },
+  {
+   "label": "evento_start_canale_testo_non_numerico",
+   "status": 400,
+   "headers": {
+    "Cache-Control": "no-store",
+    "Content-Type": "application/json; charset=utf-8"
+   },
+   "body": "{\"error\": \"Canale vocale non valido\"}",
+   "calls": [],
+   "topics": [],
+   "db": {
+    "suggestions": [
+     [
+      1,
+      "pending",
+      null,
+      null,
+      "approved"
+     ],
+     [
+      2,
+      "pending",
+      null,
+      null,
+      "pending"
+     ],
+     [
+      3,
+      "picked",
+      null,
+      null,
+      "approved"
+     ],
+     [
+      4,
+      "pending",
+      null,
+      null,
+      "rejected"
+     ],
+     [
+      5,
+      "pending",
+      null,
+      null,
+      "approved"
+     ],
+     [
+      6,
+      "pending",
+      null,
+      null,
+      "approved"
+     ],
+     [
+      7,
+      "pending",
+      null,
+      null,
+      "approved"
+     ]
+    ],
+    "options": [
+     [
+      1,
+      "Poker",
+      3
+     ]
+    ],
+    "user_stats": [],
+    "weekly_activity": [],
+    "season_activity": [],
+    "ballot_weeks": [],
+    "badges": [],
+    "audit": [],
+    "events": [
+     [
+      1,
+      "Serata 1",
+      "2027-03-01T23:00:00+01:00"
+     ],
+     [
+      2,
+      "Serata 2",
+      "2027-03-02T22:00:00+01:00"
+     ],
+     [
+      3,
+      "In corso",
+      null
+     ]
+    ]
+   }
+  },
+  {
+   "label": "evento_start_canale_null",
+   "status": 400,
+   "headers": {
+    "Cache-Control": "no-store",
+    "Content-Type": "application/json; charset=utf-8"
+   },
+   "body": "{\"error\": \"Canale vocale non valido\"}",
+   "calls": [],
+   "topics": [],
+   "db": {
+    "suggestions": [
+     [
+      1,
+      "pending",
+      null,
+      null,
+      "approved"
+     ],
+     [
+      2,
+      "pending",
+      null,
+      null,
+      "pending"
+     ],
+     [
+      3,
+      "picked",
+      null,
+      null,
+      "approved"
+     ],
+     [
+      4,
+      "pending",
+      null,
+      null,
+      "rejected"
+     ],
+     [
+      5,
+      "pending",
+      null,
+      null,
+      "approved"
+     ],
+     [
+      6,
+      "pending",
+      null,
+      null,
+      "approved"
+     ],
+     [
+      7,
+      "pending",
+      null,
+      null,
+      "approved"
+     ]
+    ],
+    "options": [
+     [
+      1,
+      "Poker",
+      3
+     ]
+    ],
+    "user_stats": [],
+    "weekly_activity": [],
+    "season_activity": [],
+    "ballot_weeks": [],
+    "badges": [],
+    "audit": [],
+    "events": [
+     [
+      1,
+      "Serata 1",
+      "2027-03-01T23:00:00+01:00"
+     ],
+     [
+      2,
+      "Serata 2",
+      "2027-03-02T22:00:00+01:00"
+     ],
+     [
+      3,
+      "In corso",
+      null
+     ]
+    ]
+   }
+  },
+  {
+   "label": "evento_start_canale_assente",
+   "status": 400,
+   "headers": {
+    "Cache-Control": "no-store",
+    "Content-Type": "application/json; charset=utf-8"
+   },
+   "body": "{\"error\": \"Canale vocale non valido\"}",
+   "calls": [],
+   "topics": [],
+   "db": {
+    "suggestions": [
+     [
+      1,
+      "pending",
+      null,
+      null,
+      "approved"
+     ],
+     [
+      2,
+      "pending",
+      null,
+      null,
+      "pending"
+     ],
+     [
+      3,
+      "picked",
+      null,
+      null,
+      "approved"
+     ],
+     [
+      4,
+      "pending",
+      null,
+      null,
+      "rejected"
+     ],
+     [
+      5,
+      "pending",
+      null,
+      null,
+      "approved"
+     ],
+     [
+      6,
+      "pending",
+      null,
+      null,
+      "approved"
+     ],
+     [
+      7,
+      "pending",
+      null,
+      null,
+      "approved"
+     ]
+    ],
+    "options": [
+     [
+      1,
+      "Poker",
+      3
+     ]
+    ],
+    "user_stats": [],
+    "weekly_activity": [],
+    "season_activity": [],
+    "ballot_weeks": [],
+    "badges": [],
+    "audit": [],
+    "events": [
+     [
+      1,
+      "Serata 1",
+      "2027-03-01T23:00:00+01:00"
+     ],
+     [
+      2,
+      "Serata 2",
+      "2027-03-02T22:00:00+01:00"
+     ],
+     [
+      3,
+      "In corso",
+      null
+     ]
+    ]
+   }
+  },
+  {
+   "label": "evento_start_canale_lista",
+   "status": 400,
+   "headers": {
+    "Cache-Control": "no-store",
+    "Content-Type": "application/json; charset=utf-8"
+   },
+   "body": "{\"error\": \"Canale vocale non valido\"}",
+   "calls": [],
+   "topics": [],
+   "db": {
+    "suggestions": [
+     [
+      1,
+      "pending",
+      null,
+      null,
+      "approved"
+     ],
+     [
+      2,
+      "pending",
+      null,
+      null,
+      "pending"
+     ],
+     [
+      3,
+      "picked",
+      null,
+      null,
+      "approved"
+     ],
+     [
+      4,
+      "pending",
+      null,
+      null,
+      "rejected"
+     ],
+     [
+      5,
+      "pending",
+      null,
+      null,
+      "approved"
+     ],
+     [
+      6,
+      "pending",
+      null,
+      null,
+      "approved"
+     ],
+     [
+      7,
+      "pending",
+      null,
+      null,
+      "approved"
+     ]
+    ],
+    "options": [
+     [
+      1,
+      "Poker",
+      3
+     ]
+    ],
+    "user_stats": [],
+    "weekly_activity": [],
+    "season_activity": [],
+    "ballot_weeks": [],
+    "badges": [],
+    "audit": [],
+    "events": [
+     [
+      1,
+      "Serata 1",
+      "2027-03-01T23:00:00+01:00"
+     ],
+     [
+      2,
+      "Serata 2",
+      "2027-03-02T22:00:00+01:00"
+     ],
+     [
+      3,
+      "In corso",
+      null
+     ]
+    ]
+   }
+  },
+  {
+   "label": "evento_start_non_oggetto",
+   "status": 400,
+   "headers": {
+    "Cache-Control": "no-store",
+    "Content-Type": "application/json; charset=utf-8"
+   },
+   "body": "{\"error\": \"Canale vocale non valido\"}",
+   "calls": [],
+   "topics": [],
+   "db": {
+    "suggestions": [
+     [
+      1,
+      "pending",
+      null,
+      null,
+      "approved"
+     ],
+     [
+      2,
+      "pending",
+      null,
+      null,
+      "pending"
+     ],
+     [
+      3,
+      "picked",
+      null,
+      null,
+      "approved"
+     ],
+     [
+      4,
+      "pending",
+      null,
+      null,
+      "rejected"
+     ],
+     [
+      5,
+      "pending",
+      null,
+      null,
+      "approved"
+     ],
+     [
+      6,
+      "pending",
+      null,
+      null,
+      "approved"
+     ],
+     [
+      7,
+      "pending",
+      null,
+      null,
+      "approved"
+     ]
+    ],
+    "options": [
+     [
+      1,
+      "Poker",
+      3
+     ]
+    ],
+    "user_stats": [],
+    "weekly_activity": [],
+    "season_activity": [],
+    "ballot_weeks": [],
+    "badges": [],
+    "audit": [],
+    "events": [
+     [
+      1,
+      "Serata 1",
+      "2027-03-01T23:00:00+01:00"
+     ],
+     [
+      2,
+      "Serata 2",
+      "2027-03-02T22:00:00+01:00"
+     ],
+     [
+      3,
+      "In corso",
+      null
+     ]
+    ]
+   }
+  },
+  {
+   "label": "evento_start_json_non_valido",
+   "status": 400,
+   "headers": {
+    "Cache-Control": "no-store",
+    "Content-Type": "application/json; charset=utf-8"
+   },
+   "body": "{\"error\": \"Canale vocale non valido\"}",
+   "calls": [],
+   "topics": [],
+   "db": {
+    "suggestions": [
+     [
+      1,
+      "pending",
+      null,
+      null,
+      "approved"
+     ],
+     [
+      2,
+      "pending",
+      null,
+      null,
+      "pending"
+     ],
+     [
+      3,
+      "picked",
+      null,
+      null,
+      "approved"
+     ],
+     [
+      4,
+      "pending",
+      null,
+      null,
+      "rejected"
+     ],
+     [
+      5,
+      "pending",
+      null,
+      null,
+      "approved"
+     ],
+     [
+      6,
+      "pending",
+      null,
+      null,
+      "approved"
+     ],
+     [
+      7,
+      "pending",
+      null,
+      null,
+      "approved"
+     ]
+    ],
+    "options": [
+     [
+      1,
+      "Poker",
+      3
+     ]
+    ],
+    "user_stats": [],
+    "weekly_activity": [],
+    "season_activity": [],
+    "ballot_weeks": [],
+    "badges": [],
+    "audit": [],
+    "events": [
+     [
+      1,
+      "Serata 1",
+      "2027-03-01T23:00:00+01:00"
+     ],
+     [
+      2,
+      "Serata 2",
+      "2027-03-02T22:00:00+01:00"
+     ],
+     [
+      3,
+      "In corso",
+      null
+     ]
+    ]
+   }
+  },
+  {
+   "label": "evento_start_canale_inesistente",
+   "status": 400,
+   "headers": {
+    "Cache-Control": "no-store",
+    "Content-Type": "application/json; charset=utf-8"
+   },
+   "body": "{\"error\": \"Seleziona un canale vocale del server\"}",
+   "calls": [],
+   "topics": [],
+   "db": {
+    "suggestions": [
+     [
+      1,
+      "pending",
+      null,
+      null,
+      "approved"
+     ],
+     [
+      2,
+      "pending",
+      null,
+      null,
+      "pending"
+     ],
+     [
+      3,
+      "picked",
+      null,
+      null,
+      "approved"
+     ],
+     [
+      4,
+      "pending",
+      null,
+      null,
+      "rejected"
+     ],
+     [
+      5,
+      "pending",
+      null,
+      null,
+      "approved"
+     ],
+     [
+      6,
+      "pending",
+      null,
+      null,
+      "approved"
+     ],
+     [
+      7,
+      "pending",
+      null,
+      null,
+      "approved"
+     ]
+    ],
+    "options": [
+     [
+      1,
+      "Poker",
+      3
+     ]
+    ],
+    "user_stats": [],
+    "weekly_activity": [],
+    "season_activity": [],
+    "ballot_weeks": [],
+    "badges": [],
+    "audit": [],
+    "events": [
+     [
+      1,
+      "Serata 1",
+      "2027-03-01T23:00:00+01:00"
+     ],
+     [
+      2,
+      "Serata 2",
+      "2027-03-02T22:00:00+01:00"
+     ],
+     [
+      3,
+      "In corso",
+      null
+     ]
+    ]
+   }
+  },
+  {
+   "label": "evento_start_senza_server",
+   "status": 400,
+   "headers": {
+    "Cache-Control": "no-store",
+    "Content-Type": "application/json; charset=utf-8"
+   },
+   "body": "{\"error\": \"Seleziona un canale vocale del server\"}",
+   "calls": [],
+   "topics": [],
+   "db": {
+    "suggestions": [
+     [
+      1,
+      "pending",
+      null,
+      null,
+      "approved"
+     ],
+     [
+      2,
+      "pending",
+      null,
+      null,
+      "pending"
+     ],
+     [
+      3,
+      "picked",
+      null,
+      null,
+      "approved"
+     ],
+     [
+      4,
+      "pending",
+      null,
+      null,
+      "rejected"
+     ],
+     [
+      5,
+      "pending",
+      null,
+      null,
+      "approved"
+     ],
+     [
+      6,
+      "pending",
+      null,
+      null,
+      "approved"
+     ],
+     [
+      7,
+      "pending",
+      null,
+      null,
+      "approved"
+     ]
+    ],
+    "options": [
+     [
+      1,
+      "Poker",
+      3
+     ]
+    ],
+    "user_stats": [],
+    "weekly_activity": [],
+    "season_activity": [],
+    "ballot_weeks": [],
+    "badges": [],
+    "audit": [],
+    "events": [
+     [
+      1,
+      "Serata 1",
+      "2027-03-01T23:00:00+01:00"
+     ],
+     [
+      2,
+      "Serata 2",
+      "2027-03-02T22:00:00+01:00"
+     ],
+     [
+      3,
+      "In corso",
+      null
+     ]
+    ]
+   }
+  },
+  {
+   "label": "evento_start_titolo_personalizzato",
+   "status": 200,
+   "headers": {
+    "Cache-Control": "no-store",
+    "Content-Type": "application/json; charset=utf-8"
+   },
+   "body": "{\"ok\": true}",
+   "calls": [
+    [
+     "start_event",
+     [
+      null,
+      555,
+      "Torneo"
+     ],
+     {}
+    ]
+   ],
+   "topics": [
+    "events"
+   ],
+   "db": {
+    "suggestions": [
+     [
+      1,
+      "pending",
+      null,
+      null,
+      "approved"
+     ],
+     [
+      2,
+      "pending",
+      null,
+      null,
+      "pending"
+     ],
+     [
+      3,
+      "picked",
+      null,
+      null,
+      "approved"
+     ],
+     [
+      4,
+      "pending",
+      null,
+      null,
+      "rejected"
+     ],
+     [
+      5,
+      "pending",
+      null,
+      null,
+      "approved"
+     ],
+     [
+      6,
+      "pending",
+      null,
+      null,
+      "approved"
+     ],
+     [
+      7,
+      "pending",
+      null,
+      null,
+      "approved"
+     ]
+    ],
+    "options": [
+     [
+      1,
+      "Poker",
+      3
+     ]
+    ],
+    "user_stats": [],
+    "weekly_activity": [],
+    "season_activity": [],
+    "ballot_weeks": [],
+    "badges": [],
+    "audit": [
+     [
+      42,
+      "live_event_started_from_site",
+      "live_event",
+      null,
+      null,
+      "{\"channel_id\": 555, \"title\": \"Torneo\"}"
+     ]
+    ],
+    "events": [
+     [
+      1,
+      "Serata 1",
+      "2027-03-01T23:00:00+01:00"
+     ],
+     [
+      2,
+      "Serata 2",
+      "2027-03-02T22:00:00+01:00"
+     ],
+     [
+      3,
+      "In corso",
+      null
+     ]
+    ]
+   }
+  },
+  {
+   "label": "evento_start_titolo_vuoto",
+   "status": 400,
+   "headers": {
+    "Cache-Control": "no-store",
+    "Content-Type": "application/json; charset=utf-8"
+   },
+   "body": "{\"error\": \"Titolo evento non valido\"}",
+   "calls": [],
+   "topics": [],
+   "db": {
+    "suggestions": [
+     [
+      1,
+      "pending",
+      null,
+      null,
+      "approved"
+     ],
+     [
+      2,
+      "pending",
+      null,
+      null,
+      "pending"
+     ],
+     [
+      3,
+      "picked",
+      null,
+      null,
+      "approved"
+     ],
+     [
+      4,
+      "pending",
+      null,
+      null,
+      "rejected"
+     ],
+     [
+      5,
+      "pending",
+      null,
+      null,
+      "approved"
+     ],
+     [
+      6,
+      "pending",
+      null,
+      null,
+      "approved"
+     ],
+     [
+      7,
+      "pending",
+      null,
+      null,
+      "approved"
+     ]
+    ],
+    "options": [
+     [
+      1,
+      "Poker",
+      3
+     ]
+    ],
+    "user_stats": [],
+    "weekly_activity": [],
+    "season_activity": [],
+    "ballot_weeks": [],
+    "badges": [],
+    "audit": [],
+    "events": [
+     [
+      1,
+      "Serata 1",
+      "2027-03-01T23:00:00+01:00"
+     ],
+     [
+      2,
+      "Serata 2",
+      "2027-03-02T22:00:00+01:00"
+     ],
+     [
+      3,
+      "In corso",
+      null
+     ]
+    ]
+   }
+  },
+  {
+   "label": "evento_start_titolo_100",
+   "status": 200,
+   "headers": {
+    "Cache-Control": "no-store",
+    "Content-Type": "application/json; charset=utf-8"
+   },
+   "body": "{\"ok\": true}",
+   "calls": [
+    [
+     "start_event",
+     [
+      null,
+      555,
+      "tttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttt"
+     ],
+     {}
+    ]
+   ],
+   "topics": [
+    "events"
+   ],
+   "db": {
+    "suggestions": [
+     [
+      1,
+      "pending",
+      null,
+      null,
+      "approved"
+     ],
+     [
+      2,
+      "pending",
+      null,
+      null,
+      "pending"
+     ],
+     [
+      3,
+      "picked",
+      null,
+      null,
+      "approved"
+     ],
+     [
+      4,
+      "pending",
+      null,
+      null,
+      "rejected"
+     ],
+     [
+      5,
+      "pending",
+      null,
+      null,
+      "approved"
+     ],
+     [
+      6,
+      "pending",
+      null,
+      null,
+      "approved"
+     ],
+     [
+      7,
+      "pending",
+      null,
+      null,
+      "approved"
+     ]
+    ],
+    "options": [
+     [
+      1,
+      "Poker",
+      3
+     ]
+    ],
+    "user_stats": [],
+    "weekly_activity": [],
+    "season_activity": [],
+    "ballot_weeks": [],
+    "badges": [],
+    "audit": [
+     [
+      42,
+      "live_event_started_from_site",
+      "live_event",
+      null,
+      null,
+      "{\"channel_id\": 555, \"title\": \"tttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttt\"}"
+     ]
+    ],
+    "events": [
+     [
+      1,
+      "Serata 1",
+      "2027-03-01T23:00:00+01:00"
+     ],
+     [
+      2,
+      "Serata 2",
+      "2027-03-02T22:00:00+01:00"
+     ],
+     [
+      3,
+      "In corso",
+      null
+     ]
+    ]
+   }
+  },
+  {
+   "label": "evento_start_titolo_101",
+   "status": 400,
+   "headers": {
+    "Cache-Control": "no-store",
+    "Content-Type": "application/json; charset=utf-8"
+   },
+   "body": "{\"error\": \"Titolo evento non valido\"}",
+   "calls": [],
+   "topics": [],
+   "db": {
+    "suggestions": [
+     [
+      1,
+      "pending",
+      null,
+      null,
+      "approved"
+     ],
+     [
+      2,
+      "pending",
+      null,
+      null,
+      "pending"
+     ],
+     [
+      3,
+      "picked",
+      null,
+      null,
+      "approved"
+     ],
+     [
+      4,
+      "pending",
+      null,
+      null,
+      "rejected"
+     ],
+     [
+      5,
+      "pending",
+      null,
+      null,
+      "approved"
+     ],
+     [
+      6,
+      "pending",
+      null,
+      null,
+      "approved"
+     ],
+     [
+      7,
+      "pending",
+      null,
+      null,
+      "approved"
+     ]
+    ],
+    "options": [
+     [
+      1,
+      "Poker",
+      3
+     ]
+    ],
+    "user_stats": [],
+    "weekly_activity": [],
+    "season_activity": [],
+    "ballot_weeks": [],
+    "badges": [],
+    "audit": [],
+    "events": [
+     [
+      1,
+      "Serata 1",
+      "2027-03-01T23:00:00+01:00"
+     ],
+     [
+      2,
+      "Serata 2",
+      "2027-03-02T22:00:00+01:00"
+     ],
+     [
+      3,
+      "In corso",
+      null
+     ]
+    ]
+   }
+  },
+  {
+   "label": "evento_start_titolo_spazi_oltre_100",
+   "status": 200,
+   "headers": {
+    "Cache-Control": "no-store",
+    "Content-Type": "application/json; charset=utf-8"
+   },
+   "body": "{\"ok\": true}",
+   "calls": [
+    [
+     "start_event",
+     [
+      null,
+      555,
+      "ok"
+     ],
+     {}
+    ]
+   ],
+   "topics": [
+    "events"
+   ],
+   "db": {
+    "suggestions": [
+     [
+      1,
+      "pending",
+      null,
+      null,
+      "approved"
+     ],
+     [
+      2,
+      "pending",
+      null,
+      null,
+      "pending"
+     ],
+     [
+      3,
+      "picked",
+      null,
+      null,
+      "approved"
+     ],
+     [
+      4,
+      "pending",
+      null,
+      null,
+      "rejected"
+     ],
+     [
+      5,
+      "pending",
+      null,
+      null,
+      "approved"
+     ],
+     [
+      6,
+      "pending",
+      null,
+      null,
+      "approved"
+     ],
+     [
+      7,
+      "pending",
+      null,
+      null,
+      "approved"
+     ]
+    ],
+    "options": [
+     [
+      1,
+      "Poker",
+      3
+     ]
+    ],
+    "user_stats": [],
+    "weekly_activity": [],
+    "season_activity": [],
+    "ballot_weeks": [],
+    "badges": [],
+    "audit": [
+     [
+      42,
+      "live_event_started_from_site",
+      "live_event",
+      null,
+      null,
+      "{\"channel_id\": 555, \"title\": \"ok\"}"
+     ]
+    ],
+    "events": [
+     [
+      1,
+      "Serata 1",
+      "2027-03-01T23:00:00+01:00"
+     ],
+     [
+      2,
+      "Serata 2",
+      "2027-03-02T22:00:00+01:00"
+     ],
+     [
+      3,
+      "In corso",
+      null
+     ]
+    ]
+   }
+  },
+  {
+   "label": "evento_start_titolo_non_testo",
+   "status": 400,
+   "headers": {
+    "Cache-Control": "no-store",
+    "Content-Type": "application/json; charset=utf-8"
+   },
+   "body": "{\"error\": \"Titolo evento non valido\"}",
+   "calls": [],
+   "topics": [],
+   "db": {
+    "suggestions": [
+     [
+      1,
+      "pending",
+      null,
+      null,
+      "approved"
+     ],
+     [
+      2,
+      "pending",
+      null,
+      null,
+      "pending"
+     ],
+     [
+      3,
+      "picked",
+      null,
+      null,
+      "approved"
+     ],
+     [
+      4,
+      "pending",
+      null,
+      null,
+      "rejected"
+     ],
+     [
+      5,
+      "pending",
+      null,
+      null,
+      "approved"
+     ],
+     [
+      6,
+      "pending",
+      null,
+      null,
+      "approved"
+     ],
+     [
+      7,
+      "pending",
+      null,
+      null,
+      "approved"
+     ]
+    ],
+    "options": [
+     [
+      1,
+      "Poker",
+      3
+     ]
+    ],
+    "user_stats": [],
+    "weekly_activity": [],
+    "season_activity": [],
+    "ballot_weeks": [],
+    "badges": [],
+    "audit": [],
+    "events": [
+     [
+      1,
+      "Serata 1",
+      "2027-03-01T23:00:00+01:00"
+     ],
+     [
+      2,
+      "Serata 2",
+      "2027-03-02T22:00:00+01:00"
+     ],
+     [
+      3,
+      "In corso",
+      null
+     ]
+    ]
+   }
+  },
+  {
+   "label": "evento_start_titolo_null",
+   "status": 400,
+   "headers": {
+    "Cache-Control": "no-store",
+    "Content-Type": "application/json; charset=utf-8"
+   },
+   "body": "{\"error\": \"Titolo evento non valido\"}",
+   "calls": [],
+   "topics": [],
+   "db": {
+    "suggestions": [
+     [
+      1,
+      "pending",
+      null,
+      null,
+      "approved"
+     ],
+     [
+      2,
+      "pending",
+      null,
+      null,
+      "pending"
+     ],
+     [
+      3,
+      "picked",
+      null,
+      null,
+      "approved"
+     ],
+     [
+      4,
+      "pending",
+      null,
+      null,
+      "rejected"
+     ],
+     [
+      5,
+      "pending",
+      null,
+      null,
+      "approved"
+     ],
+     [
+      6,
+      "pending",
+      null,
+      null,
+      "approved"
+     ],
+     [
+      7,
+      "pending",
+      null,
+      null,
+      "approved"
+     ]
+    ],
+    "options": [
+     [
+      1,
+      "Poker",
+      3
+     ]
+    ],
+    "user_stats": [],
+    "weekly_activity": [],
+    "season_activity": [],
+    "ballot_weeks": [],
+    "badges": [],
+    "audit": [],
+    "events": [
+     [
+      1,
+      "Serata 1",
+      "2027-03-01T23:00:00+01:00"
+     ],
+     [
+      2,
+      "Serata 2",
+      "2027-03-02T22:00:00+01:00"
+     ],
+     [
+      3,
+      "In corso",
+      null
+     ]
+    ]
+   }
+  },
+  {
+   "label": "evento_start_gia_attivo",
+   "status": 409,
+   "headers": {
+    "Cache-Control": "no-store",
+    "Content-Type": "application/json; charset=utf-8"
+   },
+   "body": "{\"error\": \"\\u00c8 gi\\u00e0 attivo un evento live\"}",
+   "calls": [],
+   "topics": [],
+   "db": {
+    "suggestions": [
+     [
+      1,
+      "pending",
+      null,
+      null,
+      "approved"
+     ],
+     [
+      2,
+      "pending",
+      null,
+      null,
+      "pending"
+     ],
+     [
+      3,
+      "picked",
+      null,
+      null,
+      "approved"
+     ],
+     [
+      4,
+      "pending",
+      null,
+      null,
+      "rejected"
+     ],
+     [
+      5,
+      "pending",
+      null,
+      null,
+      "approved"
+     ],
+     [
+      6,
+      "pending",
+      null,
+      null,
+      "approved"
+     ],
+     [
+      7,
+      "pending",
+      null,
+      null,
+      "approved"
+     ]
+    ],
+    "options": [
+     [
+      1,
+      "Poker",
+      3
+     ]
+    ],
+    "user_stats": [],
+    "weekly_activity": [],
+    "season_activity": [],
+    "ballot_weeks": [],
+    "badges": [],
+    "audit": [],
+    "events": [
+     [
+      1,
+      "Serata 1",
+      "2027-03-01T23:00:00+01:00"
+     ],
+     [
+      2,
+      "Serata 2",
+      "2027-03-02T22:00:00+01:00"
+     ],
+     [
+      3,
+      "In corso",
+      null
+     ]
+    ]
+   }
+  },
+  {
+   "label": "evento_start_fallito",
+   "status": 502,
+   "headers": {
+    "Cache-Control": "no-store",
+    "Content-Type": "application/json; charset=utf-8"
+   },
+   "body": "{\"error\": \"Il bot non \\u00e8 riuscito ad avviare l'evento\"}",
+   "calls": [
+    [
+     "start_event",
+     [
+      null,
+      555,
+      "🎮 Game Night"
+     ],
+     {}
+    ]
+   ],
+   "topics": [],
+   "db": {
+    "suggestions": [
+     [
+      1,
+      "pending",
+      null,
+      null,
+      "approved"
+     ],
+     [
+      2,
+      "pending",
+      null,
+      null,
+      "pending"
+     ],
+     [
+      3,
+      "picked",
+      null,
+      null,
+      "approved"
+     ],
+     [
+      4,
+      "pending",
+      null,
+      null,
+      "rejected"
+     ],
+     [
+      5,
+      "pending",
+      null,
+      null,
+      "approved"
+     ],
+     [
+      6,
+      "pending",
+      null,
+      null,
+      "approved"
+     ],
+     [
+      7,
+      "pending",
+      null,
+      null,
+      "approved"
+     ]
+    ],
+    "options": [
+     [
+      1,
+      "Poker",
+      3
+     ]
+    ],
+    "user_stats": [],
+    "weekly_activity": [],
+    "season_activity": [],
+    "ballot_weeks": [],
+    "badges": [],
+    "audit": [],
+    "events": [
+     [
+      1,
+      "Serata 1",
+      "2027-03-01T23:00:00+01:00"
+     ],
+     [
+      2,
+      "Serata 2",
+      "2027-03-02T22:00:00+01:00"
+     ],
+     [
+      3,
+      "In corso",
+      null
+     ]
+    ]
+   }
+  }
+ ]
+}

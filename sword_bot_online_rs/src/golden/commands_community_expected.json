@@ -1,0 +1,65 @@
+[
+ {
+  "name": "guida",
+  "description": "Scopri come partecipare alla Game Night",
+  "options": [],
+  "default_member_permissions": null,
+  "guild_only": true
+ },
+ {
+  "name": "profilo",
+  "description": "Mostra il tuo profilo o quello di un utente",
+  "options": [
+   {
+    "name": "utente",
+    "description": "La persona di cui vuoi vedere il profilo",
+    "type": 6,
+    "required": false,
+    "min_length": null,
+    "max_length": null,
+    "autocomplete": null,
+    "min_value": null,
+    "max_value": null,
+    "channel_types": null,
+    "choices": null
+   }
+  ],
+  "default_member_permissions": null,
+  "guild_only": true
+ },
+ {
+  "name": "classifica-utenti",
+  "description": "Mostra la classifica pubblica dei contributor",
+  "options": [],
+  "default_member_permissions": null,
+  "guild_only": true
+ },
+ {
+  "name": "record-community",
+  "description": "Mostra i record storici della community",
+  "options": [],
+  "default_member_permissions": null,
+  "guild_only": true
+ },
+ {
+  "name": "notifiche",
+  "description": "Gestisci le notifiche personali via messaggio privato",
+  "options": [
+   {
+    "name": "attive",
+    "description": "Abilita o disabilita i DM personali",
+    "type": 5,
+    "required": false,
+    "min_length": null,
+    "max_length": null,
+    "autocomplete": null,
+    "min_value": null,
+    "max_value": null,
+    "channel_types": null,
+    "choices": null
+   }
+  ],
+  "default_member_permissions": null,
+  "guild_only": true
+ }
+]

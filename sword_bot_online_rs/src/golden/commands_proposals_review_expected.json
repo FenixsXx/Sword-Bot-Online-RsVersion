@@ -1,0 +1,107 @@
+[
+ {
+  "name": "proposta",
+  "description": "Revisione delle proposte della community",
+  "options": [
+   {
+    "name": "revisiona",
+    "description": "Prende in carico una proposta",
+    "type": 1,
+    "required": null,
+    "min_length": null,
+    "max_length": null,
+    "autocomplete": null,
+    "min_value": null,
+    "max_value": null,
+    "channel_types": null,
+    "choices": null,
+    "options": [
+     {
+      "name": "id",
+      "description": "Proposta da prendere in carico (scrivi parte del nome)",
+      "type": 4,
+      "required": true,
+      "min_length": null,
+      "max_length": null,
+      "autocomplete": true,
+      "min_value": null,
+      "max_value": null,
+      "channel_types": null,
+      "choices": null
+     }
+    ]
+   },
+   {
+    "name": "approva",
+    "description": "Approva una proposta",
+    "type": 1,
+    "required": null,
+    "min_length": null,
+    "max_length": null,
+    "autocomplete": null,
+    "min_value": null,
+    "max_value": null,
+    "channel_types": null,
+    "choices": null,
+    "options": [
+     {
+      "name": "id",
+      "description": "Proposta da approvare (scrivi parte del nome)",
+      "type": 4,
+      "required": true,
+      "min_length": null,
+      "max_length": null,
+      "autocomplete": true,
+      "min_value": null,
+      "max_value": null,
+      "channel_types": null,
+      "choices": null
+     }
+    ]
+   },
+   {
+    "name": "rifiuta",
+    "description": "Rifiuta una proposta",
+    "type": 1,
+    "required": null,
+    "min_length": null,
+    "max_length": null,
+    "autocomplete": null,
+    "min_value": null,
+    "max_value": null,
+    "channel_types": null,
+    "choices": null,
+    "options": [
+     {
+      "name": "id",
+      "description": "Proposta da rifiutare (scrivi parte del nome)",
+      "type": 4,
+      "required": true,
+      "min_length": null,
+      "max_length": null,
+      "autocomplete": true,
+      "min_value": null,
+      "max_value": null,
+      "channel_types": null,
+      "choices": null
+     },
+     {
+      "name": "motivo",
+      "description": "Motivo comunicato agli autori della proposta",
+      "type": 3,
+      "required": true,
+      "min_length": 1,
+      "max_length": 200,
+      "autocomplete": null,
+      "min_value": null,
+      "max_value": null,
+      "channel_types": null,
+      "choices": null
+     }
+    ]
+   }
+  ],
+  "default_member_permissions": null,
+  "guild_only": false
+ }
+]

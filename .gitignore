@@ -1,0 +1,32 @@
+# Segreti e configurazione locale
+.env
+.env.*
+!.env.example
+
+# Database e backup (contengono dati degli utenti)
+*.db
+*.db-wal
+*.db-shm
+backups/
+
+# Rust build
+target/
+**/target/
+
+# Sito: dipendenze e build
+node_modules/
+**/node_modules/
+sfo-site/.netlify/
+
+# Editor e IDE
+.idea/
+.codex/
+.vscode/
+*.iml
+
+# File di sistema
+.DS_Store
+*/.DS_Store
+__MACOSX/
+Thumbs.db
+

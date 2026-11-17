@@ -1,0 +1,293 @@
+[
+ {
+  "name": "config",
+  "description": "Imposta canali, ruoli staff e slot del ballottaggio",
+  "options": [
+   {
+    "name": "canale_sondaggi",
+    "description": "Canale dove compaiono i sondaggi",
+    "type": 7,
+    "required": false,
+    "min_length": null,
+    "max_length": null,
+    "autocomplete": null,
+    "min_value": null,
+    "max_value": null,
+    "channel_types": [
+     0,
+     5
+    ],
+    "choices": null
+   },
+   {
+    "name": "canale_staff",
+    "description": "Canale riservato allo staff",
+    "type": 7,
+    "required": false,
+    "min_length": null,
+    "max_length": null,
+    "autocomplete": null,
+    "min_value": null,
+    "max_value": null,
+    "channel_types": [
+     0,
+     5
+    ],
+    "choices": null
+   },
+   {
+    "name": "canale_eventi",
+    "description": "Canale dove pubblicare i report SFO",
+    "type": 7,
+    "required": false,
+    "min_length": null,
+    "max_length": null,
+    "autocomplete": null,
+    "min_value": null,
+    "max_value": null,
+    "channel_types": [
+     0,
+     5
+    ],
+    "choices": null
+   },
+   {
+    "name": "canale_benvenuto",
+    "description": "Canale dove accogliere i nuovi membri",
+    "type": 7,
+    "required": false,
+    "min_length": null,
+    "max_length": null,
+    "autocomplete": null,
+    "min_value": null,
+    "max_value": null,
+    "channel_types": [
+     0,
+     5
+    ],
+    "choices": null
+   },
+   {
+    "name": "ruolo_staff",
+    "description": "Ruolo da aggiungere/togliere dallo staff",
+    "type": 8,
+    "required": false,
+    "min_length": null,
+    "max_length": null,
+    "autocomplete": null,
+    "min_value": null,
+    "max_value": null,
+    "channel_types": null,
+    "choices": null
+   },
+   {
+    "name": "slot",
+    "description": "Quante proposte scelte dallo staff nel sondaggio finale (3-5)",
+    "type": 4,
+    "required": false,
+    "min_length": null,
+    "max_length": null,
+    "autocomplete": null,
+    "min_value": 3,
+    "max_value": 5,
+    "channel_types": null,
+    "choices": null
+   },
+   {
+    "name": "accoglienza_attiva",
+    "description": "Abilita o disabilita i messaggi di benvenuto",
+    "type": 5,
+    "required": false,
+    "min_length": null,
+    "max_length": null,
+    "autocomplete": null,
+    "min_value": null,
+    "max_value": null,
+    "channel_types": null,
+    "choices": null
+   },
+   {
+    "name": "voti_per_sondaggio",
+    "description": "Quanti voti ha ogni persona in ciascun sondaggio",
+    "type": 4,
+    "required": false,
+    "min_length": null,
+    "max_length": null,
+    "autocomplete": null,
+    "min_value": 1,
+    "max_value": 10,
+    "channel_types": null,
+    "choices": null
+   },
+   {
+    "name": "proposte_a_settimana",
+    "description": "Quante proposte può inviare ogni persona a settimana",
+    "type": 4,
+    "required": false,
+    "min_length": null,
+    "max_length": null,
+    "autocomplete": null,
+    "min_value": 1,
+    "max_value": 20,
+    "channel_types": null,
+    "choices": null
+   },
+   {
+    "name": "giorno_reset",
+    "description": "Giorno della chiusura settimanale",
+    "type": 4,
+    "required": false,
+    "min_length": null,
+    "max_length": null,
+    "autocomplete": null,
+    "min_value": null,
+    "max_value": null,
+    "channel_types": null,
+    "choices": [
+     {
+      "name": "Lunedì",
+      "value": 0
+     },
+     {
+      "name": "Martedì",
+      "value": 1
+     },
+     {
+      "name": "Mercoledì",
+      "value": 2
+     },
+     {
+      "name": "Giovedì",
+      "value": 3
+     },
+     {
+      "name": "Venerdì",
+      "value": 4
+     },
+     {
+      "name": "Sabato",
+      "value": 5
+     },
+     {
+      "name": "Domenica",
+      "value": 6
+     }
+    ]
+   },
+   {
+    "name": "ora_reset",
+    "description": "Ora della chiusura settimanale (0-23, ora italiana)",
+    "type": 4,
+    "required": false,
+    "min_length": null,
+    "max_length": null,
+    "autocomplete": null,
+    "min_value": 0,
+    "max_value": 23,
+    "channel_types": null,
+    "choices": null
+   },
+   {
+    "name": "promemoria_reset",
+    "description": "Avviso pubblico 24 ore prima del reset",
+    "type": 5,
+    "required": false,
+    "min_length": null,
+    "max_length": null,
+    "autocomplete": null,
+    "min_value": null,
+    "max_value": null,
+    "channel_types": null,
+    "choices": null
+   },
+   {
+    "name": "canale_game_night",
+    "description": "Canale vocale dove creare gli eventi della Game Night",
+    "type": 7,
+    "required": false,
+    "min_length": null,
+    "max_length": null,
+    "autocomplete": null,
+    "min_value": null,
+    "max_value": null,
+    "channel_types": [
+     2,
+     13
+    ],
+    "choices": null
+   },
+   {
+    "name": "motivazione",
+    "description": "Motivo della modifica (facoltativo)",
+    "type": 3,
+    "required": false,
+    "min_length": null,
+    "max_length": null,
+    "autocomplete": null,
+    "min_value": null,
+    "max_value": null,
+    "channel_types": null,
+    "choices": null
+   }
+  ],
+  "default_member_permissions": 8,
+  "guild_only": true
+ },
+ {
+  "name": "feed-attivita",
+  "description": "Configura il canale dedicato e attiva o disattiva il feed",
+  "options": [
+   {
+    "name": "attivo",
+    "description": "Attiva o disattiva gli annunci automatici",
+    "type": 5,
+    "required": true,
+    "min_length": null,
+    "max_length": null,
+    "autocomplete": null,
+    "min_value": null,
+    "max_value": null,
+    "channel_types": null,
+    "choices": null
+   },
+   {
+    "name": "canale",
+    "description": "Canale testuale in cui pubblicarli",
+    "type": 7,
+    "required": false,
+    "min_length": null,
+    "max_length": null,
+    "autocomplete": null,
+    "min_value": null,
+    "max_value": null,
+    "channel_types": [
+     0,
+     5
+    ],
+    "choices": null
+   },
+   {
+    "name": "motivazione",
+    "description": "Motivo della modifica (facoltativo)",
+    "type": 3,
+    "required": false,
+    "min_length": null,
+    "max_length": null,
+    "autocomplete": null,
+    "min_value": null,
+    "max_value": null,
+    "channel_types": null,
+    "choices": null
+   }
+  ],
+  "default_member_permissions": 8,
+  "guild_only": true
+ },
+ {
+  "name": "centro-staff",
+  "description": "Apri il centro di controllo e le analisi per lo staff",
+  "options": [],
+  "default_member_permissions": null,
+  "guild_only": true
+ }
+]

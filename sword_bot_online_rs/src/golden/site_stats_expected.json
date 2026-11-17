@@ -1,0 +1,2383 @@
+{
+ "functions": [
+  {
+   "label": "salute_1",
+   "args": [
+    [
+     1
+    ],
+    {}
+   ],
+   "value": {
+    "period_days": 1,
+    "score": 43,
+    "previous_score": 7,
+    "trend": 36,
+    "metrics": {
+     "score": 43,
+     "active_users": 3,
+     "active_days": 2,
+     "active_weeks": 1,
+     "proposals": 24,
+     "supports": 1,
+     "votes": 0,
+     "event_attendance": 0,
+     "events": 0,
+     "components": {
+      "partecipazione": 10,
+      "continuità": 25,
+      "varietà": 10,
+      "coinvolgimento": 0,
+      "eventi": 0
+     }
+    },
+    "methodology": "Punteggio euristico 0-100: utenti attivi (35), continuità dei giorni (25), varietà di 4 azioni (20), supporti e voti aggregati (15), eventi conclusi (10). I componenti sono normalizzati da 105 a 100. È un indicatore descrittivo, non una misura scientifica."
+   }
+  },
+  {
+   "label": "salute_7",
+   "args": [
+    [
+     7
+    ],
+    {}
+   ],
+   "value": {
+    "period_days": 7,
+    "score": 49,
+    "previous_score": 43,
+    "trend": 6,
+    "metrics": {
+     "score": 49,
+     "active_users": 4,
+     "active_days": 2,
+     "active_weeks": 1,
+     "proposals": 24,
+     "supports": 1,
+     "votes": 0,
+     "event_attendance": 0,
+     "events": 1,
+     "components": {
+      "partecipazione": 14,
+      "continuità": 25,
+      "varietà": 10,
+      "coinvolgimento": 0,
+      "eventi": 2
+     }
+    },
+    "methodology": "Punteggio euristico 0-100: utenti attivi (35), continuità dei giorni (25), varietà di 4 azioni (20), supporti e voti aggregati (15), eventi conclusi (10). I componenti sono normalizzati da 105 a 100. È un indicatore descrittivo, non una misura scientifica."
+   }
+  },
+  {
+   "label": "salute_14",
+   "args": [
+    [
+     14
+    ],
+    {}
+   ],
+   "value": {
+    "period_days": 14,
+    "score": 60,
+    "previous_score": 64,
+    "trend": -4,
+    "metrics": {
+     "score": 60,
+     "active_users": 5,
+     "active_days": 4,
+     "active_weeks": 2,
+     "proposals": 24,
+     "supports": 25,
+     "votes": 0,
+     "event_attendance": 0,
+     "events": 3,
+     "components": {
+      "partecipazione": 17,
+      "continuità": 25,
+      "varietà": 10,
+      "coinvolgimento": 5,
+      "eventi": 6
+     }
+    },
+    "methodology": "Punteggio euristico 0-100: utenti attivi (35), continuità dei giorni (25), varietà di 4 azioni (20), supporti e voti aggregati (15), eventi conclusi (10). I componenti sono normalizzati da 105 a 100. È un indicatore descrittivo, non una misura scientifica."
+   }
+  },
+  {
+   "label": "salute_30",
+   "args": [
+    [
+     30
+    ],
+    {}
+   ],
+   "value": {
+    "period_days": 30,
+    "score": 90,
+    "previous_score": 73,
+    "trend": 17,
+    "metrics": {
+     "score": 90,
+     "active_users": 9,
+     "active_days": 11,
+     "active_weeks": 5,
+     "proposals": 25,
+     "supports": 25,
+     "votes": 24,
+     "event_attendance": 24,
+     "events": 5,
+     "components": {
+      "partecipazione": 31,
+      "continuità": 25,
+      "varietà": 20,
+      "coinvolgimento": 9,
+      "eventi": 10
+     }
+    },
+    "methodology": "Punteggio euristico 0-100: utenti attivi (35), continuità dei giorni (25), varietà di 4 azioni (20), supporti e voti aggregati (15), eventi conclusi (10). I componenti sono normalizzati da 105 a 100. È un indicatore descrittivo, non una misura scientifica."
+   }
+  },
+  {
+   "label": "salute_90",
+   "args": [
+    [
+     90
+    ],
+    {}
+   ],
+   "value": {
+    "period_days": 90,
+    "score": 94,
+    "previous_score": 0,
+    "trend": 94,
+    "metrics": {
+     "score": 94,
+     "active_users": 9,
+     "active_days": 21,
+     "active_weeks": 10,
+     "proposals": 50,
+     "supports": 49,
+     "votes": 48,
+     "event_attendance": 48,
+     "events": 6,
+     "components": {
+      "partecipazione": 31,
+      "continuità": 23,
+      "varietà": 20,
+      "coinvolgimento": 15,
+      "eventi": 10
+     }
+    },
+    "methodology": "Punteggio euristico 0-100: utenti attivi (35), continuità dei giorni (25), varietà di 4 azioni (20), supporti e voti aggregati (15), eventi conclusi (10). I componenti sono normalizzati da 105 a 100. È un indicatore descrittivo, non una misura scientifica."
+   }
+  },
+  {
+   "label": "salute_365",
+   "args": [
+    [
+     365
+    ],
+    {}
+   ],
+   "value": {
+    "period_days": 365,
+    "score": 77,
+    "previous_score": 0,
+    "trend": 77,
+    "metrics": {
+     "score": 77,
+     "active_users": 9,
+     "active_days": 21,
+     "active_weeks": 10,
+     "proposals": 50,
+     "supports": 49,
+     "votes": 48,
+     "event_attendance": 48,
+     "events": 6,
+     "components": {
+      "partecipazione": 31,
+      "continuità": 5,
+      "varietà": 20,
+      "coinvolgimento": 15,
+      "eventi": 10
+     }
+    },
+    "methodology": "Punteggio euristico 0-100: utenti attivi (35), continuità dei giorni (25), varietà di 4 azioni (20), supporti e voti aggregati (15), eventi conclusi (10). I componenti sono normalizzati da 105 a 100. È un indicatore descrittivo, non una misura scientifica."
+   }
+  },
+  {
+   "label": "salute_predefinita",
+   "args": [
+    [],
+    {}
+   ],
+   "value": {
+    "period_days": 30,
+    "score": 90,
+    "previous_score": 73,
+    "trend": 17,
+    "metrics": {
+     "score": 90,
+     "active_users": 9,
+     "active_days": 11,
+     "active_weeks": 5,
+     "proposals": 25,
+     "supports": 25,
+     "votes": 24,
+     "event_attendance": 24,
+     "events": 5,
+     "components": {
+      "partecipazione": 31,
+      "continuità": 25,
+      "varietà": 20,
+      "coinvolgimento": 9,
+      "eventi": 10
+     }
+    },
+    "methodology": "Punteggio euristico 0-100: utenti attivi (35), continuità dei giorni (25), varietà di 4 azioni (20), supporti e voti aggregati (15), eventi conclusi (10). I componenti sono normalizzati da 105 a 100. È un indicatore descrittivo, non una misura scientifica."
+   }
+  },
+  {
+   "label": "mappa_7",
+   "args": [
+    [
+     7
+    ],
+    {}
+   ],
+   "value": {
+    "period_days": 7,
+    "timezone": "Europe/Rome",
+    "weekday_order": [
+     "Lun",
+     "Mar",
+     "Mer",
+     "Gio",
+     "Ven",
+     "Sab",
+     "Dom"
+    ],
+    "cells": [
+     {
+      "weekday": 4,
+      "hour": 13,
+      "count": 2
+     },
+     {
+      "weekday": 4,
+      "hour": 15,
+      "count": 2
+     },
+     {
+      "weekday": 4,
+      "hour": 18,
+      "count": 2
+     },
+     {
+      "weekday": 4,
+      "hour": 19,
+      "count": 2
+     },
+     {
+      "weekday": 4,
+      "hour": 21,
+      "count": 2
+     },
+     {
+      "weekday": 5,
+      "hour": 0,
+      "count": 2
+     },
+     {
+      "weekday": 5,
+      "hour": 1,
+      "count": 2
+     },
+     {
+      "weekday": 5,
+      "hour": 3,
+      "count": 2
+     },
+     {
+      "weekday": 5,
+      "hour": 6,
+      "count": 2
+     },
+     {
+      "weekday": 5,
+      "hour": 7,
+      "count": 2
+     },
+     {
+      "weekday": 5,
+      "hour": 9,
+      "count": 2
+     },
+     {
+      "weekday": 5,
+      "hour": 12,
+      "count": 5
+     }
+    ],
+    "actions": {
+     "proposal": 24,
+     "support": 2,
+     "vote": 1
+    },
+    "limitations": "I voti sono conteggiati senza utente né opzione per preservarne l'anonimato. I dati orari sono disponibili solo da quando è attiva la registrazione degli eventi; non sono ricostruibili dagli aggregati settimanali precedenti."
+   }
+  },
+  {
+   "label": "mappa_30",
+   "args": [
+    [
+     30
+    ],
+    {}
+   ],
+   "value": {
+    "period_days": 30,
+    "timezone": "Europe/Rome",
+    "weekday_order": [
+     "Lun",
+     "Mar",
+     "Mer",
+     "Gio",
+     "Ven",
+     "Sab",
+     "Dom"
+    ],
+    "cells": [
+     {
+      "weekday": 3,
+      "hour": 11,
+      "count": 2
+     },
+     {
+      "weekday": 4,
+      "hour": 11,
+      "count": 2
+     },
+     {
+      "weekday": 4,
+      "hour": 12,
+      "count": 6
+     },
+     {
+      "weekday": 4,
+      "hour": 13,
+      "count": 2
+     },
+     {
+      "weekday": 4,
+      "hour": 14,
+      "count": 6
+     },
+     {
+      "weekday": 4,
+      "hour": 15,
+      "count": 6
+     },
+     {
+      "weekday": 4,
+      "hour": 16,
+      "count": 2
+     },
+     {
+      "weekday": 4,
+      "hour": 17,
+      "count": 6
+     },
+     {
+      "weekday": 4,
+      "hour": 18,
+      "count": 8
+     },
+     {
+      "weekday": 4,
+      "hour": 19,
+      "count": 2
+     },
+     {
+      "weekday": 4,
+      "hour": 20,
+      "count": 6
+     },
+     {
+      "weekday": 4,
+      "hour": 21,
+      "count": 6
+     },
+     {
+      "weekday": 4,
+      "hour": 22,
+      "count": 2
+     },
+     {
+      "weekday": 4,
+      "hour": 23,
+      "count": 6
+     },
+     {
+      "weekday": 5,
+      "hour": 0,
+      "count": 8
+     },
+     {
+      "weekday": 5,
+      "hour": 1,
+      "count": 2
+     },
+     {
+      "weekday": 5,
+      "hour": 2,
+      "count": 6
+     },
+     {
+      "weekday": 5,
+      "hour": 3,
+      "count": 6
+     },
+     {
+      "weekday": 5,
+      "hour": 4,
+      "count": 2
+     },
+     {
+      "weekday": 5,
+      "hour": 5,
+      "count": 6
+     },
+     {
+      "weekday": 5,
+      "hour": 6,
+      "count": 8
+     },
+     {
+      "weekday": 5,
+      "hour": 7,
+      "count": 2
+     },
+     {
+      "weekday": 5,
+      "hour": 8,
+      "count": 6
+     },
+     {
+      "weekday": 5,
+      "hour": 9,
+      "count": 6
+     },
+     {
+      "weekday": 5,
+      "hour": 10,
+      "count": 2
+     },
+     {
+      "weekday": 5,
+      "hour": 11,
+      "count": 4
+     },
+     {
+      "weekday": 5,
+      "hour": 12,
+      "count": 5
+     }
+    ],
+    "actions": {
+     "proposal": 26,
+     "altro": 24,
+     "event_join": 24,
+     "vote": 25,
+     "support": 26
+    },
+    "limitations": "I voti sono conteggiati senza utente né opzione per preservarne l'anonimato. I dati orari sono disponibili solo da quando è attiva la registrazione degli eventi; non sono ricostruibili dagli aggregati settimanali precedenti."
+   }
+  },
+  {
+   "label": "mappa_400",
+   "args": [
+    [
+     400
+    ],
+    {}
+   ],
+   "value": {
+    "period_days": 400,
+    "timezone": "Europe/Rome",
+    "weekday_order": [
+     "Lun",
+     "Mar",
+     "Mer",
+     "Gio",
+     "Ven",
+     "Sab",
+     "Dom"
+    ],
+    "cells": [
+     {
+      "weekday": 3,
+      "hour": 11,
+      "count": 2
+     },
+     {
+      "weekday": 4,
+      "hour": 11,
+      "count": 8
+     },
+     {
+      "weekday": 4,
+      "hour": 12,
+      "count": 10
+     },
+     {
+      "weekday": 4,
+      "hour": 13,
+      "count": 2
+     },
+     {
+      "weekday": 4,
+      "hour": 14,
+      "count": 16
+     },
+     {
+      "weekday": 4,
+      "hour": 15,
+      "count": 12
+     },
+     {
+      "weekday": 4,
+      "hour": 16,
+      "count": 2
+     },
+     {
+      "weekday": 4,
+      "hour": 17,
+      "count": 16
+     },
+     {
+      "weekday": 4,
+      "hour": 18,
+      "count": 12
+     },
+     {
+      "weekday": 4,
+      "hour": 19,
+      "count": 2
+     },
+     {
+      "weekday": 4,
+      "hour": 20,
+      "count": 16
+     },
+     {
+      "weekday": 4,
+      "hour": 21,
+      "count": 12
+     },
+     {
+      "weekday": 4,
+      "hour": 22,
+      "count": 2
+     },
+     {
+      "weekday": 4,
+      "hour": 23,
+      "count": 16
+     },
+     {
+      "weekday": 5,
+      "hour": 0,
+      "count": 12
+     },
+     {
+      "weekday": 5,
+      "hour": 1,
+      "count": 2
+     },
+     {
+      "weekday": 5,
+      "hour": 2,
+      "count": 16
+     },
+     {
+      "weekday": 5,
+      "hour": 3,
+      "count": 12
+     },
+     {
+      "weekday": 5,
+      "hour": 4,
+      "count": 2
+     },
+     {
+      "weekday": 5,
+      "hour": 5,
+      "count": 16
+     },
+     {
+      "weekday": 5,
+      "hour": 6,
+      "count": 12
+     },
+     {
+      "weekday": 5,
+      "hour": 7,
+      "count": 2
+     },
+     {
+      "weekday": 5,
+      "hour": 8,
+      "count": 16
+     },
+     {
+      "weekday": 5,
+      "hour": 9,
+      "count": 12
+     },
+     {
+      "weekday": 5,
+      "hour": 10,
+      "count": 2
+     },
+     {
+      "weekday": 5,
+      "hour": 11,
+      "count": 8
+     },
+     {
+      "weekday": 5,
+      "hour": 12,
+      "count": 5
+     }
+    ],
+    "actions": {
+     "altro": 48,
+     "event_join": 48,
+     "vote": 49,
+     "support": 50,
+     "proposal": 50
+    },
+    "limitations": "I voti sono conteggiati senza utente né opzione per preservarne l'anonimato. I dati orari sono disponibili solo da quando è attiva la registrazione degli eventi; non sono ricostruibili dagli aggregati settimanali precedenti."
+   }
+  },
+  {
+   "label": "ricerca_'among'",
+   "args": [
+    [
+     "among",
+     50
+    ],
+    {}
+   ],
+   "value": {
+    "query": "among",
+    "appearances": 4,
+    "ballot_entries": 3,
+    "wins": 2,
+    "timeline": [
+     {
+      "name": "Among % Us",
+      "type": "Gioco",
+      "week": 10,
+      "selected_by": null,
+      "selected_at": null,
+      "won": false,
+      "status": "pending"
+     },
+     {
+      "name": "Amongst the Stars",
+      "type": "Gioco",
+      "week": 9,
+      "selected_by": 2,
+      "selected_at": "2027-03-20T10:00:00+01:00",
+      "won": false,
+      "status": "picked"
+     },
+     {
+      "name": "Among Us 2",
+      "type": "Gioco",
+      "week": 7,
+      "selected_by": 1,
+      "selected_at": "2027-03-05T10:00:00+01:00",
+      "won": true
+     },
+     {
+      "name": "Among Us",
+      "type": "Gioco",
+      "week": 3,
+      "selected_by": 1,
+      "selected_at": "2027-01-05T10:00:00+01:00",
+      "won": true
+     }
+    ],
+    "limitations": "Le apparizioni conteggiano le proposte selezionate conservate e quelle ancora attive; le proposte non selezionate delle settimane già chiuse non sono archiviate come record interrogabili."
+   }
+  },
+  {
+   "label": "ricerca_'AMONG'",
+   "args": [
+    [
+     "AMONG",
+     50
+    ],
+    {}
+   ],
+   "value": {
+    "query": "AMONG",
+    "appearances": 4,
+    "ballot_entries": 3,
+    "wins": 2,
+    "timeline": [
+     {
+      "name": "Among % Us",
+      "type": "Gioco",
+      "week": 10,
+      "selected_by": null,
+      "selected_at": null,
+      "won": false,
+      "status": "pending"
+     },
+     {
+      "name": "Amongst the Stars",
+      "type": "Gioco",
+      "week": 9,
+      "selected_by": 2,
+      "selected_at": "2027-03-20T10:00:00+01:00",
+      "won": false,
+      "status": "picked"
+     },
+     {
+      "name": "Among Us 2",
+      "type": "Gioco",
+      "week": 7,
+      "selected_by": 1,
+      "selected_at": "2027-03-05T10:00:00+01:00",
+      "won": true
+     },
+     {
+      "name": "Among Us",
+      "type": "Gioco",
+      "week": 3,
+      "selected_by": 1,
+      "selected_at": "2027-01-05T10:00:00+01:00",
+      "won": true
+     }
+    ],
+    "limitations": "Le apparizioni conteggiano le proposte selezionate conservate e quelle ancora attive; le proposte non selezionate delle settimane già chiuse non sono archiviate come record interrogabili."
+   }
+  },
+  {
+   "label": "ricerca_'among us'",
+   "args": [
+    [
+     "among us",
+     50
+    ],
+    {}
+   ],
+   "value": {
+    "query": "among us",
+    "appearances": 2,
+    "ballot_entries": 2,
+    "wins": 2,
+    "timeline": [
+     {
+      "name": "Among Us 2",
+      "type": "Gioco",
+      "week": 7,
+      "selected_by": 1,
+      "selected_at": "2027-03-05T10:00:00+01:00",
+      "won": true
+     },
+     {
+      "name": "Among Us",
+      "type": "Gioco",
+      "week": 3,
+      "selected_by": 1,
+      "selected_at": "2027-01-05T10:00:00+01:00",
+      "won": true
+     }
+    ],
+    "limitations": "Le apparizioni conteggiano le proposte selezionate conservate e quelle ancora attive; le proposte non selezionate delle settimane già chiuse non sono archiviate come record interrogabili."
+   }
+  },
+  {
+   "label": "ricerca_'%'",
+   "args": [
+    [
+     "%",
+     50
+    ],
+    {}
+   ],
+   "error": [
+    "ValueError",
+    "La ricerca deve contenere almeno 2 caratteri."
+   ]
+  },
+  {
+   "label": "ricerca_'_'",
+   "args": [
+    [
+     "_",
+     50
+    ],
+    {}
+   ],
+   "error": [
+    "ValueError",
+    "La ricerca deve contenere almeno 2 caratteri."
+   ]
+  },
+  {
+   "label": "ricerca_'\\\\'",
+   "args": [
+    [
+     "\\",
+     50
+    ],
+    {}
+   ],
+   "error": [
+    "ValueError",
+    "La ricerca deve contenere almeno 2 caratteri."
+   ]
+  },
+  {
+   "label": "ricerca_'a_b'",
+   "args": [
+    [
+     "a_b",
+     50
+    ],
+    {}
+   ],
+   "value": {
+    "query": "a_b",
+    "appearances": 0,
+    "ballot_entries": 0,
+    "wins": 0,
+    "timeline": [],
+    "limitations": "Le apparizioni conteggiano le proposte selezionate conservate e quelle ancora attive; le proposte non selezionate delle settimane già chiuse non sono archiviate come record interrogabili."
+   }
+  },
+  {
+   "label": "ricerca_'snake'",
+   "args": [
+    [
+     "snake",
+     50
+    ],
+    {}
+   ],
+   "value": {
+    "query": "snake",
+    "appearances": 1,
+    "ballot_entries": 0,
+    "wins": 0,
+    "timeline": [
+     {
+      "name": "snake_case",
+      "type": "Gioco",
+      "week": 5,
+      "selected_by": null,
+      "selected_at": null,
+      "won": false
+     }
+    ],
+    "limitations": "Le apparizioni conteggiano le proposte selezionate conservate e quelle ancora attive; le proposte non selezionate delle settimane già chiuse non sono archiviate come record interrogabili."
+   }
+  },
+  {
+   "label": "ricerca_'snake_c'",
+   "args": [
+    [
+     "snake_c",
+     50
+    ],
+    {}
+   ],
+   "value": {
+    "query": "snake_c",
+    "appearances": 1,
+    "ballot_entries": 0,
+    "wins": 0,
+    "timeline": [
+     {
+      "name": "snake_case",
+      "type": "Gioco",
+      "week": 5,
+      "selected_by": null,
+      "selected_at": null,
+      "won": false
+     }
+    ],
+    "limitations": "Le apparizioni conteggiano le proposte selezionate conservate e quelle ancora attive; le proposte non selezionate delle settimane già chiuse non sono archiviate come record interrogabili."
+   }
+  },
+  {
+   "label": "ricerca_'é'",
+   "args": [
+    [
+     "é",
+     50
+    ],
+    {}
+   ],
+   "error": [
+    "ValueError",
+    "La ricerca deve contenere almeno 2 caratteri."
+   ]
+  },
+  {
+   "label": "ricerca_'É'",
+   "args": [
+    [
+     "É",
+     50
+    ],
+    {}
+   ],
+   "error": [
+    "ValueError",
+    "La ricerca deve contenere almeno 2 caratteri."
+   ]
+  },
+  {
+   "label": "ricerca_'ünï'",
+   "args": [
+    [
+     "ünï",
+     50
+    ],
+    {}
+   ],
+   "value": {
+    "query": "ünï",
+    "appearances": 1,
+    "ballot_entries": 0,
+    "wins": 0,
+    "timeline": [
+     {
+      "name": "Ünïcode",
+      "type": "Film",
+      "week": 10,
+      "selected_by": null,
+      "selected_at": null,
+      "won": false,
+      "status": "pending"
+     }
+    ],
+    "limitations": "Le apparizioni conteggiano le proposte selezionate conservate e quelle ancora attive; le proposte non selezionate delle settimane già chiuse non sono archiviate come record interrogabili."
+   }
+  },
+  {
+   "label": "ricerca_'  ab  '",
+   "args": [
+    [
+     "  ab  ",
+     50
+    ],
+    {}
+   ],
+   "value": {
+    "query": "ab",
+    "appearances": 0,
+    "ballot_entries": 0,
+    "wins": 0,
+    "timeline": [],
+    "limitations": "Le apparizioni conteggiano le proposte selezionate conservate e quelle ancora attive; le proposte non selezionate delle settimane già chiuse non sono archiviate come record interrogabili."
+   }
+  },
+  {
+   "label": "ricerca_'xxxxxxxxxxxx'",
+   "args": [
+    [
+     "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+     50
+    ],
+    {}
+   ],
+   "value": {
+    "query": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+    "appearances": 0,
+    "ballot_entries": 0,
+    "wins": 0,
+    "timeline": [],
+    "limitations": "Le apparizioni conteggiano le proposte selezionate conservate e quelle ancora attive; le proposte non selezionate delle settimane già chiuse non sono archiviate come record interrogabili."
+   }
+  },
+  {
+   "label": "ricerca_'a'",
+   "args": [
+    [
+     "a",
+     50
+    ],
+    {}
+   ],
+   "error": [
+    "ValueError",
+    "La ricerca deve contenere almeno 2 caratteri."
+   ]
+  },
+  {
+   "label": "ricerca_''",
+   "args": [
+    [
+     "",
+     50
+    ],
+    {}
+   ],
+   "error": [
+    "ValueError",
+    "La ricerca deve contenere almeno 2 caratteri."
+   ]
+  },
+  {
+   "label": "ricerca_' '",
+   "args": [
+    [
+     " ",
+     50
+    ],
+    {}
+   ],
+   "error": [
+    "ValueError",
+    "La ricerca deve contenere almeno 2 caratteri."
+   ]
+  },
+  {
+   "label": "ricerca_'ch'",
+   "args": [
+    [
+     "ch",
+     50
+    ],
+    {}
+   ],
+   "value": {
+    "query": "ch",
+    "appearances": 2,
+    "ballot_entries": 1,
+    "wins": 0,
+    "timeline": [
+     {
+      "name": "Chess",
+      "type": "Gioco",
+      "week": 10,
+      "selected_by": null,
+      "selected_at": null,
+      "won": false,
+      "status": "pending"
+     },
+     {
+      "name": "Chess 100%",
+      "type": "Gioco",
+      "week": 4,
+      "selected_by": 2,
+      "selected_at": "2027-02-05T10:00:00+01:00",
+      "won": false
+     }
+    ],
+    "limitations": "Le apparizioni conteggiano le proposte selezionate conservate e quelle ancora attive; le proposte non selezionate delle settimane già chiuse non sono archiviate come record interrogabili."
+   }
+  },
+  {
+   "label": "ricerca_'100%'",
+   "args": [
+    [
+     "100%",
+     50
+    ],
+    {}
+   ],
+   "value": {
+    "query": "100%",
+    "appearances": 1,
+    "ballot_entries": 1,
+    "wins": 0,
+    "timeline": [
+     {
+      "name": "Chess 100%",
+      "type": "Gioco",
+      "week": 4,
+      "selected_by": 2,
+      "selected_at": "2027-02-05T10:00:00+01:00",
+      "won": false
+     }
+    ],
+    "limitations": "Le apparizioni conteggiano le proposte selezionate conservate e quelle ancora attive; le proposte non selezionate delle settimane già chiuse non sono archiviate come record interrogabili."
+   }
+  },
+  {
+   "label": "ricerca_'Back\\\\s'",
+   "args": [
+    [
+     "Back\\s",
+     50
+    ],
+    {}
+   ],
+   "value": {
+    "query": "Back\\s",
+    "appearances": 1,
+    "ballot_entries": 1,
+    "wins": 0,
+    "timeline": [
+     {
+      "name": "Back\\slash",
+      "type": "Film",
+      "week": 6,
+      "selected_by": 3,
+      "selected_at": "",
+      "won": false
+     }
+    ],
+    "limitations": "Le apparizioni conteggiano le proposte selezionate conservate e quelle ancora attive; le proposte non selezionate delle settimane già chiuse non sono archiviate come record interrogabili."
+   }
+  },
+  {
+   "label": "ricerca_'zzz'",
+   "args": [
+    [
+     "zzz",
+     50
+    ],
+    {}
+   ],
+   "value": {
+    "query": "zzz",
+    "appearances": 0,
+    "ballot_entries": 0,
+    "wins": 0,
+    "timeline": [],
+    "limitations": "Le apparizioni conteggiano le proposte selezionate conservate e quelle ancora attive; le proposte non selezionate delle settimane già chiuse non sono archiviate come record interrogabili."
+   }
+  },
+  {
+   "label": "ricerca_limite_1",
+   "args": [
+    [
+     "among",
+     1
+    ],
+    {}
+   ],
+   "value": {
+    "query": "among",
+    "appearances": 1,
+    "ballot_entries": 0,
+    "wins": 0,
+    "timeline": [
+     {
+      "name": "Among % Us",
+      "type": "Gioco",
+      "week": 10,
+      "selected_by": null,
+      "selected_at": null,
+      "won": false,
+      "status": "pending"
+     }
+    ],
+    "limitations": "Le apparizioni conteggiano le proposte selezionate conservate e quelle ancora attive; le proposte non selezionate delle settimane già chiuse non sono archiviate come record interrogabili."
+   }
+  },
+  {
+   "label": "ricerca_limite_2",
+   "args": [
+    [
+     "among",
+     2
+    ],
+    {}
+   ],
+   "value": {
+    "query": "among",
+    "appearances": 2,
+    "ballot_entries": 1,
+    "wins": 0,
+    "timeline": [
+     {
+      "name": "Among % Us",
+      "type": "Gioco",
+      "week": 10,
+      "selected_by": null,
+      "selected_at": null,
+      "won": false,
+      "status": "pending"
+     },
+     {
+      "name": "Amongst the Stars",
+      "type": "Gioco",
+      "week": 9,
+      "selected_by": 2,
+      "selected_at": "2027-03-20T10:00:00+01:00",
+      "won": false,
+      "status": "picked"
+     }
+    ],
+    "limitations": "Le apparizioni conteggiano le proposte selezionate conservate e quelle ancora attive; le proposte non selezionate delle settimane già chiuse non sono archiviate come record interrogabili."
+   }
+  },
+  {
+   "label": "ricerca_limite_100",
+   "args": [
+    [
+     "a",
+     100
+    ],
+    {}
+   ],
+   "error": [
+    "ValueError",
+    "La ricerca deve contenere almeno 2 caratteri."
+   ]
+  },
+  {
+   "label": "precisione",
+   "args": [
+    [],
+    {}
+   ],
+   "value": [
+    {
+     "user_id": 1,
+     "name": "Alice",
+     "selected": 3,
+     "won": 2,
+     "accuracy_percent": 66.7,
+     "definition": "Percentuale di proposte selezionate che hanno pareggiato il massimo dei voti nel sondaggio community archiviato."
+    },
+    {
+     "user_id": 3,
+     "name": "Carlo Ünï",
+     "selected": 2,
+     "won": 0,
+     "accuracy_percent": 0.0,
+     "definition": "Percentuale di proposte selezionate che hanno pareggiato il massimo dei voti nel sondaggio community archiviato."
+    },
+    {
+     "user_id": 4,
+     "name": "Utente 4",
+     "selected": 2,
+     "won": 0,
+     "accuracy_percent": 0.0,
+     "definition": "Percentuale di proposte selezionate che hanno pareggiato il massimo dei voti nel sondaggio community archiviato."
+    },
+    {
+     "user_id": 2,
+     "name": "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB",
+     "selected": 1,
+     "won": 1,
+     "accuracy_percent": 100.0,
+     "definition": "Percentuale di proposte selezionate che hanno pareggiato il massimo dei voti nel sondaggio community archiviato."
+    }
+   ]
+  },
+  {
+   "label": "eventi_1",
+   "args": [
+    [
+     1
+    ],
+    {}
+   ],
+   "value": {
+    "reports": [
+     {
+      "id": 6,
+      "title": "Vecchia",
+      "started_at": "2027-02-24T10:00:00+01:00",
+      "duration_seconds": 7200,
+      "peak_participants": 3,
+      "participant_count": 3,
+      "average_presence_seconds": 20,
+      "speaking_seconds_estimated": 2.0,
+      "top_speakers": [
+       {
+        "user_id": 1,
+        "name": "Alice",
+        "speaking_seconds_estimated": 2.0,
+        "share_percent": 100.0
+       }
+      ],
+      "end_reason": "manuale"
+     }
+    ],
+    "limitations": "Durate di parlato stimate da pacchetti vocali; possono includere sovrapposizioni e non sono una trascrizione."
+   }
+  },
+  {
+   "label": "eventi_3",
+   "args": [
+    [
+     3
+    ],
+    {}
+   ],
+   "value": {
+    "reports": [
+     {
+      "id": 6,
+      "title": "Vecchia",
+      "started_at": "2027-02-24T10:00:00+01:00",
+      "duration_seconds": 7200,
+      "peak_participants": 3,
+      "participant_count": 3,
+      "average_presence_seconds": 20,
+      "speaking_seconds_estimated": 2.0,
+      "top_speakers": [
+       {
+        "user_id": 1,
+        "name": "Alice",
+        "speaking_seconds_estimated": 2.0,
+        "share_percent": 100.0
+       }
+      ],
+      "end_reason": "manuale"
+     },
+     {
+      "id": 5,
+      "title": "Prima del cambio ora",
+      "started_at": "2027-03-27T21:00:00+01:00",
+      "duration_seconds": 21600,
+      "peak_participants": 4,
+      "participant_count": 4,
+      "average_presence_seconds": 10,
+      "speaking_seconds_estimated": 1.0,
+      "top_speakers": [
+       {
+        "user_id": 1,
+        "name": "Alice",
+        "speaking_seconds_estimated": 1.0,
+        "share_percent": 100.0
+       }
+      ],
+      "end_reason": "manuale"
+     },
+     {
+      "id": 4,
+      "title": "Lampo",
+      "started_at": "2027-03-17T12:00:00+01:00",
+      "duration_seconds": 0,
+      "peak_participants": 0,
+      "participant_count": 0,
+      "average_presence_seconds": 0,
+      "speaking_seconds_estimated": 0,
+      "top_speakers": [],
+      "end_reason": "errore"
+     }
+    ],
+    "limitations": "Durate di parlato stimate da pacchetti vocali; possono includere sovrapposizioni e non sono una trascrizione."
+   }
+  },
+  {
+   "label": "eventi_30",
+   "args": [
+    [
+     30
+    ],
+    {}
+   ],
+   "value": {
+    "reports": [
+     {
+      "id": 6,
+      "title": "Vecchia",
+      "started_at": "2027-02-24T10:00:00+01:00",
+      "duration_seconds": 7200,
+      "peak_participants": 3,
+      "participant_count": 3,
+      "average_presence_seconds": 20,
+      "speaking_seconds_estimated": 2.0,
+      "top_speakers": [
+       {
+        "user_id": 1,
+        "name": "Alice",
+        "speaking_seconds_estimated": 2.0,
+        "share_percent": 100.0
+       }
+      ],
+      "end_reason": "manuale"
+     },
+     {
+      "id": 5,
+      "title": "Prima del cambio ora",
+      "started_at": "2027-03-27T21:00:00+01:00",
+      "duration_seconds": 21600,
+      "peak_participants": 4,
+      "participant_count": 4,
+      "average_presence_seconds": 10,
+      "speaking_seconds_estimated": 1.0,
+      "top_speakers": [
+       {
+        "user_id": 1,
+        "name": "Alice",
+        "speaking_seconds_estimated": 1.0,
+        "share_percent": 100.0
+       }
+      ],
+      "end_reason": "manuale"
+     },
+     {
+      "id": 4,
+      "title": "Lampo",
+      "started_at": "2027-03-17T12:00:00+01:00",
+      "duration_seconds": 0,
+      "peak_participants": 0,
+      "participant_count": 0,
+      "average_presence_seconds": 0,
+      "speaking_seconds_estimated": 0,
+      "top_speakers": [],
+      "end_reason": "errore"
+     },
+     {
+      "id": 3,
+      "title": "Serata lunga é",
+      "started_at": "2027-03-24T07:30:00+01:00",
+      "duration_seconds": 16200,
+      "peak_participants": 9,
+      "participant_count": 12,
+      "average_presence_seconds": 2537,
+      "speaking_seconds_estimated": 1925.8,
+      "top_speakers": [
+       {
+        "user_id": 1,
+        "name": "Alice",
+        "speaking_seconds_estimated": 1000.0,
+        "share_percent": 51.9
+       },
+       {
+        "user_id": 2,
+        "name": "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB",
+        "speaking_seconds_estimated": 500.8,
+        "share_percent": 26.0
+       },
+       {
+        "user_id": 3,
+        "name": "Carlo Ünï",
+        "speaking_seconds_estimated": 250.0,
+        "share_percent": 13.0
+       },
+       {
+        "user_id": 5,
+        "name": "Utente 5",
+        "speaking_seconds_estimated": 100.0,
+        "share_percent": 5.2
+       },
+       {
+        "user_id": 6,
+        "name": "Utente 6",
+        "speaking_seconds_estimated": 50.0,
+        "share_percent": 2.6
+       }
+      ],
+      "end_reason": "disconnessione"
+     },
+     {
+      "id": 2,
+      "title": "Serata 2",
+      "started_at": "2027-03-31T09:00:00+02:00",
+      "duration_seconds": 10800,
+      "peak_participants": 5,
+      "participant_count": 6,
+      "average_presence_seconds": 2750,
+      "speaking_seconds_estimated": 100.5,
+      "top_speakers": [
+       {
+        "user_id": 1,
+        "name": "Alice",
+        "speaking_seconds_estimated": 100.5,
+        "share_percent": 100.0
+       }
+      ],
+      "end_reason": "completato"
+     },
+     {
+      "id": 1,
+      "title": "Serata 1",
+      "started_at": "2027-04-07T10:00:00+02:00",
+      "duration_seconds": 7200,
+      "peak_participants": 8,
+      "participant_count": 10,
+      "average_presence_seconds": 3175,
+      "speaking_seconds_estimated": 1000.0,
+      "top_speakers": [
+       {
+        "user_id": 1,
+        "name": "Alice",
+        "speaking_seconds_estimated": 600.0,
+        "share_percent": 60.0
+       },
+       {
+        "user_id": 2,
+        "name": "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB",
+        "speaking_seconds_estimated": 300.0,
+        "share_percent": 30.0
+       },
+       {
+        "user_id": 9,
+        "name": "Utente 9",
+        "speaking_seconds_estimated": 100.0,
+        "share_percent": 10.0
+       }
+      ],
+      "end_reason": "manuale"
+     }
+    ],
+    "limitations": "Durate di parlato stimate da pacchetti vocali; possono includere sovrapposizioni e non sono una trascrizione."
+   }
+  },
+  {
+   "label": "eventi_100",
+   "args": [
+    [
+     100
+    ],
+    {}
+   ],
+   "value": {
+    "reports": [
+     {
+      "id": 6,
+      "title": "Vecchia",
+      "started_at": "2027-02-24T10:00:00+01:00",
+      "duration_seconds": 7200,
+      "peak_participants": 3,
+      "participant_count": 3,
+      "average_presence_seconds": 20,
+      "speaking_seconds_estimated": 2.0,
+      "top_speakers": [
+       {
+        "user_id": 1,
+        "name": "Alice",
+        "speaking_seconds_estimated": 2.0,
+        "share_percent": 100.0
+       }
+      ],
+      "end_reason": "manuale"
+     },
+     {
+      "id": 5,
+      "title": "Prima del cambio ora",
+      "started_at": "2027-03-27T21:00:00+01:00",
+      "duration_seconds": 21600,
+      "peak_participants": 4,
+      "participant_count": 4,
+      "average_presence_seconds": 10,
+      "speaking_seconds_estimated": 1.0,
+      "top_speakers": [
+       {
+        "user_id": 1,
+        "name": "Alice",
+        "speaking_seconds_estimated": 1.0,
+        "share_percent": 100.0
+       }
+      ],
+      "end_reason": "manuale"
+     },
+     {
+      "id": 4,
+      "title": "Lampo",
+      "started_at": "2027-03-17T12:00:00+01:00",
+      "duration_seconds": 0,
+      "peak_participants": 0,
+      "participant_count": 0,
+      "average_presence_seconds": 0,
+      "speaking_seconds_estimated": 0,
+      "top_speakers": [],
+      "end_reason": "errore"
+     },
+     {
+      "id": 3,
+      "title": "Serata lunga é",
+      "started_at": "2027-03-24T07:30:00+01:00",
+      "duration_seconds": 16200,
+      "peak_participants": 9,
+      "participant_count": 12,
+      "average_presence_seconds": 2537,
+      "speaking_seconds_estimated": 1925.8,
+      "top_speakers": [
+       {
+        "user_id": 1,
+        "name": "Alice",
+        "speaking_seconds_estimated": 1000.0,
+        "share_percent": 51.9
+       },
+       {
+        "user_id": 2,
+        "name": "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB",
+        "speaking_seconds_estimated": 500.8,
+        "share_percent": 26.0
+       },
+       {
+        "user_id": 3,
+        "name": "Carlo Ünï",
+        "speaking_seconds_estimated": 250.0,
+        "share_percent": 13.0
+       },
+       {
+        "user_id": 5,
+        "name": "Utente 5",
+        "speaking_seconds_estimated": 100.0,
+        "share_percent": 5.2
+       },
+       {
+        "user_id": 6,
+        "name": "Utente 6",
+        "speaking_seconds_estimated": 50.0,
+        "share_percent": 2.6
+       }
+      ],
+      "end_reason": "disconnessione"
+     },
+     {
+      "id": 2,
+      "title": "Serata 2",
+      "started_at": "2027-03-31T09:00:00+02:00",
+      "duration_seconds": 10800,
+      "peak_participants": 5,
+      "participant_count": 6,
+      "average_presence_seconds": 2750,
+      "speaking_seconds_estimated": 100.5,
+      "top_speakers": [
+       {
+        "user_id": 1,
+        "name": "Alice",
+        "speaking_seconds_estimated": 100.5,
+        "share_percent": 100.0
+       }
+      ],
+      "end_reason": "completato"
+     },
+     {
+      "id": 1,
+      "title": "Serata 1",
+      "started_at": "2027-04-07T10:00:00+02:00",
+      "duration_seconds": 7200,
+      "peak_participants": 8,
+      "participant_count": 10,
+      "average_presence_seconds": 3175,
+      "speaking_seconds_estimated": 1000.0,
+      "top_speakers": [
+       {
+        "user_id": 1,
+        "name": "Alice",
+        "speaking_seconds_estimated": 600.0,
+        "share_percent": 60.0
+       },
+       {
+        "user_id": 2,
+        "name": "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB",
+        "speaking_seconds_estimated": 300.0,
+        "share_percent": 30.0
+       },
+       {
+        "user_id": 9,
+        "name": "Utente 9",
+        "speaking_seconds_estimated": 100.0,
+        "share_percent": 10.0
+       }
+      ],
+      "end_reason": "manuale"
+     }
+    ],
+    "limitations": "Durate di parlato stimate da pacchetti vocali; possono includere sovrapposizioni e non sono una trascrizione."
+   }
+  },
+  {
+   "label": "panoramica",
+   "args": [
+    [],
+    {}
+   ],
+   "value": {
+    "current_week": 10,
+    "pending_proposals": 5,
+    "selected_proposals": 1,
+    "completed_events": 6,
+    "active_events": 1,
+    "audit_entries": 3,
+    "community_health": {
+     "period_days": 30,
+     "score": 90,
+     "previous_score": 73,
+     "trend": 17,
+     "metrics": {
+      "score": 90,
+      "active_users": 9,
+      "active_days": 11,
+      "active_weeks": 5,
+      "proposals": 25,
+      "supports": 25,
+      "votes": 24,
+      "event_attendance": 24,
+      "events": 5,
+      "components": {
+       "partecipazione": 31,
+       "continuità": 25,
+       "varietà": 20,
+       "coinvolgimento": 9,
+       "eventi": 10
+      }
+     },
+     "methodology": "Punteggio euristico 0-100: utenti attivi (35), continuità dei giorni (25), varietà di 4 azioni (20), supporti e voti aggregati (15), eventi conclusi (10). I componenti sono normalizzati da 105 a 100. È un indicatore descrittivo, non una misura scientifica."
+    }
+   }
+  },
+  {
+   "label": "record",
+   "args": [
+    [],
+    {}
+   ],
+   "value": [
+    {
+     "key": "a",
+     "metric": 9,
+     "label": "Alfa",
+     "week": 4,
+     "user_id": 1
+    },
+    {
+     "key": "z",
+     "metric": 5,
+     "label": "Zeta",
+     "week": 3,
+     "user_id": null
+    }
+   ]
+  }
+ ],
+ "period_weeks": [
+  [
+   10,
+   30,
+   0,
+   [
+    6,
+    10
+   ]
+  ],
+  [
+   10,
+   30,
+   1,
+   [
+    1,
+    5
+   ]
+  ],
+  [
+   10,
+   7,
+   0,
+   [
+    10,
+    10
+   ]
+  ],
+  [
+   10,
+   7,
+   1,
+   [
+    9,
+    9
+   ]
+  ],
+  [
+   3,
+   30,
+   0,
+   [
+    -1,
+    3
+   ]
+  ],
+  [
+   10,
+   1,
+   0,
+   [
+    10,
+    10
+   ]
+  ],
+  [
+   10,
+   365,
+   0,
+   [
+    -42,
+    10
+   ]
+  ],
+  [
+   10,
+   8,
+   0,
+   [
+    9,
+    10
+   ]
+  ],
+  [
+   10,
+   14,
+   1,
+   [
+    7,
+    8
+   ]
+  ]
+ ],
+ "cache": [
+  [
+   "subito_dopo",
+   3
+  ],
+  [
+   "dopo_14_9",
+   3
+  ],
+  [
+   "dopo_15_0",
+   4
+  ],
+  [
+   "ancora_in_cache",
+   4
+  ],
+  [
+   "dopo_clear",
+   5
+  ],
+  [
+   "chiavi",
+   [
+    25,
+    26,
+    26,
+    25
+   ]
+  ],
+  [
+   "copia",
+   true
+  ]
+ ],
+ "routes": [
+  {
+   "label": "non_autenticato_overview",
+   "path": "/api/site/stats/overview",
+   "status": 401,
+   "headers": {
+    "Cache-Control": "no-store",
+    "Content-Type": "application/json; charset=utf-8"
+   },
+   "body": "{\"error\": \"Accesso Discord richiesto\"}"
+  },
+  {
+   "label": "non_autenticato_health",
+   "path": "/api/site/stats/health",
+   "status": 401,
+   "headers": {
+    "Cache-Control": "no-store",
+    "Content-Type": "application/json; charset=utf-8"
+   },
+   "body": "{\"error\": \"Accesso Discord richiesto\"}"
+  },
+  {
+   "label": "non_autenticato_heatmap",
+   "path": "/api/site/stats/heatmap",
+   "status": 401,
+   "headers": {
+    "Cache-Control": "no-store",
+    "Content-Type": "application/json; charset=utf-8"
+   },
+   "body": "{\"error\": \"Accesso Discord richiesto\"}"
+  },
+  {
+   "label": "non_autenticato_accuracy",
+   "path": "/api/site/stats/accuracy",
+   "status": 401,
+   "headers": {
+    "Cache-Control": "no-store",
+    "Content-Type": "application/json; charset=utf-8"
+   },
+   "body": "{\"error\": \"Accesso Discord richiesto\"}"
+  },
+  {
+   "label": "non_autenticato_events",
+   "path": "/api/site/stats/events",
+   "status": 401,
+   "headers": {
+    "Cache-Control": "no-store",
+    "Content-Type": "application/json; charset=utf-8"
+   },
+   "body": "{\"error\": \"Accesso Discord richiesto\"}"
+  },
+  {
+   "label": "non_autenticato_history",
+   "path": "/api/site/stats/history",
+   "status": 401,
+   "headers": {
+    "Cache-Control": "no-store",
+    "Content-Type": "application/json; charset=utf-8"
+   },
+   "body": "{\"error\": \"Accesso Discord richiesto\"}"
+  },
+  {
+   "label": "panoramica",
+   "path": "/api/site/stats/overview",
+   "status": 200,
+   "headers": {
+    "Cache-Control": "no-store",
+    "Content-Type": "application/json; charset=utf-8"
+   },
+   "body": "{\"current_week\": 10, \"pending_proposals\": 5, \"selected_proposals\": 1, \"completed_events\": 6, \"active_events\": 1, \"audit_entries\": 3, \"community_health\": {\"period_days\": 30, \"score\": 90, \"previous_score\": 73, \"trend\": 17, \"metrics\": {\"score\": 90, \"active_users\": 9, \"active_days\": 11, \"active_weeks\": 5, \"proposals\": 25, \"supports\": 25, \"votes\": 24, \"event_attendance\": 24, \"events\": 5, \"components\": {\"partecipazione\": 31, \"continuit\\u00e0\": 25, \"variet\\u00e0\": 20, \"coinvolgimento\": 9, \"eventi\": 10}}, \"methodology\": \"Punteggio euristico 0-100: utenti attivi (35), continuit\\u00e0 dei giorni (25), variet\\u00e0 di 4 azioni (20), supporti e voti aggregati (15), eventi conclusi (10). I componenti sono normalizzati da 105 a 100. \\u00c8 un indicatore descrittivo, non una misura scientifica.\"}}"
+  },
+  {
+   "label": "salute",
+   "path": "/api/site/stats/health",
+   "status": 200,
+   "headers": {
+    "Cache-Control": "no-store",
+    "Content-Type": "application/json; charset=utf-8"
+   },
+   "body": "{\"period_days\": 30, \"score\": 90, \"previous_score\": 73, \"trend\": 17, \"metrics\": {\"score\": 90, \"active_users\": 9, \"active_days\": 11, \"active_weeks\": 5, \"proposals\": 25, \"supports\": 25, \"votes\": 24, \"event_attendance\": 24, \"events\": 5, \"components\": {\"partecipazione\": 31, \"continuit\\u00e0\": 25, \"variet\\u00e0\": 20, \"coinvolgimento\": 9, \"eventi\": 10}}, \"methodology\": \"Punteggio euristico 0-100: utenti attivi (35), continuit\\u00e0 dei giorni (25), variet\\u00e0 di 4 azioni (20), supporti e voti aggregati (15), eventi conclusi (10). I componenti sono normalizzati da 105 a 100. \\u00c8 un indicatore descrittivo, non una misura scientifica.\"}"
+  },
+  {
+   "label": "salute_7",
+   "path": "/api/site/stats/health?days=7",
+   "status": 200,
+   "headers": {
+    "Cache-Control": "no-store",
+    "Content-Type": "application/json; charset=utf-8"
+   },
+   "body": "{\"period_days\": 7, \"score\": 49, \"previous_score\": 43, \"trend\": 6, \"metrics\": {\"score\": 49, \"active_users\": 4, \"active_days\": 2, \"active_weeks\": 1, \"proposals\": 24, \"supports\": 1, \"votes\": 0, \"event_attendance\": 0, \"events\": 1, \"components\": {\"partecipazione\": 14, \"continuit\\u00e0\": 25, \"variet\\u00e0\": 10, \"coinvolgimento\": 0, \"eventi\": 2}}, \"methodology\": \"Punteggio euristico 0-100: utenti attivi (35), continuit\\u00e0 dei giorni (25), variet\\u00e0 di 4 azioni (20), supporti e voti aggregati (15), eventi conclusi (10). I componenti sono normalizzati da 105 a 100. \\u00c8 un indicatore descrittivo, non una misura scientifica.\"}"
+  },
+  {
+   "label": "salute_365",
+   "path": "/api/site/stats/health?days=365",
+   "status": 200,
+   "headers": {
+    "Cache-Control": "no-store",
+    "Content-Type": "application/json; charset=utf-8"
+   },
+   "body": "{\"period_days\": 365, \"score\": 77, \"previous_score\": 0, \"trend\": 77, \"metrics\": {\"score\": 77, \"active_users\": 9, \"active_days\": 21, \"active_weeks\": 10, \"proposals\": 50, \"supports\": 49, \"votes\": 48, \"event_attendance\": 48, \"events\": 6, \"components\": {\"partecipazione\": 31, \"continuit\\u00e0\": 5, \"variet\\u00e0\": 20, \"coinvolgimento\": 15, \"eventi\": 10}}, \"methodology\": \"Punteggio euristico 0-100: utenti attivi (35), continuit\\u00e0 dei giorni (25), variet\\u00e0 di 4 azioni (20), supporti e voti aggregati (15), eventi conclusi (10). I componenti sono normalizzati da 105 a 100. \\u00c8 un indicatore descrittivo, non una misura scientifica.\"}"
+  },
+  {
+   "label": "salute_vuoto",
+   "path": "/api/site/stats/health?days=",
+   "status": 200,
+   "headers": {
+    "Cache-Control": "no-store",
+    "Content-Type": "application/json; charset=utf-8"
+   },
+   "body": "{\"period_days\": 30, \"score\": 90, \"previous_score\": 73, \"trend\": 17, \"metrics\": {\"score\": 90, \"active_users\": 9, \"active_days\": 11, \"active_weeks\": 5, \"proposals\": 25, \"supports\": 25, \"votes\": 24, \"event_attendance\": 24, \"events\": 5, \"components\": {\"partecipazione\": 31, \"continuit\\u00e0\": 25, \"variet\\u00e0\": 20, \"coinvolgimento\": 9, \"eventi\": 10}}, \"methodology\": \"Punteggio euristico 0-100: utenti attivi (35), continuit\\u00e0 dei giorni (25), variet\\u00e0 di 4 azioni (20), supporti e voti aggregati (15), eventi conclusi (10). I componenti sono normalizzati da 105 a 100. \\u00c8 un indicatore descrittivo, non una misura scientifica.\"}"
+  },
+  {
+   "label": "salute_6",
+   "path": "/api/site/stats/health?days=6",
+   "status": 400,
+   "headers": {
+    "Cache-Control": "no-store",
+    "Content-Type": "application/json; charset=utf-8"
+   },
+   "body": "{\"error\": \"Il periodo in giorni deve essere compreso tra 7 e 365\"}"
+  },
+  {
+   "label": "salute_366",
+   "path": "/api/site/stats/health?days=366",
+   "status": 400,
+   "headers": {
+    "Cache-Control": "no-store",
+    "Content-Type": "application/json; charset=utf-8"
+   },
+   "body": "{\"error\": \"Il periodo in giorni deve essere compreso tra 7 e 365\"}"
+  },
+  {
+   "label": "salute_testo",
+   "path": "/api/site/stats/health?days=abc",
+   "status": 400,
+   "headers": {
+    "Cache-Control": "no-store",
+    "Content-Type": "application/json; charset=utf-8"
+   },
+   "body": "{\"error\": \"Il periodo in giorni non valido\"}"
+  },
+  {
+   "label": "salute_spazi",
+   "path": "/api/site/stats/health?days=%2010%20",
+   "status": 200,
+   "headers": {
+    "Cache-Control": "no-store",
+    "Content-Type": "application/json; charset=utf-8"
+   },
+   "body": "{\"period_days\": 10, \"score\": 56, \"previous_score\": 60, \"trend\": -4, \"metrics\": {\"score\": 56, \"active_users\": 5, \"active_days\": 4, \"active_weeks\": 2, \"proposals\": 24, \"supports\": 25, \"votes\": 0, \"event_attendance\": 0, \"events\": 1, \"components\": {\"partecipazione\": 17, \"continuit\\u00e0\": 25, \"variet\\u00e0\": 10, \"coinvolgimento\": 5, \"eventi\": 2}}, \"methodology\": \"Punteggio euristico 0-100: utenti attivi (35), continuit\\u00e0 dei giorni (25), variet\\u00e0 di 4 azioni (20), supporti e voti aggregati (15), eventi conclusi (10). I componenti sono normalizzati da 105 a 100. \\u00c8 un indicatore descrittivo, non una misura scientifica.\"}"
+  },
+  {
+   "label": "salute_segno",
+   "path": "/api/site/stats/health?days=%2B14",
+   "status": 200,
+   "headers": {
+    "Cache-Control": "no-store",
+    "Content-Type": "application/json; charset=utf-8"
+   },
+   "body": "{\"period_days\": 14, \"score\": 60, \"previous_score\": 64, \"trend\": -4, \"metrics\": {\"score\": 60, \"active_users\": 5, \"active_days\": 4, \"active_weeks\": 2, \"proposals\": 24, \"supports\": 25, \"votes\": 0, \"event_attendance\": 0, \"events\": 3, \"components\": {\"partecipazione\": 17, \"continuit\\u00e0\": 25, \"variet\\u00e0\": 10, \"coinvolgimento\": 5, \"eventi\": 6}}, \"methodology\": \"Punteggio euristico 0-100: utenti attivi (35), continuit\\u00e0 dei giorni (25), variet\\u00e0 di 4 azioni (20), supporti e voti aggregati (15), eventi conclusi (10). I componenti sono normalizzati da 105 a 100. \\u00c8 un indicatore descrittivo, non una misura scientifica.\"}"
+  },
+  {
+   "label": "salute_underscore",
+   "path": "/api/site/stats/health?days=1_0",
+   "status": 200,
+   "headers": {
+    "Cache-Control": "no-store",
+    "Content-Type": "application/json; charset=utf-8"
+   },
+   "body": "{\"period_days\": 10, \"score\": 56, \"previous_score\": 60, \"trend\": -4, \"metrics\": {\"score\": 56, \"active_users\": 5, \"active_days\": 4, \"active_weeks\": 2, \"proposals\": 24, \"supports\": 25, \"votes\": 0, \"event_attendance\": 0, \"events\": 1, \"components\": {\"partecipazione\": 17, \"continuit\\u00e0\": 25, \"variet\\u00e0\": 10, \"coinvolgimento\": 5, \"eventi\": 2}}, \"methodology\": \"Punteggio euristico 0-100: utenti attivi (35), continuit\\u00e0 dei giorni (25), variet\\u00e0 di 4 azioni (20), supporti e voti aggregati (15), eventi conclusi (10). I componenti sono normalizzati da 105 a 100. \\u00c8 un indicatore descrittivo, non una misura scientifica.\"}"
+  },
+  {
+   "label": "salute_decimale",
+   "path": "/api/site/stats/health?days=7.5",
+   "status": 400,
+   "headers": {
+    "Cache-Control": "no-store",
+    "Content-Type": "application/json; charset=utf-8"
+   },
+   "body": "{\"error\": \"Il periodo in giorni non valido\"}"
+  },
+  {
+   "label": "salute_doppio",
+   "path": "/api/site/stats/health?days=7&days=90",
+   "status": 200,
+   "headers": {
+    "Cache-Control": "no-store",
+    "Content-Type": "application/json; charset=utf-8"
+   },
+   "body": "{\"period_days\": 7, \"score\": 49, \"previous_score\": 43, \"trend\": 6, \"metrics\": {\"score\": 49, \"active_users\": 4, \"active_days\": 2, \"active_weeks\": 1, \"proposals\": 24, \"supports\": 1, \"votes\": 0, \"event_attendance\": 0, \"events\": 1, \"components\": {\"partecipazione\": 14, \"continuit\\u00e0\": 25, \"variet\\u00e0\": 10, \"coinvolgimento\": 0, \"eventi\": 2}}, \"methodology\": \"Punteggio euristico 0-100: utenti attivi (35), continuit\\u00e0 dei giorni (25), variet\\u00e0 di 4 azioni (20), supporti e voti aggregati (15), eventi conclusi (10). I componenti sono normalizzati da 105 a 100. \\u00c8 un indicatore descrittivo, non una misura scientifica.\"}"
+  },
+  {
+   "label": "mappa",
+   "path": "/api/site/stats/heatmap",
+   "status": 200,
+   "headers": {
+    "Cache-Control": "no-store",
+    "Content-Type": "application/json; charset=utf-8"
+   },
+   "body": "{\"period_days\": 30, \"timezone\": \"Europe/Rome\", \"weekday_order\": [\"Lun\", \"Mar\", \"Mer\", \"Gio\", \"Ven\", \"Sab\", \"Dom\"], \"cells\": [{\"weekday\": 3, \"hour\": 11, \"count\": 2}, {\"weekday\": 4, \"hour\": 11, \"count\": 2}, {\"weekday\": 4, \"hour\": 12, \"count\": 6}, {\"weekday\": 4, \"hour\": 13, \"count\": 2}, {\"weekday\": 4, \"hour\": 14, \"count\": 6}, {\"weekday\": 4, \"hour\": 15, \"count\": 6}, {\"weekday\": 4, \"hour\": 16, \"count\": 2}, {\"weekday\": 4, \"hour\": 17, \"count\": 6}, {\"weekday\": 4, \"hour\": 18, \"count\": 8}, {\"weekday\": 4, \"hour\": 19, \"count\": 2}, {\"weekday\": 4, \"hour\": 20, \"count\": 6}, {\"weekday\": 4, \"hour\": 21, \"count\": 6}, {\"weekday\": 4, \"hour\": 22, \"count\": 2}, {\"weekday\": 4, \"hour\": 23, \"count\": 6}, {\"weekday\": 5, \"hour\": 0, \"count\": 8}, {\"weekday\": 5, \"hour\": 1, \"count\": 2}, {\"weekday\": 5, \"hour\": 2, \"count\": 6}, {\"weekday\": 5, \"hour\": 3, \"count\": 6}, {\"weekday\": 5, \"hour\": 4, \"count\": 2}, {\"weekday\": 5, \"hour\": 5, \"count\": 6}, {\"weekday\": 5, \"hour\": 6, \"count\": 8}, {\"weekday\": 5, \"hour\": 7, \"count\": 2}, {\"weekday\": 5, \"hour\": 8, \"count\": 6}, {\"weekday\": 5, \"hour\": 9, \"count\": 6}, {\"weekday\": 5, \"hour\": 10, \"count\": 2}, {\"weekday\": 5, \"hour\": 11, \"count\": 4}, {\"weekday\": 5, \"hour\": 12, \"count\": 5}], \"actions\": {\"proposal\": 26, \"altro\": 24, \"event_join\": 24, \"vote\": 25, \"support\": 26}, \"limitations\": \"I voti sono conteggiati senza utente n\\u00e9 opzione per preservarne l'anonimato. I dati orari sono disponibili solo da quando \\u00e8 attiva la registrazione degli eventi; non sono ricostruibili dagli aggregati settimanali precedenti.\"}"
+  },
+  {
+   "label": "mappa_14",
+   "path": "/api/site/stats/heatmap?days=14",
+   "status": 200,
+   "headers": {
+    "Cache-Control": "no-store",
+    "Content-Type": "application/json; charset=utf-8"
+   },
+   "body": "{\"period_days\": 14, \"timezone\": \"Europe/Rome\", \"weekday_order\": [\"Lun\", \"Mar\", \"Mer\", \"Gio\", \"Ven\", \"Sab\", \"Dom\"], \"cells\": [{\"weekday\": 4, \"hour\": 12, \"count\": 2}, {\"weekday\": 4, \"hour\": 13, \"count\": 2}, {\"weekday\": 4, \"hour\": 15, \"count\": 4}, {\"weekday\": 4, \"hour\": 16, \"count\": 2}, {\"weekday\": 4, \"hour\": 18, \"count\": 4}, {\"weekday\": 4, \"hour\": 19, \"count\": 2}, {\"weekday\": 4, \"hour\": 21, \"count\": 4}, {\"weekday\": 4, \"hour\": 22, \"count\": 2}, {\"weekday\": 5, \"hour\": 0, \"count\": 4}, {\"weekday\": 5, \"hour\": 1, \"count\": 2}, {\"weekday\": 5, \"hour\": 3, \"count\": 4}, {\"weekday\": 5, \"hour\": 4, \"count\": 2}, {\"weekday\": 5, \"hour\": 6, \"count\": 4}, {\"weekday\": 5, \"hour\": 7, \"count\": 2}, {\"weekday\": 5, \"hour\": 9, \"count\": 4}, {\"weekday\": 5, \"hour\": 10, \"count\": 2}, {\"weekday\": 5, \"hour\": 11, \"count\": 2}, {\"weekday\": 5, \"hour\": 12, \"count\": 5}], \"actions\": {\"vote\": 3, \"support\": 26, \"proposal\": 24}, \"limitations\": \"I voti sono conteggiati senza utente n\\u00e9 opzione per preservarne l'anonimato. I dati orari sono disponibili solo da quando \\u00e8 attiva la registrazione degli eventi; non sono ricostruibili dagli aggregati settimanali precedenti.\"}"
+  },
+  {
+   "label": "mappa_errore",
+   "path": "/api/site/stats/heatmap?days=5",
+   "status": 400,
+   "headers": {
+    "Cache-Control": "no-store",
+    "Content-Type": "application/json; charset=utf-8"
+   },
+   "body": "{\"error\": \"Il periodo in giorni deve essere compreso tra 7 e 365\"}"
+  },
+  {
+   "label": "precisione",
+   "path": "/api/site/stats/accuracy",
+   "status": 200,
+   "headers": {
+    "Cache-Control": "no-store",
+    "Content-Type": "application/json; charset=utf-8"
+   },
+   "body": "{\"definition\": \"Percentuale di proposte selezionate che hanno pareggiato il massimo dei voti nel sondaggio community archiviato.\", \"staff\": [{\"user_id\": \"1\", \"name\": \"Alice\", \"selected\": 3, \"won\": 2, \"accuracy_percent\": 66.7}, {\"user_id\": \"3\", \"name\": \"Carlo \\u00dcn\\u00ef\", \"selected\": 2, \"won\": 0, \"accuracy_percent\": 0.0}, {\"user_id\": \"4\", \"name\": \"Utente 4\", \"selected\": 2, \"won\": 0, \"accuracy_percent\": 0.0}, {\"user_id\": \"2\", \"name\": \"BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB\", \"selected\": 1, \"won\": 1, \"accuracy_percent\": 100.0}]}"
+  },
+  {
+   "label": "eventi",
+   "path": "/api/site/stats/events",
+   "status": 200,
+   "headers": {
+    "Cache-Control": "no-store",
+    "Content-Type": "application/json; charset=utf-8"
+   },
+   "body": "{\"limitations\": \"Durate di parlato stimate da pacchetti vocali; possono includere sovrapposizioni e non sono una trascrizione.\", \"reports\": [{\"id\": 6, \"title\": \"Vecchia\", \"started_at\": \"2027-02-24T10:00:00+01:00\", \"duration_seconds\": 7200, \"peak_participants\": 3, \"participant_count\": 3, \"average_presence_seconds\": 20, \"speaking_seconds_estimated\": 2.0, \"top_speakers\": [{\"user_id\": \"1\", \"name\": \"Alice\", \"speaking_seconds_estimated\": 2.0, \"share_percent\": 100.0}], \"end_reason\": \"manuale\"}, {\"id\": 5, \"title\": \"Prima del cambio ora\", \"started_at\": \"2027-03-27T21:00:00+01:00\", \"duration_seconds\": 21600, \"peak_participants\": 4, \"participant_count\": 4, \"average_presence_seconds\": 10, \"speaking_seconds_estimated\": 1.0, \"top_speakers\": [{\"user_id\": \"1\", \"name\": \"Alice\", \"speaking_seconds_estimated\": 1.0, \"share_percent\": 100.0}], \"end_reason\": \"manuale\"}, {\"id\": 4, \"title\": \"Lampo\", \"started_at\": \"2027-03-17T12:00:00+01:00\", \"duration_seconds\": 0, \"peak_participants\": 0, \"participant_count\": 0, \"average_presence_seconds\": 0, \"speaking_seconds_estimated\": 0, \"top_speakers\": [], \"end_reason\": \"errore\"}, {\"id\": 3, \"title\": \"Serata lunga \\u00e9\", \"started_at\": \"2027-03-24T07:30:00+01:00\", \"duration_seconds\": 16200, \"peak_participants\": 9, \"participant_count\": 12, \"average_presence_seconds\": 2537, \"speaking_seconds_estimated\": 1925.8, \"top_speakers\": [{\"user_id\": \"1\", \"name\": \"Alice\", \"speaking_seconds_estimated\": 1000.0, \"share_percent\": 51.9}, {\"user_id\": \"2\", \"name\": \"BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB\", \"speaking_seconds_estimated\": 500.8, \"share_percent\": 26.0}, {\"user_id\": \"3\", \"name\": \"Carlo \\u00dcn\\u00ef\", \"speaking_seconds_estimated\": 250.0, \"share_percent\": 13.0}, {\"user_id\": \"5\", \"name\": \"Utente 5\", \"speaking_seconds_estimated\": 100.0, \"share_percent\": 5.2}, {\"user_id\": \"6\", \"name\": \"Utente 6\", \"speaking_seconds_estimated\": 50.0, \"share_percent\": 2.6}], \"end_reason\": \"disconnessione\"}, {\"id\": 2, \"title\": \"Serata 2\", \"started_at\": \"2027-03-31T09:00:00+02:00\", \"duration_seconds\": 10800, \"peak_participants\": 5, \"participant_count\": 6, \"average_presence_seconds\": 2750, \"speaking_seconds_estimated\": 100.5, \"top_speakers\": [{\"user_id\": \"1\", \"name\": \"Alice\", \"speaking_seconds_estimated\": 100.5, \"share_percent\": 100.0}], \"end_reason\": \"completato\"}, {\"id\": 1, \"title\": \"Serata 1\", \"started_at\": \"2027-04-07T10:00:00+02:00\", \"duration_seconds\": 7200, \"peak_participants\": 8, \"participant_count\": 10, \"average_presence_seconds\": 3175, \"speaking_seconds_estimated\": 1000.0, \"top_speakers\": [{\"user_id\": \"1\", \"name\": \"Alice\", \"speaking_seconds_estimated\": 600.0, \"share_percent\": 60.0}, {\"user_id\": \"2\", \"name\": \"BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB\", \"speaking_seconds_estimated\": 300.0, \"share_percent\": 30.0}, {\"user_id\": \"9\", \"name\": \"Utente 9\", \"speaking_seconds_estimated\": 100.0, \"share_percent\": 10.0}], \"end_reason\": \"manuale\"}]}"
+  },
+  {
+   "label": "eventi_2",
+   "path": "/api/site/stats/events?limit=2",
+   "status": 200,
+   "headers": {
+    "Cache-Control": "no-store",
+    "Content-Type": "application/json; charset=utf-8"
+   },
+   "body": "{\"limitations\": \"Durate di parlato stimate da pacchetti vocali; possono includere sovrapposizioni e non sono una trascrizione.\", \"reports\": [{\"id\": 6, \"title\": \"Vecchia\", \"started_at\": \"2027-02-24T10:00:00+01:00\", \"duration_seconds\": 7200, \"peak_participants\": 3, \"participant_count\": 3, \"average_presence_seconds\": 20, \"speaking_seconds_estimated\": 2.0, \"top_speakers\": [{\"user_id\": \"1\", \"name\": \"Alice\", \"speaking_seconds_estimated\": 2.0, \"share_percent\": 100.0}], \"end_reason\": \"manuale\"}, {\"id\": 5, \"title\": \"Prima del cambio ora\", \"started_at\": \"2027-03-27T21:00:00+01:00\", \"duration_seconds\": 21600, \"peak_participants\": 4, \"participant_count\": 4, \"average_presence_seconds\": 10, \"speaking_seconds_estimated\": 1.0, \"top_speakers\": [{\"user_id\": \"1\", \"name\": \"Alice\", \"speaking_seconds_estimated\": 1.0, \"share_percent\": 100.0}], \"end_reason\": \"manuale\"}]}"
+  },
+  {
+   "label": "eventi_zero",
+   "path": "/api/site/stats/events?limit=0",
+   "status": 400,
+   "headers": {
+    "Cache-Control": "no-store",
+    "Content-Type": "application/json; charset=utf-8"
+   },
+   "body": "{\"error\": \"Il limite deve essere compreso tra 1 e 100\"}"
+  },
+  {
+   "label": "eventi_101",
+   "path": "/api/site/stats/events?limit=101",
+   "status": 400,
+   "headers": {
+    "Cache-Control": "no-store",
+    "Content-Type": "application/json; charset=utf-8"
+   },
+   "body": "{\"error\": \"Il limite deve essere compreso tra 1 e 100\"}"
+  },
+  {
+   "label": "eventi_testo",
+   "path": "/api/site/stats/events?limit=x",
+   "status": 400,
+   "headers": {
+    "Cache-Control": "no-store",
+    "Content-Type": "application/json; charset=utf-8"
+   },
+   "body": "{\"error\": \"Il limite non valido\"}"
+  },
+  {
+   "label": "storia",
+   "path": "/api/site/stats/history?q=among",
+   "status": 200,
+   "headers": {
+    "Cache-Control": "no-store",
+    "Content-Type": "application/json; charset=utf-8"
+   },
+   "body": "{\"query\": \"among\", \"appearances\": 4, \"ballot_entries\": 3, \"wins\": 2, \"timeline\": [{\"name\": \"Among % Us\", \"type\": \"Gioco\", \"week\": 10, \"selected_by\": null, \"selected_at\": null, \"won\": false, \"status\": \"pending\"}, {\"name\": \"Amongst the Stars\", \"type\": \"Gioco\", \"week\": 9, \"selected_by\": \"2\", \"selected_at\": \"2027-03-20T10:00:00+01:00\", \"won\": false, \"status\": \"picked\"}, {\"name\": \"Among Us 2\", \"type\": \"Gioco\", \"week\": 7, \"selected_by\": \"1\", \"selected_at\": \"2027-03-05T10:00:00+01:00\", \"won\": true}, {\"name\": \"Among Us\", \"type\": \"Gioco\", \"week\": 3, \"selected_by\": \"1\", \"selected_at\": \"2027-01-05T10:00:00+01:00\", \"won\": true}], \"limitations\": \"Le apparizioni conteggiano le proposte selezionate conservate e quelle ancora attive; le proposte non selezionate delle settimane gi\\u00e0 chiuse non sono archiviate come record interrogabili.\"}"
+  },
+  {
+   "label": "storia_limite",
+   "path": "/api/site/stats/history?q=among&limit=1",
+   "status": 200,
+   "headers": {
+    "Cache-Control": "no-store",
+    "Content-Type": "application/json; charset=utf-8"
+   },
+   "body": "{\"query\": \"among\", \"appearances\": 1, \"ballot_entries\": 0, \"wins\": 0, \"timeline\": [{\"name\": \"Among % Us\", \"type\": \"Gioco\", \"week\": 10, \"selected_by\": null, \"selected_at\": null, \"won\": false, \"status\": \"pending\"}], \"limitations\": \"Le apparizioni conteggiano le proposte selezionate conservate e quelle ancora attive; le proposte non selezionate delle settimane gi\\u00e0 chiuse non sono archiviate come record interrogabili.\"}"
+  },
+  {
+   "label": "storia_spazi",
+   "path": "/api/site/stats/history?q=%20%20among%20%20",
+   "status": 200,
+   "headers": {
+    "Cache-Control": "no-store",
+    "Content-Type": "application/json; charset=utf-8"
+   },
+   "body": "{\"query\": \"among\", \"appearances\": 4, \"ballot_entries\": 3, \"wins\": 2, \"timeline\": [{\"name\": \"Among % Us\", \"type\": \"Gioco\", \"week\": 10, \"selected_by\": null, \"selected_at\": null, \"won\": false, \"status\": \"pending\"}, {\"name\": \"Amongst the Stars\", \"type\": \"Gioco\", \"week\": 9, \"selected_by\": \"2\", \"selected_at\": \"2027-03-20T10:00:00+01:00\", \"won\": false, \"status\": \"picked\"}, {\"name\": \"Among Us 2\", \"type\": \"Gioco\", \"week\": 7, \"selected_by\": \"1\", \"selected_at\": \"2027-03-05T10:00:00+01:00\", \"won\": true}, {\"name\": \"Among Us\", \"type\": \"Gioco\", \"week\": 3, \"selected_by\": \"1\", \"selected_at\": \"2027-01-05T10:00:00+01:00\", \"won\": true}], \"limitations\": \"Le apparizioni conteggiano le proposte selezionate conservate e quelle ancora attive; le proposte non selezionate delle settimane gi\\u00e0 chiuse non sono archiviate come record interrogabili.\"}"
+  },
+  {
+   "label": "storia_senza_q",
+   "path": "/api/site/stats/history",
+   "status": 400,
+   "headers": {
+    "Cache-Control": "no-store",
+    "Content-Type": "application/json; charset=utf-8"
+   },
+   "body": "{\"error\": \"La ricerca deve contenere tra 2 e 100 caratteri\"}"
+  },
+  {
+   "label": "storia_corta",
+   "path": "/api/site/stats/history?q=a",
+   "status": 400,
+   "headers": {
+    "Cache-Control": "no-store",
+    "Content-Type": "application/json; charset=utf-8"
+   },
+   "body": "{\"error\": \"La ricerca deve contenere tra 2 e 100 caratteri\"}"
+  },
+  {
+   "label": "storia_corta_con_spazi",
+   "path": "/api/site/stats/history?q=%20a%20",
+   "status": 400,
+   "headers": {
+    "Cache-Control": "no-store",
+    "Content-Type": "application/json; charset=utf-8"
+   },
+   "body": "{\"error\": \"La ricerca deve contenere tra 2 e 100 caratteri\"}"
+  },
+  {
+   "label": "storia_lunga",
+   "path": "/api/site/stats/history?q=xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+   "status": 400,
+   "headers": {
+    "Cache-Control": "no-store",
+    "Content-Type": "application/json; charset=utf-8"
+   },
+   "body": "{\"error\": \"La ricerca deve contenere tra 2 e 100 caratteri\"}"
+  },
+  {
+   "label": "storia_100",
+   "path": "/api/site/stats/history?q=xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+   "status": 200,
+   "headers": {
+    "Cache-Control": "no-store",
+    "Content-Type": "application/json; charset=utf-8"
+   },
+   "body": "{\"query\": \"xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\", \"appearances\": 0, \"ballot_entries\": 0, \"wins\": 0, \"timeline\": [], \"limitations\": \"Le apparizioni conteggiano le proposte selezionate conservate e quelle ancora attive; le proposte non selezionate delle settimane gi\\u00e0 chiuse non sono archiviate come record interrogabili.\"}"
+  },
+  {
+   "label": "storia_unicode",
+   "path": "/api/site/stats/history?q=%C3%A9clair",
+   "status": 200,
+   "headers": {
+    "Cache-Control": "no-store",
+    "Content-Type": "application/json; charset=utf-8"
+   },
+   "body": "{\"query\": \"\\u00e9clair\", \"appearances\": 1, \"ballot_entries\": 0, \"wins\": 0, \"timeline\": [{\"name\": \"\\u00c9clair\", \"type\": \"Film\", \"week\": 2, \"selected_by\": null, \"selected_at\": null, \"won\": false, \"status\": \"pending\"}], \"limitations\": \"Le apparizioni conteggiano le proposte selezionate conservate e quelle ancora attive; le proposte non selezionate delle settimane gi\\u00e0 chiuse non sono archiviate come record interrogabili.\"}"
+  },
+  {
+   "label": "storia_limite_errato",
+   "path": "/api/site/stats/history?q=among&limit=0",
+   "status": 400,
+   "headers": {
+    "Cache-Control": "no-store",
+    "Content-Type": "application/json; charset=utf-8"
+   },
+   "body": "{\"error\": \"Il limite deve essere compreso tra 1 e 100\"}"
+  },
+  {
+   "label": "storia_q_e_limite_errati",
+   "path": "/api/site/stats/history?q=a&limit=0",
+   "status": 400,
+   "headers": {
+    "Cache-Control": "no-store",
+    "Content-Type": "application/json; charset=utf-8"
+   },
+   "body": "{\"error\": \"La ricerca deve contenere tra 2 e 100 caratteri\"}"
+  },
+  {
+   "label": "storia_percento",
+   "path": "/api/site/stats/history?q=%25",
+   "status": 400,
+   "headers": {
+    "Cache-Control": "no-store",
+    "Content-Type": "application/json; charset=utf-8"
+   },
+   "body": "{\"error\": \"La ricerca deve contenere tra 2 e 100 caratteri\"}"
+  },
+  {
+   "label": "storia_limite_101",
+   "path": "/api/site/stats/history?q=among&limit=101",
+   "status": 400,
+   "headers": {
+    "Cache-Control": "no-store",
+    "Content-Type": "application/json; charset=utf-8"
+   },
+   "body": "{\"error\": \"Il limite deve essere compreso tra 1 e 100\"}"
+  },
+  {
+   "label": "panoramica_in_cache",
+   "path": "/api/site/stats/overview",
+   "status": 200,
+   "headers": {
+    "Cache-Control": "no-store",
+    "Content-Type": "application/json; charset=utf-8"
+   },
+   "body": "{\"current_week\": 10, \"pending_proposals\": 5, \"selected_proposals\": 1, \"completed_events\": 6, \"active_events\": 1, \"audit_entries\": 3, \"community_health\": {\"period_days\": 30, \"score\": 90, \"previous_score\": 73, \"trend\": 17, \"metrics\": {\"score\": 90, \"active_users\": 9, \"active_days\": 11, \"active_weeks\": 5, \"proposals\": 25, \"supports\": 25, \"votes\": 24, \"event_attendance\": 24, \"events\": 5, \"components\": {\"partecipazione\": 31, \"continuit\\u00e0\": 25, \"variet\\u00e0\": 20, \"coinvolgimento\": 9, \"eventi\": 10}}, \"methodology\": \"Punteggio euristico 0-100: utenti attivi (35), continuit\\u00e0 dei giorni (25), variet\\u00e0 di 4 azioni (20), supporti e voti aggregati (15), eventi conclusi (10). I componenti sono normalizzati da 105 a 100. \\u00c8 un indicatore descrittivo, non una misura scientifica.\"}}"
+  },
+  {
+   "label": "panoramica_dopo_notifica",
+   "path": "/api/site/stats/overview",
+   "status": 200,
+   "headers": {
+    "Cache-Control": "no-store",
+    "Content-Type": "application/json; charset=utf-8"
+   },
+   "body": "{\"current_week\": 10, \"pending_proposals\": 5, \"selected_proposals\": 1, \"completed_events\": 6, \"active_events\": 1, \"audit_entries\": 4, \"community_health\": {\"period_days\": 30, \"score\": 90, \"previous_score\": 73, \"trend\": 17, \"metrics\": {\"score\": 90, \"active_users\": 9, \"active_days\": 11, \"active_weeks\": 5, \"proposals\": 25, \"supports\": 25, \"votes\": 24, \"event_attendance\": 24, \"events\": 5, \"components\": {\"partecipazione\": 31, \"continuit\\u00e0\": 25, \"variet\\u00e0\": 20, \"coinvolgimento\": 9, \"eventi\": 10}}, \"methodology\": \"Punteggio euristico 0-100: utenti attivi (35), continuit\\u00e0 dei giorni (25), variet\\u00e0 di 4 azioni (20), supporti e voti aggregati (15), eventi conclusi (10). I componenti sono normalizzati da 105 a 100. \\u00c8 un indicatore descrittivo, non una misura scientifica.\"}}"
+  },
+  {
+   "label": "database_in_errore_panoramica",
+   "path": "/api/site/stats/overview",
+   "status": 500,
+   "headers": {
+    "Cache-Control": "no-store",
+    "Content-Type": "application/json; charset=utf-8"
+   },
+   "body": "{\"error\": \"Statistiche non disponibili al momento\"}"
+  },
+  {
+   "label": "database_in_errore_eventi",
+   "path": "/api/site/stats/events",
+   "status": 500,
+   "headers": {
+    "Cache-Control": "no-store",
+    "Content-Type": "application/json; charset=utf-8"
+   },
+   "body": "{\"error\": \"Statistiche non disponibili al momento\"}"
+  },
+  {
+   "label": "database_in_errore_salute",
+   "path": "/api/site/stats/health",
+   "status": 500,
+   "headers": {
+    "Cache-Control": "no-store",
+    "Content-Type": "application/json; charset=utf-8"
+   },
+   "body": "{\"error\": \"Statistiche non disponibili al momento\"}"
+  },
+  {
+   "label": "istantanea_non_oggetto",
+   "path": "/api/site/stats/accuracy",
+   "status": 500,
+   "headers": {
+    "Content-Type": "text/plain; charset=utf-8"
+   },
+   "body": "500 Internal Server Error\n\nServer got itself in trouble"
+  },
+  {
+   "label": "voti_non_numerici",
+   "path": "/api/site/stats/accuracy",
+   "status": 500,
+   "headers": {
+    "Cache-Control": "no-store",
+    "Content-Type": "application/json; charset=utf-8"
+   },
+   "body": "{\"error\": \"Statistiche non disponibili al momento\"}"
+  },
+  {
+   "label": "picked_by_non_valido",
+   "path": "/api/site/stats/accuracy",
+   "status": 500,
+   "headers": {
+    "Cache-Control": "no-store",
+    "Content-Type": "application/json; charset=utf-8"
+   },
+   "body": "{\"error\": \"Statistiche non disponibili al momento\"}"
+  }
+ ],
+ "constants": {
+  "ttl": 15,
+  "days": [
+   7,
+   365
+  ],
+  "events": [
+   1,
+   100
+  ],
+  "history": [
+   1,
+   100
+  ],
+  "query": [
+   2,
+   100
+  ]
+ }
+}

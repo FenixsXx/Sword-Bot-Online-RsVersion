@@ -1,0 +1,949 @@
+{
+ "origin_cases": [
+  {
+   "url": "",
+   "public_url": "",
+   "origin": "",
+   "websocket_origin": "",
+   "configuration_error": null,
+   "site_url": ""
+  },
+  {
+   "url": "https://overlay.example.it",
+   "public_url": "https://overlay.example.it",
+   "origin": "https://overlay.example.it",
+   "websocket_origin": "wss://overlay.example.it",
+   "configuration_error": null,
+   "site_url": "https://overlay.example.it/staff/"
+  },
+  {
+   "url": "https://overlay.example.it/",
+   "public_url": "https://overlay.example.it",
+   "origin": "https://overlay.example.it",
+   "websocket_origin": "wss://overlay.example.it",
+   "configuration_error": null,
+   "site_url": "https://overlay.example.it/staff/"
+  },
+  {
+   "url": "https://overlay.example.it///",
+   "public_url": "https://overlay.example.it",
+   "origin": "https://overlay.example.it",
+   "websocket_origin": "wss://overlay.example.it",
+   "configuration_error": null,
+   "site_url": "https://overlay.example.it/staff/"
+  },
+  {
+   "url": "http://overlay.example.it",
+   "public_url": "http://overlay.example.it",
+   "origin": "",
+   "websocket_origin": "",
+   "configuration_error": "EVENT_OVERLAY_PUBLIC_URL deve essere un'origine HTTPS, ad esempio https://overlay.example.it.",
+   "site_url": ""
+  },
+  {
+   "url": "https://overlay.example.it/path",
+   "public_url": "https://overlay.example.it/path",
+   "origin": "",
+   "websocket_origin": "",
+   "configuration_error": "EVENT_OVERLAY_PUBLIC_URL deve essere un'origine HTTPS, ad esempio https://overlay.example.it.",
+   "site_url": ""
+  },
+  {
+   "url": "https://overlay.example.it/a/",
+   "public_url": "https://overlay.example.it/a",
+   "origin": "",
+   "websocket_origin": "",
+   "configuration_error": "EVENT_OVERLAY_PUBLIC_URL deve essere un'origine HTTPS, ad esempio https://overlay.example.it.",
+   "site_url": ""
+  },
+  {
+   "url": "https://overlay.example.it?x=1",
+   "public_url": "https://overlay.example.it?x=1",
+   "origin": "",
+   "websocket_origin": "",
+   "configuration_error": "EVENT_OVERLAY_PUBLIC_URL deve essere un'origine HTTPS, ad esempio https://overlay.example.it.",
+   "site_url": ""
+  },
+  {
+   "url": "https://overlay.example.it?",
+   "public_url": "https://overlay.example.it?",
+   "origin": "https://overlay.example.it",
+   "websocket_origin": "wss://overlay.example.it",
+   "configuration_error": null,
+   "site_url": "https://overlay.example.it/staff/"
+  },
+  {
+   "url": "https://overlay.example.it#frag",
+   "public_url": "https://overlay.example.it#frag",
+   "origin": "",
+   "websocket_origin": "",
+   "configuration_error": "EVENT_OVERLAY_PUBLIC_URL deve essere un'origine HTTPS, ad esempio https://overlay.example.it.",
+   "site_url": ""
+  },
+  {
+   "url": "https://overlay.example.it#",
+   "public_url": "https://overlay.example.it#",
+   "origin": "https://overlay.example.it",
+   "websocket_origin": "wss://overlay.example.it",
+   "configuration_error": null,
+   "site_url": "https://overlay.example.it/staff/"
+  },
+  {
+   "url": "https://overlay.example.it/?",
+   "public_url": "https://overlay.example.it/?",
+   "origin": "",
+   "websocket_origin": "",
+   "configuration_error": "EVENT_OVERLAY_PUBLIC_URL deve essere un'origine HTTPS, ad esempio https://overlay.example.it.",
+   "site_url": ""
+  },
+  {
+   "url": "https://user@overlay.example.it",
+   "public_url": "https://user@overlay.example.it",
+   "origin": "",
+   "websocket_origin": "",
+   "configuration_error": "EVENT_OVERLAY_PUBLIC_URL deve essere un'origine HTTPS, ad esempio https://overlay.example.it.",
+   "site_url": ""
+  },
+  {
+   "url": "https://user:pw@overlay.example.it",
+   "public_url": "https://user:pw@overlay.example.it",
+   "origin": "",
+   "websocket_origin": "",
+   "configuration_error": "EVENT_OVERLAY_PUBLIC_URL deve essere un'origine HTTPS, ad esempio https://overlay.example.it.",
+   "site_url": ""
+  },
+  {
+   "url": "https://@overlay.example.it",
+   "public_url": "https://@overlay.example.it",
+   "origin": "https://@overlay.example.it",
+   "websocket_origin": "wss://@overlay.example.it",
+   "configuration_error": null,
+   "site_url": "https://@overlay.example.it/staff/"
+  },
+  {
+   "url": "https://:@overlay.example.it",
+   "public_url": "https://:@overlay.example.it",
+   "origin": "https://:@overlay.example.it",
+   "websocket_origin": "wss://:@overlay.example.it",
+   "configuration_error": null,
+   "site_url": "https://:@overlay.example.it/staff/"
+  },
+  {
+   "url": "overlay.example.it",
+   "public_url": "overlay.example.it",
+   "origin": "",
+   "websocket_origin": "",
+   "configuration_error": "EVENT_OVERLAY_PUBLIC_URL deve essere un'origine HTTPS, ad esempio https://overlay.example.it.",
+   "site_url": ""
+  },
+  {
+   "url": "//overlay.example.it",
+   "public_url": "//overlay.example.it",
+   "origin": "",
+   "websocket_origin": "",
+   "configuration_error": "EVENT_OVERLAY_PUBLIC_URL deve essere un'origine HTTPS, ad esempio https://overlay.example.it.",
+   "site_url": ""
+  },
+  {
+   "url": "https:overlay.example.it",
+   "public_url": "https:overlay.example.it",
+   "origin": "",
+   "websocket_origin": "",
+   "configuration_error": "EVENT_OVERLAY_PUBLIC_URL deve essere un'origine HTTPS, ad esempio https://overlay.example.it.",
+   "site_url": ""
+  },
+  {
+   "url": "https://",
+   "public_url": "https:",
+   "origin": "",
+   "websocket_origin": "",
+   "configuration_error": "EVENT_OVERLAY_PUBLIC_URL deve essere un'origine HTTPS, ad esempio https://overlay.example.it.",
+   "site_url": ""
+  },
+  {
+   "url": "https:///x",
+   "public_url": "https:///x",
+   "origin": "",
+   "websocket_origin": "",
+   "configuration_error": "EVENT_OVERLAY_PUBLIC_URL deve essere un'origine HTTPS, ad esempio https://overlay.example.it.",
+   "site_url": ""
+  },
+  {
+   "url": "HTTPS://Overlay.Example.IT",
+   "public_url": "HTTPS://Overlay.Example.IT",
+   "origin": "https://Overlay.Example.IT",
+   "websocket_origin": "wss://Overlay.Example.IT",
+   "configuration_error": null,
+   "site_url": "https://Overlay.Example.IT/staff/"
+  },
+  {
+   "url": "https://overlay.example.it:8443",
+   "public_url": "https://overlay.example.it:8443",
+   "origin": "https://overlay.example.it:8443",
+   "websocket_origin": "wss://overlay.example.it:8443",
+   "configuration_error": null,
+   "site_url": "https://overlay.example.it:8443/staff/"
+  },
+  {
+   "url": "https://overlay.example.it:abc",
+   "public_url": "https://overlay.example.it:abc",
+   "origin": "https://overlay.example.it:abc",
+   "websocket_origin": "wss://overlay.example.it:abc",
+   "configuration_error": null,
+   "site_url": "https://overlay.example.it:abc/staff/"
+  },
+  {
+   "url": "https://overlay.example.it:443/",
+   "public_url": "https://overlay.example.it:443",
+   "origin": "https://overlay.example.it:443",
+   "websocket_origin": "wss://overlay.example.it:443",
+   "configuration_error": null,
+   "site_url": "https://overlay.example.it:443/staff/"
+  },
+  {
+   "url": "https://[::1]",
+   "public_url": "https://[::1]",
+   "origin": "https://[::1]",
+   "websocket_origin": "wss://[::1]",
+   "configuration_error": null,
+   "site_url": "https://[::1]/staff/"
+  },
+  {
+   "url": "https://[::1]:8443",
+   "public_url": "https://[::1]:8443",
+   "origin": "https://[::1]:8443",
+   "websocket_origin": "wss://[::1]:8443",
+   "configuration_error": null,
+   "site_url": "https://[::1]:8443/staff/"
+  },
+  {
+   "url": "https://[::1",
+   "value_error": "Invalid IPv6 URL"
+  },
+  {
+   "url": "https://::1]",
+   "value_error": "Invalid IPv6 URL"
+  },
+  {
+   "url": "https://[fe80::1%eth0]",
+   "public_url": "https://[fe80::1%eth0]",
+   "origin": "https://[fe80::1%eth0]",
+   "websocket_origin": "wss://[fe80::1%eth0]",
+   "configuration_error": null,
+   "site_url": "https://[fe80::1%eth0]/staff/"
+  },
+  {
+   "url": "https://[v1.x]",
+   "public_url": "https://[v1.x]",
+   "origin": "https://[v1.x]",
+   "websocket_origin": "wss://[v1.x]",
+   "configuration_error": null,
+   "site_url": "https://[v1.x]/staff/"
+  },
+  {
+   "url": "https://[vzz]",
+   "value_error": "IPvFuture address is invalid"
+  },
+  {
+   "url": "https://[127.0.0.1]",
+   "value_error": "An IPv4 address cannot be in brackets"
+  },
+  {
+   "url": "https://[not-an-ip]",
+   "value_error": "'not-an-ip' does not appear to be an IPv4 or IPv6 address"
+  },
+  {
+   "url": " https://overlay.example.it",
+   "public_url": " https://overlay.example.it",
+   "origin": "https://overlay.example.it",
+   "websocket_origin": "wss://overlay.example.it",
+   "configuration_error": null,
+   "site_url": "https://overlay.example.it/staff/"
+  },
+  {
+   "url": "https://overlay.example.it ",
+   "public_url": "https://overlay.example.it ",
+   "origin": "https://overlay.example.it ",
+   "websocket_origin": "wss://overlay.example.it ",
+   "configuration_error": null,
+   "site_url": "https://overlay.example.it /staff/"
+  },
+  {
+   "url": "\thttps://overlay.example.it",
+   "public_url": "\thttps://overlay.example.it",
+   "origin": "https://overlay.example.it",
+   "websocket_origin": "wss://overlay.example.it",
+   "configuration_error": null,
+   "site_url": "https://overlay.example.it/staff/"
+  },
+  {
+   "url": "https://over\tlay.example.it",
+   "public_url": "https://over\tlay.example.it",
+   "origin": "https://overlay.example.it",
+   "websocket_origin": "wss://overlay.example.it",
+   "configuration_error": null,
+   "site_url": "https://overlay.example.it/staff/"
+  },
+  {
+   "url": "https://overlay.example.it\n",
+   "public_url": "https://overlay.example.it\n",
+   "origin": "https://overlay.example.it",
+   "websocket_origin": "wss://overlay.example.it",
+   "configuration_error": null,
+   "site_url": "https://overlay.example.it/staff/"
+  },
+  {
+   "url": "ftp://overlay.example.it",
+   "public_url": "ftp://overlay.example.it",
+   "origin": "",
+   "websocket_origin": "",
+   "configuration_error": "EVENT_OVERLAY_PUBLIC_URL deve essere un'origine HTTPS, ad esempio https://overlay.example.it.",
+   "site_url": ""
+  },
+  {
+   "url": "1https://overlay.example.it",
+   "public_url": "1https://overlay.example.it",
+   "origin": "",
+   "websocket_origin": "",
+   "configuration_error": "EVENT_OVERLAY_PUBLIC_URL deve essere un'origine HTTPS, ad esempio https://overlay.example.it.",
+   "site_url": ""
+  },
+  {
+   "url": "ht+tps://overlay.example.it",
+   "public_url": "ht+tps://overlay.example.it",
+   "origin": "",
+   "websocket_origin": "",
+   "configuration_error": "EVENT_OVERLAY_PUBLIC_URL deve essere un'origine HTTPS, ad esempio https://overlay.example.it.",
+   "site_url": ""
+  },
+  {
+   "url": "https://exämple.it",
+   "public_url": "https://exämple.it",
+   "origin": "https://exämple.it",
+   "websocket_origin": "wss://exämple.it",
+   "configuration_error": null,
+   "site_url": "https://exämple.it/staff/"
+  },
+  {
+   "url": "https://ex℀ample.it",
+   "value_error": "netloc 'ex℀ample.it' contains invalid characters under NFKC normalization"
+  },
+  {
+   "url": "https://ex／ample.it",
+   "value_error": "netloc 'ex／ample.it' contains invalid characters under NFKC normalization"
+  },
+  {
+   "url": "https://ex＃ample.it",
+   "value_error": "netloc 'ex＃ample.it' contains invalid characters under NFKC normalization"
+  },
+  {
+   "url": "https://overlay.example.it/staff/",
+   "public_url": "https://overlay.example.it/staff",
+   "origin": "",
+   "websocket_origin": "",
+   "configuration_error": "EVENT_OVERLAY_PUBLIC_URL deve essere un'origine HTTPS, ad esempio https://overlay.example.it.",
+   "site_url": ""
+  },
+  {
+   "url": "https://overlay.example.it:",
+   "public_url": "https://overlay.example.it:",
+   "origin": "https://overlay.example.it:",
+   "websocket_origin": "wss://overlay.example.it:",
+   "configuration_error": null,
+   "site_url": "https://overlay.example.it:/staff/"
+  },
+  {
+   "url": "https://a@b@c.it",
+   "public_url": "https://a@b@c.it",
+   "origin": "",
+   "websocket_origin": "",
+   "configuration_error": "EVENT_OVERLAY_PUBLIC_URL deve essere un'origine HTTPS, ad esempio https://overlay.example.it.",
+   "site_url": ""
+  }
+ ],
+ "commands": [
+  {
+   "label": "site_non_staff",
+   "out": [
+    {
+     "kind": "send",
+     "content": "⚠️ Questo comando è riservato allo staff.",
+     "embed": null,
+     "components": null,
+     "ephemeral": true,
+     "mentions": null
+    }
+   ]
+  },
+  {
+   "label": "site_senza_dominio",
+   "out": [
+    {
+     "kind": "send",
+     "content": "⚠️ Il dominio pubblico non è configurato. Imposta `EVENT_OVERLAY_PUBLIC_URL` su un'origine HTTPS.",
+     "embed": null,
+     "components": null,
+     "ephemeral": true,
+     "mentions": null
+    }
+   ]
+  },
+  {
+   "label": "site_senza_cog_live",
+   "out": [
+    {
+     "kind": "send",
+     "content": "⚠️ Il dominio pubblico non è configurato. Imposta `EVENT_OVERLAY_PUBLIC_URL` su un'origine HTTPS.",
+     "embed": null,
+     "components": null,
+     "ephemeral": true,
+     "mentions": null
+    }
+   ]
+  },
+  {
+   "label": "site_ok",
+   "out": [
+    {
+     "kind": "send",
+     "content": "🔐 Area staff SFO. Accedi con il tuo account Supabase.",
+     "embed": null,
+     "components": [
+      {
+       "type": 1,
+       "components": [
+        {
+         "type": 2,
+         "style": 5,
+         "disabled": false,
+         "label": "Apri sito SFO",
+         "url": "https://overlay.example.it/staff/",
+         "emoji": {
+          "id": null,
+          "name": "🌐"
+         }
+        }
+       ]
+      }
+     ],
+     "ephemeral": true,
+     "mentions": null
+    }
+   ]
+  },
+  {
+   "label": "site_ruolo_staff",
+   "out": [
+    {
+     "kind": "send",
+     "content": "🔐 Area staff SFO. Accedi con il tuo account Supabase.",
+     "embed": null,
+     "components": [
+      {
+       "type": 1,
+       "components": [
+        {
+         "type": 2,
+         "style": 5,
+         "disabled": false,
+         "label": "Apri sito SFO",
+         "url": "https://overlay.example.it/staff/",
+         "emoji": {
+          "id": null,
+          "name": "🌐"
+         }
+        }
+       ]
+      }
+     ],
+     "ephemeral": true,
+     "mentions": null
+    }
+   ]
+  },
+  {
+   "label": "site_ruolo_everyone",
+   "out": [
+    {
+     "kind": "send",
+     "content": "⚠️ Questo comando è riservato allo staff.",
+     "embed": null,
+     "components": null,
+     "ephemeral": true,
+     "mentions": null
+    }
+   ]
+  },
+  {
+   "label": "general_non_staff",
+   "out": [
+    {
+     "kind": "send",
+     "content": "⚠️ Questo comando è riservato allo staff.",
+     "embed": null,
+     "components": null,
+     "ephemeral": true,
+     "mentions": null
+    }
+   ]
+  },
+  {
+   "label": "general_senza_dominio",
+   "out": [
+    {
+     "kind": "send",
+     "content": null,
+     "embed": {
+      "flags": 0,
+      "color": 10181046,
+      "type": "rich",
+      "description": "Apri il sito SFO, consulta i dati staff o controlla l'evento live. Il pannello è visibile solo a te.\n\n⚠️ Il link ai siti non è configurato: imposta `EVENT_OVERLAY_PUBLIC_URL` su un'origine HTTPS.",
+      "title": "🛠️ Strumenti staff"
+     },
+     "components": [
+      {
+       "type": 1,
+       "components": [
+        {
+         "type": 2,
+         "style": 1,
+         "disabled": false,
+         "label": "Centro staff",
+         "custom_id": "<id>",
+         "emoji": {
+          "id": null,
+          "name": "🛠️"
+         }
+        },
+        {
+         "type": 2,
+         "style": 2,
+         "disabled": false,
+         "label": "Stato live",
+         "custom_id": "<id>",
+         "emoji": {
+          "id": null,
+          "name": "🎙️"
+         }
+        }
+       ]
+      }
+     ],
+     "ephemeral": true,
+     "mentions": {
+      "parse": []
+     }
+    }
+   ]
+  },
+  {
+   "label": "general_senza_cog_live",
+   "out": [
+    {
+     "kind": "send",
+     "content": null,
+     "embed": {
+      "flags": 0,
+      "color": 10181046,
+      "type": "rich",
+      "description": "Apri il sito SFO, consulta i dati staff o controlla l'evento live. Il pannello è visibile solo a te.\n\n⚠️ Il link ai siti non è configurato: imposta `EVENT_OVERLAY_PUBLIC_URL` su un'origine HTTPS.",
+      "title": "🛠️ Strumenti staff"
+     },
+     "components": [
+      {
+       "type": 1,
+       "components": [
+        {
+         "type": 2,
+         "style": 1,
+         "disabled": false,
+         "label": "Centro staff",
+         "custom_id": "<id>",
+         "emoji": {
+          "id": null,
+          "name": "🛠️"
+         }
+        },
+        {
+         "type": 2,
+         "style": 2,
+         "disabled": false,
+         "label": "Stato live",
+         "custom_id": "<id>",
+         "emoji": {
+          "id": null,
+          "name": "🎙️"
+         }
+        }
+       ]
+      }
+     ],
+     "ephemeral": true,
+     "mentions": {
+      "parse": []
+     }
+    }
+   ]
+  },
+  {
+   "label": "general_ok",
+   "out": [
+    {
+     "kind": "send",
+     "content": null,
+     "embed": {
+      "flags": 0,
+      "color": 10181046,
+      "type": "rich",
+      "description": "Apri il sito SFO, consulta i dati staff o controlla l'evento live. Il pannello è visibile solo a te.",
+      "title": "🛠️ Strumenti staff"
+     },
+     "components": [
+      {
+       "type": 1,
+       "components": [
+        {
+         "type": 2,
+         "style": 1,
+         "disabled": false,
+         "label": "Centro staff",
+         "custom_id": "<id>",
+         "emoji": {
+          "id": null,
+          "name": "🛠️"
+         }
+        },
+        {
+         "type": 2,
+         "style": 2,
+         "disabled": false,
+         "label": "Stato live",
+         "custom_id": "<id>",
+         "emoji": {
+          "id": null,
+          "name": "🎙️"
+         }
+        },
+        {
+         "type": 2,
+         "style": 5,
+         "disabled": false,
+         "label": "Sito SFO",
+         "url": "https://overlay.example.it/staff/",
+         "emoji": {
+          "id": null,
+          "name": "🌐"
+         }
+        },
+        {
+         "type": 2,
+         "style": 5,
+         "disabled": false,
+         "label": "Community",
+         "url": "https://overlay.example.it/community",
+         "emoji": {
+          "id": null,
+          "name": "👥"
+         }
+        }
+       ]
+      }
+     ],
+     "ephemeral": true,
+     "mentions": {
+      "parse": []
+     }
+    }
+   ]
+  },
+  {
+   "label": "general_ok_porta",
+   "out": [
+    {
+     "kind": "send",
+     "content": null,
+     "embed": {
+      "flags": 0,
+      "color": 10181046,
+      "type": "rich",
+      "description": "Apri il sito SFO, consulta i dati staff o controlla l'evento live. Il pannello è visibile solo a te.",
+      "title": "🛠️ Strumenti staff"
+     },
+     "components": [
+      {
+       "type": 1,
+       "components": [
+        {
+         "type": 2,
+         "style": 1,
+         "disabled": false,
+         "label": "Centro staff",
+         "custom_id": "<id>",
+         "emoji": {
+          "id": null,
+          "name": "🛠️"
+         }
+        },
+        {
+         "type": 2,
+         "style": 2,
+         "disabled": false,
+         "label": "Stato live",
+         "custom_id": "<id>",
+         "emoji": {
+          "id": null,
+          "name": "🎙️"
+         }
+        },
+        {
+         "type": 2,
+         "style": 5,
+         "disabled": false,
+         "label": "Sito SFO",
+         "url": "https://x.it:8443/staff/",
+         "emoji": {
+          "id": null,
+          "name": "🌐"
+         }
+        },
+        {
+         "type": 2,
+         "style": 5,
+         "disabled": false,
+         "label": "Community",
+         "url": "https://x.it:8443/community",
+         "emoji": {
+          "id": null,
+          "name": "👥"
+         }
+        }
+       ]
+      }
+     ],
+     "ephemeral": true,
+     "mentions": {
+      "parse": []
+     }
+    }
+   ]
+  }
+ ],
+ "buttons": [
+  {
+   "label": "altro_utente",
+   "allowed": false,
+   "out": [
+    {
+     "kind": "send",
+     "content": "⚠️ Questo pannello è riservato a chi l'ha aperto.",
+     "embed": null,
+     "components": null,
+     "ephemeral": true,
+     "mentions": null
+    }
+   ]
+  },
+  {
+   "label": "non_piu_staff",
+   "allowed": false,
+   "out": [
+    {
+     "kind": "send",
+     "content": "⚠️ Non hai più i permessi per usare questo pannello.",
+     "embed": null,
+     "components": null,
+     "ephemeral": true,
+     "mentions": null
+    }
+   ]
+  },
+  {
+   "label": "centro_staff",
+   "allowed": true,
+   "out": [
+    {
+     "kind": "send",
+     "content": null,
+     "embed": {
+      "flags": 0,
+      "color": 10181046,
+      "type": "rich",
+      "description": "Seleziona una sezione dal menu. Le schermate sono visibili solo a te.\n\n📖 **Handbook** · punti, livelli e criteri\n📈 **Analytics** · andamento delle ultime settimane\n✨ **Proposte** · storico e risultati per nome\n👥 **Utenti** · profilo staff, contributor emergenti e inattivi\n⚙️ **Sistema** · configurazione, conteggi, verifiche ed export",
+      "title": "🛠️ Centro controllo staff"
+     },
+     "components": [
+      {
+       "type": 1,
+       "components": [
+        {
+         "type": 3,
+         "custom_id": "<id>",
+         "min_values": 1,
+         "max_values": 1,
+         "disabled": false,
+         "required": true,
+         "placeholder": "Scegli una sezione",
+         "options": [
+          {
+           "label": "Handbook",
+           "value": "handbook",
+           "default": false,
+           "emoji": {
+            "id": null,
+            "name": "📖"
+           }
+          },
+          {
+           "label": "Analytics",
+           "value": "analytics",
+           "default": false,
+           "emoji": {
+            "id": null,
+            "name": "📈"
+           }
+          },
+          {
+           "label": "Proposte",
+           "value": "proposals",
+           "default": false,
+           "emoji": {
+            "id": null,
+            "name": "✨"
+           }
+          },
+          {
+           "label": "Utenti",
+           "value": "users",
+           "default": false,
+           "emoji": {
+            "id": null,
+            "name": "👥"
+           }
+          },
+          {
+           "label": "Sistema",
+           "value": "system",
+           "default": false,
+           "emoji": {
+            "id": null,
+            "name": "⚙️"
+           }
+          }
+         ]
+        }
+       ]
+      }
+     ],
+     "ephemeral": true,
+     "mentions": {
+      "parse": []
+     }
+    }
+   ]
+  },
+  {
+   "label": "centro_staff_ruolo",
+   "allowed": false,
+   "out": [
+    {
+     "kind": "send",
+     "content": "⚠️ Non hai più i permessi per usare questo pannello.",
+     "embed": null,
+     "components": null,
+     "ephemeral": true,
+     "mentions": null
+    }
+   ]
+  },
+  {
+   "label": "live_assente",
+   "allowed": true,
+   "out": [
+    {
+     "kind": "send",
+     "content": "ℹ️ Non c'è un evento live attivo.",
+     "embed": null,
+     "components": null,
+     "ephemeral": true,
+     "mentions": null
+    }
+   ]
+  },
+  {
+   "label": "live_nessuna_sessione",
+   "allowed": true,
+   "out": [
+    {
+     "kind": "send",
+     "content": "ℹ️ Non c'è un evento live attivo.",
+     "embed": null,
+     "components": null,
+     "ephemeral": true,
+     "mentions": null
+    }
+   ]
+  },
+  {
+   "label": "live_attivo",
+   "allowed": true,
+   "out": [
+    {
+     "kind": "send",
+     "content": "🎙️ **Serata *Giochi*** è attivo in <#555> con `3` partecipanti.",
+     "embed": null,
+     "components": null,
+     "ephemeral": true,
+     "mentions": {
+      "parse": []
+     }
+    }
+   ]
+  },
+  {
+   "label": "live_solo_bot",
+   "allowed": true,
+   "out": [
+    {
+     "kind": "send",
+     "content": "🎙️ **Serata *Giochi*** è attivo in <#555> con `0` partecipanti.",
+     "embed": null,
+     "components": null,
+     "ephemeral": true,
+     "mentions": {
+      "parse": []
+     }
+    }
+   ]
+  },
+  {
+   "label": "live_vuoto",
+   "allowed": true,
+   "out": [
+    {
+     "kind": "send",
+     "content": "🎙️ **Serata *Giochi*** è attivo in <#555> con `0` partecipanti.",
+     "embed": null,
+     "components": null,
+     "ephemeral": true,
+     "mentions": {
+      "parse": []
+     }
+    }
+   ]
+  },
+  {
+   "label": "live_altro_utente",
+   "allowed": false,
+   "out": [
+    {
+     "kind": "send",
+     "content": "⚠️ Questo pannello è riservato a chi l'ha aperto.",
+     "embed": null,
+     "components": null,
+     "ephemeral": true,
+     "mentions": null
+    }
+   ]
+  }
+ ]
+}

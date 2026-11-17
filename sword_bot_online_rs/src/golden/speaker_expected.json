@@ -1,0 +1,239 @@
+{
+ "threshold": 0.012,
+ "timeout": 0.8,
+ "initial": {
+  "levels": {},
+  "last_packet": 0.0
+ },
+ "levels": [
+  [
+   "silenzio",
+   null,
+   null,
+   500.0
+  ],
+  [
+   "costante_1",
+   null,
+   null,
+   500.0
+  ],
+  [
+   "costante_392",
+   null,
+   null,
+   500.0
+  ],
+  [
+   "costante_393",
+   null,
+   null,
+   500.0
+  ],
+  [
+   "costante_394",
+   null,
+   0.01202392578125,
+   500.0
+  ],
+  [
+   "negativo",
+   null,
+   0.030517578125,
+   500.0
+  ],
+  [
+   "massimo",
+   null,
+   0.999969482421875,
+   500.0
+  ],
+  [
+   "minimo",
+   null,
+   1.0,
+   500.0
+  ],
+  [
+   "alternato",
+   null,
+   0.048248291015625,
+   500.0
+  ],
+  [
+   "sinusoide_500",
+   null,
+   null,
+   500.0
+  ],
+  [
+   "sinusoide_550",
+   null,
+   null,
+   500.0
+  ],
+  [
+   "sinusoide_5000",
+   null,
+   0.10809326171875,
+   500.0
+  ],
+  [
+   "sinusoide_20000",
+   null,
+   0.4324951171875,
+   500.0
+  ],
+  [
+   "un_campione",
+   [
+    700
+   ],
+   0.0213623046875,
+   500.0
+  ],
+  [
+   "due_campioni",
+   [
+    300,
+    400
+   ],
+   null,
+   500.0
+  ],
+  [
+   "dispari",
+   [
+    100,
+    200,
+    300
+   ],
+   null,
+   500.0
+  ]
+ ],
+ "history": [
+  {
+   "label": "inizio",
+   "now": 500.0,
+   "levels": {},
+   "last_packet": 0.0
+  },
+  {
+   "label": "parla_1",
+   "now": 500.1,
+   "levels": {
+    "1": 0.10809326171875
+   },
+   "last_packet": 500.1
+  },
+  {
+   "label": "parla_2_piano",
+   "now": 500.20000000000005,
+   "levels": {
+    "1": 0.10809326171875
+   },
+   "last_packet": 500.20000000000005
+  },
+  {
+   "label": "sotto_soglia",
+   "now": 500.30000000000007,
+   "levels": {
+    "1": 0.10809326171875
+   },
+   "last_packet": 500.30000000000007
+  },
+  {
+   "label": "esattamente_soglia",
+   "now": 500.30000000000007,
+   "levels": {
+    "1": 0.10809326171875
+   },
+   "last_packet": 500.30000000000007
+  },
+  {
+   "label": "un_bot",
+   "now": 500.4000000000001,
+   "levels": {
+    "1": 0.10809326171875
+   },
+   "last_packet": 500.4000000000001
+  },
+  {
+   "label": "utente_sconosciuto",
+   "now": 500.5000000000001,
+   "levels": {
+    "1": 0.10809326171875
+   },
+   "last_packet": 500.4000000000001
+  },
+  {
+   "label": "pacchetto_vuoto",
+   "now": 500.60000000000014,
+   "levels": {
+    "1": 0.10809326171875
+   },
+   "last_packet": 500.4000000000001
+  },
+  {
+   "label": "senza_pcm",
+   "now": 500.70000000000016,
+   "levels": {
+    "1": 0.10809326171875
+   },
+   "last_packet": 500.4000000000001
+  },
+  {
+   "label": "1_riparla_piu_forte",
+   "now": 500.8000000000002,
+   "levels": {
+    "1": 0.194610595703125
+   },
+   "last_packet": 500.8000000000002
+  },
+  {
+   "label": "1_a_poco_meno_di_0_8",
+   "now": 501.5900000000002,
+   "levels": {
+    "1": 0.194610595703125
+   },
+   "last_packet": 500.8000000000002
+  },
+  {
+   "label": "1_esattamente_0_8",
+   "now": 501.6000000000002,
+   "levels": {},
+   "last_packet": 500.8000000000002
+  },
+  {
+   "label": "oltre_0_8",
+   "now": 501.60010000000017,
+   "levels": {},
+   "last_packet": 500.8000000000002
+  },
+  {
+   "label": "2_ancora_scaduto",
+   "now": 502.10010000000017,
+   "levels": {},
+   "last_packet": 500.8000000000002
+  },
+  {
+   "label": "2_riparla",
+   "now": 502.10010000000017,
+   "levels": {},
+   "last_packet": 502.10010000000017
+  },
+  {
+   "label": "tutti_zitti_ma_arrivano_pacchetti",
+   "now": 502.4001000000002,
+   "levels": {},
+   "last_packet": 502.4001000000002
+  },
+  {
+   "label": "pulizia",
+   "now": 502.4001000000002,
+   "levels": {},
+   "last_packet": 0.0
+  }
+ ]
+}

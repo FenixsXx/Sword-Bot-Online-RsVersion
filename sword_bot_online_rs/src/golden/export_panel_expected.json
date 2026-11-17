@@ -1,0 +1,875 @@
+{
+ "tables": [
+  "community_activity",
+  "community_records",
+  "daily_vote_activity",
+  "exported_live_event_summaries",
+  "exported_season_summaries",
+  "exported_support_counts",
+  "exported_vote_counts",
+  "history",
+  "options",
+  "picked_suggestions",
+  "poll_message_claims",
+  "polls",
+  "proposals",
+  "seasons",
+  "settings",
+  "site_report_notifications",
+  "sqlite_sequence",
+  "suggestion_review_messages",
+  "suggestions",
+  "user_stats",
+  "user_streaks",
+  "user_winning_proposals",
+  "weekly_activity",
+  "weekly_awards",
+  "weekly_streak_records"
+ ],
+ "counts": {
+  "community_activity": 0,
+  "community_records": 5,
+  "daily_vote_activity": 0,
+  "exported_live_event_summaries": 2,
+  "exported_season_summaries": 5,
+  "exported_support_counts": 5,
+  "exported_vote_counts": 32,
+  "history": 7,
+  "options": 32,
+  "picked_suggestions": 4,
+  "poll_message_claims": 0,
+  "polls": 14,
+  "proposals": 8,
+  "seasons": 5,
+  "settings": 3,
+  "site_report_notifications": 0,
+  "sqlite_sequence": 5,
+  "suggestion_review_messages": 0,
+  "suggestions": 7,
+  "user_stats": 13,
+  "user_streaks": 3,
+  "user_winning_proposals": 11,
+  "weekly_activity": 38,
+  "weekly_awards": 2,
+  "weekly_streak_records": 7
+ },
+ "exported": {
+  "exported_live_event_summaries": [
+   [
+    "Game Night 1",
+    "2027-01-01T21:00:00+01:00",
+    "2027-01-01T23:00:00+01:00",
+    8,
+    12,
+    "manual"
+   ],
+   [
+    "Game Night 2",
+    "2027-01-08T21:00:00+01:00",
+    "2027-01-08T23:30:00+01:00",
+    10,
+    14,
+    "empty"
+   ]
+  ],
+  "exported_season_summaries": [
+   [
+    "Autunno 2026",
+    2,
+    16,
+    12
+   ],
+   [
+    "Estate 2026",
+    1,
+    7,
+    7
+   ],
+   [
+    "Inverno 2025/26",
+    2,
+    25,
+    20
+   ],
+   [
+    "Primavera 2026",
+    2,
+    60,
+    30
+   ],
+   [
+    "Primavera 2027",
+    4,
+    25,
+    11
+   ]
+  ],
+  "exported_support_counts": [
+   [
+    1,
+    2
+   ],
+   [
+    2,
+    1
+   ],
+   [
+    3,
+    1
+   ],
+   [
+    4,
+    2
+   ],
+   [
+    6,
+    1
+   ]
+  ],
+  "exported_vote_counts": [
+   [
+    "Giochi con link/codice",
+    "AMQ",
+    0
+   ],
+   [
+    "Giochi con link/codice",
+    "Bomb Party",
+    0
+   ],
+   [
+    "Giochi con link/codice",
+    "Codenames",
+    0
+   ],
+   [
+    "Giochi con link/codice",
+    "Gartic Phone",
+    0
+   ],
+   [
+    "Giochi con link/codice",
+    "Jackbox",
+    0
+   ],
+   [
+    "Giochi con link/codice",
+    "Kahoot",
+    0
+   ],
+   [
+    "Giochi con link/codice",
+    "Make It Meme",
+    0
+   ],
+   [
+    "Giochi con link/codice",
+    "Skribbl.io",
+    1
+   ],
+   [
+    "Giochi da Discord",
+    "Chess",
+    0
+   ],
+   [
+    "Giochi da Discord",
+    "Poker Night",
+    1
+   ],
+   [
+    "Giochi da Discord",
+    "Putt Party",
+    0
+   ],
+   [
+    "Giochi gratis da scaricare",
+    "Among Us",
+    2
+   ],
+   [
+    "Giochi gratis da scaricare",
+    "Fortnite",
+    0
+   ],
+   [
+    "Giochi gratis da scaricare",
+    "Supermarket",
+    0
+   ],
+   [
+    "Giochi senza link",
+    "Hunger Games",
+    0
+   ],
+   [
+    "Giochi senza link",
+    "Jeopardy",
+    0
+   ],
+   [
+    "Proposte della community",
+    "Among Us",
+    3
+   ],
+   [
+    "Proposte della community",
+    "Gartic Phone",
+    1
+   ],
+   [
+    "Proposte della community",
+    "Jackbox Party",
+    2
+   ],
+   [
+    "Proposte della community",
+    "Libera",
+    0
+   ],
+   [
+    "Tanti",
+    "Opzione 1",
+    1
+   ],
+   [
+    "Tanti",
+    "Opzione 10",
+    0
+   ],
+   [
+    "Tanti",
+    "Opzione 11",
+    0
+   ],
+   [
+    "Tanti",
+    "Opzione 12",
+    0
+   ],
+   [
+    "Tanti",
+    "Opzione 2",
+    0
+   ],
+   [
+    "Tanti",
+    "Opzione 3",
+    0
+   ],
+   [
+    "Tanti",
+    "Opzione 4",
+    0
+   ],
+   [
+    "Tanti",
+    "Opzione 5",
+    0
+   ],
+   [
+    "Tanti",
+    "Opzione 6",
+    0
+   ],
+   [
+    "Tanti",
+    "Opzione 7",
+    0
+   ],
+   [
+    "Tanti",
+    "Opzione 8",
+    0
+   ],
+   [
+    "Tanti",
+    "Opzione 9",
+    0
+   ]
+  ]
+ },
+ "settings": [
+  "awards_since",
+  "stats_since",
+  "week"
+ ],
+ "layouts": {
+  "None:False": [
+   {
+    "kind": "StaffSectionSelect",
+    "row": 0,
+    "placeholder": "Scegli una sezione",
+    "min": 1,
+    "max": 1,
+    "options": [
+     [
+      "Handbook",
+      "handbook",
+      "📖",
+      false
+     ],
+     [
+      "Analytics",
+      "analytics",
+      "📈",
+      false
+     ],
+     [
+      "Proposte",
+      "proposals",
+      "✨",
+      false
+     ],
+     [
+      "Utenti",
+      "users",
+      "👥",
+      false
+     ],
+     [
+      "Sistema",
+      "system",
+      "⚙️",
+      false
+     ]
+    ]
+   }
+  ],
+  "None:True": [
+   {
+    "kind": "StaffSectionSelect",
+    "row": 0,
+    "placeholder": "Scegli una sezione",
+    "min": 1,
+    "max": 1,
+    "options": [
+     [
+      "Handbook",
+      "handbook",
+      "📖",
+      false
+     ],
+     [
+      "Analytics",
+      "analytics",
+      "📈",
+      false
+     ],
+     [
+      "Proposte",
+      "proposals",
+      "✨",
+      false
+     ],
+     [
+      "Utenti",
+      "users",
+      "👥",
+      false
+     ],
+     [
+      "Sistema",
+      "system",
+      "⚙️",
+      false
+     ]
+    ]
+   }
+  ],
+  "handbook:False": [
+   {
+    "kind": "StaffSectionSelect",
+    "row": 0,
+    "placeholder": "Scegli una sezione",
+    "min": 1,
+    "max": 1,
+    "options": [
+     [
+      "Handbook",
+      "handbook",
+      "📖",
+      true
+     ],
+     [
+      "Analytics",
+      "analytics",
+      "📈",
+      false
+     ],
+     [
+      "Proposte",
+      "proposals",
+      "✨",
+      false
+     ],
+     [
+      "Utenti",
+      "users",
+      "👥",
+      false
+     ],
+     [
+      "Sistema",
+      "system",
+      "⚙️",
+      false
+     ]
+    ]
+   }
+  ],
+  "handbook:True": [
+   {
+    "kind": "StaffSectionSelect",
+    "row": 0,
+    "placeholder": "Scegli una sezione",
+    "min": 1,
+    "max": 1,
+    "options": [
+     [
+      "Handbook",
+      "handbook",
+      "📖",
+      true
+     ],
+     [
+      "Analytics",
+      "analytics",
+      "📈",
+      false
+     ],
+     [
+      "Proposte",
+      "proposals",
+      "✨",
+      false
+     ],
+     [
+      "Utenti",
+      "users",
+      "👥",
+      false
+     ],
+     [
+      "Sistema",
+      "system",
+      "⚙️",
+      false
+     ]
+    ]
+   }
+  ],
+  "analytics:False": [
+   {
+    "kind": "StaffSectionSelect",
+    "row": 0,
+    "placeholder": "Scegli una sezione",
+    "min": 1,
+    "max": 1,
+    "options": [
+     [
+      "Handbook",
+      "handbook",
+      "📖",
+      false
+     ],
+     [
+      "Analytics",
+      "analytics",
+      "📈",
+      true
+     ],
+     [
+      "Proposte",
+      "proposals",
+      "✨",
+      false
+     ],
+     [
+      "Utenti",
+      "users",
+      "👥",
+      false
+     ],
+     [
+      "Sistema",
+      "system",
+      "⚙️",
+      false
+     ]
+    ]
+   }
+  ],
+  "analytics:True": [
+   {
+    "kind": "StaffSectionSelect",
+    "row": 0,
+    "placeholder": "Scegli una sezione",
+    "min": 1,
+    "max": 1,
+    "options": [
+     [
+      "Handbook",
+      "handbook",
+      "📖",
+      false
+     ],
+     [
+      "Analytics",
+      "analytics",
+      "📈",
+      true
+     ],
+     [
+      "Proposte",
+      "proposals",
+      "✨",
+      false
+     ],
+     [
+      "Utenti",
+      "users",
+      "👥",
+      false
+     ],
+     [
+      "Sistema",
+      "system",
+      "⚙️",
+      false
+     ]
+    ]
+   }
+  ],
+  "proposals:False": [
+   {
+    "kind": "StaffSectionSelect",
+    "row": 0,
+    "placeholder": "Scegli una sezione",
+    "min": 1,
+    "max": 1,
+    "options": [
+     [
+      "Handbook",
+      "handbook",
+      "📖",
+      false
+     ],
+     [
+      "Analytics",
+      "analytics",
+      "📈",
+      false
+     ],
+     [
+      "Proposte",
+      "proposals",
+      "✨",
+      true
+     ],
+     [
+      "Utenti",
+      "users",
+      "👥",
+      false
+     ],
+     [
+      "Sistema",
+      "system",
+      "⚙️",
+      false
+     ]
+    ]
+   },
+   {
+    "kind": "ProposalSearchButton",
+    "row": 1,
+    "label": "Cerca proposta",
+    "emoji": "🔎",
+    "style": 1
+   }
+  ],
+  "proposals:True": [
+   {
+    "kind": "StaffSectionSelect",
+    "row": 0,
+    "placeholder": "Scegli una sezione",
+    "min": 1,
+    "max": 1,
+    "options": [
+     [
+      "Handbook",
+      "handbook",
+      "📖",
+      false
+     ],
+     [
+      "Analytics",
+      "analytics",
+      "📈",
+      false
+     ],
+     [
+      "Proposte",
+      "proposals",
+      "✨",
+      true
+     ],
+     [
+      "Utenti",
+      "users",
+      "👥",
+      false
+     ],
+     [
+      "Sistema",
+      "system",
+      "⚙️",
+      false
+     ]
+    ]
+   },
+   {
+    "kind": "ProposalSearchButton",
+    "row": 1,
+    "label": "Cerca proposta",
+    "emoji": "🔎",
+    "style": 1
+   }
+  ],
+  "users:False": [
+   {
+    "kind": "StaffSectionSelect",
+    "row": 0,
+    "placeholder": "Scegli una sezione",
+    "min": 1,
+    "max": 1,
+    "options": [
+     [
+      "Handbook",
+      "handbook",
+      "📖",
+      false
+     ],
+     [
+      "Analytics",
+      "analytics",
+      "📈",
+      false
+     ],
+     [
+      "Proposte",
+      "proposals",
+      "✨",
+      false
+     ],
+     [
+      "Utenti",
+      "users",
+      "👥",
+      true
+     ],
+     [
+      "Sistema",
+      "system",
+      "⚙️",
+      false
+     ]
+    ]
+   },
+   {
+    "kind": "StaffUserSelect",
+    "row": 1,
+    "placeholder": "Cerca un membro del server",
+    "min": 1,
+    "max": 1,
+    "options": null
+   }
+  ],
+  "users:True": [
+   {
+    "kind": "StaffSectionSelect",
+    "row": 0,
+    "placeholder": "Scegli una sezione",
+    "min": 1,
+    "max": 1,
+    "options": [
+     [
+      "Handbook",
+      "handbook",
+      "📖",
+      false
+     ],
+     [
+      "Analytics",
+      "analytics",
+      "📈",
+      false
+     ],
+     [
+      "Proposte",
+      "proposals",
+      "✨",
+      false
+     ],
+     [
+      "Utenti",
+      "users",
+      "👥",
+      true
+     ],
+     [
+      "Sistema",
+      "system",
+      "⚙️",
+      false
+     ]
+    ]
+   },
+   {
+    "kind": "StaffUserSelect",
+    "row": 1,
+    "placeholder": "Cerca un membro del server",
+    "min": 1,
+    "max": 1,
+    "options": null
+   }
+  ],
+  "system:False": [
+   {
+    "kind": "StaffSectionSelect",
+    "row": 0,
+    "placeholder": "Scegli una sezione",
+    "min": 1,
+    "max": 1,
+    "options": [
+     [
+      "Handbook",
+      "handbook",
+      "📖",
+      false
+     ],
+     [
+      "Analytics",
+      "analytics",
+      "📈",
+      false
+     ],
+     [
+      "Proposte",
+      "proposals",
+      "✨",
+      false
+     ],
+     [
+      "Utenti",
+      "users",
+      "👥",
+      false
+     ],
+     [
+      "Sistema",
+      "system",
+      "⚙️",
+      true
+     ]
+    ]
+   },
+   {
+    "kind": "RefreshStaffDataButton",
+    "row": 1,
+    "label": "Verifica e aggiorna record",
+    "emoji": "♻️",
+    "style": 2
+   }
+  ],
+  "system:True": [
+   {
+    "kind": "StaffSectionSelect",
+    "row": 0,
+    "placeholder": "Scegli una sezione",
+    "min": 1,
+    "max": 1,
+    "options": [
+     [
+      "Handbook",
+      "handbook",
+      "📖",
+      false
+     ],
+     [
+      "Analytics",
+      "analytics",
+      "📈",
+      false
+     ],
+     [
+      "Proposte",
+      "proposals",
+      "✨",
+      false
+     ],
+     [
+      "Utenti",
+      "users",
+      "👥",
+      false
+     ],
+     [
+      "Sistema",
+      "system",
+      "⚙️",
+      true
+     ]
+    ]
+   },
+   {
+    "kind": "RefreshStaffDataButton",
+    "row": 1,
+    "label": "Verifica e aggiorna record",
+    "emoji": "♻️",
+    "style": 2
+   },
+   {
+    "kind": "ExportDatabaseButton",
+    "row": 1,
+    "label": "Esporta database redatto",
+    "emoji": "📤",
+    "style": 2
+   }
+  ]
+ },
+ "modal": {
+  "title": "Analisi proposta",
+  "fields": [
+   [
+    "Nome della proposta",
+    "Es. Minecraft",
+    2,
+    80,
+    true,
+    1
+   ],
+   [
+    "Tipo (facoltativo)",
+    "Es. Gioco",
+    null,
+    40,
+    false,
+    1
+   ]
+  ]
+ },
+ "confirm": [
+  [
+   "Conferma export redatto",
+   "📤",
+   1
+  ],
+  [
+   "Annulla",
+   "✖️",
+   2
+  ]
+ ]
+}

@@ -1,0 +1,923 @@
+{
+ "winner": {
+  "suggestion_id": 1,
+  "name": "Among Us",
+  "votes": 3,
+  "supporters": 4,
+  "tie_break": null
+ },
+ "records": {
+  "title": "🏅 Record della community",
+  "description": "Record registrati dai reset settimanali in poi. A parità resta il primo record raggiunto.",
+  "color": 15105570,
+  "fields": [
+   [
+    "🏅 Proposta più supportata",
+    "**Among Us** · `4 sostenitori`\nSettimana `#6`",
+    true
+   ],
+   [
+    "🗳️ Opzione più votata",
+    "**Jackbox** · `9 voti`\nSettimana `#5`",
+    true
+   ],
+   [
+    "🔥 Streak più lunga",
+    "**<@11>** · `6 settimane`\nSettimana `#6`",
+    true
+   ],
+   [
+    "🏆 Più proposte vincitrici",
+    "**<@12>** · `3 vittorie`\nSettimana `#5`",
+    true
+   ],
+   [
+    "alieno",
+    "**Boh** · `1 vittorie`\nSettimana `#2`",
+    true
+   ]
+  ],
+  "thumbnail": null,
+  "image": null,
+  "footer": null,
+  "has_timestamp": false
+ },
+ "recap_6_winner": {
+  "title": "🏆 RISULTATI SETTIMANA `#6`",
+  "description": "Ecco i risultati della settimana appena conclusa.",
+  "color": 15105570,
+  "fields": [
+   [
+    "🥇 Classifica community",
+    "🥇 **Among Us** · `4 voti`\n🥈 **Alfa** · `9 voti`\n🥉 **beta** · `4 voti`",
+    false
+   ],
+   [
+    "🌟 Contributor della settimana",
+    "<@11>, <@12> · `9 punti`",
+    false
+   ],
+   [
+    "🔥 Nuovi record streak",
+    "🔥 <@11> · `6 settimane`\n🔥 <@12> · `4 settimane`\n🔥 <@13> · `3 settimane`\n🔥 <@14> · `3 settimane`\n🔥 <@15> · `2 settimane`",
+    false
+   ]
+  ],
+  "thumbnail": null,
+  "image": null,
+  "footer": null,
+  "has_timestamp": true
+ },
+ "recap_4_none": {
+  "title": "🏆 RISULTATI SETTIMANA `#4`",
+  "description": "Ecco i risultati della settimana appena conclusa.",
+  "color": 15105570,
+  "fields": [
+   [
+    "🥇 Classifica community",
+    "🥇 **Among Us** · `5 voti`\n🥈 **Jackbox** · `5 voti`",
+    false
+   ],
+   [
+    "🌟 Contributor della settimana",
+    "Nessun contributor questa settimana.",
+    false
+   ],
+   [
+    "🔥 Nuovi record streak",
+    "Nessun nuovo record questa settimana.",
+    false
+   ]
+  ],
+  "thumbnail": null,
+  "image": null,
+  "footer": null,
+  "has_timestamp": true
+ },
+ "recap_5": {
+  "title": "🏆 RISULTATI SETTIMANA `#5`",
+  "description": "Ecco i risultati della settimana appena conclusa.",
+  "color": 15105570,
+  "fields": [
+   [
+    "🥇 Classifica community",
+    "🥇 **Nessuno** · `0 voti`",
+    false
+   ],
+   [
+    "🌟 Contributor della settimana",
+    "Nessun contributor questa settimana.",
+    false
+   ],
+   [
+    "🔥 Nuovi record streak",
+    "🔥 <@11> · `5 settimane`",
+    false
+   ]
+  ],
+  "thumbnail": null,
+  "image": null,
+  "footer": null,
+  "has_timestamp": true
+ },
+ "recap_99": {
+  "title": "🏆 RISULTATI SETTIMANA `#99`",
+  "description": "Ecco i risultati della settimana appena conclusa.",
+  "color": 15105570,
+  "fields": [
+   [
+    "🥇 Classifica community",
+    "Nessun voto nel sondaggio community.",
+    false
+   ],
+   [
+    "🌟 Contributor della settimana",
+    "Nessun contributor questa settimana.",
+    false
+   ],
+   [
+    "🔥 Nuovi record streak",
+    "Nessun nuovo record questa settimana.",
+    false
+   ]
+  ],
+  "thumbnail": null,
+  "image": null,
+  "footer": null,
+  "has_timestamp": true
+ },
+ "recap_4_tie": {
+  "title": "🏆 RISULTATI SETTIMANA `#4`",
+  "description": "Ecco i risultati della settimana appena conclusa.",
+  "color": 15105570,
+  "fields": [
+   [
+    "🥇 Classifica community",
+    "🥇 **Jackbox** · `5 voti`\n🥈 **Among Us** · `5 voti`",
+    false
+   ],
+   [
+    "⚖️ Spareggio",
+    "**Jackbox** vince: a parità di voti e sostenitori vince la proposta inviata per prima.",
+    false
+   ],
+   [
+    "🌟 Contributor della settimana",
+    "Nessun contributor questa settimana.",
+    false
+   ],
+   [
+    "🔥 Nuovi record streak",
+    "Nessun nuovo record questa settimana.",
+    false
+   ]
+  ],
+  "thumbnail": null,
+  "image": null,
+  "footer": null,
+  "has_timestamp": true
+ },
+ "polls": {
+  "1": {
+   "title": "🎮  Giochi gratis da scaricare",
+   "description": "⏳ Chiude <t:1794826800:R>\nHai `2 voti` a disposizione: premi un'opzione per votare, ripremila per togliere il voto, oppure usa **📋 I miei voti**.\n\n──────────\n\n**Among Us** ★\n└ `▰▰▰▰▰▰▰▰▰▰` · `2 voti`\n\n**Supermarket**\n└ `▱▱▱▱▱▱▱▱▱▱` · `0 voti`\n\n**Fortnite**\n└ `▱▱▱▱▱▱▱▱▱▱` · `0 voti`",
+   "color": 5793266,
+   "fields": [],
+   "thumbnail": null,
+   "image": null,
+   "footer": "2 votanti · POLL_ID=1",
+   "has_timestamp": false
+  },
+  "2": {
+   "title": "💬  Giochi da Discord",
+   "description": "⏳ Reset <t:1794826800:R>\nHai `2 voti` a disposizione: premi un'opzione per votare, ripremila per togliere il voto, oppure usa **📋 I miei voti**.\n\n──────────\n\n**Poker Night** ★\n└ `▰▰▰▰▰▰▰▰▰▰` · `1 voti`\n\n**Chess**\n└ `▱▱▱▱▱▱▱▱▱▱` · `0 voti`\n\n**Putt Party**\n└ `▱▱▱▱▱▱▱▱▱▱` · `0 voti`",
+   "color": 10185695,
+   "fields": [],
+   "thumbnail": null,
+   "image": null,
+   "footer": "1 votanti · POLL_ID=2",
+   "has_timestamp": false
+  },
+  "3": {
+   "title": "🔗  Giochi con link/codice",
+   "description": "🔒 Sondaggio chiuso\nHai `2 voti` a disposizione: premi un'opzione per votare, ripremila per togliere il voto, oppure usa **📋 I miei voti**.\n\n──────────\n\n**Skribbl.io** ★\n└ `▰▰▰▰▰▰▰▰▰▰` · `1 voti`\n\n**Gartic Phone**\n└ `▱▱▱▱▱▱▱▱▱▱` · `0 voti`\n\n**Codenames**\n└ `▱▱▱▱▱▱▱▱▱▱` · `0 voti`\n\n**Make It Meme**\n└ `▱▱▱▱▱▱▱▱▱▱` · `0 voti`\n\n**AMQ**\n└ `▱▱▱▱▱▱▱▱▱▱` · `0 voti`\n\n**Bomb Party**\n└ `▱▱▱▱▱▱▱▱▱▱` · `0 voti`\n\n**Jackbox**\n└ `▱▱▱▱▱▱▱▱▱▱` · `0 voti`\n\n**Kahoot**\n└ `▱▱▱▱▱▱▱▱▱▱` · `0 voti`",
+   "color": 3126688,
+   "fields": [],
+   "thumbnail": null,
+   "image": null,
+   "footer": "1 votanti · POLL_ID=3",
+   "has_timestamp": false
+  },
+  "4": {
+   "title": "🎲  Giochi senza link",
+   "description": "⏳ Reset <t:1794826800:R>\nHai `2 voti` a disposizione: premi un'opzione per votare, ripremila per togliere il voto, oppure usa **📋 I miei voti**.\n\n──────────\n\n**Hunger Games**\n└ `▱▱▱▱▱▱▱▱▱▱` · `0 voti`\n\n**Jeopardy**\n└ `▱▱▱▱▱▱▱▱▱▱` · `0 voti`",
+   "color": 5793266,
+   "fields": [],
+   "thumbnail": null,
+   "image": null,
+   "footer": "0 votanti · POLL_ID=4",
+   "has_timestamp": false
+  },
+  "5": {
+   "title": "🏆  Proposte della community",
+   "description": "⏳ Reset <t:1794826800:R>\nLo staff ha selezionato le proposte migliori. Hai `2 voti`: scegli le tue preferite.\n\n──────────\n\n**Among Us** ★ · *Gioco* · [link](https://www.youtube.com/watch?v=dQw4w9WgXcQ)\n└ `▰▰▰▰▰▰▰▰▰▰` · `3 voti`\n\n**Jackbox Party** · *Gioco* · [link](https://store.steampowered.com/app/945360/)\n└ `▰▰▰▰▰▰▰▱▱▱` · `2 voti`\n\n**Gartic Phone** · *Gioco* · [link](https://youtu.be/AAAAAAAAAAA)\n└ `▰▰▰▱▱▱▱▱▱▱` · `1 voti`\n\n**Libera**\n└ `▱▱▱▱▱▱▱▱▱▱` · `0 voti`",
+   "color": 14245738,
+   "fields": [],
+   "thumbnail": "https://i.ytimg.com/vi/dQw4w9WgXcQ/hqdefault.jpg",
+   "image": null,
+   "footer": "4 votanti · POLL_ID=5",
+   "has_timestamp": false
+  },
+  "6": {
+   "title": "🎲  Tanti",
+   "description": "⏳ Reset <t:1794826800:R>\nHai `2 voti` a disposizione: premi **🗳️ Vota** per scegliere.\n\n──────────\n\n**Opzione 1** ★\n└ `▰▰▰▰▰▰▰▰▰▰` · `1 voti`\n\n**Opzione 2**\n└ `▱▱▱▱▱▱▱▱▱▱` · `0 voti`\n\n**Opzione 3**\n└ `▱▱▱▱▱▱▱▱▱▱` · `0 voti`\n\n**Opzione 4**\n└ `▱▱▱▱▱▱▱▱▱▱` · `0 voti`\n\n**Opzione 5**\n└ `▱▱▱▱▱▱▱▱▱▱` · `0 voti`\n\n**Opzione 6**\n└ `▱▱▱▱▱▱▱▱▱▱` · `0 voti`\n\n**Opzione 7**\n└ `▱▱▱▱▱▱▱▱▱▱` · `0 voti`\n\n**Opzione 8**\n└ `▱▱▱▱▱▱▱▱▱▱` · `0 voti`\n\n**Opzione 9**\n└ `▱▱▱▱▱▱▱▱▱▱` · `0 voti`\n\n**Opzione 10**\n└ `▱▱▱▱▱▱▱▱▱▱` · `0 voti`\n\n**Opzione 11**\n└ `▱▱▱▱▱▱▱▱▱▱` · `0 voti`\n\n**Opzione 12**\n└ `▱▱▱▱▱▱▱▱▱▱` · `0 voti`",
+   "color": 1193046,
+   "fields": [],
+   "thumbnail": null,
+   "image": null,
+   "footer": "1 votanti · POLL_ID=6",
+   "has_timestamp": false
+  },
+  "7": {
+   "title": "🕳️  Vuoto",
+   "description": "⏳ Reset <t:1794826800:R>\nHai `2 voti` a disposizione: premi un'opzione per votare, ripremila per togliere il voto, oppure usa **📋 I miei voti**.\n\n──────────\n\n*Nessuna opzione disponibile al momento.*",
+   "color": 6636321,
+   "fields": [],
+   "thumbnail": null,
+   "image": null,
+   "footer": "0 votanti · POLL_ID=7",
+   "has_timestamp": false
+  },
+  "8": {
+   "title": "8️⃣  Extra 8",
+   "description": "⏳ Reset <t:1794826800:R>\nHai `2 voti` a disposizione: premi un'opzione per votare, ripremila per togliere il voto, oppure usa **📋 I miei voti**.\n\n──────────\n\n*Nessuna opzione disponibile al momento.*",
+   "color": 1118481,
+   "fields": [],
+   "thumbnail": null,
+   "image": null,
+   "footer": "0 votanti · POLL_ID=8",
+   "has_timestamp": false
+  }
+ },
+ "history_lines": [
+  "🥇 **Alfa** · 9 voti\nSettimana `#6` · `2026-11-02` · `2 proposte`",
+  "🥈 *nessun vincitore*\nSettimana `#5` · `2026-10-26` · `0 proposte`",
+  "🥉 **pareggio: Among Us / Jackbox** · 5 voti\nSettimana `#4` · `2026-10-19` · `3 proposte`"
+ ],
+ "history_lines_2": [
+  "🥇 **Alfa** · 9 voti\nSettimana `#6` · `2026-11-02` · `2 proposte`",
+  "🥈 *nessun vincitore*\nSettimana `#5` · `2026-10-26` · `0 proposte`"
+ ],
+ "history": {
+  "title": "📚 Hall of Fame",
+  "description": "🥇 **Alfa** · 9 voti\nSettimana `#6` · `2026-11-02` · `2 proposte`\n🥈 *nessun vincitore*\nSettimana `#5` · `2026-10-26` · `0 proposte`\n🥉 **pareggio: Among Us / Jackbox** · 5 voti\nSettimana `#4` · `2026-10-19` · `3 proposte`",
+  "color": 15105570,
+  "fields": [],
+  "thumbnail": null,
+  "image": null,
+  "footer": null,
+  "has_timestamp": false
+ },
+ "hall_of_fame": {
+  "title": "📚 Hall of Fame",
+  "description": "ℹ️ Ogni lunedì alle 12:00 vengono archiviati i risultati della settimana, le proposte e il contributor della settimana. I record si aggiornano automaticamente e non sono modificabili manualmente.\n\n🥇 **Alfa** · 9 voti\nSettimana `#6` · `2026-11-02` · `2 proposte`\n🥈 *nessun vincitore*\nSettimana `#5` · `2026-10-26` · `0 proposte`\n🥉 **pareggio: Among Us / Jackbox** · 5 voti\nSettimana `#4` · `2026-10-19` · `3 proposte`\n\n━━━━━━━━━━━━━━━━\n\nRecord registrati dai reset settimanali in poi. A parità resta il primo record raggiunto.",
+  "color": 15105570,
+  "fields": [
+   [
+    "🏅 Proposta più supportata",
+    "**Among Us** · `4 sostenitori`\nSettimana `#6`",
+    true
+   ],
+   [
+    "🗳️ Opzione più votata",
+    "**Jackbox** · `9 voti`\nSettimana `#5`",
+    true
+   ],
+   [
+    "🔥 Streak più lunga",
+    "**<@11>** · `6 settimane`\nSettimana `#6`",
+    true
+   ],
+   [
+    "🏆 Più proposte vincitrici",
+    "**<@12>** · `3 vittorie`\nSettimana `#5`",
+    true
+   ],
+   [
+    "alieno",
+    "**Boh** · `1 vittorie`\nSettimana `#2`",
+    true
+   ]
+  ],
+  "thumbnail": null,
+  "image": null,
+  "footer": null,
+  "has_timestamp": false
+ },
+ "dashboard": {
+  "title": "🎮 GAME NIGHT HUB",
+  "description": "Proponi un'attività, apri un sondaggio per votare oppure consulta classifica e storico.",
+  "color": 5793266,
+  "fields": [
+   [
+    "Settimana `#7`",
+    "Chiusura <t:1794826800:R>",
+    true
+   ],
+   [
+    "👥 Partecipanti",
+    "`5`",
+    true
+   ],
+   [
+    "✨ Proposte",
+    "`6`",
+    true
+   ],
+   [
+    "🔥 Più votato ora",
+    "**Among Us** · `3 voti`\nProposte della community",
+    true
+   ],
+   [
+    "⭐ Proposta del momento",
+    "🎤 **Karaoke Night**\n└ 👥 `3 sostenitori`\nProposta da <@5>",
+    true
+   ],
+   [
+    "🏆 Ballottaggio community",
+    "1. **Among Us** · `3 voti`\n2. **Jackbox Party** · `2 voti`\n3. **Gartic Phone** · `1 voti`",
+    false
+   ],
+   [
+    "Sondaggi attivi",
+    "└ 🎮 Giochi gratis da scaricare\n└ 💬 Giochi da Discord\n└ 🎲 Tanti\n└ 🕳️ Vuoto\n└ 🎲 Giochi senza link\n└ 8️⃣ Extra 8\n└ 9️⃣ Extra 9\n└ 🔟 Extra 10\n└ 1️⃣ Extra 11\n└ 2️⃣ Extra 12\n… e altri 3",
+    false
+   ],
+   [
+    "✨ Proposte recenti",
+    "🎮 **Gartic Phone**\n└ Gioco · `2 sostenitori`\n🎤 **Karaoke Night**\n└ Karaoke · `3 sostenitori`\n🎬 **Il Gladiatore**\n└ Film · `2 sostenitori`",
+    false
+   ]
+  ],
+  "thumbnail": null,
+  "image": null,
+  "footer": "Usa i pulsanti qui sotto: non serve conoscere i comandi.",
+  "has_timestamp": true
+ },
+ "leaderboard": {
+  "title": "📊 Classifica della settimana",
+  "description": "Settimana #7 · voti anonimi\n\n**👍 Proposte più sostenute**\n1. **Among Us** · `4 sostenitori`\n2. **Karaoke Night** · `3 sostenitori`\n3. **Gartic Phone** · `2 sostenitori`\n4. **Il Gladiatore** · `2 sostenitori`\n5. **Jackbox Party** · `2 sostenitori`",
+  "color": 5793266,
+  "fields": [
+   [
+    "🎮 Giochi gratis da scaricare · `2 votanti`",
+    "1. Among Us — `2 voti`\n2. Fortnite — `0 voti`\n3. Supermarket — `0 voti`",
+    true
+   ],
+   [
+    "💬 Giochi da Discord · `1 votanti`",
+    "1. Poker Night — `1 voti`\n2. Chess — `0 voti`\n3. Putt Party — `0 voti`",
+    true
+   ],
+   [
+    "🎲 Tanti · `1 votanti`",
+    "1. Opzione 1 — `1 voti`\n2. Opzione 10 — `0 voti`\n3. Opzione 11 — `0 voti`",
+    true
+   ],
+   [
+    "🕳️ Vuoto · `0 votanti`",
+    "Nessuna opzione.",
+    true
+   ],
+   [
+    "🎲 Giochi senza link · `0 votanti`",
+    "1. Hunger Games — `0 voti`\n2. Jeopardy — `0 voti`",
+    true
+   ],
+   [
+    "8️⃣ Extra 8 · `0 votanti`",
+    "Nessuna opzione.",
+    true
+   ],
+   [
+    "9️⃣ Extra 9 · `0 votanti`",
+    "Nessuna opzione.",
+    true
+   ],
+   [
+    "🔟 Extra 10 · `0 votanti`",
+    "Nessuna opzione.",
+    true
+   ],
+   [
+    "1️⃣ Extra 11 · `0 votanti`",
+    "Nessuna opzione.",
+    true
+   ],
+   [
+    "2️⃣ Extra 12 · `0 votanti`",
+    "Nessuna opzione.",
+    true
+   ],
+   [
+    "3️⃣ Extra 13 · `0 votanti`",
+    "Nessuna opzione.",
+    true
+   ],
+   [
+    "4️⃣ Extra 14 · `0 votanti`",
+    "Nessuna opzione.",
+    true
+   ],
+   [
+    "🏆 Proposte della community · `4 votanti`",
+    "1. Among Us — `3 voti`\n2. Jackbox Party — `2 voti`\n3. Gartic Phone — `1 voti`",
+    true
+   ]
+  ],
+  "thumbnail": null,
+  "image": null,
+  "footer": null,
+  "has_timestamp": false
+ },
+ "contributors_10": {
+  "title": "🏆 Classifica utenti",
+  "description": "🥇 <@3> — `280 punti` · 👑 Leggenda\n🥈 <@1> — `57 punti` · 🥇 Oro\n🥉 <@6> — `40 punti` · 🥈 Argento\n**4.** <@13> — `40 punti` · 🥈 Argento\n**5.** <@4> — `20 punti` · 🥉 Bronzo\n**6.** <@5> — `20 punti` · 🥉 Bronzo\n**7.** <@7> — `19 punti` · 🥉 Bronzo\n**8.** <@10> — `17 punti` · 🥉 Bronzo\n**9.** <@9> — `15 punti` · 🥉 Bronzo\n**10.** <@11> — `10 punti` · 🥉 Bronzo",
+  "color": 15105570,
+  "fields": [],
+  "thumbnail": null,
+  "image": null,
+  "footer": "Punti: proposta +1 · supporto ricevuto +2 · ballottaggio +5 · vittoria +10. Classifica dal 2026-09-01.",
+  "has_timestamp": false
+ },
+ "contributors_2": {
+  "title": "🏆 Classifica utenti",
+  "description": "🥇 <@3> — `280 punti` · 👑 Leggenda\n🥈 <@1> — `57 punti` · 🥇 Oro",
+  "color": 15105570,
+  "fields": [],
+  "thumbnail": null,
+  "image": null,
+  "footer": "Punti: proposta +1 · supporto ricevuto +2 · ballottaggio +5 · vittoria +10. Classifica dal 2026-09-01.",
+  "has_timestamp": false
+ },
+ "profiles": {
+  "1": {
+   "title": "👤 Il mio stato",
+   "description": "Settimana `#7`\n\n**Proposte inviate:** `1/3` (2 disponibili)\n**Proposte supportate:** `0`\n\n**Voti usati per sondaggio**\n🎮 Giochi gratis da scaricare: `0/2 voti`\n💬 Giochi da Discord: `0/2 voti`\n🎲 Tanti: `0/2 voti`\n🕳️ Vuoto: `0/2 voti`\n🎲 Giochi senza link: `0/2 voti`\n8️⃣ Extra 8: `0/2 voti`\n9️⃣ Extra 9: `0/2 voti`\n🔟 Extra 10: `0/2 voti`\n1️⃣ Extra 11: `0/2 voti`\n2️⃣ Extra 12: `0/2 voti`\n3️⃣ Extra 13: `0/2 voti`\n4️⃣ Extra 14: `0/2 voti`\n🏆 Proposte della community: `0/2 voti`\n\n**Ultima proposta:** Among Us · Gioco\n\n**Statistiche dal 2026-09-01**\n**Livello:** 🥇 Oro · **Punti:** `57`\n**Stagione Autunno 2026:** `12 punti`\n`▰▰▰▰▰▰▱▱▱▱` `57/100 punti` · prossimo: 💎 Platino\n🔥 **Streak:** `3 settimane` · mantenuta questa settimana · record: `5`\nProposte inviate: `12` · supporti dati: `11`\nSupporti ricevuti: `10` · ballottaggi: `3` · proposte vincitrici: `1`\n\n**Titoli stagionali**\n🏅 Campione Primavera 2026\n🏅 Campione Inverno 2025/26\n\n**Badge**\n🌱 Prima proposta\n🎯 10 supporti dati\n⭐ Community Hero\n🗳️ Presenza in 3 ballottaggi\n🏆 Proposta vincitrice\n\n**Easter egg sbloccati**\n🌙 Nottataccia\n🔄 Indeciso\n\n🔒 **1 badge segreto da scoprire**\n*Indizio: La costanza nel ballottaggio non passa inosservata.*\n\n**Hall of Fame personale** (dal 2026-09-15)\n🏆 **Among Us** · settimana `#6` · `9 voti`\n🏆 **Jackbox** · settimana `#5` · `5 voti`\n🏆 **Karaoke** · settimana `#4` · `5 voti`\n🏆 **Aaa** · settimana `#3` · `2 voti`\n🏆 **Bbb** · settimana `#2` · `2 voti`",
+   "color": 5793266,
+   "fields": [],
+   "thumbnail": null,
+   "image": null,
+   "footer": null,
+   "has_timestamp": false
+  },
+  "2": {
+   "title": "👤 Il mio stato",
+   "description": "Settimana `#7`\n\n**Proposte inviate:** `1/3` (2 disponibili)\n**Proposte supportate:** `0`\n\n**Voti usati per sondaggio**\n🎮 Giochi gratis da scaricare: `0/2 voti`\n💬 Giochi da Discord: `0/2 voti`\n🎲 Tanti: `0/2 voti`\n🕳️ Vuoto: `0/2 voti`\n🎲 Giochi senza link: `0/2 voti`\n8️⃣ Extra 8: `0/2 voti`\n9️⃣ Extra 9: `0/2 voti`\n🔟 Extra 10: `0/2 voti`\n1️⃣ Extra 11: `0/2 voti`\n2️⃣ Extra 12: `0/2 voti`\n3️⃣ Extra 13: `0/2 voti`\n4️⃣ Extra 14: `0/2 voti`\n🏆 Proposte della community: `0/2 voti`\n\n**Ultima proposta:** Among Us · Gioco\n\n**Statistiche dal 2026-09-01**\n**Livello:** 🌱 Nuovo · **Punti:** `1`\n**Stagione Autunno 2026:** `0 punti`\n`▰▱▱▱▱▱▱▱▱▱` `1/10 punti` · prossimo: 🥉 Bronzo\n🔥 **Streak:** da iniziare questa settimana · record: `2`\nProposte inviate: `1` · supporti dati: `0`\nSupporti ricevuti: `0` · ballottaggi: `0` · proposte vincitrici: `0`\n\n**Titoli stagionali**\n🏅 Campione Primavera 2026\n\n**Badge**\n🌱 Prima proposta\n\n🔒 **3 badge segreti da scoprire**\n*Indizio: Le idee migliori arrivano quando tutti dormono…*\n\n**Hall of Fame personale** (dal 2026-09-15)\nNessuna proposta vincitrice registrata per ora.",
+   "color": 5793266,
+   "fields": [],
+   "thumbnail": null,
+   "image": null,
+   "footer": null,
+   "has_timestamp": false
+  },
+  "3": {
+   "title": "👤 Il mio stato",
+   "description": "Settimana `#7`\n\n**Proposte inviate:** `1/3` (2 disponibili)\n**Proposte supportate:** `0`\n\n**Voti usati per sondaggio**\n🎮 Giochi gratis da scaricare: `0/2 voti`\n💬 Giochi da Discord: `0/2 voti`\n🎲 Tanti: `0/2 voti`\n🕳️ Vuoto: `0/2 voti`\n🎲 Giochi senza link: `0/2 voti`\n8️⃣ Extra 8: `0/2 voti`\n9️⃣ Extra 9: `0/2 voti`\n🔟 Extra 10: `0/2 voti`\n1️⃣ Extra 11: `0/2 voti`\n2️⃣ Extra 12: `0/2 voti`\n3️⃣ Extra 13: `0/2 voti`\n4️⃣ Extra 14: `0/2 voti`\n🏆 Proposte della community: `0/2 voti`\n\n**Ultima proposta:** Jackbox Party · Gioco\n\n**Statistiche dal 2026-09-01**\n**Livello:** 👑 Leggenda · **Punti:** `280`\n**Stagione Autunno 2026:** `4 punti`\n`▰▰▰▰▰▰▰▰▰▰` `280/200 punti` · prossimo: livello massimo\n🔥 **Streak:** `8 settimane` · partecipa per mantenerla · record: `8`\nProposte inviate: `30` · supporti dati: `0`\nSupporti ricevuti: `50` · ballottaggi: `10` · proposte vincitrici: `10`\n\n**Titoli stagionali**\n🏅 Campione Estate 2026\n\n**Badge**\n🌱 Prima proposta\n⭐ Community Hero\n🗳️ Presenza in 3 ballottaggi\n🏆 Proposta vincitrice\n\n**Easter egg sbloccati**\n🌙 Nottataccia\n🔄 Indeciso\n📣 Influencer\n\n**Hall of Fame personale** (dal 2026-09-15)\n🏆 **Among Us** · settimana `#6` · `9 voti`",
+   "color": 5793266,
+   "fields": [],
+   "thumbnail": null,
+   "image": null,
+   "footer": null,
+   "has_timestamp": false
+  },
+  "99": {
+   "title": "👤 Il mio stato",
+   "description": "Settimana `#7`\n\n**Proposte inviate:** `0/3` (3 disponibili)\n**Proposte supportate:** `0`\n\n**Voti usati per sondaggio**\n🎮 Giochi gratis da scaricare: `0/2 voti`\n💬 Giochi da Discord: `0/2 voti`\n🎲 Tanti: `0/2 voti`\n🕳️ Vuoto: `0/2 voti`\n🎲 Giochi senza link: `0/2 voti`\n8️⃣ Extra 8: `0/2 voti`\n9️⃣ Extra 9: `0/2 voti`\n🔟 Extra 10: `0/2 voti`\n1️⃣ Extra 11: `0/2 voti`\n2️⃣ Extra 12: `0/2 voti`\n3️⃣ Extra 13: `0/2 voti`\n4️⃣ Extra 14: `0/2 voti`\n🏆 Proposte della community: `0/2 voti`\n\n**Ultima proposta:** nessuna questa settimana\n\n**Statistiche dal 2026-09-01**\n**Livello:** 🌱 Nuovo · **Punti:** `0`\n**Stagione Autunno 2026:** `0 punti`\n`▱▱▱▱▱▱▱▱▱▱` `0/10 punti` · prossimo: 🥉 Bronzo\n🔥 **Streak:** da iniziare questa settimana\nProposte inviate: `0` · supporti dati: `0`\nSupporti ricevuti: `0` · ballottaggi: `0` · proposte vincitrici: `0`\n\n**Titoli stagionali**\nNessun titolo stagionale ancora.\n\n**Badge**\nAncora nessun badge: partecipa per sbloccarne uno!\n\n🔒 **3 badge segreti da scoprire**\n*Indizio: Le idee migliori arrivano quando tutti dormono…*\n\n**Hall of Fame personale** (dal 2026-09-15)\nNessuna proposta vincitrice registrata per ora.",
+   "color": 5793266,
+   "fields": [],
+   "thumbnail": null,
+   "image": null,
+   "footer": null,
+   "has_timestamp": false
+  }
+ },
+ "public_profiles": {
+  "1": {
+   "title": "👤 Profilo di Utente 1",
+   "description": "**Livello:** 🥇 Oro · **Punti:** `57`\n`▰▰▰▰▰▰▱▱▱▱` `57/100 punti` · prossimo: 💎 Platino\n🍂 **Autunno 2026:** `12 punti` · 🔥 **Streak:** `3 settimane` · **Record:** `5 settimane`",
+   "color": 5793266,
+   "fields": [
+    [
+     "Statistiche",
+     "Proposte: `12` · Supporti dati: `11`\nSupporti ricevuti: `10` · Ballottaggi: `3` · Vittorie: `1`",
+     false
+    ],
+    [
+     "🏆 Hall of Fame personale",
+     "🏆 **Among Us** · settimana `#6` · `9 voti`\n🏆 **Jackbox** · settimana `#5` · `5 voti`\n🏆 **Karaoke** · settimana `#4` · `5 voti`\n🏆 **Aaa** · settimana `#3` · `2 voti`\n🏆 **Bbb** · settimana `#2` · `2 voti`",
+     false
+    ],
+    [
+     "🎖️ Titoli stagionali",
+     "🏅 Campione Primavera 2026\n🏅 Campione Inverno 2025/26",
+     false
+    ],
+    [
+     "🎭 Easter egg sbloccati",
+     "🌙 Nottataccia\n🔄 Indeciso",
+     false
+    ]
+   ],
+   "thumbnail": "https://cdn.example.test/rita.png",
+   "image": null,
+   "footer": "I voti individuali restano anonimi e non sono mostrati.",
+   "has_timestamp": false
+  },
+  "2": {
+   "title": "👤 Profilo di Utente 2",
+   "description": "**Livello:** 🌱 Nuovo · **Punti:** `1`\n`▰▱▱▱▱▱▱▱▱▱` `1/10 punti` · prossimo: 🥉 Bronzo\n🍂 **Autunno 2026:** `0 punti` · 🔥 **Streak:** `0 settimane` · **Record:** `2 settimane`",
+   "color": 5793266,
+   "fields": [
+    [
+     "Statistiche",
+     "Proposte: `1` · Supporti dati: `0`\nSupporti ricevuti: `0` · Ballottaggi: `0` · Vittorie: `0`",
+     false
+    ],
+    [
+     "🏆 Hall of Fame personale",
+     "Nessuna proposta vincitrice registrata per ora.",
+     false
+    ],
+    [
+     "🎖️ Titoli stagionali",
+     "🏅 Campione Primavera 2026",
+     false
+    ]
+   ],
+   "thumbnail": "https://cdn.example.test/rita.png",
+   "image": null,
+   "footer": "I voti individuali restano anonimi e non sono mostrati.",
+   "has_timestamp": false
+  },
+  "3": {
+   "title": "👤 Profilo di Utente 3",
+   "description": "**Livello:** 👑 Leggenda · **Punti:** `280`\n`▰▰▰▰▰▰▰▰▰▰` `280/200 punti` · prossimo: livello massimo\n🍂 **Autunno 2026:** `4 punti` · 🔥 **Streak:** `8 settimane` · **Record:** `8 settimane`",
+   "color": 5793266,
+   "fields": [
+    [
+     "Statistiche",
+     "Proposte: `30` · Supporti dati: `0`\nSupporti ricevuti: `50` · Ballottaggi: `10` · Vittorie: `10`",
+     false
+    ],
+    [
+     "🏆 Hall of Fame personale",
+     "🏆 **Among Us** · settimana `#6` · `9 voti`",
+     false
+    ],
+    [
+     "🎖️ Titoli stagionali",
+     "🏅 Campione Estate 2026",
+     false
+    ],
+    [
+     "🎭 Easter egg sbloccati",
+     "🌙 Nottataccia\n🔄 Indeciso\n📣 Influencer",
+     false
+    ]
+   ],
+   "thumbnail": "https://cdn.example.test/rita.png",
+   "image": null,
+   "footer": "I voti individuali restano anonimi e non sono mostrati.",
+   "has_timestamp": false
+  },
+  "99": {
+   "title": "👤 Profilo di Utente 99",
+   "description": "**Livello:** 🌱 Nuovo · **Punti:** `0`\n`▱▱▱▱▱▱▱▱▱▱` `0/10 punti` · prossimo: 🥉 Bronzo\n🍂 **Autunno 2026:** `0 punti` · 🔥 **Streak:** `0 settimane` · **Record:** `0 settimane`",
+   "color": 5793266,
+   "fields": [
+    [
+     "Statistiche",
+     "Proposte: `0` · Supporti dati: `0`\nSupporti ricevuti: `0` · Ballottaggi: `0` · Vittorie: `0`",
+     false
+    ],
+    [
+     "🏆 Hall of Fame personale",
+     "Nessuna proposta vincitrice registrata per ora.",
+     false
+    ]
+   ],
+   "thumbnail": "https://cdn.example.test/rita.png",
+   "image": null,
+   "footer": "I voti individuali restano anonimi e non sono mostrati.",
+   "has_timestamp": false
+  }
+ },
+ "teasers": {
+  "1": [
+   "",
+   "🔒 **1 badge segreto da scoprire**",
+   "*Indizio: La costanza nel ballottaggio non passa inosservata.*"
+  ],
+  "2": [
+   "",
+   "🔒 **3 badge segreti da scoprire**",
+   "*Indizio: Le idee migliori arrivano quando tutti dormono…*"
+  ],
+  "3": [],
+  "99": [
+   "",
+   "🔒 **3 badge segreti da scoprire**",
+   "*Indizio: Le idee migliori arrivano quando tutti dormono…*"
+  ]
+ },
+ "proposal_cards": {
+  "1": {
+   "title": "🎮 Among Us",
+   "description": "**Gioco** · 🏆 Nel ballottaggio\n──────────\n👥 Sostenitori: `4`",
+   "color": 5793266,
+   "fields": [
+    [
+     "Proposta da",
+     "└ <@1>",
+     true
+    ],
+    [
+     "Link",
+     "└ [Apri link](https://www.youtube.com/watch?v=dQw4w9WgXcQ)",
+     true
+    ]
+   ],
+   "thumbnail": null,
+   "image": "https://i.ytimg.com/vi/dQw4w9WgXcQ/hqdefault.jpg",
+   "footer": null,
+   "has_timestamp": false
+  },
+  "2": {
+   "title": "🎮 Jackbox Party",
+   "description": "**Gioco** · 🏆 Nel ballottaggio\n──────────\n👥 Sostenitori: `2`",
+   "color": 5793266,
+   "fields": [
+    [
+     "Proposta da",
+     "└ <@3>",
+     true
+    ],
+    [
+     "Link",
+     "└ [Apri link](https://store.steampowered.com/app/945360/)",
+     true
+    ]
+   ],
+   "thumbnail": null,
+   "image": "https://cdn.akamai.steamstatic.com/steam/apps/945360/header.jpg",
+   "footer": null,
+   "has_timestamp": false
+  },
+  "3": {
+   "title": "🎬 Il Gladiatore",
+   "description": "**Film** · In valutazione\n──────────\n👥 Sostenitori: `2`",
+   "color": 5793266,
+   "fields": [
+    [
+     "Proposta da",
+     "└ <@4>",
+     true
+    ],
+    [
+     "Link",
+     "└ [Apri link](https://example.com/film)",
+     true
+    ]
+   ],
+   "thumbnail": null,
+   "image": null,
+   "footer": null,
+   "has_timestamp": false
+  },
+  "4": {
+   "title": "🎤 Karaoke Night",
+   "description": "**Karaoke** · In valutazione\n──────────\n👥 Sostenitori: `3`",
+   "color": 5793266,
+   "fields": [
+    [
+     "Proposta da",
+     "└ <@5>",
+     true
+    ]
+   ],
+   "thumbnail": null,
+   "image": null,
+   "footer": null,
+   "has_timestamp": false
+  },
+  "5": null,
+  "6": {
+   "title": "🎮 Gartic Phone",
+   "description": "**Gioco** · 🏆 Nel ballottaggio\n──────────\n👥 Sostenitori: `2`",
+   "color": 5793266,
+   "fields": [
+    [
+     "Proposta da",
+     "└ <@7>",
+     true
+    ],
+    [
+     "Link",
+     "└ [Apri link](https://youtu.be/AAAAAAAAAAA)",
+     true
+    ]
+   ],
+   "thumbnail": null,
+   "image": "https://i.ytimg.com/vi/AAAAAAAAAAA/hqdefault.jpg",
+   "footer": null,
+   "has_timestamp": false
+  },
+  "7": null,
+  "999": null
+ },
+ "dashboard_no_community": {
+  "title": "🎮 GAME NIGHT HUB",
+  "description": "Proponi un'attività, apri un sondaggio per votare oppure consulta classifica e storico.",
+  "color": 5793266,
+  "fields": [
+   [
+    "Settimana `#7`",
+    "Chiusura <t:1794826800:R>",
+    true
+   ],
+   [
+    "👥 Partecipanti",
+    "`5`",
+    true
+   ],
+   [
+    "✨ Proposte",
+    "`6`",
+    true
+   ],
+   [
+    "🔥 Più votato ora",
+    "**Among Us** · `3 voti`\nProposte della community",
+    true
+   ],
+   [
+    "⭐ Proposta del momento",
+    "🎤 **Karaoke Night**\n└ 👥 `3 sostenitori`\nProposta da <@5>",
+    true
+   ],
+   [
+    "🏆 Ballottaggio community",
+    "Sondaggio community non configurato.",
+    false
+   ],
+   [
+    "Sondaggi attivi",
+    "└ 🎮 Giochi gratis da scaricare\n└ 💬 Giochi da Discord\n└ 🎲 Tanti\n└ 🕳️ Vuoto\n└ 🎲 Giochi senza link\n└ 8️⃣ Extra 8\n└ 9️⃣ Extra 9\n└ 🔟 Extra 10\n└ 1️⃣ Extra 11\n└ 2️⃣ Extra 12\n… e altri 3",
+    false
+   ],
+   [
+    "✨ Proposte recenti",
+    "🎮 **Gartic Phone**\n└ Gioco · `2 sostenitori`\n🎤 **Karaoke Night**\n└ Karaoke · `3 sostenitori`\n🎬 **Il Gladiatore**\n└ Film · `2 sostenitori`",
+    false
+   ]
+  ],
+  "thumbnail": null,
+  "image": null,
+  "footer": "Usa i pulsanti qui sotto: non serve conoscere i comandi.",
+  "has_timestamp": true
+ },
+ "dashboard_empty_community": {
+  "title": "🎮 GAME NIGHT HUB",
+  "description": "Proponi un'attività, apri un sondaggio per votare oppure consulta classifica e storico.",
+  "color": 5793266,
+  "fields": [
+   [
+    "Settimana `#7`",
+    "Chiusura <t:1794826800:R>",
+    true
+   ],
+   [
+    "👥 Partecipanti",
+    "`3`",
+    true
+   ],
+   [
+    "✨ Proposte",
+    "`6`",
+    true
+   ],
+   [
+    "🔥 Più votato ora",
+    "**Among Us** · `2 voti`\nGiochi gratis da scaricare",
+    true
+   ],
+   [
+    "⭐ Proposta del momento",
+    "🎤 **Karaoke Night**\n└ 👥 `3 sostenitori`\nProposta da <@5>",
+    true
+   ],
+   [
+    "🏆 Ballottaggio community",
+    "In attesa delle scelte dello staff.",
+    false
+   ],
+   [
+    "Sondaggi attivi",
+    "└ 🎮 Giochi gratis da scaricare\n└ 💬 Giochi da Discord\n└ 🎲 Tanti\n└ 🕳️ Vuoto\n└ 🎲 Giochi senza link\n└ 8️⃣ Extra 8\n└ 9️⃣ Extra 9\n└ 🔟 Extra 10\n└ 1️⃣ Extra 11\n└ 2️⃣ Extra 12\n… e altri 3",
+    false
+   ],
+   [
+    "✨ Proposte recenti",
+    "🎮 **Gartic Phone**\n└ Gioco · `2 sostenitori`\n🎤 **Karaoke Night**\n└ Karaoke · `3 sostenitori`\n🎬 **Il Gladiatore**\n└ Film · `2 sostenitori`",
+    false
+   ]
+  ],
+  "thumbnail": null,
+  "image": null,
+  "footer": "Usa i pulsanti qui sotto: non serve conoscere i comandi.",
+  "has_timestamp": true
+ },
+ "poll_5_empty": {
+  "title": "🏆  Proposte della community",
+  "description": "⏳ Reset <t:1794826800:R>\nLo staff ha selezionato le proposte migliori. Hai `2 voti`: scegli le tue preferite.\n\n──────────\n\n*Nessuna proposta in votazione questa settimana.*",
+  "color": 14245738,
+  "fields": [],
+  "thumbnail": null,
+  "image": null,
+  "footer": "0 votanti · POLL_ID=5",
+  "has_timestamp": false
+ },
+ "leaderboard_no_polls": {
+  "title": "📊 Classifica della settimana",
+  "description": "Non ci sono sondaggi attivi al momento.\n\n**👍 Proposte più sostenute**\n1. **Among Us** · `4 sostenitori`\n2. **Karaoke Night** · `3 sostenitori`\n3. **Gartic Phone** · `2 sostenitori`\n4. **Il Gladiatore** · `2 sostenitori`\n5. **Jackbox Party** · `2 sostenitori`",
+  "color": 5793266,
+  "fields": [],
+  "thumbnail": null,
+  "image": null,
+  "footer": null,
+  "has_timestamp": false
+ },
+ "dashboard_no_polls": {
+  "title": "🎮 GAME NIGHT HUB",
+  "description": "Proponi un'attività, apri un sondaggio per votare oppure consulta classifica e storico.",
+  "color": 5793266,
+  "fields": [
+   [
+    "Settimana `#7`",
+    "Chiusura <t:1794826800:R>",
+    true
+   ],
+   [
+    "👥 Partecipanti",
+    "`0`",
+    true
+   ],
+   [
+    "✨ Proposte",
+    "`6`",
+    true
+   ],
+   [
+    "🔥 Più votato ora",
+    "In attesa dei primi voti.",
+    true
+   ],
+   [
+    "⭐ Proposta del momento",
+    "🎤 **Karaoke Night**\n└ 👥 `3 sostenitori`\nProposta da <@5>",
+    true
+   ],
+   [
+    "🏆 Ballottaggio community",
+    "Sondaggio community non configurato.",
+    false
+   ],
+   [
+    "Sondaggi attivi",
+    "Nessun sondaggio attivo.",
+    false
+   ],
+   [
+    "✨ Proposte recenti",
+    "🎮 **Gartic Phone**\n└ Gioco · `2 sostenitori`\n🎤 **Karaoke Night**\n└ Karaoke · `3 sostenitori`\n🎬 **Il Gladiatore**\n└ Film · `2 sostenitori`",
+    false
+   ]
+  ],
+  "thumbnail": null,
+  "image": null,
+  "footer": "Usa i pulsanti qui sotto: non serve conoscere i comandi.",
+  "has_timestamp": true
+ },
+ "profile_no_polls": {
+  "title": "👤 Il mio stato",
+  "description": "Settimana `#7`\n\n**Proposte inviate:** `1/3` (2 disponibili)\n**Proposte supportate:** `0`\n\n**Voti usati per sondaggio**\nNessun sondaggio attivo.\n\n**Ultima proposta:** Among Us · Gioco\n\n**Statistiche dal 2026-09-01**\n**Livello:** 🥇 Oro · **Punti:** `57`\n**Stagione Autunno 2026:** `12 punti`\n`▰▰▰▰▰▰▱▱▱▱` `57/100 punti` · prossimo: 💎 Platino\n🔥 **Streak:** `3 settimane` · mantenuta questa settimana · record: `5`\nProposte inviate: `12` · supporti dati: `11`\nSupporti ricevuti: `10` · ballottaggi: `3` · proposte vincitrici: `1`\n\n**Titoli stagionali**\n🏅 Campione Primavera 2026\n🏅 Campione Inverno 2025/26\n\n**Badge**\n🌱 Prima proposta\n🎯 10 supporti dati\n⭐ Community Hero\n🗳️ Presenza in 3 ballottaggi\n🏆 Proposta vincitrice\n\n**Easter egg sbloccati**\n🌙 Nottataccia\n🔄 Indeciso\n\n🔒 **1 badge segreto da scoprire**\n*Indizio: La costanza nel ballottaggio non passa inosservata.*\n\n**Hall of Fame personale** (dal 2026-09-15)\n🏆 **Among Us** · settimana `#6` · `9 voti`\n🏆 **Jackbox** · settimana `#5` · `5 voti`\n🏆 **Karaoke** · settimana `#4` · `5 voti`\n🏆 **Aaa** · settimana `#3` · `2 voti`\n🏆 **Bbb** · settimana `#2` · `2 voti`",
+  "color": 5793266,
+  "fields": [],
+  "thumbnail": null,
+  "image": null,
+  "footer": null,
+  "has_timestamp": false
+ }
+}

@@ -1,0 +1,806 @@
+{
+ "log": {
+  "ids": [
+   1,
+   2,
+   3,
+   4,
+   5
+  ],
+  "approve_among": [
+   true,
+   200,
+   "✅ Approvata: **Among Us**.",
+   "approved",
+   "Among Us"
+  ],
+  "reject_after_approve": [
+   false,
+   409,
+   "⚠️ Stato attuale: ✅ Approvata.",
+   "approved",
+   "Among Us"
+  ],
+  "reject_no_reason": [
+   false,
+   400,
+   "❌ Inserisci il motivo del rifiuto.",
+   null,
+   null
+  ],
+  "reject_monopoly": [
+   true,
+   200,
+   "❌ Rifiutata: **Monopoly**.",
+   "rejected",
+   "Monopoly"
+  ],
+  "invalid_action": [
+   false,
+   400,
+   "❌ Azione di revisione non valida.",
+   null,
+   null
+  ],
+  "missing": [
+   false,
+   404,
+   "❌ Proposta non trovata questa settimana.",
+   null,
+   null
+  ],
+  "review_jack": [
+   true,
+   200,
+   "🔎 In revisione: **Jackbox Party**.",
+   "reviewing",
+   "Jackbox Party"
+  ],
+  "review_jack_again": [
+   false,
+   409,
+   "⚠️ Stato attuale: 🔎 In revisione.",
+   "reviewing",
+   "Jackbox Party"
+  ],
+  "approve_jack_site": [
+   true,
+   200,
+   "✅ Approvata: **Jackbox Party**.",
+   "approved",
+   "Jackbox Party"
+  ],
+  "approve_gartic_reason": [
+   true,
+   200,
+   "✅ Approvata: **Gartic Phone**.",
+   "approved",
+   "Gartic Phone"
+  ],
+  "card_missing": [
+   null,
+   null
+  ],
+  "t1_a": [
+   true,
+   "✅ Voto registrato.",
+   6
+  ],
+  "t1_b": [
+   true,
+   "✅ Voto registrato.",
+   6
+  ],
+  "t1_c_full": [
+   false,
+   "⚠️ Hai già usato i tuoi 2 voti: togline uno o usa **📋 I miei voti** per cambiarli.",
+   6
+  ],
+  "t1_remove_a": [
+   true,
+   "🗑️ Voto rimosso.",
+   6
+  ],
+  "t1_c": [
+   true,
+   "✅ Voto registrato.",
+   6
+  ],
+  "t_missing": [
+   false,
+   "❌ Questa opzione non esiste più.",
+   null
+  ],
+  "s2_ab": [
+   true,
+   "✅ Voti aggiornati."
+  ],
+  "s2_bc": [
+   true,
+   "✅ Voti aggiornati."
+  ],
+  "s2_all": [
+   false,
+   "⚠️ Puoi scegliere al massimo 2 opzioni."
+  ],
+  "s2_same": [
+   false,
+   "ℹ️ Nessuna modifica ai tuoi voti."
+  ],
+  "s2_dup": [
+   true,
+   "✅ Voti aggiornati."
+  ],
+  "s2_invalid": [
+   false,
+   "❌ Alcune opzioni non esistono più: riapri il menu."
+  ],
+  "s2_empty_none": [
+   false,
+   "ℹ️ Nessuna modifica ai tuoi voti."
+  ],
+  "s2_missing_poll": [
+   false,
+   "❌ Questo sondaggio non esiste più."
+  ],
+  "summary_1": "🗳️ I tuoi voti: **B**, **C** · `0` voti rimasti",
+  "summary_none": "🗳️ I tuoi voti: nessuno · `2` voti rimasti",
+  "s5_three": [
+   true,
+   "✅ Voti aggiornati."
+  ],
+  "summary_5": "🗳️ I tuoi voti: **A**, **B**, **C** · `0` voti rimasti",
+  "t_inactive": [
+   false,
+   "⚠️ Questo sondaggio non è attivo.",
+   6
+  ],
+  "s_inactive": [
+   false,
+   "⚠️ Questo sondaggio non è attivo."
+  ],
+  "closed_count": 1,
+  "expired_state": [
+   0,
+   1
+  ],
+  "menu": {
+   "placeholder": "Scegli le tue opzioni preferite",
+   "min": 0,
+   "max": 2,
+   "options": [
+    [
+     "A",
+     "17",
+     null,
+     false
+    ],
+    [
+     "B",
+     "18",
+     null,
+     true
+    ],
+    [
+     "C",
+     "19",
+     null,
+     true
+    ]
+   ]
+  },
+  "menu_many": {
+   "max": 2,
+   "count": 12
+  }
+ },
+ "cards": {
+  "jackpack": {
+   "embed": {
+    "title": "🎮 Jackbox Party Pack",
+    "description": "**Gioco** · 🕓 In attesa di revisione",
+    "color": 10181046,
+    "fields": [
+     [
+      "Proposta da",
+      "<@4>",
+      true
+     ],
+     [
+      "Possibili duplicati",
+      "`#3` **Jackbox Party** · ✅ Approvata\nUnisci con `/unisci-proposte`.",
+      false
+     ]
+    ],
+    "thumbnail": null,
+    "footer": "Proposta #4 · settimana 1"
+   },
+   "buttons": [
+    [
+     "review:approve:4",
+     "Approva",
+     "✅",
+     3,
+     false
+    ],
+    [
+     "review:reject:4",
+     "Rifiuta",
+     "❌",
+     4,
+     false
+    ]
+   ]
+  },
+  "gartic": {
+   "embed": {
+    "title": "🎮 Gartic Phone",
+    "description": "**Gioco** · ✅ Approvata",
+    "color": 10181046,
+    "fields": [
+     [
+      "Proposta da",
+      "<@5>",
+      true
+     ],
+     [
+      "Link",
+      "[Apri link](https://www.youtube.com/watch?v=dQw4w9WgXcQ)",
+      true
+     ]
+    ],
+    "thumbnail": "https://i.ytimg.com/vi/dQw4w9WgXcQ/hqdefault.jpg",
+    "footer": "Proposta #5 · settimana 1"
+   },
+   "buttons": [
+    [
+     "review:approve:5",
+     "Approva",
+     "✅",
+     3,
+     true
+    ],
+    [
+     "review:reject:5",
+     "Rifiuta",
+     "❌",
+     4,
+     true
+    ]
+   ]
+  },
+  "among_approved": {
+   "embed": {
+    "title": "🎮 Among Us",
+    "description": "**Gioco** · ✅ Approvata",
+    "color": 10181046,
+    "fields": [
+     [
+      "Proposta da",
+      "<@1>, <@6>",
+      true
+     ]
+    ],
+    "thumbnail": null,
+    "footer": "Proposta #1 · settimana 1"
+   },
+   "buttons": [
+    [
+     "review:approve:1",
+     "Approva",
+     "✅",
+     3,
+     true
+    ],
+    [
+     "review:reject:1",
+     "Rifiuta",
+     "❌",
+     4,
+     true
+    ]
+   ]
+  },
+  "monopoly_rejected": {
+   "embed": {
+    "title": "🎮 Monopoly",
+    "description": "**Gioco** · ❌ Rifiutata",
+    "color": 10181046,
+    "fields": [
+     [
+      "Proposta da",
+      "<@2>",
+      true
+     ]
+    ],
+    "thumbnail": null,
+    "footer": "Proposta #2 · settimana 1"
+   },
+   "buttons": [
+    [
+     "review:approve:2",
+     "Approva",
+     "✅",
+     3,
+     true
+    ],
+    [
+     "review:reject:2",
+     "Rifiuta",
+     "❌",
+     4,
+     true
+    ]
+   ]
+  },
+  "jack": {
+   "embed": {
+    "title": "🎮 Jackbox Party",
+    "description": "**Gioco** · ✅ Approvata",
+    "color": 10181046,
+    "fields": [
+     [
+      "Proposta da",
+      "<@3>",
+      true
+     ],
+     [
+      "Possibili duplicati",
+      "`#4` **Jackbox Party Pack** · 🕓 In attesa di revisione\nUnisci con `/unisci-proposte`.",
+      false
+     ]
+    ],
+    "thumbnail": null,
+    "footer": "Proposta #3 · settimana 1"
+   },
+   "buttons": [
+    [
+     "review:approve:3",
+     "Approva",
+     "✅",
+     3,
+     true
+    ],
+    [
+     "review:reject:3",
+     "Rifiuta",
+     "❌",
+     4,
+     true
+    ]
+   ]
+  },
+  "jackpack_note": {
+   "embed": {
+    "title": "🎮 Jackbox Party Pack",
+    "description": "**Gioco** · 🕓 In attesa di revisione\nNota dello staff",
+    "color": 10181046,
+    "fields": [
+     [
+      "Proposta da",
+      "<@4>",
+      true
+     ],
+     [
+      "Possibili duplicati",
+      "`#3` **Jackbox Party** · ✅ Approvata\nUnisci con `/unisci-proposte`.",
+      false
+     ]
+    ],
+    "thumbnail": null,
+    "footer": "Proposta #4 · settimana 1"
+   },
+   "buttons": [
+    [
+     "review:approve:4",
+     "Approva",
+     "✅",
+     3,
+     false
+    ],
+    [
+     "review:reject:4",
+     "Rifiuta",
+     "❌",
+     4,
+     false
+    ]
+   ]
+  }
+ },
+ "views": {
+  "voti": [
+   [
+    "vote:17",
+    "A",
+    null,
+    2,
+    false
+   ],
+   [
+    "vote:18",
+    "B",
+    null,
+    2,
+    false
+   ],
+   [
+    "vote:19",
+    "C",
+    null,
+    2,
+    false
+   ],
+   [
+    "myvotes:6",
+    "I miei voti",
+    "📋",
+    1,
+    false
+   ]
+  ],
+  "scaduto": [
+   [
+    "vote:20",
+    "Opzione",
+    null,
+    2,
+    true
+   ],
+   [
+    "myvotes:7",
+    "I miei voti",
+    "📋",
+    1,
+    true
+   ]
+  ],
+  "tanti": [
+   [
+    "myvotes:8",
+    "Vota",
+    "🗳️",
+    1,
+    false
+   ]
+  ],
+  "pochi": [
+   [
+    "vote:33",
+    "Uno",
+    null,
+    2,
+    false
+   ],
+   [
+    "vote:34",
+    "Due",
+    null,
+    2,
+    false
+   ],
+   [
+    "vote:35",
+    "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+    null,
+    2,
+    false
+   ],
+   [
+    "myvotes:9",
+    "I miei voti",
+    "📋",
+    1,
+    false
+   ]
+  ],
+  "vuoto": [
+   [
+    "myvotes:10",
+    "I miei voti",
+    "📋",
+    1,
+    true
+   ]
+  ]
+ },
+ "tables": {
+  "suggestions_review": [
+   [
+    1,
+    "approved"
+   ],
+   [
+    2,
+    "rejected"
+   ],
+   [
+    3,
+    "approved"
+   ],
+   [
+    4,
+    "pending"
+   ],
+   [
+    5,
+    "approved"
+   ]
+  ],
+  "staff_audit": [
+   [
+    99,
+    "proposal_approved",
+    "suggestion",
+    "1",
+    null,
+    "{\"name\": \"Among Us\", \"review_status\": \"approved\", \"source\": \"discord\"}"
+   ],
+   [
+    99,
+    "proposal_rejected",
+    "suggestion",
+    "2",
+    "Troppo lungo",
+    "{\"name\": \"Monopoly\", \"review_status\": \"rejected\", \"source\": \"discord\"}"
+   ],
+   [
+    99,
+    "proposal_review_started",
+    "suggestion",
+    "3",
+    null,
+    "{\"name\": \"Jackbox Party\", \"review_status\": \"reviewing\", \"source\": \"discord\"}"
+   ],
+   [
+    77,
+    "proposal_approved",
+    "suggestion",
+    "3",
+    null,
+    "{\"name\": \"Jackbox Party\", \"review_status\": \"approved\", \"source\": \"site\"}"
+   ],
+   [
+    88,
+    "proposal_approved",
+    "suggestion",
+    "5",
+    "ottima",
+    "{\"name\": \"Gartic Phone\", \"review_status\": \"approved\", \"source\": \"discord\"}"
+   ]
+  ],
+  "votes": [
+   [
+    17,
+    3
+   ],
+   [
+    17,
+    5
+   ],
+   [
+    18,
+    1
+   ],
+   [
+    18,
+    2
+   ],
+   [
+    18,
+    3
+   ],
+   [
+    18,
+    5
+   ],
+   [
+    19,
+    1
+   ],
+   [
+    19,
+    2
+   ],
+   [
+    19,
+    5
+   ]
+  ],
+  "vote_change_counts": [
+   [
+    6,
+    1,
+    1
+   ],
+   [
+    6,
+    2,
+    1
+   ],
+   [
+    6,
+    9,
+    5
+   ]
+  ],
+  "daily_vote_activity": [
+   [
+    1,
+    6,
+    "2026-11-11"
+   ],
+   [
+    2,
+    6,
+    "2026-11-11"
+   ],
+   [
+    3,
+    6,
+    "2026-11-11"
+   ],
+   [
+    5,
+    6,
+    "2026-11-11"
+   ],
+   [
+    9,
+    6,
+    "2026-11-11"
+   ]
+  ],
+  "weekly_activity": [
+   [
+    1,
+    1,
+    2,
+    1
+   ],
+   [
+    2,
+    1,
+    2,
+    1
+   ],
+   [
+    3,
+    1,
+    2,
+    1
+   ],
+   [
+    4,
+    1,
+    1,
+    1
+   ],
+   [
+    5,
+    1,
+    2,
+    1
+   ],
+   [
+    6,
+    1,
+    1,
+    1
+   ],
+   [
+    9,
+    1,
+    1,
+    0
+   ]
+  ],
+  "user_streaks": [
+   [
+    1,
+    1,
+    1,
+    1
+   ],
+   [
+    2,
+    1,
+    1,
+    1
+   ],
+   [
+    3,
+    1,
+    1,
+    1
+   ],
+   [
+    4,
+    1,
+    1,
+    1
+   ],
+   [
+    5,
+    1,
+    1,
+    1
+   ],
+   [
+    6,
+    1,
+    1,
+    1
+   ],
+   [
+    9,
+    1,
+    1,
+    1
+   ]
+  ],
+  "user_hidden_badges": [],
+  "polls_active": [
+   [
+    1,
+    "Giochi gratis da scaricare",
+    1
+   ],
+   [
+    2,
+    "Giochi da Discord",
+    1
+   ],
+   [
+    3,
+    "Giochi con link/codice",
+    1
+   ],
+   [
+    4,
+    "Giochi senza link",
+    1
+   ],
+   [
+    5,
+    "Proposte della community",
+    1
+   ],
+   [
+    6,
+    "Voti",
+    1
+   ],
+   [
+    7,
+    "Scaduto",
+    0
+   ],
+   [
+    8,
+    "Tanti",
+    1
+   ],
+   [
+    9,
+    "Pochi",
+    1
+   ],
+   [
+    10,
+    "Vuoto",
+    1
+   ]
+  ],
+  "community_activity": [
+   [
+    "proposal",
+    6
+   ],
+   [
+    "vote",
+    12
+   ]
+  ]
+ }
+}

@@ -1,0 +1,9 @@
+[
+ {
+  "name": "classifica-stagione",
+  "description": "Mostra la classifica della stagione corrente e i campioni",
+  "options": [],
+  "default_member_permissions": null,
+  "guild_only": true
+ }
+]

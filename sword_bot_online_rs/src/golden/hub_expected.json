@@ -1,0 +1,716 @@
+{
+ "hub_card": [
+  [
+   "text",
+   "## 🎮 Game Night Hub\nProponi un'attività, vota i sondaggi e sostieni le idee della community."
+  ],
+  [
+   "separator"
+  ],
+  [
+   "text",
+   "**Settimana #7** · chiusura <t:1794826800:R>\n👥 `5` votanti · ✨ `5` proposte approvate · 🗳️ `13` sondaggi aperti"
+  ],
+  [
+   "text",
+   "### ⭐ Proposta del momento\n🎤 **Karaoke Night** · `3 sostenitori`\nProposta da <@5>"
+  ],
+  [
+   "text",
+   "### 🏆 Ballottaggio community\n🥇 **Among Us** · `3 voti`\n🥈 **Jackbox Party** · `2 voti`\n🥉 **Gartic Phone** · `1 voti`"
+  ],
+  [
+   "text",
+   "### ✨ Proposte recenti\n🎮 **Gartic Phone** · `2 sostenitori`\n🎤 **Karaoke Night** · `3 sostenitori`\n🎬 **Il Gladiatore** · `2 sostenitori`"
+  ]
+ ],
+ "ballot_text": "🥇 **Among Us** · `3 voti`\n🥈 **Jackbox Party** · `2 voti`\n🥉 **Gartic Phone** · `1 voti`",
+ "recent_text": "🎮 **Gartic Phone** · `2 sostenitori`\n🎤 **Karaoke Night** · `3 sostenitori`\n🎬 **Il Gladiatore** · `2 sostenitori`",
+ "support_list_ids": [
+  6,
+  4,
+  3,
+  2,
+  1
+ ],
+ "support": {
+  "1": {
+   "missing": false,
+   "container": [
+    [
+     "text",
+     "Puoi sostenere ogni proposta una volta. Il sostegno non consuma le tue proposte settimanali."
+    ],
+    [
+     "separator"
+    ],
+    [
+     "section",
+     "## 🎮 Among Us\n**Gioco** · 🏆 Nel ballottaggio\n👥 Sostenitori: `4`\nProposta da <@1>\n[Apri link](https://www.youtube.com/watch?v=dQw4w9WgXcQ)",
+     "https://i.ytimg.com/vi/dQw4w9WgXcQ/hqdefault.jpg"
+    ]
+   ],
+   "options": [
+    {
+     "label": "Gartic Phone",
+     "value": "6",
+     "description": "Gioco · 2 sostenitori",
+     "emoji": "🎮",
+     "default": false
+    },
+    {
+     "label": "Karaoke Night",
+     "value": "4",
+     "description": "Karaoke · 3 sostenitori",
+     "emoji": "🎤",
+     "default": false
+    },
+    {
+     "label": "Il Gladiatore",
+     "value": "3",
+     "description": "Film · 2 sostenitori",
+     "emoji": "🎬",
+     "default": false
+    },
+    {
+     "label": "Jackbox Party",
+     "value": "2",
+     "description": "Gioco · 2 sostenitori",
+     "emoji": "🎮",
+     "default": false
+    },
+    {
+     "label": "Among Us",
+     "value": "1",
+     "description": "Gioco · 4 sostenitori",
+     "emoji": "🎮",
+     "default": true
+    }
+   ],
+   "placeholder": "Scegli una proposta da supportare",
+   "button": "Supporta questa proposta"
+  },
+  "2": {
+   "missing": false,
+   "container": [
+    [
+     "text",
+     "Puoi sostenere ogni proposta una volta. Il sostegno non consuma le tue proposte settimanali."
+    ],
+    [
+     "separator"
+    ],
+    [
+     "section",
+     "## 🎮 Jackbox Party\n**Gioco** · 🏆 Nel ballottaggio\n👥 Sostenitori: `2`\nProposta da <@3>\n[Apri link](https://store.steampowered.com/app/945360/)",
+     "https://cdn.akamai.steamstatic.com/steam/apps/945360/header.jpg"
+    ]
+   ],
+   "options": [
+    {
+     "label": "Gartic Phone",
+     "value": "6",
+     "description": "Gioco · 2 sostenitori",
+     "emoji": "🎮",
+     "default": false
+    },
+    {
+     "label": "Karaoke Night",
+     "value": "4",
+     "description": "Karaoke · 3 sostenitori",
+     "emoji": "🎤",
+     "default": false
+    },
+    {
+     "label": "Il Gladiatore",
+     "value": "3",
+     "description": "Film · 2 sostenitori",
+     "emoji": "🎬",
+     "default": false
+    },
+    {
+     "label": "Jackbox Party",
+     "value": "2",
+     "description": "Gioco · 2 sostenitori",
+     "emoji": "🎮",
+     "default": true
+    },
+    {
+     "label": "Among Us",
+     "value": "1",
+     "description": "Gioco · 4 sostenitori",
+     "emoji": "🎮",
+     "default": false
+    }
+   ],
+   "placeholder": "Scegli una proposta da supportare",
+   "button": "Supporta questa proposta"
+  },
+  "3": {
+   "missing": false,
+   "container": [
+    [
+     "text",
+     "Puoi sostenere ogni proposta una volta. Il sostegno non consuma le tue proposte settimanali."
+    ],
+    [
+     "separator"
+    ],
+    [
+     "text",
+     "## 🎬 Il Gladiatore\n**Film** · In valutazione\n👥 Sostenitori: `2`\nProposta da <@4>\n[Apri link](https://example.com/film)"
+    ]
+   ],
+   "options": [
+    {
+     "label": "Gartic Phone",
+     "value": "6",
+     "description": "Gioco · 2 sostenitori",
+     "emoji": "🎮",
+     "default": false
+    },
+    {
+     "label": "Karaoke Night",
+     "value": "4",
+     "description": "Karaoke · 3 sostenitori",
+     "emoji": "🎤",
+     "default": false
+    },
+    {
+     "label": "Il Gladiatore",
+     "value": "3",
+     "description": "Film · 2 sostenitori",
+     "emoji": "🎬",
+     "default": true
+    },
+    {
+     "label": "Jackbox Party",
+     "value": "2",
+     "description": "Gioco · 2 sostenitori",
+     "emoji": "🎮",
+     "default": false
+    },
+    {
+     "label": "Among Us",
+     "value": "1",
+     "description": "Gioco · 4 sostenitori",
+     "emoji": "🎮",
+     "default": false
+    }
+   ],
+   "placeholder": "Scegli una proposta da supportare",
+   "button": "Supporta questa proposta"
+  },
+  "4": {
+   "missing": false,
+   "container": [
+    [
+     "text",
+     "Puoi sostenere ogni proposta una volta. Il sostegno non consuma le tue proposte settimanali."
+    ],
+    [
+     "separator"
+    ],
+    [
+     "text",
+     "## 🎤 Karaoke Night\n**Karaoke** · In valutazione\n👥 Sostenitori: `3`\nProposta da <@5>"
+    ]
+   ],
+   "options": [
+    {
+     "label": "Gartic Phone",
+     "value": "6",
+     "description": "Gioco · 2 sostenitori",
+     "emoji": "🎮",
+     "default": false
+    },
+    {
+     "label": "Karaoke Night",
+     "value": "4",
+     "description": "Karaoke · 3 sostenitori",
+     "emoji": "🎤",
+     "default": true
+    },
+    {
+     "label": "Il Gladiatore",
+     "value": "3",
+     "description": "Film · 2 sostenitori",
+     "emoji": "🎬",
+     "default": false
+    },
+    {
+     "label": "Jackbox Party",
+     "value": "2",
+     "description": "Gioco · 2 sostenitori",
+     "emoji": "🎮",
+     "default": false
+    },
+    {
+     "label": "Among Us",
+     "value": "1",
+     "description": "Gioco · 4 sostenitori",
+     "emoji": "🎮",
+     "default": false
+    }
+   ],
+   "placeholder": "Scegli una proposta da supportare",
+   "button": "Supporta questa proposta"
+  },
+  "5": {
+   "missing": true,
+   "container": null,
+   "options": [
+    {
+     "label": "Gartic Phone",
+     "value": "6",
+     "description": "Gioco · 2 sostenitori",
+     "emoji": "🎮",
+     "default": false
+    },
+    {
+     "label": "Karaoke Night",
+     "value": "4",
+     "description": "Karaoke · 3 sostenitori",
+     "emoji": "🎤",
+     "default": false
+    },
+    {
+     "label": "Il Gladiatore",
+     "value": "3",
+     "description": "Film · 2 sostenitori",
+     "emoji": "🎬",
+     "default": false
+    },
+    {
+     "label": "Jackbox Party",
+     "value": "2",
+     "description": "Gioco · 2 sostenitori",
+     "emoji": "🎮",
+     "default": false
+    },
+    {
+     "label": "Among Us",
+     "value": "1",
+     "description": "Gioco · 4 sostenitori",
+     "emoji": "🎮",
+     "default": false
+    }
+   ],
+   "placeholder": "Scegli una proposta da supportare",
+   "button": null
+  },
+  "6": {
+   "missing": false,
+   "container": [
+    [
+     "text",
+     "Puoi sostenere ogni proposta una volta. Il sostegno non consuma le tue proposte settimanali."
+    ],
+    [
+     "separator"
+    ],
+    [
+     "section",
+     "## 🎮 Gartic Phone\n**Gioco** · 🏆 Nel ballottaggio\n👥 Sostenitori: `2`\nProposta da <@7>\n[Apri link](https://youtu.be/AAAAAAAAAAA)",
+     "https://i.ytimg.com/vi/AAAAAAAAAAA/hqdefault.jpg"
+    ]
+   ],
+   "options": [
+    {
+     "label": "Gartic Phone",
+     "value": "6",
+     "description": "Gioco · 2 sostenitori",
+     "emoji": "🎮",
+     "default": true
+    },
+    {
+     "label": "Karaoke Night",
+     "value": "4",
+     "description": "Karaoke · 3 sostenitori",
+     "emoji": "🎤",
+     "default": false
+    },
+    {
+     "label": "Il Gladiatore",
+     "value": "3",
+     "description": "Film · 2 sostenitori",
+     "emoji": "🎬",
+     "default": false
+    },
+    {
+     "label": "Jackbox Party",
+     "value": "2",
+     "description": "Gioco · 2 sostenitori",
+     "emoji": "🎮",
+     "default": false
+    },
+    {
+     "label": "Among Us",
+     "value": "1",
+     "description": "Gioco · 4 sostenitori",
+     "emoji": "🎮",
+     "default": false
+    }
+   ],
+   "placeholder": "Scegli una proposta da supportare",
+   "button": "Supporta questa proposta"
+  },
+  "7": {
+   "missing": true,
+   "container": null,
+   "options": [
+    {
+     "label": "Gartic Phone",
+     "value": "6",
+     "description": "Gioco · 2 sostenitori",
+     "emoji": "🎮",
+     "default": false
+    },
+    {
+     "label": "Karaoke Night",
+     "value": "4",
+     "description": "Karaoke · 3 sostenitori",
+     "emoji": "🎤",
+     "default": false
+    },
+    {
+     "label": "Il Gladiatore",
+     "value": "3",
+     "description": "Film · 2 sostenitori",
+     "emoji": "🎬",
+     "default": false
+    },
+    {
+     "label": "Jackbox Party",
+     "value": "2",
+     "description": "Gioco · 2 sostenitori",
+     "emoji": "🎮",
+     "default": false
+    },
+    {
+     "label": "Among Us",
+     "value": "1",
+     "description": "Gioco · 4 sostenitori",
+     "emoji": "🎮",
+     "default": false
+    }
+   ],
+   "placeholder": "Scegli una proposta da supportare",
+   "button": null
+  },
+  "999": {
+   "missing": true,
+   "container": null,
+   "options": [
+    {
+     "label": "Gartic Phone",
+     "value": "6",
+     "description": "Gioco · 2 sostenitori",
+     "emoji": "🎮",
+     "default": false
+    },
+    {
+     "label": "Karaoke Night",
+     "value": "4",
+     "description": "Karaoke · 3 sostenitori",
+     "emoji": "🎤",
+     "default": false
+    },
+    {
+     "label": "Il Gladiatore",
+     "value": "3",
+     "description": "Film · 2 sostenitori",
+     "emoji": "🎬",
+     "default": false
+    },
+    {
+     "label": "Jackbox Party",
+     "value": "2",
+     "description": "Gioco · 2 sostenitori",
+     "emoji": "🎮",
+     "default": false
+    },
+    {
+     "label": "Among Us",
+     "value": "1",
+     "description": "Gioco · 4 sostenitori",
+     "emoji": "🎮",
+     "default": false
+    }
+   ],
+   "placeholder": "Scegli una proposta da supportare",
+   "button": null
+  }
+ },
+ "poll_select": {
+  "placeholder": "Scegli un sondaggio",
+  "options": [
+   {
+    "label": "Giochi gratis da scaricare",
+    "value": "1",
+    "description": "2 votanti",
+    "emoji": "🎮",
+    "default": false
+   },
+   {
+    "label": "Giochi da Discord",
+    "value": "2",
+    "description": "1 votanti",
+    "emoji": "💬",
+    "default": false
+   },
+   {
+    "label": "Tanti",
+    "value": "6",
+    "description": "1 votanti",
+    "emoji": "🎲",
+    "default": false
+   },
+   {
+    "label": "Vuoto",
+    "value": "7",
+    "description": "0 votanti",
+    "emoji": "🕳️",
+    "default": false
+   },
+   {
+    "label": "Giochi senza link",
+    "value": "4",
+    "description": "0 votanti",
+    "emoji": "🎲",
+    "default": false
+   },
+   {
+    "label": "Extra 8",
+    "value": "8",
+    "description": "0 votanti",
+    "emoji": "8️⃣",
+    "default": false
+   },
+   {
+    "label": "Extra 9",
+    "value": "9",
+    "description": "0 votanti",
+    "emoji": "9️⃣",
+    "default": false
+   },
+   {
+    "label": "Extra 10",
+    "value": "10",
+    "description": "0 votanti",
+    "emoji": "🔟",
+    "default": false
+   },
+   {
+    "label": "Extra 11",
+    "value": "11",
+    "description": "0 votanti",
+    "emoji": "1️⃣",
+    "default": false
+   },
+   {
+    "label": "Extra 12",
+    "value": "12",
+    "description": "0 votanti",
+    "emoji": "2️⃣",
+    "default": false
+   },
+   {
+    "label": "Extra 13",
+    "value": "13",
+    "description": "0 votanti",
+    "emoji": "3️⃣",
+    "default": false
+   },
+   {
+    "label": "Extra 14",
+    "value": "14",
+    "description": "0 votanti",
+    "emoji": "4️⃣",
+    "default": false
+   },
+   {
+    "label": "Proposte della community",
+    "value": "5",
+    "description": "4 votanti",
+    "emoji": "🏆",
+    "default": false
+   }
+  ]
+ },
+ "staff_panel": {
+  "title": "🛠️ Selezione proposte",
+  "description": "⭐ Consigliata: più sostenitori e tempo in attesa; le proposte vincitrici nelle ultime 4 settimane ricevono una penalità. Il suggerimento non seleziona automaticamente.\n\n⭐ 🎤 **Karaoke Night**\n└ `3 sostenitori` · `14 gg`\n• 🎬 **Il Gladiatore**\n└ `2 sostenitori` · `14 gg`",
+  "color": 10181046,
+  "options": [
+   {
+    "label": "Karaoke Night",
+    "value": "4",
+    "description": "⭐ Consigliata · 🎤 Karaoke · 3 sostenitori",
+    "emoji": "🎤",
+    "default": false
+   },
+   {
+    "label": "Il Gladiatore",
+    "value": "3",
+    "description": "🎬 Film · 2 sostenitori",
+    "emoji": "🎬",
+    "default": false
+   }
+  ],
+  "placeholder": "Scegli una proposta da inserire nel ballottaggio",
+  "pick": [
+   "Aggiungi al ballottaggio",
+   "✅",
+   true,
+   "hub:staff-pick"
+  ]
+ },
+ "variants": {
+  "spotlight_image": {
+   "card": [
+    [
+     "text",
+     "## 🎮 Game Night Hub\nProponi un'attività, vota i sondaggi e sostieni le idee della community."
+    ],
+    [
+     "separator"
+    ],
+    [
+     "text",
+     "**Settimana #7** · chiusura <t:1794826800:R>\n👥 `5` votanti · ✨ `5` proposte approvate · 🗳️ `13` sondaggi aperti"
+    ],
+    [
+     "section",
+     "### ⭐ Proposta del momento\n🎤 **Karaoke Night** · `3 sostenitori`\nProposta da <@5>",
+     "https://cdn.akamai.steamstatic.com/steam/apps/570/header.jpg"
+    ],
+    [
+     "text",
+     "### 🏆 Ballottaggio community\n🥇 **Among Us** · `3 voti`\n🥈 **Jackbox Party** · `2 voti`\n🥉 **Gartic Phone** · `1 voti`"
+    ],
+    [
+     "text",
+     "### ✨ Proposte recenti\n🎮 **Gartic Phone** · `2 sostenitori`\n🎤 **Karaoke Night** · `3 sostenitori`\n🎬 **Il Gladiatore** · `2 sostenitori`"
+    ]
+   ],
+   "ballot": "🥇 **Among Us** · `3 voti`\n🥈 **Jackbox Party** · `2 voti`\n🥉 **Gartic Phone** · `1 voti`",
+   "recent": "🎮 **Gartic Phone** · `2 sostenitori`\n🎤 **Karaoke Night** · `3 sostenitori`\n🎬 **Il Gladiatore** · `2 sostenitori`"
+  },
+  "no_votes": {
+   "card": [
+    [
+     "text",
+     "## 🎮 Game Night Hub\nProponi un'attività, vota i sondaggi e sostieni le idee della community."
+    ],
+    [
+     "separator"
+    ],
+    [
+     "text",
+     "**Settimana #7** · chiusura <t:1794826800:R>\n👥 `3` votanti · ✨ `5` proposte approvate · 🗳️ `13` sondaggi aperti"
+    ],
+    [
+     "section",
+     "### ⭐ Proposta del momento\n🎤 **Karaoke Night** · `3 sostenitori`\nProposta da <@5>",
+     "https://cdn.akamai.steamstatic.com/steam/apps/570/header.jpg"
+    ],
+    [
+     "text",
+     "### 🏆 Ballottaggio community\n4 proposte pronte · nessun voto ancora: sii il primo! 🗳️"
+    ],
+    [
+     "text",
+     "### ✨ Proposte recenti\n🎮 **Gartic Phone** · `2 sostenitori`\n🎤 **Karaoke Night** · `3 sostenitori`\n🎬 **Il Gladiatore** · `2 sostenitori`"
+    ]
+   ],
+   "ballot": "4 proposte pronte · nessun voto ancora: sii il primo! 🗳️",
+   "recent": "🎮 **Gartic Phone** · `2 sostenitori`\n🎤 **Karaoke Night** · `3 sostenitori`\n🎬 **Il Gladiatore** · `2 sostenitori`"
+  },
+  "empty_ballot": {
+   "card": [
+    [
+     "text",
+     "## 🎮 Game Night Hub\nProponi un'attività, vota i sondaggi e sostieni le idee della community."
+    ],
+    [
+     "separator"
+    ],
+    [
+     "text",
+     "**Settimana #7** · chiusura <t:1794826800:R>\n👥 `3` votanti · ✨ `5` proposte approvate · 🗳️ `13` sondaggi aperti"
+    ],
+    [
+     "section",
+     "### ⭐ Proposta del momento\n🎤 **Karaoke Night** · `3 sostenitori`\nProposta da <@5>",
+     "https://cdn.akamai.steamstatic.com/steam/apps/570/header.jpg"
+    ],
+    [
+     "text",
+     "### 🏆 Ballottaggio community\nLo staff sta scegliendo le proposte: torna a votare tra poco!"
+    ],
+    [
+     "text",
+     "### ✨ Proposte recenti\n🎮 **Gartic Phone** · `2 sostenitori`\n🎤 **Karaoke Night** · `3 sostenitori`\n🎬 **Il Gladiatore** · `2 sostenitori`"
+    ]
+   ],
+   "ballot": "Lo staff sta scegliendo le proposte: torna a votare tra poco!",
+   "recent": "🎮 **Gartic Phone** · `2 sostenitori`\n🎤 **Karaoke Night** · `3 sostenitori`\n🎬 **Il Gladiatore** · `2 sostenitori`"
+  },
+  "no_community": {
+   "card": [
+    [
+     "text",
+     "## 🎮 Game Night Hub\nProponi un'attività, vota i sondaggi e sostieni le idee della community."
+    ],
+    [
+     "separator"
+    ],
+    [
+     "text",
+     "**Settimana #7** · chiusura <t:1794826800:R>\n👥 `3` votanti · ✨ `5` proposte approvate · 🗳️ `13` sondaggi aperti"
+    ],
+    [
+     "section",
+     "### ⭐ Proposta del momento\n🎤 **Karaoke Night** · `3 sostenitori`\nProposta da <@5>",
+     "https://cdn.akamai.steamstatic.com/steam/apps/570/header.jpg"
+    ],
+    [
+     "text",
+     "### 🏆 Ballottaggio community\nSondaggio community non configurato."
+    ],
+    [
+     "text",
+     "### ✨ Proposte recenti\n🎮 **Gartic Phone** · `2 sostenitori`\n🎤 **Karaoke Night** · `3 sostenitori`\n🎬 **Il Gladiatore** · `2 sostenitori`"
+    ]
+   ],
+   "ballot": "Sondaggio community non configurato.",
+   "recent": "🎮 **Gartic Phone** · `2 sostenitori`\n🎤 **Karaoke Night** · `3 sostenitori`\n🎬 **Il Gladiatore** · `2 sostenitori`"
+  },
+  "nothing_approved": {
+   "card": [
+    [
+     "text",
+     "## 🎮 Game Night Hub\nProponi un'attività, vota i sondaggi e sostieni le idee della community."
+    ],
+    [
+     "separator"
+    ],
+    [
+     "text",
+     "**Settimana #7** · chiusura <t:1794826800:R>\n👥 `3` votanti · ✨ `0` proposte approvate · 🗳️ `13` sondaggi aperti"
+    ],
+    [
+     "text",
+     "### 🏆 Ballottaggio community\nSondaggio community non configurato."
+    ],
+    [
+     "text",
+     "### ✨ Proposte recenti\nAncora nessuna proposta questa settimana: premi **➕ Proponi** e apri le danze!"
+    ]
+   ],
+   "ballot": "Sondaggio community non configurato.",
+   "recent": "Ancora nessuna proposta questa settimana: premi **➕ Proponi** e apri le danze!"
+  }
+ }
+}

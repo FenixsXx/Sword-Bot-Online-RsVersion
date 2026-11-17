@@ -1,0 +1,4439 @@
+[
+ {
+  "label": "riepilogo_iniziale",
+  "sent": [
+   [
+    "Canale sondaggi: <#0>\nCanale staff: <#0>\nCanale report eventi: <#0>\nCanale benvenuto: <#0>\nAccoglienza: attiva\nRuoli staff: nessuno\nSlot: 5\nVoti per sondaggio: 2 · proposte a settimana: 3\nReset: ogni lunedì alle 12:00 · promemoria attivo\nCanale Game Night: non impostato",
+    true
+   ]
+  ],
+  "refresh": [
+   "dashboard"
+  ],
+  "poll_channel_set": false,
+  "state": {
+   "settings": [
+    [
+     "awards_since",
+     "2026-11-11"
+    ],
+    [
+     "stats_since",
+     "2026-11-11"
+    ]
+   ],
+   "audit": [],
+   "polls": [
+    [
+     1,
+     1,
+     null
+    ],
+    [
+     2,
+     1,
+     null
+    ],
+    [
+     3,
+     1,
+     null
+    ],
+    [
+     4,
+     1,
+     null
+    ],
+    [
+     5,
+     1,
+     null
+    ]
+   ]
+  }
+ },
+ {
+  "label": "non_admin",
+  "sent": [
+   [
+    "⚠️ Non hai i permessi per usare questo comando.",
+    true
+   ]
+  ],
+  "refresh": [],
+  "poll_channel_set": false,
+  "state": {
+   "settings": [
+    [
+     "awards_since",
+     "2026-11-11"
+    ],
+    [
+     "stats_since",
+     "2026-11-11"
+    ]
+   ],
+   "audit": [],
+   "polls": [
+    [
+     1,
+     1,
+     null
+    ],
+    [
+     2,
+     1,
+     null
+    ],
+    [
+     3,
+     1,
+     null
+    ],
+    [
+     4,
+     1,
+     null
+    ],
+    [
+     5,
+     1,
+     null
+    ]
+   ]
+  }
+ },
+ {
+  "label": "accoglienza_senza_canale",
+  "sent": [
+   [
+    "⚠️ Configura prima `canale_benvenuto`.",
+    true
+   ]
+  ],
+  "refresh": [],
+  "poll_channel_set": false,
+  "state": {
+   "settings": [
+    [
+     "awards_since",
+     "2026-11-11"
+    ],
+    [
+     "stats_since",
+     "2026-11-11"
+    ]
+   ],
+   "audit": [],
+   "polls": [
+    [
+     1,
+     1,
+     null
+    ],
+    [
+     2,
+     1,
+     null
+    ],
+    [
+     3,
+     1,
+     null
+    ],
+    [
+     4,
+     1,
+     null
+    ],
+    [
+     5,
+     1,
+     null
+    ]
+   ]
+  }
+ },
+ {
+  "label": "canali_base",
+  "sent": [
+   [
+    "✅ Canale sondaggi: <#111>\nCanale staff: <#222>",
+    true
+   ]
+  ],
+  "refresh": [
+   "dashboard"
+  ],
+  "poll_channel_set": true,
+  "state": {
+   "settings": [
+    [
+     "awards_since",
+     "2026-11-11"
+    ],
+    [
+     "poll_channel",
+     "111"
+    ],
+    [
+     "staff_channel",
+     "222"
+    ],
+    [
+     "stats_since",
+     "2026-11-11"
+    ]
+   ],
+   "audit": [
+    [
+     99,
+     "configuration_updated",
+     "settings",
+     null,
+     "setup",
+     "{\"poll_channel\": 111, \"staff_channel\": 222, \"event_report_channel\": null, \"welcome_channel\": null, \"staff_role\": null, \"slots\": null, \"welcome_enabled\": null, \"max_votes\": null, \"max_proposals\": null, \"reset_weekday\": null, \"reset_hour\": null, \"reset_reminder_enabled\": null, \"game_night_channel\": null}"
+    ]
+   ],
+   "polls": [
+    [
+     1,
+     1,
+     null
+    ],
+    [
+     2,
+     1,
+     null
+    ],
+    [
+     3,
+     1,
+     null
+    ],
+    [
+     4,
+     1,
+     null
+    ],
+    [
+     5,
+     1,
+     null
+    ]
+   ]
+  }
+ },
+ {
+  "label": "benvenuto",
+  "sent": [
+   [
+    "✅ Canale report eventi: <#333>\nCanale benvenuto: <#444>\nAccoglienza: attiva",
+    true
+   ]
+  ],
+  "refresh": [
+   "dashboard"
+  ],
+  "poll_channel_set": true,
+  "state": {
+   "settings": [
+    [
+     "awards_since",
+     "2026-11-11"
+    ],
+    [
+     "event_report_channel",
+     "333"
+    ],
+    [
+     "poll_channel",
+     "111"
+    ],
+    [
+     "staff_channel",
+     "222"
+    ],
+    [
+     "stats_since",
+     "2026-11-11"
+    ],
+    [
+     "welcome_channel",
+     "444"
+    ],
+    [
+     "welcome_enabled",
+     "1"
+    ]
+   ],
+   "audit": [
+    [
+     99,
+     "configuration_updated",
+     "settings",
+     null,
+     "setup",
+     "{\"poll_channel\": 111, \"staff_channel\": 222, \"event_report_channel\": null, \"welcome_channel\": null, \"staff_role\": null, \"slots\": null, \"welcome_enabled\": null, \"max_votes\": null, \"max_proposals\": null, \"reset_weekday\": null, \"reset_hour\": null, \"reset_reminder_enabled\": null, \"game_night_channel\": null}"
+    ],
+    [
+     99,
+     "configuration_updated",
+     "settings",
+     null,
+     null,
+     "{\"poll_channel\": null, \"staff_channel\": null, \"event_report_channel\": 333, \"welcome_channel\": 444, \"staff_role\": null, \"slots\": null, \"welcome_enabled\": true, \"max_votes\": null, \"max_proposals\": null, \"reset_weekday\": null, \"reset_hour\": null, \"reset_reminder_enabled\": null, \"game_night_channel\": null}"
+    ]
+   ],
+   "polls": [
+    [
+     1,
+     1,
+     null
+    ],
+    [
+     2,
+     1,
+     null
+    ],
+    [
+     3,
+     1,
+     null
+    ],
+    [
+     4,
+     1,
+     null
+    ],
+    [
+     5,
+     1,
+     null
+    ]
+   ]
+  }
+ },
+ {
+  "label": "accoglienza_spenta",
+  "sent": [
+   [
+    "✅ Accoglienza: disattivata",
+    true
+   ]
+  ],
+  "refresh": [
+   "dashboard"
+  ],
+  "poll_channel_set": true,
+  "state": {
+   "settings": [
+    [
+     "awards_since",
+     "2026-11-11"
+    ],
+    [
+     "event_report_channel",
+     "333"
+    ],
+    [
+     "poll_channel",
+     "111"
+    ],
+    [
+     "staff_channel",
+     "222"
+    ],
+    [
+     "stats_since",
+     "2026-11-11"
+    ],
+    [
+     "welcome_channel",
+     "444"
+    ],
+    [
+     "welcome_enabled",
+     "0"
+    ]
+   ],
+   "audit": [
+    [
+     99,
+     "configuration_updated",
+     "settings",
+     null,
+     "setup",
+     "{\"poll_channel\": 111, \"staff_channel\": 222, \"event_report_channel\": null, \"welcome_channel\": null, \"staff_role\": null, \"slots\": null, \"welcome_enabled\": null, \"max_votes\": null, \"max_proposals\": null, \"reset_weekday\": null, \"reset_hour\": null, \"reset_reminder_enabled\": null, \"game_night_channel\": null}"
+    ],
+    [
+     99,
+     "configuration_updated",
+     "settings",
+     null,
+     null,
+     "{\"poll_channel\": null, \"staff_channel\": null, \"event_report_channel\": 333, \"welcome_channel\": 444, \"staff_role\": null, \"slots\": null, \"welcome_enabled\": true, \"max_votes\": null, \"max_proposals\": null, \"reset_weekday\": null, \"reset_hour\": null, \"reset_reminder_enabled\": null, \"game_night_channel\": null}"
+    ],
+    [
+     99,
+     "configuration_updated",
+     "settings",
+     null,
+     null,
+     "{\"poll_channel\": null, \"staff_channel\": null, \"event_report_channel\": null, \"welcome_channel\": null, \"staff_role\": null, \"slots\": null, \"welcome_enabled\": false, \"max_votes\": null, \"max_proposals\": null, \"reset_weekday\": null, \"reset_hour\": null, \"reset_reminder_enabled\": null, \"game_night_channel\": null}"
+    ]
+   ],
+   "polls": [
+    [
+     1,
+     1,
+     null
+    ],
+    [
+     2,
+     1,
+     null
+    ],
+    [
+     3,
+     1,
+     null
+    ],
+    [
+     4,
+     1,
+     null
+    ],
+    [
+     5,
+     1,
+     null
+    ]
+   ]
+  }
+ },
+ {
+  "label": "ruolo_aggiunto",
+  "sent": [
+   [
+    "✅ <@&555> **aggiunto** allo staff",
+    true
+   ]
+  ],
+  "refresh": [
+   "dashboard"
+  ],
+  "poll_channel_set": true,
+  "state": {
+   "settings": [
+    [
+     "awards_since",
+     "2026-11-11"
+    ],
+    [
+     "event_report_channel",
+     "333"
+    ],
+    [
+     "poll_channel",
+     "111"
+    ],
+    [
+     "staff_channel",
+     "222"
+    ],
+    [
+     "staff_roles",
+     "555"
+    ],
+    [
+     "stats_since",
+     "2026-11-11"
+    ],
+    [
+     "welcome_channel",
+     "444"
+    ],
+    [
+     "welcome_enabled",
+     "0"
+    ]
+   ],
+   "audit": [
+    [
+     99,
+     "configuration_updated",
+     "settings",
+     null,
+     "setup",
+     "{\"poll_channel\": 111, \"staff_channel\": 222, \"event_report_channel\": null, \"welcome_channel\": null, \"staff_role\": null, \"slots\": null, \"welcome_enabled\": null, \"max_votes\": null, \"max_proposals\": null, \"reset_weekday\": null, \"reset_hour\": null, \"reset_reminder_enabled\": null, \"game_night_channel\": null}"
+    ],
+    [
+     99,
+     "configuration_updated",
+     "settings",
+     null,
+     null,
+     "{\"poll_channel\": null, \"staff_channel\": null, \"event_report_channel\": 333, \"welcome_channel\": 444, \"staff_role\": null, \"slots\": null, \"welcome_enabled\": true, \"max_votes\": null, \"max_proposals\": null, \"reset_weekday\": null, \"reset_hour\": null, \"reset_reminder_enabled\": null, \"game_night_channel\": null}"
+    ],
+    [
+     99,
+     "configuration_updated",
+     "settings",
+     null,
+     null,
+     "{\"poll_channel\": null, \"staff_channel\": null, \"event_report_channel\": null, \"welcome_channel\": null, \"staff_role\": null, \"slots\": null, \"welcome_enabled\": false, \"max_votes\": null, \"max_proposals\": null, \"reset_weekday\": null, \"reset_hour\": null, \"reset_reminder_enabled\": null, \"game_night_channel\": null}"
+    ],
+    [
+     99,
+     "configuration_updated",
+     "settings",
+     null,
+     null,
+     "{\"poll_channel\": null, \"staff_channel\": null, \"event_report_channel\": null, \"welcome_channel\": null, \"staff_role\": 555, \"slots\": null, \"welcome_enabled\": null, \"max_votes\": null, \"max_proposals\": null, \"reset_weekday\": null, \"reset_hour\": null, \"reset_reminder_enabled\": null, \"game_night_channel\": null}"
+    ]
+   ],
+   "polls": [
+    [
+     1,
+     1,
+     null
+    ],
+    [
+     2,
+     1,
+     null
+    ],
+    [
+     3,
+     1,
+     null
+    ],
+    [
+     4,
+     1,
+     null
+    ],
+    [
+     5,
+     1,
+     null
+    ]
+   ]
+  }
+ },
+ {
+  "label": "ruolo_rimosso",
+  "sent": [
+   [
+    "✅ <@&555> **rimosso** dallo staff",
+    true
+   ]
+  ],
+  "refresh": [
+   "dashboard"
+  ],
+  "poll_channel_set": true,
+  "state": {
+   "settings": [
+    [
+     "awards_since",
+     "2026-11-11"
+    ],
+    [
+     "event_report_channel",
+     "333"
+    ],
+    [
+     "poll_channel",
+     "111"
+    ],
+    [
+     "staff_channel",
+     "222"
+    ],
+    [
+     "staff_roles",
+     ""
+    ],
+    [
+     "stats_since",
+     "2026-11-11"
+    ],
+    [
+     "welcome_channel",
+     "444"
+    ],
+    [
+     "welcome_enabled",
+     "0"
+    ]
+   ],
+   "audit": [
+    [
+     99,
+     "configuration_updated",
+     "settings",
+     null,
+     "setup",
+     "{\"poll_channel\": 111, \"staff_channel\": 222, \"event_report_channel\": null, \"welcome_channel\": null, \"staff_role\": null, \"slots\": null, \"welcome_enabled\": null, \"max_votes\": null, \"max_proposals\": null, \"reset_weekday\": null, \"reset_hour\": null, \"reset_reminder_enabled\": null, \"game_night_channel\": null}"
+    ],
+    [
+     99,
+     "configuration_updated",
+     "settings",
+     null,
+     null,
+     "{\"poll_channel\": null, \"staff_channel\": null, \"event_report_channel\": 333, \"welcome_channel\": 444, \"staff_role\": null, \"slots\": null, \"welcome_enabled\": true, \"max_votes\": null, \"max_proposals\": null, \"reset_weekday\": null, \"reset_hour\": null, \"reset_reminder_enabled\": null, \"game_night_channel\": null}"
+    ],
+    [
+     99,
+     "configuration_updated",
+     "settings",
+     null,
+     null,
+     "{\"poll_channel\": null, \"staff_channel\": null, \"event_report_channel\": null, \"welcome_channel\": null, \"staff_role\": null, \"slots\": null, \"welcome_enabled\": false, \"max_votes\": null, \"max_proposals\": null, \"reset_weekday\": null, \"reset_hour\": null, \"reset_reminder_enabled\": null, \"game_night_channel\": null}"
+    ],
+    [
+     99,
+     "configuration_updated",
+     "settings",
+     null,
+     null,
+     "{\"poll_channel\": null, \"staff_channel\": null, \"event_report_channel\": null, \"welcome_channel\": null, \"staff_role\": 555, \"slots\": null, \"welcome_enabled\": null, \"max_votes\": null, \"max_proposals\": null, \"reset_weekday\": null, \"reset_hour\": null, \"reset_reminder_enabled\": null, \"game_night_channel\": null}"
+    ],
+    [
+     99,
+     "configuration_updated",
+     "settings",
+     null,
+     null,
+     "{\"poll_channel\": null, \"staff_channel\": null, \"event_report_channel\": null, \"welcome_channel\": null, \"staff_role\": 555, \"slots\": null, \"welcome_enabled\": null, \"max_votes\": null, \"max_proposals\": null, \"reset_weekday\": null, \"reset_hour\": null, \"reset_reminder_enabled\": null, \"game_night_channel\": null}"
+    ]
+   ],
+   "polls": [
+    [
+     1,
+     1,
+     null
+    ],
+    [
+     2,
+     1,
+     null
+    ],
+    [
+     3,
+     1,
+     null
+    ],
+    [
+     4,
+     1,
+     null
+    ],
+    [
+     5,
+     1,
+     null
+    ]
+   ]
+  }
+ },
+ {
+  "label": "ruoli_ordinati",
+  "sent": [
+   [
+    "✅ <@&20> **aggiunto** allo staff",
+    true
+   ]
+  ],
+  "refresh": [
+   "dashboard"
+  ],
+  "poll_channel_set": true,
+  "state": {
+   "settings": [
+    [
+     "awards_since",
+     "2026-11-11"
+    ],
+    [
+     "event_report_channel",
+     "333"
+    ],
+    [
+     "poll_channel",
+     "111"
+    ],
+    [
+     "staff_channel",
+     "222"
+    ],
+    [
+     "staff_roles",
+     "20"
+    ],
+    [
+     "stats_since",
+     "2026-11-11"
+    ],
+    [
+     "welcome_channel",
+     "444"
+    ],
+    [
+     "welcome_enabled",
+     "0"
+    ]
+   ],
+   "audit": [
+    [
+     99,
+     "configuration_updated",
+     "settings",
+     null,
+     "setup",
+     "{\"poll_channel\": 111, \"staff_channel\": 222, \"event_report_channel\": null, \"welcome_channel\": null, \"staff_role\": null, \"slots\": null, \"welcome_enabled\": null, \"max_votes\": null, \"max_proposals\": null, \"reset_weekday\": null, \"reset_hour\": null, \"reset_reminder_enabled\": null, \"game_night_channel\": null}"
+    ],
+    [
+     99,
+     "configuration_updated",
+     "settings",
+     null,
+     null,
+     "{\"poll_channel\": null, \"staff_channel\": null, \"event_report_channel\": 333, \"welcome_channel\": 444, \"staff_role\": null, \"slots\": null, \"welcome_enabled\": true, \"max_votes\": null, \"max_proposals\": null, \"reset_weekday\": null, \"reset_hour\": null, \"reset_reminder_enabled\": null, \"game_night_channel\": null}"
+    ],
+    [
+     99,
+     "configuration_updated",
+     "settings",
+     null,
+     null,
+     "{\"poll_channel\": null, \"staff_channel\": null, \"event_report_channel\": null, \"welcome_channel\": null, \"staff_role\": null, \"slots\": null, \"welcome_enabled\": false, \"max_votes\": null, \"max_proposals\": null, \"reset_weekday\": null, \"reset_hour\": null, \"reset_reminder_enabled\": null, \"game_night_channel\": null}"
+    ],
+    [
+     99,
+     "configuration_updated",
+     "settings",
+     null,
+     null,
+     "{\"poll_channel\": null, \"staff_channel\": null, \"event_report_channel\": null, \"welcome_channel\": null, \"staff_role\": 555, \"slots\": null, \"welcome_enabled\": null, \"max_votes\": null, \"max_proposals\": null, \"reset_weekday\": null, \"reset_hour\": null, \"reset_reminder_enabled\": null, \"game_night_channel\": null}"
+    ],
+    [
+     99,
+     "configuration_updated",
+     "settings",
+     null,
+     null,
+     "{\"poll_channel\": null, \"staff_channel\": null, \"event_report_channel\": null, \"welcome_channel\": null, \"staff_role\": 555, \"slots\": null, \"welcome_enabled\": null, \"max_votes\": null, \"max_proposals\": null, \"reset_weekday\": null, \"reset_hour\": null, \"reset_reminder_enabled\": null, \"game_night_channel\": null}"
+    ],
+    [
+     99,
+     "configuration_updated",
+     "settings",
+     null,
+     null,
+     "{\"poll_channel\": null, \"staff_channel\": null, \"event_report_channel\": null, \"welcome_channel\": null, \"staff_role\": 20, \"slots\": null, \"welcome_enabled\": null, \"max_votes\": null, \"max_proposals\": null, \"reset_weekday\": null, \"reset_hour\": null, \"reset_reminder_enabled\": null, \"game_night_channel\": null}"
+    ]
+   ],
+   "polls": [
+    [
+     1,
+     1,
+     null
+    ],
+    [
+     2,
+     1,
+     null
+    ],
+    [
+     3,
+     1,
+     null
+    ],
+    [
+     4,
+     1,
+     null
+    ],
+    [
+     5,
+     1,
+     null
+    ]
+   ]
+  }
+ },
+ {
+  "label": "ruoli_ordinati_2",
+  "sent": [
+   [
+    "✅ <@&3> **aggiunto** allo staff",
+    true
+   ]
+  ],
+  "refresh": [
+   "dashboard"
+  ],
+  "poll_channel_set": true,
+  "state": {
+   "settings": [
+    [
+     "awards_since",
+     "2026-11-11"
+    ],
+    [
+     "event_report_channel",
+     "333"
+    ],
+    [
+     "poll_channel",
+     "111"
+    ],
+    [
+     "staff_channel",
+     "222"
+    ],
+    [
+     "staff_roles",
+     "20,3"
+    ],
+    [
+     "stats_since",
+     "2026-11-11"
+    ],
+    [
+     "welcome_channel",
+     "444"
+    ],
+    [
+     "welcome_enabled",
+     "0"
+    ]
+   ],
+   "audit": [
+    [
+     99,
+     "configuration_updated",
+     "settings",
+     null,
+     "setup",
+     "{\"poll_channel\": 111, \"staff_channel\": 222, \"event_report_channel\": null, \"welcome_channel\": null, \"staff_role\": null, \"slots\": null, \"welcome_enabled\": null, \"max_votes\": null, \"max_proposals\": null, \"reset_weekday\": null, \"reset_hour\": null, \"reset_reminder_enabled\": null, \"game_night_channel\": null}"
+    ],
+    [
+     99,
+     "configuration_updated",
+     "settings",
+     null,
+     null,
+     "{\"poll_channel\": null, \"staff_channel\": null, \"event_report_channel\": 333, \"welcome_channel\": 444, \"staff_role\": null, \"slots\": null, \"welcome_enabled\": true, \"max_votes\": null, \"max_proposals\": null, \"reset_weekday\": null, \"reset_hour\": null, \"reset_reminder_enabled\": null, \"game_night_channel\": null}"
+    ],
+    [
+     99,
+     "configuration_updated",
+     "settings",
+     null,
+     null,
+     "{\"poll_channel\": null, \"staff_channel\": null, \"event_report_channel\": null, \"welcome_channel\": null, \"staff_role\": null, \"slots\": null, \"welcome_enabled\": false, \"max_votes\": null, \"max_proposals\": null, \"reset_weekday\": null, \"reset_hour\": null, \"reset_reminder_enabled\": null, \"game_night_channel\": null}"
+    ],
+    [
+     99,
+     "configuration_updated",
+     "settings",
+     null,
+     null,
+     "{\"poll_channel\": null, \"staff_channel\": null, \"event_report_channel\": null, \"welcome_channel\": null, \"staff_role\": 555, \"slots\": null, \"welcome_enabled\": null, \"max_votes\": null, \"max_proposals\": null, \"reset_weekday\": null, \"reset_hour\": null, \"reset_reminder_enabled\": null, \"game_night_channel\": null}"
+    ],
+    [
+     99,
+     "configuration_updated",
+     "settings",
+     null,
+     null,
+     "{\"poll_channel\": null, \"staff_channel\": null, \"event_report_channel\": null, \"welcome_channel\": null, \"staff_role\": 555, \"slots\": null, \"welcome_enabled\": null, \"max_votes\": null, \"max_proposals\": null, \"reset_weekday\": null, \"reset_hour\": null, \"reset_reminder_enabled\": null, \"game_night_channel\": null}"
+    ],
+    [
+     99,
+     "configuration_updated",
+     "settings",
+     null,
+     null,
+     "{\"poll_channel\": null, \"staff_channel\": null, \"event_report_channel\": null, \"welcome_channel\": null, \"staff_role\": 20, \"slots\": null, \"welcome_enabled\": null, \"max_votes\": null, \"max_proposals\": null, \"reset_weekday\": null, \"reset_hour\": null, \"reset_reminder_enabled\": null, \"game_night_channel\": null}"
+    ],
+    [
+     99,
+     "configuration_updated",
+     "settings",
+     null,
+     null,
+     "{\"poll_channel\": null, \"staff_channel\": null, \"event_report_channel\": null, \"welcome_channel\": null, \"staff_role\": 3, \"slots\": null, \"welcome_enabled\": null, \"max_votes\": null, \"max_proposals\": null, \"reset_weekday\": null, \"reset_hour\": null, \"reset_reminder_enabled\": null, \"game_night_channel\": null}"
+    ]
+   ],
+   "polls": [
+    [
+     1,
+     1,
+     null
+    ],
+    [
+     2,
+     1,
+     null
+    ],
+    [
+     3,
+     1,
+     null
+    ],
+    [
+     4,
+     1,
+     null
+    ],
+    [
+     5,
+     1,
+     null
+    ]
+   ]
+  }
+ },
+ {
+  "label": "ruolo_everyone",
+  "sent": [
+   [
+    "✅ ❌ @everyone non può essere un ruolo staff: renderebbe staff tutti i membri.",
+    true
+   ]
+  ],
+  "refresh": [
+   "dashboard"
+  ],
+  "poll_channel_set": true,
+  "state": {
+   "settings": [
+    [
+     "awards_since",
+     "2026-11-11"
+    ],
+    [
+     "event_report_channel",
+     "333"
+    ],
+    [
+     "poll_channel",
+     "111"
+    ],
+    [
+     "staff_channel",
+     "222"
+    ],
+    [
+     "staff_roles",
+     "20,3"
+    ],
+    [
+     "stats_since",
+     "2026-11-11"
+    ],
+    [
+     "welcome_channel",
+     "444"
+    ],
+    [
+     "welcome_enabled",
+     "0"
+    ]
+   ],
+   "audit": [
+    [
+     99,
+     "configuration_updated",
+     "settings",
+     null,
+     "setup",
+     "{\"poll_channel\": 111, \"staff_channel\": 222, \"event_report_channel\": null, \"welcome_channel\": null, \"staff_role\": null, \"slots\": null, \"welcome_enabled\": null, \"max_votes\": null, \"max_proposals\": null, \"reset_weekday\": null, \"reset_hour\": null, \"reset_reminder_enabled\": null, \"game_night_channel\": null}"
+    ],
+    [
+     99,
+     "configuration_updated",
+     "settings",
+     null,
+     null,
+     "{\"poll_channel\": null, \"staff_channel\": null, \"event_report_channel\": 333, \"welcome_channel\": 444, \"staff_role\": null, \"slots\": null, \"welcome_enabled\": true, \"max_votes\": null, \"max_proposals\": null, \"reset_weekday\": null, \"reset_hour\": null, \"reset_reminder_enabled\": null, \"game_night_channel\": null}"
+    ],
+    [
+     99,
+     "configuration_updated",
+     "settings",
+     null,
+     null,
+     "{\"poll_channel\": null, \"staff_channel\": null, \"event_report_channel\": null, \"welcome_channel\": null, \"staff_role\": null, \"slots\": null, \"welcome_enabled\": false, \"max_votes\": null, \"max_proposals\": null, \"reset_weekday\": null, \"reset_hour\": null, \"reset_reminder_enabled\": null, \"game_night_channel\": null}"
+    ],
+    [
+     99,
+     "configuration_updated",
+     "settings",
+     null,
+     null,
+     "{\"poll_channel\": null, \"staff_channel\": null, \"event_report_channel\": null, \"welcome_channel\": null, \"staff_role\": 555, \"slots\": null, \"welcome_enabled\": null, \"max_votes\": null, \"max_proposals\": null, \"reset_weekday\": null, \"reset_hour\": null, \"reset_reminder_enabled\": null, \"game_night_channel\": null}"
+    ],
+    [
+     99,
+     "configuration_updated",
+     "settings",
+     null,
+     null,
+     "{\"poll_channel\": null, \"staff_channel\": null, \"event_report_channel\": null, \"welcome_channel\": null, \"staff_role\": 555, \"slots\": null, \"welcome_enabled\": null, \"max_votes\": null, \"max_proposals\": null, \"reset_weekday\": null, \"reset_hour\": null, \"reset_reminder_enabled\": null, \"game_night_channel\": null}"
+    ],
+    [
+     99,
+     "configuration_updated",
+     "settings",
+     null,
+     null,
+     "{\"poll_channel\": null, \"staff_channel\": null, \"event_report_channel\": null, \"welcome_channel\": null, \"staff_role\": 20, \"slots\": null, \"welcome_enabled\": null, \"max_votes\": null, \"max_proposals\": null, \"reset_weekday\": null, \"reset_hour\": null, \"reset_reminder_enabled\": null, \"game_night_channel\": null}"
+    ],
+    [
+     99,
+     "configuration_updated",
+     "settings",
+     null,
+     null,
+     "{\"poll_channel\": null, \"staff_channel\": null, \"event_report_channel\": null, \"welcome_channel\": null, \"staff_role\": 3, \"slots\": null, \"welcome_enabled\": null, \"max_votes\": null, \"max_proposals\": null, \"reset_weekday\": null, \"reset_hour\": null, \"reset_reminder_enabled\": null, \"game_night_channel\": null}"
+    ],
+    [
+     99,
+     "configuration_updated",
+     "settings",
+     null,
+     null,
+     "{\"poll_channel\": null, \"staff_channel\": null, \"event_report_channel\": null, \"welcome_channel\": null, \"staff_role\": 1, \"slots\": null, \"welcome_enabled\": null, \"max_votes\": null, \"max_proposals\": null, \"reset_weekday\": null, \"reset_hour\": null, \"reset_reminder_enabled\": null, \"game_night_channel\": null}"
+    ]
+   ],
+   "polls": [
+    [
+     1,
+     1,
+     null
+    ],
+    [
+     2,
+     1,
+     null
+    ],
+    [
+     3,
+     1,
+     null
+    ],
+    [
+     4,
+     1,
+     null
+    ],
+    [
+     5,
+     1,
+     null
+    ]
+   ]
+  }
+ },
+ {
+  "label": "slot_e_limiti",
+  "sent": [
+   [
+    "✅ Slot ballottaggio: 4\nVoti per sondaggio: 3\nProposte a settimana: 7",
+    true
+   ]
+  ],
+  "refresh": [
+   "all"
+  ],
+  "poll_channel_set": true,
+  "state": {
+   "settings": [
+    [
+     "awards_since",
+     "2026-11-11"
+    ],
+    [
+     "event_report_channel",
+     "333"
+    ],
+    [
+     "max_proposals",
+     "7"
+    ],
+    [
+     "max_votes",
+     "3"
+    ],
+    [
+     "poll_channel",
+     "111"
+    ],
+    [
+     "slots",
+     "4"
+    ],
+    [
+     "staff_channel",
+     "222"
+    ],
+    [
+     "staff_roles",
+     "20,3"
+    ],
+    [
+     "stats_since",
+     "2026-11-11"
+    ],
+    [
+     "welcome_channel",
+     "444"
+    ],
+    [
+     "welcome_enabled",
+     "0"
+    ]
+   ],
+   "audit": [
+    [
+     99,
+     "configuration_updated",
+     "settings",
+     null,
+     "setup",
+     "{\"poll_channel\": 111, \"staff_channel\": 222, \"event_report_channel\": null, \"welcome_channel\": null, \"staff_role\": null, \"slots\": null, \"welcome_enabled\": null, \"max_votes\": null, \"max_proposals\": null, \"reset_weekday\": null, \"reset_hour\": null, \"reset_reminder_enabled\": null, \"game_night_channel\": null}"
+    ],
+    [
+     99,
+     "configuration_updated",
+     "settings",
+     null,
+     null,
+     "{\"poll_channel\": null, \"staff_channel\": null, \"event_report_channel\": 333, \"welcome_channel\": 444, \"staff_role\": null, \"slots\": null, \"welcome_enabled\": true, \"max_votes\": null, \"max_proposals\": null, \"reset_weekday\": null, \"reset_hour\": null, \"reset_reminder_enabled\": null, \"game_night_channel\": null}"
+    ],
+    [
+     99,
+     "configuration_updated",
+     "settings",
+     null,
+     null,
+     "{\"poll_channel\": null, \"staff_channel\": null, \"event_report_channel\": null, \"welcome_channel\": null, \"staff_role\": null, \"slots\": null, \"welcome_enabled\": false, \"max_votes\": null, \"max_proposals\": null, \"reset_weekday\": null, \"reset_hour\": null, \"reset_reminder_enabled\": null, \"game_night_channel\": null}"
+    ],
+    [
+     99,
+     "configuration_updated",
+     "settings",
+     null,
+     null,
+     "{\"poll_channel\": null, \"staff_channel\": null, \"event_report_channel\": null, \"welcome_channel\": null, \"staff_role\": 555, \"slots\": null, \"welcome_enabled\": null, \"max_votes\": null, \"max_proposals\": null, \"reset_weekday\": null, \"reset_hour\": null, \"reset_reminder_enabled\": null, \"game_night_channel\": null}"
+    ],
+    [
+     99,
+     "configuration_updated",
+     "settings",
+     null,
+     null,
+     "{\"poll_channel\": null, \"staff_channel\": null, \"event_report_channel\": null, \"welcome_channel\": null, \"staff_role\": 555, \"slots\": null, \"welcome_enabled\": null, \"max_votes\": null, \"max_proposals\": null, \"reset_weekday\": null, \"reset_hour\": null, \"reset_reminder_enabled\": null, \"game_night_channel\": null}"
+    ],
+    [
+     99,
+     "configuration_updated",
+     "settings",
+     null,
+     null,
+     "{\"poll_channel\": null, \"staff_channel\": null, \"event_report_channel\": null, \"welcome_channel\": null, \"staff_role\": 20, \"slots\": null, \"welcome_enabled\": null, \"max_votes\": null, \"max_proposals\": null, \"reset_weekday\": null, \"reset_hour\": null, \"reset_reminder_enabled\": null, \"game_night_channel\": null}"
+    ],
+    [
+     99,
+     "configuration_updated",
+     "settings",
+     null,
+     null,
+     "{\"poll_channel\": null, \"staff_channel\": null, \"event_report_channel\": null, \"welcome_channel\": null, \"staff_role\": 3, \"slots\": null, \"welcome_enabled\": null, \"max_votes\": null, \"max_proposals\": null, \"reset_weekday\": null, \"reset_hour\": null, \"reset_reminder_enabled\": null, \"game_night_channel\": null}"
+    ],
+    [
+     99,
+     "configuration_updated",
+     "settings",
+     null,
+     null,
+     "{\"poll_channel\": null, \"staff_channel\": null, \"event_report_channel\": null, \"welcome_channel\": null, \"staff_role\": 1, \"slots\": null, \"welcome_enabled\": null, \"max_votes\": null, \"max_proposals\": null, \"reset_weekday\": null, \"reset_hour\": null, \"reset_reminder_enabled\": null, \"game_night_channel\": null}"
+    ],
+    [
+     99,
+     "configuration_updated",
+     "settings",
+     null,
+     null,
+     "{\"poll_channel\": null, \"staff_channel\": null, \"event_report_channel\": null, \"welcome_channel\": null, \"staff_role\": null, \"slots\": 4, \"welcome_enabled\": null, \"max_votes\": 3, \"max_proposals\": 7, \"reset_weekday\": null, \"reset_hour\": null, \"reset_reminder_enabled\": null, \"game_night_channel\": null}"
+    ]
+   ],
+   "polls": [
+    [
+     1,
+     1,
+     null
+    ],
+    [
+     2,
+     1,
+     null
+    ],
+    [
+     3,
+     1,
+     null
+    ],
+    [
+     4,
+     1,
+     null
+    ],
+    [
+     5,
+     1,
+     null
+    ]
+   ]
+  }
+ },
+ {
+  "label": "reset_venerdi_18",
+  "sent": [
+   [
+    "✅ Reset settimanale: ogni venerdì alle 18:00",
+    true
+   ]
+  ],
+  "refresh": [
+   "all"
+  ],
+  "poll_channel_set": true,
+  "state": {
+   "settings": [
+    [
+     "awards_since",
+     "2026-11-11"
+    ],
+    [
+     "event_report_channel",
+     "333"
+    ],
+    [
+     "last_reset",
+     "2027-02-26T18:00:00+01:00"
+    ],
+    [
+     "max_proposals",
+     "7"
+    ],
+    [
+     "max_votes",
+     "3"
+    ],
+    [
+     "poll_channel",
+     "111"
+    ],
+    [
+     "reset_hour",
+     "18"
+    ],
+    [
+     "reset_weekday",
+     "4"
+    ],
+    [
+     "slots",
+     "4"
+    ],
+    [
+     "staff_channel",
+     "222"
+    ],
+    [
+     "staff_roles",
+     "20,3"
+    ],
+    [
+     "stats_since",
+     "2026-11-11"
+    ],
+    [
+     "welcome_channel",
+     "444"
+    ],
+    [
+     "welcome_enabled",
+     "0"
+    ]
+   ],
+   "audit": [
+    [
+     99,
+     "configuration_updated",
+     "settings",
+     null,
+     "setup",
+     "{\"poll_channel\": 111, \"staff_channel\": 222, \"event_report_channel\": null, \"welcome_channel\": null, \"staff_role\": null, \"slots\": null, \"welcome_enabled\": null, \"max_votes\": null, \"max_proposals\": null, \"reset_weekday\": null, \"reset_hour\": null, \"reset_reminder_enabled\": null, \"game_night_channel\": null}"
+    ],
+    [
+     99,
+     "configuration_updated",
+     "settings",
+     null,
+     null,
+     "{\"poll_channel\": null, \"staff_channel\": null, \"event_report_channel\": 333, \"welcome_channel\": 444, \"staff_role\": null, \"slots\": null, \"welcome_enabled\": true, \"max_votes\": null, \"max_proposals\": null, \"reset_weekday\": null, \"reset_hour\": null, \"reset_reminder_enabled\": null, \"game_night_channel\": null}"
+    ],
+    [
+     99,
+     "configuration_updated",
+     "settings",
+     null,
+     null,
+     "{\"poll_channel\": null, \"staff_channel\": null, \"event_report_channel\": null, \"welcome_channel\": null, \"staff_role\": null, \"slots\": null, \"welcome_enabled\": false, \"max_votes\": null, \"max_proposals\": null, \"reset_weekday\": null, \"reset_hour\": null, \"reset_reminder_enabled\": null, \"game_night_channel\": null}"
+    ],
+    [
+     99,
+     "configuration_updated",
+     "settings",
+     null,
+     null,
+     "{\"poll_channel\": null, \"staff_channel\": null, \"event_report_channel\": null, \"welcome_channel\": null, \"staff_role\": 555, \"slots\": null, \"welcome_enabled\": null, \"max_votes\": null, \"max_proposals\": null, \"reset_weekday\": null, \"reset_hour\": null, \"reset_reminder_enabled\": null, \"game_night_channel\": null}"
+    ],
+    [
+     99,
+     "configuration_updated",
+     "settings",
+     null,
+     null,
+     "{\"poll_channel\": null, \"staff_channel\": null, \"event_report_channel\": null, \"welcome_channel\": null, \"staff_role\": 555, \"slots\": null, \"welcome_enabled\": null, \"max_votes\": null, \"max_proposals\": null, \"reset_weekday\": null, \"reset_hour\": null, \"reset_reminder_enabled\": null, \"game_night_channel\": null}"
+    ],
+    [
+     99,
+     "configuration_updated",
+     "settings",
+     null,
+     null,
+     "{\"poll_channel\": null, \"staff_channel\": null, \"event_report_channel\": null, \"welcome_channel\": null, \"staff_role\": 20, \"slots\": null, \"welcome_enabled\": null, \"max_votes\": null, \"max_proposals\": null, \"reset_weekday\": null, \"reset_hour\": null, \"reset_reminder_enabled\": null, \"game_night_channel\": null}"
+    ],
+    [
+     99,
+     "configuration_updated",
+     "settings",
+     null,
+     null,
+     "{\"poll_channel\": null, \"staff_channel\": null, \"event_report_channel\": null, \"welcome_channel\": null, \"staff_role\": 3, \"slots\": null, \"welcome_enabled\": null, \"max_votes\": null, \"max_proposals\": null, \"reset_weekday\": null, \"reset_hour\": null, \"reset_reminder_enabled\": null, \"game_night_channel\": null}"
+    ],
+    [
+     99,
+     "configuration_updated",
+     "settings",
+     null,
+     null,
+     "{\"poll_channel\": null, \"staff_channel\": null, \"event_report_channel\": null, \"welcome_channel\": null, \"staff_role\": 1, \"slots\": null, \"welcome_enabled\": null, \"max_votes\": null, \"max_proposals\": null, \"reset_weekday\": null, \"reset_hour\": null, \"reset_reminder_enabled\": null, \"game_night_channel\": null}"
+    ],
+    [
+     99,
+     "configuration_updated",
+     "settings",
+     null,
+     null,
+     "{\"poll_channel\": null, \"staff_channel\": null, \"event_report_channel\": null, \"welcome_channel\": null, \"staff_role\": null, \"slots\": 4, \"welcome_enabled\": null, \"max_votes\": 3, \"max_proposals\": 7, \"reset_weekday\": null, \"reset_hour\": null, \"reset_reminder_enabled\": null, \"game_night_channel\": null}"
+    ],
+    [
+     99,
+     "configuration_updated",
+     "settings",
+     null,
+     null,
+     "{\"poll_channel\": null, \"staff_channel\": null, \"event_report_channel\": null, \"welcome_channel\": null, \"staff_role\": null, \"slots\": null, \"welcome_enabled\": null, \"max_votes\": null, \"max_proposals\": null, \"reset_weekday\": 4, \"reset_hour\": 18, \"reset_reminder_enabled\": null, \"game_night_channel\": null}"
+    ]
+   ],
+   "polls": [
+    [
+     1,
+     1,
+     1804266000.0
+    ],
+    [
+     2,
+     1,
+     1804266000.0
+    ],
+    [
+     3,
+     1,
+     1804266000.0
+    ],
+    [
+     4,
+     1,
+     1804266000.0
+    ],
+    [
+     5,
+     1,
+     1804266000.0
+    ]
+   ]
+  }
+ },
+ {
+  "label": "reset_solo_giorno",
+  "sent": [
+   [
+    "✅ Reset settimanale: ogni lunedì alle 18:00",
+    true
+   ]
+  ],
+  "refresh": [
+   "all"
+  ],
+  "poll_channel_set": true,
+  "state": {
+   "settings": [
+    [
+     "awards_since",
+     "2026-11-11"
+    ],
+    [
+     "event_report_channel",
+     "333"
+    ],
+    [
+     "last_reset",
+     "2027-03-01T18:00:00+01:00"
+    ],
+    [
+     "max_proposals",
+     "7"
+    ],
+    [
+     "max_votes",
+     "3"
+    ],
+    [
+     "poll_channel",
+     "111"
+    ],
+    [
+     "reset_hour",
+     "18"
+    ],
+    [
+     "reset_weekday",
+     "0"
+    ],
+    [
+     "slots",
+     "4"
+    ],
+    [
+     "staff_channel",
+     "222"
+    ],
+    [
+     "staff_roles",
+     "20,3"
+    ],
+    [
+     "stats_since",
+     "2026-11-11"
+    ],
+    [
+     "welcome_channel",
+     "444"
+    ],
+    [
+     "welcome_enabled",
+     "0"
+    ]
+   ],
+   "audit": [
+    [
+     99,
+     "configuration_updated",
+     "settings",
+     null,
+     "setup",
+     "{\"poll_channel\": 111, \"staff_channel\": 222, \"event_report_channel\": null, \"welcome_channel\": null, \"staff_role\": null, \"slots\": null, \"welcome_enabled\": null, \"max_votes\": null, \"max_proposals\": null, \"reset_weekday\": null, \"reset_hour\": null, \"reset_reminder_enabled\": null, \"game_night_channel\": null}"
+    ],
+    [
+     99,
+     "configuration_updated",
+     "settings",
+     null,
+     null,
+     "{\"poll_channel\": null, \"staff_channel\": null, \"event_report_channel\": 333, \"welcome_channel\": 444, \"staff_role\": null, \"slots\": null, \"welcome_enabled\": true, \"max_votes\": null, \"max_proposals\": null, \"reset_weekday\": null, \"reset_hour\": null, \"reset_reminder_enabled\": null, \"game_night_channel\": null}"
+    ],
+    [
+     99,
+     "configuration_updated",
+     "settings",
+     null,
+     null,
+     "{\"poll_channel\": null, \"staff_channel\": null, \"event_report_channel\": null, \"welcome_channel\": null, \"staff_role\": null, \"slots\": null, \"welcome_enabled\": false, \"max_votes\": null, \"max_proposals\": null, \"reset_weekday\": null, \"reset_hour\": null, \"reset_reminder_enabled\": null, \"game_night_channel\": null}"
+    ],
+    [
+     99,
+     "configuration_updated",
+     "settings",
+     null,
+     null,
+     "{\"poll_channel\": null, \"staff_channel\": null, \"event_report_channel\": null, \"welcome_channel\": null, \"staff_role\": 555, \"slots\": null, \"welcome_enabled\": null, \"max_votes\": null, \"max_proposals\": null, \"reset_weekday\": null, \"reset_hour\": null, \"reset_reminder_enabled\": null, \"game_night_channel\": null}"
+    ],
+    [
+     99,
+     "configuration_updated",
+     "settings",
+     null,
+     null,
+     "{\"poll_channel\": null, \"staff_channel\": null, \"event_report_channel\": null, \"welcome_channel\": null, \"staff_role\": 555, \"slots\": null, \"welcome_enabled\": null, \"max_votes\": null, \"max_proposals\": null, \"reset_weekday\": null, \"reset_hour\": null, \"reset_reminder_enabled\": null, \"game_night_channel\": null}"
+    ],
+    [
+     99,
+     "configuration_updated",
+     "settings",
+     null,
+     null,
+     "{\"poll_channel\": null, \"staff_channel\": null, \"event_report_channel\": null, \"welcome_channel\": null, \"staff_role\": 20, \"slots\": null, \"welcome_enabled\": null, \"max_votes\": null, \"max_proposals\": null, \"reset_weekday\": null, \"reset_hour\": null, \"reset_reminder_enabled\": null, \"game_night_channel\": null}"
+    ],
+    [
+     99,
+     "configuration_updated",
+     "settings",
+     null,
+     null,
+     "{\"poll_channel\": null, \"staff_channel\": null, \"event_report_channel\": null, \"welcome_channel\": null, \"staff_role\": 3, \"slots\": null, \"welcome_enabled\": null, \"max_votes\": null, \"max_proposals\": null, \"reset_weekday\": null, \"reset_hour\": null, \"reset_reminder_enabled\": null, \"game_night_channel\": null}"
+    ],
+    [
+     99,
+     "configuration_updated",
+     "settings",
+     null,
+     null,
+     "{\"poll_channel\": null, \"staff_channel\": null, \"event_report_channel\": null, \"welcome_channel\": null, \"staff_role\": 1, \"slots\": null, \"welcome_enabled\": null, \"max_votes\": null, \"max_proposals\": null, \"reset_weekday\": null, \"reset_hour\": null, \"reset_reminder_enabled\": null, \"game_night_channel\": null}"
+    ],
+    [
+     99,
+     "configuration_updated",
+     "settings",
+     null,
+     null,
+     "{\"poll_channel\": null, \"staff_channel\": null, \"event_report_channel\": null, \"welcome_channel\": null, \"staff_role\": null, \"slots\": 4, \"welcome_enabled\": null, \"max_votes\": 3, \"max_proposals\": 7, \"reset_weekday\": null, \"reset_hour\": null, \"reset_reminder_enabled\": null, \"game_night_channel\": null}"
+    ],
+    [
+     99,
+     "configuration_updated",
+     "settings",
+     null,
+     null,
+     "{\"poll_channel\": null, \"staff_channel\": null, \"event_report_channel\": null, \"welcome_channel\": null, \"staff_role\": null, \"slots\": null, \"welcome_enabled\": null, \"max_votes\": null, \"max_proposals\": null, \"reset_weekday\": 4, \"reset_hour\": 18, \"reset_reminder_enabled\": null, \"game_night_channel\": null}"
+    ],
+    [
+     99,
+     "configuration_updated",
+     "settings",
+     null,
+     null,
+     "{\"poll_channel\": null, \"staff_channel\": null, \"event_report_channel\": null, \"welcome_channel\": null, \"staff_role\": null, \"slots\": null, \"welcome_enabled\": null, \"max_votes\": null, \"max_proposals\": null, \"reset_weekday\": 0, \"reset_hour\": null, \"reset_reminder_enabled\": null, \"game_night_channel\": null}"
+    ]
+   ],
+   "polls": [
+    [
+     1,
+     1,
+     1804525200.0
+    ],
+    [
+     2,
+     1,
+     1804525200.0
+    ],
+    [
+     3,
+     1,
+     1804525200.0
+    ],
+    [
+     4,
+     1,
+     1804525200.0
+    ],
+    [
+     5,
+     1,
+     1804525200.0
+    ]
+   ]
+  }
+ },
+ {
+  "label": "reset_solo_ora",
+  "sent": [
+   [
+    "✅ Reset settimanale: ogni lunedì alle 00:00",
+    true
+   ]
+  ],
+  "refresh": [
+   "all"
+  ],
+  "poll_channel_set": true,
+  "state": {
+   "settings": [
+    [
+     "awards_since",
+     "2026-11-11"
+    ],
+    [
+     "event_report_channel",
+     "333"
+    ],
+    [
+     "last_reset",
+     "2027-03-01T00:00:00+01:00"
+    ],
+    [
+     "max_proposals",
+     "7"
+    ],
+    [
+     "max_votes",
+     "3"
+    ],
+    [
+     "poll_channel",
+     "111"
+    ],
+    [
+     "reset_hour",
+     "0"
+    ],
+    [
+     "reset_weekday",
+     "0"
+    ],
+    [
+     "slots",
+     "4"
+    ],
+    [
+     "staff_channel",
+     "222"
+    ],
+    [
+     "staff_roles",
+     "20,3"
+    ],
+    [
+     "stats_since",
+     "2026-11-11"
+    ],
+    [
+     "welcome_channel",
+     "444"
+    ],
+    [
+     "welcome_enabled",
+     "0"
+    ]
+   ],
+   "audit": [
+    [
+     99,
+     "configuration_updated",
+     "settings",
+     null,
+     "setup",
+     "{\"poll_channel\": 111, \"staff_channel\": 222, \"event_report_channel\": null, \"welcome_channel\": null, \"staff_role\": null, \"slots\": null, \"welcome_enabled\": null, \"max_votes\": null, \"max_proposals\": null, \"reset_weekday\": null, \"reset_hour\": null, \"reset_reminder_enabled\": null, \"game_night_channel\": null}"
+    ],
+    [
+     99,
+     "configuration_updated",
+     "settings",
+     null,
+     null,
+     "{\"poll_channel\": null, \"staff_channel\": null, \"event_report_channel\": 333, \"welcome_channel\": 444, \"staff_role\": null, \"slots\": null, \"welcome_enabled\": true, \"max_votes\": null, \"max_proposals\": null, \"reset_weekday\": null, \"reset_hour\": null, \"reset_reminder_enabled\": null, \"game_night_channel\": null}"
+    ],
+    [
+     99,
+     "configuration_updated",
+     "settings",
+     null,
+     null,
+     "{\"poll_channel\": null, \"staff_channel\": null, \"event_report_channel\": null, \"welcome_channel\": null, \"staff_role\": null, \"slots\": null, \"welcome_enabled\": false, \"max_votes\": null, \"max_proposals\": null, \"reset_weekday\": null, \"reset_hour\": null, \"reset_reminder_enabled\": null, \"game_night_channel\": null}"
+    ],
+    [
+     99,
+     "configuration_updated",
+     "settings",
+     null,
+     null,
+     "{\"poll_channel\": null, \"staff_channel\": null, \"event_report_channel\": null, \"welcome_channel\": null, \"staff_role\": 555, \"slots\": null, \"welcome_enabled\": null, \"max_votes\": null, \"max_proposals\": null, \"reset_weekday\": null, \"reset_hour\": null, \"reset_reminder_enabled\": null, \"game_night_channel\": null}"
+    ],
+    [
+     99,
+     "configuration_updated",
+     "settings",
+     null,
+     null,
+     "{\"poll_channel\": null, \"staff_channel\": null, \"event_report_channel\": null, \"welcome_channel\": null, \"staff_role\": 555, \"slots\": null, \"welcome_enabled\": null, \"max_votes\": null, \"max_proposals\": null, \"reset_weekday\": null, \"reset_hour\": null, \"reset_reminder_enabled\": null, \"game_night_channel\": null}"
+    ],
+    [
+     99,
+     "configuration_updated",
+     "settings",
+     null,
+     null,
+     "{\"poll_channel\": null, \"staff_channel\": null, \"event_report_channel\": null, \"welcome_channel\": null, \"staff_role\": 20, \"slots\": null, \"welcome_enabled\": null, \"max_votes\": null, \"max_proposals\": null, \"reset_weekday\": null, \"reset_hour\": null, \"reset_reminder_enabled\": null, \"game_night_channel\": null}"
+    ],
+    [
+     99,
+     "configuration_updated",
+     "settings",
+     null,
+     null,
+     "{\"poll_channel\": null, \"staff_channel\": null, \"event_report_channel\": null, \"welcome_channel\": null, \"staff_role\": 3, \"slots\": null, \"welcome_enabled\": null, \"max_votes\": null, \"max_proposals\": null, \"reset_weekday\": null, \"reset_hour\": null, \"reset_reminder_enabled\": null, \"game_night_channel\": null}"
+    ],
+    [
+     99,
+     "configuration_updated",
+     "settings",
+     null,
+     null,
+     "{\"poll_channel\": null, \"staff_channel\": null, \"event_report_channel\": null, \"welcome_channel\": null, \"staff_role\": 1, \"slots\": null, \"welcome_enabled\": null, \"max_votes\": null, \"max_proposals\": null, \"reset_weekday\": null, \"reset_hour\": null, \"reset_reminder_enabled\": null, \"game_night_channel\": null}"
+    ],
+    [
+     99,
+     "configuration_updated",
+     "settings",
+     null,
+     null,
+     "{\"poll_channel\": null, \"staff_channel\": null, \"event_report_channel\": null, \"welcome_channel\": null, \"staff_role\": null, \"slots\": 4, \"welcome_enabled\": null, \"max_votes\": 3, \"max_proposals\": 7, \"reset_weekday\": null, \"reset_hour\": null, \"reset_reminder_enabled\": null, \"game_night_channel\": null}"
+    ],
+    [
+     99,
+     "configuration_updated",
+     "settings",
+     null,
+     null,
+     "{\"poll_channel\": null, \"staff_channel\": null, \"event_report_channel\": null, \"welcome_channel\": null, \"staff_role\": null, \"slots\": null, \"welcome_enabled\": null, \"max_votes\": null, \"max_proposals\": null, \"reset_weekday\": 4, \"reset_hour\": 18, \"reset_reminder_enabled\": null, \"game_night_channel\": null}"
+    ],
+    [
+     99,
+     "configuration_updated",
+     "settings",
+     null,
+     null,
+     "{\"poll_channel\": null, \"staff_channel\": null, \"event_report_channel\": null, \"welcome_channel\": null, \"staff_role\": null, \"slots\": null, \"welcome_enabled\": null, \"max_votes\": null, \"max_proposals\": null, \"reset_weekday\": 0, \"reset_hour\": null, \"reset_reminder_enabled\": null, \"game_night_channel\": null}"
+    ],
+    [
+     99,
+     "configuration_updated",
+     "settings",
+     null,
+     null,
+     "{\"poll_channel\": null, \"staff_channel\": null, \"event_report_channel\": null, \"welcome_channel\": null, \"staff_role\": null, \"slots\": null, \"welcome_enabled\": null, \"max_votes\": null, \"max_proposals\": null, \"reset_weekday\": null, \"reset_hour\": 0, \"reset_reminder_enabled\": null, \"game_night_channel\": null}"
+    ]
+   ],
+   "polls": [
+    [
+     1,
+     1,
+     1804460400.0
+    ],
+    [
+     2,
+     1,
+     1804460400.0
+    ],
+    [
+     3,
+     1,
+     1804460400.0
+    ],
+    [
+     4,
+     1,
+     1804460400.0
+    ],
+    [
+     5,
+     1,
+     1804460400.0
+    ]
+   ]
+  }
+ },
+ {
+  "label": "promemoria_spento",
+  "sent": [
+   [
+    "✅ Promemoria reset: disattivato",
+    true
+   ]
+  ],
+  "refresh": [
+   "dashboard"
+  ],
+  "poll_channel_set": true,
+  "state": {
+   "settings": [
+    [
+     "awards_since",
+     "2026-11-11"
+    ],
+    [
+     "event_report_channel",
+     "333"
+    ],
+    [
+     "last_reset",
+     "2027-03-01T00:00:00+01:00"
+    ],
+    [
+     "max_proposals",
+     "7"
+    ],
+    [
+     "max_votes",
+     "3"
+    ],
+    [
+     "poll_channel",
+     "111"
+    ],
+    [
+     "reset_hour",
+     "0"
+    ],
+    [
+     "reset_reminder_enabled",
+     "0"
+    ],
+    [
+     "reset_weekday",
+     "0"
+    ],
+    [
+     "slots",
+     "4"
+    ],
+    [
+     "staff_channel",
+     "222"
+    ],
+    [
+     "staff_roles",
+     "20,3"
+    ],
+    [
+     "stats_since",
+     "2026-11-11"
+    ],
+    [
+     "welcome_channel",
+     "444"
+    ],
+    [
+     "welcome_enabled",
+     "0"
+    ]
+   ],
+   "audit": [
+    [
+     99,
+     "configuration_updated",
+     "settings",
+     null,
+     "setup",
+     "{\"poll_channel\": 111, \"staff_channel\": 222, \"event_report_channel\": null, \"welcome_channel\": null, \"staff_role\": null, \"slots\": null, \"welcome_enabled\": null, \"max_votes\": null, \"max_proposals\": null, \"reset_weekday\": null, \"reset_hour\": null, \"reset_reminder_enabled\": null, \"game_night_channel\": null}"
+    ],
+    [
+     99,
+     "configuration_updated",
+     "settings",
+     null,
+     null,
+     "{\"poll_channel\": null, \"staff_channel\": null, \"event_report_channel\": 333, \"welcome_channel\": 444, \"staff_role\": null, \"slots\": null, \"welcome_enabled\": true, \"max_votes\": null, \"max_proposals\": null, \"reset_weekday\": null, \"reset_hour\": null, \"reset_reminder_enabled\": null, \"game_night_channel\": null}"
+    ],
+    [
+     99,
+     "configuration_updated",
+     "settings",
+     null,
+     null,
+     "{\"poll_channel\": null, \"staff_channel\": null, \"event_report_channel\": null, \"welcome_channel\": null, \"staff_role\": null, \"slots\": null, \"welcome_enabled\": false, \"max_votes\": null, \"max_proposals\": null, \"reset_weekday\": null, \"reset_hour\": null, \"reset_reminder_enabled\": null, \"game_night_channel\": null}"
+    ],
+    [
+     99,
+     "configuration_updated",
+     "settings",
+     null,
+     null,
+     "{\"poll_channel\": null, \"staff_channel\": null, \"event_report_channel\": null, \"welcome_channel\": null, \"staff_role\": 555, \"slots\": null, \"welcome_enabled\": null, \"max_votes\": null, \"max_proposals\": null, \"reset_weekday\": null, \"reset_hour\": null, \"reset_reminder_enabled\": null, \"game_night_channel\": null}"
+    ],
+    [
+     99,
+     "configuration_updated",
+     "settings",
+     null,
+     null,
+     "{\"poll_channel\": null, \"staff_channel\": null, \"event_report_channel\": null, \"welcome_channel\": null, \"staff_role\": 555, \"slots\": null, \"welcome_enabled\": null, \"max_votes\": null, \"max_proposals\": null, \"reset_weekday\": null, \"reset_hour\": null, \"reset_reminder_enabled\": null, \"game_night_channel\": null}"
+    ],
+    [
+     99,
+     "configuration_updated",
+     "settings",
+     null,
+     null,
+     "{\"poll_channel\": null, \"staff_channel\": null, \"event_report_channel\": null, \"welcome_channel\": null, \"staff_role\": 20, \"slots\": null, \"welcome_enabled\": null, \"max_votes\": null, \"max_proposals\": null, \"reset_weekday\": null, \"reset_hour\": null, \"reset_reminder_enabled\": null, \"game_night_channel\": null}"
+    ],
+    [
+     99,
+     "configuration_updated",
+     "settings",
+     null,
+     null,
+     "{\"poll_channel\": null, \"staff_channel\": null, \"event_report_channel\": null, \"welcome_channel\": null, \"staff_role\": 3, \"slots\": null, \"welcome_enabled\": null, \"max_votes\": null, \"max_proposals\": null, \"reset_weekday\": null, \"reset_hour\": null, \"reset_reminder_enabled\": null, \"game_night_channel\": null}"
+    ],
+    [
+     99,
+     "configuration_updated",
+     "settings",
+     null,
+     null,
+     "{\"poll_channel\": null, \"staff_channel\": null, \"event_report_channel\": null, \"welcome_channel\": null, \"staff_role\": 1, \"slots\": null, \"welcome_enabled\": null, \"max_votes\": null, \"max_proposals\": null, \"reset_weekday\": null, \"reset_hour\": null, \"reset_reminder_enabled\": null, \"game_night_channel\": null}"
+    ],
+    [
+     99,
+     "configuration_updated",
+     "settings",
+     null,
+     null,
+     "{\"poll_channel\": null, \"staff_channel\": null, \"event_report_channel\": null, \"welcome_channel\": null, \"staff_role\": null, \"slots\": 4, \"welcome_enabled\": null, \"max_votes\": 3, \"max_proposals\": 7, \"reset_weekday\": null, \"reset_hour\": null, \"reset_reminder_enabled\": null, \"game_night_channel\": null}"
+    ],
+    [
+     99,
+     "configuration_updated",
+     "settings",
+     null,
+     null,
+     "{\"poll_channel\": null, \"staff_channel\": null, \"event_report_channel\": null, \"welcome_channel\": null, \"staff_role\": null, \"slots\": null, \"welcome_enabled\": null, \"max_votes\": null, \"max_proposals\": null, \"reset_weekday\": 4, \"reset_hour\": 18, \"reset_reminder_enabled\": null, \"game_night_channel\": null}"
+    ],
+    [
+     99,
+     "configuration_updated",
+     "settings",
+     null,
+     null,
+     "{\"poll_channel\": null, \"staff_channel\": null, \"event_report_channel\": null, \"welcome_channel\": null, \"staff_role\": null, \"slots\": null, \"welcome_enabled\": null, \"max_votes\": null, \"max_proposals\": null, \"reset_weekday\": 0, \"reset_hour\": null, \"reset_reminder_enabled\": null, \"game_night_channel\": null}"
+    ],
+    [
+     99,
+     "configuration_updated",
+     "settings",
+     null,
+     null,
+     "{\"poll_channel\": null, \"staff_channel\": null, \"event_report_channel\": null, \"welcome_channel\": null, \"staff_role\": null, \"slots\": null, \"welcome_enabled\": null, \"max_votes\": null, \"max_proposals\": null, \"reset_weekday\": null, \"reset_hour\": 0, \"reset_reminder_enabled\": null, \"game_night_channel\": null}"
+    ],
+    [
+     99,
+     "configuration_updated",
+     "settings",
+     null,
+     null,
+     "{\"poll_channel\": null, \"staff_channel\": null, \"event_report_channel\": null, \"welcome_channel\": null, \"staff_role\": null, \"slots\": null, \"welcome_enabled\": null, \"max_votes\": null, \"max_proposals\": null, \"reset_weekday\": null, \"reset_hour\": null, \"reset_reminder_enabled\": false, \"game_night_channel\": null}"
+    ]
+   ],
+   "polls": [
+    [
+     1,
+     1,
+     1804460400.0
+    ],
+    [
+     2,
+     1,
+     1804460400.0
+    ],
+    [
+     3,
+     1,
+     1804460400.0
+    ],
+    [
+     4,
+     1,
+     1804460400.0
+    ],
+    [
+     5,
+     1,
+     1804460400.0
+    ]
+   ]
+  }
+ },
+ {
+  "label": "promemoria_acceso_e_motivo",
+  "sent": [
+   [
+    "✅ Promemoria reset: attivo",
+    true
+   ]
+  ],
+  "refresh": [
+   "dashboard"
+  ],
+  "poll_channel_set": true,
+  "state": {
+   "settings": [
+    [
+     "awards_since",
+     "2026-11-11"
+    ],
+    [
+     "event_report_channel",
+     "333"
+    ],
+    [
+     "last_reset",
+     "2027-03-01T00:00:00+01:00"
+    ],
+    [
+     "max_proposals",
+     "7"
+    ],
+    [
+     "max_votes",
+     "3"
+    ],
+    [
+     "poll_channel",
+     "111"
+    ],
+    [
+     "reset_hour",
+     "0"
+    ],
+    [
+     "reset_reminder_enabled",
+     "1"
+    ],
+    [
+     "reset_weekday",
+     "0"
+    ],
+    [
+     "slots",
+     "4"
+    ],
+    [
+     "staff_channel",
+     "222"
+    ],
+    [
+     "staff_roles",
+     "20,3"
+    ],
+    [
+     "stats_since",
+     "2026-11-11"
+    ],
+    [
+     "welcome_channel",
+     "444"
+    ],
+    [
+     "welcome_enabled",
+     "0"
+    ]
+   ],
+   "audit": [
+    [
+     99,
+     "configuration_updated",
+     "settings",
+     null,
+     "setup",
+     "{\"poll_channel\": 111, \"staff_channel\": 222, \"event_report_channel\": null, \"welcome_channel\": null, \"staff_role\": null, \"slots\": null, \"welcome_enabled\": null, \"max_votes\": null, \"max_proposals\": null, \"reset_weekday\": null, \"reset_hour\": null, \"reset_reminder_enabled\": null, \"game_night_channel\": null}"
+    ],
+    [
+     99,
+     "configuration_updated",
+     "settings",
+     null,
+     null,
+     "{\"poll_channel\": null, \"staff_channel\": null, \"event_report_channel\": 333, \"welcome_channel\": 444, \"staff_role\": null, \"slots\": null, \"welcome_enabled\": true, \"max_votes\": null, \"max_proposals\": null, \"reset_weekday\": null, \"reset_hour\": null, \"reset_reminder_enabled\": null, \"game_night_channel\": null}"
+    ],
+    [
+     99,
+     "configuration_updated",
+     "settings",
+     null,
+     null,
+     "{\"poll_channel\": null, \"staff_channel\": null, \"event_report_channel\": null, \"welcome_channel\": null, \"staff_role\": null, \"slots\": null, \"welcome_enabled\": false, \"max_votes\": null, \"max_proposals\": null, \"reset_weekday\": null, \"reset_hour\": null, \"reset_reminder_enabled\": null, \"game_night_channel\": null}"
+    ],
+    [
+     99,
+     "configuration_updated",
+     "settings",
+     null,
+     null,
+     "{\"poll_channel\": null, \"staff_channel\": null, \"event_report_channel\": null, \"welcome_channel\": null, \"staff_role\": 555, \"slots\": null, \"welcome_enabled\": null, \"max_votes\": null, \"max_proposals\": null, \"reset_weekday\": null, \"reset_hour\": null, \"reset_reminder_enabled\": null, \"game_night_channel\": null}"
+    ],
+    [
+     99,
+     "configuration_updated",
+     "settings",
+     null,
+     null,
+     "{\"poll_channel\": null, \"staff_channel\": null, \"event_report_channel\": null, \"welcome_channel\": null, \"staff_role\": 555, \"slots\": null, \"welcome_enabled\": null, \"max_votes\": null, \"max_proposals\": null, \"reset_weekday\": null, \"reset_hour\": null, \"reset_reminder_enabled\": null, \"game_night_channel\": null}"
+    ],
+    [
+     99,
+     "configuration_updated",
+     "settings",
+     null,
+     null,
+     "{\"poll_channel\": null, \"staff_channel\": null, \"event_report_channel\": null, \"welcome_channel\": null, \"staff_role\": 20, \"slots\": null, \"welcome_enabled\": null, \"max_votes\": null, \"max_proposals\": null, \"reset_weekday\": null, \"reset_hour\": null, \"reset_reminder_enabled\": null, \"game_night_channel\": null}"
+    ],
+    [
+     99,
+     "configuration_updated",
+     "settings",
+     null,
+     null,
+     "{\"poll_channel\": null, \"staff_channel\": null, \"event_report_channel\": null, \"welcome_channel\": null, \"staff_role\": 3, \"slots\": null, \"welcome_enabled\": null, \"max_votes\": null, \"max_proposals\": null, \"reset_weekday\": null, \"reset_hour\": null, \"reset_reminder_enabled\": null, \"game_night_channel\": null}"
+    ],
+    [
+     99,
+     "configuration_updated",
+     "settings",
+     null,
+     null,
+     "{\"poll_channel\": null, \"staff_channel\": null, \"event_report_channel\": null, \"welcome_channel\": null, \"staff_role\": 1, \"slots\": null, \"welcome_enabled\": null, \"max_votes\": null, \"max_proposals\": null, \"reset_weekday\": null, \"reset_hour\": null, \"reset_reminder_enabled\": null, \"game_night_channel\": null}"
+    ],
+    [
+     99,
+     "configuration_updated",
+     "settings",
+     null,
+     null,
+     "{\"poll_channel\": null, \"staff_channel\": null, \"event_report_channel\": null, \"welcome_channel\": null, \"staff_role\": null, \"slots\": 4, \"welcome_enabled\": null, \"max_votes\": 3, \"max_proposals\": 7, \"reset_weekday\": null, \"reset_hour\": null, \"reset_reminder_enabled\": null, \"game_night_channel\": null}"
+    ],
+    [
+     99,
+     "configuration_updated",
+     "settings",
+     null,
+     null,
+     "{\"poll_channel\": null, \"staff_channel\": null, \"event_report_channel\": null, \"welcome_channel\": null, \"staff_role\": null, \"slots\": null, \"welcome_enabled\": null, \"max_votes\": null, \"max_proposals\": null, \"reset_weekday\": 4, \"reset_hour\": 18, \"reset_reminder_enabled\": null, \"game_night_channel\": null}"
+    ],
+    [
+     99,
+     "configuration_updated",
+     "settings",
+     null,
+     null,
+     "{\"poll_channel\": null, \"staff_channel\": null, \"event_report_channel\": null, \"welcome_channel\": null, \"staff_role\": null, \"slots\": null, \"welcome_enabled\": null, \"max_votes\": null, \"max_proposals\": null, \"reset_weekday\": 0, \"reset_hour\": null, \"reset_reminder_enabled\": null, \"game_night_channel\": null}"
+    ],
+    [
+     99,
+     "configuration_updated",
+     "settings",
+     null,
+     null,
+     "{\"poll_channel\": null, \"staff_channel\": null, \"event_report_channel\": null, \"welcome_channel\": null, \"staff_role\": null, \"slots\": null, \"welcome_enabled\": null, \"max_votes\": null, \"max_proposals\": null, \"reset_weekday\": null, \"reset_hour\": 0, \"reset_reminder_enabled\": null, \"game_night_channel\": null}"
+    ],
+    [
+     99,
+     "configuration_updated",
+     "settings",
+     null,
+     null,
+     "{\"poll_channel\": null, \"staff_channel\": null, \"event_report_channel\": null, \"welcome_channel\": null, \"staff_role\": null, \"slots\": null, \"welcome_enabled\": null, \"max_votes\": null, \"max_proposals\": null, \"reset_weekday\": null, \"reset_hour\": null, \"reset_reminder_enabled\": false, \"game_night_channel\": null}"
+    ],
+    [
+     99,
+     "configuration_updated",
+     "settings",
+     null,
+     "serve",
+     "{\"poll_channel\": null, \"staff_channel\": null, \"event_report_channel\": null, \"welcome_channel\": null, \"staff_role\": null, \"slots\": null, \"welcome_enabled\": null, \"max_votes\": null, \"max_proposals\": null, \"reset_weekday\": null, \"reset_hour\": null, \"reset_reminder_enabled\": true, \"game_night_channel\": null}"
+    ]
+   ],
+   "polls": [
+    [
+     1,
+     1,
+     1804460400.0
+    ],
+    [
+     2,
+     1,
+     1804460400.0
+    ],
+    [
+     3,
+     1,
+     1804460400.0
+    ],
+    [
+     4,
+     1,
+     1804460400.0
+    ],
+    [
+     5,
+     1,
+     1804460400.0
+    ]
+   ]
+  }
+ },
+ {
+  "label": "game_night",
+  "sent": [
+   [
+    "✅ Canale Game Night: <#666>",
+    true
+   ]
+  ],
+  "refresh": [
+   "dashboard"
+  ],
+  "poll_channel_set": true,
+  "state": {
+   "settings": [
+    [
+     "awards_since",
+     "2026-11-11"
+    ],
+    [
+     "event_report_channel",
+     "333"
+    ],
+    [
+     "game_night_channel",
+     "666"
+    ],
+    [
+     "last_reset",
+     "2027-03-01T00:00:00+01:00"
+    ],
+    [
+     "max_proposals",
+     "7"
+    ],
+    [
+     "max_votes",
+     "3"
+    ],
+    [
+     "poll_channel",
+     "111"
+    ],
+    [
+     "reset_hour",
+     "0"
+    ],
+    [
+     "reset_reminder_enabled",
+     "1"
+    ],
+    [
+     "reset_weekday",
+     "0"
+    ],
+    [
+     "slots",
+     "4"
+    ],
+    [
+     "staff_channel",
+     "222"
+    ],
+    [
+     "staff_roles",
+     "20,3"
+    ],
+    [
+     "stats_since",
+     "2026-11-11"
+    ],
+    [
+     "welcome_channel",
+     "444"
+    ],
+    [
+     "welcome_enabled",
+     "0"
+    ]
+   ],
+   "audit": [
+    [
+     99,
+     "configuration_updated",
+     "settings",
+     null,
+     "setup",
+     "{\"poll_channel\": 111, \"staff_channel\": 222, \"event_report_channel\": null, \"welcome_channel\": null, \"staff_role\": null, \"slots\": null, \"welcome_enabled\": null, \"max_votes\": null, \"max_proposals\": null, \"reset_weekday\": null, \"reset_hour\": null, \"reset_reminder_enabled\": null, \"game_night_channel\": null}"
+    ],
+    [
+     99,
+     "configuration_updated",
+     "settings",
+     null,
+     null,
+     "{\"poll_channel\": null, \"staff_channel\": null, \"event_report_channel\": 333, \"welcome_channel\": 444, \"staff_role\": null, \"slots\": null, \"welcome_enabled\": true, \"max_votes\": null, \"max_proposals\": null, \"reset_weekday\": null, \"reset_hour\": null, \"reset_reminder_enabled\": null, \"game_night_channel\": null}"
+    ],
+    [
+     99,
+     "configuration_updated",
+     "settings",
+     null,
+     null,
+     "{\"poll_channel\": null, \"staff_channel\": null, \"event_report_channel\": null, \"welcome_channel\": null, \"staff_role\": null, \"slots\": null, \"welcome_enabled\": false, \"max_votes\": null, \"max_proposals\": null, \"reset_weekday\": null, \"reset_hour\": null, \"reset_reminder_enabled\": null, \"game_night_channel\": null}"
+    ],
+    [
+     99,
+     "configuration_updated",
+     "settings",
+     null,
+     null,
+     "{\"poll_channel\": null, \"staff_channel\": null, \"event_report_channel\": null, \"welcome_channel\": null, \"staff_role\": 555, \"slots\": null, \"welcome_enabled\": null, \"max_votes\": null, \"max_proposals\": null, \"reset_weekday\": null, \"reset_hour\": null, \"reset_reminder_enabled\": null, \"game_night_channel\": null}"
+    ],
+    [
+     99,
+     "configuration_updated",
+     "settings",
+     null,
+     null,
+     "{\"poll_channel\": null, \"staff_channel\": null, \"event_report_channel\": null, \"welcome_channel\": null, \"staff_role\": 555, \"slots\": null, \"welcome_enabled\": null, \"max_votes\": null, \"max_proposals\": null, \"reset_weekday\": null, \"reset_hour\": null, \"reset_reminder_enabled\": null, \"game_night_channel\": null}"
+    ],
+    [
+     99,
+     "configuration_updated",
+     "settings",
+     null,
+     null,
+     "{\"poll_channel\": null, \"staff_channel\": null, \"event_report_channel\": null, \"welcome_channel\": null, \"staff_role\": 20, \"slots\": null, \"welcome_enabled\": null, \"max_votes\": null, \"max_proposals\": null, \"reset_weekday\": null, \"reset_hour\": null, \"reset_reminder_enabled\": null, \"game_night_channel\": null}"
+    ],
+    [
+     99,
+     "configuration_updated",
+     "settings",
+     null,
+     null,
+     "{\"poll_channel\": null, \"staff_channel\": null, \"event_report_channel\": null, \"welcome_channel\": null, \"staff_role\": 3, \"slots\": null, \"welcome_enabled\": null, \"max_votes\": null, \"max_proposals\": null, \"reset_weekday\": null, \"reset_hour\": null, \"reset_reminder_enabled\": null, \"game_night_channel\": null}"
+    ],
+    [
+     99,
+     "configuration_updated",
+     "settings",
+     null,
+     null,
+     "{\"poll_channel\": null, \"staff_channel\": null, \"event_report_channel\": null, \"welcome_channel\": null, \"staff_role\": 1, \"slots\": null, \"welcome_enabled\": null, \"max_votes\": null, \"max_proposals\": null, \"reset_weekday\": null, \"reset_hour\": null, \"reset_reminder_enabled\": null, \"game_night_channel\": null}"
+    ],
+    [
+     99,
+     "configuration_updated",
+     "settings",
+     null,
+     null,
+     "{\"poll_channel\": null, \"staff_channel\": null, \"event_report_channel\": null, \"welcome_channel\": null, \"staff_role\": null, \"slots\": 4, \"welcome_enabled\": null, \"max_votes\": 3, \"max_proposals\": 7, \"reset_weekday\": null, \"reset_hour\": null, \"reset_reminder_enabled\": null, \"game_night_channel\": null}"
+    ],
+    [
+     99,
+     "configuration_updated",
+     "settings",
+     null,
+     null,
+     "{\"poll_channel\": null, \"staff_channel\": null, \"event_report_channel\": null, \"welcome_channel\": null, \"staff_role\": null, \"slots\": null, \"welcome_enabled\": null, \"max_votes\": null, \"max_proposals\": null, \"reset_weekday\": 4, \"reset_hour\": 18, \"reset_reminder_enabled\": null, \"game_night_channel\": null}"
+    ],
+    [
+     99,
+     "configuration_updated",
+     "settings",
+     null,
+     null,
+     "{\"poll_channel\": null, \"staff_channel\": null, \"event_report_channel\": null, \"welcome_channel\": null, \"staff_role\": null, \"slots\": null, \"welcome_enabled\": null, \"max_votes\": null, \"max_proposals\": null, \"reset_weekday\": 0, \"reset_hour\": null, \"reset_reminder_enabled\": null, \"game_night_channel\": null}"
+    ],
+    [
+     99,
+     "configuration_updated",
+     "settings",
+     null,
+     null,
+     "{\"poll_channel\": null, \"staff_channel\": null, \"event_report_channel\": null, \"welcome_channel\": null, \"staff_role\": null, \"slots\": null, \"welcome_enabled\": null, \"max_votes\": null, \"max_proposals\": null, \"reset_weekday\": null, \"reset_hour\": 0, \"reset_reminder_enabled\": null, \"game_night_channel\": null}"
+    ],
+    [
+     99,
+     "configuration_updated",
+     "settings",
+     null,
+     null,
+     "{\"poll_channel\": null, \"staff_channel\": null, \"event_report_channel\": null, \"welcome_channel\": null, \"staff_role\": null, \"slots\": null, \"welcome_enabled\": null, \"max_votes\": null, \"max_proposals\": null, \"reset_weekday\": null, \"reset_hour\": null, \"reset_reminder_enabled\": false, \"game_night_channel\": null}"
+    ],
+    [
+     99,
+     "configuration_updated",
+     "settings",
+     null,
+     "serve",
+     "{\"poll_channel\": null, \"staff_channel\": null, \"event_report_channel\": null, \"welcome_channel\": null, \"staff_role\": null, \"slots\": null, \"welcome_enabled\": null, \"max_votes\": null, \"max_proposals\": null, \"reset_weekday\": null, \"reset_hour\": null, \"reset_reminder_enabled\": true, \"game_night_channel\": null}"
+    ],
+    [
+     99,
+     "configuration_updated",
+     "settings",
+     null,
+     null,
+     "{\"poll_channel\": null, \"staff_channel\": null, \"event_report_channel\": null, \"welcome_channel\": null, \"staff_role\": null, \"slots\": null, \"welcome_enabled\": null, \"max_votes\": null, \"max_proposals\": null, \"reset_weekday\": null, \"reset_hour\": null, \"reset_reminder_enabled\": null, \"game_night_channel\": 666}"
+    ]
+   ],
+   "polls": [
+    [
+     1,
+     1,
+     1804460400.0
+    ],
+    [
+     2,
+     1,
+     1804460400.0
+    ],
+    [
+     3,
+     1,
+     1804460400.0
+    ],
+    [
+     4,
+     1,
+     1804460400.0
+    ],
+    [
+     5,
+     1,
+     1804460400.0
+    ]
+   ]
+  }
+ },
+ {
+  "label": "tutto_insieme",
+  "sent": [
+   [
+    "✅ Canale sondaggi: <#112>\n❌ @everyone non può essere un ruolo staff: renderebbe staff tutti i membri.\nSlot ballottaggio: 5\nReset settimanale: ogni lunedì alle 09:00\nCanale Game Night: <#667>",
+    true
+   ]
+  ],
+  "refresh": [
+   "all"
+  ],
+  "poll_channel_set": true,
+  "state": {
+   "settings": [
+    [
+     "awards_since",
+     "2026-11-11"
+    ],
+    [
+     "event_report_channel",
+     "333"
+    ],
+    [
+     "game_night_channel",
+     "667"
+    ],
+    [
+     "last_reset",
+     "2027-03-01T09:00:00+01:00"
+    ],
+    [
+     "max_proposals",
+     "7"
+    ],
+    [
+     "max_votes",
+     "3"
+    ],
+    [
+     "poll_channel",
+     "112"
+    ],
+    [
+     "reset_hour",
+     "9"
+    ],
+    [
+     "reset_reminder_enabled",
+     "1"
+    ],
+    [
+     "reset_weekday",
+     "0"
+    ],
+    [
+     "slots",
+     "5"
+    ],
+    [
+     "staff_channel",
+     "222"
+    ],
+    [
+     "staff_roles",
+     "20,3"
+    ],
+    [
+     "stats_since",
+     "2026-11-11"
+    ],
+    [
+     "welcome_channel",
+     "444"
+    ],
+    [
+     "welcome_enabled",
+     "0"
+    ]
+   ],
+   "audit": [
+    [
+     99,
+     "configuration_updated",
+     "settings",
+     null,
+     "setup",
+     "{\"poll_channel\": 111, \"staff_channel\": 222, \"event_report_channel\": null, \"welcome_channel\": null, \"staff_role\": null, \"slots\": null, \"welcome_enabled\": null, \"max_votes\": null, \"max_proposals\": null, \"reset_weekday\": null, \"reset_hour\": null, \"reset_reminder_enabled\": null, \"game_night_channel\": null}"
+    ],
+    [
+     99,
+     "configuration_updated",
+     "settings",
+     null,
+     null,
+     "{\"poll_channel\": null, \"staff_channel\": null, \"event_report_channel\": 333, \"welcome_channel\": 444, \"staff_role\": null, \"slots\": null, \"welcome_enabled\": true, \"max_votes\": null, \"max_proposals\": null, \"reset_weekday\": null, \"reset_hour\": null, \"reset_reminder_enabled\": null, \"game_night_channel\": null}"
+    ],
+    [
+     99,
+     "configuration_updated",
+     "settings",
+     null,
+     null,
+     "{\"poll_channel\": null, \"staff_channel\": null, \"event_report_channel\": null, \"welcome_channel\": null, \"staff_role\": null, \"slots\": null, \"welcome_enabled\": false, \"max_votes\": null, \"max_proposals\": null, \"reset_weekday\": null, \"reset_hour\": null, \"reset_reminder_enabled\": null, \"game_night_channel\": null}"
+    ],
+    [
+     99,
+     "configuration_updated",
+     "settings",
+     null,
+     null,
+     "{\"poll_channel\": null, \"staff_channel\": null, \"event_report_channel\": null, \"welcome_channel\": null, \"staff_role\": 555, \"slots\": null, \"welcome_enabled\": null, \"max_votes\": null, \"max_proposals\": null, \"reset_weekday\": null, \"reset_hour\": null, \"reset_reminder_enabled\": null, \"game_night_channel\": null}"
+    ],
+    [
+     99,
+     "configuration_updated",
+     "settings",
+     null,
+     null,
+     "{\"poll_channel\": null, \"staff_channel\": null, \"event_report_channel\": null, \"welcome_channel\": null, \"staff_role\": 555, \"slots\": null, \"welcome_enabled\": null, \"max_votes\": null, \"max_proposals\": null, \"reset_weekday\": null, \"reset_hour\": null, \"reset_reminder_enabled\": null, \"game_night_channel\": null}"
+    ],
+    [
+     99,
+     "configuration_updated",
+     "settings",
+     null,
+     null,
+     "{\"poll_channel\": null, \"staff_channel\": null, \"event_report_channel\": null, \"welcome_channel\": null, \"staff_role\": 20, \"slots\": null, \"welcome_enabled\": null, \"max_votes\": null, \"max_proposals\": null, \"reset_weekday\": null, \"reset_hour\": null, \"reset_reminder_enabled\": null, \"game_night_channel\": null}"
+    ],
+    [
+     99,
+     "configuration_updated",
+     "settings",
+     null,
+     null,
+     "{\"poll_channel\": null, \"staff_channel\": null, \"event_report_channel\": null, \"welcome_channel\": null, \"staff_role\": 3, \"slots\": null, \"welcome_enabled\": null, \"max_votes\": null, \"max_proposals\": null, \"reset_weekday\": null, \"reset_hour\": null, \"reset_reminder_enabled\": null, \"game_night_channel\": null}"
+    ],
+    [
+     99,
+     "configuration_updated",
+     "settings",
+     null,
+     null,
+     "{\"poll_channel\": null, \"staff_channel\": null, \"event_report_channel\": null, \"welcome_channel\": null, \"staff_role\": 1, \"slots\": null, \"welcome_enabled\": null, \"max_votes\": null, \"max_proposals\": null, \"reset_weekday\": null, \"reset_hour\": null, \"reset_reminder_enabled\": null, \"game_night_channel\": null}"
+    ],
+    [
+     99,
+     "configuration_updated",
+     "settings",
+     null,
+     null,
+     "{\"poll_channel\": null, \"staff_channel\": null, \"event_report_channel\": null, \"welcome_channel\": null, \"staff_role\": null, \"slots\": 4, \"welcome_enabled\": null, \"max_votes\": 3, \"max_proposals\": 7, \"reset_weekday\": null, \"reset_hour\": null, \"reset_reminder_enabled\": null, \"game_night_channel\": null}"
+    ],
+    [
+     99,
+     "configuration_updated",
+     "settings",
+     null,
+     null,
+     "{\"poll_channel\": null, \"staff_channel\": null, \"event_report_channel\": null, \"welcome_channel\": null, \"staff_role\": null, \"slots\": null, \"welcome_enabled\": null, \"max_votes\": null, \"max_proposals\": null, \"reset_weekday\": 4, \"reset_hour\": 18, \"reset_reminder_enabled\": null, \"game_night_channel\": null}"
+    ],
+    [
+     99,
+     "configuration_updated",
+     "settings",
+     null,
+     null,
+     "{\"poll_channel\": null, \"staff_channel\": null, \"event_report_channel\": null, \"welcome_channel\": null, \"staff_role\": null, \"slots\": null, \"welcome_enabled\": null, \"max_votes\": null, \"max_proposals\": null, \"reset_weekday\": 0, \"reset_hour\": null, \"reset_reminder_enabled\": null, \"game_night_channel\": null}"
+    ],
+    [
+     99,
+     "configuration_updated",
+     "settings",
+     null,
+     null,
+     "{\"poll_channel\": null, \"staff_channel\": null, \"event_report_channel\": null, \"welcome_channel\": null, \"staff_role\": null, \"slots\": null, \"welcome_enabled\": null, \"max_votes\": null, \"max_proposals\": null, \"reset_weekday\": null, \"reset_hour\": 0, \"reset_reminder_enabled\": null, \"game_night_channel\": null}"
+    ],
+    [
+     99,
+     "configuration_updated",
+     "settings",
+     null,
+     null,
+     "{\"poll_channel\": null, \"staff_channel\": null, \"event_report_channel\": null, \"welcome_channel\": null, \"staff_role\": null, \"slots\": null, \"welcome_enabled\": null, \"max_votes\": null, \"max_proposals\": null, \"reset_weekday\": null, \"reset_hour\": null, \"reset_reminder_enabled\": false, \"game_night_channel\": null}"
+    ],
+    [
+     99,
+     "configuration_updated",
+     "settings",
+     null,
+     "serve",
+     "{\"poll_channel\": null, \"staff_channel\": null, \"event_report_channel\": null, \"welcome_channel\": null, \"staff_role\": null, \"slots\": null, \"welcome_enabled\": null, \"max_votes\": null, \"max_proposals\": null, \"reset_weekday\": null, \"reset_hour\": null, \"reset_reminder_enabled\": true, \"game_night_channel\": null}"
+    ],
+    [
+     99,
+     "configuration_updated",
+     "settings",
+     null,
+     null,
+     "{\"poll_channel\": null, \"staff_channel\": null, \"event_report_channel\": null, \"welcome_channel\": null, \"staff_role\": null, \"slots\": null, \"welcome_enabled\": null, \"max_votes\": null, \"max_proposals\": null, \"reset_weekday\": null, \"reset_hour\": null, \"reset_reminder_enabled\": null, \"game_night_channel\": 666}"
+    ],
+    [
+     99,
+     "configuration_updated",
+     "settings",
+     null,
+     null,
+     "{\"poll_channel\": 112, \"staff_channel\": null, \"event_report_channel\": null, \"welcome_channel\": null, \"staff_role\": 1, \"slots\": 5, \"welcome_enabled\": null, \"max_votes\": null, \"max_proposals\": null, \"reset_weekday\": null, \"reset_hour\": 9, \"reset_reminder_enabled\": null, \"game_night_channel\": 667}"
+    ]
+   ],
+   "polls": [
+    [
+     1,
+     1,
+     1804492800.0
+    ],
+    [
+     2,
+     1,
+     1804492800.0
+    ],
+    [
+     3,
+     1,
+     1804492800.0
+    ],
+    [
+     4,
+     1,
+     1804492800.0
+    ],
+    [
+     5,
+     1,
+     1804492800.0
+    ]
+   ]
+  }
+ },
+ {
+  "label": "riepilogo_finale",
+  "sent": [
+   [
+    "Canale sondaggi: <#112>\nCanale staff: <#222>\nCanale report eventi: <#333>\nCanale benvenuto: <#444>\nAccoglienza: disattivata\nRuoli staff: 20,3\nSlot: 5\nVoti per sondaggio: 3 · proposte a settimana: 7\nReset: ogni lunedì alle 09:00 · promemoria attivo\nCanale Game Night: <#667>",
+    true
+   ]
+  ],
+  "refresh": [
+   "dashboard"
+  ],
+  "poll_channel_set": true,
+  "state": {
+   "settings": [
+    [
+     "awards_since",
+     "2026-11-11"
+    ],
+    [
+     "event_report_channel",
+     "333"
+    ],
+    [
+     "game_night_channel",
+     "667"
+    ],
+    [
+     "last_reset",
+     "2027-03-01T09:00:00+01:00"
+    ],
+    [
+     "max_proposals",
+     "7"
+    ],
+    [
+     "max_votes",
+     "3"
+    ],
+    [
+     "poll_channel",
+     "112"
+    ],
+    [
+     "reset_hour",
+     "9"
+    ],
+    [
+     "reset_reminder_enabled",
+     "1"
+    ],
+    [
+     "reset_weekday",
+     "0"
+    ],
+    [
+     "slots",
+     "5"
+    ],
+    [
+     "staff_channel",
+     "222"
+    ],
+    [
+     "staff_roles",
+     "20,3"
+    ],
+    [
+     "stats_since",
+     "2026-11-11"
+    ],
+    [
+     "welcome_channel",
+     "444"
+    ],
+    [
+     "welcome_enabled",
+     "0"
+    ]
+   ],
+   "audit": [
+    [
+     99,
+     "configuration_updated",
+     "settings",
+     null,
+     "setup",
+     "{\"poll_channel\": 111, \"staff_channel\": 222, \"event_report_channel\": null, \"welcome_channel\": null, \"staff_role\": null, \"slots\": null, \"welcome_enabled\": null, \"max_votes\": null, \"max_proposals\": null, \"reset_weekday\": null, \"reset_hour\": null, \"reset_reminder_enabled\": null, \"game_night_channel\": null}"
+    ],
+    [
+     99,
+     "configuration_updated",
+     "settings",
+     null,
+     null,
+     "{\"poll_channel\": null, \"staff_channel\": null, \"event_report_channel\": 333, \"welcome_channel\": 444, \"staff_role\": null, \"slots\": null, \"welcome_enabled\": true, \"max_votes\": null, \"max_proposals\": null, \"reset_weekday\": null, \"reset_hour\": null, \"reset_reminder_enabled\": null, \"game_night_channel\": null}"
+    ],
+    [
+     99,
+     "configuration_updated",
+     "settings",
+     null,
+     null,
+     "{\"poll_channel\": null, \"staff_channel\": null, \"event_report_channel\": null, \"welcome_channel\": null, \"staff_role\": null, \"slots\": null, \"welcome_enabled\": false, \"max_votes\": null, \"max_proposals\": null, \"reset_weekday\": null, \"reset_hour\": null, \"reset_reminder_enabled\": null, \"game_night_channel\": null}"
+    ],
+    [
+     99,
+     "configuration_updated",
+     "settings",
+     null,
+     null,
+     "{\"poll_channel\": null, \"staff_channel\": null, \"event_report_channel\": null, \"welcome_channel\": null, \"staff_role\": 555, \"slots\": null, \"welcome_enabled\": null, \"max_votes\": null, \"max_proposals\": null, \"reset_weekday\": null, \"reset_hour\": null, \"reset_reminder_enabled\": null, \"game_night_channel\": null}"
+    ],
+    [
+     99,
+     "configuration_updated",
+     "settings",
+     null,
+     null,
+     "{\"poll_channel\": null, \"staff_channel\": null, \"event_report_channel\": null, \"welcome_channel\": null, \"staff_role\": 555, \"slots\": null, \"welcome_enabled\": null, \"max_votes\": null, \"max_proposals\": null, \"reset_weekday\": null, \"reset_hour\": null, \"reset_reminder_enabled\": null, \"game_night_channel\": null}"
+    ],
+    [
+     99,
+     "configuration_updated",
+     "settings",
+     null,
+     null,
+     "{\"poll_channel\": null, \"staff_channel\": null, \"event_report_channel\": null, \"welcome_channel\": null, \"staff_role\": 20, \"slots\": null, \"welcome_enabled\": null, \"max_votes\": null, \"max_proposals\": null, \"reset_weekday\": null, \"reset_hour\": null, \"reset_reminder_enabled\": null, \"game_night_channel\": null}"
+    ],
+    [
+     99,
+     "configuration_updated",
+     "settings",
+     null,
+     null,
+     "{\"poll_channel\": null, \"staff_channel\": null, \"event_report_channel\": null, \"welcome_channel\": null, \"staff_role\": 3, \"slots\": null, \"welcome_enabled\": null, \"max_votes\": null, \"max_proposals\": null, \"reset_weekday\": null, \"reset_hour\": null, \"reset_reminder_enabled\": null, \"game_night_channel\": null}"
+    ],
+    [
+     99,
+     "configuration_updated",
+     "settings",
+     null,
+     null,
+     "{\"poll_channel\": null, \"staff_channel\": null, \"event_report_channel\": null, \"welcome_channel\": null, \"staff_role\": 1, \"slots\": null, \"welcome_enabled\": null, \"max_votes\": null, \"max_proposals\": null, \"reset_weekday\": null, \"reset_hour\": null, \"reset_reminder_enabled\": null, \"game_night_channel\": null}"
+    ],
+    [
+     99,
+     "configuration_updated",
+     "settings",
+     null,
+     null,
+     "{\"poll_channel\": null, \"staff_channel\": null, \"event_report_channel\": null, \"welcome_channel\": null, \"staff_role\": null, \"slots\": 4, \"welcome_enabled\": null, \"max_votes\": 3, \"max_proposals\": 7, \"reset_weekday\": null, \"reset_hour\": null, \"reset_reminder_enabled\": null, \"game_night_channel\": null}"
+    ],
+    [
+     99,
+     "configuration_updated",
+     "settings",
+     null,
+     null,
+     "{\"poll_channel\": null, \"staff_channel\": null, \"event_report_channel\": null, \"welcome_channel\": null, \"staff_role\": null, \"slots\": null, \"welcome_enabled\": null, \"max_votes\": null, \"max_proposals\": null, \"reset_weekday\": 4, \"reset_hour\": 18, \"reset_reminder_enabled\": null, \"game_night_channel\": null}"
+    ],
+    [
+     99,
+     "configuration_updated",
+     "settings",
+     null,
+     null,
+     "{\"poll_channel\": null, \"staff_channel\": null, \"event_report_channel\": null, \"welcome_channel\": null, \"staff_role\": null, \"slots\": null, \"welcome_enabled\": null, \"max_votes\": null, \"max_proposals\": null, \"reset_weekday\": 0, \"reset_hour\": null, \"reset_reminder_enabled\": null, \"game_night_channel\": null}"
+    ],
+    [
+     99,
+     "configuration_updated",
+     "settings",
+     null,
+     null,
+     "{\"poll_channel\": null, \"staff_channel\": null, \"event_report_channel\": null, \"welcome_channel\": null, \"staff_role\": null, \"slots\": null, \"welcome_enabled\": null, \"max_votes\": null, \"max_proposals\": null, \"reset_weekday\": null, \"reset_hour\": 0, \"reset_reminder_enabled\": null, \"game_night_channel\": null}"
+    ],
+    [
+     99,
+     "configuration_updated",
+     "settings",
+     null,
+     null,
+     "{\"poll_channel\": null, \"staff_channel\": null, \"event_report_channel\": null, \"welcome_channel\": null, \"staff_role\": null, \"slots\": null, \"welcome_enabled\": null, \"max_votes\": null, \"max_proposals\": null, \"reset_weekday\": null, \"reset_hour\": null, \"reset_reminder_enabled\": false, \"game_night_channel\": null}"
+    ],
+    [
+     99,
+     "configuration_updated",
+     "settings",
+     null,
+     "serve",
+     "{\"poll_channel\": null, \"staff_channel\": null, \"event_report_channel\": null, \"welcome_channel\": null, \"staff_role\": null, \"slots\": null, \"welcome_enabled\": null, \"max_votes\": null, \"max_proposals\": null, \"reset_weekday\": null, \"reset_hour\": null, \"reset_reminder_enabled\": true, \"game_night_channel\": null}"
+    ],
+    [
+     99,
+     "configuration_updated",
+     "settings",
+     null,
+     null,
+     "{\"poll_channel\": null, \"staff_channel\": null, \"event_report_channel\": null, \"welcome_channel\": null, \"staff_role\": null, \"slots\": null, \"welcome_enabled\": null, \"max_votes\": null, \"max_proposals\": null, \"reset_weekday\": null, \"reset_hour\": null, \"reset_reminder_enabled\": null, \"game_night_channel\": 666}"
+    ],
+    [
+     99,
+     "configuration_updated",
+     "settings",
+     null,
+     null,
+     "{\"poll_channel\": 112, \"staff_channel\": null, \"event_report_channel\": null, \"welcome_channel\": null, \"staff_role\": 1, \"slots\": 5, \"welcome_enabled\": null, \"max_votes\": null, \"max_proposals\": null, \"reset_weekday\": null, \"reset_hour\": 9, \"reset_reminder_enabled\": null, \"game_night_channel\": 667}"
+    ]
+   ],
+   "polls": [
+    [
+     1,
+     1,
+     1804492800.0
+    ],
+    [
+     2,
+     1,
+     1804492800.0
+    ],
+    [
+     3,
+     1,
+     1804492800.0
+    ],
+    [
+     4,
+     1,
+     1804492800.0
+    ],
+    [
+     5,
+     1,
+     1804492800.0
+    ]
+   ]
+  }
+ },
+ {
+  "label": "feed_non_admin",
+  "sent": [
+   [
+    "⚠️ Non hai i permessi per usare questo comando.",
+    true
+   ]
+  ],
+  "refresh": [],
+  "poll_channel_set": true,
+  "state": {
+   "settings": [
+    [
+     "awards_since",
+     "2026-11-11"
+    ],
+    [
+     "event_report_channel",
+     "333"
+    ],
+    [
+     "game_night_channel",
+     "667"
+    ],
+    [
+     "last_reset",
+     "2027-03-01T09:00:00+01:00"
+    ],
+    [
+     "max_proposals",
+     "7"
+    ],
+    [
+     "max_votes",
+     "3"
+    ],
+    [
+     "poll_channel",
+     "112"
+    ],
+    [
+     "reset_hour",
+     "9"
+    ],
+    [
+     "reset_reminder_enabled",
+     "1"
+    ],
+    [
+     "reset_weekday",
+     "0"
+    ],
+    [
+     "slots",
+     "5"
+    ],
+    [
+     "staff_channel",
+     "222"
+    ],
+    [
+     "staff_roles",
+     "20,3"
+    ],
+    [
+     "stats_since",
+     "2026-11-11"
+    ],
+    [
+     "welcome_channel",
+     "444"
+    ],
+    [
+     "welcome_enabled",
+     "0"
+    ]
+   ],
+   "audit": [
+    [
+     99,
+     "configuration_updated",
+     "settings",
+     null,
+     "setup",
+     "{\"poll_channel\": 111, \"staff_channel\": 222, \"event_report_channel\": null, \"welcome_channel\": null, \"staff_role\": null, \"slots\": null, \"welcome_enabled\": null, \"max_votes\": null, \"max_proposals\": null, \"reset_weekday\": null, \"reset_hour\": null, \"reset_reminder_enabled\": null, \"game_night_channel\": null}"
+    ],
+    [
+     99,
+     "configuration_updated",
+     "settings",
+     null,
+     null,
+     "{\"poll_channel\": null, \"staff_channel\": null, \"event_report_channel\": 333, \"welcome_channel\": 444, \"staff_role\": null, \"slots\": null, \"welcome_enabled\": true, \"max_votes\": null, \"max_proposals\": null, \"reset_weekday\": null, \"reset_hour\": null, \"reset_reminder_enabled\": null, \"game_night_channel\": null}"
+    ],
+    [
+     99,
+     "configuration_updated",
+     "settings",
+     null,
+     null,
+     "{\"poll_channel\": null, \"staff_channel\": null, \"event_report_channel\": null, \"welcome_channel\": null, \"staff_role\": null, \"slots\": null, \"welcome_enabled\": false, \"max_votes\": null, \"max_proposals\": null, \"reset_weekday\": null, \"reset_hour\": null, \"reset_reminder_enabled\": null, \"game_night_channel\": null}"
+    ],
+    [
+     99,
+     "configuration_updated",
+     "settings",
+     null,
+     null,
+     "{\"poll_channel\": null, \"staff_channel\": null, \"event_report_channel\": null, \"welcome_channel\": null, \"staff_role\": 555, \"slots\": null, \"welcome_enabled\": null, \"max_votes\": null, \"max_proposals\": null, \"reset_weekday\": null, \"reset_hour\": null, \"reset_reminder_enabled\": null, \"game_night_channel\": null}"
+    ],
+    [
+     99,
+     "configuration_updated",
+     "settings",
+     null,
+     null,
+     "{\"poll_channel\": null, \"staff_channel\": null, \"event_report_channel\": null, \"welcome_channel\": null, \"staff_role\": 555, \"slots\": null, \"welcome_enabled\": null, \"max_votes\": null, \"max_proposals\": null, \"reset_weekday\": null, \"reset_hour\": null, \"reset_reminder_enabled\": null, \"game_night_channel\": null}"
+    ],
+    [
+     99,
+     "configuration_updated",
+     "settings",
+     null,
+     null,
+     "{\"poll_channel\": null, \"staff_channel\": null, \"event_report_channel\": null, \"welcome_channel\": null, \"staff_role\": 20, \"slots\": null, \"welcome_enabled\": null, \"max_votes\": null, \"max_proposals\": null, \"reset_weekday\": null, \"reset_hour\": null, \"reset_reminder_enabled\": null, \"game_night_channel\": null}"
+    ],
+    [
+     99,
+     "configuration_updated",
+     "settings",
+     null,
+     null,
+     "{\"poll_channel\": null, \"staff_channel\": null, \"event_report_channel\": null, \"welcome_channel\": null, \"staff_role\": 3, \"slots\": null, \"welcome_enabled\": null, \"max_votes\": null, \"max_proposals\": null, \"reset_weekday\": null, \"reset_hour\": null, \"reset_reminder_enabled\": null, \"game_night_channel\": null}"
+    ],
+    [
+     99,
+     "configuration_updated",
+     "settings",
+     null,
+     null,
+     "{\"poll_channel\": null, \"staff_channel\": null, \"event_report_channel\": null, \"welcome_channel\": null, \"staff_role\": 1, \"slots\": null, \"welcome_enabled\": null, \"max_votes\": null, \"max_proposals\": null, \"reset_weekday\": null, \"reset_hour\": null, \"reset_reminder_enabled\": null, \"game_night_channel\": null}"
+    ],
+    [
+     99,
+     "configuration_updated",
+     "settings",
+     null,
+     null,
+     "{\"poll_channel\": null, \"staff_channel\": null, \"event_report_channel\": null, \"welcome_channel\": null, \"staff_role\": null, \"slots\": 4, \"welcome_enabled\": null, \"max_votes\": 3, \"max_proposals\": 7, \"reset_weekday\": null, \"reset_hour\": null, \"reset_reminder_enabled\": null, \"game_night_channel\": null}"
+    ],
+    [
+     99,
+     "configuration_updated",
+     "settings",
+     null,
+     null,
+     "{\"poll_channel\": null, \"staff_channel\": null, \"event_report_channel\": null, \"welcome_channel\": null, \"staff_role\": null, \"slots\": null, \"welcome_enabled\": null, \"max_votes\": null, \"max_proposals\": null, \"reset_weekday\": 4, \"reset_hour\": 18, \"reset_reminder_enabled\": null, \"game_night_channel\": null}"
+    ],
+    [
+     99,
+     "configuration_updated",
+     "settings",
+     null,
+     null,
+     "{\"poll_channel\": null, \"staff_channel\": null, \"event_report_channel\": null, \"welcome_channel\": null, \"staff_role\": null, \"slots\": null, \"welcome_enabled\": null, \"max_votes\": null, \"max_proposals\": null, \"reset_weekday\": 0, \"reset_hour\": null, \"reset_reminder_enabled\": null, \"game_night_channel\": null}"
+    ],
+    [
+     99,
+     "configuration_updated",
+     "settings",
+     null,
+     null,
+     "{\"poll_channel\": null, \"staff_channel\": null, \"event_report_channel\": null, \"welcome_channel\": null, \"staff_role\": null, \"slots\": null, \"welcome_enabled\": null, \"max_votes\": null, \"max_proposals\": null, \"reset_weekday\": null, \"reset_hour\": 0, \"reset_reminder_enabled\": null, \"game_night_channel\": null}"
+    ],
+    [
+     99,
+     "configuration_updated",
+     "settings",
+     null,
+     null,
+     "{\"poll_channel\": null, \"staff_channel\": null, \"event_report_channel\": null, \"welcome_channel\": null, \"staff_role\": null, \"slots\": null, \"welcome_enabled\": null, \"max_votes\": null, \"max_proposals\": null, \"reset_weekday\": null, \"reset_hour\": null, \"reset_reminder_enabled\": false, \"game_night_channel\": null}"
+    ],
+    [
+     99,
+     "configuration_updated",
+     "settings",
+     null,
+     "serve",
+     "{\"poll_channel\": null, \"staff_channel\": null, \"event_report_channel\": null, \"welcome_channel\": null, \"staff_role\": null, \"slots\": null, \"welcome_enabled\": null, \"max_votes\": null, \"max_proposals\": null, \"reset_weekday\": null, \"reset_hour\": null, \"reset_reminder_enabled\": true, \"game_night_channel\": null}"
+    ],
+    [
+     99,
+     "configuration_updated",
+     "settings",
+     null,
+     null,
+     "{\"poll_channel\": null, \"staff_channel\": null, \"event_report_channel\": null, \"welcome_channel\": null, \"staff_role\": null, \"slots\": null, \"welcome_enabled\": null, \"max_votes\": null, \"max_proposals\": null, \"reset_weekday\": null, \"reset_hour\": null, \"reset_reminder_enabled\": null, \"game_night_channel\": 666}"
+    ],
+    [
+     99,
+     "configuration_updated",
+     "settings",
+     null,
+     null,
+     "{\"poll_channel\": 112, \"staff_channel\": null, \"event_report_channel\": null, \"welcome_channel\": null, \"staff_role\": 1, \"slots\": 5, \"welcome_enabled\": null, \"max_votes\": null, \"max_proposals\": null, \"reset_weekday\": null, \"reset_hour\": 9, \"reset_reminder_enabled\": null, \"game_night_channel\": 667}"
+    ]
+   ],
+   "polls": [
+    [
+     1,
+     1,
+     1804492800.0
+    ],
+    [
+     2,
+     1,
+     1804492800.0
+    ],
+    [
+     3,
+     1,
+     1804492800.0
+    ],
+    [
+     4,
+     1,
+     1804492800.0
+    ],
+    [
+     5,
+     1,
+     1804492800.0
+    ]
+   ]
+  }
+ },
+ {
+  "label": "feed_senza_canale",
+  "sent": [
+   [
+    "⚠️ Indica un canale con l'opzione `canale` prima di attivare il feed.",
+    true
+   ]
+  ],
+  "refresh": [],
+  "poll_channel_set": true,
+  "state": {
+   "settings": [
+    [
+     "awards_since",
+     "2026-11-11"
+    ],
+    [
+     "event_report_channel",
+     "333"
+    ],
+    [
+     "game_night_channel",
+     "667"
+    ],
+    [
+     "last_reset",
+     "2027-03-01T09:00:00+01:00"
+    ],
+    [
+     "max_proposals",
+     "7"
+    ],
+    [
+     "max_votes",
+     "3"
+    ],
+    [
+     "poll_channel",
+     "112"
+    ],
+    [
+     "reset_hour",
+     "9"
+    ],
+    [
+     "reset_reminder_enabled",
+     "1"
+    ],
+    [
+     "reset_weekday",
+     "0"
+    ],
+    [
+     "slots",
+     "5"
+    ],
+    [
+     "staff_channel",
+     "222"
+    ],
+    [
+     "staff_roles",
+     "20,3"
+    ],
+    [
+     "stats_since",
+     "2026-11-11"
+    ],
+    [
+     "welcome_channel",
+     "444"
+    ],
+    [
+     "welcome_enabled",
+     "0"
+    ]
+   ],
+   "audit": [
+    [
+     99,
+     "configuration_updated",
+     "settings",
+     null,
+     "setup",
+     "{\"poll_channel\": 111, \"staff_channel\": 222, \"event_report_channel\": null, \"welcome_channel\": null, \"staff_role\": null, \"slots\": null, \"welcome_enabled\": null, \"max_votes\": null, \"max_proposals\": null, \"reset_weekday\": null, \"reset_hour\": null, \"reset_reminder_enabled\": null, \"game_night_channel\": null}"
+    ],
+    [
+     99,
+     "configuration_updated",
+     "settings",
+     null,
+     null,
+     "{\"poll_channel\": null, \"staff_channel\": null, \"event_report_channel\": 333, \"welcome_channel\": 444, \"staff_role\": null, \"slots\": null, \"welcome_enabled\": true, \"max_votes\": null, \"max_proposals\": null, \"reset_weekday\": null, \"reset_hour\": null, \"reset_reminder_enabled\": null, \"game_night_channel\": null}"
+    ],
+    [
+     99,
+     "configuration_updated",
+     "settings",
+     null,
+     null,
+     "{\"poll_channel\": null, \"staff_channel\": null, \"event_report_channel\": null, \"welcome_channel\": null, \"staff_role\": null, \"slots\": null, \"welcome_enabled\": false, \"max_votes\": null, \"max_proposals\": null, \"reset_weekday\": null, \"reset_hour\": null, \"reset_reminder_enabled\": null, \"game_night_channel\": null}"
+    ],
+    [
+     99,
+     "configuration_updated",
+     "settings",
+     null,
+     null,
+     "{\"poll_channel\": null, \"staff_channel\": null, \"event_report_channel\": null, \"welcome_channel\": null, \"staff_role\": 555, \"slots\": null, \"welcome_enabled\": null, \"max_votes\": null, \"max_proposals\": null, \"reset_weekday\": null, \"reset_hour\": null, \"reset_reminder_enabled\": null, \"game_night_channel\": null}"
+    ],
+    [
+     99,
+     "configuration_updated",
+     "settings",
+     null,
+     null,
+     "{\"poll_channel\": null, \"staff_channel\": null, \"event_report_channel\": null, \"welcome_channel\": null, \"staff_role\": 555, \"slots\": null, \"welcome_enabled\": null, \"max_votes\": null, \"max_proposals\": null, \"reset_weekday\": null, \"reset_hour\": null, \"reset_reminder_enabled\": null, \"game_night_channel\": null}"
+    ],
+    [
+     99,
+     "configuration_updated",
+     "settings",
+     null,
+     null,
+     "{\"poll_channel\": null, \"staff_channel\": null, \"event_report_channel\": null, \"welcome_channel\": null, \"staff_role\": 20, \"slots\": null, \"welcome_enabled\": null, \"max_votes\": null, \"max_proposals\": null, \"reset_weekday\": null, \"reset_hour\": null, \"reset_reminder_enabled\": null, \"game_night_channel\": null}"
+    ],
+    [
+     99,
+     "configuration_updated",
+     "settings",
+     null,
+     null,
+     "{\"poll_channel\": null, \"staff_channel\": null, \"event_report_channel\": null, \"welcome_channel\": null, \"staff_role\": 3, \"slots\": null, \"welcome_enabled\": null, \"max_votes\": null, \"max_proposals\": null, \"reset_weekday\": null, \"reset_hour\": null, \"reset_reminder_enabled\": null, \"game_night_channel\": null}"
+    ],
+    [
+     99,
+     "configuration_updated",
+     "settings",
+     null,
+     null,
+     "{\"poll_channel\": null, \"staff_channel\": null, \"event_report_channel\": null, \"welcome_channel\": null, \"staff_role\": 1, \"slots\": null, \"welcome_enabled\": null, \"max_votes\": null, \"max_proposals\": null, \"reset_weekday\": null, \"reset_hour\": null, \"reset_reminder_enabled\": null, \"game_night_channel\": null}"
+    ],
+    [
+     99,
+     "configuration_updated",
+     "settings",
+     null,
+     null,
+     "{\"poll_channel\": null, \"staff_channel\": null, \"event_report_channel\": null, \"welcome_channel\": null, \"staff_role\": null, \"slots\": 4, \"welcome_enabled\": null, \"max_votes\": 3, \"max_proposals\": 7, \"reset_weekday\": null, \"reset_hour\": null, \"reset_reminder_enabled\": null, \"game_night_channel\": null}"
+    ],
+    [
+     99,
+     "configuration_updated",
+     "settings",
+     null,
+     null,
+     "{\"poll_channel\": null, \"staff_channel\": null, \"event_report_channel\": null, \"welcome_channel\": null, \"staff_role\": null, \"slots\": null, \"welcome_enabled\": null, \"max_votes\": null, \"max_proposals\": null, \"reset_weekday\": 4, \"reset_hour\": 18, \"reset_reminder_enabled\": null, \"game_night_channel\": null}"
+    ],
+    [
+     99,
+     "configuration_updated",
+     "settings",
+     null,
+     null,
+     "{\"poll_channel\": null, \"staff_channel\": null, \"event_report_channel\": null, \"welcome_channel\": null, \"staff_role\": null, \"slots\": null, \"welcome_enabled\": null, \"max_votes\": null, \"max_proposals\": null, \"reset_weekday\": 0, \"reset_hour\": null, \"reset_reminder_enabled\": null, \"game_night_channel\": null}"
+    ],
+    [
+     99,
+     "configuration_updated",
+     "settings",
+     null,
+     null,
+     "{\"poll_channel\": null, \"staff_channel\": null, \"event_report_channel\": null, \"welcome_channel\": null, \"staff_role\": null, \"slots\": null, \"welcome_enabled\": null, \"max_votes\": null, \"max_proposals\": null, \"reset_weekday\": null, \"reset_hour\": 0, \"reset_reminder_enabled\": null, \"game_night_channel\": null}"
+    ],
+    [
+     99,
+     "configuration_updated",
+     "settings",
+     null,
+     null,
+     "{\"poll_channel\": null, \"staff_channel\": null, \"event_report_channel\": null, \"welcome_channel\": null, \"staff_role\": null, \"slots\": null, \"welcome_enabled\": null, \"max_votes\": null, \"max_proposals\": null, \"reset_weekday\": null, \"reset_hour\": null, \"reset_reminder_enabled\": false, \"game_night_channel\": null}"
+    ],
+    [
+     99,
+     "configuration_updated",
+     "settings",
+     null,
+     "serve",
+     "{\"poll_channel\": null, \"staff_channel\": null, \"event_report_channel\": null, \"welcome_channel\": null, \"staff_role\": null, \"slots\": null, \"welcome_enabled\": null, \"max_votes\": null, \"max_proposals\": null, \"reset_weekday\": null, \"reset_hour\": null, \"reset_reminder_enabled\": true, \"game_night_channel\": null}"
+    ],
+    [
+     99,
+     "configuration_updated",
+     "settings",
+     null,
+     null,
+     "{\"poll_channel\": null, \"staff_channel\": null, \"event_report_channel\": null, \"welcome_channel\": null, \"staff_role\": null, \"slots\": null, \"welcome_enabled\": null, \"max_votes\": null, \"max_proposals\": null, \"reset_weekday\": null, \"reset_hour\": null, \"reset_reminder_enabled\": null, \"game_night_channel\": 666}"
+    ],
+    [
+     99,
+     "configuration_updated",
+     "settings",
+     null,
+     null,
+     "{\"poll_channel\": 112, \"staff_channel\": null, \"event_report_channel\": null, \"welcome_channel\": null, \"staff_role\": 1, \"slots\": 5, \"welcome_enabled\": null, \"max_votes\": null, \"max_proposals\": null, \"reset_weekday\": null, \"reset_hour\": 9, \"reset_reminder_enabled\": null, \"game_night_channel\": 667}"
+    ]
+   ],
+   "polls": [
+    [
+     1,
+     1,
+     1804492800.0
+    ],
+    [
+     2,
+     1,
+     1804492800.0
+    ],
+    [
+     3,
+     1,
+     1804492800.0
+    ],
+    [
+     4,
+     1,
+     1804492800.0
+    ],
+    [
+     5,
+     1,
+     1804492800.0
+    ]
+   ]
+  }
+ },
+ {
+  "label": "feed_attivo",
+  "sent": [
+   [
+    "✅ Feed attività attivato in <#777>.",
+    true
+   ]
+  ],
+  "refresh": [],
+  "poll_channel_set": true,
+  "state": {
+   "settings": [
+    [
+     "activity_channel",
+     "777"
+    ],
+    [
+     "activity_feed_enabled",
+     "1"
+    ],
+    [
+     "awards_since",
+     "2026-11-11"
+    ],
+    [
+     "event_report_channel",
+     "333"
+    ],
+    [
+     "game_night_channel",
+     "667"
+    ],
+    [
+     "last_reset",
+     "2027-03-01T09:00:00+01:00"
+    ],
+    [
+     "max_proposals",
+     "7"
+    ],
+    [
+     "max_votes",
+     "3"
+    ],
+    [
+     "poll_channel",
+     "112"
+    ],
+    [
+     "reset_hour",
+     "9"
+    ],
+    [
+     "reset_reminder_enabled",
+     "1"
+    ],
+    [
+     "reset_weekday",
+     "0"
+    ],
+    [
+     "slots",
+     "5"
+    ],
+    [
+     "staff_channel",
+     "222"
+    ],
+    [
+     "staff_roles",
+     "20,3"
+    ],
+    [
+     "stats_since",
+     "2026-11-11"
+    ],
+    [
+     "welcome_channel",
+     "444"
+    ],
+    [
+     "welcome_enabled",
+     "0"
+    ]
+   ],
+   "audit": [
+    [
+     99,
+     "configuration_updated",
+     "settings",
+     null,
+     "setup",
+     "{\"poll_channel\": 111, \"staff_channel\": 222, \"event_report_channel\": null, \"welcome_channel\": null, \"staff_role\": null, \"slots\": null, \"welcome_enabled\": null, \"max_votes\": null, \"max_proposals\": null, \"reset_weekday\": null, \"reset_hour\": null, \"reset_reminder_enabled\": null, \"game_night_channel\": null}"
+    ],
+    [
+     99,
+     "configuration_updated",
+     "settings",
+     null,
+     null,
+     "{\"poll_channel\": null, \"staff_channel\": null, \"event_report_channel\": 333, \"welcome_channel\": 444, \"staff_role\": null, \"slots\": null, \"welcome_enabled\": true, \"max_votes\": null, \"max_proposals\": null, \"reset_weekday\": null, \"reset_hour\": null, \"reset_reminder_enabled\": null, \"game_night_channel\": null}"
+    ],
+    [
+     99,
+     "configuration_updated",
+     "settings",
+     null,
+     null,
+     "{\"poll_channel\": null, \"staff_channel\": null, \"event_report_channel\": null, \"welcome_channel\": null, \"staff_role\": null, \"slots\": null, \"welcome_enabled\": false, \"max_votes\": null, \"max_proposals\": null, \"reset_weekday\": null, \"reset_hour\": null, \"reset_reminder_enabled\": null, \"game_night_channel\": null}"
+    ],
+    [
+     99,
+     "configuration_updated",
+     "settings",
+     null,
+     null,
+     "{\"poll_channel\": null, \"staff_channel\": null, \"event_report_channel\": null, \"welcome_channel\": null, \"staff_role\": 555, \"slots\": null, \"welcome_enabled\": null, \"max_votes\": null, \"max_proposals\": null, \"reset_weekday\": null, \"reset_hour\": null, \"reset_reminder_enabled\": null, \"game_night_channel\": null}"
+    ],
+    [
+     99,
+     "configuration_updated",
+     "settings",
+     null,
+     null,
+     "{\"poll_channel\": null, \"staff_channel\": null, \"event_report_channel\": null, \"welcome_channel\": null, \"staff_role\": 555, \"slots\": null, \"welcome_enabled\": null, \"max_votes\": null, \"max_proposals\": null, \"reset_weekday\": null, \"reset_hour\": null, \"reset_reminder_enabled\": null, \"game_night_channel\": null}"
+    ],
+    [
+     99,
+     "configuration_updated",
+     "settings",
+     null,
+     null,
+     "{\"poll_channel\": null, \"staff_channel\": null, \"event_report_channel\": null, \"welcome_channel\": null, \"staff_role\": 20, \"slots\": null, \"welcome_enabled\": null, \"max_votes\": null, \"max_proposals\": null, \"reset_weekday\": null, \"reset_hour\": null, \"reset_reminder_enabled\": null, \"game_night_channel\": null}"
+    ],
+    [
+     99,
+     "configuration_updated",
+     "settings",
+     null,
+     null,
+     "{\"poll_channel\": null, \"staff_channel\": null, \"event_report_channel\": null, \"welcome_channel\": null, \"staff_role\": 3, \"slots\": null, \"welcome_enabled\": null, \"max_votes\": null, \"max_proposals\": null, \"reset_weekday\": null, \"reset_hour\": null, \"reset_reminder_enabled\": null, \"game_night_channel\": null}"
+    ],
+    [
+     99,
+     "configuration_updated",
+     "settings",
+     null,
+     null,
+     "{\"poll_channel\": null, \"staff_channel\": null, \"event_report_channel\": null, \"welcome_channel\": null, \"staff_role\": 1, \"slots\": null, \"welcome_enabled\": null, \"max_votes\": null, \"max_proposals\": null, \"reset_weekday\": null, \"reset_hour\": null, \"reset_reminder_enabled\": null, \"game_night_channel\": null}"
+    ],
+    [
+     99,
+     "configuration_updated",
+     "settings",
+     null,
+     null,
+     "{\"poll_channel\": null, \"staff_channel\": null, \"event_report_channel\": null, \"welcome_channel\": null, \"staff_role\": null, \"slots\": 4, \"welcome_enabled\": null, \"max_votes\": 3, \"max_proposals\": 7, \"reset_weekday\": null, \"reset_hour\": null, \"reset_reminder_enabled\": null, \"game_night_channel\": null}"
+    ],
+    [
+     99,
+     "configuration_updated",
+     "settings",
+     null,
+     null,
+     "{\"poll_channel\": null, \"staff_channel\": null, \"event_report_channel\": null, \"welcome_channel\": null, \"staff_role\": null, \"slots\": null, \"welcome_enabled\": null, \"max_votes\": null, \"max_proposals\": null, \"reset_weekday\": 4, \"reset_hour\": 18, \"reset_reminder_enabled\": null, \"game_night_channel\": null}"
+    ],
+    [
+     99,
+     "configuration_updated",
+     "settings",
+     null,
+     null,
+     "{\"poll_channel\": null, \"staff_channel\": null, \"event_report_channel\": null, \"welcome_channel\": null, \"staff_role\": null, \"slots\": null, \"welcome_enabled\": null, \"max_votes\": null, \"max_proposals\": null, \"reset_weekday\": 0, \"reset_hour\": null, \"reset_reminder_enabled\": null, \"game_night_channel\": null}"
+    ],
+    [
+     99,
+     "configuration_updated",
+     "settings",
+     null,
+     null,
+     "{\"poll_channel\": null, \"staff_channel\": null, \"event_report_channel\": null, \"welcome_channel\": null, \"staff_role\": null, \"slots\": null, \"welcome_enabled\": null, \"max_votes\": null, \"max_proposals\": null, \"reset_weekday\": null, \"reset_hour\": 0, \"reset_reminder_enabled\": null, \"game_night_channel\": null}"
+    ],
+    [
+     99,
+     "configuration_updated",
+     "settings",
+     null,
+     null,
+     "{\"poll_channel\": null, \"staff_channel\": null, \"event_report_channel\": null, \"welcome_channel\": null, \"staff_role\": null, \"slots\": null, \"welcome_enabled\": null, \"max_votes\": null, \"max_proposals\": null, \"reset_weekday\": null, \"reset_hour\": null, \"reset_reminder_enabled\": false, \"game_night_channel\": null}"
+    ],
+    [
+     99,
+     "configuration_updated",
+     "settings",
+     null,
+     "serve",
+     "{\"poll_channel\": null, \"staff_channel\": null, \"event_report_channel\": null, \"welcome_channel\": null, \"staff_role\": null, \"slots\": null, \"welcome_enabled\": null, \"max_votes\": null, \"max_proposals\": null, \"reset_weekday\": null, \"reset_hour\": null, \"reset_reminder_enabled\": true, \"game_night_channel\": null}"
+    ],
+    [
+     99,
+     "configuration_updated",
+     "settings",
+     null,
+     null,
+     "{\"poll_channel\": null, \"staff_channel\": null, \"event_report_channel\": null, \"welcome_channel\": null, \"staff_role\": null, \"slots\": null, \"welcome_enabled\": null, \"max_votes\": null, \"max_proposals\": null, \"reset_weekday\": null, \"reset_hour\": null, \"reset_reminder_enabled\": null, \"game_night_channel\": 666}"
+    ],
+    [
+     99,
+     "configuration_updated",
+     "settings",
+     null,
+     null,
+     "{\"poll_channel\": 112, \"staff_channel\": null, \"event_report_channel\": null, \"welcome_channel\": null, \"staff_role\": 1, \"slots\": 5, \"welcome_enabled\": null, \"max_votes\": null, \"max_proposals\": null, \"reset_weekday\": null, \"reset_hour\": 9, \"reset_reminder_enabled\": null, \"game_night_channel\": 667}"
+    ],
+    [
+     99,
+     "activity_feed_updated",
+     "settings",
+     null,
+     "annunci",
+     "{\"enabled\": true, \"channel_id\": \"777\"}"
+    ]
+   ],
+   "polls": [
+    [
+     1,
+     1,
+     1804492800.0
+    ],
+    [
+     2,
+     1,
+     1804492800.0
+    ],
+    [
+     3,
+     1,
+     1804492800.0
+    ],
+    [
+     4,
+     1,
+     1804492800.0
+    ],
+    [
+     5,
+     1,
+     1804492800.0
+    ]
+   ]
+  }
+ },
+ {
+  "label": "feed_spento_con_canale",
+  "sent": [
+   [
+    "✅ Feed attività disattivato. Il canale configurato resta <#777>.",
+    true
+   ]
+  ],
+  "refresh": [],
+  "poll_channel_set": true,
+  "state": {
+   "settings": [
+    [
+     "activity_channel",
+     "777"
+    ],
+    [
+     "activity_feed_enabled",
+     "0"
+    ],
+    [
+     "awards_since",
+     "2026-11-11"
+    ],
+    [
+     "event_report_channel",
+     "333"
+    ],
+    [
+     "game_night_channel",
+     "667"
+    ],
+    [
+     "last_reset",
+     "2027-03-01T09:00:00+01:00"
+    ],
+    [
+     "max_proposals",
+     "7"
+    ],
+    [
+     "max_votes",
+     "3"
+    ],
+    [
+     "poll_channel",
+     "112"
+    ],
+    [
+     "reset_hour",
+     "9"
+    ],
+    [
+     "reset_reminder_enabled",
+     "1"
+    ],
+    [
+     "reset_weekday",
+     "0"
+    ],
+    [
+     "slots",
+     "5"
+    ],
+    [
+     "staff_channel",
+     "222"
+    ],
+    [
+     "staff_roles",
+     "20,3"
+    ],
+    [
+     "stats_since",
+     "2026-11-11"
+    ],
+    [
+     "welcome_channel",
+     "444"
+    ],
+    [
+     "welcome_enabled",
+     "0"
+    ]
+   ],
+   "audit": [
+    [
+     99,
+     "configuration_updated",
+     "settings",
+     null,
+     "setup",
+     "{\"poll_channel\": 111, \"staff_channel\": 222, \"event_report_channel\": null, \"welcome_channel\": null, \"staff_role\": null, \"slots\": null, \"welcome_enabled\": null, \"max_votes\": null, \"max_proposals\": null, \"reset_weekday\": null, \"reset_hour\": null, \"reset_reminder_enabled\": null, \"game_night_channel\": null}"
+    ],
+    [
+     99,
+     "configuration_updated",
+     "settings",
+     null,
+     null,
+     "{\"poll_channel\": null, \"staff_channel\": null, \"event_report_channel\": 333, \"welcome_channel\": 444, \"staff_role\": null, \"slots\": null, \"welcome_enabled\": true, \"max_votes\": null, \"max_proposals\": null, \"reset_weekday\": null, \"reset_hour\": null, \"reset_reminder_enabled\": null, \"game_night_channel\": null}"
+    ],
+    [
+     99,
+     "configuration_updated",
+     "settings",
+     null,
+     null,
+     "{\"poll_channel\": null, \"staff_channel\": null, \"event_report_channel\": null, \"welcome_channel\": null, \"staff_role\": null, \"slots\": null, \"welcome_enabled\": false, \"max_votes\": null, \"max_proposals\": null, \"reset_weekday\": null, \"reset_hour\": null, \"reset_reminder_enabled\": null, \"game_night_channel\": null}"
+    ],
+    [
+     99,
+     "configuration_updated",
+     "settings",
+     null,
+     null,
+     "{\"poll_channel\": null, \"staff_channel\": null, \"event_report_channel\": null, \"welcome_channel\": null, \"staff_role\": 555, \"slots\": null, \"welcome_enabled\": null, \"max_votes\": null, \"max_proposals\": null, \"reset_weekday\": null, \"reset_hour\": null, \"reset_reminder_enabled\": null, \"game_night_channel\": null}"
+    ],
+    [
+     99,
+     "configuration_updated",
+     "settings",
+     null,
+     null,
+     "{\"poll_channel\": null, \"staff_channel\": null, \"event_report_channel\": null, \"welcome_channel\": null, \"staff_role\": 555, \"slots\": null, \"welcome_enabled\": null, \"max_votes\": null, \"max_proposals\": null, \"reset_weekday\": null, \"reset_hour\": null, \"reset_reminder_enabled\": null, \"game_night_channel\": null}"
+    ],
+    [
+     99,
+     "configuration_updated",
+     "settings",
+     null,
+     null,
+     "{\"poll_channel\": null, \"staff_channel\": null, \"event_report_channel\": null, \"welcome_channel\": null, \"staff_role\": 20, \"slots\": null, \"welcome_enabled\": null, \"max_votes\": null, \"max_proposals\": null, \"reset_weekday\": null, \"reset_hour\": null, \"reset_reminder_enabled\": null, \"game_night_channel\": null}"
+    ],
+    [
+     99,
+     "configuration_updated",
+     "settings",
+     null,
+     null,
+     "{\"poll_channel\": null, \"staff_channel\": null, \"event_report_channel\": null, \"welcome_channel\": null, \"staff_role\": 3, \"slots\": null, \"welcome_enabled\": null, \"max_votes\": null, \"max_proposals\": null, \"reset_weekday\": null, \"reset_hour\": null, \"reset_reminder_enabled\": null, \"game_night_channel\": null}"
+    ],
+    [
+     99,
+     "configuration_updated",
+     "settings",
+     null,
+     null,
+     "{\"poll_channel\": null, \"staff_channel\": null, \"event_report_channel\": null, \"welcome_channel\": null, \"staff_role\": 1, \"slots\": null, \"welcome_enabled\": null, \"max_votes\": null, \"max_proposals\": null, \"reset_weekday\": null, \"reset_hour\": null, \"reset_reminder_enabled\": null, \"game_night_channel\": null}"
+    ],
+    [
+     99,
+     "configuration_updated",
+     "settings",
+     null,
+     null,
+     "{\"poll_channel\": null, \"staff_channel\": null, \"event_report_channel\": null, \"welcome_channel\": null, \"staff_role\": null, \"slots\": 4, \"welcome_enabled\": null, \"max_votes\": 3, \"max_proposals\": 7, \"reset_weekday\": null, \"reset_hour\": null, \"reset_reminder_enabled\": null, \"game_night_channel\": null}"
+    ],
+    [
+     99,
+     "configuration_updated",
+     "settings",
+     null,
+     null,
+     "{\"poll_channel\": null, \"staff_channel\": null, \"event_report_channel\": null, \"welcome_channel\": null, \"staff_role\": null, \"slots\": null, \"welcome_enabled\": null, \"max_votes\": null, \"max_proposals\": null, \"reset_weekday\": 4, \"reset_hour\": 18, \"reset_reminder_enabled\": null, \"game_night_channel\": null}"
+    ],
+    [
+     99,
+     "configuration_updated",
+     "settings",
+     null,
+     null,
+     "{\"poll_channel\": null, \"staff_channel\": null, \"event_report_channel\": null, \"welcome_channel\": null, \"staff_role\": null, \"slots\": null, \"welcome_enabled\": null, \"max_votes\": null, \"max_proposals\": null, \"reset_weekday\": 0, \"reset_hour\": null, \"reset_reminder_enabled\": null, \"game_night_channel\": null}"
+    ],
+    [
+     99,
+     "configuration_updated",
+     "settings",
+     null,
+     null,
+     "{\"poll_channel\": null, \"staff_channel\": null, \"event_report_channel\": null, \"welcome_channel\": null, \"staff_role\": null, \"slots\": null, \"welcome_enabled\": null, \"max_votes\": null, \"max_proposals\": null, \"reset_weekday\": null, \"reset_hour\": 0, \"reset_reminder_enabled\": null, \"game_night_channel\": null}"
+    ],
+    [
+     99,
+     "configuration_updated",
+     "settings",
+     null,
+     null,
+     "{\"poll_channel\": null, \"staff_channel\": null, \"event_report_channel\": null, \"welcome_channel\": null, \"staff_role\": null, \"slots\": null, \"welcome_enabled\": null, \"max_votes\": null, \"max_proposals\": null, \"reset_weekday\": null, \"reset_hour\": null, \"reset_reminder_enabled\": false, \"game_night_channel\": null}"
+    ],
+    [
+     99,
+     "configuration_updated",
+     "settings",
+     null,
+     "serve",
+     "{\"poll_channel\": null, \"staff_channel\": null, \"event_report_channel\": null, \"welcome_channel\": null, \"staff_role\": null, \"slots\": null, \"welcome_enabled\": null, \"max_votes\": null, \"max_proposals\": null, \"reset_weekday\": null, \"reset_hour\": null, \"reset_reminder_enabled\": true, \"game_night_channel\": null}"
+    ],
+    [
+     99,
+     "configuration_updated",
+     "settings",
+     null,
+     null,
+     "{\"poll_channel\": null, \"staff_channel\": null, \"event_report_channel\": null, \"welcome_channel\": null, \"staff_role\": null, \"slots\": null, \"welcome_enabled\": null, \"max_votes\": null, \"max_proposals\": null, \"reset_weekday\": null, \"reset_hour\": null, \"reset_reminder_enabled\": null, \"game_night_channel\": 666}"
+    ],
+    [
+     99,
+     "configuration_updated",
+     "settings",
+     null,
+     null,
+     "{\"poll_channel\": 112, \"staff_channel\": null, \"event_report_channel\": null, \"welcome_channel\": null, \"staff_role\": 1, \"slots\": 5, \"welcome_enabled\": null, \"max_votes\": null, \"max_proposals\": null, \"reset_weekday\": null, \"reset_hour\": 9, \"reset_reminder_enabled\": null, \"game_night_channel\": 667}"
+    ],
+    [
+     99,
+     "activity_feed_updated",
+     "settings",
+     null,
+     "annunci",
+     "{\"enabled\": true, \"channel_id\": \"777\"}"
+    ],
+    [
+     99,
+     "activity_feed_updated",
+     "settings",
+     null,
+     null,
+     "{\"enabled\": false, \"channel_id\": \"777\"}"
+    ]
+   ],
+   "polls": [
+    [
+     1,
+     1,
+     1804492800.0
+    ],
+    [
+     2,
+     1,
+     1804492800.0
+    ],
+    [
+     3,
+     1,
+     1804492800.0
+    ],
+    [
+     4,
+     1,
+     1804492800.0
+    ],
+    [
+     5,
+     1,
+     1804492800.0
+    ]
+   ]
+  }
+ },
+ {
+  "label": "feed_spento_nuovo_canale",
+  "sent": [
+   [
+    "✅ Feed attività disattivato. Il canale configurato resta <#778>.",
+    true
+   ]
+  ],
+  "refresh": [],
+  "poll_channel_set": true,
+  "state": {
+   "settings": [
+    [
+     "activity_channel",
+     "778"
+    ],
+    [
+     "activity_feed_enabled",
+     "0"
+    ],
+    [
+     "awards_since",
+     "2026-11-11"
+    ],
+    [
+     "event_report_channel",
+     "333"
+    ],
+    [
+     "game_night_channel",
+     "667"
+    ],
+    [
+     "last_reset",
+     "2027-03-01T09:00:00+01:00"
+    ],
+    [
+     "max_proposals",
+     "7"
+    ],
+    [
+     "max_votes",
+     "3"
+    ],
+    [
+     "poll_channel",
+     "112"
+    ],
+    [
+     "reset_hour",
+     "9"
+    ],
+    [
+     "reset_reminder_enabled",
+     "1"
+    ],
+    [
+     "reset_weekday",
+     "0"
+    ],
+    [
+     "slots",
+     "5"
+    ],
+    [
+     "staff_channel",
+     "222"
+    ],
+    [
+     "staff_roles",
+     "20,3"
+    ],
+    [
+     "stats_since",
+     "2026-11-11"
+    ],
+    [
+     "welcome_channel",
+     "444"
+    ],
+    [
+     "welcome_enabled",
+     "0"
+    ]
+   ],
+   "audit": [
+    [
+     99,
+     "configuration_updated",
+     "settings",
+     null,
+     "setup",
+     "{\"poll_channel\": 111, \"staff_channel\": 222, \"event_report_channel\": null, \"welcome_channel\": null, \"staff_role\": null, \"slots\": null, \"welcome_enabled\": null, \"max_votes\": null, \"max_proposals\": null, \"reset_weekday\": null, \"reset_hour\": null, \"reset_reminder_enabled\": null, \"game_night_channel\": null}"
+    ],
+    [
+     99,
+     "configuration_updated",
+     "settings",
+     null,
+     null,
+     "{\"poll_channel\": null, \"staff_channel\": null, \"event_report_channel\": 333, \"welcome_channel\": 444, \"staff_role\": null, \"slots\": null, \"welcome_enabled\": true, \"max_votes\": null, \"max_proposals\": null, \"reset_weekday\": null, \"reset_hour\": null, \"reset_reminder_enabled\": null, \"game_night_channel\": null}"
+    ],
+    [
+     99,
+     "configuration_updated",
+     "settings",
+     null,
+     null,
+     "{\"poll_channel\": null, \"staff_channel\": null, \"event_report_channel\": null, \"welcome_channel\": null, \"staff_role\": null, \"slots\": null, \"welcome_enabled\": false, \"max_votes\": null, \"max_proposals\": null, \"reset_weekday\": null, \"reset_hour\": null, \"reset_reminder_enabled\": null, \"game_night_channel\": null}"
+    ],
+    [
+     99,
+     "configuration_updated",
+     "settings",
+     null,
+     null,
+     "{\"poll_channel\": null, \"staff_channel\": null, \"event_report_channel\": null, \"welcome_channel\": null, \"staff_role\": 555, \"slots\": null, \"welcome_enabled\": null, \"max_votes\": null, \"max_proposals\": null, \"reset_weekday\": null, \"reset_hour\": null, \"reset_reminder_enabled\": null, \"game_night_channel\": null}"
+    ],
+    [
+     99,
+     "configuration_updated",
+     "settings",
+     null,
+     null,
+     "{\"poll_channel\": null, \"staff_channel\": null, \"event_report_channel\": null, \"welcome_channel\": null, \"staff_role\": 555, \"slots\": null, \"welcome_enabled\": null, \"max_votes\": null, \"max_proposals\": null, \"reset_weekday\": null, \"reset_hour\": null, \"reset_reminder_enabled\": null, \"game_night_channel\": null}"
+    ],
+    [
+     99,
+     "configuration_updated",
+     "settings",
+     null,
+     null,
+     "{\"poll_channel\": null, \"staff_channel\": null, \"event_report_channel\": null, \"welcome_channel\": null, \"staff_role\": 20, \"slots\": null, \"welcome_enabled\": null, \"max_votes\": null, \"max_proposals\": null, \"reset_weekday\": null, \"reset_hour\": null, \"reset_reminder_enabled\": null, \"game_night_channel\": null}"
+    ],
+    [
+     99,
+     "configuration_updated",
+     "settings",
+     null,
+     null,
+     "{\"poll_channel\": null, \"staff_channel\": null, \"event_report_channel\": null, \"welcome_channel\": null, \"staff_role\": 3, \"slots\": null, \"welcome_enabled\": null, \"max_votes\": null, \"max_proposals\": null, \"reset_weekday\": null, \"reset_hour\": null, \"reset_reminder_enabled\": null, \"game_night_channel\": null}"
+    ],
+    [
+     99,
+     "configuration_updated",
+     "settings",
+     null,
+     null,
+     "{\"poll_channel\": null, \"staff_channel\": null, \"event_report_channel\": null, \"welcome_channel\": null, \"staff_role\": 1, \"slots\": null, \"welcome_enabled\": null, \"max_votes\": null, \"max_proposals\": null, \"reset_weekday\": null, \"reset_hour\": null, \"reset_reminder_enabled\": null, \"game_night_channel\": null}"
+    ],
+    [
+     99,
+     "configuration_updated",
+     "settings",
+     null,
+     null,
+     "{\"poll_channel\": null, \"staff_channel\": null, \"event_report_channel\": null, \"welcome_channel\": null, \"staff_role\": null, \"slots\": 4, \"welcome_enabled\": null, \"max_votes\": 3, \"max_proposals\": 7, \"reset_weekday\": null, \"reset_hour\": null, \"reset_reminder_enabled\": null, \"game_night_channel\": null}"
+    ],
+    [
+     99,
+     "configuration_updated",
+     "settings",
+     null,
+     null,
+     "{\"poll_channel\": null, \"staff_channel\": null, \"event_report_channel\": null, \"welcome_channel\": null, \"staff_role\": null, \"slots\": null, \"welcome_enabled\": null, \"max_votes\": null, \"max_proposals\": null, \"reset_weekday\": 4, \"reset_hour\": 18, \"reset_reminder_enabled\": null, \"game_night_channel\": null}"
+    ],
+    [
+     99,
+     "configuration_updated",
+     "settings",
+     null,
+     null,
+     "{\"poll_channel\": null, \"staff_channel\": null, \"event_report_channel\": null, \"welcome_channel\": null, \"staff_role\": null, \"slots\": null, \"welcome_enabled\": null, \"max_votes\": null, \"max_proposals\": null, \"reset_weekday\": 0, \"reset_hour\": null, \"reset_reminder_enabled\": null, \"game_night_channel\": null}"
+    ],
+    [
+     99,
+     "configuration_updated",
+     "settings",
+     null,
+     null,
+     "{\"poll_channel\": null, \"staff_channel\": null, \"event_report_channel\": null, \"welcome_channel\": null, \"staff_role\": null, \"slots\": null, \"welcome_enabled\": null, \"max_votes\": null, \"max_proposals\": null, \"reset_weekday\": null, \"reset_hour\": 0, \"reset_reminder_enabled\": null, \"game_night_channel\": null}"
+    ],
+    [
+     99,
+     "configuration_updated",
+     "settings",
+     null,
+     null,
+     "{\"poll_channel\": null, \"staff_channel\": null, \"event_report_channel\": null, \"welcome_channel\": null, \"staff_role\": null, \"slots\": null, \"welcome_enabled\": null, \"max_votes\": null, \"max_proposals\": null, \"reset_weekday\": null, \"reset_hour\": null, \"reset_reminder_enabled\": false, \"game_night_channel\": null}"
+    ],
+    [
+     99,
+     "configuration_updated",
+     "settings",
+     null,
+     "serve",
+     "{\"poll_channel\": null, \"staff_channel\": null, \"event_report_channel\": null, \"welcome_channel\": null, \"staff_role\": null, \"slots\": null, \"welcome_enabled\": null, \"max_votes\": null, \"max_proposals\": null, \"reset_weekday\": null, \"reset_hour\": null, \"reset_reminder_enabled\": true, \"game_night_channel\": null}"
+    ],
+    [
+     99,
+     "configuration_updated",
+     "settings",
+     null,
+     null,
+     "{\"poll_channel\": null, \"staff_channel\": null, \"event_report_channel\": null, \"welcome_channel\": null, \"staff_role\": null, \"slots\": null, \"welcome_enabled\": null, \"max_votes\": null, \"max_proposals\": null, \"reset_weekday\": null, \"reset_hour\": null, \"reset_reminder_enabled\": null, \"game_night_channel\": 666}"
+    ],
+    [
+     99,
+     "configuration_updated",
+     "settings",
+     null,
+     null,
+     "{\"poll_channel\": 112, \"staff_channel\": null, \"event_report_channel\": null, \"welcome_channel\": null, \"staff_role\": 1, \"slots\": 5, \"welcome_enabled\": null, \"max_votes\": null, \"max_proposals\": null, \"reset_weekday\": null, \"reset_hour\": 9, \"reset_reminder_enabled\": null, \"game_night_channel\": 667}"
+    ],
+    [
+     99,
+     "activity_feed_updated",
+     "settings",
+     null,
+     "annunci",
+     "{\"enabled\": true, \"channel_id\": \"777\"}"
+    ],
+    [
+     99,
+     "activity_feed_updated",
+     "settings",
+     null,
+     null,
+     "{\"enabled\": false, \"channel_id\": \"777\"}"
+    ],
+    [
+     99,
+     "activity_feed_updated",
+     "settings",
+     null,
+     null,
+     "{\"enabled\": false, \"channel_id\": \"778\"}"
+    ]
+   ],
+   "polls": [
+    [
+     1,
+     1,
+     1804492800.0
+    ],
+    [
+     2,
+     1,
+     1804492800.0
+    ],
+    [
+     3,
+     1,
+     1804492800.0
+    ],
+    [
+     4,
+     1,
+     1804492800.0
+    ],
+    [
+     5,
+     1,
+     1804492800.0
+    ]
+   ]
+  }
+ },
+ {
+  "label": "feed_attivo_canale_gia_noto",
+  "sent": [
+   [
+    "✅ Feed attività attivato in <#778>.",
+    true
+   ]
+  ],
+  "refresh": [],
+  "poll_channel_set": true,
+  "state": {
+   "settings": [
+    [
+     "activity_channel",
+     "778"
+    ],
+    [
+     "activity_feed_enabled",
+     "1"
+    ],
+    [
+     "awards_since",
+     "2026-11-11"
+    ],
+    [
+     "event_report_channel",
+     "333"
+    ],
+    [
+     "game_night_channel",
+     "667"
+    ],
+    [
+     "last_reset",
+     "2027-03-01T09:00:00+01:00"
+    ],
+    [
+     "max_proposals",
+     "7"
+    ],
+    [
+     "max_votes",
+     "3"
+    ],
+    [
+     "poll_channel",
+     "112"
+    ],
+    [
+     "reset_hour",
+     "9"
+    ],
+    [
+     "reset_reminder_enabled",
+     "1"
+    ],
+    [
+     "reset_weekday",
+     "0"
+    ],
+    [
+     "slots",
+     "5"
+    ],
+    [
+     "staff_channel",
+     "222"
+    ],
+    [
+     "staff_roles",
+     "20,3"
+    ],
+    [
+     "stats_since",
+     "2026-11-11"
+    ],
+    [
+     "welcome_channel",
+     "444"
+    ],
+    [
+     "welcome_enabled",
+     "0"
+    ]
+   ],
+   "audit": [
+    [
+     99,
+     "configuration_updated",
+     "settings",
+     null,
+     "setup",
+     "{\"poll_channel\": 111, \"staff_channel\": 222, \"event_report_channel\": null, \"welcome_channel\": null, \"staff_role\": null, \"slots\": null, \"welcome_enabled\": null, \"max_votes\": null, \"max_proposals\": null, \"reset_weekday\": null, \"reset_hour\": null, \"reset_reminder_enabled\": null, \"game_night_channel\": null}"
+    ],
+    [
+     99,
+     "configuration_updated",
+     "settings",
+     null,
+     null,
+     "{\"poll_channel\": null, \"staff_channel\": null, \"event_report_channel\": 333, \"welcome_channel\": 444, \"staff_role\": null, \"slots\": null, \"welcome_enabled\": true, \"max_votes\": null, \"max_proposals\": null, \"reset_weekday\": null, \"reset_hour\": null, \"reset_reminder_enabled\": null, \"game_night_channel\": null}"
+    ],
+    [
+     99,
+     "configuration_updated",
+     "settings",
+     null,
+     null,
+     "{\"poll_channel\": null, \"staff_channel\": null, \"event_report_channel\": null, \"welcome_channel\": null, \"staff_role\": null, \"slots\": null, \"welcome_enabled\": false, \"max_votes\": null, \"max_proposals\": null, \"reset_weekday\": null, \"reset_hour\": null, \"reset_reminder_enabled\": null, \"game_night_channel\": null}"
+    ],
+    [
+     99,
+     "configuration_updated",
+     "settings",
+     null,
+     null,
+     "{\"poll_channel\": null, \"staff_channel\": null, \"event_report_channel\": null, \"welcome_channel\": null, \"staff_role\": 555, \"slots\": null, \"welcome_enabled\": null, \"max_votes\": null, \"max_proposals\": null, \"reset_weekday\": null, \"reset_hour\": null, \"reset_reminder_enabled\": null, \"game_night_channel\": null}"
+    ],
+    [
+     99,
+     "configuration_updated",
+     "settings",
+     null,
+     null,
+     "{\"poll_channel\": null, \"staff_channel\": null, \"event_report_channel\": null, \"welcome_channel\": null, \"staff_role\": 555, \"slots\": null, \"welcome_enabled\": null, \"max_votes\": null, \"max_proposals\": null, \"reset_weekday\": null, \"reset_hour\": null, \"reset_reminder_enabled\": null, \"game_night_channel\": null}"
+    ],
+    [
+     99,
+     "configuration_updated",
+     "settings",
+     null,
+     null,
+     "{\"poll_channel\": null, \"staff_channel\": null, \"event_report_channel\": null, \"welcome_channel\": null, \"staff_role\": 20, \"slots\": null, \"welcome_enabled\": null, \"max_votes\": null, \"max_proposals\": null, \"reset_weekday\": null, \"reset_hour\": null, \"reset_reminder_enabled\": null, \"game_night_channel\": null}"
+    ],
+    [
+     99,
+     "configuration_updated",
+     "settings",
+     null,
+     null,
+     "{\"poll_channel\": null, \"staff_channel\": null, \"event_report_channel\": null, \"welcome_channel\": null, \"staff_role\": 3, \"slots\": null, \"welcome_enabled\": null, \"max_votes\": null, \"max_proposals\": null, \"reset_weekday\": null, \"reset_hour\": null, \"reset_reminder_enabled\": null, \"game_night_channel\": null}"
+    ],
+    [
+     99,
+     "configuration_updated",
+     "settings",
+     null,
+     null,
+     "{\"poll_channel\": null, \"staff_channel\": null, \"event_report_channel\": null, \"welcome_channel\": null, \"staff_role\": 1, \"slots\": null, \"welcome_enabled\": null, \"max_votes\": null, \"max_proposals\": null, \"reset_weekday\": null, \"reset_hour\": null, \"reset_reminder_enabled\": null, \"game_night_channel\": null}"
+    ],
+    [
+     99,
+     "configuration_updated",
+     "settings",
+     null,
+     null,
+     "{\"poll_channel\": null, \"staff_channel\": null, \"event_report_channel\": null, \"welcome_channel\": null, \"staff_role\": null, \"slots\": 4, \"welcome_enabled\": null, \"max_votes\": 3, \"max_proposals\": 7, \"reset_weekday\": null, \"reset_hour\": null, \"reset_reminder_enabled\": null, \"game_night_channel\": null}"
+    ],
+    [
+     99,
+     "configuration_updated",
+     "settings",
+     null,
+     null,
+     "{\"poll_channel\": null, \"staff_channel\": null, \"event_report_channel\": null, \"welcome_channel\": null, \"staff_role\": null, \"slots\": null, \"welcome_enabled\": null, \"max_votes\": null, \"max_proposals\": null, \"reset_weekday\": 4, \"reset_hour\": 18, \"reset_reminder_enabled\": null, \"game_night_channel\": null}"
+    ],
+    [
+     99,
+     "configuration_updated",
+     "settings",
+     null,
+     null,
+     "{\"poll_channel\": null, \"staff_channel\": null, \"event_report_channel\": null, \"welcome_channel\": null, \"staff_role\": null, \"slots\": null, \"welcome_enabled\": null, \"max_votes\": null, \"max_proposals\": null, \"reset_weekday\": 0, \"reset_hour\": null, \"reset_reminder_enabled\": null, \"game_night_channel\": null}"
+    ],
+    [
+     99,
+     "configuration_updated",
+     "settings",
+     null,
+     null,
+     "{\"poll_channel\": null, \"staff_channel\": null, \"event_report_channel\": null, \"welcome_channel\": null, \"staff_role\": null, \"slots\": null, \"welcome_enabled\": null, \"max_votes\": null, \"max_proposals\": null, \"reset_weekday\": null, \"reset_hour\": 0, \"reset_reminder_enabled\": null, \"game_night_channel\": null}"
+    ],
+    [
+     99,
+     "configuration_updated",
+     "settings",
+     null,
+     null,
+     "{\"poll_channel\": null, \"staff_channel\": null, \"event_report_channel\": null, \"welcome_channel\": null, \"staff_role\": null, \"slots\": null, \"welcome_enabled\": null, \"max_votes\": null, \"max_proposals\": null, \"reset_weekday\": null, \"reset_hour\": null, \"reset_reminder_enabled\": false, \"game_night_channel\": null}"
+    ],
+    [
+     99,
+     "configuration_updated",
+     "settings",
+     null,
+     "serve",
+     "{\"poll_channel\": null, \"staff_channel\": null, \"event_report_channel\": null, \"welcome_channel\": null, \"staff_role\": null, \"slots\": null, \"welcome_enabled\": null, \"max_votes\": null, \"max_proposals\": null, \"reset_weekday\": null, \"reset_hour\": null, \"reset_reminder_enabled\": true, \"game_night_channel\": null}"
+    ],
+    [
+     99,
+     "configuration_updated",
+     "settings",
+     null,
+     null,
+     "{\"poll_channel\": null, \"staff_channel\": null, \"event_report_channel\": null, \"welcome_channel\": null, \"staff_role\": null, \"slots\": null, \"welcome_enabled\": null, \"max_votes\": null, \"max_proposals\": null, \"reset_weekday\": null, \"reset_hour\": null, \"reset_reminder_enabled\": null, \"game_night_channel\": 666}"
+    ],
+    [
+     99,
+     "configuration_updated",
+     "settings",
+     null,
+     null,
+     "{\"poll_channel\": 112, \"staff_channel\": null, \"event_report_channel\": null, \"welcome_channel\": null, \"staff_role\": 1, \"slots\": 5, \"welcome_enabled\": null, \"max_votes\": null, \"max_proposals\": null, \"reset_weekday\": null, \"reset_hour\": 9, \"reset_reminder_enabled\": null, \"game_night_channel\": 667}"
+    ],
+    [
+     99,
+     "activity_feed_updated",
+     "settings",
+     null,
+     "annunci",
+     "{\"enabled\": true, \"channel_id\": \"777\"}"
+    ],
+    [
+     99,
+     "activity_feed_updated",
+     "settings",
+     null,
+     null,
+     "{\"enabled\": false, \"channel_id\": \"777\"}"
+    ],
+    [
+     99,
+     "activity_feed_updated",
+     "settings",
+     null,
+     null,
+     "{\"enabled\": false, \"channel_id\": \"778\"}"
+    ],
+    [
+     99,
+     "activity_feed_updated",
+     "settings",
+     null,
+     null,
+     "{\"enabled\": true, \"channel_id\": \"778\"}"
+    ]
+   ],
+   "polls": [
+    [
+     1,
+     1,
+     1804492800.0
+    ],
+    [
+     2,
+     1,
+     1804492800.0
+    ],
+    [
+     3,
+     1,
+     1804492800.0
+    ],
+    [
+     4,
+     1,
+     1804492800.0
+    ],
+    [
+     5,
+     1,
+     1804492800.0
+    ]
+   ]
+  }
+ }
+]
