@@ -172,6 +172,17 @@
           <div class="page-heading"><div><p class="overline">OPERAZIONI STAFF</p><h2>Strumenti staff</h2><p class="muted">Proposte, eventi live, report e backup.</p></div><button id="tools-refresh" class="button button-ghost" type="button">Aggiorna</button></div>
           <section class="panel admin-panel-section">
             <div class="panel-heading"><div><h3>Proposte della settimana</h3><p>Revisiona, approva o rifiuta le proposte e gestisci il ballottaggio.</p></div></div>
+            <div class="filter-row" style="margin-top:14px;margin-bottom:14px">
+              <div class="search-box">⌕<input id="proposal-search" type="search" placeholder="Cerca proposta per nome o #ID..." aria-label="Cerca proposta" /></div>
+              <select id="proposal-filter" aria-label="Filtra proposte per stato">
+                <option value="all">Tutti gli stati</option>
+                <option value="pending">In attesa</option>
+                <option value="reviewing">In revisione</option>
+                <option value="approved">Approvata</option>
+                <option value="picked">Nel ballottaggio</option>
+                <option value="rejected">Rifiutata</option>
+              </select>
+            </div>
             <div id="proposal-tools" class="tool-list"><p class="empty-state">Caricamento…</p></div>
           </section>
           <section class="panel admin-panel-section">

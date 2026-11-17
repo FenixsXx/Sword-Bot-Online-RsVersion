@@ -1,6 +1,7 @@
 import { fillChannelSelect } from "./admin.js";
 import { apiRequest } from "./api.js";
 import { $, $$, escapeHtml, safeHttpUrl } from "./dom.js";
+import { debounce } from "./reports.js";
 import { latestOnly } from "./state.js";
 import { confirmDialog, runBusy, showError, showToast } from "./ui.js";
 
@@ -29,14 +30,34 @@ function proposalCard(proposal) {
   </article>`;
 }
 
+function filterProposals(proposals) {
+  if (!proposals) return [];
+  const query = $("#proposal-search")?.value.trim().toLowerCase() || "";
+  const filter = $("#proposal-filter")?.value || "all";
+  return proposals.filter((proposal) => {
+    const rawId = String(proposal.id);
+    const searchTarget = query.startsWith("#") ? query.slice(1) : query;
+    const matchesQuery = !query
+      || rawId === searchTarget
+      || proposal.name.toLowerCase().includes(query)
+      || proposal.type.toLowerCase().includes(query);
+    if (!matchesQuery) return false;
+    if (filter === "all") return true;
+    if (filter === "picked") return proposal.status === "picked";
+    return proposal.review_status === filter;
+  });
+}
+
 function renderProposals(proposals) {
   const root = $("#proposal-tools");
+  if (!root) return;
+  const filtered = filterProposals(proposals);
   // Conserva i motivi già scritti e il focus quando la lista viene ridisegnata.
   const reasons = new Map($$("[data-reason-for]", root).map((input) => [input.dataset.reasonFor, input.value]));
   const focusedReason = root.contains(document.activeElement) ? document.activeElement.dataset?.reasonFor : undefined;
-  root.innerHTML = proposals.length
-    ? proposals.map(proposalCard).join("")
-    : '<p class="empty-state">Nessuna proposta questa settimana.</p>';
+  root.innerHTML = filtered.length
+    ? filtered.map(proposalCard).join("")
+    : `<p class="empty-state">${proposals?.length ? "Nessuna proposta corrispondente ai filtri." : "Nessuna proposta questa settimana."}</p>`;
   for (const input of $$("[data-reason-for]", root)) {
     if (reasons.has(input.dataset.reasonFor)) input.value = reasons.get(input.dataset.reasonFor);
     if (input.dataset.reasonFor === focusedReason) input.focus();
@@ -185,6 +206,12 @@ export function initTools() {
   refresh.addEventListener("click", () => runBusy(refresh, () => loadToolsState().catch(showError)));
   $("#proposal-tools").addEventListener("click", handleProposalClick);
   $("#event-report-tools").addEventListener("click", handleEventReportClick);
+
+  const updateProposalList = () => {
+    if (toolsState?.proposals) renderProposals(toolsState.proposals);
+  };
+  $("#proposal-search")?.addEventListener("input", debounce(updateProposalList, 150));
+  $("#proposal-filter")?.addEventListener("change", updateProposalList);
 
   const liveForm = $("#live-event-form");
   const markDirty = () => { liveFormDirty = true; };
