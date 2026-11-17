@@ -12,6 +12,10 @@
       background: transparent;
       font-synthesis: none;
       text-rendering: optimizeLegibility;
+      --accent: #35df82;
+      --accent-glow: rgb(53 223 130 / 32%);
+      --accent-glow-subtle: rgb(53 223 130 / 15%);
+      --accent-soft: rgb(53 223 130 / 12%);
     }
 
     * { box-sizing: border-box; }
@@ -69,10 +73,10 @@
       box-shadow: 0 0 0 4px rgb(133 137 154 / 15%);
     }
 
-    .live-badge.active { color: #a7f3c5; }
+    .live-badge.active { color: var(--accent); }
     .live-badge.active .live-dot {
-      background: #35df82;
-      box-shadow: 0 0 0 4px rgb(53 223 130 / 17%), 0 0 16px #35df82;
+      background: var(--accent);
+      box-shadow: 0 0 0 4px var(--accent-glow-subtle), 0 0 16px var(--accent);
     }
 
     .summary {
@@ -115,21 +119,26 @@
       min-height: 74px;
       margin-bottom: 18px;
       padding: 12px 16px;
-      border: 1px solid rgb(53 223 130 / 40%);
+      border: 1px solid var(--accent);
       border-radius: 16px;
-      background: linear-gradient(90deg, rgb(53 223 130 / 12%), rgb(255 255 255 / 3%));
-      box-shadow: 0 0 24px rgb(53 223 130 / 10%);
+      background: linear-gradient(90deg, var(--accent-soft), rgb(255 255 255 / 3%));
+      box-shadow: 0 0 24px var(--accent-glow-subtle);
     }
 
     .speaker[hidden] { display: none; }
     .speaker img { width: 46px; height: 46px; border-radius: 50%; }
-    .speaker small { display: block; color: #8af0b4; font-weight: 800; letter-spacing: .1em; }
+    .speaker small { display: block; color: var(--accent); font-weight: 800; letter-spacing: .1em; }
     .speaker strong { display: block; margin-top: 3px; font-size: 1.05rem; }
 
     .grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(175px, 1fr));
       gap: 14px;
+    }
+
+    @keyframes participantEnter {
+      from { opacity: 0; transform: translateY(10px) scale(0.96); }
+      to { opacity: 1; transform: translateY(0) scale(1); }
     }
 
     .participant {
@@ -145,13 +154,14 @@
       background: linear-gradient(160deg, rgb(255 255 255 / 7%), rgb(255 255 255 / 2%));
       text-align: center;
       transition: transform 180ms ease, border-color 180ms ease, box-shadow 180ms ease;
+      animation: participantEnter 220ms cubic-bezier(0.16, 1, 0.3, 1) backwards;
     }
 
     .participant.speaking {
       z-index: 1;
       transform: scale(1.035);
-      border-color: #35df82;
-      box-shadow: 0 0 0 1px rgb(53 223 130 / 32%), 0 0 28px rgb(53 223 130 / 24%);
+      border-color: var(--accent);
+      box-shadow: 0 0 0 1px var(--accent-glow), 0 0 28px var(--accent-glow);
       animation: pulse 1.5s ease-in-out infinite alternate;
     }
 
@@ -172,8 +182,8 @@
     }
 
     .speaking .avatar {
-      border-color: #35df82;
-      box-shadow: 0 0 18px rgb(53 223 130 / 42%);
+      border-color: var(--accent);
+      box-shadow: 0 0 18px var(--accent-glow);
     }
 
     .volume {
@@ -205,7 +215,7 @@
       width: 0;
       height: 100%;
       border-radius: inherit;
-      background: #35df82;
+      background: var(--accent);
       transition: width 100ms linear;
     }
 
@@ -216,8 +226,8 @@
     .footer { margin-top: 20px; color: #85899a; font-size: .75rem; text-align: right; }
 
     @keyframes pulse {
-      from { box-shadow: 0 0 0 1px rgb(53 223 130 / 26%), 0 0 18px rgb(53 223 130 / 15%); }
-      to { box-shadow: 0 0 0 1px rgb(53 223 130 / 42%), 0 0 32px rgb(53 223 130 / 30%); }
+      from { box-shadow: 0 0 0 1px var(--accent-glow-subtle), 0 0 18px var(--accent-glow-subtle); }
+      to { box-shadow: 0 0 0 1px var(--accent-glow), 0 0 32px var(--accent-glow); }
     }
 
     @media (max-width: 600px) {
@@ -259,6 +269,12 @@
     html[data-theme="esport"] body {
       background: radial-gradient(ellipse at 80% 0%, rgb(235 69 158 / 22%), transparent 50%),
         linear-gradient(145deg, #100e20, #17132b);
+    }
+    html[data-theme="esport"] {
+      --accent: #eb459e;
+      --accent-glow: rgb(235 69 158 / 32%);
+      --accent-glow-subtle: rgb(235 69 158 / 15%);
+      --accent-soft: rgb(235 69 158 / 12%);
     }
     html[data-theme="esport"] .shell { border-color: rgb(235 69 158 / 35%); }
     html[data-theme="esport"] .participant { border-radius: 8px; }
@@ -304,6 +320,65 @@
     html[data-theme="stage"] .grid { grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); }
     html[data-theme="stage"] .participant { min-height: 160px; }
     html[data-theme="stage"] .avatar { width: 68px; height: 68px; }
+
+    /* Neon Cyberpunk Theme */
+    html[data-theme="neon"] body {
+      background: radial-gradient(ellipse at 50% 0%, rgb(0 240 255 / 15%), transparent 60%),
+        radial-gradient(ellipse at 80% 100%, rgb(255 0 128 / 15%), transparent 60%),
+        linear-gradient(160deg, #0a0b12, #120e24);
+    }
+    html[data-theme="neon"] {
+      --accent: #00f0ff;
+      --accent-glow: rgb(0 240 255 / 38%);
+      --accent-glow-subtle: rgb(0 240 255 / 16%);
+      --accent-soft: rgb(0 240 255 / 12%);
+    }
+    html[data-theme="neon"] .shell {
+      border: 1px solid rgb(0 240 255 / 25%);
+      box-shadow: 0 0 40px rgb(0 240 255 / 12%), 0 24px 80px rgb(0 0 0 / 60%);
+    }
+    html[data-theme="neon"] .participant {
+      border-color: rgb(255 0 128 / 20%);
+      background: linear-gradient(160deg, rgb(255 0 128 / 6%), rgb(0 240 255 / 3%));
+    }
+    html[data-theme="neon"] .participant.speaking {
+      border-color: #00f0ff;
+      box-shadow: 0 0 0 1px rgb(0 240 255 / 45%), 0 0 30px rgb(0 240 255 / 35%);
+    }
+
+    /* Glass Frosted Theme */
+    html[data-theme="glass"] body {
+      background: transparent;
+      padding: 16px;
+    }
+    html[data-theme="glass"] .shell {
+      border: 1px solid rgb(255 255 255 / 18%);
+      background: rgb(255 255 255 / 6%);
+      backdrop-filter: blur(24px) saturate(140%);
+      box-shadow: 0 16px 40px rgb(0 0 0 / 25%);
+    }
+    html[data-theme="glass"] .participant {
+      border: 1px solid rgb(255 255 255 / 14%);
+      background: rgb(255 255 255 / 4%);
+    }
+
+    /* Modifiers: Compact, Hide Stats, Hide Speaker */
+    html[data-compact="true"] body { padding: 10px; }
+    html[data-compact="true"] .shell { padding: 14px; border-radius: 16px; }
+    html[data-compact="true"] header { margin-bottom: 12px; }
+    html[data-compact="true"] header h1 { font-size: 1.25rem; }
+    html[data-compact="true"] .summary { margin-bottom: 12px; }
+    html[data-compact="true"] .grid { grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: 8px; }
+    html[data-compact="true"] .participant { min-height: 160px; padding: 10px 8px; }
+    html[data-compact="true"] .avatar { width: 64px; height: 64px; }
+    html[data-compact="true"] .participant-name { font-size: .88rem; }
+    html[data-compact="true"] .participant-stats { font-size: .72rem; margin-top: 4px; }
+
+    html[data-hide-stats="true"] .participant-stats,
+    html[data-hide-stats="true"] .participant-level { display: none; }
+    html[data-hide-stats="true"] .participant { min-height: 170px; }
+
+    html[data-hide-speaker="true"] .speaker { display: none !important; }
   </style>
 </head>
 <body>
@@ -335,9 +410,30 @@
 
   <script>
     (() => {
-      const themes = new Set(["classic", "podcast", "esport", "minimal", "stage"]);
-      const requestedTheme = new URLSearchParams(window.location.search).get("tema");
+      const params = new URLSearchParams(window.location.search);
+      const themes = new Set(["classic", "podcast", "esport", "minimal", "stage", "neon", "glass"]);
+      const requestedTheme = params.get("tema") || params.get("theme");
       document.documentElement.dataset.theme = themes.has(requestedTheme) ? requestedTheme : "classic";
+
+      if (params.get("compact") === "true" || params.get("compatto") === "1" || params.has("compact")) {
+        document.documentElement.dataset.compact = "true";
+      }
+      if (params.get("stats") === "false" || params.get("stats") === "0" || params.get("nascondi_stats") === "1") {
+        document.documentElement.dataset.hideStats = "true";
+      }
+      if (params.get("speaker") === "false" || params.get("speaker") === "0" || params.get("nascondi_speaker") === "1") {
+        document.documentElement.dataset.hideSpeaker = "true";
+      }
+
+      const rawAccent = (params.get("accent") || params.get("colore") || "").replace(/^#/, "");
+      if (/^[0-9a-fA-F]{3,8}$/.test(rawAccent)) {
+        const hex = `#${rawAccent}`;
+        document.documentElement.style.setProperty("--accent", hex);
+        document.documentElement.style.setProperty("--accent-glow", `${hex}55`);
+        document.documentElement.style.setProperty("--accent-glow-subtle", `${hex}25`);
+        document.documentElement.style.setProperty("--accent-soft", `${hex}1a`);
+      }
+
       const guildId = window.location.pathname.split("/").filter(Boolean).at(-1);
       const token = window.location.hash.slice(1);
       const cards = document.getElementById("participants");
@@ -346,7 +442,7 @@
       const speakerPanel = document.getElementById("speaker");
       const empty = document.getElementById("empty");
 
-      window.history.replaceState(null, "", window.location.pathname);
+      window.history.replaceState(null, "", window.location.pathname + window.location.search);
 
       function setConnection(isActive, text) {
         connection.classList.toggle("active", isActive);
