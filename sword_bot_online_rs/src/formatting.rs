@@ -105,15 +105,23 @@ pub fn proposal_image_url(link: Option<&str>) -> Option<String> {
         return Some(format!("https://i.ytimg.com/vi/{video_id}/hqdefault.jpg"));
     }
 
-    if hostname == "store.steampowered.com" {
+    if hostname == "store.steampowered.com" || hostname == "steamcommunity.com" {
         // `/app/<cifre>` seguito da `/` o dalla fine del percorso.
-        let rest = parsed.path().strip_prefix("/app/")?;
-        let digits_end = rest.bytes().position(|b| !b.is_ascii_digit()).unwrap_or(rest.len());
-        let (app_id, after) = rest.split_at(digits_end);
-        if !app_id.is_empty() && (after.is_empty() || after.starts_with('/')) {
-            return Some(format!("https://cdn.akamai.steamstatic.com/steam/apps/{app_id}/header.jpg"));
+        if let Some(rest) = parsed.path().strip_prefix("/app/") {
+            let digits_end = rest.bytes().position(|b| !b.is_ascii_digit()).unwrap_or(rest.len());
+            let (app_id, after) = rest.split_at(digits_end);
+            if !app_id.is_empty() && (after.is_empty() || after.starts_with('/')) {
+                return Some(format!("https://cdn.akamai.steamstatic.com/steam/apps/{app_id}/header.jpg"));
+            }
         }
     }
+
+    // Supporto a immagini dirette HTTPS (PNG, JPG, JPEG, WebP, GIF)
+    let path_lower = parsed.path().to_lowercase();
+    if [".png", ".jpg", ".jpeg", ".webp", ".gif"].iter().any(|ext| path_lower.ends_with(ext)) {
+        return Some(parsed.to_string());
+    }
+
     None
 }
 
@@ -213,6 +221,9 @@ mod tests {
             (Some("https://STORE.steampowered.com/app/1234/"), steam("1234")),
             (Some("http://store.steampowered.com/app/570/"), None),
             (Some("https://example.com/"), None),
+            (Some("https://steamcommunity.com/app/730/"), steam("730")),
+            (Some("https://cdn.example.com/art/cover.webp"), Some("https://cdn.example.com/art/cover.webp".into())),
+            (Some("https://i.imgur.com/screenshot.png"), Some("https://i.imgur.com/screenshot.png".into())),
             (Some("ftp://youtube.com/watch?v=dQw4w9WgXcQ"), None),
             (Some("non un url"), None),
             (Some("https://"), None),
