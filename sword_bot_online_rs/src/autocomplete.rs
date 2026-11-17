@@ -37,6 +37,88 @@ pub struct SuggestionChoice {
     pub value: i64,
 }
 
+/// Calcola la distanza di Levenshtein per tolleranza di refusi.
+fn levenshtein_distance(a: &str, b: &str) -> usize {
+    let a_chars: Vec<char> = a.chars().collect();
+    let b_chars: Vec<char> = b.chars().collect();
+    let mut dp = vec![vec![0; b_chars.len() + 1]; a_chars.len() + 1];
+    for i in 0..=a_chars.len() {
+        dp[i][0] = i;
+    }
+    for j in 0..=b_chars.len() {
+        dp[0][j] = j;
+    }
+    for i in 1..=a_chars.len() {
+        for j in 1..=b_chars.len() {
+            let cost = if a_chars[i - 1] == b_chars[j - 1] { 0 } else { 1 };
+            dp[i][j] = (dp[i - 1][j] + 1)
+                .min(dp[i][j - 1] + 1)
+                .min(dp[i - 1][j - 1] + cost);
+        }
+    }
+    dp[a_chars.len()][b_chars.len()]
+}
+
+/// Calcola un punteggio di rilevanza fuzzy tra la query digitata e il nome della proposta.
+/// Restituisce `Some(score)` se c'è corrispondenza o `None` se non corrisponde.
+fn fuzzy_score(pattern: &str, target: &str) -> Option<u32> {
+    if pattern.is_empty() {
+        return Some(100);
+    }
+    // Corrispondenza esatta
+    if target == pattern {
+        return Some(1000);
+    }
+    // Prefisso
+    if target.starts_with(pattern) {
+        return Some(800 + (50 - target.chars().count().min(50)) as u32);
+    }
+    // Sottostringa
+    if let Some(pos) = target.find(pattern) {
+        let is_word_boundary = pos == 0
+            || target.as_bytes().get(pos.saturating_sub(1)).map_or(false, |b| b.is_ascii_whitespace() || b.is_ascii_punctuation());
+        let bonus = if is_word_boundary { 120 } else { 0 };
+        return Some(600 + bonus + (50 - target.chars().count().min(50)) as u32);
+    }
+
+    // Sottosequenza di caratteri ordinati (es. "amgus" -> "among us")
+    let mut pattern_chars = pattern.chars().peekable();
+    let mut score = 0u32;
+    let mut consecutive = 0u32;
+    let mut prev_idx = None;
+
+    for (idx, ch) in target.chars().enumerate() {
+        if let Some(&p_ch) = pattern_chars.peek() {
+            if ch == p_ch {
+                pattern_chars.next();
+                consecutive += 1;
+                score += 20 + (consecutive * 10);
+                if prev_idx == Some(idx.saturating_sub(1)) {
+                    score += 15;
+                }
+                prev_idx = Some(idx);
+            } else {
+                consecutive = 0;
+            }
+        }
+    }
+
+    if pattern_chars.peek().is_none() {
+        return Some(score.min(500));
+    }
+
+    // Tolleranza refuso per parole di almeno 4 lettere (distanza <= 1)
+    if pattern.chars().count() >= 4 {
+        for word in target.split_whitespace() {
+            if levenshtein_distance(pattern, word) <= 1 {
+                return Some(350);
+            }
+        }
+    }
+
+    None
+}
+
 /// Proposte della settimana che contengono il testo digitato (o il loro `#ID`).
 ///
 /// * `review_statuses`: se non vuoto, solo le proposte in uno di questi stati di revisione.
@@ -67,16 +149,26 @@ pub fn suggestion_choices(
     db.with_conn(|connection| {
         let mut statement = connection.prepare(&sql)?;
         let mut rows = statement.query(params_from_iter(params.iter()))?;
-        let mut choices = Vec::new();
+        let mut scored_choices: Vec<(u32, i64, SuggestionChoice)> = Vec::new();
         while let Some(row) = rows.next()? {
             let id: i64 = row.get("id")?;
             let name: String = row.get("name")?;
             let tipo: String = row.get("tipo")?;
             let review_status: String = row.get("review_status")?;
             let status: Option<String> = row.get("status")?;
-            if !text.is_empty() && !casefold(&name).contains(&text) && text != id.to_string() {
+
+            let score = if text.is_empty() {
+                Some(0)
+            } else if text == id.to_string() {
+                Some(1000)
+            } else {
+                fuzzy_score(&text, &casefold(&name))
+            };
+
+            let Some(score) = score else {
                 continue;
-            }
+            };
+
             let mut label = format!(
                 "#{id} · {} {name} · {}",
                 proposal_type_emoji(&tipo),
@@ -85,12 +177,17 @@ pub fn suggestion_choices(
             if status.as_deref() == Some("picked") {
                 label.push_str(" · nel ballottaggio");
             }
-            choices.push(SuggestionChoice { name: label.chars().take(MAX_NAME_CHARS).collect(), value: id });
-            if choices.len() == MAX_CHOICES {
-                break;
-            }
+            scored_choices.push((
+                score,
+                id,
+                SuggestionChoice { name: label.chars().take(MAX_NAME_CHARS).collect(), value: id },
+            ));
         }
-        Ok(choices)
+
+        // Ordina per rilevanza decrescente; in caso di parità, la proposta più recente prima
+        scored_choices.sort_by(|a, b| b.0.cmp(&a.0).then_with(|| b.1.cmp(&a.1)));
+
+        Ok(scored_choices.into_iter().take(MAX_CHOICES).map(|(_, _, choice)| choice).collect())
     })
 }
 
@@ -194,6 +291,15 @@ mod tests {
         assert_eq!(ids(&suggestion_choices(&db, "#3", &[], None).unwrap()), [3], "#ID");
         assert_eq!(ids(&suggestion_choices(&db, "3", &[], None).unwrap()), [3], "ID senza #");
         assert!(suggestion_choices(&db, "inesistente", &[], None).unwrap().is_empty());
+    }
+
+    #[test]
+    fn fuzzy_matching_supports_typos_and_subsequences() {
+        let db = db_with_suggestions();
+        // Sottosequenza: "amgus" trova "Among Us" (ID 1)
+        assert_eq!(ids(&suggestion_choices(&db, "amgus", &[], None).unwrap()), [1]);
+        // Refuso a 1 lettera: "jakbox" trova "Jackbox Party" (ID 2)
+        assert_eq!(ids(&suggestion_choices(&db, "jakbox", &[], None).unwrap()), [2]);
     }
 
     #[test]
