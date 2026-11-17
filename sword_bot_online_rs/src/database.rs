@@ -116,6 +116,10 @@ impl Database {
         connection.pragma_update(None, "foreign_keys", "ON")?;
         // `journal_mode` restituisce una riga: va letta con `pragma_update_and_check`.
         connection.pragma_update_and_check(None, "journal_mode", "WAL", |row| row.get::<_, String>(0))?;
+        // In modalità WAL, `synchronous = NORMAL` garantisce la piena consistenza riducendo i blocchi I/O su disco.
+        connection.pragma_update(None, "synchronous", "NORMAL")?;
+        // Tabelle temporanee e indici di ordinamento in RAM anziché su file temporanei su disco.
+        connection.pragma_update(None, "temp_store", "MEMORY")?;
         connection.busy_timeout(Duration::from_millis(1000))?;
         migrate(&connection)?;
         Ok(Self {
