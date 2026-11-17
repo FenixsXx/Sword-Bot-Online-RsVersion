@@ -277,16 +277,30 @@ function renderDayAverages() {
   $("#day-bars").innerHTML = values.slice(1).concat(values[0]).map((item) => `<div class="${item.value === max ? "best" : ""}"><span>${item.name}</span><i style="height:${Math.max(8, item.value / max * 92)}%"><b>${Math.round(item.value)}</b></i></div>`).join("");
 }
 
-export function renderReports() {
+export function debounce(fn, delayMs = 150) {
+  let timeoutId;
+  return (...args) => {
+    clearTimeout(timeoutId);
+    timeoutId = setTimeout(() => fn(...args), delayMs);
+  };
+}
+
+export function renderReportsTable() {
   const { reports } = state;
-  $("#recent-reports").innerHTML = reports.slice(0, 4).map((report) => reportRow(report)).join("");
   const query = $("#report-search").value.trim().toLowerCase();
   const category = $("#report-filter").value || "all";
   const filtered = reports.filter((report) => {
     const haystack = [report.name, report.responsible, report.notes, report.names, report.clipRegistrar].join(" ").toLowerCase();
     return haystack.includes(query) && (category === "all" || report.category === category);
   });
-  $("#all-reports").innerHTML = filtered.map((report) => reportRow(report, true)).join("") || `<tr><td colspan="11" class="empty-state">Nessun report trovato.</td></tr>`;
+  $("#all-reports").innerHTML = filtered.map((report) => reportRow(report, true)).join("")
+    || `<tr><td colspan="11" class="empty-state">Nessun report trovato corrispondente alla ricerca.</td></tr>`;
+}
+
+export function renderReports() {
+  const { reports } = state;
+  $("#recent-reports").innerHTML = reports.slice(0, 4).map((report) => reportRow(report)).join("");
+  renderReportsTable();
   const average = reports.length ? Math.round(reports.reduce((sum, report) => sum + Number(report.duration), 0) / reports.length) : 0;
   const monthly = getMonthlyStats(reports);
   const previousLabel = `a ${monthly.previousLabel}`;
@@ -462,8 +476,8 @@ export function initReports() {
   });
   $("#report-form").addEventListener("submit", submitReport);
   $("#event-clip").addEventListener("change", (event) => toggleRegistrarField(event.target.checked));
-  $("#report-search").addEventListener("input", renderReports);
-  $("#report-filter").addEventListener("change", renderReports);
+  $("#report-search").addEventListener("input", debounce(renderReportsTable, 150));
+  $("#report-filter").addEventListener("change", renderReportsTable);
   $("[data-week-prev]").addEventListener("click", () => {
     state.weekOffset -= 1;
     renderActivityChart();
