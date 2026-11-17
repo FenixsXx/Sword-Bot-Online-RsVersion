@@ -434,7 +434,7 @@ async function submitReport(event) {
       }
       closeReportModal();
       form.reset();
-      showToast(warning || (editingId ? "Modifiche salvate." : "Evento salvato e inviato su Discord."), warning ? 6000 : 3000);
+      showToast(warning || (editingId ? "Modifiche salvate." : "Evento salvato e inviato su Discord."), warning ? 6000 : 3000, warning ? "info" : "success");
       await loadReports();
     } catch (error) {
       showError(error);
@@ -456,7 +456,7 @@ async function deleteReport(button) {
   try {
     await runBusy(button, async () => {
       await apiRequest(`/api/site/reports/${encodeURIComponent(report.id)}`, { method: "DELETE" });
-      showToast("Report eliminato.");
+      showToast("Report eliminato.", 3000, "success");
       await loadReports();
     });
   } catch (error) {

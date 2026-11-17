@@ -36,24 +36,26 @@ export function initTheme() {
 
 let toastTimer = null;
 
-export function showToast(message, duration = 3000) {
+export function showToast(message, duration = 3000, type = "info") {
   const toast = $("#toast");
   toast.textContent = message;
-  toast.classList.add("show");
+  toast.className = `toast show ${type}`;
   clearTimeout(toastTimer);
-  toastTimer = setTimeout(() => toast.classList.remove("show"), duration);
+  toastTimer = setTimeout(() => {
+    toast.classList.remove("show");
+  }, duration);
 }
 
 export function hideToast() {
   clearTimeout(toastTimer);
-  $("#toast").classList.remove("show");
+  $("#toast").className = "toast";
 }
 
 export function showError(error) {
   // La sessione scaduta ha già riportato al login con il suo messaggio.
   if (error?.sessionExpired) return;
   console.error(error);
-  showToast(error?.message || "Operazione non riuscita.", 3500);
+  showToast(error?.message || "Operazione non riuscita.", 4000, "error");
 }
 
 /* ---------- Operazioni in corso ---------- */
