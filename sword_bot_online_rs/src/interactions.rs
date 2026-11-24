@@ -800,6 +800,7 @@ impl<S: DiscordSender, A: DiscordApi> Interactions<S, A> {
 }
 
 /// Un pulsante per ogni proposta simile (max 3), ciascuno sulla sua riga, e "È diversa, creala".
+/// Un pulsante per ogni proposta simile (max 3), ciascuno sulla sua riga, con l'opzione "È diversa, creala".
 fn similar_rows(nonce: u64, similar: &[SimilarSuggestion]) -> Vec<CreateActionRow> {
     let mut buttons: Vec<ViewButton> = similar
         .iter()
@@ -827,6 +828,7 @@ fn similar_rows(nonce: u64, similar: &[SimilarSuggestion]) -> Vec<CreateActionRo
 }
 
 /// "Sì, avvisami" / "No, grazie".
+/// "Sì, avvisami" / "No, grazie".
 fn opt_in_rows(owner: i64) -> Vec<CreateActionRow> {
     button_rows(&[
         ViewButton { custom_id: FlowComponent::opt_in_id(true, owner), label: "Sì, avvisami".into(), emoji: Some("🔔"), kind: ButtonKind::Primary, disabled: false },
@@ -836,10 +838,12 @@ fn opt_in_rows(owner: i64) -> Vec<CreateActionRow> {
 
 // --- adattatori per serenity -----------------------------------------------------------------
 
+/// Errore nel parlare con Discord (risposta rifiutata, interazione scaduta…).
 fn io_error(error: serenity::Error) -> IoError {
     IoError(error.to_string())
 }
 
+/// Contenuto di una risposta (sempre visibile solo a chi ha cliccato).
 fn message_response(reply: &Reply, ephemeral: bool) -> CreateInteractionResponseMessage {
     let mut message = CreateInteractionResponseMessage::new().allowed_mentions(CreateAllowedMentions::new());
     if ephemeral {
@@ -857,6 +861,7 @@ fn message_response(reply: &Reply, ephemeral: bool) -> CreateInteractionResponse
     message
 }
 
+/// Per `update` un campo `None` significa "lascia com'è" e un valore vuoto (`Some("")`, `Some(vec![])`) "togli".
 fn followup_message(reply: &Reply) -> CreateInteractionResponseFollowup {
     let mut followup = CreateInteractionResponseFollowup::new().ephemeral(true).allowed_mentions(CreateAllowedMentions::new());
     if let Some(content) = &reply.content {
@@ -991,6 +996,7 @@ macro_rules! serenity_io {
     };
 }
 
+/// Un clic (o una maschera inviata) e i modi di rispondere.
 fn file_followup(content: String, filename: String, data: Vec<u8>) -> CreateInteractionResponseFollowup {
     CreateInteractionResponseFollowup::new()
         .ephemeral(true)
@@ -999,6 +1005,7 @@ fn file_followup(content: String, filename: String, data: Vec<u8>) -> CreateInte
         .add_file(serenity::CreateAttachment::bytes(data, filename))
 }
 
+/// Quanto vive una richiesta "Intendevi…?" (come `timeout=180` della vista Python).
 fn edit_response_message(reply: &Reply) -> serenity::EditInteractionResponse {
     let mut edit = serenity::EditInteractionResponse::new().allowed_mentions(CreateAllowedMentions::new());
     if let Some(content) = &reply.content {
@@ -1020,6 +1027,7 @@ pub struct CommandIo<'a> {
     pub interaction: &'a serenity::CommandInteraction,
 }
 
+/// I componenti del flusso di invio proposta.
 fn not_applicable<T>() -> Io<T> {
     Err(IoError("operazione non applicabile a un comando slash".into()))
 }
@@ -1125,6 +1133,7 @@ impl HasSourceMessage for ModalInteraction {
     }
 }
 
+/// Ingresso unico dall'`event_handler` di poise: clic, scelte nei menu e maschere inviate.
 fn source_message_id(interaction: &impl HasSourceMessage) -> Option<serenity::MessageId> {
     interaction.source_message()
 }
@@ -2214,7 +2223,8 @@ mod tests {
         id
     }
 
-    fn audit_rows(e: &Env, action: &str) -> Vec<(Option<i64>, Option<String>, Option<String>, String)> {
+    /// Restituisce le righe del registro staff per un'azione specifica.
+fn audit_rows(e: &Env, action: &str) -> Vec<(Option<i64>, Option<String>, Option<String>, String)> {
         e.db.with_conn(|c| {
             let mut statement = c
                 .prepare("SELECT actor_id, entity_id, reason, details FROM staff_audit WHERE action=? ORDER BY id")
@@ -2280,10 +2290,10 @@ mod tests {
                 "INSERT INTO history(week,closed_at,data) VALUES (5,'2026-10-26T12:00:00+01:00','{\"polls\": [], \"suggestions\": [], \"participants\": 3}')",
                 [],
             )
-            .unwrap();
+            .unwrap(); // Inserisce una settimana chiusa nel database
         let io = FakeIo::new("", 99).staff();
         e.interactions.command_history(&io).await.unwrap();
-        assert!(last_text(&io).contains('5'));
+        assert!(last_text(&io).contains('5')); // Verifica che il testo contenga il numero settimana
     }
 
     #[tokio::test(start_paused = true)]
@@ -2301,23 +2311,23 @@ mod tests {
         // Un altro utente non può rispondere e la richiesta resta aperta.
         let stranger = FakeIo::new(&ids[0], 5);
         e.run(&stranger).await;
-        assert_eq!(last_text(&stranger), "⚠️ Questa conferma è per chi ha avviato il comando.");
+        assert_eq!(last_text(&stranger), "⚠️ Questa conferma è per chi ha avviato il comando."); // Solo lo scrittore originale può confermare
 
         let yes = FakeIo::new(&ids[0], 99).staff();
         e.run(&yes).await;
         let update = yes.recorded();
-        assert_eq!(update.text(), "🗑️ **Among Us** tolta dal ballottaggio.");
-        assert_eq!(update.components.as_deref(), Some(&[][..]), "i pulsanti spariscono");
-        assert_eq!(e.count("SELECT COUNT(*) FROM suggestions WHERE status='picked'"), 0);
+        assert_eq!(update.text(), "🗑️ **Among Us** tolta dal ballottaggio."); // La proposta viene rimossa dal ballottaggio
+        assert_eq!(update.components.as_deref(), Some(&[][..]), "i pulsanti spariscono dopo la conferma"); // I pulsanti vengono rimossi
+        assert_eq!(e.count("SELECT COUNT(*) FROM suggestions WHERE status='picked'"), 0); // Il conteggio delle proposte selezionate diventa 0
         let audit = audit_rows(&e, "proposal_unselected");
-        assert_eq!(audit.len(), 1);
-        assert_eq!((audit[0].0, audit[0].1.as_deref(), audit[0].2.as_deref()), (Some(99), Some(id.to_string().as_str()), Some("doppione")));
-        assert_eq!(audit[0].3, format!(r#"{{"name": "Among Us", "week": 1}}"#));
+        assert_eq!(audit.len(), 1); // Viene creato un entry nel registro audit
+        assert_eq!((audit[0].0, audit[0].1.as_deref(), audit[0].2.as_deref()), (Some(99), Some(id.to_string().as_str()), Some("doppione"))); // Dati audit: utente 99, ID proposta, motivo "doppione"
+        assert_eq!(audit[0].3, format!(r#"{{"name": "Among Us", "week": 1}}"#)); // Dettaili audit: nome e settimana
 
         // Un secondo clic non ripete l'azione.
         let again = FakeIo::new(&ids[0], 99).staff();
         e.run(&again).await;
-        assert!(last_text(&again).contains("scaduta"));
+        assert!(last_text(&again).contains("scaduta")); // Il TTL è scaduto, l'azione non è più valida
         assert_eq!(audit_rows(&e, "proposal_unselected").len(), 1);
     }
 
