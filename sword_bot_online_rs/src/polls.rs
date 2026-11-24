@@ -1,7 +1,19 @@
-//! Sondaggi: voto, layout dei pulsanti e chiusura per scadenza.
+//! Sondaggi: gestione dei voti, layout dei pulsanti e chiusura automatica.
 //!
-//! Gestisce la logica dei dati e dei componenti; pubblicazione e callback Discord sono gestite
-//! rispettivamente da `publisher` e `interactions`.
+//! Questo file contiene la logica principale per far funzionare i sondaggi (polls) su Discord.
+//! Gestisce le regole di voto (quante opzioni scegliere), l'interfaccia utente (pulsanti e menu)
+//! e la logica temporale per chiudere i sondaggi quando scade il tempo.
+//!
+//! Le interazioni effettive con gli utenti Discord (clic sui pulsanti) sono gestite
+//! in un altro modulo (`interactions`), mentre la pubblicazione del messaggio è
+//! delegata al modulo `publisher`.
+//!
+//! Concetti chiave:
+//! - `PollRow`: Rappresenta un singolo sondaggio salvato nel database.
+//! - `PollComponent`: Un modo per "etichettare" i pulsanti, così il bot sa cosa
+//!   succede quando un utente clicca su un pulsante specifico.
+//! - `RefreshScheduler`: Un sistema intelligente per aggiornare i messaggi su Discord.
+//!   Se arrivano molte richieste di aggiornamento vicine, le raggruppa per non intasare Discord.
 #![allow(dead_code)]
 
 use std::collections::{HashMap, HashSet};
@@ -25,12 +37,15 @@ use crate::settings;
 use crate::stats::{HiddenBadge, record_user_activity, unlock_hidden_badge};
 use crate::ui::{ButtonKind, ViewButton, button_rows};
 
-/// Fino a questo numero di opzioni c'è un pulsante per opzione; oltre, un unico pulsante "Vota".
+/// Costante: se un sondaggio ha fino a 10 opzioni, mostriamo un pulsante dedicato per ognuna.
+/// Se ne ha di più, mostriamo un unico pulsante generico "Vota".
 pub const BUTTON_VOTING_MAX_OPTIONS: usize = 10;
-/// Discord accetta al massimo 25 opzioni in un menu e 25 pulsanti in un messaggio.
+/// Discord impone un limite di 25 elementi (opzioni nel menu o pulsanti) per messaggio.
 const MAX_OPTIONS_SHOWN: usize = 25;
 
-/// Riga di `polls`.
+/// Rappresenta una riga della tabella `polls` nel database SQLite.
+/// Contiene tutti i dati descrittivi di un sondaggio, inclusi lo stato attivo/chiuso
+/// e gli ID dei messaggi Discord collegati.
 #[derive(Debug, Clone, PartialEq)]
 pub struct PollRow {
     pub id: i64,
@@ -38,15 +53,18 @@ pub struct PollRow {
     pub emoji: Option<String>,
     pub color: Option<String>,
     pub position: Option<i64>,
-    pub active: Option<i64>,
+    pub active: Option<i64>,              // 1 se il sondaggio è aperto e attivo, 0 o NULL se chiuso
     pub is_community: Option<i64>,
-    pub message_id: Option<String>,
-    pub thread_id: Option<String>,
-    /// Scadenza (timestamp Unix); resta valorizzata dopo la chiusura per scadenza.
+    pub message_id: Option<String>,       // ID del messaggio di Discord in cui appare il sondaggio
+    pub thread_id: Option<String>,        // ID del thread di discussione collegato al sondaggio
+    /// Scadenza del sondaggio espressa come timestamp Unix (secondi).
+    /// Rimane valorizzata anche dopo la chiusura per indicare quando è scaduto.
     pub closes_at: Option<f64>,
 }
 
 impl PollRow {
+    /// Funzione di utilità per mappare una riga grezza del database SQLite (`rusqlite::Row`)
+    /// nella nostra struttura dati tipizzata `PollRow`.
     fn from_row(row: &Row<'_>) -> rusqlite::Result<Self> {
         Ok(Self {
             id: row.get("id")?,
@@ -62,20 +80,24 @@ impl PollRow {
         })
     }
 
-    /// `bool(poll["active"])` di Python: `NULL` e `0` sono "non attivo".
+    /// Verifica se il sondaggio è attivo. Nel database SQLite il campo `active` può essere
+    /// `NULL` oppure `0` (considerati come falso), mentre qualsiasi altro valore diverso da zero
+    /// indica che il sondaggio è attivo.
     pub fn is_active(&self) -> bool {
         self.active.is_some_and(|flag| flag != 0)
     }
 }
 
-/// Un sondaggio per ID.
+/// Cerca un sondaggio specifico nel database utilizzando il suo ID univoco.
+/// Ritorna `Some(PollRow)` se trovato, altrimenti `None`.
 pub fn find_poll(db: &impl Connected, poll_id: i64) -> DbResult<Option<PollRow>> {
     db.with_conn(|connection| {
         connection.query_row("SELECT * FROM polls WHERE id=?", [poll_id], PollRow::from_row).optional()
     })
 }
 
-/// Sondaggi attivi, in ordine di posizione e ID (`WHERE active=1 ORDER BY position, id`).
+/// Restituisce l'elenco di tutti i sondaggi attualmente attivi, ordinati per posizione e ID.
+/// Accetta un limite opzionale sul numero di risultati da restituire.
 pub fn list_active_polls(db: &impl Connected, limit: Option<i64>) -> DbResult<Vec<PollRow>> {
     db.with_conn(|connection| {
         connection
@@ -85,7 +107,9 @@ pub fn list_active_polls(db: &impl Connected, limit: Option<i64>) -> DbResult<Ve
     })
 }
 
-/// Persone distinte che hanno votato in un sondaggio.
+/// Conta il numero di utenti unici che hanno espresso almeno un voto in un determinato sondaggio.
+/// Sfrutta il costrutto SQL `COUNT(DISTINCT v.user_id)` per evitare di contare più volte lo stesso utente
+/// se ha votato per più opzioni nello stesso sondaggio.
 pub fn poll_voter_count(db: &impl Connected, poll_id: i64) -> DbResult<i64> {
     db.with_conn(|connection| {
         connection.query_row(
@@ -99,39 +123,48 @@ pub fn poll_voter_count(db: &impl Connected, poll_id: i64) -> DbResult<i64> {
 
 // --- layout ----------------------------------------------------------------------------------
 
-/// Primi `limit` caratteri.
+/// Tronca una stringa in modo sicuro per non superare il numero massimo di caratteri consentito,
+/// rispettando i confini dei caratteri Unicode (UTF-8).
 fn truncate_chars(text: &str, limit: usize) -> String {
     text.chars().take(limit).collect()
 }
 
-/// I `custom_id` dei componenti di un sondaggio.
+/// Genera il `custom_id` univoco per il pulsante di voto di una specifica opzione.
+/// Formato: `"vote:<ID opzione>"`.
 pub fn vote_custom_id(option_id: i64) -> String {
     format!("vote:{option_id}")
 }
 
+/// Genera il `custom_id` per il pulsante "I miei voti" o "Vota" associato a un sondaggio.
+/// Formato: `"myvotes:<ID sondaggio>"`.
 pub fn my_votes_custom_id(poll_id: i64) -> String {
     format!("myvotes:{poll_id}")
 }
 
-/// Menu di scelta nel messaggio effimero "I miei voti" (Python gli lasciava un ID casuale).
+/// Genera il `custom_id` per il menu a tendina (select menu) nel messaggio privato/effimero
+/// "I miei voti" di un sondaggio.
 pub fn my_votes_select_custom_id(poll_id: i64) -> String {
     format!("myvotes-select:{poll_id}")
 }
 
-/// Che cosa significa il `custom_id` di un componente.
+/// Enum che rappresenta e interpreta il significato dei componenti interattivi di Discord (pulsanti o menu)
+/// basandosi sul loro `custom_id`. Questo permette al bot di capire quale azione compiere
+/// quando un utente interagisce con un elemento dell'interfaccia.
 #[derive(Debug, Clone, Copy, PartialEq, Eq)]
 pub enum PollComponent {
-    /// `vote:<ID opzione>`: pulsante di voto di un'opzione.
+    /// Pulsante per votare o rimuovere il voto da una singola opzione (`vote:<ID opzione>`).
     Vote { option_id: i64 },
-    /// `myvotes:<ID sondaggio>`: pulsante "I miei voti" / "Vota".
+    /// Pulsante per aprire il pannello di gestione voti dell'utente (`myvotes:<ID sondaggio>`).
     MyVotes { poll_id: i64 },
-    /// `myvotes-select:<ID sondaggio>`: menu delle scelte.
+    /// Selezione dal menu a tendina delle proprie preferenze (`myvotes-select:<ID sondaggio>`).
     MyVotesSelect { poll_id: i64 },
 }
 
 impl PollComponent {
-    /// Riconosce un `custom_id` (corrispondenza completa, solo cifre ASCII); `None` se non è di
-    /// un sondaggio. Serve a smistare i clic sui messaggi creati prima di un riavvio.
+    /// Analizza una stringa `custom_id` e la decodifica in un'azione specifica (`PollComponent`).
+    /// Ritorna `None` se la stringa non appartiene a nessun componente noto dei sondaggi.
+    /// Questa funzione è fondamentale per gestire correttamente i clic sugli elementi anche dopo
+    /// un riavvio del bot, interpretando l'ID testuale salvato nell'interfaccia di Discord.
     pub fn parse(custom_id: &str) -> Option<Self> {
         let number = |text: &str| -> Option<i64> {
             (!text.is_empty() && text.bytes().all(|byte| byte.is_ascii_digit())).then(|| text.parse().ok()).flatten()
@@ -149,8 +182,13 @@ impl PollComponent {
     }
 }
 
-/// Pulsanti del messaggio di un sondaggio: uno per opzione fino a 10, oltre un unico "Vota".
-/// Tutto disabilitato se il sondaggio non è attivo.
+/// Costruisce la lista dei pulsanti interattivi da mostrare sotto al messaggio del sondaggio su Discord.
+/// La strategia cambia in base al numero di opzioni:
+/// - Se le opzioni sono poche (fino a `BUTTON_VOTING_MAX_OPTIONS`, ovvero 10), viene creato un pulsante
+///   dedicato per ogni singola opzione, più un pulsante finale "I miei voti".
+/// - Se le opzioni sono molte (oltre 10), i pulsanti singoli vengono omessi e viene mostrato
+///   un unico pulsante centrale "Vota" per aprire il menu di selezione.
+/// Se il sondaggio non è attivo, tutti i pulsanti vengono impostati come disabilitati (`disabled = true`).
 pub fn poll_buttons(poll: &PollRow, options: &[PollOption]) -> Vec<ViewButton> {
     let options = &options[..options.len().min(MAX_OPTIONS_SHOWN)];
     let disabled = !poll.is_active();
@@ -177,13 +215,16 @@ pub fn poll_buttons(poll: &PollRow, options: &[PollOption]) -> Vec<ViewButton> {
     buttons
 }
 
-/// Righe di componenti del messaggio di un sondaggio (equivalente di `build_view`).
+/// Costruisce l'intera vista grafica del sondaggio (righe di pulsanti formattate per Discord)
+/// leggendo le opzioni aggiornate direttamente dal database.
 pub fn build_view(db: &impl Connected, poll: &PollRow) -> DbResult<Vec<CreateActionRow>> {
     let options = poll_options(db, poll.id)?;
     Ok(button_rows(&poll_buttons(poll, &options)))
 }
 
-/// Menu "I miei voti" di un utente: le opzioni (max 25), con quelle già votate preselezionate.
+/// Crea il menu a tendina (Select Menu) "I miei voti" per un utente specifico.
+/// Questo menu mostra le opzioni disponibili nel sondaggio (fino a 25) e pre-seleziona
+/// automaticamente quelle che l'utente ha già votato in precedenza.
 pub fn my_votes_menu(db: &impl Connected, poll_id: i64, user_id: i64) -> DbResult<CreateSelectMenu> {
     let options: Vec<PollOption> = poll_options(db, poll_id)?.into_iter().take(MAX_OPTIONS_SHOWN).collect();
     let chosen: HashSet<i64> = db.with_conn(|connection| user_votes(connection, poll_id, user_id))?.into_iter().map(|vote| vote.0).collect();
@@ -208,7 +249,8 @@ pub fn my_votes_menu(db: &impl Connected, poll_id: i64, user_id: i64) -> DbResul
 
 // --- voti ------------------------------------------------------------------------------------
 
-/// Voti di un utente in un sondaggio: `(ID opzione, etichetta)` in ordine di ID.
+/// Interroga il database per recuperare tutti i voti espressi da un utente in un sondaggio specifico.
+/// Restituisce un vettore di tuple `(ID opzione, etichetta dell'opzione)` ordinate per ID.
 pub fn user_votes(connection: &Connection, poll_id: i64, user_id: i64) -> DbResult<Vec<(i64, String)>> {
     connection
         .prepare(
@@ -219,7 +261,8 @@ pub fn user_votes(connection: &Connection, poll_id: i64, user_id: i64) -> DbResu
         .collect()
 }
 
-/// Riepilogo personale: `🗳️ I tuoi voti: **A**, **B** · `0` voti rimasti`.
+/// Genera una stringa di riepilogo personale per l'utente, mostrando quali opzioni ha votato
+/// e quanti voti ha ancora a disposizione (es. `🗳️ I tuoi voti: **A**, **B** · `0` voti rimasti`).
 pub fn vote_summary(db: &impl Connected, poll_id: i64, user_id: i64) -> DbResult<String> {
     let votes = db.with_conn(|connection| user_votes(connection, poll_id, user_id))?;
     let remaining = (settings::max_votes(db)? - votes.len() as i64).max(0);
@@ -232,7 +275,9 @@ pub fn vote_summary(db: &impl Connected, poll_id: i64, user_id: i64) -> DbResult
     Ok(format!("🗳️ I tuoi voti: {chosen} · `{remaining}` {unit}"))
 }
 
-/// Conta una modifica dei voti; oltre 5 modifiche nello stesso sondaggio si sblocca "Indeciso".
+/// Tiene traccia delle volte in cui un utente cambia i propri voti all'interno di un sondaggio.
+/// Se un utente cambia idea più di 5 volte nello stesso sondaggio, sblocca automaticamente
+/// il badge nascosto "Indeciso" (`HiddenBadge::Indecisive`).
 fn count_vote_change(connection: &Connection, poll_id: i64, user_id: i64, now: DateTime<Tz>) -> DbResult<()> {
     connection.execute(
         "INSERT INTO vote_change_counts(poll_id,user_id,change_count)
@@ -252,8 +297,9 @@ fn count_vote_change(connection: &Connection, poll_id: i64, user_id: i64, now: D
     Ok(())
 }
 
-/// Il voto conta come attività al massimo una volta al giorno per sondaggio: mettere e togliere
-/// voti a ripetizione non gonfia attività e streak.
+/// Registra l'attività di voto dell'utente per il calcolo delle statistiche e delle streak della community.
+/// Un voto conta come attività al massimo una volta al giorno per sondaggio: continuare a mettere
+/// e togliere voti ripetutamente nello stesso giorno non gonfia artificialmente le statistiche.
 fn record_vote_activity(connection: &Connection, poll_id: i64, user_id: i64, now: DateTime<Tz>) -> DbResult<()> {
     connection.execute("INSERT INTO community_activity(action,occurred_at) VALUES('vote',?)", [now.timestamp()])?;
     let first_today = connection.execute(
@@ -267,11 +313,12 @@ fn record_vote_activity(connection: &Connection, poll_id: i64, user_id: i64, now
     Ok(())
 }
 
-/// Esito di [`toggle_vote`].
+/// Rappresenta l'esito dell'operazione di toggle (aggiunta/rimozione) di un voto.
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub struct ToggleResult {
-    /// Il voto è cambiato (aggiunto o tolto).
+    /// Indica se lo stato del voto è effettivamente cambiato.
     pub changed: bool,
+    /// Messaggio descrittivo da mostrare all'utente in risposta.
     pub message: String,
     pub poll_id: Option<i64>,
 }
@@ -282,7 +329,9 @@ impl ToggleResult {
     }
 }
 
-/// Aggiunge o toglie il voto di `user_id` a un'opzione.
+/// Aggiunge o rimuove il voto di un utente per una specifica opzione (funzionamento a interruttore/toggle).
+/// Esegue controlli di sicurezza: verifica che il sondaggio esista, che sia attivo,
+/// e che l'utente non abbia superato il numero massimo di voti consentiti.
 pub fn toggle_vote(db: &Database, user_id: i64, option_id: i64, now: DateTime<Tz>) -> DbResult<ToggleResult> {
     db.transaction(|tx| -> DbResult<ToggleResult> {
         let option: Option<(i64, Option<i64>)> = tx
@@ -321,8 +370,9 @@ pub fn toggle_vote(db: &Database, user_id: i64, option_id: i64, now: DateTime<Tz
     })
 }
 
-/// Sostituisce in un colpo solo i voti di un utente in un sondaggio. Restituisce
-/// `(cambiato, messaggio)`.
+/// Sostituisce in blocco i voti di un utente in un sondaggio con una nuova lista di opzioni scelte
+/// (tipicamente inviata tramite il menu a tendina "I miei voti").
+/// Ritorna una tupla `(bool, String)` indicando se ci sono stati cambiamenti e il messaggio di esito.
 pub fn set_user_votes(
     db: &Database,
     user_id: i64,
@@ -330,7 +380,7 @@ pub fn set_user_votes(
     option_ids: &[i64],
     now: DateTime<Tz>,
 ) -> DbResult<(bool, String)> {
-    // Doppioni ignorati, ordine di scelta conservato.
+    // I doppioni nell'elenco vengono ignorati, mentre l'ordine di scelta viene preservato.
     let mut seen = HashSet::new();
     let wanted: Vec<i64> = option_ids.iter().copied().filter(|id| seen.insert(*id)).collect();
     db.transaction(|tx| -> DbResult<(bool, String)> {
@@ -380,12 +430,13 @@ pub fn set_user_votes(
 
 // --- scadenze --------------------------------------------------------------------------------
 
-/// Chiude i sondaggi scaduti e restituisce le loro righe aggiornate, perché chi chiama aggiorni i
-/// messaggi su Discord e la dashboard (`close_expired_polls` di Python restituiva solo il numero).
+/// Controlla e chiude automaticamente tutti i sondaggi la cui scadenza (`closes_at`) è superata.
+/// Restituisce l'elenco delle righe dei sondaggi appena chiusi, in modo che il chiamante possa
+/// aggiornare i messaggi corrispondenti su Discord e sulla dashboard.
 ///
-/// Durante un reset in sospeso i sondaggi restano aperti: il reset deve ancora contare i
-/// vincitori e poi li riaprirà per la nuova settimana. `closes_at` resta valorizzato: segna
-/// "chiuso per scadenza" e permette al reset di riaprire il sondaggio.
+/// Nota bene: se è in corso un reset settimanale (`weekly_reset_pending`), i sondaggi vengono
+/// lasciati aperti temporaneamente in attesa che il sistema calcoli i vincitori, per poi riaprirli
+/// per la nuova settimana. Il campo `closes_at` viene preservato per indicare la chiusura.
 pub fn close_expired_polls(db: &Database, now: DateTime<Tz>) -> DbResult<Vec<PollRow>> {
     if weekly_reset_pending(db, now)? {
         return Ok(Vec::new());
@@ -414,14 +465,15 @@ pub fn close_expired_polls(db: &Database, now: DateTime<Tz>) -> DbResult<Vec<Pol
                 continue;
             }
         }
-        if let Some(poll) = find_poll(db, poll_id)? {
+        if let Some(poll)        = find_poll(db, poll_id)? {
             closed.push(poll);
         }
     }
     Ok(closed)
 }
 
-/// Dà una scadenza ai sondaggi attivi che non ne hanno: il prossimo reset settimanale.
+/// Assegna una scadenza predefinita (il prossimo reset settimanale) ai sondaggi attivi
+/// che ne sono sprovvisti (`closes_at IS NULL`).
 pub fn ensure_closes_at(db: &Database, poll_id: i64, now: DateTime<Tz>) -> DbResult<()> {
     let closing_time = schedule::poll_closing_time(db, now)?;
     db.transaction(|tx| -> DbResult<()> {
@@ -435,12 +487,14 @@ pub fn ensure_closes_at(db: &Database, poll_id: i64, now: DateTime<Tz>) -> DbRes
 
 // --- messaggio nel canale: claim, ID messaggio e thread --------------------------------------
 
-/// Durata del "claim": chi sta creando il messaggio di un sondaggio lo segna per un minuto, così
-/// due refresh contemporanei non ne pubblicano due.
+/// Durata temporale del "claim" (60 secondi): quando un processo del bot sta pubblicando
+/// o aggiornando il messaggio di un sondaggio, inserisce un blocco temporaneo (claim) nel database.
+/// Questo evita che due processi concorrenti pubblichino lo stesso sondaggio due volte per errore.
 pub const MESSAGE_CLAIM_SECONDS: f64 = 60.0;
 
-/// Prova a prenotare la creazione del messaggio del sondaggio. `false` se qualcun altro l'ha già
-/// prenotata e il claim non è ancora scaduto.
+/// Tenta di prenotare (fare il "claim") la creazione del messaggio per un sondaggio.
+/// Restituisce `true` se la prenotazione è riuscita, oppure `false` se un altro processo
+/// ha già prenotato la creazione e il blocco non è ancora scaduto.
 pub fn try_claim_poll_message(db: &Database, poll_id: i64, now_ts: f64) -> DbResult<bool> {
     db.transaction(|tx| -> DbResult<bool> {
         let claimed_until: Option<f64> = tx
@@ -458,16 +512,19 @@ pub fn try_claim_poll_message(db: &Database, poll_id: i64, now_ts: f64) -> DbRes
     })
 }
 
+/// Rilascia anticipatamente il claim sul messaggio del sondaggio.
 pub fn release_poll_message_claim(db: &Database, poll_id: i64) -> DbResult<()> {
     db.execute("DELETE FROM poll_message_claims WHERE poll_id=?", [poll_id])?;
     Ok(())
 }
 
+/// Salva nel database l'ID del messaggio Discord associato a un sondaggio.
 pub fn set_poll_message_id(db: &Database, poll_id: i64, message_id: u64) -> DbResult<()> {
     db.execute("UPDATE polls SET message_id=? WHERE id=?", params![message_id.to_string(), poll_id])?;
     Ok(())
 }
 
+/// Salva nel database l'ID del thread di discussione associato a un sondaggio.
 pub fn set_poll_thread_id(db: &Database, poll_id: i64, thread_id: u64) -> DbResult<()> {
     db.execute("UPDATE polls SET thread_id=? WHERE id=?", params![thread_id.to_string(), poll_id])?;
     Ok(())
@@ -475,11 +532,10 @@ pub fn set_poll_thread_id(db: &Database, poll_id: i64, thread_id: u64) -> DbResu
 
 // --- refresh differito -----------------------------------------------------------------------
 
-/// Raggruppa gli aggiornamenti ravvicinati dello stesso elemento (es. un sondaggio) in uno solo,
-/// eseguito dopo [`REFRESH_DEBOUNCE_SECONDS`].
-///
-/// La chiave si toglie dall'elenco *prima* di eseguire l'aggiornamento: le modifiche arrivate
-/// mentre sta girando ne pianificano un altro.
+/// Sistema di "debouncing" (aggiornamento differito). Raggruppa molteplici richieste di aggiornamento
+/// ravvicinate nel tempo per lo stesso elemento (ad esempio un sondaggio che riceve molti voti in pochi secondi)
+/// in un'unica esecuzione effettiva dopo che è trascorso un certo intervallo (`REFRESH_DEBOUNCE_SECONDS`).
+/// In questo modo si evitano chiamate superflue e sovraccarichi verso le API di Discord.
 #[derive(Clone, Default)]
 pub struct RefreshScheduler {
     pending: Arc<Mutex<HashMap<String, JoinHandle<()>>>>,
@@ -494,8 +550,9 @@ impl RefreshScheduler {
         self.pending.lock().unwrap_or_else(|poisoned| poisoned.into_inner())
     }
 
-    /// Pianifica `refresh` per `key`, salvo che ce ne sia già uno in attesa. Senza un runtime
-    /// tokio attivo non fa nulla e restituisce `false`.
+    /// Pianifica l'esecuzione di una funzione di aggiornamento (`refresh`) associata a una determinata chiave (`key`),
+    /// a meno che non ce ne sia già una in attesa. Se non è attivo un runtime asincrono di Tokio, non fa nulla
+    /// e restituisce `false`.
     pub fn schedule<F, Fut, E>(&self, key: impl Into<String>, refresh: F) -> bool
     where
         F: FnOnce() -> Fut + Send + 'static,
@@ -524,7 +581,7 @@ impl RefreshScheduler {
         true
     }
 
-    /// Aggiornamento differito del messaggio di un sondaggio (`schedule_poll_refresh`).
+    /// Metodo di comodo per pianificare l'aggiornamento specifico di un sondaggio (`poll_id`).
     pub fn schedule_poll_refresh<F, Fut, E>(&self, poll_id: i64, refresh: F) -> bool
     where
         F: FnOnce() -> Fut + Send + 'static,
@@ -534,13 +591,14 @@ impl RefreshScheduler {
         self.schedule(format!("poll:{poll_id}"), refresh)
     }
 
-    /// Annulla tutti gli aggiornamenti in attesa (come fa `core.initialize` in Python).
+    /// Annulla immediatamente tutti gli aggiornamenti attualmente in sospeso.
     pub fn cancel_all(&self) {
         for (_, task) in self.pending().drain() {
             task.abort();
         }
     }
 
+    /// Restituisce il numero di aggiornamenti attualmente in attesa di essere eseguiti.
     pub fn pending_count(&self) -> usize {
         self.pending().len()
     }

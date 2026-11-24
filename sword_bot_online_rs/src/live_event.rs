@@ -4,6 +4,14 @@
 //!
 //! Gli istanti sono salvati come `datetime.isoformat()` di Python (`2027-03-05T21:00:00+01:00`),
 //! quindi un database scritto da una versione si legge dall'altra.
+//!
+//! Questo modulo contiene tutta la logica di persistenza per gli eventi live:
+//! - Creazione/chiusura degli eventi nel database (tabelle `live_events`, `live_event_participants`)
+//! - Tracciamento presenze (chi entra/esce dal canale vocale e per quanto tempo)
+//! - Tracciamento parlato (chi parla e per quanti secondi, basato sui pacchetti audio)
+//! - Generazione del report finale (embed Discord con statistiche, speaker, confronti)
+//! - Link dell'overlay per OBS (con token segreto nel fragment URL)
+//! - Recupero eventi interrotti al riavvio del bot
 
 // Le funzioni si collegano ai comandi e all'avvio dell'evento nei prossimi passi.
 #![allow(dead_code)]
@@ -24,9 +32,11 @@ use crate::formatting::{python_json, truncate_chars};
 use crate::schedule::isoformat;
 
 /// I layout dell'overlay: (valore, nome mostrato).
+/// Ogni tema cambia l'aspetto visivo della pagina overlay (es. "classic", "podcast", "esport").
 pub const OVERLAY_THEMES: [(&str, &str); 5] =
     [("classic", "Classico"), ("podcast", "Podcast"), ("esport", "Esport"), ("minimal", "Minimal"), ("stage", "Stage")];
 
+/// Testo fisso nel footer di ogni report evento.
 pub const REPORT_FOOTER: &str =
     "Le durate del parlato sono stime dai pacchetti audio; nessun audio è conservato. Report individuali eliminabili dallo staff.";
 
@@ -35,7 +45,9 @@ pub const REPORT_FOOTER: &str =
 /// Perché non si riesce a costruire il link dell'overlay (le eccezioni di `overlay_link`).
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub enum LinkError {
+    /// Manca l'URL pubblico configurato.
     NoPublicUrl,
+    /// Tema non riconosciuto.
     InvalidTheme(String),
 }
 
@@ -50,8 +62,9 @@ impl std::fmt::Display for LinkError {
 
 impl std::error::Error for LinkError {}
 
-/// `https://dominio/overlay/<server>?tema=<tema>#<chiave>`: la chiave sta nel frammento, così non
-/// arriva mai al server nei log delle richieste.
+/// Costruisce il link completo dell'overlay per OBS.
+/// Formato: `https://dominio/overlay/<server>?tema=<tema>#<chiave>`
+/// La chiave sta nel frammento (dopo `#`), così non arriva mai al server nei log delle richieste HTTP.
 pub fn overlay_link(public_url: &str, guild_id: u64, theme: &str, token: &str) -> Result<String, LinkError> {
     if public_url.is_empty() {
         return Err(LinkError::NoPublicUrl);
@@ -62,7 +75,8 @@ pub fn overlay_link(public_url: &str, guild_id: u64, theme: &str, token: &str) -
     Ok(format!("{public_url}/overlay/{guild_id}?tema={theme}#{token}"))
 }
 
-/// `secrets.token_urlsafe(32)`: 32 byte casuali in base64 "url safe" senza padding (43 caratteri).
+/// Genera un token casuale "url-safe" (base64 senza padding, 43 caratteri).
+/// Equivalente a Python `secrets.token_urlsafe(32)`: 32 byte casuali codificati in base64 URL-safe.
 pub fn new_token() -> String {
     let mut bytes = [0u8; 32];
     getrandom::fill(&mut bytes).expect("il generatore casuale del sistema non risponde");
@@ -81,11 +95,13 @@ pub fn new_token() -> String {
     text
 }
 
-/// La chiave dell'overlay (`live_event_token`): se non c'è ancora la crea.
+/// Recupera o crea la chiave dell'overlay (`live_event_token` nel database).
+/// Se non esiste ancora, la genera e la salva.
 pub fn overlay_token(db: &Database) -> DbResult<String> {
     overlay_token_with(db, new_token)
 }
 
+/// Versione interna che accetta un generatore personalizzato (usata nei test per token fissi).
 pub fn overlay_token_with(db: &Database, generate: impl FnOnce() -> String) -> DbResult<String> {
     match db.get_setting("live_event_token")?.filter(|token| !token.is_empty()) {
         Some(token) => Ok(token),
@@ -99,7 +115,11 @@ pub fn overlay_token_with(db: &Database, generate: impl FnOnce() -> String) -> D
 
 // --- eventi Discord abilitati ----------------------------------------------------------------
 
-/// `int(testo)` di Python: spazi ai bordi, segno, cifre (anche non latine) e `_` tra le cifre.
+/// Converte una stringa in intero come fa Python `int(testo)`:
+/// - Spazi ai bordi ignorati
+/// - Segno + o - opzionale
+/// - Cifre decimali Unicode (non solo ASCII, es. numeri arabi ١٢)
+/// - Underscore `_` come separatori tra cifre (ma non all'inizio/fine o doppi)
 pub(crate) fn python_int(text: &str) -> Option<i64> {
     let text = text.trim();
     let (negative, digits) = match text.as_bytes().first()? {
@@ -129,7 +149,8 @@ pub(crate) fn python_int(text: &str) -> Option<i64> {
     Some(if negative { -value } else { value })
 }
 
-/// Il valore di una cifra decimale Unicode (`Nd`): i gruppi di dieci cifre sono contigui.
+/// Il valore di una cifra decimale Unicode (categoria `Nd` = Decimal Number).
+/// I gruppi di dieci cifre sono contigui in Unicode (es. 0-9, ٠-٩, ०-९, ecc.).
 pub(crate) fn decimal_digit(c: char) -> Option<u32> {
     use unicode_general_category::{GeneralCategory, get_general_category};
     if c.is_ascii_digit() {
@@ -145,7 +166,9 @@ pub(crate) fn decimal_digit(c: char) -> Option<u32> {
     Some((u32::from(c) - start) % 10)
 }
 
-/// Gli ID degli eventi con avvio automatico. Un valore illeggibile si registra e vale "nessuno".
+/// Restituisce l'insieme degli ID degli eventi Discord che hanno l'avvio automatico abilitato.
+/// Legge l'impostazione `scheduled_event_optins` (JSON array) dal database.
+/// Un valore illeggibile si registra e vale "nessuno" (insieme vuoto).
 pub fn scheduled_event_optins(db: &Database) -> BTreeSet<i64> {
     let raw = db.get_setting_or("scheduled_event_optins", "[]").unwrap_or_else(|_| "[]".into());
     let parsed: Option<BTreeSet<i64>> = serde_json::from_str::<Value>(&raw).ok().and_then(|value| {
@@ -157,7 +180,8 @@ pub fn scheduled_event_optins(db: &Database) -> BTreeSet<i64> {
     })
 }
 
-/// `int(valore)` su un elemento JSON.
+/// Converte un singolo valore JSON in `i64` per la lista degli opt-in.
+/// Accetta bool (true=1, false=0), number, o stringa (con `python_int`).
 fn optin_value(value: &Value) -> Option<i64> {
     match value {
         Value::Bool(flag) => Some(i64::from(*flag)),
@@ -167,22 +191,26 @@ fn optin_value(value: &Value) -> Option<i64> {
     }
 }
 
+/// Salva la lista degli eventi abilitati come JSON array compatto.
 pub fn save_scheduled_event_optins(db: &Database, ids: &BTreeSet<i64>) -> DbResult<()> {
     db.set_setting("scheduled_event_optins", python_json(&json!(ids.iter().collect::<Vec<_>>())))
 }
 
 // --- istanti ---------------------------------------------------------------------------------
 
+/// Crea un errore di conversione per rusqlite (usato quando il parsing ISO fallisce).
 fn conversion_error(message: String) -> rusqlite::Error {
     rusqlite::Error::ToSqlConversionFailure(message.into())
 }
 
-/// `datetime.fromisoformat(testo)` per gli istanti che salviamo.
+/// Parsa una stringa ISO 8601/RFC3339 in `DateTime<FixedOffset>`.
+/// Equivale a Python `datetime.fromisoformat(testo)` per gli istanti che salviamo.
 fn parse_instant(text: &str) -> DbResult<DateTime<FixedOffset>> {
     DateTime::parse_from_rfc3339(text).map_err(|e| conversion_error(format!("istante non valido «{text}»: {e}")))
 }
 
-/// `datetime.isoformat()` di un istante con offset fisso.
+/// Converte un `DateTime<FixedOffset>` in stringa ISO 8601 con microsecondi se non zero.
+/// Equivale a Python `datetime.isoformat()`.
 fn instant_text(value: &DateTime<FixedOffset>) -> String {
     let micros = value.timestamp_subsec_micros();
     let base = value.format("%Y-%m-%dT%H:%M:%S");
@@ -190,20 +218,23 @@ fn instant_text(value: &DateTime<FixedOffset>) -> String {
     if micros == 0 { format!("{base}{offset}") } else { format!("{base}.{micros:06}{offset}") }
 }
 
-/// `max(0, int((fine - inizio).total_seconds()))`.
+/// Secondi interi tra due istanti, arrotondati per difetto, minimo 0.
+/// Equivale a `max(0, int((fine - inizio).total_seconds()))`.
 fn elapsed_seconds(from: &DateTime<FixedOffset>, to: &DateTime<FixedOffset>) -> i64 {
     let micros = to.signed_duration_since(*from).num_microseconds().unwrap_or(i64::MAX);
     ((micros as f64 / 1e6) as i64).max(0)
 }
 
-/// Il parlato (secondi totali per utente, nell'ordine in cui sono comparsi).
+/// Tipo alias: fette di tuple (user_id, secondi_totali_parlato), nell'ordine di comparsa.
 pub type SpeakingSeconds = [(u64, f64)];
 
+/// Quanti secondi di parlato per un utente sono già salvati nel database (da `persisted`).
 fn persisted_of(persisted: &SpeakingSeconds, user_id: u64) -> f64 {
     persisted.iter().find(|(id, _)| *id == user_id).map_or(0.0, |(_, seconds)| *seconds)
 }
 
-/// Aggiunge al database il parlato non ancora salvato (`ON CONFLICT … speaking_seconds + excluded`).
+/// Salva nel database solo il delta di parlato non ancora persistito.
+/// Usa `ON CONFLICT` per sommare ai secondi esistenti (upsert).
 fn save_speaking(tx: &Transaction<'_>, event_id: i64, total: &SpeakingSeconds, persisted: &SpeakingSeconds) -> DbResult<()> {
     for (user_id, seconds) in total {
         let delta = (seconds - persisted_of(persisted, *user_id)).max(0.0);
@@ -220,7 +251,9 @@ fn save_speaking(tx: &Transaction<'_>, event_id: i64, total: &SpeakingSeconds, p
     Ok(())
 }
 
-/// Chiude le presenze ancora aperte di un evento: somma il tempo trascorso e azzera `joined_at`.
+/// Chiude le presenze ancora aperte di un evento (chi era dentro al momento della fine).
+/// Per ogni utente con `joined_at` non nullo: calcola i secondi trascorsi e li aggiunge a `participation_seconds`,
+/// poi azzera `joined_at` per marcare la presenza come chiusa.
 fn close_open_presences(tx: &Transaction<'_>, event_id: i64, ended: &DateTime<FixedOffset>) -> DbResult<()> {
     let open: Vec<(i64, String)> = tx
         .prepare("SELECT user_id, joined_at FROM live_event_participants WHERE event_id=? AND joined_at IS NOT NULL")?
@@ -238,7 +271,10 @@ fn close_open_presences(tx: &Transaction<'_>, event_id: i64, ended: &DateTime<Fi
 
 // --- scritture dell'evento -------------------------------------------------------------------
 
-/// Chiude gli eventi rimasti aperti perché il bot si è fermato (`_recover_interrupted_events`).
+/// Chiude gli eventi rimasti aperti perché il bot si è fermato (crash o riavvio).
+/// Viene chiamata all'avvio del bot (`_recover_interrupted_events`).
+/// Per ogni evento senza `ended_at`: usa `last_seen_at` (o `started_at` se manca) come fine,
+/// chiude le presenze aperte, conta i partecipanti e marca l'evento come chiuso con motivo "riavvio_bot".
 pub fn recover_interrupted_events(db: &Database) -> DbResult<()> {
     db.transaction(|tx| {
         let unfinished: Vec<(i64, String, Option<String>)> = tx
@@ -258,7 +294,7 @@ pub fn recover_interrupted_events(db: &Database) -> DbResult<()> {
     })
 }
 
-/// I dati di un evento che parte.
+/// I dati necessari per creare un nuovo evento.
 pub struct NewEvent<'a> {
     pub guild_id: u64,
     pub scheduled_event_id: Option<u64>,
@@ -268,7 +304,11 @@ pub struct NewEvent<'a> {
     pub started_at: DateTime<Tz>,
 }
 
-/// Crea l'evento e la presenza di chi è già nel canale. Restituisce l'ID del report.
+/// Crea le righe del database per un nuovo evento:
+/// - Inserisce in `live_events` (evento principale)
+/// - Per ogni membro nel canale: inserisce in `live_event_participants` con `joined_at = started_at`
+///   e registra `community_activity(action='event_join')`
+/// Restituisce l'ID del report creato.
 pub fn create_event_rows(db: &Database, event: &NewEvent<'_>, members: &[u64]) -> DbResult<i64> {
     let started = isoformat(event.started_at);
     db.transaction(|tx| {
@@ -301,7 +341,8 @@ pub fn create_event_rows(db: &Database, event: &NewEvent<'_>, members: &[u64]) -
     })
 }
 
-/// Salva ogni 15 secondi il parlato maturato e l'ultimo istante visto (`_persist_live_progress`).
+/// Salva periodicamente (ogni 15 secondi) il parlato maturato e aggiorna `last_seen_at`.
+/// Chiamata dal ciclo di pubblicazione (`_persist_live_progress` in Python).
 pub fn persist_progress(db: &Database, event_id: i64, total: &SpeakingSeconds, persisted: &SpeakingSeconds, at: DateTime<Tz>) -> DbResult<()> {
     db.transaction(|tx| {
         save_speaking(tx, event_id, total, persisted)?;
@@ -310,7 +351,12 @@ pub fn persist_progress(db: &Database, event_id: i64, total: &SpeakingSeconds, p
     })
 }
 
-/// Una persona entra o esce dal canale dell'evento. Restituisce il nuovo picco di presenti.
+/// Registra un cambio di presenza (utente entra/esce dal canale dell'evento).
+/// - Se `was_present=true`: chiude la presenza aperta (calcola secondi trascorsi da `joined_at` ad ora).
+/// - Se `is_present=true`: apre una nuova presenza (imposta `joined_at = now`).
+/// - Aggiorna `peak_participants` se `present_now` supera il picco attuale.
+/// - Registra `community_activity('event_join')` all'ingresso.
+/// Restituisce il nuovo picco di presenti.
 pub fn record_presence_change(
     db: &Database,
     event_id: i64,
@@ -355,7 +401,12 @@ pub fn record_presence_change(
     })
 }
 
-/// Chiude l'evento: presenze, parlato residuo, picco, partecipanti unici e motivo.
+/// Chiude definitivamente l'evento:
+/// 1. Chiude le presenze ancora aperte (`close_open_presences`).
+/// 2. Salva il parlato residuo non ancora persistito (`save_speaking`).
+/// 3. Conta i partecipanti unici totali.
+/// 4. Aggiorna `live_events` con `ended_at`, `last_seen_at`, `peak_participants` (max tra picco sessione e presenti finali),
+///    `participant_count` e `end_reason`.
 pub fn finish_event_rows(
     db: &Database,
     event_id: i64,
@@ -380,12 +431,13 @@ pub fn finish_event_rows(
     })
 }
 
-/// `DELETE FROM live_events …` di un report concluso. Restituisce quante righe ha tolto (0 o 1).
+/// Elimina un report concluso (solo se `ended_at IS NOT NULL`).
+/// Restituisce quante righe ha tolto (0 o 1). Cascata: i partecipanti vengono eliminati via FK.
 pub fn delete_report(db: &Database, event_id: i64) -> DbResult<usize> {
     db.transaction(|tx| tx.execute("DELETE FROM live_events WHERE id=? AND ended_at IS NOT NULL", [event_id]))
 }
 
-/// Un report concluso esiste?
+/// Verifica se un report concluso esiste (ha `ended_at` non nullo).
 pub fn report_exists(db: &Database, event_id: i64) -> DbResult<bool> {
     Ok(db
         .with_conn(|c| c.query_row("SELECT 1 FROM live_events WHERE id=? AND ended_at IS NOT NULL", [event_id], |_| Ok(())).optional())?
@@ -394,13 +446,14 @@ pub fn report_exists(db: &Database, event_id: i64) -> DbResult<bool> {
 
 // --- report ----------------------------------------------------------------------------------
 
-/// `{valore:.0%}` con il segno (`:+.0%`).
+/// Formatta una percentuale con segno: `+20%` o `-25%`.
 fn signed_percent(change: f64) -> String {
     let text = format!("{:.0}", change * 100.0);
     if change >= 0.0 { format!("+{text}%") } else { format!("{text}%") }
 }
 
-/// Confronto con la media degli ultimi 10 eventi conclusi prima di questo.
+/// Confronta le metriche di questo evento con la media degli ultimi 10 eventi conclusi precedenti.
+/// Restituisce una stringa formattata per l'embed, o `None` se non ci sono eventi precedenti.
 pub fn event_comparison(db: &Database, event_id: i64, unique: i64, peak: i64, duration: i64) -> DbResult<Option<String>> {
     struct Previous {
         participants: i64,
@@ -453,7 +506,16 @@ pub fn event_comparison(db: &Database, event_id: i64, unique: i64, peak: i64, du
     )))
 }
 
-/// Il report di un evento concluso (`build_event_report`); `None` se non esiste o è ancora attivo.
+/// Costruisce l'embed Discord del report per un evento concluso.
+/// Restituisce `None` se l'evento non esiste o è ancora attivo.
+/// L'embed contiene:
+/// - Titolo e descrizione base (canale, inizio, durata, motivo fine)
+/// - Campo "Partecipazione" (unici, picco, presenza media)
+/// - Campo "Rispetto agli eventi precedenti" (confronto con media ultimi 10)
+/// - Campo "Nuovi partecipanti" (chi è alla prima Game Night)
+/// - Campo "Proposta vincitrice" (se l'evento era collegato a una proposta)
+/// - Campo "Speaker principali" (top 5 per tempo di parlato, con percentuale)
+/// - Footer fisso `REPORT_FOOTER`
 pub fn build_event_report(db: &Database, event_id: i64) -> DbResult<Option<EmbedSpec>> {
     struct Event {
         title: String,
@@ -487,6 +549,7 @@ pub fn build_event_report(db: &Database, event_id: i64) -> DbResult<Option<Embed
     let Some(event) = event else {
         return Ok(None);
     };
+    // Partecipanti ordinati per parlato (desc) poi presenza (desc).
     let participants: Vec<(i64, i64, f64)> = db.with_conn(|c| -> DbResult<_> {
         c.prepare(
             "SELECT user_id, participation_seconds, speaking_seconds FROM live_event_participants WHERE event_id=? \
@@ -499,6 +562,7 @@ pub fn build_event_report(db: &Database, event_id: i64) -> DbResult<Option<Embed
     let ended = parse_instant(&event.ended_at)?;
     let duration = elapsed_seconds(&started, &ended);
     let total_speaking: f64 = participants.iter().map(|(_, _, speaking)| speaking).sum();
+    // Top 5 speaker con parlato > 0.
     let speakers: Vec<String> = participants
         .iter()
         .take(5)
@@ -533,6 +597,7 @@ pub fn build_event_report(db: &Database, event_id: i64) -> DbResult<Option<Embed
     if let Some(comparison) = event_comparison(db, event_id, participants.len() as i64, event.peak, duration)? {
         embed = embed.field("📈 Rispetto agli eventi precedenti", comparison, false);
     }
+    // Conta i nuovi partecipanti: chi non ha MAI partecipato a eventi precedenti (con started_at minore).
     let newcomers: i64 = db.with_conn(|c| {
         c.query_row(
             "SELECT COUNT(*) FROM live_event_participants p WHERE p.event_id=? AND NOT EXISTS ( \
@@ -546,6 +611,7 @@ pub fn build_event_report(db: &Database, event_id: i64) -> DbResult<Option<Embed
         let text = if newcomers > 0 { format!("`{newcomers}` alla loro prima Game Night") } else { "Nessun nuovo partecipante questa volta.".to_string() };
         embed = embed.field("🌱 Nuovi partecipanti", text, true);
     }
+    // Se l'evento era collegato a una proposta (scheduled_event_id), mostra il nome della proposta.
     let proposal = match event.scheduled_event_id.filter(|id| *id != 0) {
         Some(id) => crate::gamenight::event_proposal_name(db, id as u64)?.filter(|name| !name.is_empty()),
         None => None,
@@ -557,7 +623,7 @@ pub fn build_event_report(db: &Database, event_id: i64) -> DbResult<Option<Embed
     Ok(Some(embed.field("🎤 Speaker principali", speakers, false).footer(REPORT_FOOTER)))
 }
 
-/// `/evento rapporto` senza ID: gli ultimi 10 report conclusi.
+/// Embed con gli ultimi 10 report conclusi (per `/evento rapporto` senza ID).
 pub fn recent_reports_embed(db: &Database) -> DbResult<EmbedSpec> {
     let lines: Vec<String> = db.with_conn(|c| -> DbResult<_> {
         c.prepare(

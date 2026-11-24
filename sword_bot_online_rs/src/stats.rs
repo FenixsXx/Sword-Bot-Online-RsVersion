@@ -1,12 +1,42 @@
 //! Statistiche utenti: punti, livelli, streak, badge segreti e record (equivalente di `sfo/stats.py`).
 //!
-//! Differenze di forma rispetto a Python, tutte per poter funzionare dentro `Database::transaction`:
-//! * le funzioni prendono `&Connection` (dentro una transazione si passa la `Transaction`, che
-//!   si comporta da `Connection`);
-//! * l'orologio (`datetime.now(TZ)`) è un parametro `now`;
-//! * le statistiche e i badge sono enum invece di stringhe: un nome non valido, che in Python
-//!   sollevava `ValueError`, qui non compila.
-// Verrà usato da proposte, voto, reset e profili.
+//! # Panoramica del modulo
+//!
+//! Questo modulo gestisce le statistiche degli utenti in modo completo.
+//! È il corrispettivo Rust di `sfo/stats.py` in Python e viene utilizzato
+//! per tracciare attività, premi e record nel bot Discord.
+//!
+//! # Perché Rust è diverso da Python qui
+//!
+//! Tutte le funzioni devono funzionare all'interno di una transazione SQL
+//! (vedi `Database::transaction` in `database.rs`). Per questo:
+//!
+//! - **Connessione**: Le funzioni prendono `&Connection`, che può essere
+//!   una transazione (`Transaction`) o una connessione normale (`Connection`).
+//!   In Rust, `Transaction` implementa lo stesso tratto di `Connection`.
+//!
+//! - **Orologio**: In Python si usa `datetime.now(TZ)`, in Rust l'orologio
+//!   è un parametro esplicito `now`. Questo permette test deterministi
+//!   e gestisce meglio i fusi orari.
+//!
+//! - **Tipo sicuro**: Gli enum in Rust non sono stringhe casuali. Se in Python
+//!   `"badgium"` solleva `ValueError`, in Rust non compila affatto.
+//!   Questo previene errori a runtime.
+//!
+//! # Cosa tiene traccia
+//!
+//! - **Badge segreti**: Achievement nascosti (notte, indeciso, influencer)
+//! - **Contatori**: Quanti voti, proposte, sostegni ha dato/ricevuto
+//! - **Streak**: Giorni/settimane consecutivi di attività
+//! - **Livelli**: Classifica contributore (Nuovo, Bronzo, Argento, Oro, Platino, Re)
+//! - **Record**: Statistiche della community (proposta più votata, streak più lungo, ecc.)
+//!
+//! # Verrà usato da
+//!
+//! - `sfo-site/src/proposals.rs` - per ipertesi di proposizioni e voti
+//! - `sfo-site/src/suggestions.rs` - per tracciare sostegni e premi
+//! - `web.rs` - per il reset settimanale
+//! - `interactions.rs` - per visualizzare statistiche utente
 #![allow(dead_code)]
 
 use chrono::DateTime;
@@ -22,15 +52,41 @@ use crate::schedule::isoformat;
 use crate::seasonal::{record_season_activity, season_for_date};
 
 // --- badge segreti ---------------------------------------------------------------------------
+// I badge segreti sono achievement nascosti che gli utenti possono sbloccare.
+// Non vengono mostrati in modo evidente, ma rivelati quando si ottiene il nome giusto.
 
+/// Badge segreti che gli utenti possono sbloccare in modo nascosto.
+///
+/// Ogni badge ha una chiave e un nome visualizzato. Vengono sbloccati
+/// in contesti specifici:
+/// - `NightOwl`: attività notturna (dettagli in `config.rs`)
+/// - `Indecisive`: interazioni con la funzione indecisiva
+/// - `Influencer`: 3 settimane consecutive di "ballot entries"
 #[derive(Debug, Clone, Copy, PartialEq, Eq)]
 pub enum HiddenBadge {
+    /// Notte stellata: sbloccato quando l'utente è attivo alle notti.
+    /// La chiave nel database è `"night_owl"`.
     NightOwl,
+    /// Indeciso: sbloccato quando si usa la funzione "indeciso".
+    /// La chiave nel database è `"indecisive"`.
     Indecisive,
+    /// Influencer: sbloccato quando ci si mette 3 settimane consecutive
+    /// nel ballottaggio (o "ballot entries").
+    /// La chiave nel database è `"influencer"`.
     Influencer,
 }
 
 impl HiddenBadge {
+    /// Restituisce la chiave univoca del badge (es. `"night_owl"`).
+    ///
+    /// Questa chiave è usata per salvare il badge nel database
+    /// e deve coincidere con l'entry in `config.rs::HIDDEN_BADGES`.
+    ///
+    /// # Esempio
+    ///
+    /// ```text
+    /// HiddenBadge::NightOwl.key() → "night_owl"
+    /// ```
     pub const fn key(self) -> &'static str {
         match self {
             HiddenBadge::NightOwl => "night_owl",
@@ -39,17 +95,49 @@ impl HiddenBadge {
         }
     }
 
-    /// Nome con emoji mostrato nel profilo (da `config::HIDDEN_BADGES`).
+    /// Nome con emoji mostrato nel profilo utente.
+    ///
+    /// Il nome è configurato in `config.rs::HIDDEN_BADGES`, un array di
+    /// coppie `(chiave, nome)`. Ad esempio: `("night_owl", "🦉 Nottataccia")`.
+    ///
+    /// # Panico di sicurezza
+    ///
+    /// Se il badge non è in `HIDDEN_BADGES`, il programma si blocca con un panic.
+    /// Questo è intenzionale: un badge mancante è un bug, non un caso normale.
     pub fn name(self) -> &'static str {
         badge_name(self.key()).expect("ogni badge è in config::HIDDEN_BADGES")
     }
 }
 
+/// Trova il nome visualizzato di un badge dato la sua chiave.
+///
+/// Cerca nell'array `HIDDEN_BADGES` di `config.rs` e restituisce
+/// il nome se trovato, altrimenti `None`.
 fn badge_name(key: &str) -> Option<&'static str> {
     HIDDEN_BADGES.iter().find(|(badge_key, _)| *badge_key == key).map(|(_, name)| *name)
 }
 
-/// Sblocca un badge segreto. `true` se è nuovo, `false` se l'utente lo aveva già.
+/// Sblocca un badge segreto per un utente.
+///
+/// Inserisce una riga nella tabella `user_hidden_badges` con:
+/// - `user_id`: l'ID dell'utente
+/// - `badge_key`: la chiave del badge (es. `"night_owl"`)
+/// - `unlocked_at`: timestamp di quando è stato sbloccato
+///
+/// Usa `INSERT OR IGNORE` per evitare duplicati: se l'utente ha già
+/// il badge, non viene inserito nuovamente.
+///
+/// # Ritorno
+///
+/// - `true` se il badge è stato appena sbloccato (nuovo per l'utente)
+/// - `false` se l'utente lo aveva già
+///
+/// # Esempio
+///
+/// ```text
+/// let nuovo = unlock_hidden_badge(&db, 12345, HiddenBadge::Influencer, now)?;
+/// if nuovo { println!("Hai sbloccato un badge segreto!"); }
+/// ```
 pub fn unlock_hidden_badge(
     connection: &Connection,
     user_id: i64,
@@ -63,7 +151,31 @@ pub fn unlock_hidden_badge(
     Ok(inserted > 0)
 }
 
-/// L'utente ha avuto una proposta nel ballottaggio per tre settimane consecutive fino a `week`.
+/// Controlla se l'utente ha 3 settimane consecutive nel ballottaggio.
+///
+/// Per "nel ballottaggio" si intende che l'utente abbia scritto almeno
+/// una proposta con opzioni che possono essere votate.
+///
+/// # Parametri
+///
+/// - `user_id`: ID dell'utente da controllare
+/// - `week`: settimana di riferimento (controlla anche le due settimane precedenti)
+///
+/// # Logica
+///
+/// 1. Prepara le settimane da `week-2` a `week` (3 settimane)
+/// 2. Se tutte e 3 sono presenti, l'utente ha lo streak
+/// 3. Se manca anche una sola, non ha lo streak
+///
+/// # Esempio
+///
+/// ```text
+/// // Utente con proposte alle settimane 5, 6, 7
+/// has_three_week_ballot_streak(db, 123, 7) → true
+///
+/// // Utente con proposte alle settimane 5, 7 (manca la 6)
+/// has_three_week_ballot_streak(db, 123, 7) → false
+/// ```
 pub fn has_three_week_ballot_streak(connection: &Connection, user_id: i64, week: i64) -> DbResult<bool> {
     let weeks: Vec<i64> = connection
         .prepare(
@@ -76,7 +188,23 @@ pub fn has_three_week_ballot_streak(connection: &Connection, user_id: i64, week:
     Ok(weeks == [week, week - 1, week - 2])
 }
 
-/// Nomi dei badge sbloccati, dal più vecchio (le chiavi sconosciute si saltano).
+/// Restituisce i nomi dei badge segreti sbloccati da un utente.
+///
+/// Legge la tabella `user_hidden_badges`, filtra le chiavi sconosciute
+/// (non presenti in `config.rs::HIDDEN_BADGES`) e restituisce i nomi
+/// ordinati dal più vecchio al più recente.
+///
+/// # Ordine
+///
+/// I badge sono ordinati per `unlocked_at` (quando sono stati sbloccati),
+/// poi per `badge_key` (per determinismo).
+///
+/// # Esempio
+///
+/// ```text
+/// let nomi = user_hidden_badge_names(&db, 12345)?;
+/// // Restituisce: ["🦉 Nottataccia", "👑 Influencer"]
+/// ```
 pub fn user_hidden_badge_names(connection: &Connection, user_id: i64) -> DbResult<Vec<&'static str>> {
     let keys: Vec<String> = connection
         .prepare("SELECT badge_key FROM user_hidden_badges WHERE user_id=? ORDER BY unlocked_at, badge_key")?
@@ -86,8 +214,17 @@ pub fn user_hidden_badge_names(connection: &Connection, user_id: i64) -> DbResul
 }
 
 // --- contatori e attività --------------------------------------------------------------------
+// Qui trovi le funzioni per tracciare le azioni degli utenti e il loro
+// progresso nel tempo.
 
-/// Colonne di `user_stats` che si possono incrementare.
+/// Colonne della tabella `user_stats` che si possono incrementare.
+///
+/// Ogni colonna conta un tipo specifico di azione:
+/// - `ProposalsSubmitted`: quante proposte ha pubblicato l'utente
+/// - `SupportsGiven`: quanti sostegni ha dato (cliccato su proposte)
+/// - `SupportsReceived`: quanti sostegni ha ricevuto (gli altri hanno dato)
+/// - `BallotEntries`: quante volte ha scritto opzioni nel ballottaggio settimanale
+/// - `WinningProposals`: quante proposte ha vinto
 #[derive(Debug, Clone, Copy, PartialEq, Eq)]
 pub enum UserStat {
     ProposalsSubmitted,
@@ -98,6 +235,16 @@ pub enum UserStat {
 }
 
 impl UserStat {
+    /// Restituisce il nome della colonna nel database.
+    ///
+    /// Mappa l'enum a una stringa che corrisponde al nome della colonna
+    /// nella tabella `user_stats`.
+    ///
+    /// # Esempio
+    ///
+    /// ```text
+    /// UserStat::ProposalsSubmitted.column() → "proposals_submitted"
+    /// ```
     const fn column(self) -> &'static str {
         match self {
             UserStat::ProposalsSubmitted => "proposals_submitted",
@@ -109,7 +256,20 @@ impl UserStat {
     }
 }
 
-/// Le statistiche che premiano gli autori di una proposta (`config::AUTHOR_STAT_POINTS`).
+/// Statistiche che vengono premiate agli autori delle proposte.
+///
+/// Gli autori ricevono punti per le loro proposte vincenti o ricevute.
+/// I punti sono configurabili in `config.rs::AUTHOR_STAT_POINTS`.
+///
+/// # Esempio di configurazione
+///
+/// ```text
+/// AUTHOR_STAT_POINTS = [
+///     ("supports_received", 2),  // +2 punti per ogni sostegno ricevuto
+///     ("ballot_entries", 5),     // +5 punti per ogni voce nel ballottaggio
+///     ("winning_proposals", 10), // +10 punti per ogni proposta vinta
+/// ]
+/// ```
 #[derive(Debug, Clone, Copy, PartialEq, Eq)]
 pub enum AuthorStat {
     SupportsReceived,
@@ -118,7 +278,10 @@ pub enum AuthorStat {
 }
 
 impl AuthorStat {
-    const fn user_stat(self) -> UserStat {
+    /// Mappa l'enum alla sua controparte `UserStat`.
+    ///
+    /// Ogni `AuthorStat` ha una colonna corrispondente in `user_stats`.
+    fn user_stat(self) -> UserStat {
         match self {
             AuthorStat::SupportsReceived => UserStat::SupportsReceived,
             AuthorStat::BallotEntries => UserStat::BallotEntries,
@@ -126,7 +289,18 @@ impl AuthorStat {
         }
     }
 
-    /// Punti settimanali dati agli autori per questa statistica.
+    /// Punti settimanali che l'autore riceve per questa statistica.
+    ///
+    /// Legge il valore da `config.rs::AUTHOR_STAT_POINTS`. Se manca
+    /// la configurazione, il programma si blocca (un bug).
+    ///
+    /// # Esempio
+    ///
+    /// ```text
+    /// AuthorStat::BallotEntries.points() → 5
+    /// // Significa: ogni volta che scrivi una voce nel ballottaggio,
+    /// // ricevi 5 punti di contribuzione
+    /// ```
     pub fn points(self) -> i64 {
         let column = self.user_stat().column();
         AUTHOR_STAT_POINTS
@@ -137,6 +311,26 @@ impl AuthorStat {
     }
 }
 
+/// Incrementa un contatore della tabella `user_stats`.
+///
+/// Usa un upsert: se l'utente non esiste, lo inserisce; se esiste,
+/// incrementa di 1.
+///
+/// # Sicurezza SQL
+///
+/// Anche se usa `format!` per inserire il nome della colonna, è sicuro
+/// perché `UserStat::column()` restituisce stringhe da una lista chiusa
+/// (es. `"proposals_submitted"`). Non è possibile impersonare SQL.
+///
+/// # Esempio
+///
+/// ```text
+/// increment_user_stat(&db, 12345, UserStat::SupportsReceived)?;
+/// // Se l'utente non esiste, crea:
+/// // INSERT INTO user_stats(user_id, supports_received) VALUES(12345, 1)
+/// // Se esiste già:
+/// // UPDATE user_stats SET supports_received = supports_received + 1 WHERE user_id = 12345
+/// ```
 pub fn increment_user_stat(connection: &Connection, user_id: i64, stat: UserStat) -> DbResult<()> {
     let column = stat.column(); // nome di colonna da una lista chiusa: sicuro da interpolare
     connection.execute(
@@ -149,10 +343,32 @@ pub fn increment_user_stat(connection: &Connection, user_id: i64, stat: UserStat
     Ok(())
 }
 
-/// Registra un'attività dell'utente nella settimana: contatore, punti, stagione e streak.
+/// Registra un'attività dell'utente per la settimana corrente.
 ///
-/// Lo streak conta le settimane consecutive con almeno un'attività; `weekly_streak_records`
-/// ricorda ogni volta che l'utente batte il proprio record personale.
+/// Aggiorna 4 tabelle in modo transazionale:
+/// 1. `weekly_activity`: contatore e punti di questa settimana
+/// 2. `season_activity`: totali stagionale (estate/inverno)
+/// 3. `user_streaks`: streak corrente e migliore
+/// 4. `weekly_streak_records`: record di streak per settimana
+///
+/// # Streak: cos'è?
+///
+/// Lo streak è il numero di settimane CONSECUTIVE con attività.
+/// - Se manca una settimana, lo streak ricomincia da 1
+/// - Il migliore (best_streak) non si resetta mai
+///
+/// # Esempio
+///
+/// ```text
+/// // Settimana 5: attività
+/// record_user_activity(&db, user_id, 5, 10, now)?; // streak = 1
+///
+/// // Settimana 6: nuova attività
+/// record_user_activity(&db, user_id, 6, 5, now)?;  // streak = 2
+///
+/// // Settimana 7: mancata attività (chiama con 0 punti?)
+/// // streak = 1 (rispetto alla settimana 5, 6 sono "interrotte")
+/// ```
 pub fn record_user_activity(
     connection: &Connection,
     user_id: i64,
@@ -212,10 +428,33 @@ fn suggestion_authors(connection: &Connection, suggestion_id: i64, week: i64) ->
         .collect()
 }
 
-/// Annulla i punti "ballottaggio" quando una proposta esce dal ballottaggio.
+/// Rimuove i punti "ballottaggio" quando una proposta esce dal ballottaggio.
 ///
-/// Senza questo, scegliere e togliere più volte la stessa proposta accumulerebbe +5 punti a ogni
-/// giro per i suoi autori.
+/// Questo è necessario perché i punti vengono assegnati quando un autore
+/// scrive una proposta, ma se la proposta viene rimossa dal ballottaggio
+/// (es. per troppi voti neri), quei punti vanno sottratti.
+///
+/// # Chiama quando
+///
+/// - Rimuovere un'autoproposta dal ballottaggio
+/// - Eliminare una proposta non approvata
+/// - Spostare una proposta fuori dal ballottaggio per errori
+///
+/// # Cosa fa
+///
+/// 1. Trova tutti gli autori della proposta
+/// 2. Sottrae 1 a `ballot_entries` in `user_stats`
+/// 3. Sottrae i punti da `weekly_activity`
+/// 4. Sottrae i punti da `season_activity`
+/// 5. Usa `MAX(0, ...)` per non andare sotto zero
+///
+/// # Esempio
+///
+/// ```text
+/// // Prima: autore ha ballot_entries = 3, points = 15
+/// revoke_ballot_entry_stats(&db, proposta_id, settimana, now)?;
+/// // Dopo: ballot_entries = 2, points = 10
+/// ```
 pub fn revoke_ballot_entry_stats(
     connection: &Connection,
     suggestion_id: i64,
@@ -242,7 +481,26 @@ pub fn revoke_ballot_entry_stats(
     Ok(())
 }
 
-/// Assegna una statistica (e i suoi punti) a tutti gli autori di una proposta.
+/// Assegna una statistica e i punti corrispondenti a tutti gli autori di una proposta.
+///
+/// Questa è la funzione chiave per premiare chi scrive proposte.
+/// Viene chiamata quando:
+/// - Un utente riceve un sostegno
+/// - Un'autoproposta va nel ballottaggio
+/// - Una proposta vince la settimana
+///
+/// # Azioni effettuate per ogni autore
+///
+/// 1. Se è `BallotEntries`: controlla se basta per il badge Influencer
+/// 2. Incrementa il contatore in `user_stats`
+/// 3. Registra l'attività (per lo streak)
+///
+/// # Esempio
+///
+/// ```text
+/// increment_suggestion_authors_stat(&db, proposta_id, 5, AuthorStat::SupportsReceived, now)?;
+/// // Ogni autore riceve +2 punti e +1 a supports_received
+/// ```
 pub fn increment_suggestion_authors_stat(
     connection: &Connection,
     suggestion_id: i64,
@@ -267,8 +525,26 @@ pub fn increment_suggestion_authors_stat(
 }
 
 // --- livelli e classifica --------------------------------------------------------------------
+// Qui trovi le funzioni per i livelli di contributore e la classifica.
 
-/// I contatori di `user_stats` di un utente.
+/// I contatori di `user_stats` di un utente, in un'unica struttura.
+///
+/// Rappresenta lo "sketch" delle statistiche di un utente, utile per
+/// calcolare il livello e i punti. I campi sono copi direttamente
+/// dalla tabella `user_stats`.
+///
+/// # Esempio
+///
+/// ```text
+/// let stats = UserStats {
+///     proposals_submitted: 5,
+///     supports_received: 10,
+///     supports_given: 3,
+///     ballot_entries: 2,
+///     winning_proposals: 1,
+/// };
+/// let punti = contributor_points(&stats); // 5 + 20 + 10 = 35
+/// ```
 #[derive(Debug, Clone, Copy, Default, PartialEq, Eq)]
 pub struct UserStats {
     pub proposals_submitted: i64,
@@ -278,11 +554,46 @@ pub struct UserStats {
     pub winning_proposals: i64,
 }
 
+/// Calcola i punti totali di contribuzione.
+///
+/// La formula premia gli sostegni ricevuti e le vittorie di più
+/// degli sostegni dati, incentivando la creazione di proposte
+/// di qualità.
+///
+/// # Formula
+///
+/// ```text
+/// punti = proposals_submitted
+///       + 2 * supports_received
+///       + 5 * ballot_entries
+///       + 10 * winning_proposals
+/// ```
+///
+/// # Esempio
+///
+/// ```text
+/// UserStats { proposals_submitted: 5, supports_received: 10, ... }
+/// punti = 5 + 2*10 = 25 punti
+/// ```
 pub fn contributor_points(stats: &UserStats) -> i64 {
     stats.proposals_submitted + 2 * stats.supports_received + 5 * stats.ballot_entries + 10 * stats.winning_proposals
 }
 
-/// Livello più alto raggiunto con `points` punti.
+/// Trova il livello più alto raggiunto dai punti.
+///
+/// I livelli sono definiti in `config.rs::CONTRIBUTOR_LEVELS`.
+/// Ogni livello ha un nome con emoji (es. "🥉 Bronzo").
+///
+/// # Classificazione
+///
+/// ```text
+/// 0-9 punti:   "🌱 Nuovo"
+/// 10-24 punti: "🥉 Bronzo"
+/// 25-49 punti: "🥈 Argento"
+/// 50-99 punti: "🥇 Oro"
+/// 100-199:     "💎 Platino"
+/// 200+:        "👑 Leggenda"
+/// ```
 pub fn contributor_level(points: i64) -> &'static str {
     let mut level = CONTRIBUTOR_LEVELS[0].1;
     for (minimum, name) in CONTRIBUTOR_LEVELS {
@@ -294,8 +605,28 @@ pub fn contributor_level(points: i64) -> &'static str {
     level
 }
 
-/// `(livello attuale, prossimo livello, minimo del livello attuale, minimo del prossimo)`.
-/// Al livello massimo il prossimo è `"livello massimo"` con i due minimi uguali.
+/// Restituisce il progresso verso il prossimo livello.
+///
+/// Utile per mostrare una barra di progresso nel profilo utente.
+///
+/// # Ritorno
+///
+/// Una tupla: `(livello_attuale, prossimo_livello, min_attuale, min_prossimo)`
+///
+/// - `livello_attuale`: nome del livello corrente (es. "🥉 Bronzo")
+/// - `prossimo_livello`: nome del livello successivo (es. "🥈 Argento")
+/// - `min_attuale`: punti minimi per il livello attuale (es. 10)
+/// - `min_prossimo`: punti minimi per il prossimo livello (es. 25)
+///
+/// # Esempio
+///
+/// ```text
+/// contributor_level_progress(15) → ("🥉 Bronzo", "🥈 Argento", 10, 25)
+/// // L'utente è al livello Bronzo (min 10), serve arrivare a 25 per Argento
+///
+/// contributor_level_progress(200) → ("👑 Leggenda", "livello massimo", 200, 200)
+/// // Al massimo: prossimo è "livello massimo", minimo uguale
+/// ```
 pub fn contributor_level_progress(points: i64) -> (&'static str, &'static str, i64, i64) {
     let mut level = CONTRIBUTOR_LEVELS[0].1;
     let mut current_minimum = 0;
@@ -310,6 +641,14 @@ pub fn contributor_level_progress(points: i64) -> (&'static str, &'static str, i
     (level, "livello massimo", current_minimum, current_minimum)
 }
 
+/// Riga della classifica dei contributori.
+///
+/// Contiene i dati necessari per mostrare una riga in classifica:
+/// - `user_id`: per menzionare l'utente
+/// - `points`: punti totali (per ordinamento)
+/// - `level`: livello attuale
+/// - `winning_proposals`: vittorie (per spareggio)
+/// - `supports_received`: sostegni ricevuti (per spareggio)
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub struct ContributorRow {
     pub user_id: i64,
@@ -319,8 +658,27 @@ pub struct ContributorRow {
     pub supports_received: i64,
 }
 
-/// Classifica dei contributori (solo chi ha punti): per punti, poi vittorie, poi sostegni
-/// ricevuti, poi ID.
+/// Restituisce la classifica dei contributori (chi ha più punti).
+///
+/// Legge tutti gli utenti da `user_stats`, calcola i punti per ognuno,
+/// filtra chi ha 0 punti, ordina e limita i risultati.
+///
+/// # Ordinamento (criteri di spareggio)
+///
+/// 1. **Punti totali** (decrescente) - chi ha più punti sta sopra
+/// 2. **Proposte vinte** (decrescente) - a parità, chi ha vinto di più
+/// 3. **Sostegni ricevuti** (decrescente) - a parità, chi ha più sostegni
+/// 4. **user_id** (crescente) - a parità assoluta, chi ha ID minore
+///
+/// # Esempio
+///
+/// ```text
+/// // Top 10
+/// let top10 = contributor_leaderboard_rows(&db, 10)?;
+/// for (i, row) in top10.iter().enumerate() {
+///     println!("{}. {} - {} - {}", i+1, row.user_id, row.level, row.points);
+/// }
+/// ```
 pub fn contributor_leaderboard_rows(connection: &Connection, limit: usize) -> DbResult<Vec<ContributorRow>> {
     let all: Vec<(i64, UserStats)> = connection
         .prepare(
@@ -361,13 +719,40 @@ pub fn contributor_leaderboard_rows(connection: &Connection, limit: usize) -> Db
 }
 
 // --- premi, record e streak settimanali ------------------------------------------------------
+// Qui trovi le funzioni per i premi settimanali e i record della community.
 
+/// Converte un errore di parsing JSON in errore rusqlite.
+///
+/// Usato quando leggiamo i JSON salvati nel database per controllare
+/// se sono validi. Se il JSON è corrotto, restituisce un errore SQL.
 fn json_conversion_error(error: impl std::error::Error + Send + Sync + 'static) -> rusqlite::Error {
     rusqlite::Error::FromSqlConversionFailure(0, rusqlite::types::Type::Text, Box::new(error))
 }
 
-/// Contributori della settimana: chi ha più punti (anche a pari merito). Il premio si calcola una
-/// sola volta: le chiamate successive restituiscono quello già registrato.
+/// Registra i contributori della settimana (chi ha più punti).
+///
+/// Calcola una sola volta: le chiamate successive restituiscono
+/// il risultato già salvato in `weekly_awards`.
+///
+/// # Logica
+///
+/// 1. Controlla se c'è già un premio per questa settimana in `weekly_awards`
+/// 2. Se sì, lo restituisce (idempotente)
+/// 3. Se no, calcola chi ha più punti in `weekly_activity`
+/// 4. Salva il risultato come JSON in `weekly_awards`
+/// 5. Restituisce (vincitori, punti)
+///
+/// # Gestione JSON
+///
+/// Il JSON salvato è compatibile con Python: array di numeri o stringhe.
+/// Esempio: `"[10, 30]"` o `"[\"11\", 22]"`.
+///
+/// # Esempio
+///
+/// ```text
+/// let (vincitori, punti) = record_weekly_contributor(&db, 5, now)?;
+/// // vincitori = [12345, 67890], punti = 50
+/// ```
 pub fn record_weekly_contributor(
     connection: &Connection,
     week: i64,
@@ -410,7 +795,26 @@ pub fn record_weekly_contributor(
     Ok((winners, points))
 }
 
-/// Aggiorna un record della community solo se `metric` è positivo e supera quello esistente.
+/// Aggiorna un record della community se il nuovo valore è migliore.
+///
+/// I record sono salvati in `community_records` e hanno:
+/// - `record_key`: identificatore (es. "most_supported", "longest_streak")
+/// - `metric`: valore numerico
+/// - `label`: descrizione leggibile (es. "Proposta X", "<@12345>")
+/// - `week`: settimana in cui è stato stabilito
+/// - `user_id`: utente associato (opzionale)
+///
+/// # Regola
+///
+/// Aggiorna solo se `metric > 0` e supera il record esistente.
+/// A parità, il primo record vince (non si sovrascrive).
+///
+/// # Esempio
+///
+/// ```text
+/// // Nuovo record per proposta più sostenuta
+/// update_community_record(&db, "most_supported", 50, "Among Us", 4, None)?;
+/// ```
 pub fn update_community_record(
     connection: &Connection,
     record_key: &str,
@@ -441,8 +845,26 @@ pub fn update_community_record(
     Ok(())
 }
 
-/// Ricalcola i record della community: proposta più sostenuta, più votata, streak più lungo,
-/// più vittorie.
+/// Ricalcola tutti i record della community per la settimana.
+///
+/// Chiama le funzioni per ogni tipo di record:
+/// 1. `most_supported`: proposta con più sostenitori
+/// 2. `most_voted`: opzione con più voti (nei sondaggi community)
+/// 3. `longest_streak`: utente con lo streak più lungo
+/// 4. `most_wins`: utente con più proposte vincenti
+///
+/// # Note
+///
+/// - `most_voted` si basa sui sondaggi community (`polls.is_community = 1`)
+/// - Usa `max()` di Python per i backup: a parità, vince il primo
+/// - Gli altri record usano i dati aggregati
+///
+/// # Esempio
+///
+/// ```text
+/// update_community_records(&db, 5)?;
+/// // Aggiorna tutti i record con dati della settimana 5
+/// ```
 pub fn update_community_records(connection: &Connection, week: i64) -> DbResult<()> {
     if let Some(top) = suggestion_supporter_ranking(connection, week, 1, false)?.first() {
         update_community_record(connection, "most_supported", top.supporters, &top.name, week, None)?;
@@ -489,7 +911,22 @@ pub fn update_community_records(connection: &Connection, week: i64) -> DbResult<
     Ok(())
 }
 
-/// Azzera lo streak di chi non è stato attivo nella settimana che si chiude.
+/// Azzera gli streak di chi non ha fatto attività nella settimana appena chiusa.
+///
+/// Questa funzione è chiamata alla fine di ogni settimana (dopo il reset).
+/// Gli utenti che non hanno attività in `weekly_activity` per la settimana
+/// precedente (`week - 1`, cioè appena conclusa) vedranno il loro `current_streak`
+/// azzerato a 0.
+///
+/// L'`best_streak` (migliore record personale) resta intatto.
+///
+/// # Esempio
+///
+/// ```text
+/// // Settimana 5 appena chiusa
+/// finalize_week_streaks(&db, 5)?;
+/// // Utenti non attivi nella settimana 4 hanno streak = 0
+/// ```
 pub fn finalize_week_streaks(connection: &Connection, week: i64) -> DbResult<()> {
     connection.execute(
         "UPDATE user_streaks SET current_streak=0 WHERE current_streak>0 AND last_active_week<?",
@@ -499,8 +936,19 @@ pub fn finalize_week_streaks(connection: &Connection, week: i64) -> DbResult<()>
 }
 
 // --- vincitore della settimana ---------------------------------------------------------------
+// Qui trovi le strutture e funzioni per determinare chi vince la settimana.
 
-/// Una proposta nel ballottaggio con i suoi voti e i dati di spareggio.
+/// Una proposta nel ballottaggio con risultati e dati di spareggio.
+///
+/// Rappresenta una singola opzione nel ballottaggio community.
+///
+/// # Campi
+///
+/// - `suggestion_id`: ID unico della proposta
+/// - `name`: nome visualizzato (es. "Among Us")
+/// - `votes`: numero di voti espressi
+/// - `supporters`: numero di unici sostenitori (persone diverse)
+/// - `first_ts`: timestamp della prima proposta (0 se sconosciuto, per spareggio)
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub struct BallotResult {
     pub suggestion_id: i64,
@@ -511,10 +959,22 @@ pub struct BallotResult {
     pub first_ts: i64,
 }
 
-/// Opzioni del ballottaggio community in ordine di classifica.
+/// Risultati del ballottaggio community in ordine di classifica.
 ///
-/// Spareggio esplicito: a parità di voti vince la proposta con più sostenitori; se resta la
-/// parità, quella inviata per prima.
+/// Legge le opzioni dei sondaggi community e conta i voti e i sostenitori.
+///
+/// # Spareggio esplicito
+///
+/// Quando due proposte hanno lo stesso numero di voti, il "tie-breaker" è:
+/// 1. Maggior numero di sostenitori (persone diverse che hanno dato un voto)
+/// 2. Se ancora pareggio, la proposta con timestamp più basso (prima inviata)
+///
+/// # Esempio
+///
+/// ```text
+/// let risultati = community_ballot_results(&db, 5)?;
+/// // prima = BallotResult { name: "Among Us", votes: 10, supporters: 8, ... }
+/// ```
 pub fn community_ballot_results(connection: &Connection, week: i64) -> DbResult<Vec<BallotResult>> {
     let rows: Vec<(i64, String, i64, Option<i64>)> = connection
         .prepare(
@@ -545,14 +1005,33 @@ pub fn community_ballot_results(connection: &Connection, week: i64) -> DbResult<
     Ok(results)
 }
 
-/// Il vincitore della settimana e l'eventuale criterio di spareggio usato.
+/// Dati del vincitore della settimana.
+///
+/// Contiene la proposta vincente e un messaggio facoltativo se c'è
+/// stato bisogno di uno spareggio.
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub struct Winner {
+    /// Risultato (dati della proposta)
     pub result: BallotResult,
+    /// Messaggio di spareggio (es. "vince con più sostenitori"), None se non serve
     pub tie_break: Option<&'static str>,
 }
 
-/// Vincitore unico della settimana; `None` se non ci sono opzioni o nessuno ha votato.
+/// Determina il vincitore unico della settimana.
+///
+/// Restituisce `None` se:
+/// - Non ci sono sondaggi community attivi
+/// - Nessuno ha votato
+///
+/// Se c'è un pareggio (pari voti), calcola il messaggio di spareggio.
+///
+/// # Esempio
+///
+/// ```text
+/// if let Some(vincitore) = weekly_winner(&db, 5)? {
+///     println!("Ha vinto: {}", vincitore.result.name);
+/// }
+/// ```
 pub fn weekly_winner(connection: &Connection, week: i64) -> DbResult<Option<Winner>> {
     let results = community_ballot_results(connection, week)?;
     let Some(first) = results.first() else {
@@ -572,10 +1051,28 @@ pub fn weekly_winner(connection: &Connection, week: i64) -> DbResult<Option<Winn
     Ok(Some(Winner { result: first.clone(), tie_break }))
 }
 
-/// Registra la vittoria per gli autori della proposta vincente: una sola volta per autore e
-/// settimana (`INSERT OR IGNORE`), quindi richiamarla non raddoppia punti e statistiche.
+/// Registra le statistiche di vittoria per gli autori della proposta vincente.
 ///
-/// `awarded_at` è il momento a cui attribuire l'attività nella stagione (default: `now`).
+/// Viene chiamata dopo `weekly_winner`. Per ogni autore:
+/// 1. Inserisce in `user_winning_proposals` (con `INSERT OR IGNORE`)
+/// 2. Se nuovo (non già registrato), incrementa `winning_proposals` e aggiunge punti
+///
+/// # Idempotenza
+///
+/// `INSERT OR IGNORE` evita duplicati: chiamare due volte non raddoppia i punti.
+///
+/// # Parametri
+///
+/// - `awarded_at`: quando attribuire l'attività (default `now`). Utile per
+///   backfilling: se calcoli il vincitore dopo la settimana, puoi usare
+///   la data di fine settimana come `awarded_at`.
+///
+/// # Esempio
+///
+/// ```text
+/// let Some(vincitore) = record_weekly_winner_stats(&db, 5, now, None)?;
+/// // Gli autori hanno ora +10 punti e +1 a winning_proposals
+/// ```
 pub fn record_weekly_winner_stats(
     connection: &Connection,
     week: i64,

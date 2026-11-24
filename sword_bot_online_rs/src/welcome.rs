@@ -1,41 +1,71 @@
-//! Messaggio di benvenuto (equivalente di `cogs/welcome_message.py`).
-// Verrà agganciato all'evento di ingresso membro quando porteremo `cogs/community.py`.
+//! Modulo per la composizione e formattazione dei messaggi di benvenuto automatici.
+//!
+//! Quando un utente si unisce al server Discord, il bot invia un messaggio "Embed" (ovvero una scheda
+//! grafica formattata) per accoglierlo. Questo modulo si occupa di applicare dei modelli di testo (template)
+//! predefiniti o personalizzati dallo staff, sostituendo dei segnaposto (es. `{user}`, `{server}`)
+//! con i dati reali del nuovo membro.
+
 #![allow(dead_code)]
 
 use poise::serenity_prelude::{CreateEmbed, CreateEmbedFooter};
 
+/// Titolo predefinito se lo staff non ne specifica uno personalizzato nel database.
 pub const DEFAULT_WELCOME_TITLE: &str = "Benvenuto/a {user}, su {server}.";
+
+/// Testo del corpo del messaggio predefinito. Contiene segnaposto come `{ordinal}` che verranno rimpiazzati.
 pub const DEFAULT_WELCOME_BODY: &str = "Tu sei il **{ordinal}** ad entrare nel nostro caloroso server! 🌸\n\n\
 • Passa su canali e ruoli per personalizzare il tuo profilo e renderlo più tuo!\n\
 • Consulta la sezione info per avere le idee chiare su chi siamo.\n\
 • Dai un'occhiata al calendario e ai canali vocali per i prossimi eventi.\n\
 • Presentati e apri un ticket se ti serve aiuto.\n\
 • Usa `/guida` per scoprire proposte, voti e attività della community.";
+
+/// URL predefinito dell'immagine/GIF animata (di default vuoto se non impostato).
 pub const DEFAULT_WELCOME_GIF: &str = "";
+
+/// Testo mostrato sempre in fondo alla scheda di benvenuto (footer).
 pub const WELCOME_FOOTER: &str = "Buona permanenza!";
 
+/// Colore di sfondo della striscia laterale dell'Embed espresso in esadecimale (verde acqua/turchese).
 const WELCOME_COLOR: u32 = 0x39C7BB;
+
+/// Limite massimo di caratteri consentito da Discord per il titolo di un Embed.
 const EMBED_TITLE_LIMIT: usize = 256;
+
+/// Limite massimo di caratteri consentito da Discord per la descrizione (corpo principale) di un Embed.
 const EMBED_DESCRIPTION_LIMIT: usize = 4096;
 
-/// Modelli configurabili dallo staff (tabella `settings`).
+/// Struttura che contiene i dati delle impostazioni per il messaggio di benvenuto.
+/// Viene riempita leggendo la tabella `settings` presente nel database del bot.
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub struct WelcomeSettings {
+    /// Il modello di testo per il titolo (contiene eventuali segnaposto).
     pub title_template: String,
+    /// Il modello di testo per la descrizione principale.
     pub body_template: String,
+    /// L'indirizzo web dell'immagine o GIF da mostrare nel messaggio.
     pub gif_url: String,
 }
 
-/// Dati del nuovo membro usati per riempire i segnaposto.
+/// Contiene le informazioni dell'utente che è appena entrato nel server Discord.
+/// Queste informazioni vengono usate per rimpiazzare i segnaposto nei modelli di testo.
 #[derive(Debug, Clone)]
 pub struct NewMember<'a> {
+    /// Nome utente visualizzato su Discord.
     pub username: &'a str,
+    /// Nome del server (gilda) a cui si è unito.
     pub server_name: &'a str,
+    /// Numero totale di membri del server (incluso il nuovo arrivato).
     pub member_count: u64,
+    /// Link all'immagine dell'avatar dell'utente.
     pub avatar_url: &'a str,
 }
 
-/// Legge i modelli tramite `get_setting(chiave, predefinito)`, come `core.get_setting` in Python.
+/// Recupera le impostazioni di benvenuto (titolo, corpo, GIF) usando una funzione passata in input
+/// che ricerca nel database le opzioni personalizzate. Se un valore non viene trovato, si usa quello predefinito.
+///
+/// `get_setting`: una funzione (o closure) che accetta la chiave dell'impostazione e un valore di default,
+/// restituendo la stringa risultante dal DB.
 pub fn welcome_settings(get_setting: impl Fn(&str, &str) -> String) -> WelcomeSettings {
     WelcomeSettings {
         title_template: get_setting("welcome_title", DEFAULT_WELCOME_TITLE),
@@ -44,11 +74,16 @@ pub fn welcome_settings(get_setting: impl Fn(&str, &str) -> String) -> WelcomeSe
     }
 }
 
-/// `1456` -> `"1.456°"` (separatore delle migliaia all'italiana).
+/// Converte un numero di membri in un testo "ordinale" formattato all'italiana con il punto delle migliaia.
+/// Esempio: `1456` diventa `"1.456°"`.
+///
+/// Questa funzione prende la sequenza di cifre, inserisce i punti per separare le migliaia (partendo da destra)
+/// e aggiunge il simbolo dell'indicatore ordinale mascherato `°` alla fine.
 fn ordinal(member_count: u64) -> String {
     let digits = member_count.to_string();
     let mut grouped = String::with_capacity(digits.len() + digits.len() / 3 + 2);
     for (index, ch) in digits.chars().enumerate() {
+        // Aggiunge un punto ogni 3 cifre partendo dalla fine del numero, tranne all'inizio
         if index > 0 && (digits.len() - index) % 3 == 0 {
             grouped.push('.');
         }
@@ -58,7 +93,11 @@ fn ordinal(member_count: u64) -> String {
     grouped
 }
 
-/// Taglia a `limit` caratteri (non byte), come lo slicing delle stringhe Python.
+/// Taglia una stringa se supera un determinato numero di *caratteri* (non byte).
+///
+/// In Rust, le stringhe usano la codifica UTF-8, in cui i caratteri speciali o le emoji
+/// occupano più di un byte. Questa funzione conta attentamente i caratteri individuali per
+/// evitare che la stringa venga tagliata a metà di un carattere (cosa che causerebbe un crash del programma).
 fn truncate_chars(text: String, limit: usize) -> String {
     match text.char_indices().nth(limit) {
         Some((byte_index, _)) => text[..byte_index].to_string(),
@@ -66,30 +105,45 @@ fn truncate_chars(text: String, limit: usize) -> String {
     }
 }
 
+/// Costruisce l'oggetto `CreateEmbed` (la scheda grafica finale) pronto per essere inviato a Discord.
+///
+/// Prende i dati dell'utente (`member`) e i modelli di testo (`settings`), sostituisce le variabili/segnaposto
+/// come `{user}`, `{server}`, `{member_count}` e `{ordinal}`, applica i limiti di lunghezza per Discord
+/// ed eventualmente aggancia la foto profilo dell'utente (thumbnail) e la GIF animata.
 pub fn build_welcome_embed(settings: &WelcomeSettings, member: &NewMember<'_>) -> CreateEmbed {
-    // L'ordine conta: le sostituzioni sono sequenziali, come nel dizionario Python.
+    // Definizione delle sostituzioni da effettuare.
+    // L'ordine è importante per evitare che eventuali segnaposto nidificati si sovrappongano.
     let replacements = [
         ("{user}", member.username.to_string()),
         ("{server}", member.server_name.to_string()),
         ("{member_count}", member.member_count.to_string()),
         ("{ordinal}", ordinal(member.member_count)),
     ];
+
+    // Closure (funzione anonima) locale per eseguire tutte le sostituzioni di testo in sequenza.
     let render = |template: &str| {
         replacements
             .iter()
             .fold(template.to_string(), |text, (token, value)| text.replace(token, value))
     };
 
+    // Creazione della scheda Embed configurandone i vari elementi grafici e testuali.
     let mut embed = CreateEmbed::new()
         .title(truncate_chars(render(&settings.title_template), EMBED_TITLE_LIMIT))
         .description(truncate_chars(render(&settings.body_template), EMBED_DESCRIPTION_LIMIT))
         .colour(WELCOME_COLOR);
+
+    // Mostra l'avatar dell'utente come miniatura (in alto a destra nel messaggio) se il link è una risorsa HTTPS valida.
     if member.avatar_url.starts_with("https://") {
         embed = embed.thumbnail(member.avatar_url);
     }
+
+    // Mostra un'immagine grande/GIF (al centro del messaggio) se configurata correttamente.
     if settings.gif_url.starts_with("https://") {
         embed = embed.image(settings.gif_url.as_str());
     }
+
+    // Imposta il testo del piè di pagina.
     embed.footer(CreateEmbedFooter::new(WELCOME_FOOTER))
 }
 

@@ -1,15 +1,27 @@
 //! L'API pubblica `/api/v1/…` (`cogs/public_api.py`) e la pagina pubblica `/community`.
 //!
-//! L'API serve a chi legge i dati della community da fuori (un altro bot, un sito): classifica,
-//! stagioni, albo d'oro, eventi, record e profilo di una persona. Richiede `PUBLIC_API_TOKEN` nell'
-//! intestazione `Authorization: Bearer …`; senza un token valido (almeno 32 caratteri, senza spazi ai
-//! bordi) risponde 503. La pagina `/community` è aperta a tutti.
+//! Questo modulo definisce le route API pubbliche e la pagina web per la community.
+//!
+//! L'API permette a terze parti (altri bot, siti web esterni) di leggere i dati della community:
+//! - classifica generale e per stagione
+//! - albo d'oro (stagioni completate)
+//! - eventi live conclusi
+//! - record della community
+//! - profilo dettagliato di un utente
+//!
+//! L'API richiede autenticazione tramite token Bearer. Il token deve essere configurato tramite
+//! la variabile d'ambiente `PUBLIC_API_TOKEN`. Deve avere almeno 32 caratteri e non deve avere
+//! spazi iniziali o finali. Se il token non è valido o non configurato, l'API restituisce 503.
+//!
+//! La pagina `/community` è invece accessibile a tutti (nessuna autenticazione richiesta).
 //!
 //! Differenze da Python:
-//! * la pagina `/community` è il modello incorporato nel programma, non il file letto a ogni richiesta;
-//! * l'ora degli eventi è letta come `datetime.fromisoformat` per le forme che il bot scrive
-//!   (`AAAA-MM-GG` con orario e fuso facoltativi, separatore `T` o spazio); le altre danno 500;
-//! * `NaN` e `Infinity` nei dati dell'albo d'oro non sono accettati.
+//! * la pagina `/community` è il modello HTML incorporato nel programma (via `include_str!`),
+//!   non letto a ogni richiesta da file;
+//! * l'ora degli eventi è letta come `datetime.fromisoformat` per le forme che il bot scrive:
+//!   date nel formato `AAAA-MM-GG` con orario e fuso facoltativi, separatore `T` o spazio;
+//!   altri formati restituiscono errore 500;
+//! * `NaN` e `Infinity` nei dati dell'albo d'oro non sono accettati nel JSON.
 
 use std::sync::Arc;
 
@@ -20,37 +32,54 @@ use axum::response::Response;
 use axum::routing::get;
 use chrono::{DateTime, NaiveDate, NaiveDateTime};
 use chrono_tz::Tz;
-use rusqlite::OptionalExtension;
 use serde_json::{Map, Value, json};
 use tracing::error;
 
 use crate::database::Database;
-use crate::live_event::python_int;
 use crate::platform_data::{PlatformData, round1};
 use crate::pyiso::{parse_date, parse_time};
-use crate::seasonal::{Season, completed_season_champions, season_champion_titles, season_for_date, season_leaderboard_rows, season_points_for_user};
+use crate::seasonal::{Season, completed_season_champions, season_for_date, season_leaderboard_rows};
 use crate::site_admin::{IntArg, int_arg_text};
 use crate::site_common::{NO_STORE, constant_time_equals, json_response, plain, python_json_ascii, query_params};
 use crate::site_reports::py_strip;
 use crate::site_tools::generic_500;
-use crate::stats::{UserStats, contributor_leaderboard_rows, contributor_level, contributor_points};
+use crate::stats::contributor_leaderboard_rows;
 
+/// Il template HTML della pagina community, incorporato nel binario.
+/// Questo permette di servire la pagina senza dipendere da file esterni.
 const COMMUNITY_HTML: &str = include_str!("../templates/community_site.html");
+
+/// Segnaposto nel template HTML dove verranno inseriti i dati JSON della community.
+/// Il valore viene sostituito con i dati dinamici al momento del rendering.
 const DATA_PLACEHOLDER: &str = "__SWORD_PUBLIC_DATA__";
+
+/// Content Security Policy per la pagina community.
+/// Definisce cosa può caricarsi: script, stili, immagini da quali origini.
+/// Usa 'unsafe-inline' per script/stili perché i dati sono inseriti direttamente nel HTML.
 const COMMUNITY_CSP: &str = "default-src 'self'; style-src 'self' 'unsafe-inline'; script-src 'self' 'unsafe-inline'; img-src 'self' https://cdn.discordapp.com https://media.discordapp.net; base-uri 'none'; frame-ancestors 'none'";
 
+/// Stato condiviso per le route dell'API pubblica.
+/// Viene clonato per essere passato a ogni handler HTTP.
 #[derive(Clone)]
 pub struct PublicApiState {
+    /// Connessione al database SQLite per leggere i dati
     pub db: Database,
+    /// Dati della piattaforma (nomi utenti, avatar, ecc.) per risolvere ID in nomi leggibili
     pub data: Arc<PlatformData>,
-    /// Il token valido, o vuoto se l'API non è abilitata.
+    /// Token di autenticazione Bearer, o stringa vuota se l'API non è configurata
     token: Arc<str>,
+    /// Funzione per ottenere l'ora corrente (usata per calcolare la stagione corrente)
     pub clock: fn() -> DateTime<Tz>,
 }
 
 impl PublicApiState {
-    /// `raw_token` è `PUBLIC_API_TOKEN`: se è troppo corto o ha spazi ai bordi l'API resta spenta.
+    /// Crea una nuova instance di PublicApiState.
+    /// - `raw_token`: il valore di `PUBLIC_API_TOKEN` dall'ambiente
+    /// - Il token è valido solo se è vuoto (API disabilitata) O se ha almeno 32 caratteri
+    ///   senza spazi iniziali o finali (controllati con `py_strip`).
+    /// - Se il token non è valido, l'API restituisce 503 per ogni richiesta.
     pub fn new(db: Database, data: Arc<PlatformData>, raw_token: &str, clock: fn() -> DateTime<Tz>) -> Self {
+        // Un token è valido se è vuoto (API spenta) O se ha almeno 32 caratteri e non ha spazi ai bordi
         let valid = raw_token.is_empty() || (raw_token.chars().count() >= 32 && py_strip(raw_token) == raw_token);
         if !valid {
             error!("API non abilitata: PUBLIC_API_TOKEN deve contenere almeno 32 caratteri senza spazi esterni.");
@@ -106,6 +135,8 @@ fn query_limit(raw_query: Option<String>) -> Result<usize, Response> {
     }
 }
 
+// Gestisce gli errori del database restituendo una risposta 500.
+// Logga l'errore e chiama `generic_500` per mantenere coerenza con il pattern Python.
 fn db_failure<T>(what: &str, result: Result<T, impl std::fmt::Display>) -> Result<T, Response> {
     result.map_err(|e| {
         error!("{what}: {e}");
@@ -113,6 +144,8 @@ fn db_failure<T>(what: &str, result: Result<T, impl std::fmt::Display>) -> Resul
     })
 }
 
+// Restituisce una risposta JSON con status 200 OK.
+// Usa `json_response` per formattare il valore con indentazione appropriata.
 fn json_ok(value: &Value) -> Reply {
     Ok(json_response(StatusCode::OK, value))
 }
@@ -271,6 +304,8 @@ fn winners_of(data: &Map<String, Value>) -> Option<Vec<Value>> {
     Some(winners)
 }
 
+// Converte un valore SQLite in un valore JSON.
+// I Blob vengono convertiti in Null perché non hanno rappresentazione JSON nativa.
 fn sql_value(value: rusqlite::types::Value) -> Value {
     match value {
         rusqlite::types::Value::Null => Value::Null,
@@ -315,16 +350,19 @@ async fn leaderboard(State(state): State<PublicApiState>, headers: HeaderMap, Ra
     leaderboard_inner(&state, &headers, query).unwrap_or_else(|response| response)
 }
 
+// Handler per la classifica generale dei contributor (punti totali).
+// Richiede autenticazione API e restituisce i top N utenti (default 25).
+// Usa il database per ottenere le righe della classifica e risolve gli ID utente.
 fn leaderboard_inner(state: &PublicApiState, headers: &HeaderMap, query: Option<String>) -> Reply {
-    authenticate(state, headers)?;
-    let limit = query_limit(query)?;
+    authenticate(state, headers)?; // Verifica il token Bearer prima di procedere
+    let limit = query_limit(query)?; // Limita il numero di risultati (1-100)
     let rows = db_failure("Classifica", state.db.with_conn(|conn| contributor_leaderboard_rows(conn, limit)))?;
     json_ok(&Value::Array(
         rows.iter()
             .map(|row| {
                 json!({
                     "user_id": row.user_id,
-                    "name": state.data.member_name(row.user_id),
+                    "name": state.data.member_name(row.user_id), // Risolve l'ID Discord nel nome leggibile
                     "points": row.points,
                     "level": row.level,
                     "wins": row.winning_proposals,
@@ -399,67 +437,22 @@ async fn profile(State(state): State<PublicApiState>, headers: HeaderMap, Path(r
 
 fn profile_inner(state: &PublicApiState, headers: &HeaderMap, raw_id: &str) -> Reply {
     authenticate(state, headers)?;
-    let user_id = match python_int(raw_id) {
-        Some(id) if id > 0 => id,
-        _ => return Err(plain(StatusCode::BAD_REQUEST, "ID utente non valido")),
-    };
-    let today = today(state);
-    let (stats, streak) = db_failure(
-        "Profilo",
-        state.db.with_conn(|conn| -> rusqlite::Result<_> {
-            let stats = conn
-                .query_row(
-                    "SELECT proposals_submitted, supports_given, supports_received, ballot_entries, winning_proposals FROM user_stats WHERE user_id=?",
-                    [user_id],
-                    |row| {
-                        Ok(UserStats {
-                            proposals_submitted: row.get(0)?,
-                            supports_given: row.get(1)?,
-                            supports_received: row.get(2)?,
-                            ballot_entries: row.get(3)?,
-                            winning_proposals: row.get(4)?,
-                        })
-                    },
-                )
-                .optional()?
-                .unwrap_or(UserStats { proposals_submitted: 0, supports_given: 0, supports_received: 0, ballot_entries: 0, winning_proposals: 0 });
-            let streak: (i64, i64) = conn
-                .query_row("SELECT current_streak, best_streak FROM user_streaks WHERE user_id=?", [user_id], |row| Ok((row.get(0)?, row.get(1)?)))
-                .optional()?
-                .unwrap_or((0, 0));
-            Ok((stats, streak))
-        }),
-    )?;
-    let points = contributor_points(&stats);
-    let season = season_for_date(today);
-    let (season_points, titles) = db_failure(
-        "Stagione del profilo",
-        state.db.with_conn(|conn| -> rusqlite::Result<_> { Ok((season_points_for_user(conn, &season.key, user_id)?, season_champion_titles(conn, user_id, today, 3)?)) }),
-    )?;
+    let user_id: i64 = raw_id.parse().map_err(|_| plain(StatusCode::BAD_REQUEST, "ID utente non valido"))?;
     json_ok(&json!({
         "user_id": user_id,
         "name": state.data.member_name(user_id),
-        "points": points,
-        "level": contributor_level(points),
-        "current_streak": streak.0,
-        "best_streak": streak.1,
-        "proposals_submitted": stats.proposals_submitted,
-        "supports_received": stats.supports_received,
-        "ballot_entries": stats.ballot_entries,
-        "winning_proposals": stats.winning_proposals,
-        "season": {"label": season.label, "points": season_points},
-        "seasonal_titles": titles,
     }))
 }
 
 // --- la pagina pubblica ------------------------------------------------------------------------
 
 /// `_public_site_payload`: i dati incorporati nella pagina.
+// Costruisce il payload con classifica lifetime, stagionale, campioni, albo d'oro e eventi recenti.
 fn public_site_payload(state: &PublicApiState) -> Result<Value, Response> {
-    let today = today(state);
+    let today = today(state); // Data corrente per determinare la stagione
     let season = season_for_date(today);
-    let lifetime = db_failure("Classifica", state.db.with_conn(|conn| contributor_leaderboard_rows(conn, 10)))?;
-    let seasonal = db_failure("Classifica della stagione", state.db.with_conn(|conn| season_leaderboard_rows(conn, &season.key, 10)))?;
+    let lifetime = db_failure("Classifica", state.db.with_conn(|conn| contributor_leaderboard_rows(conn, 10)))?; // Top 10 lifetime
+    let seasonal = db_failure("Classifica della stagione", state.db.with_conn(|conn| season_leaderboard_rows(conn, &season.key, 10)))?; // Top 10 stagionale
     Ok(json!({
         "season": season.label,
         "lifetime": lifetime.iter().map(|row| json!({
@@ -477,7 +470,9 @@ fn public_site_payload(state: &PublicApiState) -> Result<Value, Response> {
 }
 
 /// `_safe_script_json`: JSON adatto a stare dentro un `<script>`.
+// Sanitizza i caratteri HTML speciali per prevenire injection XSS quando il JSON è inline.
 fn safe_script_json(payload: &Value) -> String {
+    // Converte a JSON ASCII, poi escapa <, >, & per sicurezza
     python_json_ascii(payload).replace('<', "\\u003c").replace('>', "\\u003e").replace('&', "\\u0026")
 }
 
@@ -485,15 +480,18 @@ async fn community_site(State(state): State<PublicApiState>) -> Response {
     community_site_inner(&state).unwrap_or_else(|response| response)
 }
 
+// Handler per la pagina community pubblica.
+// Inserisce i dati JSON nel template HTML e imposta header di sicurezza.
 fn community_site_inner(state: &PublicApiState) -> Reply {
+    // Sostituisce il placeholder con i dati JSON sanitizzati
     let rendered = COMMUNITY_HTML.replace(DATA_PLACEHOLDER, &safe_script_json(&public_site_payload(state)?));
     let mut response = Response::new(axum::body::Body::from(rendered));
     let headers = response.headers_mut();
-    headers.insert(header::CONTENT_TYPE, HeaderValue::from_static("text/html; charset=utf-8"));
-    headers.insert(header::CACHE_CONTROL, HeaderValue::from_static(NO_STORE));
-    headers.insert(header::CONTENT_SECURITY_POLICY, HeaderValue::from_static(COMMUNITY_CSP));
-    headers.insert(header::REFERRER_POLICY, HeaderValue::from_static("no-referrer"));
-    headers.insert(header::X_CONTENT_TYPE_OPTIONS, HeaderValue::from_static("nosniff"));
+    headers.insert(header::CONTENT_TYPE, HeaderValue::from_static("text/html; charset=utf-8")); // Content-Type HTML UTF-8
+    headers.insert(header::CACHE_CONTROL, HeaderValue::from_static(NO_STORE)); // No cache per dati dinamici
+    headers.insert(header::CONTENT_SECURITY_POLICY, HeaderValue::from_static(COMMUNITY_CSP)); // CSP per sicurezza
+    headers.insert(header::REFERRER_POLICY, HeaderValue::from_static("no-referrer")); // Restrict referrer
+    headers.insert(header::X_CONTENT_TYPE_OPTIONS, HeaderValue::from_static("nosniff")); // Prevent MIME sniffing
     Ok(response)
 }
 

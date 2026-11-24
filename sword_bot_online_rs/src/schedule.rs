@@ -4,7 +4,36 @@
 //! locale anche a cavallo del cambio dell'ora legale). Un'ora locale che non esiste (salto in
 //! avanti) usa l'offset precedente al cambio e una ambigua (ora che si ripete) la prima
 //! occorrenza: sono le stesse regole di `zoneinfo`.
-// Verrà usato da reset, promemoria e sondaggi.
+//!
+//! # Panoramica del modulo
+//!
+//! Questo modulo gestisce la logica del "reset settimanale" che è il meccanismo principale
+//! per ripristinare le statistiche degli utenti ogni settimana. Il reset avviene una volta
+//! a settimana in un orario configurabile (es. ogni lunedì alle 12:00).
+//!
+//! # Concetti chiave
+//!
+//! - **Reset settimanale**: un evento ricorrente che ripristina punti, livelli e streak
+//!   degli utenti ogni settimana. Simile a un "limbo" settimanale.
+//! - **Orologio da muro (wall clock)**: l'ora locale non UTC, ma con l'offset corretto per il
+//!   fuso orario (es. +01:00 per Roma in inverno, +02:00 in estate).
+//! - **Cambio dell'ora legale**: una volta ogni 6 mesi, l'ora passa da inverno a estate (o viceversa).
+//!   Questo modulo gestisce automaticamente questi salti.
+//! - **Sondaggi**: i sondaggi aperti vengono chiusi automaticamente al prossimo reset.
+//!
+//! # Strutture principali
+//!
+//! - `ResetSchedule`: contiene il giorno e l'orario del reset settimanale.
+//!   - 0 = lunedì, 1 = martedì, ..., 6 = domenica
+//!   - hour = 0-23 (es. 12 = mezzogiorno)
+//!
+//! # Funzioni di utilità
+//!
+//! - `now()`: restituisce l'ora corrente in ora italiana.
+//! - `isoformat()`: converte un timestamp in formato stringa ISO 8601 per il database.
+//! - `weekly_reset_pending()`: verifica se deve essere eseguito un reset.
+//!
+//! # Verrà usato da reset, promemoria e sondaggi.
 #![allow(dead_code)]
 
 use chrono::{DateTime, Datelike, Duration, NaiveDateTime, Offset, TimeZone, Utc};
@@ -14,13 +43,40 @@ use crate::config::TZ;
 use crate::database::{self, Connected, DbResult};
 use crate::settings;
 
-/// Adesso, in ora italiana.
+/// Restituisce l'ora corrente convertita nell'orario italiano (Europe/Rome).
+    ///
+    /// Questa funzione è fondamentale perché tutti i calcoli del reset e dei promemoria
+    /// si basano sull'orologio da muro locale, non sull'ora UTC.
+    ///
+    /// # Esempio
+    ///
+    /// Se sono le 11:00 UTC, questa funzione restituisce 12:00 (ora italiana in inverno).
+    /// Se sono le 10:00 UTC in estate, restituisce 12:00 (ora italiana in estate).
+    ///
+    /// # Nota tecnica
+    ///
+    /// `TZ` è il fuso orario Europe/Rome configurato in `config.rs`. Usa `chrono_tz`
+    /// per gestire automaticamente il cambio orario.
 pub fn now() -> DateTime<Tz> {
     Utc::now().with_timezone(&TZ)
 }
 
-/// Come `datetime.isoformat()` di Python: `2026-11-09T12:00:00+01:00`, con i microsecondi
-/// (`.123456`) solo se non sono zero. È il formato salvato nel database (`last_reset`, audit…).
+/// Converte un timestamp in formato stringa ISO 8601.
+    ///
+    /// Questo è il formato che Python scriverebbe con `datetime.isoformat()`.
+    /// Esempio: `2026-11-09T12:00:00+01:00` o `2026-11-09T12:00:00.123456+01:00`
+    /// con microsecondi solo se diversi da zero.
+    ///
+    /// # Perché serve
+    ///
+    /// Il database salva le date in questo formato perché è leggibile da Python.
+    /// Quando il bot legge un valore, lo converte nuovamente in `DateTime<Tz>`.
+    ///
+    /// # Formato specificato
+    ///
+    /// - `%Y-%m-%d` = anno-mese-giorno (es. 2026-11-09)
+    /// - `%H:%M:%S` = ore:minuti:secondi (es. 12:00:00)
+    /// - `%:z` = offset dalla UTC con i due punti (es. +01:00)
 pub fn isoformat(value: DateTime<Tz>) -> String {
     let micros = value.timestamp_subsec_micros();
     let base = value.format("%Y-%m-%dT%H:%M:%S");
@@ -28,7 +84,30 @@ pub fn isoformat(value: DateTime<Tz>) -> String {
     if micros == 0 { format!("{base}{offset}") } else { format!("{base}.{micros:06}{offset}") }
 }
 
-/// Orologio da muro -> istante, con le regole di `zoneinfo` (fold=0) per ore inesistenti/ambigue.
+/// Converte un orologio da muro (datetime senza fuso) in un istante con fuso.
+    ///
+    /// Questa funzione gestisce i casi particolari del cambio dell'ora legale:
+    /// - **Ore inesistenti**: quando si "salta" in avanti (es. 02:00 diventa 03:00).
+    ///   L'ora 02:00 esiste, quindi prendiamo l'offset prima del salto.
+    /// - **Ore ambigue**: quando si "torna indietro" (es. 02:00 si ripete due volte).
+    ///   Prendiamo la PRIMA occorrenza (quella con l'offset "di prima").
+    ///
+    /// # Regole zoneinfo
+    ///
+    /// Questo comporta le stesse regole della libreria Python `zoneinfo`:
+    /// - fold=0: indica la prima occorrenza in un'ora ambigua
+    /// - per ore inesistenti, usa l'offset valido prima del salto
+    ///
+    /// # Esempio pratico
+    ///
+    /// In Italia, il cambio all'estate avviene la notte del 26 marzo:
+    /// - le 02:00-02:59 esistono, poi salto a 03:00
+    /// - se provieni da `2026-03-29T01:30:00` e aggiungi 1 ora,
+    ///   ottieni `2026-03-29T02:30:00` che esiste, quindi va bene
+    /// - se provieni da `2026-03-28T03:30:00` e sottrarrai 1 ora,
+    ///   ottieni `2026-03-29T02:30:00` che esiste
+    /// - ma se il calcolo da solo produrrebbe un'ora inesistente,
+    ///   la funzione la risolve correttamente
 pub fn from_wall_clock(naive: NaiveDateTime) -> DateTime<Tz> {
     if let Some(resolved) = TZ.from_local_datetime(&naive).earliest() {
         return resolved;
@@ -41,13 +120,55 @@ pub fn from_wall_clock(naive: NaiveDateTime) -> DateTime<Tz> {
     TZ.from_utc_datetime(&(naive - Duration::seconds(i64::from(offset_before))))
 }
 
-/// `value + delta` come lo fa Python con `timedelta` su un orario con fuso: sull'orologio da muro,
-/// quindi 3 giorni e mezzo prima restano le stesse ore locali anche a cavallo del cambio dell'ora legale.
+/// Aggiunge una durata a un timestamp, mantenendo l'orologio da muro.
+    ///
+    /// Questo è il comportamento identico a Python con `timedelta`:
+    /// quando aggiungi 3 giorni e 12 ore a un'ora, l'ora locale non cambia
+    /// anche se il calcolo attraversa il cambio dell'ora legale.
+    ///
+    /// # Esempio
+    ///
+    /// ```text
+    /// Ora: lunedì 16:00 (inverno, UTC+1)
+    /// + 7 giorni = lunedì successivo 16:00 (inverno, UTC+1)
+    ///
+    /// Se il reset è lunedì alle 12:00:
+    /// - ultimo reset: lunedì 12:00
+    /// - prossimo reset: lunedì successivo 12:00
+    /// ```
+    ///
+    /// # Perché è importante
+    ///
+    /// Se usassimo solo l'aritmetica UTC, il reset potrebbe cambiare ora
+    /// quando passiamo dall'inverno all'estate. Con l'orologio da muro,
+    /// il reset è sempre alle stesse ore locali.
 pub fn shift_wall_clock(value: DateTime<Tz>, delta: Duration) -> DateTime<Tz> {
     from_wall_clock(value.naive_local() + delta)
 }
 
 /// Giorno e ora del reset settimanale (configurabili da /config).
+///
+/// Il reset è un evento ricorrente che ripristina:
+/// - I punti guadagnati durante la settimana
+/// - I livelli degli utenti
+/// - Gli streak di presenza
+/// - Lo stato dei sondaggi
+///
+/// # Campi
+///
+/// - `weekday`: giorno della settimana (0=lunedì, 1=martedì, ..., 6=domenica)
+/// - `hour`: ora del giorno in 24h (0-23, es. 12 = mezzogiorno)
+///
+/// # Esempio
+///
+/// ```text
+/// ResetSchedule { weekday: 0, hour: 12 }
+/// → Reset ogni lunedì alle 12:00
+/// ```
+///
+/// Configurabile via comando `/config`:
+/// - `reset_weekday`: giorno del reset
+/// - `reset_hour`: ora del reset
 #[derive(Debug, Clone, Copy, PartialEq, Eq)]
 pub struct ResetSchedule {
     /// 0 = lunedì … 6 = domenica.
@@ -56,17 +177,71 @@ pub struct ResetSchedule {
 }
 
 impl ResetSchedule {
+    /// Crea una nuova programmazione del reset, validando i parametri.
+    ///
+    /// # Validazione
+    ///
+    /// - `weekday` deve essere 0-6 (lunedì-domenica)
+    /// - `hour` deve essere 0-23 (mezzanotte-mezzogiorno)
+    ///
+    /// # Ritorno
+    ///
+    /// - `Some(Self)` se i parametri sono validi
+    /// - `None` se i parametri sono fuori range
+    ///
+    /// # Esempio
+    ///
+    /// ```text
+    /// ResetSchedule::new(0, 12) → Some(ResetSchedule{weekday:0, hour:12}) // lunedì 12:00
+    /// ResetSchedule::new(7, 12) → None // giorno 7 non esiste
+    /// ResetSchedule::new(0, 24) → None // ora 24 non esiste
+    /// ```
     pub fn new(weekday: u32, hour: u32) -> Option<Self> {
         (weekday <= 6 && hour <= 23).then_some(Self { weekday, hour })
     }
 
-    /// Giorno e ora attualmente configurati (con i predefiniti di `config`).
-    pub fn from_settings(db: &impl Connected) -> DbResult<Self> {
+    /// Legge il reset corrente dalle impostazioni del database.
+    ///
+    /// Recupera i valori configurati tramite `/config`:
+    /// - `reset_weekday`: giorno del reset (default: 0 = lunedì)
+    /// - `reset_hour`: ora del reset (default: 12 = mezzogiorno)
+    ///
+    /// # Panic
+    ///
+    /// Panica se i valori nel database sono fuori range. Questo non dovrebbe
+    /// mai succedere perché il comando `/config` valida gli input prima di salvare.
+    ///
+    /// # Errori possibili
+    ///
+    /// - Errore di database se non può leggere le impostazioni
+pub fn from_settings(db: &impl Connected) -> DbResult<Self> {
         let weekday = settings::reset_weekday(db)? as u32;
         let hour = settings::reset_hour(db)? as u32;
         Ok(Self::new(weekday, hour).expect("le impostazioni sono già limitate a 0..=6 e 0..=23"))
     }
 
+    /// Calcola l'ultimo reset programmato rispetto a un'ora data.
+    ///
+    /// Se siamo già passati l'orario del reset di oggi, ritorna l'orario
+    /// di oggi. Altrimenti ritorna lo stesso orario di una settimana prima.
+    ///
+    /// # Algoritmo
+    ///
+    /// 1. Calcola quanti giorni devi andare indietro dal giorno odierno
+    ///    per raggiungere il giorno del reset settimanale
+    /// 2. Crea un orario con l'orario del reset
+    /// 3. Se quell'orario è futuro rispetto a `now`, sottrai 7 giorni
+    ///
+    /// # Esempio
+    ///
+    /// ```text
+    /// Reset: lunedì 12:00
+    /// now = mercoledì 14:00
+    /// → ultimo reset = lunedì 12:00 (già passato)
+    ///
+    /// now = lunedì 10:00 (prima del reset)
+    /// → ultimo reset = lunedì 12:00 (settimana scorsa)
+    /// ```
     fn last_wall_clock(self, now: NaiveDateTime) -> NaiveDateTime {
         let days_back = (i64::from(now.weekday().num_days_from_monday()) - i64::from(self.weekday)).rem_euclid(7);
         let candidate = (now.date() - Duration::days(days_back))
@@ -75,31 +250,101 @@ impl ResetSchedule {
         if candidate > now { candidate - Duration::days(7) } else { candidate }
     }
 
+    /// Calcola il prossimo reset programmato rispetto a un'ora data.
+    ///
+    /// Ritorna l'orario del reset più vicino, che può essere oggi o
+    /// una settimana in avanti.
+    ///
+    /// # Esempio
+    ///
+    /// ```text
+    /// Reset: lunedì 12:00
+    /// now = mercoledì 14:00
+    /// → prossimo reset = lunedì 12:00 (tra 5 giorni)
+    ///
+    /// now = lunedì 10:00 (prima del reset)
+    /// → prossimo reset = lunedì 12:00 (tra 2 ore)
+    /// ```
     fn next_wall_clock(self, now: NaiveDateTime) -> NaiveDateTime {
         let target = self.last_wall_clock(now);
         if target <= now { target + Duration::days(7) } else { target }
     }
 
-    /// Ultimo reset programmato.
+    /// Timestamp dell'ultimo reset che dovrebbe essere stato eseguito.
+    ///
+    /// Questo è l'orario del reset più recente che dovrebbe essere stato
+    /// completato. Viene confrontato con `last_reset` nel database per verificare
+    /// se c'è un reset pendente.
+    ///
+    /// # Usaggio
+    ///
+    /// La funzione `weekly_reset_pending()` confronta questo valore con il
+    /// timestamp salvato in `last_reset`. Se il salvato è più vecchio,
+    /// allora c'è un reset da fare.
+    ///
+    /// # Conversione
+    ///
+    /// Usa `from_wall_clock()` per gestire correttamente il cambio dell'ora legale.
     pub fn last_scheduled_reset(self, now: DateTime<Tz>) -> DateTime<Tz> {
         from_wall_clock(self.last_wall_clock(now.naive_local()))
     }
 
+    /// Timestamp del prossimo reset che deve avvenire.
+    ///
+    /// Questo è l'orario del prossimo reset settimanale.
+    /// Usato per:
+    /// - Chiusura automatica dei sondaggi
+    /// - Calcolo del promemoria
+    /// - Aggiornamento del dashboard
     pub fn next_scheduled_reset(self, now: DateTime<Tz>) -> DateTime<Tz> {
         from_wall_clock(self.next_wall_clock(now.naive_local()))
     }
 
-    /// Momento del promemoria: 24 ore (di orologio) prima del prossimo reset.
+    /// Timestamp del promemoria prima del prossimo reset.
+    ///
+    /// Il promemoria viene inviato 24 ore prima del reset.
+    /// Così gli utenti possono vedere i loro punti prima che vengano azzerati.
+    ///
+    /// # Esempio
+    ///
+    /// ```text
+    /// Reset: lunedì 12:00
+    /// now = domenica 10:00
+    /// → promemoria = domenica 12:00
+    ///
+    /// now = lunedì 10:00 (giorno del reset)
+    /// → promemoria = domenica 12:00 (già passato, nessun promemoria)
+    /// ```
     pub fn reminder_time(self, now: DateTime<Tz>) -> DateTime<Tz> {
         from_wall_clock(self.next_wall_clock(now.naive_local()) - Duration::days(1))
     }
 
-    /// I sondaggi restano aperti fino al prossimo reset settimanale (timestamp Unix).
+    /// Timestamp Unix di quando chiudere i sondaggi.
+    ///
+    /// I sondaggi sono chiusi al prossimo reset settimanale.
+    /// Questo timestamp Unix lo usa Discord per le notifiche di chiusura.
+    ///
+    /// # Perché Unix timestamp?
+    ///
+    /// Discord usa formato Unix per le notifiche dei sondaggi.
+    /// Esempio: `<t:1794826800:F>` mostra "lunedì 16 novembre 2026, ore 12:00:00".
     pub fn poll_closing_time(self, now: DateTime<Tz>) -> f64 {
         self.next_scheduled_reset(now).timestamp() as f64
     }
 }
 
+/// Funzioni di utilità pubbliche che combinano `from_settings` e i metodi dell'impl.
+///
+/// Queste funzioni sono un'alternativa più comoda da usare quando non hai
+/// bisogno del `ResetSchedule` direttamente.
+///
+/// # Esempio d'uso
+///
+/// ```text
+/// let next = next_scheduled_reset(&db, now)?;
+/// let ts = next.timestamp();
+/// // Usa ts per Discord o per salvare nel database
+/// ```
 pub fn last_scheduled_reset(db: &impl Connected, now: DateTime<Tz>) -> DbResult<DateTime<Tz>> {
     Ok(ResetSchedule::from_settings(db)?.last_scheduled_reset(now))
 }
@@ -116,10 +361,36 @@ pub fn poll_closing_time(db: &impl Connected, now: DateTime<Tz>) -> DbResult<f64
     Ok(ResetSchedule::from_settings(db)?.poll_closing_time(now))
 }
 
-/// `true` se l'ultimo reset eseguito è precedente all'ultimo reset programmato.
-///
-/// `last_reset` è un ISO 8601 con offset (es. `2026-11-09T12:00:00+01:00`), come lo scrive Python.
-pub fn weekly_reset_pending(db: &impl Connected, now: DateTime<Tz>) -> DbResult<bool> {
+/// Verifica se c'è un reset settimanale pendente da eseguire.
+    ///
+    /// Confronta l'ultimo reset registrato nel database con il prossimo reset
+    /// che dovrebbe avvenire secondo la programmazione.
+    ///
+    /// # Logica
+    ///
+    /// ```text
+    /// last_reset (dal DB)  <  next_scheduled_reset
+    ///         │                        │
+    ///     "2026-11-09"          "2026-11-16"
+    ///         │                        │
+    ///         └───  Settimana 1 ───────┘  → Pendente!
+    /// ```
+    ///
+    /// Se `last_reset` è già aggiornato all'ultimo reset programmato,
+    /// allora non c'è nulla da fare.
+    ///
+    /// # Formato del database
+    ///
+    /// `last_reset` è salvato in formato ISO 8601 con offset:
+    /// `2026-11-09T12:00:00+01:00`
+    /// Questo è il formato che Python scriverebbe con `datetime.isoformat()`.
+    ///
+    /// # Casi particolari
+    ///
+    /// - Se `last_reset` non esiste nel database → `Ok(false)`, nessun reset da fare
+    /// - Se il valore nel database non è una data valida → errore
+    /// - Se `last_reset` è più vecchio del prossimo reset → `Ok(true)`
+    pub fn weekly_reset_pending(db: &impl Connected, now: DateTime<Tz>) -> DbResult<bool> {
     let Some(raw) = database::setting(db, "last_reset")? else {
         return Ok(false);
     };

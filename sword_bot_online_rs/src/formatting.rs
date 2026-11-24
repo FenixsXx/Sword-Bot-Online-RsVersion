@@ -1,4 +1,11 @@
-//! Piccole funzioni di formattazione dei testi (equivalente di `sfo/formatting.py`).
+//! Modulo di formattazione e utilità testuali per il bot Discord.
+//!
+//! Questo modulo contiene funzioni di supporto per la manipolazione delle stringhe,
+//! la gestione degli URL, la creazione di barre di avanzamento visive e la formattazione
+//! dei dati tipo Python. Tutte le funzioni sono state scritte per comportarsi esattamente
+//! come gli equivalenti in Python, garantendo coerenza tra le due implementazioni.
+//! Queste funzioni sono utilizzate in tutta l'applicazione per presentare le informazioni
+//! agli utenti in modo chiaro e uniformemente formattato.
 //!
 //! Tutto `sfo/formatting.py` (`progress_bar`, `proposal_type_emoji`, `normalize`,
 //! `proposal_image_url`), più `casefold` e `python_json` che servono per essere identici a Python.

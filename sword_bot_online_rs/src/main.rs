@@ -226,6 +226,7 @@ async fn on_error(err: poise::FrameworkError<'_, Data, Error>) {
 
 #[tokio::main]
 async fn main() {
+    let _ = rustls::crypto::ring::default_provider().install_default();
     // Approssima l'avvio del processo (base di `uptime_seconds` in /health).
     let started_at = Instant::now();
     // Livello predefinito INFO, come `logging.info` del bot Python.

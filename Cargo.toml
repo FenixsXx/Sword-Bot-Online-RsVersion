@@ -1,0 +1,4 @@
+[workspace]
+members = ["sword_bot_online_rs"]
+default-members = ["sword_bot_online_rs"]
+resolver = "3"

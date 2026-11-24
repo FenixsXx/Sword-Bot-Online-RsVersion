@@ -1,3 +1,17 @@
+/*
+ * Questo file gestisce la logica del pannello di amministrazione del sito.
+ *
+ * Concetti base di JavaScript usati qui:
+ * - Import: Importiamo funzioni da altri file (API, gestione DOM, stato) per organizzare il codice.
+ * - Funzioni: Blocchi di codice che eseguono compiti specifici (es. 'renderWelcomePreview').
+ * - Asincronia (async/await): Poiché il sito deve parlare con il server (il "backend" in Rust),
+ *   usiamo 'async' per le funzioni che richiedono tempo, attendendo i dati con 'await'.
+ * - Eventi: Il codice reagisce alle azioni dell'utente (click, input, submit sui moduli)
+ *   collegando funzioni agli elementi HTML (es. l'invio di un modulo chiama 'submitSettings').
+ * - Manipolazione DOM: Cerchiamo elementi HTML nel sito ($("#ID")) e modifichiamo il loro
+ *   contenuto o aspetto (es. cambiare testo, attivare checkbox, costruire tabelle).
+ */
+
 import { apiRequest } from "./api.js";
 import { $, $$, element, uniqueId } from "./dom.js";
 import { latestOnly, state } from "./state.js";

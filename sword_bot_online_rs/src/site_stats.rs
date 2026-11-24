@@ -25,12 +25,16 @@ const EVENTS_LIMIT_RANGE: (i64, i64) = (1, 100);
 const HISTORY_LIMIT_RANGE: (i64, i64) = (1, 100);
 const HISTORY_QUERY_LENGTH: (usize, usize) = (2, 100);
 
+/// Stato condiviso per le route del modulo delle statistiche staff.
+/// Contiene riferimenti a Auth e PlatformData per elaborare le richieste.
 #[derive(Clone)]
 pub struct StatsState {
     pub auth: Arc<SiteAuth>,
     pub data: Arc<PlatformData>,
 }
 
+/// Registra le route dell'API statistiche staff.
+/// Fornisce endpoint per overview, health, heatmap, accuracy, events e history.
 pub fn routes(state: StatsState) -> Router {
     Router::new()
         .route("/api/site/stats/overview", get(overview))
@@ -45,7 +49,15 @@ pub fn routes(state: StatsState) -> Router {
 /// Un parametro non valido: il messaggio che il browser mostra (risposta 400).
 struct InvalidParameter(String);
 
-/// Un parametro intero con valore predefinito e limiti (`_int_param`).
+/// Estrae un parametro intero dalla query con validazione e limiti.
+///
+/// - `query`: mappa dei parametri della query
+/// - `name`: nome del parametro da estrarre
+/// - `default`: valore di default se il parametro manca o è vuoto
+/// - `bounds`: coppia (min, max) per il range accettabile
+/// - `label`: nome leggibile per messaggi di errore
+///
+/// Ritorna `Err(InvalidParameter)` se il valore è fuori range.
 fn int_param(query: &std::collections::HashMap<String, String>, name: &str, default: i64, bounds: (i64, i64), label: &str) -> Result<i64, InvalidParameter> {
     let Some(raw) = query.get(name).filter(|raw| !raw.is_empty()) else {
         return Ok(default);
@@ -58,11 +70,31 @@ fn int_param(query: &std::collections::HashMap<String, String>, name: &str, defa
     Ok(value)
 }
 
-/// Gli ID Discord vanno inviati come stringhe.
+// Converte gli ID Discord in stringhe per compatibilità con JavaScript.
+// I numeri interi grandi possono perdere precisione in JS, quindi vengono
+// serializzati come stringhe quando non sono null.
 fn user_id_text(value: &Value) -> Value {
     if value.is_null() { Value::Null } else { Value::String(value.as_i64().map_or_else(|| value.to_string(), |id| id.to_string())) }
 }
 
+// Trasforma i dati dell'evento aggiungendo gli ID utente come stringhe per JS.
+fn events_payload(mut data: Value) -> Value {
+    if let Some(reports) = data.get_mut("reports").and_then(Value::as_array_mut) {
+        for report in reports {
+            if let Some(speakers) = report.get_mut("top_speakers").and_then(Value::as_array_mut) {
+                for speaker in speakers {
+                    let id = user_id_text(&speaker["user_id"]);
+                    speaker["user_id"] = id;
+                }
+            }
+        }
+    }
+    // Come in Python il testo sui limiti precede i reports.
+    json!({"limitations": data["limitations"], "reports": data["reports"]})
+}
+
+// Costruisce il payload per l'endpoint di accuratezza dello staff.
+// Include la definizione metrica e l'elenco degli staff con le loro percentuali.
 fn accuracy_payload(rows: &Value) -> Value {
     let rows = rows.as_array().cloned().unwrap_or_default();
     let definition = rows.first().map_or_else(
@@ -81,21 +113,7 @@ fn accuracy_payload(rows: &Value) -> Value {
     })
 }
 
-fn events_payload(mut data: Value) -> Value {
-    if let Some(reports) = data.get_mut("reports").and_then(Value::as_array_mut) {
-        for report in reports {
-            if let Some(speakers) = report.get_mut("top_speakers").and_then(Value::as_array_mut) {
-                for speaker in speakers {
-                    let id = user_id_text(&speaker["user_id"]);
-                    speaker["user_id"] = id;
-                }
-            }
-        }
-    }
-    // Come in Python il testo sui limiti precede i report.
-    json!({"limitations": data["limitations"], "reports": data["reports"]})
-}
-
+// Trasforma il payload storico convertendo gli ID Discord in stringhe.
 fn history_payload(mut data: Value) -> Value {
     if let Some(timeline) = data.get_mut("timeline").and_then(Value::as_array_mut) {
         for item in timeline {
@@ -106,7 +124,21 @@ fn history_payload(mut data: Value) -> Value {
     data
 }
 
-/// Autorizza la richiesta, costruisce la risposta e traduce gli errori come `endpoint` di Python.
+// Costruisce il payload per l'endpoint di community records.
+// Converte gli ID utente in stringhe e organizza i record per chiave.
+fn community_records_payload(rows: &mut [Value]) -> Value {
+    Value::Array(rows.iter().map(|row| {
+        let mut obj = row.as_object().cloned().unwrap_or_default();
+        if let Some(user_id) = obj.get("user_id") {
+            obj.insert("user_id".to_string(), user_id_text(user_id));
+        }
+        Value::Object(obj)
+    }).collect())
+}
+
+/// Handler principale per l'autorizzazione e la risposta.
+/// Autorizza la richiesta tramite SiteAuth, costruisce il payload con PlatformData
+/// e traduce gli errori nei rispettivi endpoint Python.
 async fn endpoint(state: &StatsState, headers: &HeaderMap, path: &str, build: impl FnOnce(&PlatformData) -> Result<Result<Value, DataError>, InvalidParameter>) -> Response {
     if let Err(response) = state.auth.authorize(headers, false).await {
         return response;
@@ -129,10 +161,12 @@ async fn endpoint(state: &StatsState, headers: &HeaderMap, path: &str, build: im
     }
 }
 
+/// Endpoint: overview statistiche staff.
 async fn overview(State(state): State<StatsState>, headers: HeaderMap) -> Response {
     endpoint(&state, &headers, "/api/site/stats/overview", |data| Ok(data.overview())).await
 }
 
+/// Endpoint: health della community con parametro opzionale `days`.
 async fn health(State(state): State<StatsState>, headers: HeaderMap, RawQuery(raw): RawQuery) -> Response {
     let query = query_params(raw);
     endpoint(&state, &headers, "/api/site/stats/health", |data| {
@@ -142,6 +176,7 @@ async fn health(State(state): State<StatsState>, headers: HeaderMap, RawQuery(ra
     .await
 }
 
+/// Endpoint: heatmap attività con parametro `days`.
 async fn heatmap(State(state): State<StatsState>, headers: HeaderMap, RawQuery(raw): RawQuery) -> Response {
     let query = query_params(raw);
     endpoint(&state, &headers, "/api/site/stats/heatmap", |data| {

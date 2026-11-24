@@ -1,3 +1,15 @@
+/*
+ * Questo file gestisce la comunicazione del sito con il backend Rust.
+ *
+ * Concetti chiave:
+ * - Fetch: È la funzione nativa di JavaScript usata per "chiedere" dati al server.
+ *   Pensa a `apiRequest` come a un corriere: parte dal browser (il tuo sito),
+ *   porta un messaggio al server Rust e torna con una risposta (solitamente in formato JSON).
+ * - Asincronia: Il browser non si blocca mentre aspetta la risposta dal server.
+ *   Usiamo 'async' per dire "questo compito richiede tempo" e 'await' per "metti in pausa questa
+ *   funzione finché il server non risponde".
+ */
+
 let unauthorizedHandler = null;
 
 /** Registra la funzione chiamata quando il server risponde 401 (sessione scaduta). */

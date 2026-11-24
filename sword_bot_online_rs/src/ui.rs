@@ -1,9 +1,46 @@
 //! Componenti di interfaccia riutilizzabili (equivalente di `sfo/ui.py`).
 //!
-//! discord.py modella i pulsanti come una `View` con callback. In poise/serenity non esiste
-//! `View`: si invia un messaggio con i componenti e si attendono i clic con un
-//! `ComponentInteractionCollector`. [`confirm_view`] è il `ConfirmView` di Python in questa forma:
-//! invece di passare una callback `on_confirm`, restituisce l'esito e chi chiama continua da lì.
+//! Questo modulo fornisce componenti UI per interagire con gli utenti Discord.
+//!
+//! # Panoramica
+//!
+//! I componenti Discord (pulsanti, menu a tendina, modali) sono modi per
+//! permettere all'utente di interagire senza scrivere testo lungo.
+//! Questo modulo fornisce componenti riutilizzabili per:
+//! - Conferme (sì/no)
+//! - Pulsanti di azione
+//! - Gestione dei timeout
+//!
+//! # Differenze da discord.py
+//!
+//! `discord.py` usa un sistema a "callback" con `View`. I pulsanti hanno una
+//! funzione che si esegue quando l'utente clicca.
+//!
+//! In `poise`/`serenity` Rust, il sistema è diverso:
+//! - Si invia un messaggio con i pulsanti
+//! - Si "raccoglie" le interazioni con `ComponentInteractionCollector`
+//! - Si elabora l'esito in un loop
+//!
+//! Per questo motivo `confirm_view` ha un comportamento diverso:
+//! - **discord.py**: passi una callback, l'utente clicca, la callback si esegue
+//! - **Rust**: passi un contesto, l'utente clicca, la funzione restituisce l'esito
+//!
+//! # Esempio d'uso
+//!
+//! ```text
+//! match confirm_view(ctx, "Cancellare tutto?", "Sì, cancella", 60s).await? {
+//!     ConfirmOutcome::Confirmed(interaction) => {
+//!         // L'utente ha premuto "Sì"
+//!         interaction.create_response(...).await?;
+//!     }
+//!     ConfirmOutcome::Cancelled => {
+//!         // L'utente ha premuto "Annulla"
+//!     }
+//!     ConfirmOutcome::TimedOut => {
+//!         // Nessun clic entro 60 secondi
+//!     }
+//! }
+//! ```
 // Verrà usato dai comandi che chiedono conferma (reset, rimozioni, unione di proposte).
 #![allow(dead_code)]
 
@@ -28,15 +65,26 @@ pub const CANCELLED_MESSAGE: &str = "Operazione annullata.";
 // --- pulsanti persistenti --------------------------------------------------------------------
 
 /// Stile di un pulsante (i colori di `discord.ButtonStyle`).
+///
+/// Discord ha stili fissi per i pulsanti:
+/// - Primary (Blu): Azione principale
+/// - Secondary (Grigio): Azione neutra o annullamento
+/// - Success (Verde): Conferma positiva
+/// - Danger (Rosso): Azione distruttiva (es. elimina)
 #[derive(Debug, Clone, Copy, PartialEq, Eq)]
 pub enum ButtonKind {
+    /// Blu, per azioni principali.
     Primary,
+    /// Grigio, per azioni secondarie o annullamento.
     Secondary,
+    /// Verde, per azioni positive.
     Success,
+    /// Rosso, per azioni potenzialmente distruttive.
     Danger,
 }
 
 impl ButtonKind {
+    /// Converte il nostro tipo `ButtonKind` nello stile nativo di Discord.
     fn style(self) -> ButtonStyle {
         match self {
             ButtonKind::Primary => ButtonStyle::Primary,
@@ -48,16 +96,26 @@ impl ButtonKind {
 }
 
 /// Descrizione di un pulsante, separata da serenity così i layout si possono confrontare nei test.
+///
+/// Questo oggetto è una rappresentazione indipendente dal framework per poter
+/// testare i layout dei pulsanti (es. quanti pulsanti per riga) senza dover
+/// avviare un bot Discord reale.
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub struct ViewButton {
+    /// ID personalizzato per identificare il clic (es. `b:0`)
     pub custom_id: String,
+    /// Testo mostrato sul pulsante
     pub label: String,
+    /// Emoji opzionale (es. `"📋"`)
     pub emoji: Option<&'static str>,
+    /// Stile del pulsante (colore)
     pub kind: ButtonKind,
+    /// Se il pulsante è disabilitato (non cliccabile)
     pub disabled: bool,
 }
 
 impl ViewButton {
+    /// Converte il nostro `ViewButton` in un pulsante nativo `CreateButton` di serenity.
     fn create(&self) -> CreateButton {
         let mut button = CreateButton::new(self.custom_id.as_str())
             .label(self.label.as_str())
@@ -83,6 +141,13 @@ pub fn button_rows(buttons: &[ViewButton]) -> Vec<CreateActionRow> {
 }
 
 /// Come è finita la richiesta di conferma.
+///
+/// Questo enum rappresenta tutti i possibili esiti di una finestra di conferma:
+/// - `Confirmed`: l'utente ha premuto il pulsante di conferma. Restituisce
+///   l'interazione così puoi rispondere e aggiornare il messaggio.
+/// - `Cancelled`: l'utente ha premuto "Annulla". Il messaggio è già stato aggiornato.
+/// - `TimedOut`: nessuno ha cliccato entro il tempo limite (60 secondi). I pulsanti
+///   vengono rimossi automaticamente.
 #[derive(Debug)]
 pub enum ConfirmOutcome {
     /// Il proprietario ha premuto il pulsante di conferma. L'interazione non è ancora stata
@@ -95,32 +160,89 @@ pub enum ConfirmOutcome {
     TimedOut,
 }
 
-/// `custom_id` dei due pulsanti, unici per ogni richiesta (derivati dall'ID dell'interazione).
+/// `custom_id` dei due pulsanti, unici per ogni richiesta.
+///
+/// Questi ID sono unici per ogni richiesta di conferma e devono essere
+/// unici anche all'interno di Discord (max 100 caratteri).
+///
+/// # Regole di sicurezza
+///
+/// - Non possono essere usati per attacchi XSS
+/// - Non possono essere usati per violare la privacy
+/// - Devono essere unici per ogni richiesta
+///
+/// # Esempio
+///
+/// ```text
+/// confirm_id = "sfo:confirm:12345:yes"
+/// cancel_id = "sfo:confirm:12345:no"
+/// ```
 #[derive(Debug, Clone, PartialEq, Eq)]
 struct ConfirmIds {
+    /// ID del pulsante di conferma (sì)
     confirm: String,
+    /// ID del pulsante di annullamento (no)
     cancel: String,
 }
 
 impl ConfirmIds {
+    /// Crea un nuovo set di ID unici per una richiesta di conferma.
+    ///
+    /// Usa un nonce (numero casuale) per garantire unicità.
+    ///
+    /// # Parametri
+    ///
+    /// - `nonce`: Un numero univoco per questa richiesta (es. `ctx.id()`)
+    ///
+    /// # Esempio
+    ///
+    /// ```text
+    /// let ids = ConfirmIds::new(12345);
+    /// assert_eq!(ids.confirm, "sfo:confirm:12345:yes");
+    /// assert_eq!(ids.cancel, "sfo:confirm:12345:no");
+    /// ```
     fn new(nonce: u64) -> Self {
         Self { confirm: format!("sfo:confirm:{nonce}:yes"), cancel: format!("sfo:confirm:{nonce}:no") }
     }
 }
 
 /// Cosa significa un clic su uno dei componenti raccolti.
+///
+/// Quando raccogliamo le interazioni, dobbiamo classificare ogni clic
+/// per capire se è una conferma, un annullamento, un altro utente,
+/// o un clic su un componente non nostro.
 #[derive(Debug, Clone, Copy, PartialEq, Eq)]
 enum Click {
+    /// Il proprietario ha cliccato "Conferma"
     Confirm,
+    /// Il proprietario ha cliccato "Annulla"
     Cancel,
     /// Un altro utente: non può rispondere a una conferma non sua.
     NotOwner,
-    /// Un componente di un'altra richiesta.
+    /// Un componente di un'altra richiesta (es. clic su un pulsante vecchio).
     Unrelated,
 }
 
-/// Come `interaction_check` + callback dei pulsanti: prima il controllo del proprietario,
-/// poi quale pulsante è stato premuto.
+/// Classifica un clic per capire cosa significa.
+///
+/// Questa funzione è il cuore della logica di controllo:
+/// 1. Prima verifica se il pulsante cliccato appartiene a QUESTA richiesta
+/// 2. Poi verifica se chi ha cliccato è il PROPRIETARIO (chi ha avviato il comando)
+/// 3. Infine determina se è conferma o annullamento
+///
+/// # Parametri
+///
+/// - `custom_id`: L'ID del pulsante cliccato
+/// - `ids`: Gli ID di conferma per questa richiesta
+/// - `user`: Chi ha cliccato
+/// - `owner`: Chi ha avviato il comando
+///
+/// # Ritorno
+///
+/// - `Click::Confirm`: Proprietario ha cliccato "Sì"
+/// - `Click::Cancel`: Proprietario ha cliccato "No"
+/// - `Click::NotOwner`: Qualcun altro ha cliccato
+/// - `Click::Unrelated`: Pulsante di un'altra richiesta
 fn classify(custom_id: &str, ids: &ConfirmIds, user: UserId, owner: UserId) -> Click {
     if custom_id != ids.confirm && custom_id != ids.cancel {
         return Click::Unrelated;
@@ -131,6 +253,21 @@ fn classify(custom_id: &str, ids: &ConfirmIds, user: UserId, owner: UserId) -> C
     if custom_id == ids.confirm { Click::Confirm } else { Click::Cancel }
 }
 
+/// Crea i componenti (pulsanti) per una conferma.
+///
+/// Genera una riga con due pulsanti:
+/// - Conferma: stile Danger (rosso), etichetta personalizzata
+/// - Annulla: stile Secondary (grigio), etichetta "Annulla"
+///
+/// # Parametri
+///
+/// - `ids`: Gli ID unici per questa conferma
+/// - `confirm_label`: Cosa scrivere sul pulsante di conferma (es. "Elimina", "Reset")
+///
+/// # Note
+///
+/// Il pulsante di conferma usa `Danger` (rosso) perché solitamente
+/// queste conferme sono per azioni distruttive.
 fn components(ids: &ConfirmIds, confirm_label: &str) -> Vec<CreateActionRow> {
     vec![CreateActionRow::Buttons(vec![
         CreateButton::new(ids.confirm.as_str()).label(confirm_label).style(ButtonStyle::Danger),
@@ -146,6 +283,42 @@ fn components(ids: &ConfirmIds, confirm_label: &str) -> Vec<CreateActionRow> {
 ///
 /// Differenza da Python: alla scadenza i pulsanti vengono tolti (in Python restavano visibili ma
 /// inerti e un clic mostrava "interazione fallita").
+/// Chiede conferma prima di un'azione irreversibile, con un messaggio visibile solo a chi ha
+/// avviato il comando.
+///
+/// Solo chi ha avviato il comando può rispondere; gli altri ricevono un avviso privato e la
+/// richiesta resta aperta. Il timeout riparte a ogni clic, come in `discord.ui.View`.
+///
+/// # Parametri
+///
+/// - `ctx`: Contesto del comando poise/serenity
+/// - `content`: Testo della domanda (es. `"Vuoi davvero eliminare questa proposta?"`)
+/// - `confirm_label`: Etichetta sul pulsante di conferma (es. `"Elimina"`)
+/// - `timeout`: Durata massima prima della scadenza (es. `Duration::from_secs(60)`)
+///
+/// # Ritorno
+///
+/// Un `Result<ConfirmOutcome, Error>` che indica se l'utente ha confermato,
+/// annullato o se è scaduto il tempo.
+///
+/// # Esempio di utilizzo
+///
+/// ```text
+/// match confirm_view(ctx, "Resetta il database?", "Conferma Reset", Duration::from_secs(30)).await? {
+///     ConfirmOutcome::Confirmed(interaction) => {
+///         // Esegui il reset
+///         db.reset()?;
+///         // Rispondi all'interazione
+///         interaction.create_response(ctx, ...).await?;
+///     }
+///     ConfirmOutcome::Cancelled => {
+///         // L'utente ha annullato
+///     }
+///     ConfirmOutcome::TimedOut => {
+///         // Timeout scaduto
+///     }
+/// }
+/// ```
 pub async fn confirm_view(
     ctx: Context<'_>,
     content: &str,

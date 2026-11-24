@@ -4142,6 +4142,7 @@ dependencies = [
  "poise",
  "reqwest 0.13.5",
  "rusqlite",
+ "rustls 0.23.46",
  "serde",
  "serde_json",
  "sha2 0.11.1",

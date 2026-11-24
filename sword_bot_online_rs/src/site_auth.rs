@@ -1,9 +1,26 @@
-//! Accesso al sito staff con Discord (`cogs/site_auth.py`): sessioni in cookie, controllo dei
-//! permessi del membro nel server e login OAuth2 («Accedi con Discord»).
+//! Gestione dell'accesso al sito staff tramite Discord.
 //!
-//! Il sito non ha password: chi entra lo fa con il proprio account Discord, e per ogni richiesta si
-//! rilegge dal server se è ancora amministratore o staff. Le sessioni durano 12 ore e stanno nella
-//! tabella `web_sessions`; gli stati del login nella tabella `site_oauth_states`.
+//! Questo modulo gestisce l'autenticazione degli utenti che vogliono accedere al pannello di controllo
+//! del bot (il "sito staff"). Invece di usare una classica coppia email/password, il bot utilizza
+//! il sistema "Accedi con Discord" (OAuth2).
+//!
+//! ### Cos'è OAuth2?
+//!
+//! Immagina di voler entrare in un club privato (il sito staff del bot). Invece di avere una tua chiave,
+//! il club accetta che tu mostri la tua tessera di un'organizzazione fidata (Discord).
+//! 1. Tu clicchi su "Accedi con Discord".
+//! 2. Il sito ti manda su Discord, dove confermi la tua identità.
+//! 3. Discord manda un "codice" al bot.
+//! 4. Il bot scambia quel codice con Discord per ricevere le tue informazioni (chi sei, in che server sei).
+//! 5. Se il bot vede che sei un amministratore o un membro dello staff nel server Discord giusto, ti lascia entrare.
+//!
+//! ### Sessioni e Cookie
+//!
+//! Una volta che hai fatto l'accesso, il bot non vuole chiederti di rifarlo per ogni singola operazione.
+//! Per questo crea una "sessione":
+//! - Salva nel tuo browser un "cookie" (un piccolo frammento di testo) chiamato `sfo_site_session`.
+//! - Questo cookie è come un "pass giornaliero": finché è valido (qui dura 12 ore), il bot ti riconosce.
+//! - Le sessioni attive sono salvate nel database nella tabella `web_sessions`.
 
 use std::sync::{Arc, OnceLock};
 
@@ -25,94 +42,107 @@ use crate::site_common::{
 };
 use crate::voice::BoxFuture;
 
+/// Nome del cookie che mantiene l'utente collegato al sito.
 pub const SESSION_COOKIE: &str = "sfo_site_session";
+/// Nome del cookie temporaneo usato durante la procedura di login per sicurezza (anti-contraffazione).
 pub const STATE_COOKIE: &str = "sfo_discord_oauth_state";
-/// Quanto dura una sessione.
+/// Durata di una sessione di accesso (12 ore).
 pub const SESSION_SECONDS: u64 = 12 * 3600;
-/// Quanto vale uno stato OAuth.
+/// Quanto tempo è valido il tentativo di login (10 minuti). Se non completi l'accesso entro questo tempo, devi ricominciare.
 pub const OAUTH_STATE_TTL_SECONDS: f64 = 600.0;
 
+// Indirizzi ufficiali di Discord per gestire l'identità.
 const AUTHORIZE_URL: &str = "https://discord.com/oauth2/authorize";
 const TOKEN_URL: &str = "https://discord.com/api/oauth2/token";
 const PROFILE_URL: &str = "https://discord.com/api/users/@me";
 
-/// Chi sta usando il sito.
+/// Rappresenta l'utente che sta navigando sul sito.
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub struct SitePrincipal {
+    /// L'ID numerico unico dell'utente su Discord.
     pub user_id: u64,
+    /// Il nome che l'utente mostra sul server.
     pub display_name: String,
+    /// Vero se l'utente è un amministratore del server Discord.
     pub is_admin: bool,
+    /// Vero se l'utente ha un ruolo che lo qualifica come "staff" del bot.
     pub is_staff: bool,
 }
 
-// --- server Discord ----------------------------------------------------------------------------
+// --- Informazioni sul server Discord -----------------------------------------------------------
 
-/// Il server configurato, come lo conosce il bot.
+/// Informazioni base sul server (Guild) Discord, necessarie per il sito.
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub struct GuildFacts {
+    /// L'ID dell'utente che ha creato il server (il proprietario).
     pub owner_id: u64,
 }
 
-/// Un membro del server.
+/// Rappresenta un utente all'interno del server Discord.
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub struct SiteMember {
     pub display_name: String,
-    /// Ha il permesso di amministratore (anche tramite i ruoli).
+    /// Indica se l'utente ha poteri di amministratore nel server.
     pub administrator: bool,
+    /// Elenco dei ruoli (ID numerici) assegnati a questo utente.
     pub role_ids: Vec<u64>,
 }
 
-/// Ciò che le pagine di amministrazione mostrano del server: nome, membri, canali testuali e ruoli
-/// che lo staff può assegnare.
+/// Panoramica completa del server mostrata nelle pagine di amministrazione.
 #[derive(Debug, Clone, PartialEq, Eq, Default)]
 pub struct GuildOverview {
+    /// Nome del server (es. "Il mio Server Discord").
     pub name: String,
+    /// Numero totale di persone nel server.
     pub member_count: u64,
-    /// Canali testuali e di annunci (`guild.text_channels`), per posizione.
+    /// Elenco dei canali di testo (ID e nome) ordinati per posizione.
     pub text_channels: Vec<(u64, String)>,
-    /// Ruoli esclusi `@everyone` e quelli gestiti da un'integrazione, nell'ordine di `guild.roles`.
+    /// Elenco dei ruoli del server che lo staff può gestire.
     pub roles: Vec<(u64, String)>,
-    /// L'avatar del bot (`bot.user.display_avatar.url`); vuoto se il bot non è ancora pronto.
+    /// L'immagine profilo del bot.
     pub bot_avatar_url: String,
 }
 
+/// Possibili errori quando si cercano informazioni nella directory di Discord.
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub enum DirectoryError {
-    /// Discord ha risposto 403 (`discord.Forbidden`).
+    /// Il bot non ha i permessi per vedere queste informazioni.
     Forbidden,
-    /// Qualsiasi altro errore di rete o di Discord (`discord.HTTPException`).
+    /// Errore generico di comunicazione con i server di Discord.
     Http(String),
 }
 
-/// Dove si guardano il server e i suoi membri (`bot.get_guild`, `guild.get_member`,
-/// `guild.fetch_member`).
+/// Una "Directory" è un sistema per trovare informazioni sugli utenti e sul server.
+/// Questo "Trait" definisce quali azioni possiamo fare (astrazione).
 pub trait SiteDirectory: Send + Sync + 'static {
-    /// Il server, se il bot lo conosce.
+    /// Trova informazioni sul server dato il suo ID.
     fn guild(&self, guild_id: u64) -> Option<GuildFacts>;
-    /// Il membro, dalla cache o da Discord. `Ok(None)` se non appartiene al server.
+    /// Trova informazioni su un membro specifico del server.
     fn member(&self, guild_id: u64, user_id: u64) -> BoxFuture<'_, Result<Option<SiteMember>, DirectoryError>>;
-    /// Il nome mostrato di un membro, solo dalla cache (`guild.get_member`).
+    /// Recupera il nome di un membro dalla memoria veloce (cache), senza chiedere a Discord.
     fn cached_member_name(&self, _guild_id: u64, _user_id: u64) -> Option<String> {
         None
     }
-    /// I canali vocali del server (non gli Stage), per posizione (`guild.voice_channels`).
+    /// Elenca i canali vocali del server.
     fn voice_channels(&self, _guild_id: u64) -> Vec<(u64, String)> {
         Vec::new()
     }
-    /// Nome, canali testuali e ruoli del server, per le pagine di amministrazione.
+    /// Crea una panoramica completa del server per il pannello di amministrazione.
     fn guild_overview(&self, _guild_id: u64) -> Option<GuildOverview> {
         None
     }
 }
 
-/// L'ordine di `guild.roles` in discord.py: per posizione e, a parità, dall'ID più alto al più basso.
+/// Definisce l'ordine in cui mostrare i ruoli (stesso ordine usato dall'app di Discord).
 pub(crate) fn role_order(position: u16, id: u64) -> (u16, std::cmp::Reverse<u64>) {
     (position, std::cmp::Reverse(id))
 }
 
-/// La directory vera: cache del gateway e, se il membro non c'è, una richiesta a Discord.
+/// Implementazione reale della Directory che interroga la cache e le API di Discord.
 pub struct DiscordDirectory {
+    /// La cache locale del bot (informazioni salvate in memoria).
     cache: Arc<serenity::Cache>,
+    /// Il sistema per fare richieste dirette a Discord.
     http: Arc<serenity::Http>,
 }
 
@@ -124,6 +154,7 @@ impl DiscordDirectory {
 
 impl SiteDirectory for DiscordDirectory {
     fn guild(&self, guild_id: u64) -> Option<GuildFacts> {
+        // Cerca il server nella cache.
         self.cache.guild(GuildId::new(guild_id)).map(|guild| GuildFacts { owner_id: guild.owner_id.get() })
     }
 
@@ -146,6 +177,7 @@ impl SiteDirectory for DiscordDirectory {
 
     fn guild_overview(&self, guild_id: u64) -> Option<GuildOverview> {
         let guild = self.cache.guild(GuildId::new(guild_id))?;
+        // Prende canali di testo e annunci.
         let mut channels: Vec<(u16, u64, String)> = guild
             .channels
             .values()
@@ -153,6 +185,8 @@ impl SiteDirectory for DiscordDirectory {
             .map(|channel| (channel.position, channel.id.get(), channel.name.clone()))
             .collect();
         channels.sort_by_key(|(position, id, _)| (*position, *id));
+
+        // Prende i ruoli gestibili (esclude quelli automatici delle app).
         let mut roles: Vec<(u16, u64, String)> = guild
             .roles
             .values()
@@ -160,6 +194,7 @@ impl SiteDirectory for DiscordDirectory {
             .map(|role| (role.position, role.id.get(), role.name.clone()))
             .collect();
         roles.sort_by_key(|(position, id, _)| role_order(*position, *id));
+
         Some(GuildOverview {
             name: guild.name.clone(),
             member_count: guild.member_count,
@@ -178,18 +213,22 @@ impl SiteDirectory for DiscordDirectory {
                 administrator: guild.member_permissions(member).administrator(),
                 role_ids: member.roles.iter().map(|role| role.get()).collect(),
             };
+
+            // Prova prima a guardare in cache.
             if let Some(guild) = self.cache.guild(guild_id) {
                 if let Some(member) = guild.members.get(&user_id) {
                     return Ok(Some(describe(member, &guild)));
                 }
             }
+
+            // Se non c'è in cache, chiede direttamente a Discord via internet.
             match guild_id.member(&self.http, user_id).await {
                 Ok(member) => {
                     let Some(guild) = self.cache.guild(guild_id) else { return Err(DirectoryError::Http("server non in cache".into())) };
                     Ok(Some(describe(&member, &guild)))
                 }
                 Err(serenity::Error::Http(serenity::HttpError::UnsuccessfulRequest(response))) => match response.status_code.as_u16() {
-                    404 => Ok(None),
+                    404 => Ok(None), // L'utente non è nel server.
                     403 => Err(DirectoryError::Forbidden),
                     _ => Err(DirectoryError::Http(format!("HTTP {}", response.status_code))),
                 },
@@ -199,8 +238,7 @@ impl SiteDirectory for DiscordDirectory {
     }
 }
 
-/// La directory collegata a bot avviato: il server HTTP parte prima del gateway, e finché la directory
-/// non c'è il server Discord risulta «non disponibile».
+/// Una directory "pigra" che aspetta che il bot sia pronto prima di fornire dati.
 #[derive(Default)]
 pub struct LateDirectory {
     inner: OnceLock<Arc<dyn SiteDirectory>>,
@@ -237,17 +275,18 @@ impl SiteDirectory for LateDirectory {
     }
 }
 
-// --- OAuth2 ------------------------------------------------------------------------------------
+// --- OAuth2: Il sistema di login "Accedi con Discord" ------------------------------------------
 
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub enum OAuthError {
-    /// Rete, timeout o risposta che non è JSON.
+    /// Discord non risponde o la connessione è caduta.
     Unavailable,
 }
 
-/// La risposta di Discord: lo stato HTTP e, solo se è 200, il JSON.
+/// Risposta tecnica da Discord: codice di stato (es. 200 OK) e i dati JSON ricevuti.
 pub type OAuthReply = (u16, Option<Value>);
 
+/// I dati necessari per scambiare il "codice" temporaneo di Discord con un "token" di accesso.
 pub struct TokenRequest<'a> {
     pub client_id: &'a str,
     pub client_secret: &'a str,
@@ -255,30 +294,33 @@ pub struct TokenRequest<'a> {
     pub redirect_uri: &'a str,
 }
 
-/// Le due chiamate a Discord del login.
+/// Definisce come il bot parla con Discord per il login.
 pub trait OAuthProvider: Send + Sync + 'static {
-    /// Scambia il codice con un access token.
+    /// Chiede a Discord un "token" segreto usando il codice ricevuto dopo il login dell'utente.
     fn exchange_code<'a>(&'a self, request: TokenRequest<'a>) -> BoxFuture<'a, Result<OAuthReply, OAuthError>>;
-    /// Legge il profilo di chi ha fatto il login.
+    /// Chiede a Discord le informazioni personali dell'utente (nome, avatar, ID) usando il token.
     fn fetch_profile<'a>(&'a self, access_token: &'a str) -> BoxFuture<'a, Result<OAuthReply, OAuthError>>;
 }
 
-/// Il provider vero: Discord via HTTPS, con 10 secondi di tempo per chiamata.
+/// Implementazione reale che fa richieste HTTP ai server di Discord.
 pub struct DiscordOAuth {
     client: reqwest::Client,
 }
 
 impl DiscordOAuth {
     pub fn new() -> Self {
+        // Crea un "cliente" HTTP che aspetta al massimo 10 secondi per ogni risposta.
         let client = reqwest::Client::builder().timeout(std::time::Duration::from_secs(10)).build().unwrap_or_default();
         Self { client }
     }
 
+    /// Analizza la risposta ricevuta da Discord.
     async fn reply(response: reqwest::Response) -> Result<OAuthReply, OAuthError> {
         let status = response.status().as_u16();
         if status != 200 {
             return Ok((status, None));
         }
+        // Prova a leggere il contenuto come JSON.
         response.json::<Value>().await.map(|body| (status, Some(body))).map_err(|_| OAuthError::Unavailable)
     }
 }
@@ -293,6 +335,7 @@ impl OAuthProvider for DiscordOAuth {
                 ("code", request.code),
                 ("redirect_uri", request.redirect_uri),
             ];
+            // Invia i dati come se fosse un modulo compilato su una pagina web.
             let response = self.client.post(TOKEN_URL).form(&form).send().await.map_err(|_| OAuthError::Unavailable)?;
             Self::reply(response).await
         })
@@ -300,30 +343,35 @@ impl OAuthProvider for DiscordOAuth {
 
     fn fetch_profile<'a>(&'a self, access_token: &'a str) -> BoxFuture<'a, Result<OAuthReply, OAuthError>> {
         Box::pin(async move {
+            // Chiede il profilo usando il token di accesso per dimostrare chi è.
             let response = self.client.get(PROFILE_URL).bearer_auth(access_token).send().await.map_err(|_| OAuthError::Unavailable)?;
             Self::reply(response).await
         })
     }
 }
 
-// --- configurazione ----------------------------------------------------------------------------
+// --- Configurazioni ----------------------------------------------------------------------------
 
-/// Le variabili d'ambiente del login (`DISCORD_OAUTH_*` ed `EVENT_OVERLAY_PUBLIC_URL`).
+/// Le chiavi e gli indirizzi necessari per far funzionare il login con Discord.
 #[derive(Debug, Clone, PartialEq, Eq, Default)]
 pub struct AuthConfig {
+    /// ID dell'applicazione creata sul portale sviluppatori di Discord.
     pub client_id: String,
+    /// Chiave segreta dell'applicazione (da non rivelare mai!).
     pub client_secret: String,
+    /// L'indirizzo dove Discord deve rimandare l'utente dopo che ha accettato il login.
     pub redirect_uri: String,
+    /// Se vero, i cookie verranno inviati solo su connessioni sicure (HTTPS).
     pub secure_cookie: bool,
 }
 
 impl AuthConfig {
+    /// Legge le impostazioni dalle variabili d'ambiente.
     pub fn from_env() -> Self {
         let var = |name: &str| std::env::var(name).unwrap_or_default();
         Self::from_values(&var("DISCORD_OAUTH_CLIENT_ID"), &var("DISCORD_OAUTH_CLIENT_SECRET"), std::env::var("DISCORD_OAUTH_REDIRECT_URI").ok(), &var("EVENT_OVERLAY_PUBLIC_URL"))
     }
 
-    /// Dai valori delle variabili: l'indirizzo di ritorno predefinito è `<dominio>/staff/auth/callback`.
     pub fn from_values(client_id: &str, client_secret: &str, redirect_uri: Option<String>, public_url: &str) -> Self {
         let public_url = public_url.trim_end_matches('/');
         let redirect_uri = match redirect_uri {
@@ -343,13 +391,14 @@ impl AuthConfig {
         }
     }
 
-    /// Il login funziona solo con id, segreto e un indirizzo di ritorno HTTPS.
+    /// Controlla se abbiamo tutte le informazioni per far funzionare il login.
     pub fn oauth_configured(&self) -> bool {
         !self.client_id.is_empty() && !self.client_secret.is_empty() && self.redirect_uri.starts_with("https://")
     }
 }
 
-/// `urllib.parse.quote_plus(testo, safe="")`.
+/// Codifica un testo in modo che sia sicuro da inserire in un indirizzo web (URL).
+/// Esempio: uno spazio diventa '+'.
 fn quote_plus(text: &str) -> String {
     let mut quoted = String::new();
     for byte in text.bytes() {
@@ -362,14 +411,14 @@ fn quote_plus(text: &str) -> String {
     quoted
 }
 
-/// La query come la lascia `HTTPFound(url)` di aiohttp: `yarl` normalizza gli indirizzi e toglie la
-/// codifica a `/ : ? @ , ! * ' ( ) $`, che nella query sono ammessi; `& = + # ; %` restano codificati.
+/// Costruisce la "query string" (la parte dopo il '?' in un URL) per Discord.
 fn authorize_query(pairs: &[(&str, &str)]) -> String {
     let encoded = pairs.iter().map(|(key, value)| format!("{}={}", quote_plus(key), quote_plus(value))).collect::<Vec<_>>().join("&");
     let bytes = encoded.as_bytes();
     let mut out = String::new();
     let mut index = 0;
     while index < bytes.len() {
+        // Ripristina alcuni caratteri per renderli leggibili pur rimanendo sicuri.
         if bytes[index] == b'%' && index + 2 < bytes.len() {
             let decoded = std::str::from_utf8(&bytes[index + 1..index + 3]).ok().and_then(|hex| u8::from_str_radix(hex, 16).ok());
             if let Some(byte) = decoded.filter(|byte| b"/:?@,!*'()$".contains(byte)) {
@@ -384,22 +433,20 @@ fn authorize_query(pairs: &[(&str, &str)]) -> String {
     out
 }
 
-/// `datetime.isoformat()` di un istante in UTC: `2027-03-05T12:00:00+00:00`, con i microsecondi solo
-/// se non sono zero.
+/// Formatta una data nel formato standard internazionale (ISO 8601).
 pub fn isoformat_utc(value: DateTime<Utc>) -> String {
     let micros = value.timestamp_subsec_micros();
     let base = value.format("%Y-%m-%dT%H:%M:%S");
     if micros == 0 { format!("{base}+00:00") } else { format!("{base}.{micros:06}+00:00") }
 }
 
-/// `datetime.fromisoformat(testo)` per le scadenze salvate. Senza fuso orario Python non riuscirebbe
-/// nemmeno a confrontarle: qui sono scadenze non valide.
+/// Converte un testo in formato ISO in una data utilizzabile dal bot.
 fn parse_expiry(text: &str) -> Option<DateTime<Utc>> {
     let normalized = if text.len() > 10 && text.as_bytes()[10] == b' ' { format!("{}T{}", &text[..10], &text[11..]) } else { text.to_string() };
     DateTime::parse_from_rfc3339(&normalized).ok().map(|instant| instant.with_timezone(&Utc))
 }
 
-/// `int(profilo["id"])` di Python.
+/// Estrae l'ID utente dal profilo Discord, gestendo vari formati possibili (stringa, numero, ecc.).
 fn profile_user_id(profile: &Value) -> Option<i64> {
     match profile.get("id")? {
         Value::String(text) => python_int(text),
@@ -409,25 +456,28 @@ fn profile_user_id(profile: &Value) -> Option<i64> {
     }
 }
 
-// --- autorizzazione ----------------------------------------------------------------------------
+// --- Logica principale di Autorizzazione ------------------------------------------------------
 
+/// Il gestore centrale dell'autenticazione.
 pub struct SiteAuth {
     db: Database,
     directory: Arc<dyn SiteDirectory>,
     oauth: Arc<dyn OAuthProvider>,
     config: AuthConfig,
-    /// `GUILD_ID` dell'ambiente, se `guild_id` non è nelle impostazioni.
+    /// L'ID del server Discord da usare se non ne è stato impostato uno specifico.
     fallback_guild_id: Option<u64>,
     clock: fn() -> DateTime<Utc>,
     token: fn() -> String,
 }
 
+/// Genera un testo casuale e sicuro da usare come identificativo di sessione.
 fn random_token() -> String {
     crate::live_event::new_token()
 }
 
 impl SiteAuth {
     pub fn new(db: Database, directory: Arc<dyn SiteDirectory>, oauth: Arc<dyn OAuthProvider>, config: AuthConfig, fallback_guild_id: Option<u64>) -> Self {
+        // Prepara la tabella per gestire i tentativi di login.
         if let Err(e) = db.execute_batch("CREATE TABLE IF NOT EXISTS site_oauth_states (state TEXT PRIMARY KEY, created_at REAL NOT NULL)") {
             error!("Impossibile preparare la tabella degli stati OAuth: {e}");
         }
@@ -441,16 +491,17 @@ impl SiteAuth {
         self
     }
 
+    /// Definisce i percorsi (URL) relativi all'autenticazione.
     pub fn routes(self: &Arc<Self>) -> Router {
         Router::new()
-            .route("/staff/auth/login", get(login))
-            .route("/staff/auth/callback", get(callback))
-            .route("/api/site/auth/session", get(session_info))
-            .route("/api/site/auth/logout", post(logout))
+            .route("/staff/auth/login", get(login))      // Inizia il login.
+            .route("/staff/auth/callback", get(callback))   // Ritorno da Discord.
+            .route("/api/site/auth/session", get(session_info)) // Info sulla sessione attuale.
+            .route("/api/site/auth/logout", post(logout))     // Esce dal sito.
             .with_state(self.clone())
     }
 
-    /// Il server configurato (`configured_guild`): `guild_id` nelle impostazioni, o `GUILD_ID`.
+    /// Identifica qual è il server Discord di riferimento per il sito.
     pub(crate) fn configured_guild(&self) -> Option<(u64, GuildFacts)> {
         let setting = self.db.get_setting("guild_id").ok().flatten().filter(|value| !value.is_empty());
         let guild_id = match setting {
@@ -460,13 +511,15 @@ impl SiteAuth {
         Some((guild_id, self.directory.guild(guild_id)?))
     }
 
+    /// Rimuove una sessione dal database (es. al logout o se scaduta).
     fn delete_session(&self, session_id: &str) {
         if let Err(e) = self.db.transaction(|tx| tx.execute("DELETE FROM web_sessions WHERE session_id=?", [session_id])) {
             error!("Eliminazione della sessione web non riuscita: {e}");
         }
     }
 
-    /// I permessi di un membro: deve essere nel server ed essere amministratore o staff.
+    /// Controlla se un utente ha i permessi per stare nel sito staff.
+    /// Deve essere nel server configurato ed essere o amministratore o avere un ruolo staff.
     pub async fn member_permissions(&self, user_id: i64) -> Result<SitePrincipal, Response> {
         let Some((guild_id, guild)) = self.configured_guild() else {
             return Err(json_error(StatusCode::SERVICE_UNAVAILABLE, "Server Discord non disponibile o non configurato"));
@@ -474,6 +527,8 @@ impl SiteAuth {
         let Ok(user) = u64::try_from(user_id) else {
             return Err(json_error(StatusCode::FORBIDDEN, "Devi appartenere al server Discord configurato"));
         };
+
+        // Chiede informazioni sul membro alla directory.
         let member = match self.directory.member(guild_id, user).await {
             Ok(Some(member)) => member,
             Ok(None) => return Err(json_error(StatusCode::FORBIDDEN, "Devi appartenere al server Discord configurato")),
@@ -482,40 +537,53 @@ impl SiteAuth {
                 return Err(json_error(StatusCode::BAD_GATEWAY, "Impossibile verificare i permessi Discord"));
             }
         };
+
+        // Verifica se è proprietario o ha il permesso "Amministratore".
         let is_admin = user == guild.owner_id || member.administrator;
+
+        // Verifica se ha uno dei ruoli considerati "Staff".
         let staff_setting = self.db.get_setting("staff_roles").ok().flatten().unwrap_or_default();
         let Some(staff_roles) = staff_role_ids(&staff_setting) else {
             error!("Configurazione ruoli staff non valida.");
             return Err(json_error(StatusCode::SERVICE_UNAVAILABLE, "Configurazione dei ruoli staff non valida"));
         };
         let is_staff = is_admin || member.role_ids.iter().any(|role| i64::try_from(*role).is_ok_and(|role| staff_roles.contains(&role)));
+
         if !is_staff {
             return Err(json_error(StatusCode::FORBIDDEN, "Accesso riservato agli amministratori o allo staff"));
         }
+
         Ok(SitePrincipal { user_id: user, display_name: member.display_name, is_admin, is_staff })
     }
 
-    /// Chi fa la richiesta, dal cookie di sessione (`authorize`); con `admin_only` serve un
-    /// amministratore.
+    /// Verifica chi sta facendo una richiesta web controllando il suo cookie di sessione.
+    /// Se `admin_only` è vero, l'accesso è permesso solo ai pieni amministratori.
     pub async fn authorize(&self, headers: &HeaderMap, admin_only: bool) -> Result<SitePrincipal, Response> {
+        // Cerca il cookie di sessione.
         let session_id = cookie_value(headers, SESSION_COOKIE).unwrap_or_default();
         if session_id.is_empty() {
             return Err(json_error(StatusCode::UNAUTHORIZED, "Accesso Discord richiesto"));
         }
+
+        // Cerca la sessione nel database.
         let now = (self.clock)();
         let session = self
             .db
             .with_conn(|conn| conn.query_row("SELECT user_id, expires_at FROM web_sessions WHERE session_id=?", [&session_id], |row| Ok((row.get::<_, Option<i64>>(0)?, row.get::<_, Option<String>>(1)?))).optional());
+
         let session = match session {
             Ok(session) => session,
             Err(e) => {
                 error!("Lettura della sessione web non riuscita: {e}");
-                return Err(plain(StatusCode::INTERNAL_SERVER_ERROR, "500 Internal Server Error\n\nServer got itself in trouble"));
+                return Err(plain(StatusCode::INTERNAL_SERVER_ERROR, "Errore interno del server"));
             }
         };
+
         let Some((user_id, expires_at)) = session else {
             return Err(json_error(StatusCode::UNAUTHORIZED, "Sessione scaduta, accedi di nuovo"));
         };
+
+        // Verifica se la sessione è ancora valida cronologicamente.
         let Some(expires_at) = expires_at.as_deref().and_then(parse_expiry) else {
             warn!("Scadenza sessione web non valida.");
             self.delete_session(&session_id);
@@ -525,68 +593,90 @@ impl SiteAuth {
             self.delete_session(&session_id);
             return Err(json_error(StatusCode::UNAUTHORIZED, "Sessione scaduta, accedi di nuovo"));
         }
+
+        // Ricarica i permessi da Discord (per sicurezza, se fossero cambiati nel frattempo).
         let principal = self.member_permissions(user_id.unwrap_or(-1)).await?;
+
         if admin_only && !principal.is_admin {
             return Err(json_error(StatusCode::FORBIDDEN, "Questa operazione è riservata agli amministratori Discord"));
         }
+
         Ok(principal)
     }
 
+    /// Reindirizza l'utente alla pagina principale con un messaggio di errore.
     fn login_error(reason: &str) -> Response {
         redirect(StatusCode::FOUND, &format!("/staff/?login_error={reason}"))
     }
 }
 
-// --- route -------------------------------------------------------------------------------------
+// --- Gestione effettiva delle richieste (Handlers) --------------------------------------------
 
+/// Avvia la procedura di login mandando l'utente su Discord.
 async fn login(State(auth): State<Arc<SiteAuth>>) -> Response {
     if !auth.config.oauth_configured() {
-        return plain(StatusCode::SERVICE_UNAVAILABLE, "Configura DISCORD_OAUTH_CLIENT_ID e DISCORD_OAUTH_CLIENT_SECRET nell'hosting.");
+        return plain(StatusCode::SERVICE_UNAVAILABLE, "Sistema di login non configurato correttamente.");
     }
+
+    // Crea una chiave di sicurezza ("state") per questo tentativo di login.
     let state = (auth.token)();
     let now = created_at((auth.clock)());
+
+    // Salva lo "state" nel database per verificarlo al ritorno.
     let saved: DbResult<()> = auth.db.transaction(|tx| {
+        // Pulisce i vecchi tentativi scaduti.
         tx.execute("DELETE FROM site_oauth_states WHERE created_at<?", [now - OAUTH_STATE_TTL_SECONDS])?;
         tx.execute("INSERT INTO site_oauth_states(state,created_at) VALUES(?,?)", params![state, now])?;
         Ok(())
     });
+
     if let Err(e) = saved {
         error!("Salvataggio dello stato OAuth non riuscito: {e}");
         return plain(StatusCode::INTERNAL_SERVER_ERROR, "Login Discord non disponibile, riprova.");
     }
+
+    // Costruisce l'indirizzo di Discord dove mandare l'utente.
     let query = authorize_query(&[
         ("client_id", &auth.config.client_id),
         ("redirect_uri", &auth.config.redirect_uri),
         ("response_type", "code"),
-        ("scope", "identify"),
+        ("scope", "identify"), // Chiediamo solo l'identità base.
         ("state", &state),
     ]);
+
     let mut response = redirect(StatusCode::FOUND, &format!("{AUTHORIZE_URL}?{query}"));
+    // Salva lo state anche in un cookie per il confronto finale.
     add_cookie(&mut response, &set_cookie(STATE_COOKIE, &state, OAUTH_STATE_TTL_SECONDS as u64, auth.config.secure_cookie, "/staff/auth"));
     response
 }
 
-/// `datetime.timestamp()`: secondi con i microsecondi.
+/// Converte una data in un numero (secondi trascorsi dal 1970).
 fn created_at(instant: DateTime<Utc>) -> f64 {
     instant.timestamp_micros() as f64 / 1e6
 }
 
+/// Gestisce il ritorno dell'utente da Discord.
 async fn callback(State(auth): State<Arc<SiteAuth>>, headers: HeaderMap, RawQuery(raw_query): RawQuery) -> Response {
     if !auth.config.oauth_configured() {
         return plain(StatusCode::SERVICE_UNAVAILABLE, "Login Discord non configurato");
     }
+
     let query = query_params(raw_query);
     let state = query.get("state").cloned().unwrap_or_default();
     let cookie_state = cookie_value(&headers, STATE_COOKIE).unwrap_or_default();
+
+    // Verifica che lo "state" ricevuto sia lo stesso che avevamo inviato (protezione CSRF).
     if state.is_empty() || cookie_state.is_empty() || !constant_time_equals(&state, &cookie_state) {
-        return plain(StatusCode::BAD_REQUEST, "Richiesta OAuth non valida");
+        return plain(StatusCode::BAD_REQUEST, "Richiesta di login non valida o contraffatta");
     }
-    // Lettura e consumo dello stato nella stessa transazione: ogni stato si usa una volta sola.
+
+    // Verifica che lo "state" sia presente nel database e lo cancella (si può usare una volta sola).
     let stored: DbResult<Option<f64>> = auth.db.transaction(|tx| {
         let created: Option<f64> = tx.query_row("SELECT created_at FROM site_oauth_states WHERE state=?", [&state], |row| row.get(0)).optional()?;
         tx.execute("DELETE FROM site_oauth_states WHERE state=?", [&state])?;
         Ok(created)
     });
+
     let stored = match stored {
         Ok(stored) => stored,
         Err(e) => {
@@ -594,51 +684,66 @@ async fn callback(State(auth): State<Arc<SiteAuth>>, headers: HeaderMap, RawQuer
             return plain(StatusCode::INTERNAL_SERVER_ERROR, "Login Discord non disponibile, riprova.");
         }
     };
+
     let now = (auth.clock)();
     if stored.is_none_or(|created| created_at(now) - created > OAUTH_STATE_TTL_SECONDS) {
-        return plain(StatusCode::BAD_REQUEST, "Login scaduto, riprova.");
+        return plain(StatusCode::BAD_REQUEST, "Tempo per il login scaduto, riprova.");
     }
+
     if query.get("error").is_some_and(|reason| !reason.is_empty()) {
         return SiteAuth::login_error("discord");
     }
+
     let code = query.get("code").cloned().unwrap_or_default();
     if code.is_empty() {
-        return plain(StatusCode::BAD_REQUEST, "Codice OAuth mancante");
+        return plain(StatusCode::BAD_REQUEST, "Codice di autenticazione mancante");
     }
 
+    // Scambia il codice con Discord per ottenere il token.
     let request = TokenRequest { client_id: &auth.config.client_id, client_secret: &auth.config.client_secret, code: &code, redirect_uri: &auth.config.redirect_uri };
     let (status, body) = match auth.oauth.exchange_code(request).await {
         Ok(reply) => reply,
         Err(OAuthError::Unavailable) => return SiteAuth::login_error("unavailable"),
     };
+
     if status != 200 {
-        error!("Scambio del codice OAuth Discord fallito (HTTP {status}).");
+        error!("Scambio del codice Discord fallito (Errore HTTP {status}).");
         return SiteAuth::login_error("discord");
     }
+
     let Some(access_token) = body.as_ref().and_then(|payload| payload.get("access_token")).and_then(Value::as_str).filter(|token| !token.is_empty()) else {
-        error!("Discord OAuth non ha restituito un access token.");
+        error!("Discord non ha fornito un token di accesso.");
         return SiteAuth::login_error("discord");
     };
+
+    // Chiede il profilo a Discord.
     let (status, profile) = match auth.oauth.fetch_profile(access_token).await {
         Ok(reply) => reply,
         Err(OAuthError::Unavailable) => return SiteAuth::login_error("unavailable"),
     };
+
     if status != 200 {
-        error!("Lettura del profilo OAuth Discord fallita (HTTP {status}).");
+        error!("Lettura del profilo Discord fallita (Errore HTTP {status}).");
         return SiteAuth::login_error("discord");
     }
+
     let Some(user_id) = profile.as_ref().and_then(profile_user_id) else {
-        error!("Discord OAuth ha restituito un profilo senza ID valido.");
+        error!("Impossibile trovare l'ID utente nel profilo Discord.");
         return SiteAuth::login_error("discord");
     };
 
+    // Verifica se l'utente ha i permessi per entrare.
     let Ok(principal) = auth.member_permissions(user_id).await else {
         return SiteAuth::login_error("forbidden");
     };
+
+    // Crea una sessione ufficiale.
     let session_id = (auth.token)();
     let now = (auth.clock)();
     let expires_at = now + chrono::Duration::seconds(SESSION_SECONDS as i64);
+
     let saved: DbResult<()> = auth.db.transaction(|tx| {
+        // Pulisce vecchie sessioni scadute.
         tx.execute("DELETE FROM web_sessions WHERE expires_at<?", [isoformat_utc(now)])?;
         tx.execute(
             "INSERT INTO web_sessions(session_id,user_id,display_name,created_at,expires_at) VALUES(?,?,?,?,?)",
@@ -646,16 +751,21 @@ async fn callback(State(auth): State<Arc<SiteAuth>>, headers: HeaderMap, RawQuer
         )?;
         Ok(())
     });
+
     if let Err(e) = saved {
         error!("Creazione della sessione web non riuscita: {e}");
         return SiteAuth::login_error("unavailable");
     }
+
+    // Manda l'utente nel pannello staff e gli dà il cookie di sessione.
     let mut response = redirect(StatusCode::FOUND, "/staff/");
     add_cookie(&mut response, &set_cookie(SESSION_COOKIE, &session_id, SESSION_SECONDS, auth.config.secure_cookie, "/"));
+    // Cancella il cookie temporaneo usato per il login.
     add_cookie(&mut response, &delete_cookie(STATE_COOKIE, "/staff/auth"));
     response
 }
 
+/// Restituisce informazioni sulla sessione attuale dell'utente in formato JSON.
 async fn session_info(State(auth): State<Arc<SiteAuth>>, headers: HeaderMap) -> Response {
     match auth.authorize(&headers, false).await {
         Err(response) => response,
@@ -672,11 +782,13 @@ async fn session_info(State(auth): State<Arc<SiteAuth>>, headers: HeaderMap) -> 
     }
 }
 
+/// Chiude la sessione dell'utente (Logout).
 async fn logout(State(auth): State<Arc<SiteAuth>>, headers: HeaderMap) -> Response {
     if let Some(session_id) = cookie_value(&headers, SESSION_COOKIE).filter(|id| !id.is_empty()) {
         auth.delete_session(&session_id);
     }
     let mut response = json_response(StatusCode::OK, &json!({"ok": true}));
+    // Dice al browser di cancellare il cookie di sessione.
     add_cookie(&mut response, &delete_cookie(SESSION_COOKIE, "/"));
     response.into_response()
 }

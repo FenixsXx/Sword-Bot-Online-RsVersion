@@ -15,7 +15,13 @@ use crate::site_common::{plain, redirect, status_text};
 /// I file fissi serviti da `/staff/<nome>`.
 const SITE_ASSETS: [&str; 3] = ["app.js", "styles.css", "favicon.ico"];
 
-/// Le intestazioni di ogni file del sito.
+/// Le intestazioni di sicurezza per ogni file del sito staff.
+///
+/// - `cache-control: no-cache`: forza il revalidation da server, evita contenuti obsoleti
+/// - `x-content-type-options: nosniff`: previene sniffing MIME, obbliga a usare Content-Type dichiarato
+/// - `x-frame-options: DENY`: previene embedding in iframe (clickjacking)
+/// - `referrer-policy: strict-origin-when-cross-origin`: invia referrer solo all'origine
+/// - `permissions-policy`: disattiva accesso a camera, microfono e geolocalizzazione
 const SITE_HEADERS: [(&str, &str); 5] = [
     ("cache-control", "no-cache"),
     ("x-content-type-options", "nosniff"),
@@ -24,7 +30,10 @@ const SITE_HEADERS: [(&str, &str); 5] = [
     ("permissions-policy", "camera=(), microphone=(), geolocation=()"),
 ];
 
-/// Il tipo di un file dall'estensione (`mimetypes.guess_type`, per quelle che produce il build).
+/// Determina il MIME type del file in base all'estensione.
+///
+/// Mappa le estensioni comuni ai loro tipi MIME standard.
+/// I file con estensione sconosciuta ritornano `application/octet-stream`.
 fn content_type(path: &Path) -> &'static str {
     match path.extension().and_then(|extension| extension.to_str()).map(str::to_ascii_lowercase).as_deref() {
         Some("html" | "htm") => "text/html",
@@ -42,6 +51,13 @@ fn content_type(path: &Path) -> &'static str {
     }
 }
 
+/// Crea una risposta HTTP per un file statico.
+///
+/// Legge il file dal disco e aggiunge header HTTP appropriati:
+/// - `Content-Type` basato sull'estensione
+/// - Header di sicurezza definiti in `SITE_HEADERS`
+///
+/// Ritorna 404 se il file non esiste o non è leggibile.
 fn file_response(path: &Path) -> Response {
     let Ok(body) = std::fs::read(path) else {
         return status_text(StatusCode::NOT_FOUND);
@@ -55,6 +71,15 @@ fn file_response(path: &Path) -> Response {
     response
 }
 
+/// Registra le route per il sito staff statico.
+///
+/// Route disponibili:
+/// - `GET /staff` → redirect 308 a `/staff/`
+/// - `GET /staff/` → index.html (pagina principale del sito staff)
+/// - `GET /staff/assets/{asset}` → file nella cartella `assets/` del build
+/// - `GET /staff/{asset}` → file fissi: app.js, styles.css, favicon.ico
+///
+/// Il path della directory del sito è passato tramite state condivisa.
 pub fn routes(site_dir: PathBuf) -> Router {
     Router::new()
         .route("/staff", get(|| async { redirect(StatusCode::PERMANENT_REDIRECT, "/staff/") }))
@@ -64,6 +89,10 @@ pub fn routes(site_dir: PathBuf) -> Router {
         .with_state(Arc::new(site_dir))
 }
 
+/// Handler per la radice del sito staff (`/staff/`).
+///
+/// Serve `index.html` dalla directory del sito.
+/// Se il file non esiste (build fallita), ritorna 503 con messaggio di servizio non disponibile.
 async fn index(State(root): State<Arc<PathBuf>>) -> Response {
     let path = root.join("index.html");
     if !path.is_file() {
@@ -72,6 +101,10 @@ async fn index(State(root): State<Arc<PathBuf>>) -> Response {
     file_response(&path)
 }
 
+/// Handler per i file fissi del sito (`/staff/app.js`, `/staff/styles.css`, `/staff/favicon.ico`).
+///
+/// Verifica che il nome richiesto sia uno dei file consentiti in `SITE_ASSETS`.
+/// Non permette percorsi relativi né accesso a file esterni.
 async fn fixed_asset(State(root): State<Arc<PathBuf>>, UrlPath(name): UrlPath<String>) -> Response {
     if !SITE_ASSETS.contains(&name.as_str()) {
         return status_text(StatusCode::NOT_FOUND);
@@ -83,6 +116,8 @@ async fn fixed_asset(State(root): State<Arc<PathBuf>>, UrlPath(name): UrlPath<St
     file_response(&path)
 }
 
+/// Handler per file nella cartella `assets/` del build.
+///
 /// Un file di `assets/`: solo il nome, mai un percorso, e solo se sta davvero in quella cartella (un
 /// collegamento simbolico verso altrove non vale).
 async fn built_asset(State(root): State<Arc<PathBuf>>, UrlPath(name): UrlPath<String>) -> Response {

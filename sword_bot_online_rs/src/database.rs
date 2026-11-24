@@ -2,13 +2,14 @@
 //! (equivalente di `sfo/database.py`).
 //!
 //! Come in Python, la connessione è una sola ed è condivisa da tutto il bot. È dietro un
-//! `Mutex`: usa `with_conn` / `transaction` per blocchi **brevi e sincroni** e non tenere mai
-//! il lock attraverso un `.await`. Il lock **non è rientrante**: dentro `with_conn` o
-//! `transaction` usa la connessione ricevuta, mai altri metodi di `Database` (deadlock).
+//! `Mutex` (un lucchetto per la sicurezza tra thread): usa `with_conn` o `transaction`
+//! per blocchi **brevi e sincroni**. Non tenere MAI il lock attraverso un `.await`
+//! (bloccante per l'intero bot). Il lock **non è rientrante**: dentro `with_conn` o
+//! `transaction` usa la connessione passata, mai altri metodi di `Database` (deadlock!).
 //!
-//! Differenza rispetto a `sqlite3` di Python: qui ogni statement è in autocommit (rusqlite non
-//! apre transazioni implicite), quindi `q()` e i `commit()` sparsi non servono più. Per
-//! scritture atomiche usa `Database::transaction`.
+//! Differenza da `sqlite3` di Python: qui ogni operazione SQL è in autocommit
+//! (rusqlite non apre transazioni implicite). Per operazioni multiple atomiche
+//! (tutto o niente) usa `Database::transaction`.
 // Molte funzioni servono solo ai moduli che porteremo nelle prossime iterazioni.
 #![allow(dead_code)]
 
@@ -167,16 +168,21 @@ impl Database {
         self.lock().execute_batch(sql)
     }
 
-    // --- impostazioni ----------------------------------------------------------------------
+    // --- Gestione delle impostazioni nel database ---------------------------------------------------
 
+    /// Recupera il valore di una impostazione dal database.
+    /// Restituisce `Some(String)` se l'impostazione esiste, `None` altrimenti.
     pub fn get_setting(&self, key: &str) -> DbResult<Option<String>> {
         setting_in(&self.lock(), key)
     }
 
+    /// Recupera il valore di una impostazione, fornendo un valore di default se non esiste.
     pub fn get_setting_or(&self, key: &str, default: &str) -> DbResult<String> {
         Ok(self.get_setting(key)?.unwrap_or_else(|| default.to_string()))
     }
 
+    /// Salva o aggiorna un'impostazione nel database.
+    /// Se la chiave esiste, il valore viene aggiornato; altrimenti, viene inserita una nuova riga.
     pub fn set_setting(&self, key: &str, value: impl ToString) -> DbResult<()> {
         self.execute(
             "INSERT INTO settings(key,value) VALUES(?,?) \
@@ -186,27 +192,29 @@ impl Database {
         Ok(())
     }
 
-    /// Settimana corrente. Un valore non numerico è un errore (come `int()` in Python):
-    /// la settimana fa da chiave nei dati e non va indovinata.
+    /// Recupera il numero della settimana corrente dal database, convertendolo in `i64`.
+    /// Se il valore non è un numero valido, restituisce un errore.
     pub fn current_week(&self) -> DbResult<i64> {
         current_week_in(&self.lock())
     }
 
-    // --- manutenzione ----------------------------------------------------------------------
+    // --- Manutenzione e inizializzazione del database -----------------------------------------------
 
-    /// Pulizie leggere eseguite a ogni avvio (non sono migrazioni di schema).
+    /// Esegue operazioni di pulizia e controllo leggere ogni volta che il bot si avvia.
+    /// Queste non sono migrazioni di schema, ma aggiustamenti dello stato.
     pub fn startup_maintenance(&self) -> DbResult<()> {
         self.with_conn(startup_maintenance)
     }
 
-    /// Crea i sondaggi di partenza se il database è vuoto.
+    /// Popola il database con i sondaggi predefiniti e le relative opzioni, se il database è vuoto.
+    /// Questo assicura che il bot abbia dati di partenza validi al primo avvio.
     pub fn seed_defaults(&self) -> DbResult<()> {
         self.transaction(|tx| -> DbResult<()> {
             let polls: i64 = tx.query_row("SELECT COUNT(*) FROM polls", [], |row| row.get(0))?;
             if polls > 0 {
-                return Ok(());
+                return Ok(()); // Non ripopolare se ci sono già sondaggi
             }
-            // (nome, emoji, colore, is_community, opzioni)
+            // Lista di sondaggi predefiniti da creare: (nome, emoji, colore, è_community, opzioni).
             const SEED: [(&str, &str, &str, i64, &[&str]); 5] = [
                 ("Giochi gratis da scaricare", "🎮", "#5865F2", 0, &["Among Us", "Supermarket", "Fortnite"]),
                 ("Giochi da Discord", "💬", "#9B6BDF", 0, &["Poker Night", "Chess", "Putt Party"]),
@@ -229,12 +237,13 @@ impl Database {
                 ("Giochi senza link", "🎲", "#E0A030", 0, &["Hunger Games", "Jeopardy"]),
                 ("Proposte della community", "🏆", "#D95F6A", 1, &[]),
             ];
+            // Inserisce ogni sondaggio e le sue opzioni associate nel database.
             for (position, (name, emoji, color, community, options)) in SEED.iter().enumerate() {
                 tx.execute(
                     "INSERT INTO polls(name,emoji,color,position,is_community) VALUES(?,?,?,?,?)",
                     params![name, emoji, color, position as i64, community],
                 )?;
-                let poll_id = tx.last_insert_rowid();
+                let poll_id = tx.last_insert_rowid(); // Prende l'ID del sondaggio appena inserito
                 for label in *options {
                     tx.execute("INSERT INTO options(poll_id,label) VALUES(?,?)", params![poll_id, label])?;
                 }
@@ -244,54 +253,65 @@ impl Database {
     }
 }
 
-// --- migrazioni --------------------------------------------------------------------------------
+// --- Funzioni di migrazione dello schema del database ------------------------------------------
 
-/// Applica le migrazioni mancanti, in ordine.
+/// Applica le migrazioni dello schema del database in ordine, se non sono già state applicate.
+/// Ogni migrazione aggiorna `PRAGMA user_version` per tenere traccia dello stato.
 pub fn migrate(connection: &Connection) -> DbResult<()> {
+    // Recupera la versione attuale dello schema dal database.
     let current: i64 = connection.pragma_query_value(None, "user_version", |row| row.get(0))?;
+    // Itera su tutte le migrazioni definite.
     for (index, (name, migration)) in MIGRATIONS.iter().enumerate() {
-        let version = index as i64 + 1;
+        let version = index as i64 + 1; // La versione della migrazione corrente.
         if version <= current {
-            continue;
+            continue; // Salta le migrazioni già applicate.
         }
         info!("Applico la migrazione del database {version} ({name}).");
-        migration(connection)?;
-        connection.pragma_update(None, "user_version", version)?;
+        migration(connection)?; // Esegue la logica della migrazione.
+        connection.pragma_update(None, "user_version", version)?; // Aggiorna la versione.
     }
     Ok(())
 }
 
+/// Recupera i nomi di tutte le colonne di una data tabella.
+/// Usato durante le migrazioni per verificare la presenza di colonne.
 fn table_columns(connection: &Connection, table: &str) -> DbResult<HashSet<String>> {
-    // `table` è sempre una costante interna: nessun input esterno finisce qui.
+    // `table` è sempre una costante interna: nessun input esterno finisce qui (prevenzione SQL injection).
     let mut statement = connection.prepare(&format!("PRAGMA table_info({table})"))?;
     let names = statement.query_map([], |row| row.get::<_, String>("name"))?;
     names.collect()
 }
 
-/// `true` se `options.suggestion_id` ha già `REFERENCES suggestions(id) ON DELETE SET NULL`.
+/// Verifica se la chiave esterna `options.suggestion_id` è configurata correttamente.
+/// Controlla che punti a `suggestions(id)` e abbia `ON DELETE SET NULL`.
 fn options_suggestion_fk_is_current(connection: &Connection) -> DbResult<bool> {
     let mut statement = connection.prepare("PRAGMA foreign_key_list(options)")?;
     let rows = statement.query_map([], |row| {
         Ok((
-            row.get::<_, String>("from")?,
-            row.get::<_, String>("table")?,
-            row.get::<_, Option<String>>("to")?,
-            row.get::<_, String>("on_delete")?,
+            row.get::<_, String>("from")?, // Colonna locale
+            row.get::<_, String>("table")?, // Tabella esterna
+            row.get::<_, Option<String>>("to")?,  // Colonna esterna
+            row.get::<_, String>("on_delete")?, // Azione in caso di cancellazione
         ))
     })?;
     for row in rows {
         let (from, table, to, on_delete) = row?;
+        // Se la chiave esterna riguarda la colonna `suggestion_id`...
         if from == "suggestion_id" {
+            // ...verifica che punti alla tabella `suggestions`, alla colonna `id` e che l'azione
+            // `ON DELETE` sia `SET NULL` (ignora maiuscole/minuscole).
             return Ok(table == "suggestions"
                 && to.as_deref() == Some("id")
                 && on_delete.eq_ignore_ascii_case("SET NULL"));
         }
     }
-    Ok(false)
+    Ok(false) // Nessuna chiave esterna trovata per `suggestion_id` o non conforme.
 }
 
-/// Ricrea `options` con la chiave esterna `ON DELETE SET NULL` verso `suggestions`.
+/// Ricrea la tabella `options` per aggiungere o correggere la chiave esterna `ON DELETE SET NULL`.
+/// Questo è necessario perché SQLite non permette di modificare direttamente le chiavi esterne.
 fn rebuild_options_table(connection: &Connection) -> DbResult<()> {
+    // Salva le definizioni degli indici esistenti sulla tabella `options` per ricrearli dopo.
     let option_indexes: Vec<String> = connection
         .prepare(
             "SELECT sql FROM sqlite_master \
@@ -300,10 +320,14 @@ fn rebuild_options_table(connection: &Connection) -> DbResult<()> {
         .query_map([], |row| row.get(0))?
         .collect::<DbResult<_>>()?;
 
-    // Il pragma non ha effetto dentro una transazione: va cambiato prima del BEGIN.
+    // Temporaneamente disattiva i controlli delle chiavi esterne per permettere la ricreazione della tabella.
+    // Questo PRAGMA deve essere eseguito fuori da una transazione.
     connection.pragma_update(None, "foreign_keys", "OFF")?;
+
+    // Esegue le operazioni di ricreazione della tabella all'interno di una transazione.
     let result = (|| -> DbResult<()> {
         let tx = Transaction::new_unchecked(connection, TransactionBehavior::Immediate)?;
+        // Conta le opzioni che fanno riferimento a `suggestion_id` inesistenti.
         let orphaned: i64 = tx.query_row(
             "SELECT COUNT(*) FROM options o \
              LEFT JOIN suggestions s ON s.id=o.suggestion_id \
@@ -317,6 +341,11 @@ fn rebuild_options_table(connection: &Connection) -> DbResult<()> {
                  i riferimenti verranno azzerati durante la migrazione."
             );
         }
+        // Passaggi per ricreare la tabella:
+        // 1. Crea una nuova tabella `options_new` con la chiave esterna corretta.
+        // 2. Copia i dati dalla vecchia `options` alla nuova, gestendo gli `suggestion_id` orfani.
+        // 3. Elimina la vecchia tabella `options`.
+        // 4. Rinomina `options_new` in `options`.
         tx.execute_batch(
             "CREATE TABLE options_new (
                 id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -332,27 +361,32 @@ fn rebuild_options_table(connection: &Connection) -> DbResult<()> {
             DROP TABLE options;
             ALTER TABLE options_new RENAME TO options;",
         )?;
+        // Ricrea gli indici che erano stati salvati.
         for index_sql in &option_indexes {
             tx.execute_batch(index_sql)?;
         }
-        tx.commit()
+        tx.commit() // Commit della transazione.
     })();
-    // Come il `finally` di Python: riattiva le chiavi esterne anche se la migrazione è fallita.
+    // `finally` di Python: riattiva le chiavi esterne, anche se la ricreazione è fallita.
     let restore = connection.pragma_update(None, "foreign_keys", "ON");
     result?;
     restore
 }
 
+/// Prima migrazione: crea lo schema iniziale del bot e aggiunge colonne necessarie.
 fn migration_1_legacy_schema(connection: &Connection) -> DbResult<()> {
-    connection.execute_batch(MIGRATION_1_SQL)?;
+    connection.execute_batch(MIGRATION_1_SQL)?; // Esegue lo script SQL di base.
 
+    // Aggiunge la colonna `thread_id` alla tabella `polls` se non esiste.
     let poll_columns = table_columns(connection, "polls")?;
     if !poll_columns.contains("thread_id") {
         connection.execute_batch("ALTER TABLE polls ADD COLUMN thread_id TEXT")?;
     }
+    // Aggiunge la colonna `closes_at` alla tabella `polls` se non esiste.
     if !poll_columns.contains("closes_at") {
         connection.execute_batch("ALTER TABLE polls ADD COLUMN closes_at REAL")?;
     }
+    // Aggiunge la colonna `review_status` alla tabella `suggestions` se non esiste.
     let suggestion_columns = table_columns(connection, "suggestions")?;
     if !suggestion_columns.contains("review_status") {
         connection.execute_batch(
@@ -360,10 +394,12 @@ fn migration_1_legacy_schema(connection: &Connection) -> DbResult<()> {
         )?;
     }
 
+    // Ricostruisce la tabella `options` se la chiave esterna `suggestion_id` non è corretta.
     if !options_suggestion_fk_is_current(connection)? {
         rebuild_options_table(connection)?;
     }
 
+    // Aggiorna la tabella `picked_suggestions` rinominando `suggestion_id` in `original_suggestion_id`.
     let picked_columns = table_columns(connection, "picked_suggestions")?;
     if picked_columns.contains("suggestion_id") && !picked_columns.contains("original_suggestion_id") {
         let tx = Transaction::new_unchecked(connection, TransactionBehavior::Immediate)?;
@@ -388,6 +424,7 @@ fn migration_1_legacy_schema(connection: &Connection) -> DbResult<()> {
         tx.commit()?;
     }
 
+    // Crea o aggiorna gli indici per migliorare le performance delle query.
     connection.execute_batch(
         "DROP INDEX IF EXISTS picked_suggestions_name_idx;
         CREATE INDEX picked_suggestions_name_idx ON picked_suggestions(norm_name, tipo, week);
@@ -400,11 +437,15 @@ fn migration_1_legacy_schema(connection: &Connection) -> DbResult<()> {
     )
 }
 
+/// Seconda migrazione: crea tabelle aggiuntive per nuove funzionalità.
 fn migration_2_feature_tables(connection: &Connection) -> DbResult<()> {
     connection.execute_batch(MIGRATION_2_SQL)
 }
 
+/// Operazioni di manutenzione eseguite all'avvio del bot.
+/// Include la pulizia dei claim di messaggi scaduti e il backfill di proposte 'picked'.
 fn startup_maintenance(connection: &Connection) -> DbResult<()> {
+    // Controlla se esistono più sondaggi community attivi, il che dovrebbe essere un errore di configurazione.
     let duplicate_community_polls = connection
         .query_row(
             "SELECT 1 FROM polls \
@@ -414,25 +455,29 @@ fn startup_maintenance(connection: &Connection) -> DbResult<()> {
             [],
             |_| Ok(()),
         )
-        .optional()?
-        .is_some();
+        .optional()? // Tenta di ottenere il risultato, restituisce None se non ci sono righe.
+        .is_some(); // Verifica se un duplicato è stato trovato.
     if duplicate_community_polls {
         warn!("Sono presenti più sondaggi community attivi; rimuovi i duplicati prima di crearne un altro.");
     } else {
+        // Crea un indice unico per garantire che ci sia un solo sondaggio community attivo.
         connection.execute_batch(
             "CREATE UNIQUE INDEX IF NOT EXISTS one_active_community_poll_idx \
              ON polls(is_community) WHERE is_community=1 AND active=1",
         )?;
     }
+    // Calcola il timestamp Unix corrente.
     let now = SystemTime::now()
         .duration_since(UNIX_EPOCH)
         .map(|elapsed| elapsed.as_secs_f64())
         .unwrap_or(0.0);
+    // Elimina i "claim" sui messaggi dei sondaggi scaduti o non più associati a un sondaggio esistente.
     connection.execute(
         "DELETE FROM poll_message_claims WHERE expires_at<=? \
          OR poll_id NOT IN (SELECT id FROM polls)",
         [now],
     )?;
+    // Assicura che tutte le proposte con stato 'picked' (selezionate) siano presenti in `picked_suggestions`.
     connection.execute_batch(
         "INSERT OR IGNORE INTO picked_suggestions \
          (original_suggestion_id, week, norm_name, name, tipo, link, picked_by, picked_at) \
@@ -445,10 +490,12 @@ fn startup_maintenance(connection: &Connection) -> DbResult<()> {
 mod tests {
     use super::*;
 
+    /// Funzione helper per contare righe o valori numerici in una query di test.
     fn count(db: &Database, sql: &str) -> i64 {
         db.with_conn(|c| c.query_row(sql, [], |row| row.get(0)).unwrap())
     }
 
+    /// Funzione helper per ottenere i nomi di tutte le tabelle nel database di test.
     fn table_names(db: &Database) -> HashSet<String> {
         db.with_conn(|c| {
             c.prepare("SELECT name FROM sqlite_master WHERE type='table' AND name NOT LIKE 'sqlite_%'")
@@ -461,21 +508,24 @@ mod tests {
     }
 
     #[test]
+    /// Verifica che un database appena creato abbia lo schema completo dopo le migrazioni.
     fn fresh_database_gets_the_full_schema() {
         let db = Database::open_in_memory().unwrap();
-        assert_eq!(count(&db, "PRAGMA user_version"), 2);
+        assert_eq!(count(&db, "PRAGMA user_version"), 2, "La versione del DB dovrebbe essere 2 dopo le migrazioni.");
         let tables = table_names(&db);
+        // Elenco delle tabelle che ci aspettiamo di trovare.
         for expected in [
             "settings", "polls", "options", "votes", "suggestions", "picked_suggestions", "history",
             "web_sessions", "live_events", "staff_audit", "suggestion_review_messages", "daily_vote_activity",
         ] {
-            assert!(tables.contains(expected), "tabella mancante: {expected}");
+            assert!(tables.contains(expected), "Tabella mancante nel database: {expected}");
         }
-        // Stesse 31 tabelle create dalle due migrazioni Python (+ sqlite_sequence escluso).
-        assert_eq!(tables.len(), 31, "{tables:?}");
+        assert_eq!(tables.len(), 31, "Il numero totale di tabelle dovrebbe corrispondere a quelle create dalle migrazioni.");
     }
 
     #[test]
+    /// Testa che le migrazioni siano idempotenti (possono essere eseguite più volte senza problemi).
+    /// E che il database possa essere riaperto mantenendo lo stato.
     fn migrate_is_idempotent_and_survives_reopening() {
         let dir = std::env::temp_dir().join(format!("sfo-db-test-{}", std::process::id()));
         std::fs::create_dir_all(&dir).unwrap();
@@ -487,63 +537,70 @@ mod tests {
         }
         let db = Database::open(path).unwrap();
         migrate(&db.lock()).unwrap();
-        assert_eq!(count(&db, "PRAGMA user_version"), 2);
-        assert_eq!(db.current_week().unwrap(), 7);
+        assert_eq!(count(&db, "PRAGMA user_version"), 2, "La user_version dovrebbe rimanere 2.");
+        assert_eq!(db.current_week().unwrap(), 7, "L'impostazione 'week' dovrebbe persistere.");
         drop(db);
         let _ = std::fs::remove_dir_all(dir);
     }
 
     #[test]
+    /// Testa il ciclo di vita delle impostazioni: lettura, scrittura, valori di default.
     fn settings_round_trip_with_defaults_and_upsert() {
         let db = Database::open_in_memory().unwrap();
-        assert_eq!(db.get_setting("nope").unwrap(), None);
-        assert_eq!(db.get_setting_or("nope", "x").unwrap(), "x");
-        assert_eq!(db.current_week().unwrap(), 1);
+        assert_eq!(db.get_setting("nope").unwrap(), None, "Un'impostazione inesistente dovrebbe restituire None.");
+        assert_eq!(db.get_setting_or("nope", "x").unwrap(), "x", "Il default dovrebbe essere usato se l'impostazione manca.");
+        assert_eq!(db.current_week().unwrap(), 1, "La settimana iniziale dovrebbe essere 1.");
         db.set_setting("k", "uno").unwrap();
         db.set_setting("k", 2).unwrap();
-        assert_eq!(db.get_setting("k").unwrap().as_deref(), Some("2"));
+        assert_eq!(db.get_setting("k").unwrap().as_deref(), Some("2"), "L'impostazione dovrebbe essere aggiornata.");
         db.set_setting("week", "abc").unwrap();
-        assert!(db.current_week().is_err());
+        assert!(db.current_week().is_err(), "La conversione di 'abc' in numero di settimana dovrebbe fallire.");
     }
 
     #[test]
+    /// Verifica che la funzione `seed_defaults` popoli il database solo se è vuoto.
     fn seed_defaults_populates_once() {
         let db = Database::open_in_memory().unwrap();
         db.seed_defaults().unwrap();
-        db.seed_defaults().unwrap();
-        assert_eq!(count(&db, "SELECT COUNT(*) FROM polls"), 5);
-        assert_eq!(count(&db, "SELECT COUNT(*) FROM options"), 16);
-        assert_eq!(count(&db, "SELECT COUNT(*) FROM polls WHERE is_community=1"), 1);
+        db.seed_defaults().unwrap(); // Eseguita una seconda volta, non dovrebbe fare nulla.
+        assert_eq!(count(&db, "SELECT COUNT(*) FROM polls"), 5, "Dovrebbero esserci 5 sondaggi iniziali.");
+        assert_eq!(count(&db, "SELECT COUNT(*) FROM options"), 16, "Dovrebbero esserci 16 opzioni totali.");
+        assert_eq!(count(&db, "SELECT COUNT(*) FROM polls WHERE is_community=1"), 1, "Dovrebbe esserci un solo sondaggio community.");
     }
 
     #[test]
+    /// Verifica che le transazioni facciano il commit su successo e il rollback su errore.
     fn transaction_commits_on_ok_and_rolls_back_on_err() {
         let db = Database::open_in_memory().unwrap();
+        // Transazione di successo: dovrebbe salvare 'a'='1'.
         db.transaction(|tx| -> DbResult<()> {
             tx.execute("INSERT INTO settings(key,value) VALUES('a','1')", [])?;
             Ok(())
         })
         .unwrap();
+        // Transazione fallita: 'b'='2' non dovrebbe essere salvato.
         let failed = db.transaction(|tx| -> DbResult<()> {
             tx.execute("INSERT INTO settings(key,value) VALUES('b','2')", [])?;
             Err(rusqlite::Error::QueryReturnedNoRows)
         });
-        assert!(failed.is_err());
-        assert_eq!(db.get_setting("a").unwrap().as_deref(), Some("1"));
-        assert_eq!(db.get_setting("b").unwrap(), None);
+        assert!(failed.is_err(), "La transazione dovrebbe fallire.");
+        assert_eq!(db.get_setting("a").unwrap().as_deref(), Some("1"), "Il valore 'a' dovrebbe essere stato committato.");
+        assert_eq!(db.get_setting("b").unwrap(), None, "Il valore 'b' non dovrebbe essere stato committato a causa del rollback.");
     }
 
     #[test]
+    /// Testa l'applicazione delle chiavi esterne (foreign keys) e il comportamento `ON DELETE CASCADE`/`SET NULL`.
     fn foreign_keys_are_enforced() {
         let db = Database::open_in_memory().unwrap();
         db.seed_defaults().unwrap();
         db.execute("INSERT INTO votes(option_id,user_id) VALUES(1,42)", []).unwrap();
-        assert!(db.execute("INSERT INTO votes(option_id,user_id) VALUES(9999,42)", []).is_err());
+        assert!(db.execute("INSERT INTO votes(option_id,user_id) VALUES(9999,42)", []).is_err(), "Inserire un voto per un'option_id inesistente dovrebbe fallire.");
         db.execute("DELETE FROM options WHERE id=1", []).unwrap();
-        assert_eq!(count(&db, "SELECT COUNT(*) FROM votes"), 0, "ON DELETE CASCADE");
+        assert_eq!(count(&db, "SELECT COUNT(*) FROM votes"), 0, "`ON DELETE CASCADE`: i voti associati all'opzione eliminata dovrebbero essere spariti.");
     }
 
     #[test]
+    /// Verifica le operazioni di manutenzione all'avvio: pulizia dei claim e backfill delle proposte.
     fn startup_maintenance_cleans_claims_backfills_picks_and_guards_duplicates() {
         let db = Database::open_in_memory().unwrap();
         db.execute("INSERT INTO polls(id,name,is_community) VALUES(1,'a',1)", []).unwrap();
@@ -555,13 +612,14 @@ mod tests {
         )
         .unwrap();
         db.startup_maintenance().unwrap();
-        assert_eq!(count(&db, "SELECT COUNT(*) FROM poll_message_claims"), 0);
-        assert_eq!(count(&db, "SELECT COUNT(*) FROM picked_suggestions WHERE original_suggestion_id=5"), 1);
+        assert_eq!(count(&db, "SELECT COUNT(*) FROM poll_message_claims"), 0, "I claim scaduti o orfani dovrebbero essere stati puliti.");
+        assert_eq!(count(&db, "SELECT COUNT(*) FROM picked_suggestions WHERE original_suggestion_id=5"), 1, "La proposta 'picked' dovrebbe essere stata backfillata.");
         // L'indice univoco impedisce un secondo sondaggio community attivo.
-        assert!(db.execute("INSERT INTO polls(id,name,is_community) VALUES(2,'b',1)", []).is_err());
+        assert!(db.execute("INSERT INTO polls(id,name,is_community) VALUES(2,'b',1)", []).is_err(), "Non dovrebbero essere permessi sondaggi community duplicati attivi.");
     }
 
     #[test]
+    /// Verifica che la presenza di sondaggi community duplicati attivi generi solo un warning, non un errore bloccante.
     fn duplicate_active_community_polls_only_warn() {
         let db = Database::open_in_memory().unwrap();
         db.execute("INSERT INTO polls(name,is_community) VALUES('a',1)", []).unwrap();
@@ -569,14 +627,14 @@ mod tests {
         db.startup_maintenance().unwrap();
         assert_eq!(
             count(&db, "SELECT COUNT(*) FROM sqlite_master WHERE name='one_active_community_poll_idx'"),
-            0
+            0, "L'indice unico per i sondaggi community non dovrebbe essere creato in caso di duplicati."
         );
     }
 
     #[test]
+    /// Testa l'aggiornamento di un database legacy a una versione più recente.
     fn legacy_database_is_upgraded_in_place() {
-        // Schema di una versione molto vecchia: niente thread_id/closes_at/review_status,
-        // `options` senza chiave esterna, `picked_suggestions` con la colonna `suggestion_id`.
+        // Crea uno schema di database molto vecchio per simulare l'aggiornamento.
         let connection = Connection::open_in_memory().unwrap();
         connection
             .execute_batch(
@@ -600,13 +658,13 @@ mod tests {
             .unwrap();
         connection.pragma_update(None, "foreign_keys", "ON").unwrap();
 
-        migrate(&connection).unwrap();
+        migrate(&connection).unwrap(); // Applica le migrazioni al database legacy.
 
         let version: i64 = connection.pragma_query_value(None, "user_version", |r| r.get(0)).unwrap();
-        assert_eq!(version, 2);
-        assert!(options_suggestion_fk_is_current(&connection).unwrap());
+        assert_eq!(version, 2, "La versione del DB dovrebbe essere aggiornata a 2.");
+        assert!(options_suggestion_fk_is_current(&connection).unwrap(), "La chiave esterna per le opzioni dovrebbe essere stata corretta.");
         let foreign_keys: i64 = connection.pragma_query_value(None, "foreign_keys", |r| r.get(0)).unwrap();
-        assert_eq!(foreign_keys, 1, "le chiavi esterne tornano attive");
+        assert_eq!(foreign_keys, 1, "Le chiavi esterne dovrebbero tornare attive.");
         let labels: Vec<(String, Option<i64>)> = connection
             .prepare("SELECT label, suggestion_id FROM options ORDER BY id")
             .unwrap()
@@ -614,7 +672,7 @@ mod tests {
             .unwrap()
             .collect::<DbResult<_>>()
             .unwrap();
-        assert_eq!(labels, vec![("valida".into(), Some(10)), ("orfana".into(), None)]);
+        assert_eq!(labels, vec![("valida".into(), Some(10)), ("orfana".into(), None)], "Gli suggestion_id orfani dovrebbero essere NULL.");
         let picked: i64 = connection
             .query_row(
                 "SELECT COUNT(*) FROM picked_suggestions WHERE original_suggestion_id=10 AND picked_by=5",
@@ -622,13 +680,14 @@ mod tests {
                 |r| r.get(0),
             )
             .unwrap();
-        assert_eq!(picked, 1);
-        assert!(table_columns(&connection, "polls").unwrap().contains("closes_at"));
-        assert!(table_columns(&connection, "suggestions").unwrap().contains("review_status"));
+        assert_eq!(picked, 1, "La proposta 'picked' dovrebbe essere stata migrata correttamente.");
+        assert!(table_columns(&connection, "polls").unwrap().contains("closes_at"), "La colonna 'closes_at' dovrebbe essere stata aggiunta alla tabella polls.");
+        assert!(table_columns(&connection, "suggestions").unwrap().contains("review_status"), "La colonna 'review_status' dovrebbe essere stata aggiunta alla tabella suggestions.");
     }
 
-    /// Esporta il database creato da Rust per il confronto di schema con Python
-    /// (`SFO_DUMP_DB=percorso cargo test dump_schema -- --ignored`).
+    /// Esporta il database creato da Rust per il confronto di schema con Python.
+    /// Questo test è ignorato per impostazione predefinita e viene eseguito solo manualmente
+    /// per verificare la parità dello schema con la versione Python.
     #[test]
     #[ignore]
     fn dump_schema_for_python_parity() {

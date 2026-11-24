@@ -30,3 +30,6 @@ sfo-site/.netlify/
 __MACOSX/
 Thumbs.db
 
+# Build site
+dist/
+

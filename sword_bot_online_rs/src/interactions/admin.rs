@@ -1,6 +1,16 @@
-//! Logica di `cogs/admin.py`: `/config`, `/feed-attivita` e il centro controllo dello staff.
+//! Logica e implementazione dei comandi slash `/config`, `/feed-attivita` e del centro di controllo dello staff.
 //!
-//! I comandi poise (`crate::commands`) raccolgono gli argomenti e chiamano questi metodi.
+//! Questo modulo replica e estende le funzionalità originariamente presenti in `cogs/admin.py` del bot Discord in Python. Fornisce i metodi
+//! che vengono richiamati dai veri comandi `poise` (vedi `crate::commands`), dopo che questi hanno raccolto gli argomenti dall'utente.
+//!
+//! ### Concetti chiave:
+//! - **`Interactions`**: La struttura principale che gestisce le interazioni con Discord.
+//! - **`InteractionIo`**: Un trait (interfaccia) che astrae l'input/output dell'interazione, permettendo di testare la logica con implementazioni finte.
+//! - **`ConfigRequest`**: Una struttura dati che contiene tutti i possibili parametri per il comando `/config`.
+//! - **`ControlComponent`**: Un enum che definisce i diversi tipi di componenti interattivi (bottoni, menu a tendina) presenti nel "Centro controllo staff".
+//! - **`AuditEntry`**: Registra le azioni dello staff per scopi di auditing e trasparenza.
+//! - **`rusqlite::Error`**: Errore standard per le operazioni sul database SQLite.
+//! - **`BTreeSet`**: Una collezione ordinata di elementi unici, usata qui per gestire i ruoli dello staff senza duplicati e in ordine.
 
 use std::collections::BTreeSet;
 
@@ -22,23 +32,38 @@ use crate::settings;
 
 const NOT_ADMIN: &str = "⚠️ Non hai i permessi per usare questo comando.";
 
-/// Gli argomenti di `/config`: ogni opzione è facoltativa. Canali e ruolo sono ID Discord.
+/// Gli argomenti (o "opzioni") che possono essere passati al comando slash `/config`.
+/// Ogni campo è un `Option<T>`, il che significa che l'utente può scegliere di impostare solo alcune
+/// di queste opzioni, lasciando le altre invariate. I canali e i ruoli sono rappresentati da ID numerici di Discord (`u64`).
 #[derive(Debug, Clone, Default)]
 pub struct ConfigRequest {
+    /// L'ID del canale Discord dove verranno pubblicati i sondaggi.
     pub poll_channel: Option<u64>,
+    /// L'ID del canale Discord riservato allo staff, dove arrivano le notifiche interne.
     pub staff_channel: Option<u64>,
+    /// L'ID del canale Discord dove vengono inviati i report degli eventi live.
     pub event_report_channel: Option<u64>,
+    /// L'ID del canale Discord dove il bot invierà messaggi di benvenuto ai nuovi membri.
     pub welcome_channel: Option<u64>,
+    /// L'ID del ruolo Discord che identifica i membri dello staff.
     pub staff_role: Option<u64>,
+    /// Il numero di "slot" disponibili per le proposte nel ballottaggio settimanale.
     pub slots: Option<i64>,
+    /// Indica se i messaggi di benvenuto automatici devono essere attivati (`true`) o disattivati (`false`).
     pub welcome_enabled: Option<bool>,
+    /// Il numero massimo di voti che un utente può esprimere per ciascun sondaggio.
     pub max_votes: Option<i64>,
+    /// Il numero massimo di proposte che possono essere presentate in una settimana.
     pub max_proposals: Option<i64>,
-    /// 0 = lunedì … 6 = domenica.
+    /// Il giorno della settimana in cui avviene il reset settimanale. 0 = lunedì, 6 = domenica.
     pub reset_weekday: Option<i64>,
+    /// L'ora del giorno in cui avviene il reset settimanale (in formato 24 ore).
     pub reset_hour: Option<i64>,
+    /// Indica se deve essere inviato un promemoria prima del reset settimanale (`true`) o meno (`false`).
     pub reset_reminder: Option<bool>,
+    /// L'ID del canale Discord dedicato alle "Game Night" o eventi simili.
     pub game_night_channel: Option<u64>,
+    /// Un motivo facoltativo per la modifica della configurazione, registrato nell'audit dello staff.
     pub reason: Option<String>,
 }
 

@@ -1,12 +1,23 @@
-//! Le letture del database per le statistiche del sito (`cogs/platform_data.py`): salute della
-//! community, mappa dell'attività, ricerca nello storico, precisione dello staff, report degli eventi
-//! live e panoramica.
+//! Questo modulo fornisce letture del database per le statistiche del sito web.
 //!
-//! Ogni lettura resta in cache 15 secondi (chiave: nome e argomenti); il bot la svuota quando i dati
-//! cambiano (`clear_read_cache`). Ciò che un errore del database o un dato malformato provocano in
-//! Python si distingue come in Python: [`DataError::Sql`] e [`DataError::Value`] sono gli errori che le
-//! route trasformano in un 500 con messaggio, [`DataError::Unexpected`] quelli che in Python escono
-//! come un 500 generico.
+//! Le funzioni qui disponibili servono per visualizzare sul sito informazioni utili:
+//! - **Salute della community**: un punteggio che misura quanto è attiva la community
+//! - **Mappa dell'attività**: grafico che mostra quando gli utenti sono più attivi
+//! - **Ricerca nello storico**: trova proposte selezionate nel passato
+//! - **Precisione dello staff**: verifica quanto lo staff sceglie proposte vincenti
+//! - **Report eventi live**: statistiche sugli eventi vocali passati
+//! - **Panoramica generale**: riepilogo dello stato attuale del bot
+//!
+//! **Caching**: ogni lettura viene memorizzata nella cache per 15 secondi per velocizzare le richieste successive.
+//! La cache viene svuotata quando i dati cambiano (chiamata a `clear_read_cache`).
+//!
+//! **Gestione errori in Rust vs Python**:
+//! - `DataError::Sql`: errori del database SQLite, mostrati come 500 con messaggio dettagliato
+//! - `DataError::Value`: dati o parametri non validi, mostrati come 500 con messaggio
+//! - `DataError::Unexpected`: errori imprevisti, mostrati come 500 generico (senza dettagli sensibili)
+//!
+//! Nota: i nomi delle funzioni in italiano riflettono il nome originale in inglese per facilitare
+//! la collaborazione con il codice Python correlato in `cogs/platform_data.py`.
 
 use std::collections::{BTreeMap, BTreeSet, HashMap, HashSet};
 use std::sync::{Arc, Mutex};
@@ -29,13 +40,35 @@ pub const READ_CACHE_TTL: Duration = Duration::from_secs(15);
 
 const ACCURACY_DEFINITION: &str = "Percentuale di proposte selezionate che hanno pareggiato il massimo dei voti nel sondaggio community archiviato.";
 
+/// Risultati di errore per le letture del database.
+///
+/// Per chi non è programmatore: questo tipo di dato rappresenta gli errori che possono
+/// verificarsi quando si leggono dati dal database. L'enum (un tipo speciale che può
+/// assumere diverse forme) ha tre varianti:
+///
+/// - `Sql`: problemi tecnici con il database (es. tabella mancante, query errata)
+/// - `Value`: dati errati o parametri non validi (es. data non riconosciuta)
+/// - `Unexpected`: errori imprevedibili che dovrebbero essere segnalati all'amministratore
 #[derive(Debug)]
 pub enum DataError {
-    /// Un errore di SQLite (`sqlite3.Error`).
+    /// Un errore del database SQLite (corrisponde a `sqlite3.Error` in Python).
+    /// Questo succede quando c'è un problema tecnico con il database:
+    /// - tabella mancante o con struttura errata
+    /// - query SQL malformata
+    /// - database corrotto o chiuso
     Sql(rusqlite::Error),
-    /// `ValueError`, `KeyError` o `TypeError`: dati o parametri non validi.
+    /// Errore di validazione dei dati (corrisponde a `ValueError`, `KeyError`, `TypeError` in Python).
+    /// Questo succede quando i dati non sono nel formato atteso:
+    /// - stringa formato data non riconosciuta
+    /// - numero mancante o non convertibile
+    /// - chiave esterna non trovata
     Value(String),
-    /// Tutto il resto (`AttributeError`…): in Python non lo gestisce nessuno.
+    /// Errore imprevisto (corrisponde a errori come `AttributeError` in Python).
+    /// Questo succede per condizioni che non dovrebbero mai verificarsi:
+    /// - struttura dati imprevista
+    /// - bug nel codice logico
+    /// - incoerenza dei dati
+    /// In Python, questi errori non vengono gestiti esplicitamente e causano un errore 500 generico.
     Unexpected(String),
 }
 
@@ -57,6 +90,8 @@ impl std::fmt::Display for DataError {
 type DataResult = Result<Value, DataError>;
 
 /// `round(x, 1)` di Python: arrotonda sul valore esatto del numero.
+// Converte il numero in stringa con 1 cifra decimale, poi torna indietro a f64.
+// Usa unwrap_or come fallback se la conversione fallisce.
 pub(crate) fn round1(value: f64) -> f64 {
     format!("{value:.1}").parse().unwrap_or(value)
 }
@@ -77,6 +112,8 @@ fn python_int_of(value: &Value) -> Option<i64> {
 }
 
 /// La verità di un valore JSON, come `if valore:` in Python.
+// Valori falsi: null, false, 0, stringhe vuote, array oggetti vuoti.
+// Tutti gli altri valori sono truthy.
 fn truthy(value: &Value) -> bool {
     match value {
         Value::Null => false,
@@ -88,12 +125,15 @@ fn truthy(value: &Value) -> bool {
     }
 }
 
+// Converte un timestamp Unix in DateTime locale.
+// Usa il fuso orario configurato (TZ) e restituisce un valore predefinito se il timestamp è invalido.
 fn local(timestamp: i64) -> DateTime<Tz> {
     TZ.timestamp_opt(timestamp, 0).single().unwrap_or_else(|| TZ.timestamp_opt(0, 0).unwrap())
 }
 
-/// Le settimane (contatore `week`) di un periodo di `days` giorni: `ceil(days/7)` settimane, con
-/// `periods_back` periodi indietro.
+// Calcola l'intervallo di settimane per un periodo di giorni.
+// Restituisce una coppia (prima_settimana, ultima_settimana) con il conteggio delle settimane
+// nel periodo specificato, considerando un range di settimane indietro.
 pub fn period_weeks(current_week: i64, days: i64, periods_back: i64) -> (i64, i64) {
     let span = ((days + 6).div_euclid(7)).max(1);
     let last = current_week - span * periods_back;
@@ -111,6 +151,8 @@ pub struct PlatformData {
 }
 
 impl PlatformData {
+    // Crea una nuova instance di PlatformData con i dati forniti.
+    // Il fallback_guild_id è usato quando guild_id non è nelle impostazioni del bot.
     pub fn new(db: Database, directory: Arc<dyn SiteDirectory>, fallback_guild_id: Option<u64>) -> Self {
         Self { db, directory, fallback_guild_id, now: || chrono::Utc::now().timestamp(), monotonic: Instant::now, cache: Mutex::new(HashMap::new()) }
     }
@@ -122,12 +164,15 @@ impl PlatformData {
         self
     }
 
-    /// Svuota la cache delle letture (il bot lo fa quando cambiano i dati).
+    /// Svuota la cache delle letture a causa di aggiornamenti dati.
+    // Chiamato quando il bot riceve aggiornamenti che invalidano i dati in cache.
     pub fn clear_read_cache(&self) {
         self.cache.lock().unwrap_or_else(|poisoned| poisoned.into_inner()).clear();
     }
 
-    /// Una lettura con cache: stesso nome e stessi argomenti, stesso risultato per 15 secondi.
+    // Una lettura con cache: stesso nome e stessi argomenti, stesso risultato per 15 secondi.
+    // Usa chiave unica per ogni combinazione di parametri.
+    // Rimuove le voci scadute prima di ogni accesso alla cache.
     fn cached(&self, key: String, compute: impl FnOnce() -> DataResult) -> DataResult {
         let now = (self.monotonic)();
         {
@@ -187,6 +232,9 @@ impl PlatformData {
         })
     }
 
+    // Calcola le metriche di salute della community per un periodo specifico.
+    // Raccoglie azioni della community, utenti attivi, timestamp e eventi conclusi,
+    // poi calcola un punteggio combinando partecipazione, continuità, varietà, coinvolgimento e eventi.
     fn health_metrics(&self, start: i64, end: i64, weeks: (i64, i64), days: i64) -> Result<Value, DataError> {
         let (start_text, end_text) = (isoformat(local(start)), isoformat(local(end)));
         let (counts, active_users, timestamps, events) = self.db.with_conn(|conn| -> rusqlite::Result<_> {

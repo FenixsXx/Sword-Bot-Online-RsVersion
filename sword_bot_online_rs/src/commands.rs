@@ -3,6 +3,42 @@
 //!
 //! I comandi sono sottili: costruiscono un [`CommandIo`] sull'interazione e passano a
 //! `Interactions`, dove sta la logica (con le conferme e i pulsanti di `/staff`).
+//!
+//! # Panoramica del modulo
+//!
+//! Questo modulo definisce tutti i comandi slash (comandi con lo slash `/`) per il bot Discord.
+//! I comandi sono l'interfaccia principale attraverso cui gli utenti interagiscono con il bot.
+//!
+//! # Struttura dei comandi
+//!
+//! - **Comandi base**: `reset_manuale`, `sync`, `suggerisci`, `scegli`, `rimuovi_scelta`, `unisci_proposte`
+//! - **Comandi staff**: `staff`, `storico`, `config`, `feed_attivita`, `centro_staff`, `proposte`
+//! - **Comandi di revisione**: `proposta` (con sottocomandi `revisiona`, `approva`, `rifiuta`)
+//! - **Comandi sondaggi**: `sondaggio` (con sottocomandi `crea`, `rimuovi`, `pubblica`)
+//! - **Comandi opzione**: `opzione` (con sottocomandi `aggiungi`, `rimuovi`)
+//! - **Comandi community**: `guida`, `profilo`, `classifica_utenti`, `record_community`, `notifiche`, `classifica_stagione`
+//! - **Comandi evento live**: `evento` (con numerosi sottocomandi per gestire gli eventi)
+//! - **Comandi staff tools**: `site`, `general`
+//! - **Comandi backup**: `backup` (con sottocomandi `stato`, `crea`)
+//!
+//! # Concetti chiave
+//!
+//! - **Slash command**: Un comando che l'utente scrive inizando con `/` in Discord.
+//! - **Subcommand**: Un sottocomando che appare quando si digita un comando principale.
+//!   Esempio: `/proposta` mostra le opzioni `approva`, `rifiuta`, `revisiona`.
+//! - **Autocomplete**: Campi che mostrano suggerimenti mentre l'utente digita (es. nomi di proposte).
+//! - **Check di permessi**: Restrizioni che determinano chi può usare un comando.
+//!   - `admin_only`: Solo utenti con il ruolo Amministratore.
+//!   - `staff_only`: Utenti con ruoli staff configurati o amministratori.
+//! - **Ephemeral**: Messaggi visibili solo all'utente che ha eseguito il comando.
+//!
+//! # Poise
+//!
+//! Questo bot usa la libreria `poise`, che è una semplificazione di `serenity` (l'API Discord).
+//! `poise` gestisce automaticamente:
+//! - La registrazione dei comandi con Discord
+//! - Le interazioni utente (clic su pulsanti, compilazione di modali)
+//! - La convergenza tra le definizioni Rust e i payload Python originali
 
 use poise::serenity_prelude::{self as serenity, AutocompleteChoice, CreateAutocompleteResponse, ResolvedOption, ResolvedValue};
 use tracing::error;

@@ -31,13 +31,18 @@ use crate::site_auth::SiteAuth;
 use crate::site_common::json_error;
 
 /// Gli argomenti su cui il bot può segnalare un cambiamento.
+/// Riconosciuti: poll, proposals, events, reports, settings.
 pub const TOPICS: [&str; 5] = ["polls", "proposals", "events", "reports", "settings"];
-/// Il codice con cui si chiude un collegamento la cui sessione non è più valida.
+
+/// Codice di chiusura per WebSocket chiusi a causa di sessione scaduta.
 pub const SESSION_EXPIRED_CLOSE_CODE: u16 = 4401;
-const TOO_SLOW_CLOSE_CODE: u16 = 1013;
-const GOING_AWAY: u16 = 1001;
-const MESSAGE_TOO_BIG: u16 = 1009;
-/// La dimensione massima di un messaggio ricevuto (`max_msg_size=1024`).
+
+// Codici di chiusura WebSocket standard.
+const TOO_SLOW_CLOSE_CODE: u16 = 1013;  // "Try again later" (client troppo lento)
+const GOING_AWAY: u16 = 1001;           // "Going away" (server in arresto)
+const MESSAGE_TOO_BIG: u16 = 1009;      // "Message too big"
+
+// La dimensione massima di un messaggio ricevuto WebSocket (`max_msg_size=1024`).
 const MAX_MESSAGE_SIZE: usize = 1024;
 
 #[derive(Debug, Clone, Copy)]
@@ -212,8 +217,11 @@ impl SiteEventHub {
     }
 }
 
-/// `_same_origin`: l'origine è il sito stesso (l'intestazione `Host`, o `X-Forwarded-Host` dietro un
-/// proxy). Senza `Origin` (client che non sono browser) il cookie di sessione basta.
+/// Verifica che l'origine della richiesta sia consentita.
+///
+/// Per i client browser, controlla che l'header `Origin` corrisponda a `Host` o `X-Forwarded-Host`.
+/// Per i client non-browser (es. script), l'header `Origin` mancante permette l'accesso se il
+/// cookie di sessione è valido. Questo previene attacchi CSRF da domini esterni.
 fn same_origin(headers: &HeaderMap) -> bool {
     let origin = headers.get(header::ORIGIN).and_then(|value| value.to_str().ok()).unwrap_or("");
     if origin.is_empty() {
@@ -230,6 +238,15 @@ fn same_origin(headers: &HeaderMap) -> bool {
     allowed.contains(&netloc)
 }
 
+/// Handler principale per WebSocket live.
+///
+/// Gestisce l'handshake WebSocket:
+/// 1. Autorizza la richiesta tramite SiteAuth (cookie di sessione Discord)
+/// 2. Verifica che l'origine sia consentita (prevenimento CSRF)
+/// 3. Pre-reserva uno slot per il client (limite max_clients)
+/// 4. Avvia la connessione con limiti di dimensione massima dei messaggi
+///
+/// Chiama `serve_client` per gestire il ciclo di vita della connessione WebSocket.
 async fn handle(State(hub): State<Arc<SiteEventHub>>, headers: HeaderMap, upgrade: Result<WebSocketUpgrade, WebSocketUpgradeRejection>) -> Response {
     if let Err(response) = hub.auth.authorize(&headers, false).await {
         return response;
@@ -247,10 +264,32 @@ async fn handle(State(hub): State<Arc<SiteEventHub>>, headers: HeaderMap, upgrad
     upgrade.max_message_size(MAX_MESSAGE_SIZE).on_upgrade(move |socket| serve_client(socket, hub, headers, slot))
 }
 
+/// Invia un messaggio di chiusura WebSocket al client.
+///
+/// Usa un timeout per evitare di bloccarsi se il client non risponde.
+/// Il timeout è configurabile via `send_timeout` nel HubConfig.
+/// È usata per chiudere pulitamente in risposta a errori o autorizzazione scaduta.
 async fn send_close(socket: &mut WebSocket, code: u16, reason: &'static str, send_timeout: Duration) {
     let _ = timeout(send_timeout, socket.send(Message::Close(Some(CloseFrame { code, reason: reason.into() })))).await;
 }
 
+/// Gestisce il ciclo di vita di una singola connessione WebSocket live.
+///
+/// # Ciclo di vita del client:
+/// 1. Registra il client nello stato condivuto dell'hub con un ID unico
+/// 2. Invia immediatamente `{"type": "ready"}` al client
+/// 3. Entra in un loop con `tokio::select!` su 5 eventi:
+///    - ricezione messaggi dal client WebSocket ( ignorati, tranne chiusura)
+///    - richieste di chiusura dallo slot di shutdown
+///    - messaggi dalla coda per l'argomento cambiato
+///    - riconvalida periodica dell'autorizzazione (ogni `revalidate` secondi)
+///    - heartbeat per rilevare client inattivi (ogni `heartbeat` secondi)
+///
+/// # Gestione errori:
+/// - Messaggio troppo grande: chiude con codice 1009
+/// - Invio fallito: chiude con codice 1001
+/// - Autorizzazione scaduta: chiude con codice 4401
+/// - Client non risponde al ping: chiude, logga errore
 async fn serve_client(mut socket: WebSocket, hub: Arc<SiteEventHub>, headers: HeaderMap, _slot: Slot) {
     let config = hub.config;
     let (queue, mut messages) = mpsc::channel::<String>(config.queue_size);

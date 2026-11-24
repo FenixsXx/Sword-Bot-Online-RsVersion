@@ -34,6 +34,7 @@ use crate::stats::{
 
 // --- descrizione di un embed -----------------------------------------------------------------
 
+/// Un campo di un embed Discord con nome, valore e opzione di allineamento inline.
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub struct EmbedField {
     pub name: String,
@@ -405,6 +406,8 @@ pub fn history_summary_lines(db: &impl Connected, limit: i64) -> DbResult<Vec<St
     Ok(lines)
 }
 
+/// Costruisce l'embed "Hall of Fame" che mostra la cronologia delle settimane archiviate,
+/// con vincitori, record e proposte che hanno vinto nei diversi cicli.
 pub fn build_history_embed(db: &impl Connected) -> DbResult<EmbedSpec> {
     let lines = history_summary_lines(db, 10)?;
     Ok(EmbedSpec::new(
@@ -414,6 +417,8 @@ pub fn build_history_embed(db: &impl Connected) -> DbResult<EmbedSpec> {
     ))
 }
 
+/// Costruisce l'embed combinato che unisce Hall of Fame e record della community in un unico schermo.
+/// Mostra le settimane archiviate, i record settimanali e le statistiche di successo.
 pub fn build_combined_hall_of_fame_embed(db: &impl Connected) -> DbResult<EmbedSpec> {
     let mut history = build_history_embed(db)?;
     let records = build_community_records_embed(db)?;
@@ -560,6 +565,9 @@ pub fn build_dashboard_embed(db: &impl Connected, now: DateTime<Tz>) -> DbResult
 
 // --- classifiche -----------------------------------------------------------------------------
 
+/// Costruisce l'embed con la classifica corrente degli sondaggi attivi e delle proposte più
+/// sostenute nella settimana corrente. Mostra i top 3 di ogni sondaggio e le proposte più
+/// apprezzate dalla community.
 pub fn build_leaderboard_embed(db: &impl Connected) -> DbResult<EmbedSpec> {
     let week = database::current_week(db)?;
     let mut embed = EmbedSpec::new("📊 Classifica della settimana", format!("Settimana #{week} · voti anonimi"), COLOR_PRIMARY);
