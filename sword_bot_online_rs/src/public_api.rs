@@ -135,17 +135,18 @@ fn query_limit(raw_query: Option<String>) -> Result<usize, Response> {
     }
 }
 
-// Gestisce gli errori del database restituendo una risposta 500.
-// Logga l'errore e chiama `generic_500` per mantenere coerenza con il pattern Python.
+/// Gestisce gli errori del database restituendo una risposta 500.
+/// Logga l'errore e chiama `generic_500` per mantenere coerenza con il pattern Python.
 fn db_failure<T>(what: &str, result: Result<T, impl std::fmt::Display>) -> Result<T, Response> {
+    // Se l'operazione ha fallito, logga l'errore e restituisce una risposta 500
     result.map_err(|e| {
         error!("{what}: {e}");
         generic_500()
     })
 }
 
-// Restituisce una risposta JSON con status 200 OK.
-// Usa `json_response` per formattare il valore con indentazione appropriata.
+/// Restituisce una risposta JSON con status 200 OK.
+/// Usa `json_response` per formattare il valore con indentazione appropriata.
 fn json_ok(value: &Value) -> Reply {
     Ok(json_response(StatusCode::OK, value))
 }
@@ -304,9 +305,10 @@ fn winners_of(data: &Map<String, Value>) -> Option<Vec<Value>> {
     Some(winners)
 }
 
-// Converte un valore SQLite in un valore JSON.
-// I Blob vengono convertiti in Null perché non hanno rappresentazione JSON nativa.
+/// Converte un valore SQLite in un valore JSON.
+/// I Blob vengono convertiti in Null perché non hanno rappresentazione JSON nativa.
 fn sql_value(value: rusqlite::types::Value) -> Value {
+    // Mappa ogni tipo SQLite al valore JSON corrispondente
     match value {
         rusqlite::types::Value::Null => Value::Null,
         rusqlite::types::Value::Integer(number) => json!(number),
@@ -350,12 +352,15 @@ async fn leaderboard(State(state): State<PublicApiState>, headers: HeaderMap, Ra
     leaderboard_inner(&state, &headers, query).unwrap_or_else(|response| response)
 }
 
-// Handler per la classifica generale dei contributor (punti totali).
-// Richiede autenticazione API e restituisce i top N utenti (default 25).
-// Usa il database per ottenere le righe della classifica e risolve gli ID utente.
+/// Handler per la classifica generale dei contributor (punti totali).
+/// Richiede autenticazione API e restituisce i top N utenti (default 25).
+/// Usa il database per ottenere le righe della classifica e risolve gli ID utente.
 fn leaderboard_inner(state: &PublicApiState, headers: &HeaderMap, query: Option<String>) -> Reply {
-    authenticate(state, headers)?; // Verifica il token Bearer prima di procedere
-    let limit = query_limit(query)?; // Limita il numero di risultati (1-100)
+    // Verifica il token Bearer prima di procedere
+    authenticate(state, headers)?;
+    // Limita il numero di risultati (1-100)
+    let limit = query_limit(query)?;
+    // Recupera le righe della classifica dal database
     let rows = db_failure("Classifica", state.db.with_conn(|conn| contributor_leaderboard_rows(conn, limit)))?;
     json_ok(&Value::Array(
         rows.iter()
@@ -377,11 +382,17 @@ async fn season(State(state): State<PublicApiState>, headers: HeaderMap, RawQuer
     season_inner(&state, &headers, query).unwrap_or_else(|response| response)
 }
 
+/// Handler per la classifica della stagione corrente.
 fn season_inner(state: &PublicApiState, headers: &HeaderMap, query: Option<String>) -> Reply {
+    // Verifica l'autenticazione
     authenticate(state, headers)?;
+    // Trova la stagione corrente in base alla data odierna
     let current = season_for_date(today(state));
+    // Limita il numero di risultati
     let limit = query_limit(query)?;
+    // Recupera la classifica della stagione dal database
     let rows = db_failure("Classifica della stagione", state.db.with_conn(|conn| season_leaderboard_rows(conn, &current.key, limit as i64)))?;
+    // Costruisce il risultato con la stagione e la classifica
     let mut result = season_json(&current);
     result["leaderboard"] = Value::Array(
         rows.iter().map(|row| json!({"user_id": row.user_id, "name": state.data.member_name(row.user_id), "points": row.points, "activities": row.activities})).collect(),

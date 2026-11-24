@@ -176,6 +176,7 @@ pub fn similar_suggestions(
 
 // --- notifiche private -----------------------------------------------------------------------
 
+/// Imposta le notifiche private (DM) per un utente.
 pub fn set_dm_notifications(db: &Database, user_id: i64, enabled: bool) -> DbResult<()> {
     db.transaction(|tx| -> DbResult<()> {
         tx.execute(
@@ -253,6 +254,7 @@ pub fn staff_recommendation(
 
 // --- sostegno --------------------------------------------------------------------------------
 
+/// Risultato dell'operazione di sostegno a una proposta.
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub struct SupportResult {
     pub message: String,
@@ -356,6 +358,7 @@ impl RegisterResult {
     }
 }
 
+/// Verifica se una etichetta DNS è valida: lettere, cifre e trattini (1-63 caratteri).
 fn is_dns_label(label: &str) -> bool {
     let bytes = label.as_bytes();
     (1..=63).contains(&bytes.len())
@@ -442,6 +445,7 @@ pub fn is_valid_link(link: &str) -> bool {
     !hostname.is_empty() && (is_ip_literal || is_valid_hostname(hostname))
 }
 
+/// Passi possibili durante la registrazione di una proposta.
 enum RegisterStep {
     Reject(String),
     Registered { used_before: i64, created_id: Option<i64> },

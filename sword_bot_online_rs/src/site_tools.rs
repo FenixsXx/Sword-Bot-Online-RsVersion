@@ -59,7 +59,7 @@ use crate::voice::BoxFuture;
 /// Include "review" per visualizzare i dettagli, "approve" per approvare, "reject" per respingi.
 const REVIEW_ACTIONS: [&str; 3] = ["review", "approve", "reject"];
 
-///messaggio di errore 500 generico da usare quando il server fallisce
+/// Messaggio di errore 500 generico da usare quando il server fallisce.
 const GENERIC_500: &str = "500 Internal Server Error\n\nServer got itself in trouble";
 
 /// Trait per le operazioni di backup del database.
@@ -71,8 +71,8 @@ pub trait SiteBackups: Send + Sync + 'static {
     fn create(&self) -> BoxFuture<'_, Result<Vec<String>, String>>;
 }
 
-// Costruisce il payload JSON con lo stato dei backup.
-// Include informazioni su root, contatori giornalieri/settimanali e eventuali errori.
+/// Costruisce il payload JSON con lo stato dei backup.
+/// Include informazioni su root, contatori giornalieri/settimanali e eventuali errori.
 fn status_json(status: &BackupStatus) -> Value {
     json!({
         "root": status.root.display().to_string(),
@@ -144,13 +144,21 @@ pub fn routes(state: ToolsState) -> Router {
 ///
 /// aiohttp confronta il percorso ancora codificato (`%D9%A2`): le cifre di altri alfabeti non
 /// corrispondono, quindi qui contano solo quelle ASCII.
+/// Un parametro del percorso fatto di sole cifre (`\d+`): `None` se il percorso non corrisponde
+/// (404); `Some(None)` se è troppo grande per il database.
+///
+/// aiohttp confronta il percorso ancora codificato (`%D9%A2`): le cifre di altri alfabeti non
+/// corrispondono, quindi qui contano solo quelle ASCII.
 pub(crate) fn digits_param(raw: &str) -> Option<Option<i64>> {
+    // Se il percorso è vuoto o contiene caratteri non ASCII, restituisci None (404)
     if raw.is_empty() || !raw.bytes().all(|byte| byte.is_ascii_digit()) {
         return None;
     }
+    // Usa la logica Python int() per convertire il valore
     Some(python_int(raw))
 }
 
+/// Restituisce una risposta 500 Generic con il messaggio di errore predefinito.
 pub(crate) fn generic_500() -> Response {
     plain(StatusCode::INTERNAL_SERVER_ERROR, GENERIC_500)
 }
@@ -347,45 +355,72 @@ async fn review_proposal(State(state): State<ToolsState>, headers: HeaderMap, Pa
     }
 }
 
-// Aggiunge una proposta al ballottaggio nel database.
-// Questa è una funzione di supporto usata da `choose_proposal`.
-// Esegue operazioni in transazione per garantire consistenza.
+/// Aggiunge una proposta al ballottaggio nel database.
+/// Questa è una funzione di supporto usata da `choose_proposal`.
+/// Esegue operazioni in transazione per garantire consistenza.
 fn choose_in_db(db: &Database, suggestion_id: i64, actor: i64, now: DateTime<Tz>) -> Result<Chosen, String> {
+    // Apri una transazione per operazioni atomiche
     db.transaction(|tx| -> rusqlite::Result<Result<Chosen, String>> {
+        // Recupera la settimana corrente
         let week = crate::database::current_week(tx)?;
+
+        // Recupera i dettagli della proposta: nome, tipo, review_status, status
         let suggestion: Option<(String, String, String, Option<String>)> = tx
             .query_row("SELECT name, tipo, review_status, status FROM suggestions WHERE id=? AND week=?", params![suggestion_id, week], |row| {
                 Ok((row.get(0)?, row.get(1)?, row.get(2)?, row.get(3)?))
             })
             .optional()?;
+
+        // Recupera l'ID del sondaggio community attivo
         let poll: Option<i64> = tx.query_row("SELECT id FROM polls WHERE is_community=1 AND active=1", [], |row| row.get(0)).optional()?;
+
+        // Verifica che proposta e sondaggio siano disponibili
         let (Some((name, kind, review_status, status)), Some(poll_id)) = (suggestion, poll) else {
             return Ok(Ok(Chosen::NotFound));
         };
+
+        // Verifica che la proposta sia approvata
         if review_status != "approved" {
             return Ok(Ok(Chosen::Conflict("La proposta deve essere approvata prima del ballottaggio".into())));
         }
+
+        // Verifica che la proposta non sia già nel ballottaggio
         if status.as_deref() == Some("picked") {
             return Ok(Ok(Chosen::Conflict("La proposta è già nel ballottaggio".into())));
         }
+
+        // Recupera il numero di slot dal setting (default 5)
         let slots_setting = crate::database::setting_or(tx, "slots", "5")?;
         let Some(slots) = python_int(&slots_setting) else {
             return Ok(Err("slot non validi".into()));
         };
+
+        // Conta le proposte già nel ballottaggio
         let taken: i64 = tx.query_row("SELECT COUNT(*) FROM options WHERE poll_id=? AND suggestion_id IS NOT NULL", [poll_id], |row| row.get(0))?;
+
+        // Verifica che ci siano slot disponibili
         if taken >= slots {
             return Ok(Ok(Chosen::Conflict(format!("Gli slot del ballottaggio ({slots}) sono pieni"))));
         }
+
+        // Inserisci la proposta nel ballottaggio
         tx.execute("INSERT INTO options(poll_id,label,suggestion_id) VALUES(?,?,?)", params![poll_id, name, suggestion_id])?;
+
+        // Aggiorna lo stato della proposta a picked
         tx.execute(
             "UPDATE suggestions SET status='picked',picked_by=?,picked_at=? WHERE id=? AND week=? AND status='pending'",
             params![actor, isoformat(now), suggestion_id, week],
         )?;
+
+        // Aggiorna gli stati degli autori
         increment_suggestion_authors_stat(tx, suggestion_id, week, AuthorStat::BallotEntries, now)?;
+
+        // Recupera tutti gli autori della proposta per le notifiche
         let authors: Vec<i64> = tx
             .prepare("SELECT DISTINCT user_id FROM proposals WHERE suggestion_id=? AND week=?")?
             .query_map(params![suggestion_id, week], |row| row.get(0))?
             .collect::<Result<_, _>>()?;
+
         Ok(Ok(Chosen::Picked { name, kind, week, poll_id, authors: authors.into_iter().filter_map(|id| u64::try_from(id).ok()).collect() }))
     })
     .map_err(|e| e.to_string())?
@@ -451,21 +486,36 @@ enum Removed {
     Removed { name: String, poll_id: Option<i64> },
 }
 
-// Rimuove una proposta dal ballottaggio nel database.
-// Questa è una funzione di supporto usata da `remove_selection`.
+/// Rimuove una proposta dal ballottaggio nel database.
+/// Questa è una funzione di supporto usata da `remove_selection`.
 fn remove_in_db(db: &Database, suggestion_id: i64, now: DateTime<Tz>) -> rusqlite::Result<Removed> {
+    // Apri una transazione per operazioni atomiche
     db.transaction(|tx| {
+        // Recupera la settimana corrente
         let week = crate::database::current_week(tx)?;
+
+        // Recupera il nome della proposta che è nel ballottaggio
         let suggestion: Option<String> = tx
             .query_row("SELECT name FROM suggestions WHERE id=? AND week=? AND status='picked'", params![suggestion_id, week], |row| row.get(0))
             .optional()?;
+
+        // Se la proposta non è trovata o non è nel ballottaggio
         let Some(name) = suggestion else {
             return Ok(Removed::NotFound);
         };
+
+        // Recupera l'ID del sondaggio a cui appartenente
         let poll_id: Option<i64> = tx.query_row("SELECT poll_id FROM options WHERE suggestion_id=?", [suggestion_id], |row| row.get(0)).optional()?;
+
+        // Rimuovi la proposta dal ballottaggio
         tx.execute("DELETE FROM options WHERE suggestion_id=?", [suggestion_id])?;
+
+        // Ripristina lo stato della proposta a pending
         tx.execute("UPDATE suggestions SET status='pending',picked_by=NULL,picked_at=NULL WHERE id=?", [suggestion_id])?;
+
+        // Revoca gli entry di ballot degli autori
         revoke_ballot_entry_stats(tx, suggestion_id, week, now)?;
+
         Ok(Removed::Removed { name, poll_id })
     })
 }

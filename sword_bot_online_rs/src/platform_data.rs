@@ -87,11 +87,13 @@ impl std::fmt::Display for DataError {
     }
 }
 
+/// Risultato di una lettura del database: `Result<Value, DataError>`.
+/// `Value` contiene i dati JSON restituiti, `DataError` rappresenta un errore.
 type DataResult = Result<Value, DataError>;
 
 /// `round(x, 1)` di Python: arrotonda sul valore esatto del numero.
-// Converte il numero in stringa con 1 cifra decimale, poi torna indietro a f64.
-// Usa unwrap_or come fallback se la conversione fallisce.
+/// Converte il numero in stringa con 1 cifra decimale, poi torna indietro a f64.
+/// Usa `unwrap_or` come fallback se la conversione fallisce.
 pub(crate) fn round1(value: f64) -> f64 {
     format!("{value:.1}").parse().unwrap_or(value)
 }
@@ -132,14 +134,19 @@ fn local(timestamp: i64) -> DateTime<Tz> {
 }
 
 // Calcola l'intervallo di settimane per un periodo di giorni.
-// Restituisce una coppia (prima_settimana, ultima_settimana) con il conteggio delle settimane
-// nel periodo specificato, considerando un range di settimane indietro.
+/// Restituisce una coppia (prima_settimana, ultima_settimana) con il conteggio delle settimane
+/// nel periodo specificato, considerando un range di settimane indietro.
+/// Calcola l'intervallo di settimane per un periodo di giorni.
+/// Restituisce una coppia (prima_settimana, ultima_settimana) con il conteggio delle settimane
+/// nel periodo specificato, considerando un range di settimane indietro.
 pub fn period_weeks(current_week: i64, days: i64, periods_back: i64) -> (i64, i64) {
     let span = ((days + 6).div_euclid(7)).max(1);
     let last = current_week - span * periods_back;
     (last - span + 1, last)
 }
 
+/// Struttura che fornisce l'accesso ai dati della piattaforma per le operazioni sul sito.
+/// Include il database, la directory del sito e un sistema di cache per le letture frequenti.
 pub struct PlatformData {
     db: Database,
     directory: Arc<dyn SiteDirectory>,

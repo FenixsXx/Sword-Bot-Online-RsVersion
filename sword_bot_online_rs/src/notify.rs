@@ -222,12 +222,21 @@ pub fn audit_message(occurred_at_unix: i64, entry: &AuditEntry) -> String {
 // --- notificatore ------------------------------------------------------------------------------
 
 #[derive(Default)]
+/// Log staff state used for debouncing messages in the staff log.
+///
+/// La struttura traccia le righe accumulate e se un flush task è già in corso.
+/// Le righe vicine sono destinate a partire in un solo messaggio (dopo
+/// [`STAFF_LOG_DEBOUNCE`](crate::notify::STAFF_LOG_DEBOUNCE)).
 struct StaffLogState {
     pending: Vec<String>,
     /// C'è già un task che svuota la coda.
     running: bool,
 }
 
+/// Inner container for the [`Notifier`].
+///
+/// Possiede il database, il mittente Discord clonabile, lo stato del log staff
+/// e l'ID canale di audit configurabile.
 struct Inner<S> {
     db: Database,
     sender: S,
@@ -237,6 +246,9 @@ struct Inner<S> {
 }
 
 /// Log staff, audit, feed attività e DM. Clonabile a basso costo.
+///
+/// È parametrato su un [`DiscordSender`]: in produzione `HttpSender` sopra
+/// `serenity::Http`, nei test un `FakeSender` che registra ciò che "invia".
 pub struct Notifier<S: DiscordSender> {
     inner: Arc<Inner<S>>,
 }
@@ -253,17 +265,27 @@ impl<S: DiscordSender> Notifier<S> {
         Self::with_audit_channel(db, sender, std::env::var("BOT_AUDIT_CHANNEL_ID").ok())
     }
 
-    pub fn with_audit_channel(db: Database, sender: S, audit_channel_env: Option<String>) -> Self {
+    /// Inizializza un nuovo `Notifier` con un canale audit opzionale.
+///
+/// Se `audit_channel_env` è `None`, il canale viene determinato al runtime leggendo
+/// `BOT_AUDIT_CHANNEL_ID` oppure cadendo sul canale staff configurato.
+pub fn with_audit_channel(db: Database, sender: S, audit_channel_env: Option<String>) -> Self {
         Self {
             inner: Arc::new(Inner { db, sender, staff_log: Mutex::new(StaffLogState::default()), audit_channel_env }),
         }
     }
 
+    /// Restituisce il guardiano mutuo per lo stato del log staff.
+    ///
+    /// Se il thread è stato bloccato (poisoning), recupera l'ultimo stato conosciuto.
     fn staff_log_state(&self) -> MutexGuard<'_, StaffLogState> {
         self.inner.staff_log.lock().unwrap_or_else(|poisoned| poisoned.into_inner())
     }
 
-    /// ID di canale salvato nelle impostazioni; `None` se manca o non è valido.
+    /// Restituisce l'ID canale salvato nelle impostazioni per la chiave data.
+    ///
+    /// Restituisce `None` se l'impostazione manca, è vuota o non è un ID valido.
+    /// Logga un errore sul fallimento di lettura dal database.
     fn channel_setting(&self, key: &str) -> Option<u64> {
         match self.inner.db.get_setting(key) {
             Ok(Some(raw)) if !raw.trim().is_empty() => parse_channel_id(&raw, key),
@@ -277,7 +299,9 @@ impl<S: DiscordSender> Notifier<S> {
 
     /// Avvia `task` in background; senza un runtime tokio attivo lo scarta (in Python:
     /// "event loop non attivo").
-    fn spawn(&self, task: impl Future<Output = ()> + Send + 'static) -> bool {
+    /// Avvia `task` in background; senza un runtime tokio attivo lo scarta (in Python:
+/// "event loop non attivo").
+fn spawn(&self, task: impl Future<Output = ()> + Send + 'static) -> bool {
         match tokio::runtime::Handle::try_current() {
             Ok(runtime) => {
                 runtime.spawn(task);
@@ -363,14 +387,21 @@ impl<S: DiscordSender> Notifier<S> {
         self.spawn(async move { this.publish_staff_audit(occurred_at.timestamp(), &entry).await });
     }
 
-    fn audit_channel(&self) -> Option<u64> {
+    /// Restituisce l'ID canale di audit da usare.
+///
+/// Controlla prima `BOT_AUDIT_CHANNEL_ID` (se impostato), altrimenti cade sul canale staff
+/// configurato. Restituisce `None` se né l'ambiente né l'impostazione forniscono un ID valido.
+fn audit_channel(&self) -> Option<u64> {
         match self.inner.audit_channel_env.as_deref().map(str::trim).filter(|raw| !raw.is_empty()) {
             Some(raw) => parse_channel_id(raw, "BOT_AUDIT_CHANNEL_ID"),
             None => self.channel_setting("staff_channel"),
         }
     }
 
-    pub async fn publish_staff_audit(&self, occurred_at_unix: i64, entry: &AuditEntry) {
+    /// Pubblica un'azione audit nel canale di audit configurato.
+///
+/// Se non è stato configurato alcun canale, la funzione ritorna senza fare nulla.
+async fn publish_staff_audit(&self, occurred_at_unix: i64, entry: &AuditEntry) {
         let Some(channel_id) = self.audit_channel() else {
             return;
         };
@@ -478,6 +509,10 @@ impl<S: DiscordSender> Notifier<S> {
     }
 }
 
+/// Analizza una stringa contenente un ID canale dal valore ambiente o dalle impostazioni.
+///
+/// Restituisce `Some(id)` se la stringa è un numero `u64` non nullo, altrimenti registra un
+/// warning e restituisce `None`.
 fn parse_channel_id(raw: &str, source: &str) -> Option<u64> {
     match raw.trim().parse::<u64>() {
         Ok(id) if id != 0 => Some(id),

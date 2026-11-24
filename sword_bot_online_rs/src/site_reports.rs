@@ -114,6 +114,7 @@ impl ReportStore for SupabaseStore {
 // --- validazione -------------------------------------------------------------------------------
 
 /// Perché un corpo non è un report valido.
+/// Enumera i motivi per cui un corpo JSON non è un report valido.
 #[derive(Debug, PartialEq, Eq)]
 pub enum Invalid {
     /// Il messaggio mostrato all'utente (risposta 400).
@@ -127,10 +128,12 @@ fn invalid(message: impl Into<String>) -> Invalid {
 }
 
 /// `str.strip()` di Python.
+/// Rimuove gli spazi vuoti e i caratteri di controllo dai lati del testo.
 pub fn py_strip(text: &str) -> &str {
     text.trim_matches(|c: char| c.is_whitespace() || ('\u{1c}'..='\u{1f}').contains(&c))
 }
 
+/// Converte un valore JSON in intero Python, ritornando `None` se non è un numero intero.
 fn is_python_int(value: &Value) -> Option<i64> {
     match value {
         Value::Number(number) if !number.is_f64() => number.as_i64(),
@@ -139,6 +142,7 @@ fn is_python_int(value: &Value) -> Option<i64> {
 }
 
 /// `_validate_report`: i valori da salvare, nell'ordine in cui Python li produce.
+/// Convalida il corpo JSON di un report e restituisce i valori normalizzati, oppure un errore `Invalid`.
 pub fn validate_report(payload: &Value) -> Result<Map<String, Value>, Invalid> {
     let Value::Object(payload) = payload else {
         return Err(invalid("Corpo JSON non valido"));
@@ -215,6 +219,7 @@ pub fn validate_report(payload: &Value) -> Result<Map<String, Value>, Invalid> {
 
 /// `repr(float)` di Python: le cifre più brevi che riconvertono allo stesso numero, in notazione
 /// decimale tra `1e-4` e `1e16` (esclusi) e in esponente altrove.
+/// Restituisce la rappresentazione a precisione variabile di un numero in virgola mobile.
 pub(crate) fn py_float_repr(float: f64) -> String {
     if float == 0.0 {
         return if float.is_sign_negative() { "-0.0" } else { "0.0" }.to_string();
@@ -245,6 +250,7 @@ pub(crate) fn py_float_repr(float: f64) -> String {
 }
 
 /// `repr()` di Python per i valori JSON.
+/// Restituisce la rappresentazione letterale Python di un valore (es. `True`, `None`, numeri, stringhe).
 fn py_repr(value: &Value) -> String {
     match value {
         Value::Null => "None".to_string(),
@@ -278,6 +284,8 @@ fn py_repr(value: &Value) -> String {
 }
 
 /// `str(valore)` di Python.
+/// Restituisce la rappresentazione stringa di un valore: per `String` restituisce il testo,
+/// per gli altri tipi usa `py_repr` (es. `True`, `None`, numeri).
 pub(crate) fn py_str(value: &Value) -> String {
     match value {
         Value::String(text) => text.clone(),
@@ -285,6 +293,11 @@ pub(crate) fn py_str(value: &Value) -> String {
     }
 }
 
+/// `str(valore)` di Python (verità).
+/// Restituisce `true` per tutti i valori eccetto `null`, `false`, `0` e stringhe vuote.
+/// `truthy(value: Option<&Value>) -> bool` di Python.
+/// Restituisce `true` per tutti i valori eccetto `null`, `false`, `0` e stringhe vuote.
+/// Questo riflette il comportamento di `if valore:` in Python.
 fn truthy(value: Option<&Value>) -> bool {
     match value {
         None | Some(Value::Null) => false,
@@ -296,10 +309,15 @@ fn truthy(value: Option<&Value>) -> bool {
     }
 }
 
+/// Trunca un testo al limite di caratteri specificato.
+/// Trunca un testo al limite di caratteri specificato.
+/// Restituisce il testo truncato se eccede il limite, altrimenti il testo originale.
 fn truncate(text: &str, limit: usize) -> String {
     text.chars().take(limit).collect()
 }
 
+/// Aggiunge un campo a un embed Discord.
+/// Trunca il valore se eccede i 1024 caratteri, altrimenti usa il testo completo.
 fn add_field(embed: EmbedSpec, name: &str, value: &Value) -> EmbedSpec {
     let text = py_strip(&py_str(value)).to_string();
     let text = if text.is_empty() { "—".to_string() } else { text };
@@ -307,11 +325,15 @@ fn add_field(embed: EmbedSpec, name: &str, value: &Value) -> EmbedSpec {
 }
 
 /// `report.get(chiave)` con `None` se manca.
+/// Restituisce il valore associato a una chiave in un report, oppure `Value::Null` se manca.
+/// Restituisce il valore associato a una chiave in un report, oppure `Value::Null` se manca.
 fn field_of<'a>(report: &'a Value, key: &str) -> &'a Value {
     report.get(key).unwrap_or(&Value::Null)
 }
 
 /// L'embed di un report (`_report_embed`).
+/// Costruisce un embed Discord a partire dai dati di un report, includendo campi come categoria,
+/// data/ora, presenze, responsabile, clip e note.
 pub fn report_embed(report: &Value) -> EmbedSpec {
     let name = if truthy(report.get("name")) { py_str(field_of(report, "name")) } else { "Senza titolo".to_string() };
     let mut embed = EmbedSpec { title: Some(format!("📅 Nuovo evento · {}", truncate(&name, 220))), description: None, color: REPORT_COLOR, fields: Vec::new(), footer: None, thumbnail: None, image: None, timestamp: None };
@@ -343,6 +365,7 @@ pub fn report_embed(report: &Value) -> EmbedSpec {
 // --- UUID --------------------------------------------------------------------------------------
 
 /// `str(UUID(testo))` di Python: accetta anche maiuscole, graffe, `urn:uuid:` e senza trattini.
+/// Restituisce l'UUID formattato con trattini, in minuscolo, oppure `None` se il formato non è valido.
 pub fn parse_uuid(raw: &str) -> Option<String> {
     let text = raw.replace("urn:", "").replace("uuid:", "");
     let text: String = text.trim_matches(|c| c == '{' || c == '}').chars().filter(|c| *c != '-').collect();
@@ -371,6 +394,8 @@ pub struct ReportsState {
     pub clock: fn() -> chrono::DateTime<chrono_tz::Tz>,
 }
 
+/// Definisce le route API per i report degli eventi.
+/// Espone endpoint per elencare, creare, aggiornare, eliminare e pubblicare report.
 pub fn routes(state: ReportsState) -> Router {
     Router::new()
         .route("/api/site/reports", get(list_reports).post(create_report))
@@ -619,6 +644,7 @@ async fn publish_report(State(state): State<ReportsState>, headers: HeaderMap, P
 }
 
 /// Non usato in produzione: l'orario di Roma, per i test con orologio finto.
+/// Restituisce l'ora corrente nel fuso di Roma (Europe/Rome), usato nei test con orologio finto.
 pub fn rome_now() -> chrono::DateTime<chrono_tz::Tz> {
     Utc::now().with_timezone(&crate::config::TZ)
 }

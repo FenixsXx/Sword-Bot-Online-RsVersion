@@ -48,6 +48,7 @@ pub struct Transition {
 }
 
 /// `REVIEW_TRANSITIONS` di Python: `review`, `approve` e `reject`.
+/// `REVIEW_TRANSITIONS` di Python: `review`, `approve` e `reject`.
 pub fn transition(action: &str) -> Option<Transition> {
     match action {
         "review" => Some(Transition { allowed_from: &["pending"], new_status: "reviewing", audit_action: "proposal_review_started" }),
@@ -90,6 +91,7 @@ impl ReviewSource {
     }
 }
 
+/// Richiesta di revisione di una proposta.
 #[derive(Debug, Clone, Copy)]
 pub struct ReviewRequest<'a> {
     pub actor_id: i64,
@@ -240,6 +242,7 @@ impl ReviewAction {
     }
 }
 
+/// Riconosce `review:approve:<ID>` / `review:reject:<ID>` (corrispondenza completa, cifre ASCII).
 pub fn review_custom_id(action: ReviewAction, suggestion_id: i64) -> String {
     format!("review:{}:{suggestion_id}", action.as_str())
 }
@@ -383,6 +386,7 @@ pub const REJECT_REASON_FIELD_ID: &str = "reason";
 pub const REJECT_REASON_MIN_LENGTH: u16 = 3;
 pub const REJECT_REASON_MAX_LENGTH: u16 = 200;
 
+/// ID della proposta da una maschera di rifiuto inviata (`review-reject:<ID>`).
 pub fn reject_modal_custom_id(suggestion_id: i64) -> String {
     format!("review-reject:{suggestion_id}")
 }

@@ -94,6 +94,7 @@ impl<S: DiscordSender, A: DiscordApi> AdminOps for DiscordBackend<S, A> {
 /// Le operazioni collegate a bot avviato (il server HTTP parte prima del gateway).
 #[derive(Default)]
 pub struct LateAdminOps {
+    /// Amministratore operations (disponibili una volta avviato il bot).
     inner: OnceLock<Arc<dyn AdminOps>>,
 }
 
@@ -145,6 +146,7 @@ impl AdminOps for LateAdminOps {
 
 #[derive(Clone)]
 pub struct AdminState {
+    /// Stato amministrativo condiviso per le rotte del sito.
     pub auth: Arc<SiteAuth>,
     pub db: Database,
     pub backend: Arc<dyn SiteBackend>,
@@ -174,6 +176,7 @@ pub fn routes(state: AdminState) -> Router {
 /// Il risultato di `int(valore)` di Python su un dato JSON.
 #[derive(Debug, Clone, Copy, PartialEq, Eq)]
 pub(crate) enum IntArg {
+    /// Intero normale.
     Int(i64),
     /// Un intero valido ma troppo grande per il database (e per qualsiasi ID).
     Huge,
