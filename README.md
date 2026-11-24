@@ -104,6 +104,13 @@ Molti pannelli di hosting per bot Discord (es. pannelli Pterodactyl, Bot-Hosting
    EVENT_OVERLAY_PORT=<porta_assegnata_dal_pannello>
    EVENT_OVERLAY_HOST=0.0.0.0
    ```
+5. **Reverse Proxy (Caddy)**: Per l'overlay browser source visibile su OBS, è consigliabile configurare Caddy come reverse proxy. Esempio di `Caddyfile`:
+   ```caddyfile
+   tuo-dominio.sslip.io {
+       reverse_proxy localhost:EVENT_OVERLAY_PORT
+   }
+   ```
+   Oppure, in alternativa, usa `cloudflared` per tunnel SSH.
 
 ---
 
