@@ -3,7 +3,7 @@
 export const $ = (selector, root = document) => root.querySelector(selector);
 export const $$ = (selector, root = document) => [...root.querySelectorAll(selector)];
 
-const HTML_ESCAPES = { "&": "&", "<": "<", ">": ">", '"': '"', "'": "'" };
+const HTML_ESCAPES = { "&": "\x26amp;", "<": "\x26lt;", ">": "\x26gt;", '"': "\x26quot;", "'": "\x26#39;" };
 
 export function escapeHtml(value) {
   /** Rimuove o codifica i caratteri speciali in una stringa per la visualizzazione HTML. */
