@@ -5,6 +5,9 @@ import { debounce } from "./reports.js";
 import { latestOnly } from "./state.js";
 import { confirmDialog, runBusy, showError, showToast } from "./ui.js";
 
+// Stato e rendering per la sezione strumenti.
+// Questo modulo gestisce il rendering delle proposte, degli eventi live e dei backup.
+// Le proposte possono essere revisionate, approvate, respinte o rimosse dal ballottaggio.
 const nextToolsLoad = latestOnly();
 let toolsState = null;
 let liveFormDirty = false;

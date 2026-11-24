@@ -10,6 +10,7 @@ import { initStats, loadStats, reloadStatsForTopic, resetStats } from "./stats.j
 import { initTools, loadToolsState, resetTools } from "./tools.js";
 import { closeAllDialogs, hideToast, initConfirmDialog, initTheme, runBusy, showError } from "./ui.js";
 
+// Navigazione tra le diverse viste dell'applicazione.
 const REPORT_VIEWS = new Set(["overview", "reports", "analytics"]);
 const VIEW_LOADERS = {
   manage: (options) => loadAdminState(options),

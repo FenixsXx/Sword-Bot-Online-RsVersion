@@ -4,6 +4,7 @@ import { dateKey, formatDate, formatDuration, formatNumber, startOfWeek } from "
 import { latestOnly, state } from "./state.js";
 import { closeDialog, confirmDialog, openDialog, runBusy, showError, showToast } from "./ui.js";
 
+// Categorie e icone per i report.
 const CATEGORY_ICONS = { Minigiochi: "🎮", Anime: "🌸", Film: "🎬", Quiz: "🧠", Disegno: "🎨", Musica: "🎵" };
 const CATEGORY_CLASSES = { Anime: "orange-cat", Film: "green-cat", Quiz: "blue-cat", Disegno: "pink-cat", Musica: "gold-cat" };
 const CATEGORY_BARS = {
@@ -17,6 +18,9 @@ const CATEGORY_BARS = {
 
 const nextReportsLoad = latestOnly();
 const deletingReports = new Set();
+
+// Calcoli e statistiche per i report.
+// Qui vengono computate le metriche mensili, i trend e i confronti tra periodi.
 
 /* ---------- Calcoli ---------- */
 

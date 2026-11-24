@@ -1,3 +1,4 @@
+// Restituisce l'inizio della settimana (lunedì) per una data data.
 export function startOfWeek(date) {
   const result = new Date(date);
   const day = result.getDay();

@@ -1,6 +1,7 @@
+// Comunicazione con il backend Rust.
+// Questo modulo gestisce le richieste API verso il server Rust back-end.
+
 /*
- * Questo file gestisce la comunicazione del sito con il backend Rust.
- *
  * Concetti chiave:
  * - Fetch: È la funzione nativa di JavaScript usata per "chiedere" dati al server.
  *   Pensa a `apiRequest` come a un corriere: parte dal browser (il tuo sito),

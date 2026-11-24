@@ -1,7 +1,9 @@
+// Utility per la selezione degli elementi DOM.
+// $ e $$ sono scorciatori per querySelector e querySelectorAll.
 export const $ = (selector, root = document) => root.querySelector(selector);
 export const $$ = (selector, root = document) => [...root.querySelectorAll(selector)];
 
-const HTML_ESCAPES = { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" };
+const HTML_ESCAPES = { "&": "&", "<": "<", ">": ">", '"': '"', "'": "'" };
 
 export function escapeHtml(value) {
   return String(value ?? "").replace(/[&<>"']/g, (char) => HTML_ESCAPES[char]);
