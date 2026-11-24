@@ -5,6 +5,11 @@ import { debounce } from "./reports.js";
 import { latestOnly } from "./state.js";
 import { confirmDialog, runBusy, showError, showToast } from "./ui.js";
 
+/** Modulo di rendering per la sezione strumenti.
+ * Gestisce la visualizzazione di proposte, eventi live e backup.
+ * Le proposte possono essere revisionate, approvate, respinte o rimosse dal ballottaggio.
+ */
+
 // Stato e rendering per la sezione strumenti.
 // Questo modulo gestisce il rendering delle proposte, degli eventi live e dei backup.
 // Le proposte possono essere revisionate, approvate, respinte o rimosse dal ballottaggio.

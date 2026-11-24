@@ -20,7 +20,7 @@ const nextReportsLoad = latestOnly();
 const deletingReports = new Set();
 
 // Calcoli e statistiche per i report.
-// Qui vengono computate le metriche mensili, i trend e i confronti tra periodi.
+/** Qui vengono computate le metriche mensili, i trend e i confronti tra periodi. */
 
 /* ---------- Calcoli ---------- */
 

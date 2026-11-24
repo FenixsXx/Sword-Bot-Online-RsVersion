@@ -1,4 +1,4 @@
-// Restituisce l'inizio della settimana (lunedì) per una data data.
+/** Restituisce l'inizio della settimana (lunedì) per una data data. */
 export function startOfWeek(date) {
   const result = new Date(date);
   const day = result.getDay();
@@ -12,6 +12,7 @@ export function dateKey(date) {
 }
 
 export function formatDate(date, time) {
+  /** Formatta una data nel formato italiano giorno-mese-anno ore:minuti. */
   const value = new Date(`${date}T${time}`);
   const options = { day: "2-digit", month: "short" };
   if (value.getFullYear() !== new Date().getFullYear()) options.year = "numeric";
@@ -19,6 +20,7 @@ export function formatDate(date, time) {
 }
 
 export function formatDateTime(isoValue) {
+  /** Converte un valore ISO in una stringa formattata in italiano. */
   const value = new Date(isoValue);
   if (Number.isNaN(value.getTime())) return String(isoValue ?? "—");
   const options = { day: "2-digit", month: "short", hour: "2-digit", minute: "2-digit" };
@@ -27,6 +29,7 @@ export function formatDateTime(isoValue) {
 }
 
 export function formatNumber(value, digits = 1) {
+  /** Formatta un numero con separatori delle migliaia secondo il formato italiano. */
   return Number(value).toLocaleString("it-IT", { minimumFractionDigits: digits, maximumFractionDigits: digits });
 }
 

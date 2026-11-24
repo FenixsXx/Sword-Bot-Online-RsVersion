@@ -6,6 +6,7 @@ export const $$ = (selector, root = document) => [...root.querySelectorAll(selec
 const HTML_ESCAPES = { "&": "&", "<": "<", ">": ">", '"': '"', "'": "'" };
 
 export function escapeHtml(value) {
+  /** Rimuove o codifica i caratteri speciali in una stringa per la visualizzazione HTML. */
   return String(value ?? "").replace(/[&<>"']/g, (char) => HTML_ESCAPES[char]);
 }
 
